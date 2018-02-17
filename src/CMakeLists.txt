@@ -2,7 +2,9 @@ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Widgets)
 
 set(kimageannotator_SRCS main.cpp
                          KImageAnnotator.cpp
-                         AnnotationArea.cpp)
+                         AnnotationArea.cpp
+                         annotationItems/AnnotationItemProperties.cpp
+                         annotationItems/AbstractAnnotationItem.cpp)
 
 add_executable(kimageannotator_app ${kimageannotator_SRCS})
 
