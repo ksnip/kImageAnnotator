@@ -17,21 +17,29 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNTATIONAREA_H
-#define ANNTATIONAREA_H
+#include "AnnotationAreaTest.h"
 
-#include <QGraphicsScene>
 
-class AnntationArea : public QGraphicsScene
+void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
 {
-public:
-    AnntationArea();
-    ~AnntationArea() = default;
+    QPixmap pixmap(QSize(400, 400));
+    pixmap.fill(QColor(QStringLiteral("Green")));
+    AnntationArea annotationArea;
+    annotationArea.setBackgroundImage(pixmap);
 
-    void setBackgroundImage(const QPixmap& image);
+    auto resultImage = annotationArea.exportAsImage();
 
-private:
-    QGraphicsPixmapItem* mBackgroundImage;
-};
+    auto expectedImage = pixmap.toImage().convertToFormat(QImage::Format_ARGB32);
+    QCOMPARE(expectedImage, resultImage);
+}
 
-#endif // ANNTATIONAREA_H
+void AnnotationAreaTest::TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet()
+{
+    AnntationArea annotationArea;
+
+    auto resultImage = annotationArea.exportAsImage();
+
+    QCOMPARE(QImage(), resultImage);
+}
+
+QTEST_MAIN(AnnotationAreaTest);

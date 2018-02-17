@@ -17,25 +17,23 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_H
-#define KIMAGEANNOTATOR_H
+#ifndef ANNOTATIONAREA_H
+#define ANNOTATIONAREA_H
 
-#include <QWidget>
-#include <QGraphicsView>
-#include <QVBoxLayout>
+#include <QGraphicsScene>
+#include <QPainter>
 
-#include "AnnotationArea.h"
-
-class KImageAnnotator : public QWidget
+class AnntationArea : public QGraphicsScene
 {
 public:
-    KImageAnnotator(const QPixmap& image);
-    ~KImageAnnotator();
+    AnntationArea();
+    ~AnntationArea() = default;
+
+    void setBackgroundImage(const QPixmap& image);
+    QImage exportAsImage();
 
 private:
-    AnntationArea* mAnnotationArea;
-    QGraphicsView* mView;
-    QVBoxLayout*   mMainLayout;
+    QGraphicsPixmapItem* mBackgroundImage;
 };
 
-#endif // KIMAGEANNOTATOR_H
+#endif // ANNOTATIONAREA_H

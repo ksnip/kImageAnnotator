@@ -17,17 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnntationArea.h"
+#ifndef ANNOTATIONAREATEST_H
+#define ANNOTATIONAREATEST_H
 
-AnntationArea::AnntationArea() : mBackgroundImage(nullptr)
+#include <QtTest>
+
+#include "../src/AnnotationArea.h"
+
+class AnnotationAreaTest : public QObject
 {
-}
+Q_OBJECT
 
-void AnntationArea::setBackgroundImage(const QPixmap& image)
-{
-    if(image.isNull()) {
-        return;
-    }
+private slots:
+    void TestExportAsImage_Should_ExportImage_When_ImageSet();
+    void TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet();
+};
 
-    mBackgroundImage = addPixmap(image);
-}
+#endif // ANNOTATIONAREATEST_H
+
+
