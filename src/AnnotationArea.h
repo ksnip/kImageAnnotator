@@ -50,6 +50,9 @@ private:
     QGraphicsPixmapItem*    mBackgroundImage;
     AbstractAnnotationItem* mCurrentItem;
     AnnotationToolTypes     mSelectedToolType;
+
+    void addItemAtPosition(const QPointF& position);
+    void addPointToCurrentItem(const QPointF& position);
 };
 
 #endif // ANNOTATIONAREA_H
