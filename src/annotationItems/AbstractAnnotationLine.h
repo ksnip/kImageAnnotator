@@ -29,6 +29,7 @@ public:
     ~AbstractAnnotationLine();
     void addPoint(const QPointF & position) override;
     void moveTo(const QPointF & newPosition) override;
+    QLineF line() const;
 
 protected:
     QLineF* mLine;

@@ -25,6 +25,7 @@
 #include <QPainter>
 
 #include "annotationItems/AnnotationItemFactory.h"
+#include "annotationItems/AnnotationItemModifier.h"
 #include "AnnotationToolTypes.h"
 
 class AnnotationArea : public QGraphicsScene
@@ -49,10 +50,12 @@ private:
     AnnotationItemFactory*  mItemFactory;
     QGraphicsPixmapItem*    mBackgroundImage;
     AbstractAnnotationItem* mCurrentItem;
+    AnnotationItemModifier* mItemModifier;
     AnnotationToolTypes     mSelectedToolType;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);
+    AbstractAnnotationItem* findItemAt(const QPointF& point) const;
 };
 
 #endif // ANNOTATIONAREA_H

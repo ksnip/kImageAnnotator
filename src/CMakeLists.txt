@@ -5,6 +5,7 @@ set(kimageannotator_SRCS main.cpp
                          AnnotationArea.cpp
                          annotationItems/AnnotationItemFactory.cpp
                          annotationItems/AnnotationItemProperties.cpp
+                         annotationItems/AnnotationItemModifier.cpp
                          annotationItems/AbstractAnnotationItem.cpp
                          annotationItems/AbstractAnnotationLine.cpp
                          annotationItems/AbstractAnnotationItem.cpp

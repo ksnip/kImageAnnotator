@@ -24,6 +24,9 @@ AnnotationArea::AnnotationArea(AnnotationItemFactory *itemFactory)
     mItemFactory = itemFactory;
     mBackgroundImage = nullptr;
     mCurrentItem = nullptr;
+    mItemModifier = new AnnotationItemModifier();
+    mItemModifier->setZValue(100);
+    addItem(mItemModifier);
 }
 
 AnnotationArea::~AnnotationArea()
@@ -64,7 +67,10 @@ void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     if(event->button() == Qt::LeftButton) {
         if(mSelectedToolType == AnnotationToolTypes::Select) {
-
+            mCurrentItem = findItemAt(event->scenePos());
+            if(mCurrentItem != nullptr) {
+                mItemModifier->attachTo((AbstractAnnotationLine*)mCurrentItem);
+            }
         } else {
             addItemAtPosition(event->scenePos());
         }
@@ -105,4 +111,18 @@ void AnnotationArea::addItemAtPosition(const QPointF& position)
 void AnnotationArea::addPointToCurrentItem(const QPointF& position)
 {
     mCurrentItem->addPoint(position);
+}
+
+AbstractAnnotationItem* AnnotationArea::findItemAt(const QPointF& point) const
+{
+    QRectF rect(point - QPointF(2, 2), QSize(4, 4));
+
+    for(auto item : items()) {
+        auto baseItem = dynamic_cast<AbstractAnnotationItem*> (item);
+
+        if(baseItem != nullptr && baseItem->intersects(rect)) {
+            return baseItem;
+        }
+    }
+    return nullptr;
 }

@@ -32,6 +32,7 @@ public:
     ~AbstractAnnotationItem();
     virtual QRectF boundingRect() const override;
     virtual QPainterPath shape() const override;
+    virtual bool intersects(const QRectF& rect) const;
     virtual void addPoint(const QPointF &position) = 0;
     virtual void moveTo(const QPointF &newPosition) = 0;
     AnnotationItemProperties properties() const;

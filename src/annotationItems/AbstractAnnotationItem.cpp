@@ -33,12 +33,17 @@ AbstractAnnotationItem::~AbstractAnnotationItem()
 
 QRectF AbstractAnnotationItem::boundingRect() const
 {
-    return shape().boundingRect();
+    return mShape->boundingRect();
 }
 
 QPainterPath AbstractAnnotationItem::shape() const
 {
     return *mShape;
+}
+
+bool AbstractAnnotationItem::intersects(const QRectF& rect) const
+{
+    return mShape->intersects(rect);
 }
 
 void AbstractAnnotationItem::setShape(QPainterPath& newShape)

@@ -17,32 +17,34 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AbstractAnnotationLine.h"
+#include "AnnotationItemModifier.h"
 
-AbstractAnnotationLine::AbstractAnnotationLine(const QPointF& startPosisition, const AnnotationItemProperties& properties) :
-    AbstractAnnotationItem(properties)
+AnnotationItemModifier::AnnotationItemModifier()
 {
-    mLine = new QLineF();
-    mLine->setP1(startPosisition);
+    mLineItem = nullptr;
 }
 
-AbstractAnnotationLine::~AbstractAnnotationLine()
+QRectF AnnotationItemModifier::boundingRect() const
 {
-    delete mLine;
+    if (mLineItem) {
+        return mLineItem->boundingRect().adjusted(-5, -5, 5, 5);
+    }
 }
 
-void AbstractAnnotationLine::addPoint(const QPointF& position)
+void AnnotationItemModifier::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+{
+    if (mLineItem != nullptr) {
+        auto line = mLineItem->line();
+        painter->setPen(QColor("white"));
+        painter->setBrush(QColor("gray"));
+        painter->drawEllipse(line.p1(), 5, 5);
+        painter->drawEllipse(line.p2(), 5, 5);
+    }
+}
+
+void AnnotationItemModifier::attachTo(AbstractAnnotationLine* lineItem)
 {
     prepareGeometryChange();
-    mLine->setP2(position);
-    updateShape();
+    mLineItem = lineItem;
 }
 
-void AbstractAnnotationLine::moveTo(const QPointF& newPosition)
-{
-}
-
-QLineF AbstractAnnotationLine::line() const
-{
-    return *mLine;
-}

@@ -17,32 +17,26 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#ifndef ANNOTATIONITEMMODIFIER_H
+#define ANNOTATIONITEMMODIFIER_H
+
+#include <QGraphicsWidget>
+
 #include "AbstractAnnotationLine.h"
 
-AbstractAnnotationLine::AbstractAnnotationLine(const QPointF& startPosisition, const AnnotationItemProperties& properties) :
-    AbstractAnnotationItem(properties)
+class AnnotationItemModifier : public QGraphicsWidget
 {
-    mLine = new QLineF();
-    mLine->setP1(startPosisition);
-}
+public:
+    AnnotationItemModifier();
+    ~AnnotationItemModifier() = default;
+    virtual QRectF boundingRect() const override;
+    void attachTo(AbstractAnnotationLine* lineItem);
 
-AbstractAnnotationLine::~AbstractAnnotationLine()
-{
-    delete mLine;
-}
+protected:
+    virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) override;
 
-void AbstractAnnotationLine::addPoint(const QPointF& position)
-{
-    prepareGeometryChange();
-    mLine->setP2(position);
-    updateShape();
-}
+private:
+    AbstractAnnotationLine* mLineItem;
+};
 
-void AbstractAnnotationLine::moveTo(const QPointF& newPosition)
-{
-}
-
-QLineF AbstractAnnotationLine::line() const
-{
-    return *mLine;
-}
+#endif // ANNOTATIONITEMMODIFIER_H
