@@ -21,6 +21,7 @@
 #define ANNOTATIONAREA_H
 
 #include <QGraphicsScene>
+#include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 
 #include "annotationItems/AnnotationItemFactory.h"
@@ -28,15 +29,21 @@
 class AnntationArea : public QGraphicsScene
 {
 public:
-    AnntationArea(AnnotationItemFactory *itemFactory);
+    AnntationArea(AnnotationItemFactory* itemFactory);
     ~AnntationArea();
 
     void setBackgroundImage(const QPixmap& image);
     QImage exportAsImage();
 
+protected:
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
+    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
+
 private:
-    AnnotationItemFactory* mItemFactory;
-    QGraphicsPixmapItem*   mBackgroundImage;
+    AnnotationItemFactory*  mItemFactory;
+    QGraphicsPixmapItem*    mBackgroundImage;
+    AbstractAnnotationItem* mCurrentItem;
 };
 
 #endif // ANNOTATIONAREA_H

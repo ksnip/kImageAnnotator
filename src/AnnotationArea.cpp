@@ -23,6 +23,7 @@ AnntationArea::AnntationArea(AnnotationItemFactory *itemFactory)
 {
     mItemFactory = itemFactory;
     mBackgroundImage = nullptr;
+    mCurrentItem = nullptr;
 }
 
 AnntationArea::~AnntationArea()
@@ -37,11 +38,6 @@ void AnntationArea::setBackgroundImage(const QPixmap& image)
     }
 
     mBackgroundImage = addPixmap(image);
-
-    //REMOVE
-    auto item = mItemFactory->createItem(QPointF(20, 20));
-    item->addPoint(QPointF(300, 300));
-    addItem(item);
 }
 
 QImage AnntationArea::exportAsImage()
@@ -58,3 +54,29 @@ QImage AnntationArea::exportAsImage()
     render(&painter);
     return image;
 }
+
+void AnntationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
+{
+    if (event->button() == Qt::LeftButton) {
+        mCurrentItem = mItemFactory->createItem(event->scenePos());
+        addItem(mCurrentItem);
+    }
+    QGraphicsScene::mousePressEvent(event);
+}
+
+void AnntationArea::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
+{
+    if (event->buttons() == Qt::LeftButton) {
+        mCurrentItem->addPoint(event->scenePos());
+    }
+    QGraphicsScene::mouseMoveEvent(event);
+}
+
+void AnntationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
+{
+    if (event->button() == Qt::LeftButton) {
+        mCurrentItem = nullptr;
+    }
+    QGraphicsScene::mouseReleaseEvent(event);
+}
+
