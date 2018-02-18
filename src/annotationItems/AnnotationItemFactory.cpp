@@ -22,7 +22,7 @@
 AnnotationItemFactory::AnnotationItemFactory()
 {
     mItemProperties = new AnnotationItemProperties(QColor("red"), 3);
-    mItemType = AnnotationToolTypes::Line;
+    mSelectedItemType = AnnotationItemTypes::Line;
 }
 
 AnnotationItemFactory::~AnnotationItemFactory()
@@ -32,20 +32,20 @@ AnnotationItemFactory::~AnnotationItemFactory()
 
 AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPosition) const
 {
-    switch(mItemType) {
-    case AnnotationToolTypes::Line:
-    case AnnotationToolTypes::Rect:
-    case AnnotationToolTypes::Ellipse:
-    case AnnotationToolTypes::Arrow:
+    switch(mSelectedItemType) {
+    case AnnotationItemTypes::Line:
+    case AnnotationItemTypes::Rect:
+    case AnnotationItemTypes::Ellipse:
+    case AnnotationItemTypes::Arrow:
         return new AnnotationLineItem(initPosition, *mItemProperties);
     default:
         qCritical("Unknown annotation Item Type provided.");
     }
 }
 
-void AnnotationItemFactory::setItemType(AnnotationToolTypes type)
+void AnnotationItemFactory::setItemType(AnnotationItemTypes type)
 {
-    mItemType = type;
+    mSelectedItemType = type;
 }
 
 void AnnotationItemFactory::setColor(const QColor& color)

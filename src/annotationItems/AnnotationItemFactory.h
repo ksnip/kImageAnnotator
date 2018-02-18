@@ -20,12 +20,15 @@
 #ifndef ANNOTATIONITEMFACTORY_H
 #define ANNOTATIONITEMFACTORY_H
 
+#include <QObject>
+
 #include "AnnotationItemProperties.h"
 #include "AnnotationLineItem.h"
-#include "AnnotationToolTypes.h"
+#include "AnnotationItemTypes.h"
 
-class AnnotationItemFactory
+class AnnotationItemFactory : public QObject
 {
+    Q_OBJECT
 public:
     explicit AnnotationItemFactory();
     ~AnnotationItemFactory();
@@ -33,12 +36,12 @@ public:
     AbstractAnnotationItem* createItem(const QPointF& initPosition) const;
 
 public slots:
-    void setItemType(AnnotationToolTypes type);
+    void setItemType(AnnotationItemTypes type);
     void setColor(const QColor& color);
     void setSize(int size);
 
 private:
-    AnnotationToolTypes       mItemType;
+    AnnotationItemTypes       mSelectedItemType;
     AnnotationItemProperties *mItemProperties;
 };
 

@@ -8,7 +8,8 @@ set(kimageannotator_SRCS main.cpp
                          annotationItems/AbstractAnnotationItem.cpp
                          annotationItems/AbstractAnnotationLine.cpp
                          annotationItems/AbstractAnnotationItem.cpp
-                         annotationItems/AnnotationLineItem.cpp)
+                         annotationItems/AnnotationLineItem.cpp
+                         widgets/ToolPicker.cpp)
 
 add_executable(kimageannotator_app ${kimageannotator_SRCS})
 

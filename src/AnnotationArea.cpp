@@ -19,19 +19,19 @@
 
 #include "AnnotationArea.h"
 
-AnntationArea::AnntationArea(AnnotationItemFactory *itemFactory)
+AnnotationArea::AnnotationArea(AnnotationItemFactory *itemFactory)
 {
     mItemFactory = itemFactory;
     mBackgroundImage = nullptr;
     mCurrentItem = nullptr;
 }
 
-AnntationArea::~AnntationArea()
+AnnotationArea::~AnnotationArea()
 {
     delete mItemFactory;
 }
 
-void AnntationArea::setBackgroundImage(const QPixmap& image)
+void AnnotationArea::setBackgroundImage(const QPixmap& image)
 {
     if(image.isNull()) {
         return;
@@ -40,7 +40,7 @@ void AnntationArea::setBackgroundImage(const QPixmap& image)
     mBackgroundImage = addPixmap(image);
 }
 
-QImage AnntationArea::exportAsImage()
+QImage AnnotationArea::exportAsImage()
 {
     if(mBackgroundImage == nullptr) {
         return QImage();
@@ -55,27 +55,41 @@ QImage AnntationArea::exportAsImage()
     return image;
 }
 
-void AnntationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
+void AnnotationArea::setToolType(AnnotationToolTypes toolType)
 {
-    if (event->button() == Qt::LeftButton) {
-        mCurrentItem = mItemFactory->createItem(event->scenePos());
-        addItem(mCurrentItem);
+    mSelectedToolType = toolType;
+}
+
+void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
+{
+    if(event->button() == Qt::LeftButton) {
+        if(mSelectedToolType == AnnotationToolTypes::Select) {
+        } else {
+            mCurrentItem = mItemFactory->createItem(event->scenePos());
+            addItem(mCurrentItem);
+        }
     }
     QGraphicsScene::mousePressEvent(event);
 }
 
-void AnntationArea::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
+void AnnotationArea::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
-    if (event->buttons() == Qt::LeftButton) {
-        mCurrentItem->addPoint(event->scenePos());
+    if(event->buttons() == Qt::LeftButton) {
+        if(mSelectedToolType == AnnotationToolTypes::Select) {
+        } else {
+            mCurrentItem->addPoint(event->scenePos());
+        }
     }
     QGraphicsScene::mouseMoveEvent(event);
 }
 
-void AnntationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
+void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
-    if (event->button() == Qt::LeftButton) {
-        mCurrentItem = nullptr;
+    if(event->button() == Qt::LeftButton) {
+        if(mSelectedToolType == AnnotationToolTypes::Select) {
+        } else {
+            mCurrentItem = nullptr;
+        }
     }
     QGraphicsScene::mouseReleaseEvent(event);
 }

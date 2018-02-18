@@ -19,11 +19,12 @@
 
 #include "AbstractAnnotationLine.h"
 
-AbstractAnnotationLine::AbstractAnnotationLine(const QPointF& startPosisition, const AnnotationItemProperties& properties) :     AbstractAnnotationItem(properties)
+AbstractAnnotationLine::AbstractAnnotationLine(const QPointF& startPosisition, const AnnotationItemProperties& properties) :
+    AbstractAnnotationItem(properties)
 {
     mLine = new QLineF();
     mLine->setP1(startPosisition);
-    mLine->setP2(startPosisition + QPointF(10,10));
+    mLine->setP2(startPosisition + QPointF(10, 10));
 }
 
 AbstractAnnotationLine::~AbstractAnnotationLine()

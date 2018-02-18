@@ -25,15 +25,20 @@
 #include <QPainter>
 
 #include "annotationItems/AnnotationItemFactory.h"
+#include "AnnotationToolTypes.h"
 
-class AnntationArea : public QGraphicsScene
+class AnnotationArea : public QGraphicsScene
 {
+    Q_OBJECT
 public:
-    AnntationArea(AnnotationItemFactory* itemFactory);
-    ~AnntationArea();
+    AnnotationArea(AnnotationItemFactory* itemFactory);
+    ~AnnotationArea();
 
     void setBackgroundImage(const QPixmap& image);
     QImage exportAsImage();
+
+public slots:
+    void setToolType(AnnotationToolTypes toolType);
 
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
@@ -44,6 +49,7 @@ private:
     AnnotationItemFactory*  mItemFactory;
     QGraphicsPixmapItem*    mBackgroundImage;
     AbstractAnnotationItem* mCurrentItem;
+    AnnotationToolTypes     mSelectedToolType;
 };
 
 #endif // ANNOTATIONAREA_H

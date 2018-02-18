@@ -17,28 +17,15 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "KImageAnnotator.h"
+#ifndef ANNOTATIONITEMTYPES_H
+#define ANNOTATIONITEMTYPES_H
 
-KImageAnnotator::KImageAnnotator(const QPixmap& image) :
-    mItemFactory(new AnnotationItemFactory),
-    mAnnotationArea(new AnnotationArea(mItemFactory)),
-    mView(new QGraphicsView(mAnnotationArea)),
-    mMainLayout(new QHBoxLayout),
-    mToolPicker(new ToolPicker)
-
+enum class AnnotationItemTypes
 {
-    mAnnotationArea->setBackgroundImage(image);
-    mMainLayout->addWidget(mToolPicker);
-    mMainLayout->addWidget(mView);
-    setLayout(mMainLayout);
+    Line,
+    Rect,
+    Ellipse,
+    Arrow
+};
 
-    connect(mToolPicker, &ToolPicker::itemChanged, mItemFactory, &AnnotationItemFactory::setItemType);
-    connect(mToolPicker, &ToolPicker::toolChanged, mAnnotationArea, &AnnotationArea::setToolType);
-}
-
-KImageAnnotator::~KImageAnnotator()
-{
-    delete mAnnotationArea;
-    delete mView;
-    delete mMainLayout;
-}
+#endif // ANNOTATIONITEMTYPES_H

@@ -22,10 +22,8 @@
 
 enum class AnnotationToolTypes
 {
-    Line,
-    Rect,
-    Ellipse,
-    Arrow
+    Select,
+    Annotation
 };
 
 #endif // ANNOTATIONTOOLTYPES_H

@@ -25,19 +25,22 @@
 #include <QVBoxLayout>
 
 #include "AnnotationArea.h"
+#include "widgets/ToolPicker.h"
 #include "annotationItems/AnnotationItemFactory.h"
 
 class KImageAnnotator : public QWidget
 {
+    Q_OBJECT
 public:
     KImageAnnotator(const QPixmap& image);
     ~KImageAnnotator();
 
 private:
     AnnotationItemFactory* mItemFactory;
-    AnntationArea*         mAnnotationArea;
+    AnnotationArea*         mAnnotationArea;
     QGraphicsView*         mView;
-    QVBoxLayout*           mMainLayout;
+    QHBoxLayout*           mMainLayout;
+    ToolPicker*            mToolPicker;
 };
 
 #endif // KIMAGEANNOTATOR_H
