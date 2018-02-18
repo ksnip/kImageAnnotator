@@ -17,23 +17,21 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "KImageAnnotator.h"
+#ifndef ABSTRACTANNOTATIONLINE_H
+#define ABSTRACTANNOTATIONLINE_H
 
-KImageAnnotator::KImageAnnotator(const QPixmap& image) :
-    mItemFactory(new AnnotationItemFactory),
-    mAnnotationArea(new AnntationArea(mItemFactory)),
-    mView(new QGraphicsView(mAnnotationArea)),
-    mMainLayout(new QVBoxLayout)
+#include "AbstractAnnotationItem.h"
 
+class AbstractAnnotationLine : public AbstractAnnotationItem
 {
-    mAnnotationArea->setBackgroundImage(image);
-    mMainLayout->addWidget(mView);
-    setLayout(mMainLayout);
-}
+public:
+    AbstractAnnotationLine(const QPointF& startPosisition, const AnnotationItemProperties& properties);
+    ~AbstractAnnotationLine();
+    void addPoint(const QPointF & position) override;
+    void moveTo(const QPointF & newPosition) override;
 
-KImageAnnotator::~KImageAnnotator()
-{
-    delete mAnnotationArea;
-    delete mView;
-    delete mMainLayout;
-}
+protected:
+    QLineF* mLine;
+};
+
+#endif // ABSTRACTANNOTATIONLINE_H

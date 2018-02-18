@@ -19,8 +19,15 @@
 
 #include "AnnotationArea.h"
 
-AnntationArea::AnntationArea() : mBackgroundImage(nullptr)
+AnntationArea::AnntationArea(AnnotationItemFactory *itemFactory)
 {
+    mItemFactory = itemFactory;
+    mBackgroundImage = nullptr;
+}
+
+AnntationArea::~AnntationArea()
+{
+    delete mItemFactory;
 }
 
 void AnntationArea::setBackgroundImage(const QPixmap& image)
@@ -30,6 +37,11 @@ void AnntationArea::setBackgroundImage(const QPixmap& image)
     }
 
     mBackgroundImage = addPixmap(image);
+
+    //REMOVE
+    auto item = mItemFactory->createItem(QPointF(20, 20));
+    item->addPoint(QPointF(300, 300));
+    addItem(item);
 }
 
 QImage AnntationArea::exportAsImage()

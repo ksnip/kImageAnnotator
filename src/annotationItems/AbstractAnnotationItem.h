@@ -32,11 +32,14 @@ public:
     ~AbstractAnnotationItem();
     virtual QRectF boundingRect() const override;
     virtual QPainterPath shape() const override;
-    void updateShape(QPainterPath& newShape);
+    virtual void addPoint(const QPointF &position) = 0;
+    virtual void moveTo(const QPointF &newPosition) = 0;
     AnnotationItemProperties properties() const;
     void setProperties(const AnnotationItemProperties& properties);
 
 protected:
+    void setShape(QPainterPath& newShape);
+    virtual void updateShape() = 0;
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*) override;
 
 private:

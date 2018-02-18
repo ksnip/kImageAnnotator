@@ -17,23 +17,29 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "KImageAnnotator.h"
+#ifndef ANNOTATIONITEMFACTORY_H
+#define ANNOTATIONITEMFACTORY_H
 
-KImageAnnotator::KImageAnnotator(const QPixmap& image) :
-    mItemFactory(new AnnotationItemFactory),
-    mAnnotationArea(new AnntationArea(mItemFactory)),
-    mView(new QGraphicsView(mAnnotationArea)),
-    mMainLayout(new QVBoxLayout)
+#include "AnnotationItemProperties.h"
+#include "AnnotationLineItem.h"
+#include "AnnotationToolTypes.h"
 
+class AnnotationItemFactory
 {
-    mAnnotationArea->setBackgroundImage(image);
-    mMainLayout->addWidget(mView);
-    setLayout(mMainLayout);
-}
+public:
+    explicit AnnotationItemFactory();
+    ~AnnotationItemFactory();
 
-KImageAnnotator::~KImageAnnotator()
-{
-    delete mAnnotationArea;
-    delete mView;
-    delete mMainLayout;
-}
+    AbstractAnnotationItem* createItem(const QPointF& initPosition) const;
+
+public slots:
+    void setItemType(AnnotationToolTypes type);
+    void setColor(const QColor& color);
+    void setSize(int size);
+
+private:
+    AnnotationToolTypes       mItemType;
+    AnnotationItemProperties *mItemProperties;
+};
+
+#endif // ANNOTATIONITEMFACTORY_H

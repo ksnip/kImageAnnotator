@@ -23,17 +23,20 @@
 #include <QGraphicsScene>
 #include <QPainter>
 
+#include "annotationItems/AnnotationItemFactory.h"
+
 class AnntationArea : public QGraphicsScene
 {
 public:
-    AnntationArea();
-    ~AnntationArea() = default;
+    AnntationArea(AnnotationItemFactory *itemFactory);
+    ~AnntationArea();
 
     void setBackgroundImage(const QPixmap& image);
     QImage exportAsImage();
 
 private:
-    QGraphicsPixmapItem* mBackgroundImage;
+    AnnotationItemFactory* mItemFactory;
+    QGraphicsPixmapItem*   mBackgroundImage;
 };
 
 #endif // ANNOTATIONAREA_H

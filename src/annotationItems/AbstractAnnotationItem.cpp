@@ -41,7 +41,7 @@ QPainterPath AbstractAnnotationItem::shape() const
     return *mShape;
 }
 
-void AbstractAnnotationItem::updateShape(QPainterPath& newShape)
+void AbstractAnnotationItem::setShape(QPainterPath& newShape)
 {
     mShape->swap(newShape);
 }
@@ -58,7 +58,11 @@ void AbstractAnnotationItem::setProperties(const AnnotationItemProperties& prope
 
 void AbstractAnnotationItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*)
 {
-    painter->setPen(mProperties->borderColor());
+    QPen pen;
+    pen.setColor(mProperties->borderColor());
+    pen.setWidth(mProperties->size());
+    pen.setCapStyle(Qt::RoundCap);
+    painter->setPen(pen);
     painter->setBrush(mProperties->fillColor());
     painter->drawPath(*mShape);
 }

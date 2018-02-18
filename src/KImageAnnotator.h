@@ -25,6 +25,7 @@
 #include <QVBoxLayout>
 
 #include "AnnotationArea.h"
+#include "annotationItems/AnnotationItemFactory.h"
 
 class KImageAnnotator : public QWidget
 {
@@ -33,9 +34,10 @@ public:
     ~KImageAnnotator();
 
 private:
-    AnntationArea* mAnnotationArea;
-    QGraphicsView* mView;
-    QVBoxLayout*   mMainLayout;
+    AnnotationItemFactory* mItemFactory;
+    AnntationArea*         mAnnotationArea;
+    QGraphicsView*         mView;
+    QVBoxLayout*           mMainLayout;
 };
 
 #endif // KIMAGEANNOTATOR_H
