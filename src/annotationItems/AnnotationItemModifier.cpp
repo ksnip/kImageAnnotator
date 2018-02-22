@@ -22,23 +22,16 @@
 AnnotationItemModifier::AnnotationItemModifier()
 {
     mLineItem = nullptr;
+    mCurrentControlPoint = -1;
+    mControlPointSize = 10;
+    mControlPoints.append(QRectF(0,0,mControlPointSize,mControlPointSize));
+    mControlPoints.append(QRectF(0,0,mControlPointSize,mControlPointSize));
 }
 
 QRectF AnnotationItemModifier::boundingRect() const
 {
     if (mLineItem) {
-        return mLineItem->boundingRect().adjusted(-5, -5, 5, 5);
-    }
-}
-
-void AnnotationItemModifier::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
-{
-    if (mLineItem != nullptr) {
-        auto line = mLineItem->line();
-        painter->setPen(QColor("white"));
-        painter->setBrush(QColor("gray"));
-        painter->drawEllipse(line.p1(), 5, 5);
-        painter->drawEllipse(line.p2(), 5, 5);
+        return mLineItem->boundingRect().adjusted(-mControlPointSize, -mControlPointSize, mControlPointSize, mControlPointSize);
     }
 }
 
@@ -46,5 +39,61 @@ void AnnotationItemModifier::attachTo(AbstractAnnotationLine* lineItem)
 {
     prepareGeometryChange();
     mLineItem = lineItem;
+    updateControlPoints();
+
+    // Without this we don't get mouse input
+    grabMouse();
 }
 
+void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
+{
+    if(mLineItem != nullptr) {
+        if(mControlPoints[0].contains(event->scenePos())) {
+            mCurrentControlPoint = 0;
+            return;
+        } else if (mControlPoints[1].contains(event->scenePos())) {
+            mCurrentControlPoint = 1;
+            return;
+        }
+    }
+    QGraphicsWidget::mousePressEvent(event);
+}
+
+void AnnotationItemModifier::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
+{
+    if(mCurrentControlPoint != -1) {
+        prepareGeometryChange();
+        if(mCurrentControlPoint == 0) {
+            mLineItem->setP1(event->scenePos());
+        } else if (mCurrentControlPoint == 1) {
+            mLineItem->setP2(event->scenePos());
+        }
+        updateControlPoints();
+    }
+    QGraphicsWidget::mouseMoveEvent(event);
+}
+
+void AnnotationItemModifier::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
+{
+    mCurrentControlPoint = -1;
+    QGraphicsWidget::mouseReleaseEvent(event);
+}
+
+void AnnotationItemModifier::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+{
+    if (mLineItem != nullptr) {
+        painter->setPen(QColor("white"));
+        painter->setBrush(QColor("gray"));
+        painter->drawRect(mControlPoints[0]);
+        painter->drawRect(mControlPoints[1]);
+    }
+}
+
+void AnnotationItemModifier::updateControlPoints()
+{
+    if(mLineItem != nullptr) {
+        auto line = mLineItem->line();
+        mControlPoints[0].moveCenter(line.p1());
+        mControlPoints[1].moveCenter(line.p2());
+    }
+}

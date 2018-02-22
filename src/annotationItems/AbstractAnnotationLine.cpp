@@ -46,3 +46,27 @@ QLineF AbstractAnnotationLine::line() const
 {
     return *mLine;
 }
+
+void AbstractAnnotationLine::setLine(const QLineF& line)
+{
+    prepareGeometryChange();
+    mLine->setP1(line.p1());
+    mLine->setP2(line.p2());
+    updateShape();
+}
+
+void AbstractAnnotationLine::setP1(const QPointF& point)
+{
+    prepareGeometryChange();
+    mLine->setP1(point);
+    updateShape();
+}
+
+void AbstractAnnotationLine::setP2(const QPointF& point)
+{
+    prepareGeometryChange();
+    mLine->setP2(point);
+    updateShape();
+}
+
+

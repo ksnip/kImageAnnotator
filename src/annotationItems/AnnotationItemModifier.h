@@ -21,6 +21,7 @@
 #define ANNOTATIONITEMMODIFIER_H
 
 #include <QGraphicsWidget>
+#include <QGraphicsSceneMouseEvent>
 
 #include "AbstractAnnotationLine.h"
 
@@ -33,10 +34,18 @@ public:
     void attachTo(AbstractAnnotationLine* lineItem);
 
 protected:
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) override;
 
 private:
     AbstractAnnotationLine* mLineItem;
+    int                     mControlPointSize;
+    int                     mCurrentControlPoint;
+    QList<QRectF>           mControlPoints;
+
+    void updateControlPoints();
 };
 
 #endif // ANNOTATIONITEMMODIFIER_H
