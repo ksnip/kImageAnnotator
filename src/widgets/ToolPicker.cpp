@@ -100,11 +100,11 @@ void ToolPicker::actionTriggered(QAction* action)
         selectedTool = ToolTypes::Select;
     } else if(action == mLineAction) {
         selectedTool = ToolTypes::Line;
-    } else if(action == mSelectAction) {
+    } else if(action == mRectAction) {
         selectedTool = ToolTypes::Rect;
-    } else if(action == mSelectAction) {
+    } else if(action == mEllipseAction) {
         selectedTool = ToolTypes::Ellipse;
-    } else if(action == mSelectAction) {
+    } else if(action == mArrowAction) {
         selectedTool = ToolTypes::Arrow;
     } else {
         qCritical("Unknown action in tool picker.");
