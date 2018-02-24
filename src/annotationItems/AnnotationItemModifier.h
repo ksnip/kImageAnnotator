@@ -32,6 +32,7 @@ public:
     ~AnnotationItemModifier() = default;
     virtual QRectF boundingRect() const override;
     void attachTo(AbstractAnnotationLine* lineItem);
+    void detach();
 
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) override;

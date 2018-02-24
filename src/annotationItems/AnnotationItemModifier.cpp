@@ -37,12 +37,24 @@ QRectF AnnotationItemModifier::boundingRect() const
 
 void AnnotationItemModifier::attachTo(AbstractAnnotationLine* lineItem)
 {
+    if(mLineItem == nullptr) {
+        grabMouse();
+    }
+
     prepareGeometryChange();
     mLineItem = lineItem;
     updateControlPoints();
+}
 
-    // Without this we don't get mouse input
-    grabMouse();
+void AnnotationItemModifier::detach()
+{
+    if (mLineItem == nullptr) {
+        return;
+    }
+
+    prepareGeometryChange();
+    mLineItem = nullptr;
+    ungrabMouse();
 }
 
 void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
@@ -54,6 +66,8 @@ void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
         } else if (mControlPoints[1].contains(event->scenePos())) {
             mCurrentControlPoint = 1;
             return;
+        } else if (mLineItem->intersects(QRectF(event->scenePos(), QSize(2,2)))) {
+            mCurrentControlPoint = 99;
         }
     }
     QGraphicsWidget::mousePressEvent(event);
@@ -67,6 +81,8 @@ void AnnotationItemModifier::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
             mLineItem->setP1(event->scenePos());
         } else if (mCurrentControlPoint == 1) {
             mLineItem->setP2(event->scenePos());
+        } else if (mCurrentControlPoint == 99) {
+            mLineItem->moveTo(event->scenePos());
         }
         updateControlPoints();
     }

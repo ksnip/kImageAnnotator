@@ -40,6 +40,9 @@ void AbstractAnnotationLine::addPoint(const QPointF& position)
 
 void AbstractAnnotationLine::moveTo(const QPointF& newPosition)
 {
+    prepareGeometryChange();
+    mLine->translate(newPosition - boundingRect().topLeft());
+    updateShape();
 }
 
 QLineF AbstractAnnotationLine::line() const
