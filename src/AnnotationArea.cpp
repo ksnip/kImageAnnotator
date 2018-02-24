@@ -58,7 +58,7 @@ QImage AnnotationArea::exportAsImage()
     return image;
 }
 
-void AnnotationArea::setToolType(AnnotationToolTypes toolType)
+void AnnotationArea::setToolType(ToolTypes toolType)
 {
     mSelectedToolType = toolType;
 }
@@ -66,7 +66,7 @@ void AnnotationArea::setToolType(AnnotationToolTypes toolType)
 void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     if(event->button() == Qt::LeftButton) {
-        if(mSelectedToolType == AnnotationToolTypes::Select) {
+        if(mSelectedToolType == ToolTypes::Select) {
             mCurrentItem = findItemAt(event->scenePos());
             if(mCurrentItem != nullptr) {
                 mItemModifier->attachTo((AbstractAnnotationLine*)mCurrentItem);
@@ -83,9 +83,7 @@ void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
 void AnnotationArea::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
     if(event->buttons() == Qt::LeftButton) {
-        if(mSelectedToolType == AnnotationToolTypes::Select) {
-
-        } else {
+        if(mSelectedToolType != ToolTypes::Select) {
             addPointToCurrentItem(event->scenePos());
         }
     }
@@ -95,9 +93,7 @@ void AnnotationArea::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
     if(event->button() == Qt::LeftButton) {
-        if(mSelectedToolType == AnnotationToolTypes::Select) {
-
-        } else {
+        if(mSelectedToolType != ToolTypes::Select) {
             mCurrentItem = nullptr;
         }
     }
@@ -106,7 +102,7 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 
 void AnnotationArea::addItemAtPosition(const QPointF& position)
 {
-    mCurrentItem = mItemFactory->createItem(position);
+    mCurrentItem = mItemFactory->createItem(position, mSelectedToolType);
     addItem(mCurrentItem);
 }
 

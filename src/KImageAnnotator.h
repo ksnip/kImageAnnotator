@@ -25,6 +25,7 @@
 #include <QVBoxLayout>
 
 #include "AnnotationArea.h"
+#include "AnnotationToolTypes.h"
 #include "widgets/ToolPicker.h"
 #include "annotationItems/AnnotationItemFactory.h"
 

@@ -35,9 +35,9 @@ public:
     void detach();
 
 protected:
-    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
-    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
-    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
+    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
+    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) override;
 
 private:
@@ -45,8 +45,8 @@ private:
     int                     mControlPointSize;
     int                     mCurrentControlPoint;
     QList<QRectF>           mControlPoints;
-
     void updateControlPoints();
+    int controlPointAt(const QPointF& point) const;
 };
 
 #endif // ANNOTATIONITEMMODIFIER_H

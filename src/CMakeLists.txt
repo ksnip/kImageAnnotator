@@ -12,6 +12,6 @@ set(kimageannotator_SRCS main.cpp
                          annotationItems/AnnotationLineItem.cpp
                          widgets/ToolPicker.cpp)
 
-add_executable(kimageannotator_app ${kimageannotator_SRCS})
+add_executable(kimageannotator_app ${kimageannotator_SRCS} ${kimageannotator_ICON_RES_RCC})
 
 target_link_libraries(kimageannotator_app Qt5::Widgets)

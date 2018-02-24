@@ -32,8 +32,9 @@ KImageAnnotator::KImageAnnotator(const QPixmap& image) :
     mMainLayout->addWidget(mView);
     setLayout(mMainLayout);
 
-    connect(mToolPicker, &ToolPicker::itemChanged, mItemFactory, &AnnotationItemFactory::setItemType);
-    connect(mToolPicker, &ToolPicker::toolChanged, mAnnotationArea, &AnnotationArea::setToolType);
+    connect(mToolPicker, &ToolPicker::toolSelected, mAnnotationArea, &AnnotationArea::setToolType);
+
+    mToolPicker->selectTool(ToolTypes::Line);
 }
 
 KImageAnnotator::~KImageAnnotator()

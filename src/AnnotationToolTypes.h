@@ -20,10 +20,13 @@
 #ifndef ANNOTATIONTOOLTYPES_H
 #define ANNOTATIONTOOLTYPES_H
 
-enum class AnnotationToolTypes
+enum class ToolTypes
 {
     Select,
-    Annotation
+    Line,
+    Arrow,
+    Rect,
+    Ellipse
 };
 
 #endif // ANNOTATIONTOOLTYPES_H

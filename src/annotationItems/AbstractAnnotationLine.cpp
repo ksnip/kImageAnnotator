@@ -58,18 +58,15 @@ void AbstractAnnotationLine::setLine(const QLineF& line)
     updateShape();
 }
 
-void AbstractAnnotationLine::setP1(const QPointF& point)
+void AbstractAnnotationLine::setPointAt(const QPointF& point, int index)
 {
     prepareGeometryChange();
-    mLine->setP1(point);
+
+    if(index <= 0) {
+        mLine->setP1(point);
+    } else {
+        mLine->setP2(point);
+    }
+
     updateShape();
 }
-
-void AbstractAnnotationLine::setP2(const QPointF& point)
-{
-    prepareGeometryChange();
-    mLine->setP2(point);
-    updateShape();
-}
-
-

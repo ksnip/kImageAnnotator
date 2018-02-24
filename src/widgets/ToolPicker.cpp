@@ -22,7 +22,6 @@
 ToolPicker::ToolPicker()
 {
     initGui();
-    setDefaults();
 
     connect(this, &QToolBar::actionTriggered, this, &ToolPicker::actionTriggered);
 }
@@ -32,81 +31,91 @@ ToolPicker::~ToolPicker()
     delete mActionGroup;
 }
 
+void ToolPicker::selectTool(ToolTypes newTool)
+{
+    switch(newTool) {
+        case ToolTypes::Select:
+            mSelectAction->setChecked(true);
+        break;
+        case ToolTypes::Line:
+            mLineAction->setChecked(true);
+        break;
+        case ToolTypes::Rect:
+            mRectAction->setChecked(true);
+        break;
+        case ToolTypes::Ellipse:
+            mEllipseAction->setChecked(true);
+        break;
+        case ToolTypes::Arrow:
+            mArrowAction->setChecked(true);
+        break;
+    }
+    setToolAndNotify(newTool);
+}
+
 void ToolPicker::initGui()
 {
     setOrientation(Qt::Vertical);
 
-    mSelectAction = addAction("S");
+    mSelectAction = addAction(QStringLiteral("Select"));
     mSelectAction->setCheckable(true);
+    mSelectAction->setIcon(QPixmap(QStringLiteral(":/icons/select")));
 
     addSeparator();
 
-    mLineItemAction = addAction("L");
-    mLineItemAction->setCheckable(true);
+    mLineAction = addAction(QStringLiteral("Line"));
+    mLineAction->setCheckable(true);
+    mLineAction->setIcon(QPixmap(QStringLiteral(":/icons/line")));
 
-    mRectItemAction = addAction("R");
-    mRectItemAction->setCheckable(true);
+    mRectAction = addAction(QStringLiteral("Rect"));
+    mRectAction->setCheckable(true);
+    mRectAction->setIcon(QPixmap(QStringLiteral(":/icons/rect")));
 
-    mEllipseItemAction = addAction("L");
-    mEllipseItemAction->setCheckable(true);
+    mEllipseAction = addAction(QStringLiteral("Ellipse"));
+    mEllipseAction->setCheckable(true);
+    mEllipseAction->setIcon(QPixmap(QStringLiteral(":/icons/ellipse")));
 
-    mArrowItemAction = addAction("A");
-    mArrowItemAction->setCheckable(true);
+    mArrowAction = addAction(QStringLiteral("Arrow"));
+    mArrowAction->setCheckable(true);
+    mArrowAction->setIcon(QPixmap(QStringLiteral(":/icons/arrow")));
 
     mActionGroup = new QActionGroup(this);
     mActionGroup->addAction(mSelectAction);
-    mActionGroup->addAction(mLineItemAction);
-    mActionGroup->addAction(mRectItemAction);
-    mActionGroup->addAction(mEllipseItemAction);
-    mActionGroup->addAction(mArrowItemAction);
+    mActionGroup->addAction(mLineAction);
+    mActionGroup->addAction(mRectAction);
+    mActionGroup->addAction(mEllipseAction);
+    mActionGroup->addAction(mArrowAction);
 
     // Only used for easy matching
-    mListOfItemActions.append(mLineItemAction);
-    mListOfItemActions.append(mRectItemAction);
-    mListOfItemActions.append(mEllipseItemAction);
-    mListOfItemActions.append(mArrowItemAction);
+    mListOfItemActions.append(mLineAction);
+    mListOfItemActions.append(mRectAction);
+    mListOfItemActions.append(mEllipseAction);
+    mListOfItemActions.append(mArrowAction);
 }
-
-void ToolPicker::setDefaults()
-{
-    mLineItemAction->setChecked(true);
-    mSelectedItemType = AnnotationItemTypes::Line;
-    mSelectedToolType = AnnotationToolTypes::Annotation;
-}
-
-void ToolPicker::notifyIfToolChanged(QAction* action)
-{
-    if(action == mSelectAction && mSelectedToolType != AnnotationToolTypes::Select) {
-        mSelectedToolType = AnnotationToolTypes::Select;
-        emit toolChanged(mSelectedToolType);
-    } else if(mListOfItemActions.contains(action) && mSelectedToolType != AnnotationToolTypes::Annotation) {
-        mSelectedToolType = AnnotationToolTypes::Annotation;
-        emit toolChanged(mSelectedToolType);
-    }
-}
-
-void ToolPicker::notifyIfItemChanged(QAction* action)
-{
-    if(mListOfItemActions.contains(action)) {
-        if(action == mLineItemAction && mSelectedItemType != AnnotationItemTypes::Line) {
-            mSelectedItemType = AnnotationItemTypes::Line;
-            emit itemChanged(mSelectedItemType);
-        } else if(action == mRectItemAction && mSelectedItemType != AnnotationItemTypes::Rect) {
-            mSelectedItemType = AnnotationItemTypes::Rect;
-            emit itemChanged(mSelectedItemType);
-        } else if(action == mEllipseItemAction && mSelectedItemType != AnnotationItemTypes::Ellipse) {
-            mSelectedItemType = AnnotationItemTypes::Ellipse;
-            emit itemChanged(mSelectedItemType);
-        } else if(action == mArrowItemAction && mSelectedItemType != AnnotationItemTypes::Arrow) {
-            mSelectedItemType = AnnotationItemTypes::Arrow;
-            emit itemChanged(mSelectedItemType);
-        }
-    }
-}
-
 
 void ToolPicker::actionTriggered(QAction* action)
 {
-    notifyIfToolChanged(action);
-    notifyIfItemChanged(action);
+    ToolTypes selectedTool;
+    if(action == mSelectAction) {
+        selectedTool = ToolTypes::Select;
+    } else if(action == mLineAction) {
+        selectedTool = ToolTypes::Line;
+    } else if(action == mSelectAction) {
+        selectedTool = ToolTypes::Rect;
+    } else if(action == mSelectAction) {
+        selectedTool = ToolTypes::Ellipse;
+    } else if(action == mSelectAction) {
+        selectedTool = ToolTypes::Arrow;
+    } else {
+        qCritical("Unknown action in tool picker.");
+    }
+
+    setToolAndNotify(selectedTool);
 }
+
+void ToolPicker::setToolAndNotify(ToolTypes newTool)
+{
+    mSelectedToolType = newTool;
+    emit toolSelected(mSelectedToolType);
+}
+

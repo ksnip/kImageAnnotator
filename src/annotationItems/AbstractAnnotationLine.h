@@ -31,8 +31,7 @@ public:
     void moveTo(const QPointF & newPosition) override;
     QLineF line() const;
     void setLine(const QLineF& line);
-    void setP1(const QPointF& point);
-    void setP2(const QPointF& point);
+    void setPointAt(const QPointF& point, int index);
 
 protected:
     QLineF* mLine;

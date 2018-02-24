@@ -60,27 +60,23 @@ void AnnotationItemModifier::detach()
 void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     if(mLineItem != nullptr) {
-        if(mControlPoints[0].contains(event->scenePos())) {
-            mCurrentControlPoint = 0;
-            return;
-        } else if (mControlPoints[1].contains(event->scenePos())) {
-            mCurrentControlPoint = 1;
+        mCurrentControlPoint = controlPointAt(event->scenePos());
+        if (mCurrentControlPoint != -1) {
             return;
         } else if (mLineItem->intersects(QRectF(event->scenePos(), QSize(2,2)))) {
             mCurrentControlPoint = 99;
+            return;
         }
     }
-    QGraphicsWidget::mousePressEvent(event);
+//     QGraphicsWidget::mousePressEvent(event);
 }
 
 void AnnotationItemModifier::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
     if(mCurrentControlPoint != -1) {
         prepareGeometryChange();
-        if(mCurrentControlPoint == 0) {
-            mLineItem->setP1(event->scenePos());
-        } else if (mCurrentControlPoint == 1) {
-            mLineItem->setP2(event->scenePos());
+        if(mCurrentControlPoint == 0 || mCurrentControlPoint == 1) {
+            mLineItem->setPointAt(event->scenePos(), mCurrentControlPoint);
         } else if (mCurrentControlPoint == 99) {
             mLineItem->moveTo(event->scenePos());
         }
@@ -102,6 +98,8 @@ void AnnotationItemModifier::paint(QPainter* painter, const QStyleOptionGraphics
         painter->setBrush(QColor("gray"));
         painter->drawRect(mControlPoints[0]);
         painter->drawRect(mControlPoints[1]);
+        painter->setBrush(Qt::NoBrush);
+        painter->drawRect(boundingRect());
     }
 }
 
@@ -112,4 +110,14 @@ void AnnotationItemModifier::updateControlPoints()
         mControlPoints[0].moveCenter(line.p1());
         mControlPoints[1].moveCenter(line.p2());
     }
+}
+
+int AnnotationItemModifier::controlPointAt(const QPointF& point) const
+{
+    for(auto controlPoint : mControlPoints) {
+        if(controlPoint.contains(point)) {
+            return mControlPoints.indexOf(controlPoint);
+        }
+    }
+    return -1;
 }

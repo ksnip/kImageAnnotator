@@ -26,7 +26,6 @@
 #include <QVBoxLayout>
 
 #include "../AnnotationToolTypes.h"
-#include "../annotationItems/AnnotationItemTypes.h"
 
 class ToolPicker : public QToolBar
 {
@@ -34,30 +33,27 @@ class ToolPicker : public QToolBar
 public:
     explicit ToolPicker();
     ~ToolPicker();
+    void selectTool(ToolTypes newTool);
 
 signals:
-    void toolChanged(AnnotationToolTypes newTool);
-    void itemChanged(AnnotationItemTypes newItem);
+    void toolSelected(ToolTypes newTool);
 
 private:
     QVBoxLayout*    mLayout;
     QActionGroup*   mActionGroup;
     QAction*        mSelectAction;
-    QAction*        mLineItemAction;
-    QAction*        mRectItemAction;
-    QAction*        mEllipseItemAction;
-    QAction*        mArrowItemAction;
+    QAction*        mLineAction;
+    QAction*        mRectAction;
+    QAction*        mEllipseAction;
+    QAction*        mArrowAction;
     QList<QAction*> mListOfItemActions;
-    AnnotationItemTypes mSelectedItemType;
-    AnnotationToolTypes mSelectedToolType;
+    ToolTypes       mSelectedToolType;
 
     void initGui();
-    void setDefaults();
-    void notifyIfToolChanged(QAction* action);
-    void notifyIfItemChanged(QAction* action);
 
 private slots:
     void actionTriggered(QAction* action);
+    void setToolAndNotify(ToolTypes newTool);
 };
 
 #endif // TOOLPICKER_H

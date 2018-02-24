@@ -22,7 +22,6 @@
 AnnotationItemFactory::AnnotationItemFactory()
 {
     mItemProperties = new AnnotationItemProperties(QColor("red"), 3);
-    mSelectedItemType = AnnotationItemTypes::Line;
 }
 
 AnnotationItemFactory::~AnnotationItemFactory()
@@ -30,22 +29,18 @@ AnnotationItemFactory::~AnnotationItemFactory()
     delete mItemProperties;
 }
 
-AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPosition) const
+AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPosition, ToolTypes type) const
 {
-    switch(mSelectedItemType) {
-    case AnnotationItemTypes::Line:
-    case AnnotationItemTypes::Rect:
-    case AnnotationItemTypes::Ellipse:
-    case AnnotationItemTypes::Arrow:
+    switch(type) {
+        case ToolTypes::Line:
+        case ToolTypes::Rect:
+        case ToolTypes::Ellipse:
+        case ToolTypes::Arrow:
         return new AnnotationLineItem(initPosition, *mItemProperties);
     default:
-        qCritical("Unknown annotation Item Type provided.");
+        qCritical("Cannot create item for provided tool type.");
+        return nullptr;
     }
-}
-
-void AnnotationItemFactory::setItemType(AnnotationItemTypes type)
-{
-    mSelectedItemType = type;
 }
 
 void AnnotationItemFactory::setColor(const QColor& color)
