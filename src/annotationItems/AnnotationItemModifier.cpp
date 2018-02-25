@@ -25,11 +25,17 @@ AnnotationItemModifier::AnnotationItemModifier()
     mControlPoints = new ControlPoints(mControlPointSize);
     mAnnotationItem = nullptr;
     mCurrentControlPoint = -1;
+    mMovingItem = false;
+}
+
+AnnotationItemModifier::~AnnotationItemModifier()
+{
+    delete mControlPoints;
 }
 
 QRectF AnnotationItemModifier::boundingRect() const
 {
-    if (mAnnotationItem) {
+    if(mAnnotationItem) {
         auto size = mControlPointSize / 2;
         return mAnnotationItem->boundingRect().adjusted(-size, -size, size, size);
     } else {
@@ -50,7 +56,7 @@ void AnnotationItemModifier::attachTo(AbstractAnnotationItem* item)
 
 void AnnotationItemModifier::detach()
 {
-    if (mAnnotationItem == nullptr) {
+    if(mAnnotationItem == nullptr) {
         return;
     }
 
@@ -61,12 +67,16 @@ void AnnotationItemModifier::detach()
 
 void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
+    if(event->button() != Qt::LeftButton) {
+        return;
+    }
+
     if(mAnnotationItem != nullptr) {
         mCurrentControlPoint = mControlPoints->indexOfPointAt(event->scenePos());
         if(mCurrentControlPoint != -1) {
             event->accept();
-        } else if(mAnnotationItem->intersects(QRectF(event->scenePos() - QPointF(1, 1), QSize(2, 2)))) {
-            mCurrentControlPoint = 99;
+        } else if(mAnnotationItem->intersects(QRectF(event->scenePos() - QPointF(2, 2), QSize(4, 4)))) {
+            mMovingItem = true;
             mClickOffset = event->scenePos() - mAnnotationItem->position();
             event->accept();
         }
@@ -75,14 +85,16 @@ void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
 void AnnotationItemModifier::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
-    if(mCurrentControlPoint != -1) {
+    if(event->buttons() != Qt::LeftButton) {
+        return;
+    }
+
+    if(mAnnotationItem) {
         prepareGeometryChange();
-        if(mAnnotationItem) {
-            if(mCurrentControlPoint == 99) {
-                mAnnotationItem->setPosition(event->scenePos() - mClickOffset);
-            } else {
-                mAnnotationItem->setPointAt(event->scenePos(), mCurrentControlPoint);
-            }
+        if(mCurrentControlPoint != -1) {
+            mAnnotationItem->setPointAt(event->scenePos(), mCurrentControlPoint);
+        } else if(mMovingItem) {
+            mAnnotationItem->setPosition(event->scenePos() - mClickOffset);
         }
         mControlPoints->updatePointsPosition();
     }
@@ -90,13 +102,20 @@ void AnnotationItemModifier::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 
 void AnnotationItemModifier::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
+    if(event->button() != Qt::LeftButton) {
+        return;
+    }
+
     mCurrentControlPoint = -1;
-    QGraphicsWidget::mouseReleaseEvent(event);
+    mMovingItem = false;
 }
 
 void AnnotationItemModifier::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
-    if (!mAnnotationItem) {
+    Q_UNUSED(option)
+    Q_UNUSED(widget)
+
+    if(!mAnnotationItem) {
         return;
     }
 

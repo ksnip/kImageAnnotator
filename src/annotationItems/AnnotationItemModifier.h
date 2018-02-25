@@ -31,7 +31,7 @@ class AnnotationItemModifier : public QGraphicsWidget
 {
 public:
     AnnotationItemModifier();
-    ~AnnotationItemModifier() = default;
+    ~AnnotationItemModifier();
     virtual QRectF boundingRect() const override;
     void attachTo(AbstractAnnotationItem* item);
     void detach();
@@ -48,6 +48,7 @@ private:
     int                     mControlPointSize;
     int                     mCurrentControlPoint;
     QPointF                 mClickOffset;
+    bool                    mMovingItem;
 };
 
 #endif // ANNOTATIONITEMMODIFIER_H
