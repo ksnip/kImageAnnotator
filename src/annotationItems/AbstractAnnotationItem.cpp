@@ -23,6 +23,9 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationItemProperties& p
 {
     mProperties = new AnnotationItemProperties(properties);
     mShape = new QPainterPath();
+
+    // Add shadow, for now for every item
+    addShadowEffect();
 }
 
 AbstractAnnotationItem::~AbstractAnnotationItem()
@@ -66,12 +69,25 @@ void AbstractAnnotationItem::setProperties(const AnnotationItemProperties& prope
     *mProperties = properties;
 }
 
+void AbstractAnnotationItem::addShadowEffect()
+{
+    auto shadowEffect = dynamic_cast<QGraphicsDropShadowEffect*>(graphicsEffect());
+    if(!shadowEffect) {
+        shadowEffect = new QGraphicsDropShadowEffect();
+        shadowEffect->setColor(QColor(63, 63, 63, 190));
+        shadowEffect->setBlurRadius(7);
+        shadowEffect->setOffset(QPoint(2, 2));
+        setGraphicsEffect(shadowEffect);
+    }
+}
+
 void AbstractAnnotationItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*)
 {
     QPen pen;
     pen.setColor(mProperties->borderColor());
     pen.setWidth(mProperties->size());
     pen.setCapStyle(Qt::RoundCap);
+    painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(pen);
     painter->setBrush(mProperties->fillColor());
     painter->drawPath(*mShape);

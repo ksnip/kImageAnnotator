@@ -22,6 +22,7 @@
 
 #include <QGraphicsItem>
 #include <QPainter>
+#include <QGraphicsDropShadowEffect>
 
 #include "AnnotationItemProperties.h"
 
@@ -38,6 +39,7 @@ public:
     virtual QPointF position();
     AnnotationItemProperties properties() const;
     void setProperties(const AnnotationItemProperties& properties);
+    void addShadowEffect();
 
 protected:
     void setShape(QPainterPath& newShape);

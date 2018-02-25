@@ -45,14 +45,11 @@ QPolygonF AnnotationArrow::createArrow() const
 
     QPointF p0(0, 0);
     QPointF p1(-mArrowHeadLength, mArrowHeadWidth);
-    QPointF p2(-mArrowHeadMid, 1);
-    QPointF p3(-mLine->length(), 1);
-    QPointF p4(-mLine->length(), -1);
-    QPointF p5(-mArrowHeadMid, -1);
-    QPointF p6(-mArrowHeadLength, -mArrowHeadWidth);
+    QPointF p2(-mArrowHeadMid, 0);
+    QPointF p3(-mArrowHeadLength, -mArrowHeadWidth);
 
     QPolygonF arrow;
-    arrow << p0 << p1 << p2 << p3 << p4 << p5 << p6;
+    arrow << p0 << p1 << p2 << p3;
 
     return arrow;
 }
