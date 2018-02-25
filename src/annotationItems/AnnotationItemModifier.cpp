@@ -31,7 +31,8 @@ AnnotationItemModifier::AnnotationItemModifier()
 QRectF AnnotationItemModifier::boundingRect() const
 {
     if (mLineItem) {
-        return mLineItem->boundingRect().adjusted(-mControlPointSize, -mControlPointSize, mControlPointSize, mControlPointSize);
+        auto size = mControlPointSize / 2;
+        return mLineItem->boundingRect().adjusted(-size, -size, size, size);
     }
 }
 
@@ -62,13 +63,12 @@ void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
     if(mLineItem != nullptr) {
         mCurrentControlPoint = controlPointAt(event->scenePos());
         if (mCurrentControlPoint != -1) {
-            return;
+            event->accept();
         } else if (mLineItem->intersects(QRectF(event->scenePos(), QSize(2,2)))) {
             mCurrentControlPoint = 99;
-            return;
+            event->accept();
         }
     }
-//     QGraphicsWidget::mousePressEvent(event);
 }
 
 void AnnotationItemModifier::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
@@ -82,7 +82,6 @@ void AnnotationItemModifier::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
         }
         updateControlPoints();
     }
-    QGraphicsWidget::mouseMoveEvent(event);
 }
 
 void AnnotationItemModifier::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
@@ -98,8 +97,6 @@ void AnnotationItemModifier::paint(QPainter* painter, const QStyleOptionGraphics
         painter->setBrush(QColor("gray"));
         painter->drawRect(mControlPoints[0]);
         painter->drawRect(mControlPoints[1]);
-        painter->setBrush(Qt::NoBrush);
-        painter->drawRect(boundingRect());
     }
 }
 

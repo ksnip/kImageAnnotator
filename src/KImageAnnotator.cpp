@@ -20,8 +20,7 @@
 #include "KImageAnnotator.h"
 
 KImageAnnotator::KImageAnnotator(const QPixmap& image) :
-    mItemFactory(new AnnotationItemFactory),
-    mAnnotationArea(new AnnotationArea(mItemFactory)),
+    mAnnotationArea(new AnnotationArea),
     mView(new QGraphicsView(mAnnotationArea)),
     mMainLayout(new QHBoxLayout),
     mToolPicker(new ToolPicker)

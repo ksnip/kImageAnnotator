@@ -27,7 +27,6 @@
 #include "AnnotationArea.h"
 #include "AnnotationToolTypes.h"
 #include "widgets/ToolPicker.h"
-#include "annotationItems/AnnotationItemFactory.h"
 
 class KImageAnnotator : public QWidget
 {
@@ -37,8 +36,7 @@ public:
     ~KImageAnnotator();
 
 private:
-    AnnotationItemFactory* mItemFactory;
-    AnnotationArea*         mAnnotationArea;
+    AnnotationArea*        mAnnotationArea;
     QGraphicsView*         mView;
     QHBoxLayout*           mMainLayout;
     ToolPicker*            mToolPicker;

@@ -32,7 +32,7 @@ class AnnotationArea : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    AnnotationArea(AnnotationItemFactory* itemFactory);
+    AnnotationArea();
     ~AnnotationArea();
 
     void setBackgroundImage(const QPixmap& image);
