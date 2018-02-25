@@ -17,16 +17,16 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationLineItem.h"
+#ifndef TOOLTYPES_H
+#define TOOLTYPES_H
 
-AnnotationLineItem::AnnotationLineItem(const QPointF& startPosisition, const AnnotationItemProperties& properties) :
-    AbstractAnnotationLine(startPosisition, properties)
+enum class ToolTypes
 {
-}
+    Select,
+    Line,
+    Arrow,
+    Rect,
+    Ellipse
+};
 
-void AnnotationLineItem::updateShape()
-{
-    QPainterPath path(mLine->p1());
-    path.lineTo(mLine->p2());
-    setShape(path);
-}
+#endif // TOOLTYPES_H

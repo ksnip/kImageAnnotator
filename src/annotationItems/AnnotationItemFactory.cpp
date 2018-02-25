@@ -35,11 +35,12 @@ AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPos
         case ToolTypes::Line:
         case ToolTypes::Rect:
         case ToolTypes::Ellipse:
+            return new AnnotationLine(initPosition, *mItemProperties);
         case ToolTypes::Arrow:
-        return new AnnotationLineItem(initPosition, *mItemProperties);
-    default:
-        qCritical("Cannot create item for provided tool type.");
-        return nullptr;
+            return new AnnotationArrow(initPosition, *mItemProperties);
+        default:
+            qCritical("Cannot create item for provided tool type.");
+            return nullptr;
     }
 }
 

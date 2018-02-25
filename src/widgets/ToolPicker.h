@@ -25,7 +25,7 @@
 #include <QToolButton>
 #include <QVBoxLayout>
 
-#include "../AnnotationToolTypes.h"
+#include "../ToolTypes.h"
 
 class ToolPicker : public QToolBar
 {

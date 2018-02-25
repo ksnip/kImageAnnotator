@@ -25,7 +25,6 @@
 #include <QVBoxLayout>
 
 #include "AnnotationArea.h"
-#include "AnnotationToolTypes.h"
 #include "widgets/ToolPicker.h"
 
 class KImageAnnotator : public QWidget

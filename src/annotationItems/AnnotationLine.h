@@ -17,19 +17,19 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONLINEITEM_H
-#define ANNOTATIONLINEITEM_H
+#ifndef ANNOTATIONLINE_H
+#define ANNOTATIONLINE_H
 
 #include "AbstractAnnotationLine.h"
 
-class AnnotationLineItem : public AbstractAnnotationLine
+class AnnotationLine : public AbstractAnnotationLine
 {
 public:
-    AnnotationLineItem(const QPointF& startPosisition, const AnnotationItemProperties& properties);
-    ~AnnotationLineItem() = default;
+    AnnotationLine(const QPointF& startPosisition, const AnnotationItemProperties& properties);
+    ~AnnotationLine() = default;
 
 protected:
     virtual void updateShape() override;
 };
 
-#endif // ANNOTATIONLINEITEM_H
+#endif // ANNOTATIONLINE_H

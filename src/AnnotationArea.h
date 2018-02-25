@@ -26,7 +26,7 @@
 
 #include "annotationItems/AnnotationItemFactory.h"
 #include "annotationItems/AnnotationItemModifier.h"
-#include "AnnotationToolTypes.h"
+#include "ToolTypes.h"
 
 class AnnotationArea : public QGraphicsScene
 {
