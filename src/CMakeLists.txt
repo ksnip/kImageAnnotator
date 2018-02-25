@@ -6,11 +6,13 @@ set(kimageannotator_SRCS main.cpp
                          annotationItems/AnnotationItemFactory.cpp
                          annotationItems/AnnotationItemProperties.cpp
                          annotationItems/AnnotationItemModifier.cpp
+                         annotationItems/ControlPoints.cpp
                          annotationItems/AbstractAnnotationItem.cpp
                          annotationItems/AbstractAnnotationLine.cpp
-                         annotationItems/AbstractAnnotationItem.cpp
+                         annotationItems/AbstractAnnotationRect.cpp
                          annotationItems/AnnotationLine.cpp
                          annotationItems/AnnotationArrow.cpp
+                         annotationItems/AnnotationRect.cpp
                          widgets/ToolPicker.cpp)
 
 add_executable(kimageannotator_app ${kimageannotator_SRCS} ${kimageannotator_ICON_RES_RCC})

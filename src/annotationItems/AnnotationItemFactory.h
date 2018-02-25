@@ -25,6 +25,7 @@
 #include "AnnotationItemProperties.h"
 #include "AnnotationLine.h"
 #include "AnnotationArrow.h"
+#include "AnnotationRect.h"
 #include "../ToolTypes.h"
 
 class AnnotationItemFactory : public QObject

@@ -21,52 +21,53 @@
 
 AnnotationItemModifier::AnnotationItemModifier()
 {
-    mLineItem = nullptr;
-    mCurrentControlPoint = -1;
     mControlPointSize = 10;
-    mControlPoints.append(QRectF(0, 0, mControlPointSize, mControlPointSize));
-    mControlPoints.append(QRectF(0, 0, mControlPointSize, mControlPointSize));
+    mControlPoints = new ControlPoints(mControlPointSize);
+    mAnnotationItem = nullptr;
+    mCurrentControlPoint = -1;
 }
 
 QRectF AnnotationItemModifier::boundingRect() const
 {
-    if (mLineItem) {
+    if (mAnnotationItem) {
         auto size = mControlPointSize / 2;
-        return mLineItem->boundingRect().adjusted(-size, -size, size, size);
+        return mAnnotationItem->boundingRect().adjusted(-size, -size, size, size);
+    } else {
+        return QRectF();
     }
 }
 
-void AnnotationItemModifier::attachTo(AbstractAnnotationLine* lineItem)
+void AnnotationItemModifier::attachTo(AbstractAnnotationItem* item)
 {
-    if(mLineItem == nullptr) {
+    if(mAnnotationItem == nullptr) {
         grabMouse();
     }
 
     prepareGeometryChange();
-    mLineItem = lineItem;
-    updateControlPoints();
+    mAnnotationItem = item;
+    mControlPoints->initPoints(item);
 }
 
 void AnnotationItemModifier::detach()
 {
-    if (mLineItem == nullptr) {
+    if (mAnnotationItem == nullptr) {
         return;
     }
 
     prepareGeometryChange();
-    mLineItem = nullptr;
+    mAnnotationItem = nullptr;
     ungrabMouse();
 }
 
 void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
-    if(mLineItem != nullptr) {
-        mCurrentControlPoint = controlPointAt(event->scenePos());
+    if(mAnnotationItem != nullptr) {
+        mCurrentControlPoint = mControlPoints->indexOfPointAt(event->scenePos());
         if(mCurrentControlPoint != -1) {
             event->accept();
-        } else if(mLineItem->intersects(QRectF(event->scenePos() - QPointF(1, 1), QSize(2, 2)))) {
+        } else if(mAnnotationItem->intersects(QRectF(event->scenePos() - QPointF(1, 1), QSize(2, 2)))) {
             mCurrentControlPoint = 99;
-            mClickOffset = event->scenePos() - mLineItem->position();
+            mClickOffset = event->scenePos() - mAnnotationItem->position();
             event->accept();
         }
     }
@@ -76,12 +77,14 @@ void AnnotationItemModifier::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
     if(mCurrentControlPoint != -1) {
         prepareGeometryChange();
-        if(mCurrentControlPoint == 0 || mCurrentControlPoint == 1) {
-            mLineItem->setPointAt(event->scenePos(), mCurrentControlPoint);
-        } else if (mCurrentControlPoint == 99) {
-            mLineItem->setPosition(event->scenePos() - mClickOffset);
+        if(mAnnotationItem) {
+            if(mCurrentControlPoint == 99) {
+                mAnnotationItem->setPosition(event->scenePos() - mClickOffset);
+            } else {
+                mAnnotationItem->setPointAt(event->scenePos(), mCurrentControlPoint);
+            }
         }
-        updateControlPoints();
+        mControlPoints->updatePointsPosition();
     }
 }
 
@@ -93,29 +96,14 @@ void AnnotationItemModifier::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 
 void AnnotationItemModifier::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
-    if (mLineItem != nullptr) {
-        painter->setPen(QColor("white"));
-        painter->setBrush(QColor("gray"));
-        painter->drawRect(mControlPoints[0]);
-        painter->drawRect(mControlPoints[1]);
+    if (!mAnnotationItem) {
+        return;
     }
-}
 
-void AnnotationItemModifier::updateControlPoints()
-{
-    if(mLineItem != nullptr) {
-        auto line = mLineItem->line();
-        mControlPoints[0].moveCenter(line.p1());
-        mControlPoints[1].moveCenter(line.p2());
+    painter->setPen(QColor("white"));
+    painter->setBrush(QColor("gray"));
+    auto points = mControlPoints->points();
+    for(auto point : points) {
+        painter->drawRect(point);
     }
-}
-
-int AnnotationItemModifier::controlPointAt(const QPointF& point) const
-{
-    for(auto controlPoint : mControlPoints) {
-        if(controlPoint.contains(point)) {
-            return mControlPoints.indexOf(controlPoint);
-        }
-    }
-    return -1;
 }

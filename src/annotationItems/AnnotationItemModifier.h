@@ -23,7 +23,9 @@
 #include <QGraphicsWidget>
 #include <QGraphicsSceneMouseEvent>
 
+#include "ControlPoints.h"
 #include "AbstractAnnotationLine.h"
+#include "AbstractAnnotationRect.h"
 
 class AnnotationItemModifier : public QGraphicsWidget
 {
@@ -31,7 +33,7 @@ public:
     AnnotationItemModifier();
     ~AnnotationItemModifier() = default;
     virtual QRectF boundingRect() const override;
-    void attachTo(AbstractAnnotationLine* lineItem);
+    void attachTo(AbstractAnnotationItem* item);
     void detach();
 
 protected:
@@ -41,14 +43,11 @@ protected:
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) override;
 
 private:
-    AbstractAnnotationLine* mLineItem;
+    ControlPoints*          mControlPoints;
+    AbstractAnnotationItem* mAnnotationItem;
     int                     mControlPointSize;
     int                     mCurrentControlPoint;
-    QList<QRectF>           mControlPoints;
     QPointF                 mClickOffset;
-
-    void updateControlPoints();
-    int controlPointAt(const QPointF& point) const;
 };
 
 #endif // ANNOTATIONITEMMODIFIER_H

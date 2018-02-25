@@ -75,7 +75,7 @@ void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
         if(mSelectedToolType == ToolTypes::Select) {
             mCurrentItem = findItemAt(event->scenePos());
             if(mCurrentItem != nullptr) {
-                mItemModifier->attachTo((AbstractAnnotationLine*)mCurrentItem);
+                mItemModifier->attachTo(mCurrentItem);
             } else {
                 mItemModifier->detach();
             }
@@ -90,7 +90,7 @@ void AnnotationArea::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
     QGraphicsScene::mouseMoveEvent(event);
 
     if(event->buttons() == Qt::LeftButton) {
-        if(mSelectedToolType != ToolTypes::Select) {
+        if(mCurrentItem && mSelectedToolType != ToolTypes::Select) {
             addPointToCurrentItem(event->scenePos());
         }
     }

@@ -17,24 +17,19 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ABSTRACTANNOTATIONLINE_H
-#define ABSTRACTANNOTATIONLINE_H
+#ifndef ANNOTATIONRECT_H
+#define ANNOTATIONRECT_H
 
-#include "AbstractAnnotationItem.h"
+#include "AbstractAnnotationRect.h"
 
-class AbstractAnnotationLine : public AbstractAnnotationItem
+class AnnotationRect : public AbstractAnnotationRect
 {
 public:
-    AbstractAnnotationLine(const QPointF& startPosisition, const AnnotationItemProperties& properties);
-    ~AbstractAnnotationLine();
-    void addPoint(const QPointF & position) override;
-    void setPosition(const QPointF & newPosition) override;
-    QLineF line() const;
-    void setLine(const QLineF& line);
-    void setPointAt(const QPointF& point, int index) override;
+    AnnotationRect(const QPointF& startPosisition, const AnnotationItemProperties& properties);
+    ~AnnotationRect() = default;
 
 protected:
-    QLineF* mLine;
+    virtual void updateShape() override;
 };
 
-#endif // ABSTRACTANNOTATIONLINE_H
+#endif // ANNOTATIONRECT_H
