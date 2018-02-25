@@ -24,8 +24,8 @@ AnnotationItemModifier::AnnotationItemModifier()
     mLineItem = nullptr;
     mCurrentControlPoint = -1;
     mControlPointSize = 10;
-    mControlPoints.append(QRectF(0,0,mControlPointSize,mControlPointSize));
-    mControlPoints.append(QRectF(0,0,mControlPointSize,mControlPointSize));
+    mControlPoints.append(QRectF(0, 0, mControlPointSize, mControlPointSize));
+    mControlPoints.append(QRectF(0, 0, mControlPointSize, mControlPointSize));
 }
 
 QRectF AnnotationItemModifier::boundingRect() const
@@ -62,10 +62,11 @@ void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     if(mLineItem != nullptr) {
         mCurrentControlPoint = controlPointAt(event->scenePos());
-        if (mCurrentControlPoint != -1) {
+        if(mCurrentControlPoint != -1) {
             event->accept();
-        } else if (mLineItem->intersects(QRectF(event->scenePos(), QSize(2,2)))) {
+        } else if(mLineItem->intersects(QRectF(event->scenePos() - QPointF(1, 1), QSize(2, 2)))) {
             mCurrentControlPoint = 99;
+            mClickOffset = event->scenePos() - mLineItem->position();
             event->accept();
         }
     }
@@ -78,7 +79,7 @@ void AnnotationItemModifier::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
         if(mCurrentControlPoint == 0 || mCurrentControlPoint == 1) {
             mLineItem->setPointAt(event->scenePos(), mCurrentControlPoint);
         } else if (mCurrentControlPoint == 99) {
-            mLineItem->moveTo(event->scenePos());
+            mLineItem->setPosition(event->scenePos() - mClickOffset);
         }
         updateControlPoints();
     }

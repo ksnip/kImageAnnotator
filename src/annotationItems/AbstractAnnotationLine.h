@@ -28,7 +28,7 @@ public:
     AbstractAnnotationLine(const QPointF& startPosisition, const AnnotationItemProperties& properties);
     ~AbstractAnnotationLine();
     void addPoint(const QPointF & position) override;
-    void moveTo(const QPointF & newPosition) override;
+    void setPosition(const QPointF & newPosition) override;
     QLineF line() const;
     void setLine(const QLineF& line);
     void setPointAt(const QPointF& point, int index);

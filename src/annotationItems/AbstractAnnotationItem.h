@@ -34,7 +34,8 @@ public:
     virtual QPainterPath shape() const override;
     virtual bool intersects(const QRectF& rect) const;
     virtual void addPoint(const QPointF &position) = 0;
-    virtual void moveTo(const QPointF &newPosition) = 0;
+    virtual void setPosition(const QPointF &newPosition) = 0;
+    virtual QPointF position();
     AnnotationItemProperties properties() const;
     void setProperties(const AnnotationItemProperties& properties);
 

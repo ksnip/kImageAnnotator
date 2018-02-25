@@ -45,6 +45,8 @@ private:
     int                     mControlPointSize;
     int                     mCurrentControlPoint;
     QList<QRectF>           mControlPoints;
+    QPointF                 mClickOffset;
+
     void updateControlPoints();
     int controlPointAt(const QPointF& point) const;
 };

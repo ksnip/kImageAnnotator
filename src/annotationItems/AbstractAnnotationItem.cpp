@@ -51,6 +51,11 @@ void AbstractAnnotationItem::setShape(QPainterPath& newShape)
     mShape->swap(newShape);
 }
 
+QPointF AbstractAnnotationItem::position()
+{
+    return boundingRect().topLeft();
+}
+
 AnnotationItemProperties AbstractAnnotationItem::properties() const
 {
     return *mProperties;

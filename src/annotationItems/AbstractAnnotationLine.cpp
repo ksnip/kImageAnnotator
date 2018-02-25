@@ -38,10 +38,10 @@ void AbstractAnnotationLine::addPoint(const QPointF& position)
     updateShape();
 }
 
-void AbstractAnnotationLine::moveTo(const QPointF& newPosition)
+void AbstractAnnotationLine::setPosition(const QPointF& newPosition)
 {
     prepareGeometryChange();
-    mLine->translate(newPosition - boundingRect().topLeft());
+    mLine->translate(newPosition - position());
     updateShape();
 }
 
