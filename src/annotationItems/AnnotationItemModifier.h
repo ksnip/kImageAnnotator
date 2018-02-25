@@ -35,6 +35,7 @@ public:
     virtual QRectF boundingRect() const override;
     void attachTo(AbstractAnnotationItem* item);
     void detach();
+    AbstractAnnotationItem* attachedItem() const;
 
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent* event) override;

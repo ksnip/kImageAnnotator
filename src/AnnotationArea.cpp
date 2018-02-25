@@ -107,6 +107,17 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
     }
 }
 
+void AnnotationArea::keyReleaseEvent(QKeyEvent* event)
+{
+    switch(event->key()) {
+        case Qt::Key_Delete:
+            deleteSelectedItem();
+            break;
+    }
+
+    QGraphicsScene::keyPressEvent(event);
+}
+
 void AnnotationArea::addItemAtPosition(const QPointF& position)
 {
     mCurrentItem = mItemFactory->createItem(position, mSelectedToolType);
@@ -130,4 +141,15 @@ AbstractAnnotationItem* AnnotationArea::findItemAt(const QPointF& point) const
         }
     }
     return nullptr;
+}
+
+void AnnotationArea::deleteSelectedItem()
+{
+    auto item = mItemModifier->attachedItem();
+
+    if(item) {
+        mItemModifier->detach();
+        removeItem(item);
+        delete item;
+    }
 }

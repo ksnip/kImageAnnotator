@@ -65,6 +65,11 @@ void AnnotationItemModifier::detach()
     ungrabMouse();
 }
 
+AbstractAnnotationItem * AnnotationItemModifier::attachedItem() const
+{
+    return mAnnotationItem;
+}
+
 void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     if(event->button() != Qt::LeftButton) {

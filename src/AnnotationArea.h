@@ -22,6 +22,7 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
+#include <QKeyEvent>
 #include <QPainter>
 
 #include "annotationItems/AnnotationItemFactory.h"
@@ -45,6 +46,7 @@ protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
 
 private:
     AnnotationItemFactory*  mItemFactory;
@@ -56,6 +58,7 @@ private:
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);
     AbstractAnnotationItem* findItemAt(const QPointF& point) const;
+    void deleteSelectedItem();
 };
 
 #endif // ANNOTATIONAREA_H
