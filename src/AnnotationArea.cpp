@@ -78,9 +78,7 @@ void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
             mCurrentItem = findItemAt(event->scenePos());
             if(mCurrentItem != nullptr) {
                 mItemModifier->attachTo(mCurrentItem);
-            } /*else {
-                mItemModifier->detach();
-            }*/
+            }
         } else {
             addItemAtPosition(event->scenePos());
         }

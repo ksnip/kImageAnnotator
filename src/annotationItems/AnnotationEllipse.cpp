@@ -17,33 +17,16 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMFACTORY_H
-#define ANNOTATIONITEMFACTORY_H
-
-#include <QObject>
-
-#include "AnnotationItemProperties.h"
-#include "AnnotationLine.h"
-#include "AnnotationArrow.h"
-#include "AnnotationRect.h"
 #include "AnnotationEllipse.h"
-#include "../ToolTypes.h"
 
-class AnnotationItemFactory : public QObject
+AnnotationEllipse::AnnotationEllipse(const QPointF& startPosisition, const AnnotationItemProperties& properties) :
+    AbstractAnnotationRect(startPosisition, properties)
 {
-    Q_OBJECT
-public:
-    explicit AnnotationItemFactory();
-    ~AnnotationItemFactory();
+}
 
-    AbstractAnnotationItem* createItem(const QPointF& initPosition, ToolTypes type) const;
-
-public slots:
-    void setColor(const QColor& color);
-    void setSize(int size);
-
-private:
-    AnnotationItemProperties *mItemProperties;
-};
-
-#endif // ANNOTATIONITEMFACTORY_H
+void AnnotationEllipse::updateShape()
+{
+    QPainterPath path;
+    path.addEllipse(*mRect);
+    setShape(path);
+}

@@ -33,8 +33,9 @@ AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPos
 {
     switch(type) {
         case ToolTypes::Line:
-        case ToolTypes::Ellipse:
             return new AnnotationLine(initPosition, *mItemProperties);
+        case ToolTypes::Ellipse:
+            return new AnnotationEllipse(initPosition, *mItemProperties);
         case ToolTypes::Rect:
             return new AnnotationRect(initPosition, *mItemProperties);
         case ToolTypes::Arrow:
