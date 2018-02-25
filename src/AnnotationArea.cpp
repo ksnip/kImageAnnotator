@@ -71,14 +71,16 @@ void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
         return;
     }
 
+    mItemModifier->detach();
+
     if(event->button() == Qt::LeftButton) {
         if(mSelectedToolType == ToolTypes::Select) {
             mCurrentItem = findItemAt(event->scenePos());
             if(mCurrentItem != nullptr) {
                 mItemModifier->attachTo(mCurrentItem);
-            } else {
+            } /*else {
                 mItemModifier->detach();
-            }
+            }*/
         } else {
             addItemAtPosition(event->scenePos());
         }
