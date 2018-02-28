@@ -33,23 +33,8 @@ ToolPicker::~ToolPicker()
 
 void ToolPicker::selectTool(ToolTypes newTool)
 {
-    switch(newTool) {
-        case ToolTypes::Select:
-            mSelectAction->setChecked(true);
-        break;
-        case ToolTypes::Line:
-            mLineAction->setChecked(true);
-        break;
-        case ToolTypes::Rect:
-            mRectAction->setChecked(true);
-        break;
-        case ToolTypes::Ellipse:
-            mEllipseAction->setChecked(true);
-        break;
-        case ToolTypes::Arrow:
-            mArrowAction->setChecked(true);
-        break;
-    }
+    auto selectedAction = mActionToTool.key(newTool);
+    selectedAction->setChecked(true);
     setToolAndNotify(newTool);
 }
 
@@ -60,24 +45,29 @@ void ToolPicker::initGui()
     mSelectAction = addAction(QStringLiteral("Select"));
     mSelectAction->setCheckable(true);
     mSelectAction->setIcon(QPixmap(QStringLiteral(":/icons/select")));
+    mActionToTool[mSelectAction] = ToolTypes::Select;
 
     addSeparator();
 
     mLineAction = addAction(QStringLiteral("Line"));
     mLineAction->setCheckable(true);
     mLineAction->setIcon(QPixmap(QStringLiteral(":/icons/line")));
+    mActionToTool[mLineAction] = ToolTypes::Line;
 
     mRectAction = addAction(QStringLiteral("Rect"));
     mRectAction->setCheckable(true);
     mRectAction->setIcon(QPixmap(QStringLiteral(":/icons/rect")));
+    mActionToTool[mRectAction] = ToolTypes::Rect;
 
     mEllipseAction = addAction(QStringLiteral("Ellipse"));
     mEllipseAction->setCheckable(true);
     mEllipseAction->setIcon(QPixmap(QStringLiteral(":/icons/ellipse")));
+    mActionToTool[mEllipseAction] = ToolTypes::Ellipse;
 
     mArrowAction = addAction(QStringLiteral("Arrow"));
     mArrowAction->setCheckable(true);
     mArrowAction->setIcon(QPixmap(QStringLiteral(":/icons/arrow")));
+    mActionToTool[mArrowAction] = ToolTypes::Arrow;
 
     mActionGroup = new QActionGroup(this);
     mActionGroup->addAction(mSelectAction);
@@ -89,23 +79,7 @@ void ToolPicker::initGui()
 
 void ToolPicker::actionTriggered(QAction* action)
 {
-    ToolTypes selectedTool;
-    if(action == mSelectAction) {
-        selectedTool = ToolTypes::Select;
-    } else if(action == mLineAction) {
-        selectedTool = ToolTypes::Line;
-    } else if(action == mRectAction) {
-        selectedTool = ToolTypes::Rect;
-    } else if(action == mEllipseAction) {
-        selectedTool = ToolTypes::Ellipse;
-    } else if(action == mArrowAction) {
-        selectedTool = ToolTypes::Arrow;
-    } else {
-        selectedTool = ToolTypes::Select;
-        qCritical("Unknown action in tool picker.");
-    }
-
-    setToolAndNotify(selectedTool);
+    setToolAndNotify(mActionToTool.value(action));
 }
 
 void ToolPicker::setToolAndNotify(ToolTypes newTool)

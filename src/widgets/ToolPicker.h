@@ -47,6 +47,7 @@ private:
     QAction*        mEllipseAction;
     QAction*        mArrowAction;
     ToolTypes       mSelectedToolType;
+    QHash<QAction*,ToolTypes> mActionToTool;
 
     void initGui();
 
