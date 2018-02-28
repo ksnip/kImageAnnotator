@@ -85,12 +85,6 @@ void ToolPicker::initGui()
     mActionGroup->addAction(mRectAction);
     mActionGroup->addAction(mEllipseAction);
     mActionGroup->addAction(mArrowAction);
-
-    // Only used for easy matching
-    mListOfItemActions.append(mLineAction);
-    mListOfItemActions.append(mRectAction);
-    mListOfItemActions.append(mEllipseAction);
-    mListOfItemActions.append(mArrowAction);
 }
 
 void ToolPicker::actionTriggered(QAction* action)
@@ -107,6 +101,7 @@ void ToolPicker::actionTriggered(QAction* action)
     } else if(action == mArrowAction) {
         selectedTool = ToolTypes::Arrow;
     } else {
+        selectedTool = ToolTypes::Select;
         qCritical("Unknown action in tool picker.");
     }
 

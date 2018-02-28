@@ -17,42 +17,19 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef TOOLPICKER_H
-#define TOOLPICKER_H
+#include "ToolPickerTest.h"
 
-#include <QToolBar>
-#include <QActionGroup>
-#include <QToolButton>
-#include <QVBoxLayout>
-
-#include "../ToolTypes.h"
-
-class ToolPicker : public QToolBar
+void ToolPickerTest::TestSelectTool_Should_EmitSignal_When_ToolChanged()
 {
-    Q_OBJECT
-public:
-    explicit ToolPicker();
-    ~ToolPicker();
-    void selectTool(ToolTypes newTool);
+    qRegisterMetaType<ToolTypes>();
+    ToolPicker toolPicker;
+    QSignalSpy spy(&toolPicker, &ToolPicker::toolSelected);
 
-signals:
-    void toolSelected(ToolTypes newTool);
+    toolPicker.selectTool(ToolTypes::Arrow);
 
-private:
-    QVBoxLayout*    mLayout;
-    QActionGroup*   mActionGroup;
-    QAction*        mSelectAction;
-    QAction*        mLineAction;
-    QAction*        mRectAction;
-    QAction*        mEllipseAction;
-    QAction*        mArrowAction;
-    ToolTypes       mSelectedToolType;
+    QCOMPARE(spy.count(), 1);
+    auto type = qvariant_cast<ToolTypes>(spy.at(0).at(0));
+    QVERIFY(type == ToolTypes::Arrow);
+}
 
-    void initGui();
-
-private slots:
-    void actionTriggered(QAction* action);
-    void setToolAndNotify(ToolTypes newTool);
-};
-
-#endif // TOOLPICKER_H
+QTEST_MAIN(ToolPickerTest);

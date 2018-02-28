@@ -17,42 +17,20 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef TOOLPICKER_H
-#define TOOLPICKER_H
+#ifndef TOOLPICKERTEST_H
+#define TOOLPICKERTEST_H
 
-#include <QToolBar>
-#include <QActionGroup>
-#include <QToolButton>
-#include <QVBoxLayout>
+#include <QtTest>
 
-#include "../ToolTypes.h"
+#include "../src/widgets/ToolPicker.h"
+#include "../src/ToolTypes.h"
 
-class ToolPicker : public QToolBar
+class ToolPickerTest : public QObject
 {
-    Q_OBJECT
-public:
-    explicit ToolPicker();
-    ~ToolPicker();
-    void selectTool(ToolTypes newTool);
-
-signals:
-    void toolSelected(ToolTypes newTool);
-
-private:
-    QVBoxLayout*    mLayout;
-    QActionGroup*   mActionGroup;
-    QAction*        mSelectAction;
-    QAction*        mLineAction;
-    QAction*        mRectAction;
-    QAction*        mEllipseAction;
-    QAction*        mArrowAction;
-    ToolTypes       mSelectedToolType;
-
-    void initGui();
+Q_OBJECT
 
 private slots:
-    void actionTriggered(QAction* action);
-    void setToolAndNotify(ToolTypes newTool);
+    void TestSelectTool_Should_EmitSignal_When_ToolChanged();
 };
 
-#endif // TOOLPICKER_H
+#endif // TOOLPICKERTEST_H

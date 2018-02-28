@@ -29,4 +29,6 @@ enum class ToolTypes
     Ellipse
 };
 
+Q_DECLARE_METATYPE(ToolTypes)
+
 #endif // TOOLTYPES_H
