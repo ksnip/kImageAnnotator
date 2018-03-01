@@ -36,7 +36,7 @@ public:
     explicit AnnotationItemFactory();
     ~AnnotationItemFactory();
 
-    AbstractAnnotationItem* createItem(const QPointF& initPosition, ToolTypes type) const;
+    AbstractAnnotationItem* createItem(const QPointF& initPosition, ToolTypes tool) const;
 
 public slots:
     void setColor(const QColor& color);

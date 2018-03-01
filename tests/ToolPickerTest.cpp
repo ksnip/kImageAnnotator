@@ -25,7 +25,7 @@ void ToolPickerTest::TestSelectTool_Should_EmitSignal_When_ToolChanged()
     ToolPicker toolPicker;
     QSignalSpy spy(&toolPicker, &ToolPicker::toolSelected);
 
-    toolPicker.selectTool(ToolTypes::Arrow);
+    toolPicker.setTool(ToolTypes::Arrow);
 
     QCOMPARE(spy.count(), 1);
     auto type = qvariant_cast<ToolTypes>(spy.at(0).at(0));

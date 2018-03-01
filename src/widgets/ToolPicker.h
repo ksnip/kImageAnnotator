@@ -33,7 +33,7 @@ class ToolPicker : public QToolBar
 public:
     explicit ToolPicker();
     ~ToolPicker();
-    void selectTool(ToolTypes newTool);
+    void setTool(ToolTypes newTool);
 
 signals:
     void toolSelected(ToolTypes newTool);

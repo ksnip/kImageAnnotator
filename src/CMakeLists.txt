@@ -14,7 +14,8 @@ set(kimageannotator_SRCS main.cpp
                          annotationItems/AnnotationArrow.cpp
                          annotationItems/AnnotationRect.cpp
                          annotationItems/AnnotationEllipse.cpp
-                         widgets/ToolPicker.cpp)
+                         widgets/ToolPicker.cpp
+                         widgets/ColorPicker.cpp)
 
 add_executable(kimageannotator_app ${kimageannotator_SRCS} ${kimageannotator_ICON_RES_RCC})
 

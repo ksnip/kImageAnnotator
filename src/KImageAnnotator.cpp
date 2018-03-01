@@ -23,22 +23,29 @@ KImageAnnotator::KImageAnnotator(const QPixmap& image) :
     mAnnotationArea(new AnnotationArea),
     mView(new QGraphicsView(mAnnotationArea)),
     mMainLayout(new QHBoxLayout),
-    mToolPicker(new ToolPicker)
+    mSidebarLayout(new QVBoxLayout),
+    mToolPicker(new ToolPicker),
+    mColorPicker(new ColorPicker)
 
 {
     mAnnotationArea->setBackgroundImage(image);
-    mMainLayout->addWidget(mToolPicker);
+    mSidebarLayout->addWidget(mToolPicker);
+    mSidebarLayout->addWidget(mColorPicker);
+    mMainLayout->addLayout(mSidebarLayout);
     mMainLayout->addWidget(mView);
     setLayout(mMainLayout);
 
-    connect(mToolPicker, &ToolPicker::toolSelected, mAnnotationArea, &AnnotationArea::setToolType);
+    connect(mToolPicker, &ToolPicker::toolSelected, mAnnotationArea, &AnnotationArea::setTool);
+    connect(mColorPicker, &ColorPicker::colorSelected, mAnnotationArea, &AnnotationArea::setColor);
 
-    mToolPicker->selectTool(ToolTypes::Line);
+    mToolPicker->setTool(ToolTypes::Line);
+    mColorPicker->setColor(QColor(QStringLiteral("red")));
 }
 
 KImageAnnotator::~KImageAnnotator()
 {
     delete mAnnotationArea;
     delete mView;
+    delete mSidebarLayout;
     delete mMainLayout;
 }

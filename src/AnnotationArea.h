@@ -40,7 +40,8 @@ public:
     QImage exportAsImage();
 
 public slots:
-    void setToolType(ToolTypes toolType);
+    void setTool(ToolTypes tool);
+    void setColor(const QColor& color);
 
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
@@ -53,7 +54,7 @@ private:
     QGraphicsPixmapItem*    mBackgroundImage;
     AbstractAnnotationItem* mCurrentItem;
     AnnotationItemModifier* mItemModifier;
-    ToolTypes     mSelectedToolType;
+    ToolTypes               mSelectedTool;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

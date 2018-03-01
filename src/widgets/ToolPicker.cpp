@@ -31,7 +31,7 @@ ToolPicker::~ToolPicker()
     delete mActionGroup;
 }
 
-void ToolPicker::selectTool(ToolTypes newTool)
+void ToolPicker::setTool(ToolTypes newTool)
 {
     auto selectedAction = mActionToTool.key(newTool);
     selectedAction->setChecked(true);
@@ -87,4 +87,3 @@ void ToolPicker::setToolAndNotify(ToolTypes newTool)
     mSelectedToolType = newTool;
     emit toolSelected(mSelectedToolType);
 }
-

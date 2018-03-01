@@ -21,6 +21,7 @@
 
 AnnotationItemFactory::AnnotationItemFactory()
 {
+    // some default settings
     mItemProperties = new AnnotationItemProperties(QColor("red"), 3);
 }
 
