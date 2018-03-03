@@ -23,7 +23,6 @@
 #include <QToolBar>
 #include <QActionGroup>
 #include <QToolButton>
-#include <QVBoxLayout>
 
 #include "../ToolTypes.h"
 
@@ -39,7 +38,6 @@ signals:
     void toolSelected(ToolTypes newTool);
 
 private:
-    QVBoxLayout*    mLayout;
     QActionGroup*   mActionGroup;
     QAction*        mSelectAction;
     QAction*        mLineAction;

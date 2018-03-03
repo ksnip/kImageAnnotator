@@ -22,17 +22,15 @@
 KImageAnnotator::KImageAnnotator(const QPixmap& image) :
     mAnnotationArea(new AnnotationArea),
     mView(new QGraphicsView(mAnnotationArea)),
-    mMainLayout(new QHBoxLayout),
-    mSidebarLayout(new QVBoxLayout),
+    mMainLayout(new QGridLayout),
     mToolPicker(new ToolPicker),
     mColorPicker(new ColorPicker)
 
 {
     mAnnotationArea->setBackgroundImage(image);
-    mSidebarLayout->addWidget(mToolPicker);
-    mSidebarLayout->addWidget(mColorPicker);
-    mMainLayout->addLayout(mSidebarLayout);
-    mMainLayout->addWidget(mView);
+    mMainLayout->addWidget(mToolPicker, 0, 0, -1, 1);
+    mMainLayout->addWidget(mView, 0, 1, 1, -1);
+    mMainLayout->addWidget(mColorPicker, 1, 1, -1, 1);
     setLayout(mMainLayout);
 
     connect(mToolPicker, &ToolPicker::toolSelected, mAnnotationArea, &AnnotationArea::setTool);
@@ -46,6 +44,5 @@ KImageAnnotator::~KImageAnnotator()
 {
     delete mAnnotationArea;
     delete mView;
-    delete mSidebarLayout;
     delete mMainLayout;
 }

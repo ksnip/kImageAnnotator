@@ -21,51 +21,90 @@
 
 ColorPicker::ColorPicker()
 {
-    mColorList.append(QStringLiteral("Red"));
-    mColorList.append(QStringLiteral("Blue"));
-    mColorList.append(QStringLiteral("Green"));
-    mColorList.append(QStringLiteral("Gray"));
-    mColorList.append(QStringLiteral("Yellow"));
+    mColorList.append(QStringLiteral("White"));
     mColorList.append(QStringLiteral("Black"));
+    mColorList.append(QStringLiteral("Gray"));
+    mColorList.append(QStringLiteral("Light Gray"));
+    mColorList.append(QStringLiteral("Red"));
+    mColorList.append(QStringLiteral("Dark Red"));
+    mColorList.append(QStringLiteral("Orange"));
+    mColorList.append(QStringLiteral("Dark Orange"));
+    mColorList.append(QStringLiteral("Yellow"));
+    mColorList.append(QStringLiteral("Purple"));
+    mColorList.append(QStringLiteral("Green"));
+    mColorList.append(QStringLiteral("Dark Green"));
+    mColorList.append(QStringLiteral("Blue"));
+    mColorList.append(QStringLiteral("Dark Blue"));
+    mColorList.append(QStringLiteral("Violet"));
+    mColorList.append(QStringLiteral("Dark Violet"));
+
+    mIconSize = new QSize(25, 25);
 
     initGui();
 
-    connect(this, &QToolBar::actionTriggered, this, &ColorPicker::actionTriggered);
+    connect(mButtonGroup, static_cast<void (QButtonGroup::*)(QAbstractButton*)>(&QButtonGroup::buttonClicked), this, &ColorPicker::buttonClicked);
+}
+
+ColorPicker::~ColorPicker()
+{
+    delete mIconSize;
+    delete mLayout;
+    delete mButtonGroup;
 }
 
 void ColorPicker::setColor(const QColor& color)
 {
-    auto action = mActionToColor.key(color);
-    action->setChecked(true);
-    setColorAndNotify(color);
+    auto button = mButtonToColor.key(color);
+    if(button) {
+        button->setChecked(true);
+        setColorAndNotify(color);
+    }
 }
 
 void ColorPicker::initGui()
 {
-    setOrientation(Qt::Vertical);
+    mLayout = new QGridLayout();
+    mLayout->setSpacing(0);
 
-    mActionGroup = new QActionGroup(this);
+    mButtonGroup = new QButtonGroup(this);
 
-    for(auto colorString : mColorList) {
-        QColor color(colorString);
-        auto action = addAction(colorString);
-        action->setIcon(createColorIcon(color));
-        action->setCheckable(true);
-        mActionToColor[action] = color;
-        mActionGroup->addAction(action);
+    auto column = 0;
+    for(auto i = 0; i < mColorList.count(); i++) {
+        QColor color(mColorList [i]);
+        auto button = createButton(color);
+        mButtonToColor[button] = color;
+        mButtonGroup->addButton(button);
+        mLayout->addWidget(button, i % 2, column);
+        column += i % 2;
     }
+
+    setLayout(mLayout);
+    setFixedSize(sizeHint());
+}
+
+QAbstractButton* ColorPicker::createButton(const QColor& color)
+{
+    auto button = new QToolButton(this);
+    auto icon = createColorIcon(color);
+    button->setIcon(icon);
+    button->setCheckable(true);
+    button->setAutoRaise(true);
+    button->setIconSize(*mIconSize);
+    button->setStyleSheet(QStringLiteral("QToolButton { border: 0px; padding-right: -1px; padding-bottom: -1px; }"
+                                         "QToolButton:checked { padding: 2px; margin: 1px ; border: 1px solid gray; }"));
+    return button;
 }
 
 QIcon ColorPicker::createColorIcon(const QColor& color) const
 {
-    QPixmap pixmap(50,50);
+    QPixmap pixmap(*mIconSize);
     pixmap.fill(color);
     return QIcon(pixmap);
 }
 
-void ColorPicker::actionTriggered(QAction* action)
+void ColorPicker::buttonClicked(QAbstractButton* button)
 {
-    setColorAndNotify(mActionToColor[action]);
+    setColorAndNotify(mButtonToColor[button]);
 }
 
 void ColorPicker::setColorAndNotify(const QColor& newColor)

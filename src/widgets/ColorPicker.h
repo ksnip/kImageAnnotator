@@ -20,34 +20,36 @@
 #ifndef COLORPICKER_H
 #define COLORPICKER_H
 
-#include <QToolBar>
-#include <QActionGroup>
+#include <QWidget>
+#include <QButtonGroup>
 #include <QToolButton>
-#include <QVBoxLayout>
+#include <QGridLayout>
 
-class ColorPicker : public QToolBar
+class ColorPicker : public QWidget
 {
     Q_OBJECT
 public:
     explicit ColorPicker();
-    ~ColorPicker() = default;
+    ~ColorPicker();
     void setColor(const QColor& color);
 
 signals:
     void colorSelected(const QColor& newColor);
 
 private:
-    QVBoxLayout*           mLayout;
-    QActionGroup*          mActionGroup;
+    QGridLayout*           mLayout;
+    QButtonGroup*          mButtonGroup;
     QList<QString>         mColorList;
     QColor                 mSelectedColor;
-    QHash<QAction*,QColor> mActionToColor;
+    QSize*                 mIconSize;
+    QHash<QAbstractButton*,QColor> mButtonToColor;
 
     void initGui();
+    QAbstractButton* createButton(const QColor &color);
     QIcon createColorIcon(const QColor& color) const;
 
 private slots:
-    void actionTriggered(QAction* action);
+    void buttonClicked(QAbstractButton *button);
     void setColorAndNotify(const QColor& newColor);
 };
 
