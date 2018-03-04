@@ -93,8 +93,8 @@ QAbstractButton* ColorPicker::createButton(const QColor& color)
     button->setCheckable(true);
     button->setAutoRaise(true);
     button->setIconSize(*mIconSize);
-    button->setStyleSheet(QStringLiteral("QToolButton { border: 0px; padding-right: -1px; padding-bottom: -1px; }"
-                                         "QToolButton:checked { padding: 2px; margin: 1px ; border: 1px solid gray; }"));
+    button->setStyleSheet(QStringLiteral("QToolButton { border: 0px; padding-left: -1px; padding-top: -1px; }"
+                                         "QToolButton:checked { padding: 2px; margin: 1px; border: 1px solid gray; }"));
     return button;
 }
 
