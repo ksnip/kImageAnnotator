@@ -38,6 +38,7 @@ AnnotationItemProperties::AnnotationItemProperties(const AnnotationItemPropertie
     mBorderColor = other.mBorderColor;
     mFillColor = other.mFillColor;
     mSize = other.mSize;
+    mFillType = other.mFillType;
 }
 
 QColor AnnotationItemProperties::borderColor() const
@@ -69,3 +70,14 @@ void AnnotationItemProperties::setSize(int size)
 {
     mSize = size;
 }
+
+FillTypes AnnotationItemProperties::fillType() const
+{
+    return mFillType;
+}
+
+void AnnotationItemProperties::setFillType(FillTypes fillType)
+{
+    mFillType = fillType;
+}
+

@@ -41,6 +41,7 @@ public:
 public slots:
     void setColor(const QColor& color);
     void setSize(int size);
+    void setFillType(FillTypes fillType);
 
 private:
     AnnotationItemProperties *mItemProperties;

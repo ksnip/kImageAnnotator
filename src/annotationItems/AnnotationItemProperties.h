@@ -22,6 +22,8 @@
 
 #include <QColor>
 
+enum class FillTypes;
+
 class AnnotationItemProperties
 {
 public:
@@ -35,11 +37,14 @@ public:
     void setFillColor(const QColor& fillColor);
     int size() const;
     void setSize(int size);
+    FillTypes fillType() const;
+    void setFillType(FillTypes fillType);
 
 private:
-    QColor mBorderColor;
-    QColor mFillColor;
-    int    mSize;
+    QColor    mBorderColor;
+    QColor    mFillColor;
+    int       mSize;
+    FillTypes mFillType;
 };
 
 #endif // ANNOTATIONITEMPROPERTIES_H

@@ -95,6 +95,8 @@ void AbstractAnnotationItem::paint(QPainter* painter, const QStyleOptionGraphics
     pen.setJoinStyle(Qt::RoundJoin);
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(pen);
-    painter->setBrush(mProperties->fillColor());
+    if (mProperties->fillType() == FillTypes::SameFill) {
+        painter->setBrush(mProperties->fillColor());
+    }
     painter->drawPath(*mShape);
 }

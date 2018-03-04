@@ -57,3 +57,8 @@ void AnnotationItemFactory::setSize(int size)
 {
     mItemProperties->setSize(size);
 }
+
+void AnnotationItemFactory::setFillType(FillTypes fillType)
+{
+    mItemProperties->setFillType(fillType);
+}

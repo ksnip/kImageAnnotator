@@ -16,7 +16,8 @@ set(kimageannotator_SRCS main.cpp
                          annotationItems/AnnotationEllipse.cpp
                          widgets/ToolPicker.cpp
                          widgets/ColorPicker.cpp
-                         widgets/SizePicker.cpp)
+                         widgets/SizePicker.cpp
+                         widgets/FillPicker.cpp)
 
 add_executable(kimageannotator_app ${kimageannotator_SRCS} ${kimageannotator_ICON_RES_RCC})
 

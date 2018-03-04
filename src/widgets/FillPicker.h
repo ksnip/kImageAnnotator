@@ -17,34 +17,43 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_H
-#define KIMAGEANNOTATOR_H
+#ifndef FILLPICKER_H
+#define FILLPICKER_H
 
 #include <QWidget>
-#include <QGraphicsView>
-#include <QGridLayout>
+#include <QVBoxLayout>
+#include <QButtonGroup>
+#include <QToolButton>
+#include <QPainter>
 
-#include "AnnotationArea.h"
-#include "widgets/ToolPicker.h"
-#include "widgets/ColorPicker.h"
-#include "widgets/SizePicker.h"
-#include "widgets/FillPicker.h"
+#include "../FillTypes.h"
 
-class KImageAnnotator : public QWidget
+class FillPicker : public QWidget
 {
-    Q_OBJECT
+        Q_OBJECT
+
 public:
-    KImageAnnotator(const QPixmap& image);
-    ~KImageAnnotator();
+    FillPicker();
+    ~FillPicker();
+    void setFill(FillTypes fill);
+
+signals:
+    void fillSelected(FillTypes fill) const;
 
 private:
-    AnnotationArea* mAnnotationArea;
-    QGraphicsView*  mView;
-    QGridLayout*    mMainLayout;
-    ToolPicker*     mToolPicker;
-    ColorPicker*    mColorPicker;
-    SizePicker*     mSizePicker;
-    FillPicker*     mFillPicker;
+    QVBoxLayout                  *mLayout;
+    QButtonGroup                 *mButtonGroup;
+    QHash<QAbstractButton*, FillTypes>  mButtonToFill;
+    QSize                        *mIconSize;
+    QList<FillTypes>              mFillList;
+    FillTypes                     mSelectedFill;
+
+    void initGui();
+    QIcon createIcon(FillTypes fill) const;
+    void setFillAndNotify(FillTypes fill);
+
+private slots:
+    void buttonClicked(QAbstractButton *button);
 };
 
-#endif // KIMAGEANNOTATOR_H
+#endif // FILLPICKER_H

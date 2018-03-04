@@ -76,6 +76,11 @@ void AnnotationArea::setSize(int size)
     mItemFactory->setSize(size);
 }
 
+void AnnotationArea::setFillType(FillTypes fillType)
+{
+    mItemFactory->setFillType(fillType);
+}
+
 void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     QGraphicsScene::mousePressEvent(event);

@@ -25,12 +25,14 @@ KImageAnnotator::KImageAnnotator(const QPixmap& image) :
     mMainLayout(new QGridLayout),
     mToolPicker(new ToolPicker),
     mColorPicker(new ColorPicker),
-    mSizePicker(new SizePicker)
+    mSizePicker(new SizePicker),
+    mFillPicker(new FillPicker)
 
 {
     mAnnotationArea->setBackgroundImage(image);
     mMainLayout->addWidget(mToolPicker, 0, 0, 1, 1, Qt::AlignCenter);
     mMainLayout->addWidget(mSizePicker, 1, 0);
+    mMainLayout->addWidget(mFillPicker, 2, 0);
     mMainLayout->addWidget(mView, 0, 1, 3, -1);
     mMainLayout->addWidget(mColorPicker, 4, 1, -1, 1);
     setLayout(mMainLayout);
@@ -38,10 +40,12 @@ KImageAnnotator::KImageAnnotator(const QPixmap& image) :
     connect(mToolPicker, &ToolPicker::toolSelected, mAnnotationArea, &AnnotationArea::setTool);
     connect(mColorPicker, &ColorPicker::colorSelected, mAnnotationArea, &AnnotationArea::setColor);
     connect(mSizePicker, &SizePicker::sizeSelected, mAnnotationArea, &AnnotationArea::setSize);
+    connect(mFillPicker, &FillPicker::fillSelected, mAnnotationArea, &AnnotationArea::setFillType);
 
     mToolPicker->setTool(ToolTypes::Line);
     mColorPicker->setColor(QColor(QStringLiteral("red")));
     mSizePicker->setSize(3);
+    mFillPicker->setFill(FillTypes::NoFill);
 }
 
 KImageAnnotator::~KImageAnnotator()

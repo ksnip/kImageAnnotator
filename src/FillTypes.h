@@ -17,34 +17,16 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_H
-#define KIMAGEANNOTATOR_H
+#ifndef FILLTYPES_H
+#define FILLTYPES_H
 
-#include <QWidget>
-#include <QGraphicsView>
-#include <QGridLayout>
-
-#include "AnnotationArea.h"
-#include "widgets/ToolPicker.h"
-#include "widgets/ColorPicker.h"
-#include "widgets/SizePicker.h"
-#include "widgets/FillPicker.h"
-
-class KImageAnnotator : public QWidget
+enum class FillTypes
 {
-    Q_OBJECT
-public:
-    KImageAnnotator(const QPixmap& image);
-    ~KImageAnnotator();
-
-private:
-    AnnotationArea* mAnnotationArea;
-    QGraphicsView*  mView;
-    QGridLayout*    mMainLayout;
-    ToolPicker*     mToolPicker;
-    ColorPicker*    mColorPicker;
-    SizePicker*     mSizePicker;
-    FillPicker*     mFillPicker;
+    NoFill,
+    SeperateFill,
+    SameFill
 };
 
-#endif // KIMAGEANNOTATOR_H
+Q_DECLARE_METATYPE(FillTypes)
+
+#endif // FILLTYPES_H
