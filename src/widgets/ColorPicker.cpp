@@ -50,6 +50,9 @@ ColorPicker::~ColorPicker()
     delete mIconSize;
     delete mLayout;
     delete mButtonGroup;
+    for(auto button : mButtonToColor.keys()) {
+        delete button;
+    }
 }
 
 void ColorPicker::setColor(const QColor& color)
