@@ -17,40 +17,41 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef COLORPICKER_H
-#define COLORPICKER_H
+#ifndef SIZEPICKER_H
+#define SIZEPICKER_H
 
 #include <QWidget>
+#include <QVBoxLayout>
 #include <QButtonGroup>
 #include <QToolButton>
-#include <QGridLayout>
+#include <QPainter>
 
-class ColorPicker : public QWidget
+class SizePicker : public QWidget
 {
     Q_OBJECT
+
 public:
-    explicit ColorPicker();
-    ~ColorPicker();
-    void setColor(const QColor& color);
+    SizePicker();
+    ~SizePicker();
+    void setSize(int size);
 
 signals:
-    void colorSelected(const QColor& newColor);
+    void sizeSelected(int size) const;
 
 private:
-    QGridLayout*           mLayout;
-    QButtonGroup*          mButtonGroup;
-    QList<QString>         mColorList;
-    QColor                 mSelectedColor;
-    QSize*                 mIconSize;
-    QHash<QAbstractButton*,QColor> mButtonToColor;
+    QVBoxLayout                  *mLayout;
+    QButtonGroup                 *mButtonGroup;
+    QHash<QAbstractButton*, int>  mButtonToSize;
+    QList<int>                    mSizeList;
+    QSize                        *mIconSize;
+    int                           mSelectedSize;
 
     void initGui();
-    QAbstractButton* createButton(const QColor &color);
-    QIcon createColorIcon(const QColor& color) const;
-    void setColorAndNotify(const QColor& newColor);
+    QIcon createIcon(int size) const;
+    void setSizeAndNotify(int size);
 
 private slots:
     void buttonClicked(QAbstractButton *button);
 };
 
-#endif // COLORPICKER_H
+#endif // SIZEPICKER_H

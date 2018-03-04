@@ -105,13 +105,13 @@ QIcon ColorPicker::createColorIcon(const QColor& color) const
     return QIcon(pixmap);
 }
 
-void ColorPicker::buttonClicked(QAbstractButton* button)
-{
-    setColorAndNotify(mButtonToColor[button]);
-}
-
 void ColorPicker::setColorAndNotify(const QColor& newColor)
 {
     mSelectedColor = newColor;
     emit colorSelected(newColor);
+}
+
+void ColorPicker::buttonClicked(QAbstractButton* button)
+{
+    setColorAndNotify(mButtonToColor[button]);
 }

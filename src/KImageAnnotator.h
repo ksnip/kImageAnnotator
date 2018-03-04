@@ -27,6 +27,7 @@
 #include "AnnotationArea.h"
 #include "widgets/ToolPicker.h"
 #include "widgets/ColorPicker.h"
+#include "widgets/SizePicker.h"
 
 class KImageAnnotator : public QWidget
 {
@@ -41,6 +42,7 @@ private:
     QGridLayout*           mMainLayout;
     ToolPicker*            mToolPicker;
     ColorPicker*           mColorPicker;
+    SizePicker*            mSizePicker;
 };
 
 #endif // KIMAGEANNOTATOR_H

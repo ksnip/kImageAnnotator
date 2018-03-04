@@ -71,6 +71,11 @@ void AnnotationArea::setColor(const QColor& color)
     mItemFactory->setColor(color);
 }
 
+void AnnotationArea::setSize(int size)
+{
+    mItemFactory->setSize(size);
+}
+
 void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     QGraphicsScene::mousePressEvent(event);

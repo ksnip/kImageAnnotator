@@ -42,6 +42,7 @@ public:
 public slots:
     void setTool(ToolTypes tool);
     void setColor(const QColor& color);
+    void setSize(int size);
 
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
