@@ -17,28 +17,24 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationAreaTest.h"
+#ifndef CONTROLPOINTSTEST_H
+#define CONTROLPOINTSTEST_H
 
-void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
+#include <QtTest>
+
+#include "../src/annotationItems/ControlPoints.h"
+#include "../src/annotationItems/AnnotationLine.h"
+#include "../src/annotationItems/AnnotationRect.h"
+
+class ControlPointsTest : public QObject
 {
-    QPixmap pixmap(QSize(400, 400));
-    pixmap.fill(QColor(QStringLiteral("Green")));
-    AnnotationArea annotationArea;
-    annotationArea.setBackgroundImage(pixmap);
+Q_OBJECT
 
-    auto resultImage = annotationArea.exportAsImage();
+private slots:
+    void TestInitPoints_Should_PositionTwoControlPoints_When_LineItemProvided();
+    void TestInitPoints_Should_PositionEightControlPoints_When_RectItemProvided();
+    void TestIndexOfPointAt_Should_ReturnIndexOfControlPoint_When_ControlPointIsAtProvidedPoint();
+    void TestIndexOfPointAt_Should_NotReturnAnyIndex_When_ControlPointIsNotAtProvidedPoint();
+};
 
-    auto expectedImage = pixmap.toImage().convertToFormat(QImage::Format_ARGB32);
-    QCOMPARE(expectedImage, resultImage);
-}
-
-void AnnotationAreaTest::TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet()
-{
-    AnnotationArea annotationArea;
-
-    auto resultImage = annotationArea.exportAsImage();
-
-    QCOMPARE(QImage(), resultImage);
-}
-
-QTEST_MAIN(AnnotationAreaTest);
+#endif // CONTROLPOINTSTEST_H

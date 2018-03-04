@@ -32,3 +32,8 @@ add_test(ToolPickerTest ToolPickerTest)
 add_executable(ColorPickerTest ColorPickerTest.cpp ${kimageannotator_SRCS})
 target_link_libraries(ColorPickerTest Qt5::Test Qt5::Widgets)
 add_test(ColorPickerTest ColorPickerTest)
+
+# Control Points Test
+add_executable(ControlPointsTest ControlPointsTest.cpp ${kimageannotator_SRCS})
+target_link_libraries(ControlPointsTest Qt5::Test Qt5::Widgets)
+add_test(ControlPointsTest ControlPointsTest)
