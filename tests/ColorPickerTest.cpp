@@ -29,7 +29,7 @@ void ColorPickerTest::TestSelectColor_Should_EmitSignal_When_ColorChanged()
 
     QCOMPARE(spy.count(), 1);
     auto resultColor = qvariant_cast<QColor>(spy.at(0).at(0));
-    QVERIFY(resultColor == expectedColor);
+    QCOMPARE(resultColor, expectedColor);
 }
 
 void ColorPickerTest::TestSelectColor_Should_NotEmitSignal_When_SelectedColorDoesntExists()
@@ -45,7 +45,7 @@ void ColorPickerTest::TestSelectColor_Should_NotEmitSignal_When_SelectedColorDoe
     QCOMPARE(spy.count(), 1);
     auto resultColor = qvariant_cast<QColor>(spy.at(0).at(0));
     QVERIFY(resultColor != notInListColor);
-    QVERIFY(resultColor == expectedColor);
+    QCOMPARE(resultColor, expectedColor);
 }
 
 QTEST_MAIN(ColorPickerTest);

@@ -29,7 +29,7 @@ void ToolPickerTest::TestSelectTool_Should_EmitSignal_When_ToolChanged()
 
     QCOMPARE(spy.count(), 1);
     auto type = qvariant_cast<ToolTypes>(spy.at(0).at(0));
-    QVERIFY(type == ToolTypes::Arrow);
+    QCOMPARE(type, ToolTypes::Arrow);
 }
 
 QTEST_MAIN(ToolPickerTest);
