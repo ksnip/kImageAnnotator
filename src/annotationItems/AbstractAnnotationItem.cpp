@@ -36,7 +36,12 @@ AbstractAnnotationItem::~AbstractAnnotationItem()
 
 QRectF AbstractAnnotationItem::boundingRect() const
 {
-    return mShape->boundingRect();
+    auto width = 0;
+    if (!mShape->isEmpty()) {
+        width = mProperties->size() / 2;
+    }
+
+    return mShape->boundingRect().adjusted(-width, -width, width, width);
 }
 
 QPainterPath AbstractAnnotationItem::shape() const
@@ -87,6 +92,7 @@ void AbstractAnnotationItem::paint(QPainter* painter, const QStyleOptionGraphics
     pen.setColor(mProperties->borderColor());
     pen.setWidth(mProperties->size());
     pen.setCapStyle(Qt::RoundCap);
+    pen.setJoinStyle(Qt::RoundJoin);
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(pen);
     painter->setBrush(mProperties->fillColor());
