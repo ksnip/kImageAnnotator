@@ -18,22 +18,13 @@ set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/KImageAnnotator.cpp
                          ${CMAKE_SOURCE_DIR}/src/widgets/ToolPicker.cpp
                          ${CMAKE_SOURCE_DIR}/src/widgets/ColorPicker.cpp)
 
-# Annotation Area Test
-add_executable(AnnotationAreaTest AnnotationAreaTest.cpp ${kimageannotator_SRCS})
-target_link_libraries(AnnotationAreaTest Qt5::Test Qt5::Widgets)
-add_test(AnnotationAreaTest AnnotationAreaTest)
+set(ListOfUnitTests AnnotationAreaTest
+                    ToolPickerTest
+                    ColorPickerTest
+                    ControlPointsTest)
 
-# ToolPicker Test
-add_executable(ToolPickerTest ToolPickerTest.cpp ${kimageannotator_SRCS})
-target_link_libraries(ToolPickerTest Qt5::Test Qt5::Widgets)
-add_test(ToolPickerTest ToolPickerTest)
-
-# ColorPicker Test
-add_executable(ColorPickerTest ColorPickerTest.cpp ${kimageannotator_SRCS})
-target_link_libraries(ColorPickerTest Qt5::Test Qt5::Widgets)
-add_test(ColorPickerTest ColorPickerTest)
-
-# Control Points Test
-add_executable(ControlPointsTest ControlPointsTest.cpp ${kimageannotator_SRCS})
-target_link_libraries(ControlPointsTest Qt5::Test Qt5::Widgets)
-add_test(ControlPointsTest ControlPointsTest)
+foreach(unitTest ${ListOfUnitTests})
+    add_executable(${unitTest} ${unitTest}.cpp ${kimageannotator_SRCS})
+    target_link_libraries(${unitTest} Qt5::Test Qt5::Widgets)
+    add_test(${unitTest} ${unitTest})
+endforeach(unitTest)

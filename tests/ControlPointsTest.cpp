@@ -66,8 +66,8 @@ void ControlPointsTest::TestIndexOfPointAt_Should_ReturnIndexOfControlPoint_When
     ControlPoints controlPoinst(5);
     controlPoinst.initPoints(&lineItem);
 
-    auto resultP1 = controlPoinst.indexOfPointAt(p1 + QPointF(2,2));
-    auto resultP2 = controlPoinst.indexOfPointAt(p2 + QPointF(-2,-2));
+    auto resultP1 = controlPoinst.indexOfPointAt(p1 + QPointF(2, 2));
+    auto resultP2 = controlPoinst.indexOfPointAt(p2 + QPointF(-2, -2));
 
     QCOMPARE(controlPoinst.points().count(), 2);
     QCOMPARE(resultP1, 0);
@@ -76,7 +76,7 @@ void ControlPointsTest::TestIndexOfPointAt_Should_ReturnIndexOfControlPoint_When
 
 void ControlPointsTest::TestIndexOfPointAt_Should_NotReturnAnyIndex_When_ControlPointIsNotAtProvidedPoint()
 {
-        AnnotationItemProperties properties(QColor(QStringLiteral("Red")), 2);
+    AnnotationItemProperties properties(QColor(QStringLiteral("Red")), 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
