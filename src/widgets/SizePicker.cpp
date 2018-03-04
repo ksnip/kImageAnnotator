@@ -40,6 +40,9 @@ SizePicker::~SizePicker()
     delete mIconSize;
     delete mLayout;
     delete mButtonGroup;
+    for(auto button : mButtonToSize.keys()) {
+        delete button;
+    }
 }
 
 void SizePicker::setSize(int size)

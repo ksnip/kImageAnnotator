@@ -17,30 +17,30 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "ColorPickerTest.h"
+#include "SizePickerTest.h"
 
-void ColorPickerTest::TestSelectColor_Should_EmitSignal_When_ColorChanged()
+void SizePickerTest::TestSelectSize_Should_EmitSignal_When_SizeChanged()
 {
-    ColorPicker colorPicker;
-    QSignalSpy spy(&colorPicker, &ColorPicker::colorSelected);
-    auto expectedColor = QColor(QStringLiteral("Blue"));
+    SizePicker sizePicker;
+    QSignalSpy spy(&sizePicker, &SizePicker::sizeSelected);
+    auto expectedSize = 8;
 
-    colorPicker.setColor(expectedColor);
+    sizePicker.setSize(expectedSize);
 
     QCOMPARE(spy.count(), 1);
-    auto resultColor = qvariant_cast<QColor>(spy.at(0).at(0));
-    QCOMPARE(resultColor, expectedColor);
+    auto resultSize = qvariant_cast<int>(spy.at(0).at(0));
+    QCOMPARE(resultSize, expectedSize);
 }
 
-void ColorPickerTest::TestSelectColor_Should_NotEmitSignal_When_SelectedColorDoesntExists()
+void SizePickerTest::TestSelectSize_Should_NotEmitSignal_When_SelectedSizeDoesntExists()
 {
-    ColorPicker colorPicker;
-    QSignalSpy spy(&colorPicker, &ColorPicker::colorSelected);
-    auto notInListColor = QColor(QStringLiteral("orchid"));
+    SizePicker sizePicker;
+    QSignalSpy spy(&sizePicker, &SizePicker::sizeSelected);
+    auto sizeNotInList = 99;
 
-    colorPicker.setColor(notInListColor);
+    sizePicker.setSize(sizeNotInList);
 
     QCOMPARE(spy.count(), 0);
 }
 
-QTEST_MAIN(ColorPickerTest);
+QTEST_MAIN(SizePickerTest);

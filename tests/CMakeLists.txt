@@ -22,6 +22,7 @@ set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/KImageAnnotator.cpp
 set(ListOfUnitTests AnnotationAreaTest
                     ToolPickerTest
                     ColorPickerTest
+                    SizePickerTest
                     ControlPointsTest)
 
 foreach(unitTest ${ListOfUnitTests})
