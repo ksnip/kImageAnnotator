@@ -75,11 +75,12 @@ void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     QGraphicsScene::mousePressEvent(event);
 
+    // Handling event in modifier
     if (event->isAccepted()) {
         return;
     }
 
-    mItemModifier->detach();
+    clearSelection();
 
     if(event->button() == Qt::LeftButton) {
         if(mSelectedTool == ToolTypes::Select) {
@@ -121,6 +122,9 @@ void AnnotationArea::keyReleaseEvent(QKeyEvent* event)
         case Qt::Key_Delete:
             deleteSelectedItem();
             break;
+        case Qt::Key_Escape:
+            clearSelection();
+            break;
     }
 
     QGraphicsScene::keyPressEvent(event);
@@ -160,4 +164,9 @@ void AnnotationArea::deleteSelectedItem()
         removeItem(item);
         delete item;
     }
+}
+
+void AnnotationArea::clearSelection()
+{
+    mItemModifier->detach();
 }

@@ -60,6 +60,7 @@ private:
     void addPointToCurrentItem(const QPointF& position);
     AbstractAnnotationItem* findItemAt(const QPointF& point) const;
     void deleteSelectedItem();
+    void clearSelection();
 };
 
 #endif // ANNOTATIONAREA_H
