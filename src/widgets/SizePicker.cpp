@@ -69,6 +69,7 @@ void SizePicker::initGui()
         button->setAutoRaise(true);
         button->setIconSize(*mIconSize);
         button->setStyleSheet(QStringLiteral("QToolButton { padding-right: -1px; padding-bottom: -1px; margin: 0px }"));
+        button->setFocusPolicy(Qt::NoFocus);
         mButtonToSize[button] = size;
         mButtonGroup->addButton(button);
         mLayout->addWidget(button, Qt::AlignTop);

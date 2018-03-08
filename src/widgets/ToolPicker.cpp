@@ -75,6 +75,8 @@ void ToolPicker::initGui()
     mActionGroup->addAction(mRectAction);
     mActionGroup->addAction(mEllipseAction);
     mActionGroup->addAction(mArrowAction);
+
+    setFixedSize(sizeHint());
 }
 
 void ToolPicker::actionTriggered(QAction* action)

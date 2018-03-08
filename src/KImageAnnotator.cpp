@@ -30,9 +30,9 @@ KImageAnnotator::KImageAnnotator(const QPixmap& image) :
 
 {
     mAnnotationArea->setBackgroundImage(image);
-    mMainLayout->addWidget(mToolPicker, 0, 0, 1, 1, Qt::AlignCenter);
-    mMainLayout->addWidget(mSizePicker, 1, 0);
-    mMainLayout->addWidget(mFillPicker, 2, 0);
+    mMainLayout->addWidget(mToolPicker, 0, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
+    mMainLayout->addWidget(mSizePicker, 1, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
+    mMainLayout->addWidget(mFillPicker, 2, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
     mMainLayout->addWidget(mView, 0, 1, 3, -1);
     mMainLayout->addWidget(mColorPicker, 4, 1, -1, 1);
     setLayout(mMainLayout);

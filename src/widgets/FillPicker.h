@@ -45,12 +45,13 @@ private:
     QButtonGroup                 *mButtonGroup;
     QHash<QAbstractButton*, FillTypes>  mButtonToFill;
     QSize                        *mIconSize;
-    QHash<QString, FillTypes>     mStringToEnum;
+    QList<FillTypes>              mFillList;
     FillTypes                     mSelectedFill;
 
     void initGui();
     QIcon createIcon(FillTypes fill) const;
     void setFillAndNotify(FillTypes fill);
+    QString getFillTypeString(FillTypes fill) const;
 
 private slots:
     void buttonClicked(QAbstractButton *button);

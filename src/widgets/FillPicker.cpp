@@ -21,9 +21,9 @@
 
 FillPicker::FillPicker()
 {
-    mStringToEnum[tr("No Fill")] = FillTypes::NoFill;
-    mStringToEnum[tr("Seperate Fill")] = FillTypes::SeperateFill;
-    mStringToEnum[tr("Same Fill")] = FillTypes::SameFill;
+    mFillList.append(FillTypes::NoFill);
+    mFillList.append(FillTypes::SeperateFill);
+    mFillList.append(FillTypes::SameFill);
 
     mIconSize = new QSize(48, 32);
 
@@ -56,14 +56,15 @@ void FillPicker::initGui()
     mLayout->setContentsMargins(0, 0, 0, 0);
     mButtonGroup = new QButtonGroup(this);
 
-    for(auto fill : mStringToEnum.values()) {
+    for(auto fill : mFillList) {
         auto button = new QToolButton(this);
         button->setIcon(createIcon(fill));
-        button->setToolTip(mStringToEnum.key(fill));
+        button->setToolTip(getFillTypeString(fill));
         button->setCheckable(true);
         button->setAutoRaise(true);
         button->setIconSize(*mIconSize);
         button->setStyleSheet(QStringLiteral("QToolButton { padding-right: -1px; padding-bottom: -1px; margin: 0px }"));
+        button->setFocusPolicy(Qt::NoFocus);
         mButtonToFill[button] = fill;
         mButtonGroup->addButton(button);
         mLayout->addWidget(button, Qt::AlignTop);
@@ -96,14 +97,25 @@ QIcon FillPicker::createIcon(FillTypes fill) const
     return QIcon(pixmap);
 }
 
-void FillPicker::buttonClicked(QAbstractButton* button)
-{
-    setFillAndNotify(mButtonToFill[button]);
-}
-
 void FillPicker::setFillAndNotify(FillTypes fill)
 {
     mSelectedFill = fill;
     emit fillSelected(fill);
+}
+
+QString FillPicker::getFillTypeString(FillTypes fill) const
+{
+    if(fill == FillTypes::NoFill) {
+        return tr("No Fill");
+    } else if(fill == FillTypes::SeperateFill) {
+        return tr("Seperate Fill");
+    } else if(fill == FillTypes::SameFill) {
+        return tr("Same Fill");
+    }
+}
+
+void FillPicker::buttonClicked(QAbstractButton* button)
+{
+    setFillAndNotify(mButtonToFill[button]);
 }
 

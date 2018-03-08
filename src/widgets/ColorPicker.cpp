@@ -96,7 +96,9 @@ QAbstractButton* ColorPicker::createButton(const QColor& color)
     button->setAutoRaise(true);
     button->setIconSize(*mIconSize);
     button->setStyleSheet(QStringLiteral("QToolButton { border: 0px; padding-left: -1px; padding-top: -1px; }"
-                                         "QToolButton:checked { padding: 2px; margin: 1px; border: 1px solid gray; }"));
+                                         "QToolButton:checked { padding: 2px; margin: 1px; border: 1px solid gray; }"
+                                         "QToolButton:hover:!checked {border: 1px solid lightblue; } "
+                                         "QToolButton:hover:checked {background-color: lightblue; } "));
     return button;
 }
 
