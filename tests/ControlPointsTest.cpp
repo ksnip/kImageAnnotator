@@ -90,4 +90,35 @@ void ControlPointsTest::TestIndexOfPointAt_Should_NotReturnAnyIndex_When_Control
     QCOMPARE(resultP1, -1);
 }
 
+void ControlPointsTest::TestPoint_Should_ReturnRectAtIndex_When_PointAtIndexExists()
+{
+    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    ControlPoints controlPoinst(5);
+    controlPoinst.initPoints(&lineItem);
+
+    auto result = controlPoinst.point(1);
+
+    QVERIFY(result != QRectF());
+    QCOMPARE(result.center(), p2);
+}
+
+void ControlPointsTest::TestPoint_Should_NotReturnRect_When_PointAtIndexDoesntExists()
+{
+    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    ControlPoints controlPoinst(5);
+    controlPoinst.initPoints(&lineItem);
+
+    auto result = controlPoinst.point(3);
+
+    QCOMPARE(result, QRectF());
+}
+
 QTEST_MAIN(ControlPointsTest);

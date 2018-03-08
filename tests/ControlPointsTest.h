@@ -35,6 +35,8 @@ private slots:
     void TestInitPoints_Should_PositionEightControlPoints_When_RectItemProvided();
     void TestIndexOfPointAt_Should_ReturnIndexOfControlPoint_When_ControlPointIsAtProvidedPoint();
     void TestIndexOfPointAt_Should_NotReturnAnyIndex_When_ControlPointIsNotAtProvidedPoint();
+    void TestPoint_Should_ReturnRectAtIndex_When_PointAtIndexExists();
+    void TestPoint_Should_NotReturnRect_When_PointAtIndexDoesntExists();
 };
 
 #endif // CONTROLPOINTSTEST_H
