@@ -17,18 +17,19 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "ToolPickerTest.h"
+#ifndef FILLPICKERTEST_H
+#define FILLPICKERTEST_H
 
-void ToolPickerTest::TestSelectTool_Should_EmitSignal_When_ToolChanged()
+#include <QtTest>
+
+#include "../src/widgets/FillPicker.h"
+
+class SizePickerTest : public QObject
 {
-    ToolPicker toolPicker;
-    QSignalSpy spy(&toolPicker, &ToolPicker::toolSelected);
+Q_OBJECT
 
-    toolPicker.setTool(ToolTypes::Arrow);
+private slots:
+    void TestSelectFill_Should_EmitSignal_When_FillChanged();
+};
 
-    QCOMPARE(spy.count(), 1);
-    auto type = qvariant_cast<ToolTypes>(spy.at(0).at(0));
-    QCOMPARE(type, ToolTypes::Arrow);
-}
-
-QTEST_MAIN(ToolPickerTest);
+#endif // FILLPICKERTEST_H

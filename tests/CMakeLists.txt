@@ -25,6 +25,7 @@ set(ListOfUnitTests AnnotationAreaTest
                     ToolPickerTest
                     ColorPickerTest
                     SizePickerTest
+                    FillPickerTest
                     ControlPointsTest)
 
 foreach(unitTest ${ListOfUnitTests})
