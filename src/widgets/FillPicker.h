@@ -20,7 +20,7 @@
 #ifndef FILLPICKER_H
 #define FILLPICKER_H
 
-#include <QWidget>
+#include <QFrame>
 #include <QVBoxLayout>
 #include <QButtonGroup>
 #include <QToolButton>
@@ -28,9 +28,9 @@
 
 #include "../FillTypes.h"
 
-class FillPicker : public QWidget
+class FillPicker : public QFrame
 {
-        Q_OBJECT
+Q_OBJECT
 
 public:
     FillPicker();
@@ -45,7 +45,7 @@ private:
     QButtonGroup                 *mButtonGroup;
     QHash<QAbstractButton*, FillTypes>  mButtonToFill;
     QSize                        *mIconSize;
-    QList<FillTypes>              mFillList;
+    QHash<QString, FillTypes>     mStringToEnum;
     FillTypes                     mSelectedFill;
 
     void initGui();

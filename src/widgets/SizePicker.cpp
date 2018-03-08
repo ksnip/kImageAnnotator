@@ -64,17 +64,19 @@ void SizePicker::initGui()
     for(auto size : mSizeList) {
         auto button = new QToolButton(this);
         button->setIcon(createIcon(size));
+        button->setToolTip(QString::number(size) + QStringLiteral("px"));
         button->setCheckable(true);
-        button->setAutoRaise(false);
+        button->setAutoRaise(true);
         button->setIconSize(*mIconSize);
-        button->setStyleSheet(QStringLiteral("QToolButton { border: 0px; padding-right: -1px; padding-bottom: -1px; margin: 0px }"
-                                             "QToolButton:checked { border: 1px solid gray; }"));
+        button->setStyleSheet(QStringLiteral("QToolButton { padding-right: -1px; padding-bottom: -1px; margin: 0px }"));
         mButtonToSize[button] = size;
         mButtonGroup->addButton(button);
         mLayout->addWidget(button, Qt::AlignTop);
     }
 
     setLayout(mLayout);
+    setFrameShape(QFrame::Panel);
+    setFrameShadow(QFrame::Sunken);
     setFixedSize(sizeHint());
 }
 
@@ -84,7 +86,7 @@ QIcon SizePicker::createIcon(int size) const
     pixmap.fill(Qt::transparent);
     QPainter painter(&pixmap);
     QPen pen;
-    pen.setColor(Qt::black);
+    pen.setColor("#505050");
     pen.setWidth(size);
     painter.setPen(pen);
     painter.drawLine(QPointF(0, mIconSize->height() / 2), QPointF(mIconSize->width(), mIconSize->height() / 2));

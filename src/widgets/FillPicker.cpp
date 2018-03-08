@@ -21,9 +21,9 @@
 
 FillPicker::FillPicker()
 {
-    mFillList.append(FillTypes::NoFill);
-    mFillList.append(FillTypes::SeperateFill);
-    mFillList.append(FillTypes::SameFill);
+    mStringToEnum[tr("No Fill")] = FillTypes::NoFill;
+    mStringToEnum[tr("Seperate Fill")] = FillTypes::SeperateFill;
+    mStringToEnum[tr("Same Fill")] = FillTypes::SameFill;
 
     mIconSize = new QSize(48, 32);
 
@@ -56,20 +56,22 @@ void FillPicker::initGui()
     mLayout->setContentsMargins(0, 0, 0, 0);
     mButtonGroup = new QButtonGroup(this);
 
-    for(auto fill : mFillList) {
+    for(auto fill : mStringToEnum.values()) {
         auto button = new QToolButton(this);
         button->setIcon(createIcon(fill));
+        button->setToolTip(mStringToEnum.key(fill));
         button->setCheckable(true);
-        button->setAutoRaise(false);
+        button->setAutoRaise(true);
         button->setIconSize(*mIconSize);
-        button->setStyleSheet(QStringLiteral("QToolButton { border: 0px; padding-right: -1px; padding-bottom: -1px; margin: 0px }"
-                                             "QToolButton:checked { border: 1px solid gray; background-color: paleturquoise}"));
+        button->setStyleSheet(QStringLiteral("QToolButton { padding-right: -1px; padding-bottom: -1px; margin: 0px }"));
         mButtonToFill[button] = fill;
         mButtonGroup->addButton(button);
         mLayout->addWidget(button, Qt::AlignTop);
     }
 
     setLayout(mLayout);
+    setFrameShape(QFrame::Panel);
+    setFrameShadow(QFrame::Sunken);
     setFixedSize(sizeHint());
 }
 
@@ -79,14 +81,14 @@ QIcon FillPicker::createIcon(FillTypes fill) const
     pixmap.fill(Qt::transparent);
     QPainter painter(&pixmap);
     QPen pen;
-    pen.setColor(Qt::black);
+    pen.setColor("#505050");
     pen.setWidth(4);
     painter.setPen(pen);
 
     if (fill == FillTypes::SeperateFill) {
         painter.setBrush(Qt::gray);
     } else if (fill == FillTypes::SameFill){
-        painter.setBrush(Qt::black);
+        painter.setBrush(QColor("#505050"));
     }
 
     painter.drawRect(QRectF(0, 7, mIconSize->width(), mIconSize->height() - 14));

@@ -20,13 +20,13 @@
 #ifndef SIZEPICKER_H
 #define SIZEPICKER_H
 
-#include <QWidget>
+#include <QFrame>
 #include <QVBoxLayout>
 #include <QButtonGroup>
 #include <QToolButton>
 #include <QPainter>
 
-class SizePicker : public QWidget
+class SizePicker : public QFrame
 {
     Q_OBJECT
 

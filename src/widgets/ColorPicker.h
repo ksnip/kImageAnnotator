@@ -20,12 +20,12 @@
 #ifndef COLORPICKER_H
 #define COLORPICKER_H
 
-#include <QWidget>
+#include <QFrame>
 #include <QButtonGroup>
 #include <QToolButton>
 #include <QGridLayout>
 
-class ColorPicker : public QWidget
+class ColorPicker : public QFrame
 {
     Q_OBJECT
 public:

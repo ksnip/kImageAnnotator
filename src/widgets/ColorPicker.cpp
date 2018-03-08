@@ -82,6 +82,8 @@ void ColorPicker::initGui()
     }
 
     setLayout(mLayout);
+    setFrameShape(QFrame::Panel);
+    setFrameShadow(QFrame::Sunken);
     setFixedSize(sizeHint());
 }
 
