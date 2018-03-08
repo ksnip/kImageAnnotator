@@ -19,9 +19,9 @@
 
 #include "AbstractAnnotationItem.h"
 
-AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationItemProperties& properties)
+AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationProperties& properties)
 {
-    mProperties = new AnnotationItemProperties(properties);
+    mProperties = new AnnotationProperties(properties);
     mShape = new QPainterPath();
 
     // Add shadow, for now for every item
@@ -64,12 +64,12 @@ QPointF AbstractAnnotationItem::position()
     return boundingRect().topLeft();
 }
 
-AnnotationItemProperties AbstractAnnotationItem::properties() const
+AnnotationProperties AbstractAnnotationItem::properties() const
 {
     return *mProperties;
 }
 
-void AbstractAnnotationItem::setProperties(const AnnotationItemProperties& properties)
+void AbstractAnnotationItem::setProperties(const AnnotationProperties& properties)
 {
     *mProperties = properties;
 }

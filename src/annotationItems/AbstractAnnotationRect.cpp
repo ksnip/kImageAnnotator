@@ -19,7 +19,7 @@
 
 #include "AbstractAnnotationRect.h"
 
-AbstractAnnotationRect::AbstractAnnotationRect(const QPointF& startPosisition, const AnnotationItemProperties& properties) :
+AbstractAnnotationRect::AbstractAnnotationRect(const QPointF& startPosisition, const AnnotationProperties& properties) :
     AbstractAnnotationItem(properties)
 {
     mRect = new QRectF();

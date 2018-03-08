@@ -17,19 +17,34 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONLINE_H
-#define ANNOTATIONLINE_H
+#ifndef ANNOTATIONPROPERTIES_H
+#define ANNOTATIONPROPERTIES_H
 
-#include "AbstractAnnotationLine.h"
+#include <QColor>
 
-class AnnotationLine : public AbstractAnnotationLine
+#include "../FillTypes.h"
+
+class AnnotationProperties
 {
 public:
-    AnnotationLine(const QPointF& startPosisition, const AnnotationProperties& properties);
-    ~AnnotationLine() = default;
+    AnnotationProperties(const QColor& color, int size);
+    AnnotationProperties(const QColor& borderColor, const QColor& fillColor, int size);
+    AnnotationProperties(const AnnotationProperties& other);
+    ~AnnotationProperties() = default;
+    QColor borderColor() const;
+    void setBorderColor(const QColor& borderColor);
+    QColor fillColor() const;
+    void setFillColor(const QColor& fillColor);
+    int size() const;
+    void setSize(int size);
+    FillTypes fillType() const;
+    void setFillType(FillTypes fillType);
 
-protected:
-    virtual void updateShape() override;
+private:
+    QColor    mBorderColor;
+    QColor    mFillColor;
+    int       mSize;
+    FillTypes mFillType;
 };
 
-#endif // ANNOTATIONLINE_H
+#endif // ANNOTATIONPROPERTIES_H

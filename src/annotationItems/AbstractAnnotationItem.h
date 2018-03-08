@@ -24,13 +24,13 @@
 #include <QPainter>
 #include <QGraphicsDropShadowEffect>
 
-#include "AnnotationItemProperties.h"
+#include "AnnotationProperties.h"
 #include "../FillTypes.h"
 
 class AbstractAnnotationItem : public QGraphicsItem
 {
 public:
-    AbstractAnnotationItem(const AnnotationItemProperties& properties);
+    AbstractAnnotationItem(const AnnotationProperties& properties);
     ~AbstractAnnotationItem();
     virtual QRectF boundingRect() const override;
     virtual QPainterPath shape() const override;
@@ -39,8 +39,8 @@ public:
     virtual void setPointAt(const QPointF& point, int index) = 0;
     virtual void setPosition(const QPointF &newPosition) = 0;
     virtual QPointF position();
-    AnnotationItemProperties properties() const;
-    void setProperties(const AnnotationItemProperties& properties);
+    AnnotationProperties properties() const;
+    void setProperties(const AnnotationProperties& properties);
     void addShadowEffect();
 
 protected:
@@ -49,7 +49,7 @@ protected:
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*) override;
 
 private:
-    AnnotationItemProperties* mProperties;
+    AnnotationProperties* mProperties;
     QPainterPath*             mShape;
 };
 

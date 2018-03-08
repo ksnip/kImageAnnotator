@@ -22,7 +22,7 @@
 
 #include <QObject>
 
-#include "AnnotationItemProperties.h"
+#include "AnnotationPropertiesFactory.h"
 #include "AnnotationLine.h"
 #include "AnnotationArrow.h"
 #include "AnnotationRect.h"
@@ -44,7 +44,7 @@ public slots:
     void setFillType(FillTypes fillType);
 
 private:
-    AnnotationItemProperties *mItemProperties;
+    AnnotationPropertiesFactory *mPropertiesFactory;
 };
 
 #endif // ANNOTATIONITEMFACTORY_H

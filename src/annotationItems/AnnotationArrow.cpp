@@ -19,7 +19,7 @@
 
 #include "AnnotationArrow.h"
 
-AnnotationArrow::AnnotationArrow(const QPointF& startPosisition, const AnnotationItemProperties& properties) :
+AnnotationArrow::AnnotationArrow(const QPointF& startPosisition, const AnnotationProperties& properties) :
     AbstractAnnotationLine(startPosisition, properties)
 {
 }

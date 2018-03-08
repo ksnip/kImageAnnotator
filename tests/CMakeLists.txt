@@ -5,8 +5,9 @@ find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Test Widgets)
 set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/KImageAnnotator.cpp
                          ${CMAKE_SOURCE_DIR}/src/AnnotationArea.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationItemFactory.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationItemProperties.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationItemModifier.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationProperties.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationPropertiesFactory.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotationItems/ControlPoints.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotationItems/AbstractAnnotationItem.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotationItems/AbstractAnnotationLine.cpp

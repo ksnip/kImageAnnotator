@@ -20,6 +20,8 @@
 #ifndef FILLTYPES_H
 #define FILLTYPES_H
 
+#include <QMetaType>
+
 enum class FillTypes
 {
     NoFill,
@@ -27,6 +29,6 @@ enum class FillTypes
     SameFill
 };
 
-Q_DECLARE_METATYPE(FillTypes)
+Q_DECLARE_METATYPE(FillTypes);
 
 #endif // FILLTYPES_H

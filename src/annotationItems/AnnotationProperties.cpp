@@ -17,23 +17,23 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationItemProperties.h"
+#include "AnnotationProperties.h"
 
-AnnotationItemProperties::AnnotationItemProperties(const QColor& color, int size)
+AnnotationProperties::AnnotationProperties(const QColor& color, int size)
 {
     mBorderColor = color;
     mFillColor = color;
     mSize = size;
 }
 
-AnnotationItemProperties::AnnotationItemProperties(const QColor& borderColor, const QColor& fillColor, int size)
+AnnotationProperties::AnnotationProperties(const QColor& borderColor, const QColor& fillColor, int size)
 {
     mBorderColor = qMove(borderColor);
     mFillColor = qMove(fillColor);
     mSize = size;
 }
 
-AnnotationItemProperties::AnnotationItemProperties(const AnnotationItemProperties& other)
+AnnotationProperties::AnnotationProperties(const AnnotationProperties& other)
 {
     mBorderColor = other.mBorderColor;
     mFillColor = other.mFillColor;
@@ -41,42 +41,42 @@ AnnotationItemProperties::AnnotationItemProperties(const AnnotationItemPropertie
     mFillType = other.mFillType;
 }
 
-QColor AnnotationItemProperties::borderColor() const
+QColor AnnotationProperties::borderColor() const
 {
     return mBorderColor;
 }
 
-void AnnotationItemProperties::setBorderColor(const QColor& borderColor)
+void AnnotationProperties::setBorderColor(const QColor& borderColor)
 {
     mBorderColor = qMove(borderColor);
 }
 
-QColor AnnotationItemProperties::fillColor() const
+QColor AnnotationProperties::fillColor() const
 {
     return mFillColor;
 }
 
-void AnnotationItemProperties::setFillColor(const QColor& fillColor)
+void AnnotationProperties::setFillColor(const QColor& fillColor)
 {
     mFillColor = qMove(fillColor);
 }
 
-int AnnotationItemProperties::size() const
+int AnnotationProperties::size() const
 {
     return mSize;
 }
 
-void AnnotationItemProperties::setSize(int size)
+void AnnotationProperties::setSize(int size)
 {
     mSize = size;
 }
 
-FillTypes AnnotationItemProperties::fillType() const
+FillTypes AnnotationProperties::fillType() const
 {
     return mFillType;
 }
 
-void AnnotationItemProperties::setFillType(FillTypes fillType)
+void AnnotationProperties::setFillType(FillTypes fillType)
 {
     mFillType = fillType;
 }

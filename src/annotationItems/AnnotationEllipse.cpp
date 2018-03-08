@@ -19,7 +19,7 @@
 
 #include "AnnotationEllipse.h"
 
-AnnotationEllipse::AnnotationEllipse(const QPointF& startPosisition, const AnnotationItemProperties& properties) :
+AnnotationEllipse::AnnotationEllipse(const QPointF& startPosisition, const AnnotationProperties& properties) :
     AbstractAnnotationRect(startPosisition, properties)
 {
 }

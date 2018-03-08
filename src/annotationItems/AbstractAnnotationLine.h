@@ -25,7 +25,7 @@
 class AbstractAnnotationLine : public AbstractAnnotationItem
 {
 public:
-    AbstractAnnotationLine(const QPointF& startPosisition, const AnnotationItemProperties& properties);
+    AbstractAnnotationLine(const QPointF& startPosisition, const AnnotationProperties& properties);
     ~AbstractAnnotationLine();
     void addPoint(const QPointF & position) override;
     void setPosition(const QPointF & newPosition) override;

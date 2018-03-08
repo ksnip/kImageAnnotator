@@ -21,26 +21,26 @@
 
 AnnotationItemFactory::AnnotationItemFactory()
 {
-    // some default settings
-    mItemProperties = new AnnotationItemProperties(QColor("red"), 3);
+    mPropertiesFactory = new AnnotationPropertiesFactory();
 }
 
 AnnotationItemFactory::~AnnotationItemFactory()
 {
-    delete mItemProperties;
+    delete mPropertiesFactory;
 }
 
 AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPosition, ToolTypes type) const
 {
+    auto properties = mPropertiesFactory->createProperties(type);
     switch(type) {
         case ToolTypes::Line:
-            return new AnnotationLine(initPosition, *mItemProperties);
+            return new AnnotationLine(initPosition, properties);
         case ToolTypes::Ellipse:
-            return new AnnotationEllipse(initPosition, *mItemProperties);
+            return new AnnotationEllipse(initPosition, properties);
         case ToolTypes::Rect:
-            return new AnnotationRect(initPosition, *mItemProperties);
+            return new AnnotationRect(initPosition, properties);
         case ToolTypes::Arrow:
-            return new AnnotationArrow(initPosition, *mItemProperties);
+            return new AnnotationArrow(initPosition, properties);
         default:
             qCritical("Cannot create item for provided tool type.");
             return nullptr;
@@ -49,16 +49,15 @@ AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPos
 
 void AnnotationItemFactory::setColor(const QColor& color)
 {
-    mItemProperties->setBorderColor(color);
-    mItemProperties->setFillColor(color);
+    mPropertiesFactory->setColor(color);
 }
 
 void AnnotationItemFactory::setSize(int size)
 {
-    mItemProperties->setSize(size);
+    mPropertiesFactory->setSize(size);
 }
 
 void AnnotationItemFactory::setFillType(FillTypes fillType)
 {
-    mItemProperties->setFillType(fillType);
+    mPropertiesFactory->setFillType(fillType);
 }

@@ -17,34 +17,27 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMPROPERTIES_H
-#define ANNOTATIONITEMPROPERTIES_H
+#ifndef ANNOTATIONPROPERTIESFACTORY_H
+#define ANNOTATIONPROPERTIESFACTORY_H
 
-#include <QColor>
+#include "AnnotationProperties.h"
+#include "../ToolTypes.h"
 
-enum class FillTypes;
-
-class AnnotationItemProperties
+class AnnotationPropertiesFactory
 {
 public:
-    AnnotationItemProperties(const QColor& color, int size);
-    AnnotationItemProperties(const QColor& borderColor, const QColor& fillColor, int size);
-    AnnotationItemProperties(const AnnotationItemProperties& other);
-    ~AnnotationItemProperties() = default;
-    QColor borderColor() const;
-    void setBorderColor(const QColor& borderColor);
-    QColor fillColor() const;
-    void setFillColor(const QColor& fillColor);
-    int size() const;
+    explicit AnnotationPropertiesFactory() = default;
+    ~AnnotationPropertiesFactory() = default;
+
+    AnnotationProperties createProperties(ToolTypes type) const;
+    void setColor(const QColor& color);
     void setSize(int size);
-    FillTypes fillType() const;
     void setFillType(FillTypes fillType);
 
 private:
-    QColor    mBorderColor;
-    QColor    mFillColor;
+    QColor    mColor;
     int       mSize;
     FillTypes mFillType;
 };
 
-#endif // ANNOTATIONITEMPROPERTIES_H
+#endif // ANNOTATIONPROPERTIESFACTORY_H

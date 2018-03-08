@@ -25,7 +25,7 @@
 class AnnotationArrow : public AbstractAnnotationLine
 {
 public:
-    AnnotationArrow(const QPointF& startPosisition, const AnnotationItemProperties& properties);
+    AnnotationArrow(const QPointF& startPosisition, const AnnotationProperties& properties);
     ~AnnotationArrow() = default;
 
 protected:

@@ -20,6 +20,8 @@
 #ifndef TOOLTYPES_H
 #define TOOLTYPES_H
 
+#include <QMetaType>
+
 enum class ToolTypes
 {
     Select,

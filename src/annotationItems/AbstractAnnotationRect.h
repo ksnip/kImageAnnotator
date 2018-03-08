@@ -25,7 +25,7 @@
 class AbstractAnnotationRect : public AbstractAnnotationItem
 {
 public:
-    AbstractAnnotationRect(const QPointF& startPosisition, const AnnotationItemProperties& properties);
+    AbstractAnnotationRect(const QPointF& startPosisition, const AnnotationProperties& properties);
     ~AbstractAnnotationRect();
     void addPoint(const QPointF & position) override;
     void setPosition(const QPointF & newPosition) override;

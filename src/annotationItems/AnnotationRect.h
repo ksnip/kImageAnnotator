@@ -25,7 +25,7 @@
 class AnnotationRect : public AbstractAnnotationRect
 {
 public:
-    AnnotationRect(const QPointF& startPosisition, const AnnotationItemProperties& properties);
+    AnnotationRect(const QPointF& startPosisition, const AnnotationProperties& properties);
     ~AnnotationRect() = default;
 
 protected:

@@ -17,19 +17,30 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONLINE_H
-#define ANNOTATIONLINE_H
+#include "AnnotationPropertiesFactory.h"
 
-#include "AbstractAnnotationLine.h"
-
-class AnnotationLine : public AbstractAnnotationLine
+AnnotationProperties AnnotationPropertiesFactory::createProperties(ToolTypes type) const
 {
-public:
-    AnnotationLine(const QPointF& startPosisition, const AnnotationProperties& properties);
-    ~AnnotationLine() = default;
+    AnnotationProperties properties(mColor, mSize);
+    if(type == ToolTypes::Arrow) {
+        properties.setFillType(FillTypes::SameFill);
+    } else {
+        properties.setFillType(mFillType);
+    }
+    return properties;
+}
 
-protected:
-    virtual void updateShape() override;
-};
+void AnnotationPropertiesFactory::setColor(const QColor& color)
+{
+    mColor = color;
+}
 
-#endif // ANNOTATIONLINE_H
+void AnnotationPropertiesFactory::setSize(int size)
+{
+    mSize = size;
+}
+
+void AnnotationPropertiesFactory::setFillType(FillTypes fillType)
+{
+    mFillType = fillType;
+}

@@ -19,7 +19,7 @@
 
 #include "AbstractAnnotationLine.h"
 
-AbstractAnnotationLine::AbstractAnnotationLine(const QPointF& startPosisition, const AnnotationItemProperties& properties) :
+AbstractAnnotationLine::AbstractAnnotationLine(const QPointF& startPosisition, const AnnotationProperties& properties) :
     AbstractAnnotationItem(properties)
 {
     mLine = new QLineF();

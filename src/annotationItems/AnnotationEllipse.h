@@ -25,7 +25,7 @@
 class AnnotationEllipse : public AbstractAnnotationRect
 {
 public:
-    AnnotationEllipse(const QPointF& startPosisition, const AnnotationItemProperties& properties);
+    AnnotationEllipse(const QPointF& startPosisition, const AnnotationProperties& properties);
     ~AnnotationEllipse() = default;
 
 protected:

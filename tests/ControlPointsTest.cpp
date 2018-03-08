@@ -21,7 +21,7 @@
 
 void ControlPointsTest::TestInitPoints_Should_PositionTwoControlPoints_When_LineItemProvided()
 {
-    AnnotationItemProperties properties(QColor(QStringLiteral("Red")), 2);
+    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
@@ -37,7 +37,7 @@ void ControlPointsTest::TestInitPoints_Should_PositionTwoControlPoints_When_Line
 
 void ControlPointsTest::TestInitPoints_Should_PositionEightControlPoints_When_RectItemProvided()
 {
-    AnnotationItemProperties properties(QColor(QStringLiteral("Red")), 2);
+    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
     QRectF rect(QPointF(10, 15), QPointF(20, 25));
     AnnotationRect rectItem(rect.topLeft(), properties);
     rectItem.addPoint(rect.bottomRight());
@@ -58,7 +58,7 @@ void ControlPointsTest::TestInitPoints_Should_PositionEightControlPoints_When_Re
 
 void ControlPointsTest::TestIndexOfPointAt_Should_ReturnIndexOfControlPoint_When_ControlPointIsAtProvidedPoint()
 {
-    AnnotationItemProperties properties(QColor(QStringLiteral("Red")), 2);
+    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
@@ -76,7 +76,7 @@ void ControlPointsTest::TestIndexOfPointAt_Should_ReturnIndexOfControlPoint_When
 
 void ControlPointsTest::TestIndexOfPointAt_Should_NotReturnAnyIndex_When_ControlPointIsNotAtProvidedPoint()
 {
-    AnnotationItemProperties properties(QColor(QStringLiteral("Red")), 2);
+    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
