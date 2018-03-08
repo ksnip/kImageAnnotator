@@ -80,6 +80,7 @@ void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
         mCurrentControlPoint = mControlPoints->indexOfPointAt(event->scenePos());
         if(mCurrentControlPoint != -1) {
             event->accept();
+            mClickOffset = event->scenePos() - mControlPoints->point(mCurrentControlPoint).center();
         } else if(mAnnotationItem->intersects(QRectF(event->scenePos() - QPointF(2, 2), QSize(4, 4)))) {
             mMovingItem = true;
             mClickOffset = event->scenePos() - mAnnotationItem->position();
@@ -97,7 +98,7 @@ void AnnotationItemModifier::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
     if(mAnnotationItem) {
         prepareGeometryChange();
         if(mCurrentControlPoint != -1) {
-            mAnnotationItem->setPointAt(event->scenePos(), mCurrentControlPoint);
+            mAnnotationItem->setPointAt(event->scenePos() - mClickOffset, mCurrentControlPoint);
         } else if(mMovingItem) {
             mAnnotationItem->setPosition(event->scenePos() - mClickOffset);
         }

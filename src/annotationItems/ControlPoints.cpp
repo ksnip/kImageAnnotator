@@ -73,6 +73,15 @@ QList<QRectF> ControlPoints::points() const
     return mPoints;
 }
 
+QRectF ControlPoints::point(int index) const
+{
+    if(index < 0 || index >= mPoints.count()) {
+        return QRectF();
+    }
+
+    return mPoints[index];
+}
+
 void ControlPoints::addPosintsToList(int count)
 {
     for(auto i = 0; i < count; i++) {
