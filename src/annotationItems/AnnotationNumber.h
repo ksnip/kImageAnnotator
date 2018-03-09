@@ -17,30 +17,27 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationPropertiesFactory.h"
+#ifndef ANNOTATIONNUMBER_H
+#define ANNOTATIONNUMBER_H
 
-AnnotationProperties AnnotationPropertiesFactory::createProperties(ToolTypes type) const
-{
-    AnnotationProperties properties(mColor, mSize);
-    if(type == ToolTypes::Arrow || type == ToolTypes::Number) {
-        properties.setFillType(FillTypes::SameFill);
-    } else {
-        properties.setFillType(mFillType);
-    }
-    return properties;
-}
+#include "AbstractAnnotationRect.h"
 
-void AnnotationPropertiesFactory::setColor(const QColor& color)
+class AnnotationNumber : public AbstractAnnotationRect
 {
-    mColor = color;
-}
+public:
+    AnnotationNumber(const QPointF& centerPosition, int number, const AnnotationProperties& properties);
+    ~AnnotationNumber();
+    virtual void addPoint(const QPointF & position) override;
 
-void AnnotationPropertiesFactory::setSize(int size)
-{
-    mSize = size;
-}
+protected:
+    virtual void updateShape() override;
+    virtual void paint(QPainter * painter, const QStyleOptionGraphicsItem *option , QWidget *widget) override;
 
-void AnnotationPropertiesFactory::setFillType(FillTypes fillType)
-{
-    mFillType = fillType;
-}
+private:
+    QString       mNumberString;
+    QFont        *mFont;
+
+    void updateFontSize();
+};
+
+#endif // ANNOTATIONNUMBER_H

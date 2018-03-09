@@ -27,6 +27,7 @@
 #include "AnnotationArrow.h"
 #include "AnnotationRect.h"
 #include "AnnotationEllipse.h"
+#include "AnnotationNumber.h"
 #include "../ToolTypes.h"
 
 class AnnotationItemFactory : public QObject
@@ -36,7 +37,7 @@ public:
     explicit AnnotationItemFactory();
     ~AnnotationItemFactory();
 
-    AbstractAnnotationItem* createItem(const QPointF& initPosition, ToolTypes tool) const;
+    AbstractAnnotationItem* createItem(const QPointF& initPosition, ToolTypes tool);
 
 public slots:
     void setColor(const QColor& color);
@@ -44,6 +45,7 @@ public slots:
     void setFillType(FillTypes fillType);
 
 private:
+    int mNumberCounter;
     AnnotationPropertiesFactory *mPropertiesFactory;
 };
 

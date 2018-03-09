@@ -44,6 +44,7 @@ private:
     QAction*        mRectAction;
     QAction*        mEllipseAction;
     QAction*        mArrowAction;
+    QAction*        mNumberAction;
     ToolTypes       mSelectedToolType;
     QHash<QAction*,ToolTypes> mActionToTool;
 

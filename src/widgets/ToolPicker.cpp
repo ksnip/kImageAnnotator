@@ -42,32 +42,37 @@ void ToolPicker::initGui()
 {
     setOrientation(Qt::Vertical);
 
-    mSelectAction = addAction(QStringLiteral("Select"));
+    mSelectAction = addAction(tr("Select"));
     mSelectAction->setCheckable(true);
     mSelectAction->setIcon(QPixmap(QStringLiteral(":/icons/select")));
     mActionToTool[mSelectAction] = ToolTypes::Select;
 
     addSeparator();
 
-    mLineAction = addAction(QStringLiteral("Line"));
+    mLineAction = addAction(tr("Line"));
     mLineAction->setCheckable(true);
     mLineAction->setIcon(QPixmap(QStringLiteral(":/icons/line")));
     mActionToTool[mLineAction] = ToolTypes::Line;
 
-    mRectAction = addAction(QStringLiteral("Rect"));
+    mRectAction = addAction(tr("Rect"));
     mRectAction->setCheckable(true);
     mRectAction->setIcon(QPixmap(QStringLiteral(":/icons/rect")));
     mActionToTool[mRectAction] = ToolTypes::Rect;
 
-    mEllipseAction = addAction(QStringLiteral("Ellipse"));
+    mEllipseAction = addAction(tr("Ellipse"));
     mEllipseAction->setCheckable(true);
     mEllipseAction->setIcon(QPixmap(QStringLiteral(":/icons/ellipse")));
     mActionToTool[mEllipseAction] = ToolTypes::Ellipse;
 
-    mArrowAction = addAction(QStringLiteral("Arrow"));
+    mArrowAction = addAction(tr("Arrow"));
     mArrowAction->setCheckable(true);
     mArrowAction->setIcon(QPixmap(QStringLiteral(":/icons/arrow")));
     mActionToTool[mArrowAction] = ToolTypes::Arrow;
+
+    mNumberAction = addAction(tr("Number"));
+    mNumberAction->setCheckable(true);
+    mNumberAction->setIcon(QPixmap(QStringLiteral(":/icons/number")));
+    mActionToTool[mNumberAction] = ToolTypes::Number;
 
     mActionGroup = new QActionGroup(this);
     mActionGroup->addAction(mSelectAction);
@@ -75,6 +80,7 @@ void ToolPicker::initGui()
     mActionGroup->addAction(mRectAction);
     mActionGroup->addAction(mEllipseAction);
     mActionGroup->addAction(mArrowAction);
+    mActionGroup->addAction(mNumberAction);
 
     setFixedSize(sizeHint());
 }

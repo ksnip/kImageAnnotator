@@ -28,7 +28,8 @@ enum class ToolTypes
     Line,
     Arrow,
     Rect,
-    Ellipse
+    Ellipse,
+    Number
 };
 
 Q_DECLARE_METATYPE(ToolTypes)
