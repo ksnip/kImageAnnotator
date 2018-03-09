@@ -28,7 +28,7 @@
 #include "AnnotationRect.h"
 #include "AnnotationEllipse.h"
 #include "AnnotationNumber.h"
-#include "../ToolTypes.h"
+#include "../common/ToolTypes.h"
 
 class AnnotationItemFactory : public QObject
 {

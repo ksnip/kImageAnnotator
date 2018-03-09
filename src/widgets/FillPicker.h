@@ -26,7 +26,7 @@
 #include <QToolButton>
 #include <QPainter>
 
-#include "../FillTypes.h"
+#include "../common/FillTypes.h"
 
 class FillPicker : public QFrame
 {

@@ -23,7 +23,7 @@
 #include <QtTest>
 
 #include "../src/widgets/ToolPicker.h"
-#include "../src/ToolTypes.h"
+#include "../src/common/ToolTypes.h"
 
 class ToolPickerTest : public QObject
 {

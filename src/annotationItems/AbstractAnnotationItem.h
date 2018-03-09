@@ -25,7 +25,7 @@
 #include <QGraphicsDropShadowEffect>
 
 #include "AnnotationProperties.h"
-#include "../FillTypes.h"
+#include "../common/FillTypes.h"
 
 class AbstractAnnotationItem : public QGraphicsItem
 {

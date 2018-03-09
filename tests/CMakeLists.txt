@@ -17,6 +17,7 @@ set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/KImageAnnotator.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationRect.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationEllipse.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationNumber.cpp
+                         ${CMAKE_SOURCE_DIR}/src/backend/Config.cpp
                          ${CMAKE_SOURCE_DIR}/src/widgets/ToolPicker.cpp
                          ${CMAKE_SOURCE_DIR}/src/widgets/ColorPicker.cpp
                          ${CMAKE_SOURCE_DIR}/src/widgets/SizePicker.cpp
@@ -27,7 +28,8 @@ set(ListOfUnitTests AnnotationAreaTest
                     ColorPickerTest
                     SizePickerTest
                     FillPickerTest
-                    ControlPointsTest)
+                    ControlPointsTest
+                    AnnotationItemModifierTest)
 
 foreach(unitTest ${ListOfUnitTests})
     add_executable(${unitTest} ${unitTest}.cpp ${kimageannotator_SRCS})

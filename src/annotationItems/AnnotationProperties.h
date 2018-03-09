@@ -22,7 +22,7 @@
 
 #include <QColor>
 
-#include "../FillTypes.h"
+#include "../common/FillTypes.h"
 
 class AnnotationProperties
 {

@@ -24,7 +24,7 @@
 #include <QActionGroup>
 #include <QToolButton>
 
-#include "../ToolTypes.h"
+#include "../common/ToolTypes.h"
 
 class ToolPicker : public QToolBar
 {

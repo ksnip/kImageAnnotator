@@ -21,7 +21,7 @@
 #define ANNOTATIONPROPERTIESFACTORY_H
 
 #include "AnnotationProperties.h"
-#include "../ToolTypes.h"
+#include "../common/ToolTypes.h"
 
 class AnnotationPropertiesFactory
 {
