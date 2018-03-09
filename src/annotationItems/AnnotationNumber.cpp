@@ -62,7 +62,7 @@ void AnnotationNumber::paint(QPainter* painter, const QStyleOptionGraphicsItem* 
 
 void AnnotationNumber::updateFontSize()
 {
-    auto mainRect = boundingRect().adjusted(5, 5, -10, -10);
+    auto mainRect = boundingRect().adjusted(0,0, -10, -10);
     mFont->setPixelSize(mainRect.height());
     while(mFont->pixelSize() > 10) {
         QFontMetricsF metrics(*mFont);
