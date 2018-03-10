@@ -17,17 +17,33 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include <QApplication>
+#ifndef VISIBILITYSWITCHER_H
+#define VISIBILITYSWITCHER_H
 
-#include "gui/KImageAnnotator.h"
+#include <QWidget>
 
-int main(int argc, char** argv)
+#include "../common/enum/ToolTypes.h"
+
+class VisibilitySwitcher
 {
-    QApplication app(argc, argv);
-    QPixmap pixmap(QSize(500, 500));
-    pixmap.fill(QColor(QStringLiteral("Green")));
-    auto kImageAnnotator = new KImageAnnotator(pixmap);
-    kImageAnnotator->show();
+public:
+    explicit VisibilitySwitcher();
+    ~VisibilitySwitcher() = default;
+    void setCurrentTool(ToolTypes tool);
+    void setColorWidget(QWidget* widget);
+    void setSizeWidget(QWidget* widget);
+    void setFillWidget(QWidget* widget);
 
-    return app.exec();
-}
+private:
+    ToolTypes mCurrentTool;
+    QWidget*  mColorWidget;
+    QWidget*  mSizeWidget;
+    QWidget*  mFillWidget;
+
+    void updateVisibility();
+    void setColorWidgetVisibility(bool enabled);
+    void setSizeWidgetVisibility(bool enabled);
+    void setFillWidgetVisibility(bool enabled);
+};
+
+#endif // VISIBILITYSWITCHER_H

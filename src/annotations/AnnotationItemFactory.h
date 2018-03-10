@@ -23,11 +23,11 @@
 #include <QObject>
 
 #include "AnnotationPropertiesFactory.h"
-#include "AnnotationLine.h"
-#include "AnnotationArrow.h"
-#include "AnnotationRect.h"
-#include "AnnotationEllipse.h"
-#include "AnnotationNumber.h"
+#include "items/AnnotationLine.h"
+#include "items/AnnotationArrow.h"
+#include "items/AnnotationRect.h"
+#include "items/AnnotationEllipse.h"
+#include "items/AnnotationNumber.h"
 #include "../common/enum/ToolTypes.h"
 
 class AnnotationItemFactory : public QObject

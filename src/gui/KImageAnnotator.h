@@ -25,12 +25,13 @@
 #include <QGraphicsView>
 #include <QGridLayout>
 
-#include "AnnotationArea.h"
-#include "backend/Config.h"
-#include "widgets/ToolPicker.h"
-#include "widgets/ColorPicker.h"
-#include "widgets/SizePicker.h"
-#include "widgets/FillPicker.h"
+#include "VisibilitySwitcher.h"
+#include "../annotations/AnnotationArea.h"
+#include "../backend/Config.h"
+#include "../widgets/ToolPicker.h"
+#include "../widgets/ColorPicker.h"
+#include "../widgets/SizePicker.h"
+#include "../widgets/FillPicker.h"
 
 class KImageAnnotator : public QWidget
 {
@@ -40,14 +41,15 @@ public:
     ~KImageAnnotator();
 
 private:
-    AnnotationArea* mAnnotationArea;
-    QGraphicsView*  mView;
-    QGridLayout*    mMainLayout;
-    ToolPicker*     mToolPicker;
-    ColorPicker*    mColorPicker;
-    SizePicker*     mSizePicker;
-    FillPicker*     mFillPicker;
-    Config*         mConfig;
+    AnnotationArea*    mAnnotationArea;
+    QGraphicsView*     mView;
+    QGridLayout*       mMainLayout;
+    ToolPicker*        mToolPicker;
+    ColorPicker*       mColorPicker;
+    SizePicker*        mSizePicker;
+    FillPicker*        mFillPicker;
+    Config*            mConfig;
+    VisibilitySwitcher mVisibilitySwitcher;
 
     void initAppSettings();
     void initGui();

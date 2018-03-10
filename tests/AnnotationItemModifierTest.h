@@ -24,8 +24,8 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 
-#include "../src/annotationItems/AnnotationItemModifier.h"
-#include "../src/annotationItems/AnnotationLine.h"
+#include "../src/annotations/AnnotationItemModifier.h"
+#include "../src/annotations/items/AnnotationLine.h"
 
 class AnnotationItemModifierTest : public QObject
 {

@@ -2,21 +2,22 @@ enable_testing(true)
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Test Widgets)
 
-set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/KImageAnnotator.cpp
-                         ${CMAKE_SOURCE_DIR}/src/AnnotationArea.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationItemFactory.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationItemModifier.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationProperties.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationPropertiesFactory.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/ControlPoints.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AbstractAnnotationItem.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AbstractAnnotationLine.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AbstractAnnotationRect.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationLine.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationArrow.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationRect.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationEllipse.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationNumber.cpp
+set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
+                         ${CMAKE_SOURCE_DIR}/src/gui/VisibilitySwitcher.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationArea.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemFactory.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemModifier.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationProperties.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationPropertiesFactory.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/ControlPoints.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationItem.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationLine.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationRect.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationLine.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationArrow.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationRect.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationEllipse.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationNumber.cpp
                          ${CMAKE_SOURCE_DIR}/src/backend/Config.cpp
                          ${CMAKE_SOURCE_DIR}/src/common/formatter/ConfigNameFormatter.cpp
                          ${CMAKE_SOURCE_DIR}/src/widgets/ToolPicker.cpp

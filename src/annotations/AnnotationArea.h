@@ -25,10 +25,10 @@
 #include <QKeyEvent>
 #include <QPainter>
 
-#include "annotationItems/AnnotationItemFactory.h"
-#include "annotationItems/AnnotationItemModifier.h"
-#include "backend/Config.h"
-#include "common/enum/ToolTypes.h"
+#include "AnnotationItemFactory.h"
+#include "AnnotationItemModifier.h"
+#include "../backend/Config.h"
+#include "../common/enum/ToolTypes.h"
 
 class AnnotationArea : public QGraphicsScene
 {

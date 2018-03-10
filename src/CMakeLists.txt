@@ -1,21 +1,22 @@
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Widgets)
 
 set(kimageannotator_SRCS main.cpp
-                         KImageAnnotator.cpp
-                         AnnotationArea.cpp
-                         annotationItems/AnnotationItemFactory.cpp
-                         annotationItems/AnnotationItemModifier.cpp
-                         annotationItems/AnnotationProperties.cpp
-                         annotationItems/AnnotationPropertiesFactory.cpp
-                         annotationItems/ControlPoints.cpp
-                         annotationItems/AbstractAnnotationItem.cpp
-                         annotationItems/AbstractAnnotationLine.cpp
-                         annotationItems/AbstractAnnotationRect.cpp
-                         annotationItems/AnnotationLine.cpp
-                         annotationItems/AnnotationArrow.cpp
-                         annotationItems/AnnotationRect.cpp
-                         annotationItems/AnnotationEllipse.cpp
-                         annotationItems/AnnotationNumber.cpp
+                         gui/KImageAnnotator.cpp
+                         gui/VisibilitySwitcher.cpp
+                         annotations/AnnotationArea.cpp
+                         annotations/AnnotationItemFactory.cpp
+                         annotations/AnnotationItemModifier.cpp
+                         annotations/AnnotationProperties.cpp
+                         annotations/AnnotationPropertiesFactory.cpp
+                         annotations/ControlPoints.cpp
+                         annotations/items/AbstractAnnotationItem.cpp
+                         annotations/items/AbstractAnnotationLine.cpp
+                         annotations/items/AbstractAnnotationRect.cpp
+                         annotations/items/AnnotationLine.cpp
+                         annotations/items/AnnotationArrow.cpp
+                         annotations/items/AnnotationRect.cpp
+                         annotations/items/AnnotationEllipse.cpp
+                         annotations/items/AnnotationNumber.cpp
                          backend/Config.cpp
                          common/formatter/ConfigNameFormatter.cpp
                          widgets/ToolPicker.cpp

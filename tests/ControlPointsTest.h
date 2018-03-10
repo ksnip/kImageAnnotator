@@ -22,9 +22,9 @@
 
 #include <QtTest>
 
-#include "../src/annotationItems/ControlPoints.h"
-#include "../src/annotationItems/AnnotationLine.h"
-#include "../src/annotationItems/AnnotationRect.h"
+#include "../src/annotations/ControlPoints.h"
+#include "../src/annotations/items/AnnotationLine.h"
+#include "../src/annotations/items/AnnotationRect.h"
 
 class ControlPointsTest : public QObject
 {

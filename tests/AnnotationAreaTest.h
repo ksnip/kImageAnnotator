@@ -22,7 +22,7 @@
 
 #include <QtTest>
 
-#include "../src/AnnotationArea.h"
+#include "../src/annotations/AnnotationArea.h"
 
 class AnnotationAreaTest : public QObject
 {

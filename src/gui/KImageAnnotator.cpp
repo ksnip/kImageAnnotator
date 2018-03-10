@@ -61,6 +61,10 @@ void KImageAnnotator::initGui()
     mMainLayout->addWidget(mColorPicker, 4, 1, -1, 1);
     setLayout(mMainLayout);
 
+    mVisibilitySwitcher.setColorWidget(mColorPicker);
+    mVisibilitySwitcher.setSizeWidget(mSizePicker);
+    mVisibilitySwitcher.setFillWidget(mFillPicker);
+
     mConfig = Config::instance();
 
     connect(mToolPicker, &ToolPicker::toolSelected, mConfig, &Config::setSelectedTool);
@@ -86,5 +90,7 @@ void KImageAnnotator::updateSelection(ToolTypes tool)
     mColorPicker->setColor(mConfig->toolColor(tool));
     mSizePicker->setSize(mConfig->toolSize(tool));
     mFillPicker->setFill(mConfig->toolFillType(tool));
+
+    mVisibilitySwitcher.setCurrentTool(tool);
 }
 

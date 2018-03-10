@@ -24,8 +24,8 @@
 #include <QGraphicsSceneMouseEvent>
 
 #include "ControlPoints.h"
-#include "AbstractAnnotationLine.h"
-#include "AbstractAnnotationRect.h"
+#include "items/AbstractAnnotationLine.h"
+#include "items/AbstractAnnotationRect.h"
 
 class AnnotationItemModifier : public QGraphicsWidget
 {
