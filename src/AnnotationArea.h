@@ -40,10 +40,6 @@ public:
     void setBackgroundImage(const QPixmap& image);
     QImage exportAsImage();
 
-public slots:
-    void setSize(int size);
-    void setFillType(FillTypes fillType);
-
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;

@@ -65,23 +65,26 @@ void KImageAnnotator::initGui()
 
     connect(mToolPicker, &ToolPicker::toolSelected, mConfig, &Config::setSelectedTool);
     connect(mToolPicker, &ToolPicker::toolSelected, this, &KImageAnnotator::updateSelection);
-    connect(mColorPicker, &ColorPicker::colorSelected, [this](const QColor& color) {
+    connect(mColorPicker, &ColorPicker::colorSelected, [this](const QColor & color) {
         mConfig->setToolColor(color, mToolPicker->tool());
     });
-    connect(mSizePicker, &SizePicker::sizeSelected, mAnnotationArea, &AnnotationArea::setSize);
-    connect(mFillPicker, &FillPicker::fillSelected, mAnnotationArea, &AnnotationArea::setFillType);
+    connect(mSizePicker, &SizePicker::sizeSelected, [this](int size) {
+        mConfig->setToolSize(size, mToolPicker->tool());
+    });
+    connect(mFillPicker, &FillPicker::fillSelected, [this](FillTypes fill) {
+        mConfig->setToolFillType(fill, mToolPicker->tool());
+    });
 }
 
 void KImageAnnotator::setupDefaults()
 {
-    auto tool = mConfig->selectedTool();
-    mToolPicker->setTool(tool);
-    mSizePicker->setSize(3);
-    mFillPicker->setFill(FillTypes::NoFill);
+    mToolPicker->setTool(mConfig->selectedTool());
 }
 
 void KImageAnnotator::updateSelection(ToolTypes tool)
 {
     mColorPicker->setColor(mConfig->toolColor(tool));
+    mSizePicker->setSize(mConfig->toolSize(tool));
+    mFillPicker->setFill(mConfig->toolFillType(tool));
 }
 

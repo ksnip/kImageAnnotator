@@ -39,10 +39,6 @@ public:
 
     AbstractAnnotationItem* createItem(const QPointF& initPosition, ToolTypes tool);
 
-public slots:
-    void setSize(int size);
-    void setFillType(FillTypes fillType);
-
 private:
     int mNumberCounter;
     AnnotationPropertiesFactory *mPropertiesFactory;

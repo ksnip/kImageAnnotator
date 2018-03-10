@@ -31,12 +31,8 @@ public:
     ~AnnotationPropertiesFactory() = default;
 
     AnnotationProperties createProperties(ToolTypes tool) const;
-    void setSize(int size);
-    void setFillType(FillTypes fillType);
 
 private:
-    int       mSize;
-    FillTypes mFillType;
     Config*   mConfig;
 };
 

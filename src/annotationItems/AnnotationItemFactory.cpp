@@ -49,13 +49,3 @@ AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPos
             return nullptr;
     }
 }
-
-void AnnotationItemFactory::setSize(int size)
-{
-    mPropertiesFactory->setSize(size);
-}
-
-void AnnotationItemFactory::setFillType(FillTypes fillType)
-{
-    mPropertiesFactory->setFillType(fillType);
-}
