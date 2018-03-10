@@ -23,25 +23,29 @@
 #include <QObject>
 #include <QSettings>
 #include <QPointF>
+#include <QColor>
 
 #include "../common/ToolTypes.h"
 
 class Config : public QObject
 {
     Q_OBJECT
+
 public slots:
     static Config *instance();
-
-    QPointF windowPosition() const;
-    void setWindowPosition(const QPointF &position);
 
     ToolTypes selectedTool() const;
     void setSelectedTool(ToolTypes tool);
 
+    QColor toolColor(ToolTypes tool);
+    void setToolColor(const QColor& color, ToolTypes tool);
+
 private:
     QSettings mConfig;
 
-    Config() = default;
+    explicit Config();
+    QString createToolString(ToolTypes tool) const;
+    QString createToolColorString(ToolTypes tool) const;
 };
 
 #endif // CONFIG_H

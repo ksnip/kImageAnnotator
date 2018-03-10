@@ -50,11 +50,6 @@ AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPos
     }
 }
 
-void AnnotationItemFactory::setColor(const QColor& color)
-{
-    mPropertiesFactory->setColor(color);
-}
-
 void AnnotationItemFactory::setSize(int size)
 {
     mPropertiesFactory->setSize(size);

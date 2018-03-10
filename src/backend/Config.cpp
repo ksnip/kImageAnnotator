@@ -25,21 +25,6 @@ Config* Config::instance()
     return &instance;
 }
 
-QPointF Config::windowPosition() const
-{
-    return mConfig.value(QStringLiteral("Application/WindowPosition"), QPointF(200, 200)).value<QPointF>();
-}
-
-void Config::setWindowPosition(const QPointF& position)
-{
-    if(windowPosition() == position) {
-        return;
-    }
-
-    mConfig.setValue(QStringLiteral("Application/WindowPosition"), position);
-    mConfig.sync();
-}
-
 ToolTypes Config::selectedTool() const
 {
     return mConfig.value(QStringLiteral("Application/SelectedTool"), static_cast<int>(ToolTypes::Arrow)).value<ToolTypes>();
@@ -53,4 +38,37 @@ void Config::setSelectedTool(ToolTypes tool)
 
     mConfig.setValue(QStringLiteral("Application/SelectedTool"), static_cast<int>(tool));
     mConfig.sync();
+}
+
+QColor Config::toolColor(ToolTypes tool)
+{
+    return mConfig.value(createToolColorString(tool), QColor(Qt::red)).value<QColor>();
+}
+
+void Config::setToolColor(const QColor& color, ToolTypes tool)
+{
+    if(toolColor(tool) == color) {
+        return;
+    }
+
+    mConfig.setValue(createToolColorString(tool), color);
+    mConfig.sync();
+}
+
+Config::Config()
+{
+    // You must set the application name via QCoreApplication::setApplicationName before using the configuration
+    if(mConfig.status() == QSettings::AccessError) {
+        qCritical("Configuration error! Are you trying to read configuration before settings Application Name?");
+    }
+};
+
+QString Config::createToolString(ToolTypes tool) const
+{
+    return QStringLiteral("AnnotationTool_") + QString::number(static_cast<int>(tool));
+}
+
+QString Config::createToolColorString(ToolTypes tool) const
+{
+    return QStringLiteral("Application/") + createToolString(tool) + QStringLiteral("_Color");
 }

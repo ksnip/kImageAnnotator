@@ -21,10 +21,12 @@
 #define KIMAGEANNOTATOR_H
 
 #include <QWidget>
+#include <QCoreApplication>
 #include <QGraphicsView>
 #include <QGridLayout>
 
 #include "AnnotationArea.h"
+#include "backend/Config.h"
 #include "widgets/ToolPicker.h"
 #include "widgets/ColorPicker.h"
 #include "widgets/SizePicker.h"
@@ -45,6 +47,14 @@ private:
     ColorPicker*    mColorPicker;
     SizePicker*     mSizePicker;
     FillPicker*     mFillPicker;
+    Config*         mConfig;
+
+    void initAppSettings();
+    void initGui();
+    void setupDefaults();
+
+private slots:
+    void updateSelection(ToolTypes tool);
 };
 
 #endif // KIMAGEANNOTATOR_H

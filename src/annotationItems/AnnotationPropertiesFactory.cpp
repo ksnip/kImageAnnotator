@@ -19,20 +19,20 @@
 
 #include "AnnotationPropertiesFactory.h"
 
-AnnotationProperties AnnotationPropertiesFactory::createProperties(ToolTypes type) const
+AnnotationPropertiesFactory::AnnotationPropertiesFactory()
 {
-    AnnotationProperties properties(mColor, mSize);
-    if(type == ToolTypes::Arrow || type == ToolTypes::Number) {
+    mConfig = Config::instance();
+}
+
+AnnotationProperties AnnotationPropertiesFactory::createProperties(ToolTypes tool) const
+{
+    AnnotationProperties properties(mConfig->toolColor(tool), mSize);
+    if(tool == ToolTypes::Arrow || tool == ToolTypes::Number) {
         properties.setFillType(FillTypes::SameFill);
     } else {
         properties.setFillType(mFillType);
     }
     return properties;
-}
-
-void AnnotationPropertiesFactory::setColor(const QColor& color)
-{
-    mColor = color;
 }
 
 void AnnotationPropertiesFactory::setSize(int size)

@@ -21,6 +21,7 @@
 
 AnnotationArea::AnnotationArea()
 {
+    mConfig = Config::instance();
     mItemFactory = new AnnotationItemFactory();
     mBackgroundImage = nullptr;
     mCurrentItem = nullptr;
@@ -58,19 +59,6 @@ QImage AnnotationArea::exportAsImage()
     return image;
 }
 
-void AnnotationArea::setTool(ToolTypes tool)
-{
-    if(mSelectedTool == tool) {
-        return;
-    }
-    mSelectedTool = tool;
-}
-
-void AnnotationArea::setColor(const QColor& color)
-{
-    mItemFactory->setColor(color);
-}
-
 void AnnotationArea::setSize(int size)
 {
     mItemFactory->setSize(size);
@@ -93,10 +81,10 @@ void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
     clearSelection();
 
     if(event->button() == Qt::LeftButton) {
-        if(mSelectedTool == ToolTypes::Select) {
-            mCurrentItem = findItemAt(event->scenePos());
-            if(mCurrentItem != nullptr) {
-                mItemModifier->attachTo(mCurrentItem);
+        if(mConfig->selectedTool() == ToolTypes::Select) {
+            auto clickedItem = findItemAt(event->scenePos());
+            if(clickedItem != nullptr) {
+                mItemModifier->attachTo(clickedItem);
                 QGraphicsScene::mousePressEvent(event);
             }
         } else {
@@ -110,7 +98,7 @@ void AnnotationArea::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
     QGraphicsScene::mouseMoveEvent(event);
 
     if(event->buttons() == Qt::LeftButton) {
-        if(mCurrentItem && mSelectedTool != ToolTypes::Select) {
+        if(mCurrentItem) {
             addPointToCurrentItem(event->scenePos());
         }
     }
@@ -121,9 +109,7 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
     QGraphicsScene::mouseReleaseEvent(event);
 
     if(event->button() == Qt::LeftButton) {
-        if(mSelectedTool != ToolTypes::Select) {
-            mCurrentItem = nullptr;
-        }
+        mCurrentItem = nullptr;
     }
 }
 
@@ -143,7 +129,7 @@ void AnnotationArea::keyReleaseEvent(QKeyEvent* event)
 
 void AnnotationArea::addItemAtPosition(const QPointF& position)
 {
-    mCurrentItem = mItemFactory->createItem(position, mSelectedTool);
+    mCurrentItem = mItemFactory->createItem(position, mConfig->selectedTool());
     addItem(mCurrentItem);
 }
 

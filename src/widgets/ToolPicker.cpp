@@ -38,6 +38,11 @@ void ToolPicker::setTool(ToolTypes newTool)
     setToolAndNotify(newTool);
 }
 
+ToolTypes ToolPicker::tool()
+{
+    return mSelectedToolType;
+}
+
 void ToolPicker::initGui()
 {
     setOrientation(Qt::Vertical);

@@ -21,23 +21,23 @@
 #define ANNOTATIONPROPERTIESFACTORY_H
 
 #include "AnnotationProperties.h"
+#include "../backend/Config.h"
 #include "../common/ToolTypes.h"
 
 class AnnotationPropertiesFactory
 {
 public:
-    explicit AnnotationPropertiesFactory() = default;
+    explicit AnnotationPropertiesFactory();
     ~AnnotationPropertiesFactory() = default;
 
-    AnnotationProperties createProperties(ToolTypes type) const;
-    void setColor(const QColor& color);
+    AnnotationProperties createProperties(ToolTypes tool) const;
     void setSize(int size);
     void setFillType(FillTypes fillType);
 
 private:
-    QColor    mColor;
     int       mSize;
     FillTypes mFillType;
+    Config*   mConfig;
 };
 
 #endif // ANNOTATIONPROPERTIESFACTORY_H

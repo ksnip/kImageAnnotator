@@ -27,6 +27,7 @@
 
 #include "annotationItems/AnnotationItemFactory.h"
 #include "annotationItems/AnnotationItemModifier.h"
+#include "backend/Config.h"
 #include "common/ToolTypes.h"
 
 class AnnotationArea : public QGraphicsScene
@@ -40,8 +41,6 @@ public:
     QImage exportAsImage();
 
 public slots:
-    void setTool(ToolTypes tool);
-    void setColor(const QColor& color);
     void setSize(int size);
     void setFillType(FillTypes fillType);
 
@@ -55,8 +54,8 @@ private:
     AnnotationItemFactory*  mItemFactory;
     QGraphicsPixmapItem*    mBackgroundImage;
     AbstractAnnotationItem* mCurrentItem;
-    AnnotationItemModifier*     mItemModifier;
-    ToolTypes               mSelectedTool;
+    AnnotationItemModifier* mItemModifier;
+    Config*                 mConfig;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

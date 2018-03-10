@@ -40,7 +40,6 @@ public:
     AbstractAnnotationItem* createItem(const QPointF& initPosition, ToolTypes tool);
 
 public slots:
-    void setColor(const QColor& color);
     void setSize(int size);
     void setFillType(FillTypes fillType);
 

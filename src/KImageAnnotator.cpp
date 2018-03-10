@@ -19,33 +19,13 @@
 
 #include "KImageAnnotator.h"
 
-KImageAnnotator::KImageAnnotator(const QPixmap& image) :
-    mAnnotationArea(new AnnotationArea),
-    mView(new QGraphicsView(mAnnotationArea)),
-    mMainLayout(new QGridLayout),
-    mToolPicker(new ToolPicker),
-    mColorPicker(new ColorPicker),
-    mSizePicker(new SizePicker),
-    mFillPicker(new FillPicker)
-
+KImageAnnotator::KImageAnnotator(const QPixmap& image)
 {
+    initAppSettings();
+    initGui();
+    setupDefaults();
+
     mAnnotationArea->setBackgroundImage(image);
-    mMainLayout->addWidget(mToolPicker, 0, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
-    mMainLayout->addWidget(mSizePicker, 1, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
-    mMainLayout->addWidget(mFillPicker, 2, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
-    mMainLayout->addWidget(mView, 0, 1, 3, -1);
-    mMainLayout->addWidget(mColorPicker, 4, 1, -1, 1);
-    setLayout(mMainLayout);
-
-    connect(mToolPicker, &ToolPicker::toolSelected, mAnnotationArea, &AnnotationArea::setTool);
-    connect(mColorPicker, &ColorPicker::colorSelected, mAnnotationArea, &AnnotationArea::setColor);
-    connect(mSizePicker, &SizePicker::sizeSelected, mAnnotationArea, &AnnotationArea::setSize);
-    connect(mFillPicker, &FillPicker::fillSelected, mAnnotationArea, &AnnotationArea::setFillType);
-
-    mToolPicker->setTool(ToolTypes::Line);
-    mColorPicker->setColor(QColor(QStringLiteral("red")));
-    mSizePicker->setSize(3);
-    mFillPicker->setFill(FillTypes::NoFill);
 }
 
 KImageAnnotator::~KImageAnnotator()
@@ -54,3 +34,54 @@ KImageAnnotator::~KImageAnnotator()
     delete mView;
     delete mMainLayout;
 }
+
+void KImageAnnotator::initAppSettings()
+{
+    QCoreApplication::setOrganizationName(QStringLiteral("kimageannotator"));
+    QCoreApplication::setOrganizationDomain(QStringLiteral("kimageannotator.kde.org"));
+    QCoreApplication::setApplicationName(QStringLiteral("kimageAnnotator"));
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+}
+
+void KImageAnnotator::initGui()
+{
+
+    mAnnotationArea = new AnnotationArea();
+    mView = new QGraphicsView(mAnnotationArea);
+    mMainLayout = new QGridLayout();
+    mToolPicker = new ToolPicker();
+    mColorPicker = new ColorPicker();
+    mSizePicker = new SizePicker();
+    mFillPicker = new FillPicker();
+
+    mMainLayout->addWidget(mToolPicker, 0, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
+    mMainLayout->addWidget(mSizePicker, 1, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
+    mMainLayout->addWidget(mFillPicker, 2, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
+    mMainLayout->addWidget(mView, 0, 1, 3, -1);
+    mMainLayout->addWidget(mColorPicker, 4, 1, -1, 1);
+    setLayout(mMainLayout);
+
+    mConfig = Config::instance();
+
+    connect(mToolPicker, &ToolPicker::toolSelected, mConfig, &Config::setSelectedTool);
+    connect(mToolPicker, &ToolPicker::toolSelected, this, &KImageAnnotator::updateSelection);
+    connect(mColorPicker, &ColorPicker::colorSelected, [this](const QColor& color) {
+        mConfig->setToolColor(color, mToolPicker->tool());
+    });
+    connect(mSizePicker, &SizePicker::sizeSelected, mAnnotationArea, &AnnotationArea::setSize);
+    connect(mFillPicker, &FillPicker::fillSelected, mAnnotationArea, &AnnotationArea::setFillType);
+}
+
+void KImageAnnotator::setupDefaults()
+{
+    auto tool = mConfig->selectedTool();
+    mToolPicker->setTool(tool);
+    mSizePicker->setSize(3);
+    mFillPicker->setFill(FillTypes::NoFill);
+}
+
+void KImageAnnotator::updateSelection(ToolTypes tool)
+{
+    mColorPicker->setColor(mConfig->toolColor(tool));
+}
+

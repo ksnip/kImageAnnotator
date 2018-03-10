@@ -33,6 +33,7 @@ public:
     explicit ToolPicker();
     ~ToolPicker();
     void setTool(ToolTypes newTool);
+    ToolTypes tool();
 
 signals:
     void toolSelected(ToolTypes newTool);
