@@ -29,6 +29,8 @@ class ConfigNameFormatter
 public:
     static QString toolString(ToolTypes tool);
     static QString toolColorString(ToolTypes tool);
+    static QString toolSizeString(ToolTypes tool);
+    static QString toolFillTypeString(ToolTypes tool);
 
 private:
     explicit ConfigNameFormatter() = default;

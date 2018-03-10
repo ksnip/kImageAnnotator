@@ -26,6 +26,7 @@
 #include <QColor>
 
 #include "../common/enum/ToolTypes.h"
+#include "../common/enum/FillTypes.h"
 #include "../common/formatter/ConfigNameFormatter.h"
 
 class Config : public QObject
@@ -38,14 +39,19 @@ public slots:
     ToolTypes selectedTool() const;
     void setSelectedTool(ToolTypes tool);
 
-    QColor toolColor(ToolTypes tool);
+    QColor toolColor(ToolTypes tool) const;
     void setToolColor(const QColor& color, ToolTypes tool);
+
+    int toolSize(ToolTypes tool) const;
+    void setToolSize(int size, ToolTypes tool);
+
+    FillTypes toolFillType(ToolTypes tool) const;
+    void setToolFillType(FillTypes fillType, ToolTypes tool);
 
 private:
     QSettings mConfig;
 
     explicit Config();
-    QString createToolColorString(ToolTypes tool) const;
 };
 
 #endif // CONFIG_H

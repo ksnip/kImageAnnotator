@@ -49,5 +49,25 @@ void ConfigNameFormatterTest::TestToolColorString_Should_FormatToolStringCorrect
     }
 }
 
+void ConfigNameFormatterTest::TestToolSizeString_Should_FormatToolStringCorrectly()
+{
+    for(auto tool : toolList) {
+        auto result = ConfigNameFormatter::toolSizeString(tool);
+
+        auto expected = QStringLiteral("Application/AnnotationTool_") + QString::number(static_cast<int>(tool)) + QStringLiteral("_Size");
+        QCOMPARE(result, expected);
+    }
+}
+
+void ConfigNameFormatterTest::TestToolFillTypeString_Should_FormatToolStringCorrectly()
+{
+    for(auto tool : toolList) {
+        auto result = ConfigNameFormatter::toolFillTypeString(tool);
+
+        auto expected = QStringLiteral("Application/AnnotationTool_") + QString::number(static_cast<int>(tool)) + QStringLiteral("_FillType");
+        QCOMPARE(result, expected);
+    }
+}
+
 
 QTEST_MAIN(ConfigNameFormatterTest);

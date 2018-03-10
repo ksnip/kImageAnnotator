@@ -34,6 +34,8 @@ private slots:
 
     void TestToolString_Should_FormatToolStringCorrectly();
     void TestToolColorString_Should_FormatToolStringCorrectly();
+    void TestToolSizeString_Should_FormatToolStringCorrectly();
+    void TestToolFillTypeString_Should_FormatToolStringCorrectly();
 
 private:
     QList<ToolTypes> toolList;

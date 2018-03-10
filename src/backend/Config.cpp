@@ -40,9 +40,9 @@ void Config::setSelectedTool(ToolTypes tool)
     mConfig.sync();
 }
 
-QColor Config::toolColor(ToolTypes tool)
+QColor Config::toolColor(ToolTypes tool) const
 {
-    return mConfig.value(createToolColorString(tool), QColor(Qt::red)).value<QColor>();
+    return mConfig.value(ConfigNameFormatter::toolColorString(tool), QColor(Qt::red)).value<QColor>();
 }
 
 void Config::setToolColor(const QColor& color, ToolTypes tool)
@@ -51,9 +51,41 @@ void Config::setToolColor(const QColor& color, ToolTypes tool)
         return;
     }
 
-    mConfig.setValue(createToolColorString(tool), color);
+    mConfig.setValue(ConfigNameFormatter::toolColorString(tool), color);
     mConfig.sync();
 }
+
+int Config::toolSize(ToolTypes tool) const
+{
+    return mConfig.value(ConfigNameFormatter::toolSizeString(tool), 3).value<int>();
+}
+
+void Config::setToolSize(int size, ToolTypes tool)
+{
+    if(toolSize(tool) == size) {
+        return;
+    }
+
+    mConfig.setValue(ConfigNameFormatter::toolSizeString(tool), size);
+    mConfig.sync();
+}
+
+FillTypes Config::toolFillType(ToolTypes tool) const
+{
+    return mConfig.value(ConfigNameFormatter::toolFillTypeString(tool), static_cast<int>(FillTypes::SameFill)).value<FillTypes>();
+}
+
+void Config::setToolFillType(FillTypes fillType, ToolTypes tool)
+{
+    if(toolFillType(tool) == fillType) {
+        return;
+    }
+
+    mConfig.setValue(ConfigNameFormatter::toolFillTypeString(tool), static_cast<int>(fillType));
+    mConfig.sync();
+}
+
+// Private Methodes
 
 Config::Config()
 {
@@ -62,8 +94,3 @@ Config::Config()
         qCritical("Configuration error! Are you trying to read configuration before settings Application Name?");
     }
 };
-
-QString Config::createToolColorString(ToolTypes tool) const
-{
-    return ConfigNameFormatter::toolColorString(tool);
-}

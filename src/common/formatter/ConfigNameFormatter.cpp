@@ -28,3 +28,13 @@ QString ConfigNameFormatter::toolColorString(ToolTypes tool)
 {
     return QStringLiteral("Application/") + toolString(tool) + QStringLiteral("_Color");
 }
+
+QString ConfigNameFormatter::toolSizeString(ToolTypes tool)
+{
+    return QStringLiteral("Application/") + toolString(tool) + QStringLiteral("_Size");
+}
+
+QString ConfigNameFormatter::toolFillTypeString(ToolTypes tool)
+{
+    return QStringLiteral("Application/") + toolString(tool) + QStringLiteral("_FillType");
+}
