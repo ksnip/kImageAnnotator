@@ -17,6 +17,7 @@ set(kimageannotator_SRCS main.cpp
                          annotationItems/AnnotationEllipse.cpp
                          annotationItems/AnnotationNumber.cpp
                          backend/Config.cpp
+                         common/formatter/ConfigNameFormatter.cpp
                          widgets/ToolPicker.cpp
                          widgets/ColorPicker.cpp
                          widgets/SizePicker.cpp

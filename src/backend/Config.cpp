@@ -63,12 +63,7 @@ Config::Config()
     }
 };
 
-QString Config::createToolString(ToolTypes tool) const
-{
-    return QStringLiteral("AnnotationTool_") + QString::number(static_cast<int>(tool));
-}
-
 QString Config::createToolColorString(ToolTypes tool) const
 {
-    return QStringLiteral("Application/") + createToolString(tool) + QStringLiteral("_Color");
+    return ConfigNameFormatter::toolColorString(tool);
 }

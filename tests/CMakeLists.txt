@@ -18,6 +18,7 @@ set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/KImageAnnotator.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationEllipse.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotationItems/AnnotationNumber.cpp
                          ${CMAKE_SOURCE_DIR}/src/backend/Config.cpp
+                         ${CMAKE_SOURCE_DIR}/src/common/formatter/ConfigNameFormatter.cpp
                          ${CMAKE_SOURCE_DIR}/src/widgets/ToolPicker.cpp
                          ${CMAKE_SOURCE_DIR}/src/widgets/ColorPicker.cpp
                          ${CMAKE_SOURCE_DIR}/src/widgets/SizePicker.cpp

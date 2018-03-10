@@ -17,35 +17,21 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef CONFIG_H
-#define CONFIG_H
+#ifndef CONFIGNAMEFORMATTER_H
+#define CONFIGNAMEFORMATTER_H
 
-#include <QObject>
-#include <QSettings>
-#include <QPointF>
-#include <QColor>
+#include <QString>
 
-#include "../common/enum/ToolTypes.h"
-#include "../common/formatter/ConfigNameFormatter.h"
+#include "../enum/ToolTypes.h"
 
-class Config : public QObject
+class ConfigNameFormatter
 {
-    Q_OBJECT
-
-public slots:
-    static Config *instance();
-
-    ToolTypes selectedTool() const;
-    void setSelectedTool(ToolTypes tool);
-
-    QColor toolColor(ToolTypes tool);
-    void setToolColor(const QColor& color, ToolTypes tool);
+public:
+    static QString toolString(ToolTypes tool);
+    static QString toolColorString(ToolTypes tool);
 
 private:
-    QSettings mConfig;
-
-    explicit Config();
-    QString createToolColorString(ToolTypes tool) const;
+    explicit ConfigNameFormatter() = default;
 };
 
-#endif // CONFIG_H
+#endif // CONFIGNAMEFORMATTER_H
