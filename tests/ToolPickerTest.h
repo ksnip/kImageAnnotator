@@ -23,7 +23,7 @@
 #include <QtTest>
 
 #include "../src/widgets/ToolPicker.h"
-#include "../src/common/ToolTypes.h"
+#include "../src/common/enum/ToolTypes.h"
 
 class ToolPickerTest : public QObject
 {
@@ -31,6 +31,7 @@ Q_OBJECT
 
 private slots:
     void TestSelectTool_Should_EmitSignal_When_ToolChanged();
+    void TestTool_Should_ReturnSelectedTool();
 };
 
 #endif // TOOLPICKERTEST_H

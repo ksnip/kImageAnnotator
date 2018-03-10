@@ -25,7 +25,7 @@
 #include <QPointF>
 #include <QColor>
 
-#include "../common/ToolTypes.h"
+#include "../common/enum/ToolTypes.h"
 
 class Config : public QObject
 {

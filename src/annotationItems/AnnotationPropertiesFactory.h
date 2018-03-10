@@ -22,7 +22,7 @@
 
 #include "AnnotationProperties.h"
 #include "../backend/Config.h"
-#include "../common/ToolTypes.h"
+#include "../common/enum/ToolTypes.h"
 
 class AnnotationPropertiesFactory
 {

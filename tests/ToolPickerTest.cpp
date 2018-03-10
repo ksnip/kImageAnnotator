@@ -31,4 +31,15 @@ void ToolPickerTest::TestSelectTool_Should_EmitSignal_When_ToolChanged()
     QCOMPARE(type, ToolTypes::Arrow);
 }
 
+void ToolPickerTest::TestTool_Should_ReturnSelectedTool()
+{
+    ToolPicker toolPicker;
+    toolPicker.setTool(ToolTypes::Arrow);
+
+    auto result = toolPicker.tool();
+
+    QCOMPARE(result, ToolTypes::Arrow);
+}
+
+
 QTEST_MAIN(ToolPickerTest);
