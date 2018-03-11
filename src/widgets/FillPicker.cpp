@@ -19,13 +19,13 @@
 
 #include "FillPicker.h"
 
-FillPicker::FillPicker(const QString& name)
+FillPicker::FillPicker(const QString& name, int minLabelWidth)
 {
     mFillList.append(FillTypes::NoFill);
     mFillList.append(FillTypes::Fill);
     mFillList.append(FillTypes::SameFillAsOutline);
 
-    initGui(name);
+    initGui(name, minLabelWidth);
 
     connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &FillPicker::selectionChanged);
 }
@@ -46,12 +46,16 @@ void FillPicker::setFill(FillTypes fill)
     }
 }
 
-void FillPicker::initGui(const QString& name)
+void FillPicker::initGui(const QString& name, int minLabelWidth)
 {
     mLayout = new QHBoxLayout(this);
     mLayout->setSpacing(0);
 
     mLabel = new QLabel(name + QStringLiteral(": "));
+    if(minLabelWidth != -1) {
+        mLabel->setMinimumWidth(minLabelWidth);
+    }
+
     mComboBox = new QComboBox(this);
 
     mComboBox->addItem(tr("No Fill"), mFillList.indexOf(FillTypes::NoFill));

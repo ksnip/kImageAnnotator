@@ -23,7 +23,8 @@
 #include <QWidget>
 #include <QCoreApplication>
 #include <QGraphicsView>
-#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
 #include "VisibilitySwitcher.h"
 #include "../annotations/AnnotationArea.h"
@@ -43,7 +44,9 @@ public:
 private:
     AnnotationArea*    mAnnotationArea;
     QGraphicsView*     mView;
-    QGridLayout*       mMainLayout;
+    QHBoxLayout*       mMainLayout;
+    QVBoxLayout*       mToolsLayout;
+    QVBoxLayout*       mPropertiesLayout;
     ToolPicker*        mToolPicker;
     ColorPicker*       mColorPicker;
     SizePicker*        mSizePicker;

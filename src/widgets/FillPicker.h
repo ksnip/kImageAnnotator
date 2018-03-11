@@ -32,7 +32,7 @@ class FillPicker : public QWidget
 Q_OBJECT
 
 public:
-    FillPicker(const QString& name);
+    FillPicker(const QString& name, int minLabelWidth = -1);
     ~FillPicker();
     void setFill(FillTypes fill);
 
@@ -44,9 +44,9 @@ private:
     QLabel           *mLabel;
     QComboBox        *mComboBox;
     QList<FillTypes>  mFillList;
-    FillTypes    mSelectedFill;
+    FillTypes         mSelectedFill;
 
-    void initGui(const QString& name);
+    void initGui(const QString& name, int minLabelWidth);
     void setFillAndNotify(FillTypes fill);
 
 private slots:

@@ -19,11 +19,11 @@
 
 #include "ColorPicker.h"
 
-ColorPicker::ColorPicker(const QString& name)
+ColorPicker::ColorPicker(const QString& name, int minLabelWidth)
 {
     mIconCreater = new IconCreater();
 
-    initGui(name);
+    initGui(name, minLabelWidth);
 
     connect(mButton, &QPushButton::clicked, this, &ColorPicker::buttonClicked);
 }
@@ -43,12 +43,16 @@ void ColorPicker::setColor(const QColor& color)
     emit colorSelected(color);
 }
 
-void ColorPicker::initGui(const QString& name)
+void ColorPicker::initGui(const QString& name, int minLabelWidth)
 {
     mLayout = new QHBoxLayout();
     mLayout->setSpacing(0);
 
     mLabel = new QLabel(name + QStringLiteral(": "));
+    if(minLabelWidth != -1) {
+        mLabel->setMinimumWidth(minLabelWidth);
+    }
+
     mButton = new QPushButton();
     mButton->setIcon(mIconCreater->createColorIcon(QColor(Qt::red)));
     mButton->setIconSize(mIconCreater->iconSize());

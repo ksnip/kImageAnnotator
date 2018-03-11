@@ -89,21 +89,21 @@ void VisibilitySwitcher::updateVisibility()
 void VisibilitySwitcher::setColorWidgetVisibility(bool enabled)
 {
     if(mColorWidget) {
-        mColorWidget->setVisible(enabled);
+        mColorWidget->setEnabled(enabled);
     }
 }
 
 void VisibilitySwitcher::setSizeWidgetVisibility(bool enabled)
 {
     if(mSizeWidget) {
-        mSizeWidget->setVisible(enabled);
+        mSizeWidget->setEnabled(enabled);
     }
 }
 
 void VisibilitySwitcher::setFillWidgetVisibility(bool enabled)
 {
     if(mFillWidget) {
-        mFillWidget->setVisible(enabled);
+        mFillWidget->setEnabled(enabled);
     }
 }
 

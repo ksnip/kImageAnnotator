@@ -33,6 +33,12 @@ KImageAnnotator::~KImageAnnotator()
     delete mAnnotationArea;
     delete mView;
     delete mMainLayout;
+    delete mToolsLayout;
+    delete mPropertiesLayout;
+    delete mToolPicker;
+    delete mColorPicker;
+    delete mSizePicker;
+    delete mFillPicker;
 }
 
 void KImageAnnotator::initAppSettings()
@@ -48,17 +54,25 @@ void KImageAnnotator::initGui()
 
     mAnnotationArea = new AnnotationArea();
     mView = new QGraphicsView(mAnnotationArea);
-    mMainLayout = new QGridLayout();
+    mMainLayout = new QHBoxLayout();
+    mToolsLayout = new QVBoxLayout();
+    mPropertiesLayout = new QVBoxLayout();
     mToolPicker = new ToolPicker();
-    mColorPicker = new ColorPicker(tr("Color"));
-    mSizePicker = new SizePicker(tr("Size"));
-    mFillPicker = new FillPicker(tr("Fill"));
+    mColorPicker = new ColorPicker(tr("Color"), 40);
+    mSizePicker = new SizePicker(tr("Size"), 40);
+    mFillPicker = new FillPicker(tr("Fill"), 40);
 
-    mMainLayout->addWidget(mToolPicker, 0, 0, -1, 1, Qt::AlignTop);
-    mMainLayout->addWidget(mView, 0, 1, -1, 1);
-    mMainLayout->addWidget(mColorPicker, 0, 2, Qt::AlignLeft | Qt::AlignTop);
-    mMainLayout->addWidget(mSizePicker, 1, 2, Qt::AlignLeft | Qt::AlignTop);
-    mMainLayout->addWidget(mFillPicker, 2, 2, Qt::AlignLeft | Qt::AlignTop);
+    mToolsLayout->addWidget(mToolPicker);
+    mToolsLayout->setAlignment(Qt::AlignTop);
+
+    mPropertiesLayout->addWidget(mColorPicker);
+    mPropertiesLayout->addWidget(mSizePicker);
+    mPropertiesLayout->addWidget(mFillPicker);
+    mPropertiesLayout->setAlignment(Qt::AlignTop);
+
+    mMainLayout->addLayout(mToolsLayout);
+    mMainLayout->addWidget(mView);
+    mMainLayout->addLayout(mPropertiesLayout);
     setLayout(mMainLayout);
 
     mVisibilitySwitcher.setColorWidget(mColorPicker);

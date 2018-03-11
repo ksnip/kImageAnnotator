@@ -19,7 +19,7 @@
 
 #include "SizePicker.h"
 
-SizePicker::SizePicker(const QString& name)
+SizePicker::SizePicker(const QString& name, int minLabelWidth)
 {
     mSizeList.append(2);
     mSizeList.append(3);
@@ -30,7 +30,7 @@ SizePicker::SizePicker(const QString& name)
 
     mIconCreater = new IconCreater();
 
-    initGui(name);
+    initGui(name, minLabelWidth);
 
     connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &SizePicker::selectionChanged);
 }
@@ -52,12 +52,16 @@ void SizePicker::setSize(int size)
     }
 }
 
-void SizePicker::initGui(const QString& name)
+void SizePicker::initGui(const QString& name, int minLabelWidth)
 {
     mLayout = new QHBoxLayout(this);
     mLayout->setSpacing(0);
 
     mLabel = new QLabel(name + QStringLiteral(": "));
+    if(minLabelWidth != -1) {
+        mLabel->setMinimumWidth(minLabelWidth);
+    }
+
     mComboBox = new QComboBox(this);
     mComboBox->setIconSize(mIconCreater->iconSize());
 

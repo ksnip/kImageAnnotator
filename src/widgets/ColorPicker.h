@@ -32,7 +32,7 @@ class ColorPicker : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ColorPicker(const QString& name);
+    explicit ColorPicker(const QString& name, int minLabelWidth = -1);
     ~ColorPicker();
     void setColor(const QColor& color);
 
@@ -46,7 +46,7 @@ private:
     QColor                 mSelectedColor;
     IconCreater*           mIconCreater;
 
-    void initGui(const QString& name);
+    void initGui(const QString& name, int minLabelWidth);
 
 private slots:
     void buttonClicked();
