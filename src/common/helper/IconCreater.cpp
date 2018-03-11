@@ -17,19 +17,31 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef COLORPICKERTEST_H
-#define COLORPICKERTEST_H
+#include "IconCreater.h"
 
-#include <QtTest>
-
-#include "../src/widgets/ColorPicker.h"
-
-class ColorPickerTest : public QObject
+IconCreater::IconCreater(QSize iconSize)
 {
-Q_OBJECT
+    setIconSize(iconSize);
+}
 
-private slots:
-    void TestSelectColor_Should_EmitSignal_When_ColorChanged();
-};
+QSize IconCreater::iconSize() const
+{
+    return mIconSize;
+}
 
-#endif // COLORPICKERTEST_H
+void IconCreater::setIconSize(const QSize& iconSize)
+{
+    mIconSize = iconSize;
+}
+
+QIcon IconCreater::createColorIcon(const QColor& color) const
+{
+    QPixmap pixmap(mIconSize);
+    pixmap.fill(color);
+    QPainter painter(&pixmap);
+    auto penWidth = painter.pen().width();
+    painter.setPen(QColor(Qt::gray));
+    painter.drawRect(0,0, mIconSize.width() - penWidth, mIconSize.height() - penWidth);
+
+    return QIcon(pixmap);
+}

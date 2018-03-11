@@ -19,103 +19,49 @@
 
 #include "ColorPicker.h"
 
-ColorPicker::ColorPicker()
+ColorPicker::ColorPicker(const QString& name)
 {
-    mColorList.append(QStringLiteral("White"));
-    mColorList.append(QStringLiteral("Black"));
-    mColorList.append(QStringLiteral("Gray"));
-    mColorList.append(QStringLiteral("Light Gray"));
-    mColorList.append(QStringLiteral("Red"));
-    mColorList.append(QStringLiteral("Dark Red"));
-    mColorList.append(QStringLiteral("Orange"));
-    mColorList.append(QStringLiteral("Dark Orange"));
-    mColorList.append(QStringLiteral("Yellow"));
-    mColorList.append(QStringLiteral("Purple"));
-    mColorList.append(QStringLiteral("Green"));
-    mColorList.append(QStringLiteral("Dark Green"));
-    mColorList.append(QStringLiteral("Blue"));
-    mColorList.append(QStringLiteral("Dark Blue"));
-    mColorList.append(QStringLiteral("Violet"));
-    mColorList.append(QStringLiteral("Dark Violet"));
+    mIconCreater = new IconCreater();
 
-    mIconSize = new QSize(25, 25);
+    initGui(name);
 
-    initGui();
-
-    connect(mButtonGroup, static_cast<void (QButtonGroup::*)(QAbstractButton*)>(&QButtonGroup::buttonClicked), this, &ColorPicker::buttonClicked);
+    connect(mButton, &QPushButton::clicked, this, &ColorPicker::buttonClicked);
 }
 
 ColorPicker::~ColorPicker()
 {
-    delete mIconSize;
     delete mLayout;
-    delete mButtonGroup;
-    for(auto button : mButtonToColor.keys()) {
-        delete button;
-    }
+    delete mButton;
+    delete mLabel;
+    delete mIconCreater;
 }
 
 void ColorPicker::setColor(const QColor& color)
 {
-    auto button = mButtonToColor.key(color);
-    if(button) {
-        button->setChecked(true);
-        setColorAndNotify(color);
-    }
+    mSelectedColor = color;
+    mButton->setIcon(mIconCreater->createColorIcon(color));
+    emit colorSelected(color);
 }
 
-void ColorPicker::initGui()
+void ColorPicker::initGui(const QString& name)
 {
-    mLayout = new QGridLayout();
+    mLayout = new QHBoxLayout();
     mLayout->setSpacing(0);
 
-    mButtonGroup = new QButtonGroup(this);
+    mLabel = new QLabel(name + QStringLiteral(": "));
+    mButton = new QPushButton();
+    mButton->setIcon(mIconCreater->createColorIcon(QColor(Qt::red)));
+    mButton->setIconSize(mIconCreater->iconSize());
 
-    auto column = 0;
-    for(auto i = 0; i < mColorList.count(); i++) {
-        QColor color(mColorList [i]);
-        auto button = createButton(color);
-        mButtonToColor[button] = color;
-        mButtonGroup->addButton(button);
-        mLayout->addWidget(button, i % 2, column);
-        column += i % 2;
-    }
+    mLayout->addWidget(mLabel);
+    mLayout->addWidget(mButton);
 
     setLayout(mLayout);
-    setFrameShape(QFrame::Panel);
-    setFrameShadow(QFrame::Sunken);
     setFixedSize(sizeHint());
 }
 
-QAbstractButton* ColorPicker::createButton(const QColor& color)
+void ColorPicker::buttonClicked()
 {
-    auto button = new QToolButton(this);
-    auto icon = createColorIcon(color);
-    button->setIcon(icon);
-    button->setCheckable(true);
-    button->setAutoRaise(true);
-    button->setIconSize(*mIconSize);
-    button->setStyleSheet(QStringLiteral("QToolButton { border: 0px; padding-left: -1px; padding-top: -1px; }"
-                                         "QToolButton:checked { padding: 2px; margin: 1px; border: 1px solid gray; }"
-                                         "QToolButton:hover:!checked {border: 1px solid lightblue; } "
-                                         "QToolButton:hover:checked {background-color: lightblue; } "));
-    return button;
-}
-
-QIcon ColorPicker::createColorIcon(const QColor& color) const
-{
-    QPixmap pixmap(*mIconSize);
-    pixmap.fill(color);
-    return QIcon(pixmap);
-}
-
-void ColorPicker::setColorAndNotify(const QColor& newColor)
-{
-    mSelectedColor = newColor;
-    emit colorSelected(newColor);
-}
-
-void ColorPicker::buttonClicked(QAbstractButton* button)
-{
-    setColorAndNotify(mButtonToColor[button]);
+    auto color = QColorDialog::getColor(mSelectedColor, this, tr("Pick a Color"));
+    setColor(color);
 }

@@ -21,26 +21,15 @@
 
 void ColorPickerTest::TestSelectColor_Should_EmitSignal_When_ColorChanged()
 {
-    ColorPicker colorPicker;
+    ColorPicker colorPicker(QStringLiteral("test"));
     QSignalSpy spy(&colorPicker, &ColorPicker::colorSelected);
-    auto expectedColor = QColor(QStringLiteral("Blue"));
+    auto expectedColor = QColor(Qt::blue);
 
     colorPicker.setColor(expectedColor);
 
     QCOMPARE(spy.count(), 1);
     auto resultColor = qvariant_cast<QColor>(spy.at(0).at(0));
     QCOMPARE(resultColor, expectedColor);
-}
-
-void ColorPickerTest::TestSelectColor_Should_NotEmitSignal_When_SelectedColorDoesntExists()
-{
-    ColorPicker colorPicker;
-    QSignalSpy spy(&colorPicker, &ColorPicker::colorSelected);
-    auto notInListColor = QColor(QStringLiteral("orchid"));
-
-    colorPicker.setColor(notInListColor);
-
-    QCOMPARE(spy.count(), 0);
 }
 
 QTEST_MAIN(ColorPickerTest);

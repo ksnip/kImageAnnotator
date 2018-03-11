@@ -50,7 +50,7 @@ void KImageAnnotator::initGui()
     mView = new QGraphicsView(mAnnotationArea);
     mMainLayout = new QGridLayout();
     mToolPicker = new ToolPicker();
-    mColorPicker = new ColorPicker();
+    mColorPicker = new ColorPicker(tr("Color"));
     mSizePicker = new SizePicker();
     mFillPicker = new FillPicker();
 
