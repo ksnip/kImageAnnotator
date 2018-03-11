@@ -21,34 +21,28 @@
 
 AnnotationProperties::AnnotationProperties(const QColor& color, int size)
 {
-    mBorderColor = color;
+    mOutlineColor = color;
     mFillColor = color;
-    mSize = size;
-}
-
-AnnotationProperties::AnnotationProperties(const QColor& borderColor, const QColor& fillColor, int size)
-{
-    mBorderColor = qMove(borderColor);
-    mFillColor = qMove(fillColor);
+    mForegroundColor = color;
     mSize = size;
 }
 
 AnnotationProperties::AnnotationProperties(const AnnotationProperties& other)
 {
-    mBorderColor = other.mBorderColor;
+    mOutlineColor = other.mOutlineColor;
     mFillColor = other.mFillColor;
     mSize = other.mSize;
     mFillType = other.mFillType;
 }
 
-QColor AnnotationProperties::borderColor() const
+QColor AnnotationProperties::outlineColor() const
 {
-    return mBorderColor;
+    return mOutlineColor;
 }
 
-void AnnotationProperties::setBorderColor(const QColor& borderColor)
+void AnnotationProperties::setOutlineColor(const QColor& color)
 {
-    mBorderColor = qMove(borderColor);
+    mOutlineColor = qMove(color);
 }
 
 QColor AnnotationProperties::fillColor() const
@@ -56,9 +50,19 @@ QColor AnnotationProperties::fillColor() const
     return mFillColor;
 }
 
-void AnnotationProperties::setFillColor(const QColor& fillColor)
+void AnnotationProperties::setFillColor(const QColor& color)
 {
-    mFillColor = qMove(fillColor);
+    mFillColor = qMove(color);
+}
+
+QColor AnnotationProperties::foregroundColor() const
+{
+    return mForegroundColor;
+}
+
+void AnnotationProperties::setForegroundColor(const QColor& color)
+{
+    mForegroundColor = qMove(color);
 }
 
 int AnnotationProperties::size() const
@@ -80,4 +84,3 @@ void AnnotationProperties::setFillType(FillTypes fillType)
 {
     mFillType = fillType;
 }
-

@@ -28,21 +28,23 @@ class AnnotationProperties
 {
 public:
     AnnotationProperties(const QColor& color, int size);
-    AnnotationProperties(const QColor& borderColor, const QColor& fillColor, int size);
     AnnotationProperties(const AnnotationProperties& other);
     ~AnnotationProperties() = default;
-    QColor borderColor() const;
-    void setBorderColor(const QColor& borderColor);
+    QColor outlineColor() const;
+    void setOutlineColor(const QColor& color);
     QColor fillColor() const;
-    void setFillColor(const QColor& fillColor);
+    void setFillColor(const QColor& color);
+    QColor foregroundColor() const;
+    void setForegroundColor(const QColor& color);
     int size() const;
     void setSize(int size);
     FillTypes fillType() const;
     void setFillType(FillTypes fillType);
 
 private:
-    QColor    mBorderColor;
+    QColor    mOutlineColor;
     QColor    mFillColor;
+    QColor    mForegroundColor;
     int       mSize;
     FillTypes mFillType;
 };

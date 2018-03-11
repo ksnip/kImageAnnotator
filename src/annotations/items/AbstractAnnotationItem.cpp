@@ -89,7 +89,7 @@ void AbstractAnnotationItem::addShadowEffect()
 void AbstractAnnotationItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*)
 {
     QPen pen;
-    pen.setColor(mProperties->borderColor());
+    pen.setColor(mProperties->outlineColor());
     pen.setWidth(mProperties->size());
     pen.setCapStyle(Qt::RoundCap);
     pen.setJoinStyle(Qt::RoundJoin);
