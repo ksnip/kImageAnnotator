@@ -30,18 +30,24 @@ public:
     explicit VisibilitySwitcher();
     ~VisibilitySwitcher() = default;
     void setCurrentTool(ToolTypes tool);
-    void setColorWidget(QWidget* widget);
+    void setOutlineColorWidget(QWidget* widget);
+    void setFillColorWidget(QWidget* widget);
+    void setForegroundColorWidget(QWidget* widget);
     void setSizeWidget(QWidget* widget);
     void setFillWidget(QWidget* widget);
 
 private:
     ToolTypes mCurrentTool;
-    QWidget*  mColorWidget;
+    QWidget*  mOutlineColorWidget;
+    QWidget*  mFillColorWidget;
+    QWidget*  mForegroundColorWidget;
     QWidget*  mSizeWidget;
     QWidget*  mFillWidget;
 
     void updateVisibility();
-    void setColorWidgetVisibility(bool enabled);
+    void setOutlineColorWidgetVisibility(bool enabled);
+    void setFillColorWidgetVisibility(bool enabled);
+    void setForegroundColorWidgetVisibility(bool enabled);
     void setSizeWidgetVisibility(bool enabled);
     void setFillWidgetVisibility(bool enabled);
 };

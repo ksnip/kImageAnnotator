@@ -26,9 +26,15 @@ AnnotationPropertiesFactory::AnnotationPropertiesFactory()
 
 AnnotationProperties AnnotationPropertiesFactory::createProperties(ToolTypes tool) const
 {
-    AnnotationProperties properties(mConfig->toolColor(tool), mConfig->toolSize(tool));
-    if(tool == ToolTypes::Arrow || tool == ToolTypes::Number) {
+    AnnotationProperties properties;
+    properties.setOutlineColor(mConfig->toolOutlineColor(tool));
+    properties.setFillColor(mConfig->toolFillColor(tool));
+    properties.setForegroundColor(mConfig->toolForegroundColor(tool));
+    properties.setSize(mConfig->toolSize(tool));
+    if(tool == ToolTypes::Arrow) {
         properties.setFillType(FillTypes::SameFillAsOutline);
+    } else if(tool == ToolTypes::Number) {
+        properties.setFillType(FillTypes::Fill);
     } else {
         properties.setFillType(mConfig->toolFillType(tool));
     }

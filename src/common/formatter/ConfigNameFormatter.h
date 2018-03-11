@@ -27,10 +27,12 @@
 class ConfigNameFormatter
 {
 public:
-    static QString toolString(ToolTypes tool);
-    static QString toolColorString(ToolTypes tool);
-    static QString toolSizeString(ToolTypes tool);
-    static QString toolFillTypeString(ToolTypes tool);
+    static QString annotationTool(ToolTypes tool);
+    static QString toolOutlineColor(ToolTypes tool);
+    static QString toolFillColor(ToolTypes tool);
+    static QString toolForegroundColor(ToolTypes tool);
+    static QString toolSize(ToolTypes tool);
+    static QString toolFillType(ToolTypes tool);
 
 private:
     explicit ConfigNameFormatter() = default;

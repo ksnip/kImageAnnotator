@@ -55,7 +55,7 @@ void SizePicker::setSize(int size)
 void SizePicker::initGui(const QString& name, int minLabelWidth)
 {
     mLayout = new QHBoxLayout(this);
-    mLayout->setSpacing(0);
+    mLayout->setContentsMargins(0, 0, 0, 0);
 
     mLabel = new QLabel(name + QStringLiteral(": "));
     if(minLabelWidth != -1) {

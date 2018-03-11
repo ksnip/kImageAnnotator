@@ -39,8 +39,14 @@ public slots:
     ToolTypes selectedTool() const;
     void setSelectedTool(ToolTypes tool);
 
-    QColor toolColor(ToolTypes tool) const;
-    void setToolColor(const QColor& color, ToolTypes tool);
+    QColor toolOutlineColor(ToolTypes tool) const;
+    void setToolOutlineColor(const QColor& color, ToolTypes tool);
+
+    QColor toolFillColor(ToolTypes tool) const;
+    void setToolFillColor(const QColor& color, ToolTypes tool);
+
+    QColor toolForegroundColor(ToolTypes tool) const;
+    void setToolForegroundColor(const QColor& color, ToolTypes tool);
 
     int toolSize(ToolTypes tool) const;
     void setToolSize(int size, ToolTypes tool);

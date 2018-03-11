@@ -19,22 +19,32 @@
 
 #include "ConfigNameFormatter.h"
 
-QString ConfigNameFormatter::toolString(ToolTypes tool)
+QString ConfigNameFormatter::annotationTool(ToolTypes tool)
 {
     return QStringLiteral("AnnotationTool_") + QString::number(static_cast<int>(tool));
 }
 
-QString ConfigNameFormatter::toolColorString(ToolTypes tool)
+QString ConfigNameFormatter::toolOutlineColor(ToolTypes tool)
 {
-    return QStringLiteral("Application/") + toolString(tool) + QStringLiteral("_Color");
+    return QStringLiteral("Application/") + annotationTool(tool) + QStringLiteral("_OutlineColor");
 }
 
-QString ConfigNameFormatter::toolSizeString(ToolTypes tool)
+QString ConfigNameFormatter::toolFillColor(ToolTypes tool)
 {
-    return QStringLiteral("Application/") + toolString(tool) + QStringLiteral("_Size");
+    return QStringLiteral("Application/") + annotationTool(tool) + QStringLiteral("_FillColor");
 }
 
-QString ConfigNameFormatter::toolFillTypeString(ToolTypes tool)
+QString ConfigNameFormatter::toolForegroundColor(ToolTypes tool)
 {
-    return QStringLiteral("Application/") + toolString(tool) + QStringLiteral("_FillType");
+    return QStringLiteral("Application/") + annotationTool(tool) + QStringLiteral("_ForegroundColor");
+}
+
+QString ConfigNameFormatter::toolSize(ToolTypes tool)
+{
+    return QStringLiteral("Application/") + annotationTool(tool) + QStringLiteral("_Size");
+}
+
+QString ConfigNameFormatter::toolFillType(ToolTypes tool)
+{
+    return QStringLiteral("Application/") + annotationTool(tool) + QStringLiteral("_FillType");
 }

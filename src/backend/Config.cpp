@@ -40,24 +40,54 @@ void Config::setSelectedTool(ToolTypes tool)
     mConfig.sync();
 }
 
-QColor Config::toolColor(ToolTypes tool) const
+QColor Config::toolOutlineColor(ToolTypes tool) const
 {
-    return mConfig.value(ConfigNameFormatter::toolColorString(tool), QColor(Qt::red)).value<QColor>();
+    return mConfig.value(ConfigNameFormatter::toolOutlineColor(tool), QColor(Qt::red)).value<QColor>();
 }
 
-void Config::setToolColor(const QColor& color, ToolTypes tool)
+void Config::setToolOutlineColor(const QColor& color, ToolTypes tool)
 {
-    if(toolColor(tool) == color) {
+    if(toolOutlineColor(tool) == color) {
         return;
     }
 
-    mConfig.setValue(ConfigNameFormatter::toolColorString(tool), color);
+    mConfig.setValue(ConfigNameFormatter::toolOutlineColor(tool), color);
+    mConfig.sync();
+}
+
+QColor Config::toolFillColor(ToolTypes tool) const
+{
+    return mConfig.value(ConfigNameFormatter::toolFillColor(tool), QColor(Qt::blue)).value<QColor>();
+}
+
+void Config::setToolFillColor(const QColor& color, ToolTypes tool)
+{
+    if(toolFillColor(tool) == color) {
+        return;
+    }
+
+    mConfig.setValue(ConfigNameFormatter::toolFillColor(tool), color);
+    mConfig.sync();
+}
+
+QColor Config::toolForegroundColor(ToolTypes tool) const
+{
+    return mConfig.value(ConfigNameFormatter::toolForegroundColor(tool), QColor(Qt::white)).value<QColor>();
+}
+
+void Config::setToolForegroundColor(const QColor& color, ToolTypes tool)
+{
+    if(toolForegroundColor(tool) == color) {
+        return;
+    }
+
+    mConfig.setValue(ConfigNameFormatter::toolForegroundColor(tool), color);
     mConfig.sync();
 }
 
 int Config::toolSize(ToolTypes tool) const
 {
-    return mConfig.value(ConfigNameFormatter::toolSizeString(tool), 3).value<int>();
+    return mConfig.value(ConfigNameFormatter::toolSize(tool), 3).value<int>();
 }
 
 void Config::setToolSize(int size, ToolTypes tool)
@@ -66,13 +96,13 @@ void Config::setToolSize(int size, ToolTypes tool)
         return;
     }
 
-    mConfig.setValue(ConfigNameFormatter::toolSizeString(tool), size);
+    mConfig.setValue(ConfigNameFormatter::toolSize(tool), size);
     mConfig.sync();
 }
 
 FillTypes Config::toolFillType(ToolTypes tool) const
 {
-    return mConfig.value(ConfigNameFormatter::toolFillTypeString(tool), static_cast<int>(FillTypes::SameFillAsOutline)).value<FillTypes>();
+    return mConfig.value(ConfigNameFormatter::toolFillType(tool), static_cast<int>(FillTypes::SameFillAsOutline)).value<FillTypes>();
 }
 
 void Config::setToolFillType(FillTypes fillType, ToolTypes tool)
@@ -81,7 +111,7 @@ void Config::setToolFillType(FillTypes fillType, ToolTypes tool)
         return;
     }
 
-    mConfig.setValue(ConfigNameFormatter::toolFillTypeString(tool), static_cast<int>(fillType));
+    mConfig.setValue(ConfigNameFormatter::toolFillType(tool), static_cast<int>(fillType));
     mConfig.sync();
 }
 

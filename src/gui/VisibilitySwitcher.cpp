@@ -21,7 +21,9 @@
 
 VisibilitySwitcher::VisibilitySwitcher()
 {
-    mColorWidget = nullptr;
+    mOutlineColorWidget = nullptr;
+    mFillColorWidget = nullptr;
+    mForegroundColorWidget = nullptr;
     mSizeWidget = nullptr;
     mFillWidget = nullptr;
 
@@ -38,9 +40,21 @@ void VisibilitySwitcher::setCurrentTool(ToolTypes tool)
     updateVisibility();
 }
 
-void VisibilitySwitcher::setColorWidget(QWidget* widget)
+void VisibilitySwitcher::setOutlineColorWidget(QWidget* widget)
 {
-    mColorWidget = widget;
+    mOutlineColorWidget = widget;
+    updateVisibility();
+}
+
+void VisibilitySwitcher::setFillColorWidget(QWidget* widget)
+{
+    mFillColorWidget = widget;
+    updateVisibility();
+}
+
+void VisibilitySwitcher::setForegroundColorWidget(QWidget* widget)
+{
+    mForegroundColorWidget = widget;
     updateVisibility();
 }
 
@@ -60,25 +74,33 @@ void VisibilitySwitcher::updateVisibility()
 {
     switch(mCurrentTool) {
         case ToolTypes::Select:
-            setColorWidgetVisibility(false);
+            setOutlineColorWidgetVisibility(false);
+            setFillColorWidgetVisibility(false);
+            setForegroundColorWidgetVisibility(false);
             setSizeWidgetVisibility(false);
             setFillWidgetVisibility(false);
             break;
         case ToolTypes::Line:
         case ToolTypes::Arrow:
-            setColorWidgetVisibility(true);
+            setOutlineColorWidgetVisibility(true);
+            setFillColorWidgetVisibility(false);
+            setForegroundColorWidgetVisibility(false);
             setSizeWidgetVisibility(true);
             setFillWidgetVisibility(false);
             break;
         case ToolTypes::Ellipse:
         case ToolTypes::Rect:
-            setColorWidgetVisibility(true);
+            setOutlineColorWidgetVisibility(true);
+            setFillColorWidgetVisibility(true);
+            setForegroundColorWidgetVisibility(false);
             setSizeWidgetVisibility(true);
             setFillWidgetVisibility(true);
             break;
         case ToolTypes::Number:
-            setColorWidgetVisibility(true);
-            setSizeWidgetVisibility(false);
+            setOutlineColorWidgetVisibility(true);
+            setFillColorWidgetVisibility(true);
+            setForegroundColorWidgetVisibility(true);
+            setSizeWidgetVisibility(true);
             setFillWidgetVisibility(false);
             break;
         default:
@@ -86,12 +108,27 @@ void VisibilitySwitcher::updateVisibility()
     }
 }
 
-void VisibilitySwitcher::setColorWidgetVisibility(bool enabled)
+void VisibilitySwitcher::setOutlineColorWidgetVisibility(bool enabled)
 {
-    if(mColorWidget) {
-        mColorWidget->setEnabled(enabled);
+    if(mOutlineColorWidget) {
+        mOutlineColorWidget->setEnabled(enabled);
     }
 }
+
+void VisibilitySwitcher::setFillColorWidgetVisibility(bool enabled)
+{
+    if(mFillColorWidget) {
+        mFillColorWidget->setEnabled(enabled);
+    }
+}
+
+void VisibilitySwitcher::setForegroundColorWidgetVisibility(bool enabled)
+{
+    if(mForegroundColorWidget) {
+        mForegroundColorWidget->setEnabled(enabled);
+    }
+}
+
 
 void VisibilitySwitcher::setSizeWidgetVisibility(bool enabled)
 {

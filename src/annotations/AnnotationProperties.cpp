@@ -27,14 +27,6 @@ AnnotationProperties::AnnotationProperties(const QColor& color, int size)
     mSize = size;
 }
 
-AnnotationProperties::AnnotationProperties(const AnnotationProperties& other)
-{
-    mOutlineColor = other.mOutlineColor;
-    mFillColor = other.mFillColor;
-    mSize = other.mSize;
-    mFillType = other.mFillType;
-}
-
 QColor AnnotationProperties::outlineColor() const
 {
     return mOutlineColor;

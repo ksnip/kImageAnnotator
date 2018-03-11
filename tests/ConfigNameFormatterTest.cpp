@@ -32,7 +32,7 @@ void ConfigNameFormatterTest::initTestCase()
 void ConfigNameFormatterTest::TestToolString_Should_FormatToolStringCorrectly()
 {
     for(auto tool : toolList) {
-        auto result = ConfigNameFormatter::toolString(tool);
+        auto result = ConfigNameFormatter::annotationTool(tool);
 
         auto expected = QStringLiteral("AnnotationTool_") + QString::number(static_cast<int>(tool));
         QCOMPARE(result, expected);
@@ -42,9 +42,9 @@ void ConfigNameFormatterTest::TestToolString_Should_FormatToolStringCorrectly()
 void ConfigNameFormatterTest::TestToolColorString_Should_FormatToolStringCorrectly()
 {
     for(auto tool : toolList) {
-        auto result = ConfigNameFormatter::toolColorString(tool);
+        auto result = ConfigNameFormatter::toolOutlineColor(tool);
 
-        auto expected = QStringLiteral("Application/AnnotationTool_") + QString::number(static_cast<int>(tool)) + QStringLiteral("_Color");
+        auto expected = QStringLiteral("Application/AnnotationTool_") + QString::number(static_cast<int>(tool)) + QStringLiteral("_OutlineColor");
         QCOMPARE(result, expected);
     }
 }
@@ -52,7 +52,7 @@ void ConfigNameFormatterTest::TestToolColorString_Should_FormatToolStringCorrect
 void ConfigNameFormatterTest::TestToolSizeString_Should_FormatToolStringCorrectly()
 {
     for(auto tool : toolList) {
-        auto result = ConfigNameFormatter::toolSizeString(tool);
+        auto result = ConfigNameFormatter::toolSize(tool);
 
         auto expected = QStringLiteral("Application/AnnotationTool_") + QString::number(static_cast<int>(tool)) + QStringLiteral("_Size");
         QCOMPARE(result, expected);
@@ -62,7 +62,7 @@ void ConfigNameFormatterTest::TestToolSizeString_Should_FormatToolStringCorrectl
 void ConfigNameFormatterTest::TestToolFillTypeString_Should_FormatToolStringCorrectly()
 {
     for(auto tool : toolList) {
-        auto result = ConfigNameFormatter::toolFillTypeString(tool);
+        auto result = ConfigNameFormatter::toolFillType(tool);
 
         auto expected = QStringLiteral("Application/AnnotationTool_") + QString::number(static_cast<int>(tool)) + QStringLiteral("_FillType");
         QCOMPARE(result, expected);

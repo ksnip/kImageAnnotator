@@ -27,8 +27,8 @@
 class AnnotationProperties
 {
 public:
+    AnnotationProperties() = default;
     AnnotationProperties(const QColor& color, int size);
-    AnnotationProperties(const AnnotationProperties& other);
     ~AnnotationProperties() = default;
     QColor outlineColor() const;
     void setOutlineColor(const QColor& color);

@@ -56,7 +56,7 @@ void AnnotationNumber::paint(QPainter* painter, const QStyleOptionGraphicsItem* 
     AbstractAnnotationRect::paint(painter, option, widget);
 
     painter->setFont(*mFont);
-    painter->setPen(QColor("white"));
+    painter->setPen(properties().foregroundColor());
     painter->drawText(boundingRect(), Qt::AlignCenter, mNumberString);
 }
 

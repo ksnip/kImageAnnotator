@@ -42,16 +42,18 @@ public:
     ~KImageAnnotator();
 
 private:
-    AnnotationArea*    mAnnotationArea;
-    QGraphicsView*     mView;
-    QHBoxLayout*       mMainLayout;
-    QVBoxLayout*       mToolsLayout;
-    QVBoxLayout*       mPropertiesLayout;
-    ToolPicker*        mToolPicker;
-    ColorPicker*       mColorPicker;
-    SizePicker*        mSizePicker;
-    FillPicker*        mFillPicker;
-    Config*            mConfig;
+    AnnotationArea* mAnnotationArea;
+    QGraphicsView*  mView;
+    QHBoxLayout*    mMainLayout;
+    QVBoxLayout*    mToolsLayout;
+    QVBoxLayout*    mPropertiesLayout;
+    ToolPicker*     mToolPicker;
+    ColorPicker*    mOutlineColorPicker;
+    ColorPicker*    mFillColorPicker;
+    ColorPicker*    mForegroundColorPicker;
+    SizePicker*     mSizePicker;
+    FillPicker*     mFillPicker;
+    Config*         mConfig;
     VisibilitySwitcher mVisibilitySwitcher;
 
     void initAppSettings();
