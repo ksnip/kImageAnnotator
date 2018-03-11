@@ -32,6 +32,7 @@ public:
     void setIconSize(const QSize& iconSize);
     QSize iconSize() const;
     QIcon createColorIcon(const QColor& color) const;
+    QIcon createSizeIcon(int size) const;
 
 private:
     QSize mIconSize;

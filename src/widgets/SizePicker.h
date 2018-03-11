@@ -20,18 +20,19 @@
 #ifndef SIZEPICKER_H
 #define SIZEPICKER_H
 
-#include <QFrame>
-#include <QVBoxLayout>
-#include <QButtonGroup>
-#include <QToolButton>
-#include <QPainter>
+#include <QWidget>
+#include <QHBoxLayout>
+#include <QComboBox>
+#include <QLabel>
 
-class SizePicker : public QFrame
+#include "../common/helper/IconCreater.h"
+
+class SizePicker : public QWidget
 {
     Q_OBJECT
 
 public:
-    SizePicker();
+    SizePicker(const QString& name);
     ~SizePicker();
     void setSize(int size);
 
@@ -39,19 +40,18 @@ signals:
     void sizeSelected(int size) const;
 
 private:
-    QVBoxLayout                  *mLayout;
-    QButtonGroup                 *mButtonGroup;
-    QHash<QAbstractButton*, int>  mButtonToSize;
-    QList<int>                    mSizeList;
-    QSize                        *mIconSize;
-    int                           mSelectedSize;
+    QHBoxLayout*  mLayout;
+    QComboBox*    mComboBox;
+    QLabel*       mLabel;
+    QList<int>    mSizeList;
+    int           mSelectedSize;
+    IconCreater*  mIconCreater;
 
-    void initGui();
-    QIcon createIcon(int size) const;
+    void initGui(const QString& name);
     void setSizeAndNotify(int size);
 
 private slots:
-    void buttonClicked(QAbstractButton *button);
+    void selectionChanged();
 };
 
 #endif // SIZEPICKER_H

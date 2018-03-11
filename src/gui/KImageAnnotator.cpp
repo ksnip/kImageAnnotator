@@ -51,14 +51,14 @@ void KImageAnnotator::initGui()
     mMainLayout = new QGridLayout();
     mToolPicker = new ToolPicker();
     mColorPicker = new ColorPicker(tr("Color"));
-    mSizePicker = new SizePicker();
+    mSizePicker = new SizePicker(tr("Size"));
     mFillPicker = new FillPicker();
 
-    mMainLayout->addWidget(mToolPicker, 0, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
-    mMainLayout->addWidget(mSizePicker, 1, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
-    mMainLayout->addWidget(mFillPicker, 2, 0, 1, 1, Qt::AlignCenter | Qt::AlignTop);
-    mMainLayout->addWidget(mView, 0, 1, 3, -1);
-    mMainLayout->addWidget(mColorPicker, 4, 1, -1, 1);
+    mMainLayout->addWidget(mToolPicker, 0, 0, -1, 1, Qt::AlignTop);
+    mMainLayout->addWidget(mView, 0, 1, -1, 1);
+    mMainLayout->addWidget(mColorPicker, 0, 2, Qt::AlignLeft | Qt::AlignTop);
+    mMainLayout->addWidget(mSizePicker, 1, 2, Qt::AlignLeft | Qt::AlignTop);
+    mMainLayout->addWidget(mFillPicker, 2, 2, Qt::AlignLeft | Qt::AlignTop);
     setLayout(mMainLayout);
 
     mVisibilitySwitcher.setColorWidget(mColorPicker);
@@ -93,4 +93,3 @@ void KImageAnnotator::updateSelection(ToolTypes tool)
 
     mVisibilitySwitcher.setCurrentTool(tool);
 }
-

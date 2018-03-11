@@ -19,7 +19,7 @@
 
 #include "SizePicker.h"
 
-SizePicker::SizePicker()
+SizePicker::SizePicker(const QString& name)
 {
     mSizeList.append(2);
     mSizeList.append(3);
@@ -28,71 +28,48 @@ SizePicker::SizePicker()
     mSizeList.append(8);
     mSizeList.append(12);
 
-    mIconSize = new QSize(48, 16);
+    mIconCreater = new IconCreater();
 
-    initGui();
+    initGui(name);
 
-    connect(mButtonGroup, static_cast<void (QButtonGroup::*)(QAbstractButton*)>(&QButtonGroup::buttonClicked), this, &SizePicker::buttonClicked);
+    connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &SizePicker::selectionChanged);
 }
 
 SizePicker::~SizePicker()
 {
-    delete mIconSize;
     delete mLayout;
-    delete mButtonGroup;
-    for(auto button : mButtonToSize.keys()) {
-        delete button;
-    }
+    delete mComboBox;
+    delete mLabel;
+    delete mIconCreater;
 }
 
 void SizePicker::setSize(int size)
 {
-    auto button = mButtonToSize.key(size);
-    if(button) {
-        button->setChecked(true);
+    auto index = mComboBox->findData(size);
+    if(index != -1) {
+        mComboBox->setCurrentIndex(index);
         setSizeAndNotify(size);
     }
 }
 
-void SizePicker::initGui()
+void SizePicker::initGui(const QString& name)
 {
-    mLayout = new QVBoxLayout(this);
+    mLayout = new QHBoxLayout(this);
     mLayout->setSpacing(0);
-    mLayout->setContentsMargins(0, 0, 0, 0);
-    mButtonGroup = new QButtonGroup(this);
+
+    mLabel = new QLabel(name + QStringLiteral(": "));
+    mComboBox = new QComboBox(this);
+    mComboBox->setIconSize(mIconCreater->iconSize());
 
     for(auto size : mSizeList) {
-        auto button = new QToolButton(this);
-        button->setIcon(createIcon(size));
-        button->setToolTip(QString::number(size) + QStringLiteral("px"));
-        button->setCheckable(true);
-        button->setAutoRaise(true);
-        button->setIconSize(*mIconSize);
-        button->setStyleSheet(QStringLiteral("QToolButton { padding-right: -1px; padding-bottom: -1px; margin: 0px }"));
-        button->setFocusPolicy(Qt::NoFocus);
-        mButtonToSize[button] = size;
-        mButtonGroup->addButton(button);
-        mLayout->addWidget(button, Qt::AlignTop);
+        mComboBox->addItem(mIconCreater->createSizeIcon(size), QString::number(size) + QStringLiteral("px"), size);
     }
 
+    mLayout->addWidget(mLabel);
+    mLayout->addWidget(mComboBox);
+
     setLayout(mLayout);
-    setFrameShape(QFrame::Panel);
-    setFrameShadow(QFrame::Sunken);
     setFixedSize(sizeHint());
-}
-
-QIcon SizePicker::createIcon(int size) const
-{
-    QPixmap pixmap(*mIconSize);
-    pixmap.fill(Qt::transparent);
-    QPainter painter(&pixmap);
-    QPen pen;
-    pen.setColor("#505050");
-    pen.setWidth(size);
-    painter.setPen(pen);
-    painter.drawLine(QPointF(0, mIconSize->height() / 2), QPointF(mIconSize->width(), mIconSize->height() / 2));
-
-    return QIcon(pixmap);
 }
 
 void SizePicker::setSizeAndNotify(int size)
@@ -101,8 +78,8 @@ void SizePicker::setSizeAndNotify(int size)
     emit sizeSelected(size);
 }
 
-
-void SizePicker::buttonClicked(QAbstractButton* button)
+void SizePicker::selectionChanged()
 {
-    setSizeAndNotify(mButtonToSize[button]);
+    auto size = mComboBox->currentData().toInt();
+    setSizeAndNotify(size);
 }

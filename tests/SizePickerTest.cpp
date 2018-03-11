@@ -21,7 +21,7 @@
 
 void SizePickerTest::TestSelectSize_Should_EmitSignal_When_SizeChanged()
 {
-    SizePicker sizePicker;
+    SizePicker sizePicker(QStringLiteral("test"));
     QSignalSpy spy(&sizePicker, &SizePicker::sizeSelected);
     auto expectedSize = 8;
 
@@ -34,7 +34,7 @@ void SizePickerTest::TestSelectSize_Should_EmitSignal_When_SizeChanged()
 
 void SizePickerTest::TestSelectSize_Should_NotEmitSignal_When_SelectedSizeDoesntExists()
 {
-    SizePicker sizePicker;
+    SizePicker sizePicker(QStringLiteral("test"));
     QSignalSpy spy(&sizePicker, &SizePicker::sizeSelected);
     auto sizeNotInList = 99;
 

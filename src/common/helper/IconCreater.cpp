@@ -45,3 +45,17 @@ QIcon IconCreater::createColorIcon(const QColor& color) const
 
     return QIcon(pixmap);
 }
+
+QIcon IconCreater::createSizeIcon(int size) const
+{
+    QPixmap pixmap(mIconSize);
+    pixmap.fill(Qt::transparent);
+    QPainter painter(&pixmap);
+    QPen pen;
+    pen.setColor(QColor(Qt::black));
+    pen.setWidth(size);
+    painter.setPen(pen);
+    painter.drawLine(QPointF(0, mIconSize.height() / 2), QPointF(mIconSize.width(), mIconSize.height() / 2));
+
+    return QIcon(pixmap);
+}
