@@ -19,82 +19,50 @@
 
 #include "FillPicker.h"
 
-FillPicker::FillPicker()
+FillPicker::FillPicker(const QString& name)
 {
     mFillList.append(FillTypes::NoFill);
-    mFillList.append(FillTypes::SeperateFill);
-    mFillList.append(FillTypes::SameFill);
+    mFillList.append(FillTypes::Fill);
+    mFillList.append(FillTypes::SameFillAsOutline);
 
-    mIconSize = new QSize(48, 32);
+    initGui(name);
 
-    initGui();
-
-    connect(mButtonGroup, static_cast<void (QButtonGroup::*)(QAbstractButton*)>(&QButtonGroup::buttonClicked), this, &FillPicker::buttonClicked);
+    connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &FillPicker::selectionChanged);
 }
 
 FillPicker::~FillPicker()
 {
-    delete mIconSize;
     delete mLayout;
-    delete mButtonGroup;
-    for(auto button : mButtonToFill.keys()) {
-        delete button;
-    }
+    delete mLabel;
+    delete mComboBox;
 }
 
 void FillPicker::setFill(FillTypes fill)
 {
-    auto button = mButtonToFill.key(fill);
-    button->setChecked(true);
-    setFillAndNotify(fill);
+    auto index = mComboBox->findData(mFillList.indexOf(fill));
+    if(index != -1) {
+        mComboBox->setCurrentIndex(index);
+        setFillAndNotify(fill);
+    }
 }
 
-void FillPicker::initGui()
+void FillPicker::initGui(const QString& name)
 {
-    mLayout = new QVBoxLayout(this);
+    mLayout = new QHBoxLayout(this);
     mLayout->setSpacing(0);
-    mLayout->setContentsMargins(0, 0, 0, 0);
-    mButtonGroup = new QButtonGroup(this);
 
-    for(auto fill : mFillList) {
-        auto button = new QToolButton(this);
-        button->setIcon(createIcon(fill));
-        button->setToolTip(getFillTypeString(fill));
-        button->setCheckable(true);
-        button->setAutoRaise(true);
-        button->setIconSize(*mIconSize);
-        button->setStyleSheet(QStringLiteral("QToolButton { padding-right: -1px; padding-bottom: -1px; margin: 0px }"));
-        button->setFocusPolicy(Qt::NoFocus);
-        mButtonToFill[button] = fill;
-        mButtonGroup->addButton(button);
-        mLayout->addWidget(button, Qt::AlignTop);
-    }
+    mLabel = new QLabel(name + QStringLiteral(": "));
+    mComboBox = new QComboBox(this);
+
+    mComboBox->addItem(tr("No Fill"), mFillList.indexOf(FillTypes::NoFill));
+    mComboBox->addItem(tr("Fill"), mFillList.indexOf(FillTypes::Fill));
+    mComboBox->addItem(tr("Same as Outline"), mFillList.indexOf(FillTypes::SameFillAsOutline));
+
+    mLayout->addWidget(mLabel);
+    mLayout->addWidget(mComboBox);
 
     setLayout(mLayout);
-    setFrameShape(QFrame::Panel);
-    setFrameShadow(QFrame::Sunken);
     setFixedSize(sizeHint());
-}
-
-QIcon FillPicker::createIcon(FillTypes fill) const
-{
-    QPixmap pixmap(*mIconSize);
-    pixmap.fill(Qt::transparent);
-    QPainter painter(&pixmap);
-    QPen pen;
-    pen.setColor("#505050");
-    pen.setWidth(4);
-    painter.setPen(pen);
-
-    if (fill == FillTypes::SeperateFill) {
-        painter.setBrush(Qt::gray);
-    } else if (fill == FillTypes::SameFill){
-        painter.setBrush(QColor("#505050"));
-    }
-
-    painter.drawRect(QRectF(0, 7, mIconSize->width(), mIconSize->height() - 14));
-
-    return QIcon(pixmap);
 }
 
 void FillPicker::setFillAndNotify(FillTypes fill)
@@ -103,19 +71,9 @@ void FillPicker::setFillAndNotify(FillTypes fill)
     emit fillSelected(fill);
 }
 
-QString FillPicker::getFillTypeString(FillTypes fill) const
+void FillPicker::selectionChanged()
 {
-    if(fill == FillTypes::NoFill) {
-        return tr("No Fill");
-    } else if(fill == FillTypes::SeperateFill) {
-        return tr("Seperate Fill");
-    } else if(fill == FillTypes::SameFill) {
-        return tr("Same Fill");
-    }
-}
-
-void FillPicker::buttonClicked(QAbstractButton* button)
-{
-    setFillAndNotify(mButtonToFill[button]);
+    auto fill = mFillList[mComboBox->currentData().toInt()];
+    setFillAndNotify(fill);
 }
 

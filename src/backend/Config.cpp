@@ -72,7 +72,7 @@ void Config::setToolSize(int size, ToolTypes tool)
 
 FillTypes Config::toolFillType(ToolTypes tool) const
 {
-    return mConfig.value(ConfigNameFormatter::toolFillTypeString(tool), static_cast<int>(FillTypes::SameFill)).value<FillTypes>();
+    return mConfig.value(ConfigNameFormatter::toolFillTypeString(tool), static_cast<int>(FillTypes::SameFillAsOutline)).value<FillTypes>();
 }
 
 void Config::setToolFillType(FillTypes fillType, ToolTypes tool)

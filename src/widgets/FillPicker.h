@@ -20,20 +20,19 @@
 #ifndef FILLPICKER_H
 #define FILLPICKER_H
 
-#include <QFrame>
-#include <QVBoxLayout>
-#include <QButtonGroup>
-#include <QToolButton>
-#include <QPainter>
+#include <QWidget>
+#include <QHBoxLayout>
+#include <QComboBox>
+#include <QLabel>
 
 #include "../common/enum/FillTypes.h"
 
-class FillPicker : public QFrame
+class FillPicker : public QWidget
 {
 Q_OBJECT
 
 public:
-    FillPicker();
+    FillPicker(const QString& name);
     ~FillPicker();
     void setFill(FillTypes fill);
 
@@ -41,20 +40,17 @@ signals:
     void fillSelected(FillTypes fill) const;
 
 private:
-    QVBoxLayout                  *mLayout;
-    QButtonGroup                 *mButtonGroup;
-    QHash<QAbstractButton*, FillTypes>  mButtonToFill;
-    QSize                        *mIconSize;
-    QList<FillTypes>              mFillList;
-    FillTypes                     mSelectedFill;
+    QHBoxLayout      *mLayout;
+    QLabel           *mLabel;
+    QComboBox        *mComboBox;
+    QList<FillTypes>  mFillList;
+    FillTypes    mSelectedFill;
 
-    void initGui();
-    QIcon createIcon(FillTypes fill) const;
+    void initGui(const QString& name);
     void setFillAndNotify(FillTypes fill);
-    QString getFillTypeString(FillTypes fill) const;
 
 private slots:
-    void buttonClicked(QAbstractButton *button);
+    void selectionChanged();
 };
 
 #endif // FILLPICKER_H

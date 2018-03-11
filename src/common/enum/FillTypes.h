@@ -25,8 +25,8 @@
 enum class FillTypes
 {
     NoFill,
-    SeperateFill,
-    SameFill
+    Fill,
+    SameFillAsOutline
 };
 
 Q_DECLARE_METATYPE(FillTypes);

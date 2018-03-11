@@ -52,7 +52,7 @@ void KImageAnnotator::initGui()
     mToolPicker = new ToolPicker();
     mColorPicker = new ColorPicker(tr("Color"));
     mSizePicker = new SizePicker(tr("Size"));
-    mFillPicker = new FillPicker();
+    mFillPicker = new FillPicker(tr("Fill"));
 
     mMainLayout->addWidget(mToolPicker, 0, 0, -1, 1, Qt::AlignTop);
     mMainLayout->addWidget(mView, 0, 1, -1, 1);
