@@ -49,7 +49,6 @@ private:
     QVBoxLayout*    mPropertiesLayout;
     ToolPicker*     mToolPicker;
     ColorPicker*    mOutlineColorPicker;
-    ColorPicker*    mFillColorPicker;
     ColorPicker*    mForegroundColorPicker;
     SizePicker*     mSizePicker;
     FillPicker*     mFillPicker;

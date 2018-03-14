@@ -37,7 +37,6 @@ KImageAnnotator::~KImageAnnotator()
     delete mPropertiesLayout;
     delete mToolPicker;
     delete mOutlineColorPicker;
-    delete mFillColorPicker;
     delete mForegroundColorPicker;
     delete mSizePicker;
     delete mFillPicker;
@@ -60,30 +59,27 @@ void KImageAnnotator::initGui()
     mToolsLayout = new QVBoxLayout();
     mPropertiesLayout = new QVBoxLayout();
     mToolPicker = new ToolPicker();
-    mOutlineColorPicker = new ColorPicker(tr("Outline"), 70);
-    mFillColorPicker = new ColorPicker(tr("Fill"), 70);
-    mForegroundColorPicker = new ColorPicker(tr("Foreground"), 70);
+    mOutlineColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("color-fill")));
+    mForegroundColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("format-text-color")));
     mSizePicker = new SizePicker(tr("Size"), 70);
     mFillPicker = new FillPicker(tr("Fill"), 70);
 
     mToolsLayout->addWidget(mToolPicker);
-    mToolsLayout->setAlignment(Qt::AlignTop);
+    mToolsLayout->addWidget(mOutlineColorPicker);
+    mToolsLayout->addWidget(mForegroundColorPicker);
+    mToolsLayout->addWidget(mSizePicker);
+    mToolsLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 
-    mPropertiesLayout->addWidget(mOutlineColorPicker);
-    mPropertiesLayout->addWidget(mFillColorPicker);
-    mPropertiesLayout->addWidget(mForegroundColorPicker);
-    mPropertiesLayout->addSpacing(10);
     mPropertiesLayout->addWidget(mSizePicker);
     mPropertiesLayout->addWidget(mFillPicker);
     mPropertiesLayout->setAlignment(Qt::AlignTop);
 
     mMainLayout->addLayout(mToolsLayout);
     mMainLayout->addWidget(mView);
-    mMainLayout->addLayout(mPropertiesLayout);
+//     mMainLayout->addLayout(mPropertiesLayout);
     setLayout(mMainLayout);
 
     mVisibilitySwitcher.setOutlineColorWidget(mOutlineColorPicker);
-    mVisibilitySwitcher.setFillColorWidget(mFillColorPicker);
     mVisibilitySwitcher.setForegroundColorWidget(mForegroundColorPicker);
     mVisibilitySwitcher.setSizeWidget(mSizePicker);
     mVisibilitySwitcher.setFillWidget(mFillPicker);
@@ -94,9 +90,6 @@ void KImageAnnotator::initGui()
     connect(mToolPicker, &ToolPicker::toolSelected, this, &KImageAnnotator::updateSelection);
     connect(mOutlineColorPicker, &ColorPicker::colorSelected, [this](const QColor & color) {
         mConfig->setToolOutlineColor(color, mToolPicker->tool());
-    });
-    connect(mFillColorPicker, &ColorPicker::colorSelected, [this](const QColor & color) {
-        mConfig->setToolFillColor(color, mToolPicker->tool());
     });
     connect(mForegroundColorPicker, &ColorPicker::colorSelected, [this](const QColor & color) {
         mConfig->setToolForegroundColor(color, mToolPicker->tool());
@@ -117,7 +110,6 @@ void KImageAnnotator::setupDefaults()
 void KImageAnnotator::updateSelection(ToolTypes tool)
 {
     mOutlineColorPicker->setColor(mConfig->toolOutlineColor(tool));
-    mFillColorPicker->setColor(mConfig->toolFillColor(tool));
     mForegroundColorPicker->setColor(mConfig->toolForegroundColor(tool));
     mSizePicker->setSize(mConfig->toolSize(tool));
     mFillPicker->setFill(mConfig->toolFillType(tool));

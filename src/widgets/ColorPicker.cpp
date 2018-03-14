@@ -19,53 +19,45 @@
 
 #include "ColorPicker.h"
 
-ColorPicker::ColorPicker(const QString& name, int minLabelWidth)
+ColorPicker::ColorPicker(const QIcon& icon)
 {
-    mIconCreater = new IconCreater();
+    initGui(icon);
 
-    initGui(name, minLabelWidth);
-
-    connect(mButton, &QPushButton::clicked, this, &ColorPicker::buttonClicked);
+    connect(mColorCombo, &KColorCombo::activated, this, &ColorPicker::colorActivated);
 }
 
 ColorPicker::~ColorPicker()
 {
     delete mLayout;
-    delete mButton;
     delete mLabel;
-    delete mIconCreater;
+    delete mColorCombo;
 }
 
 void ColorPicker::setColor(const QColor& color)
 {
     mSelectedColor = color;
-    mButton->setIcon(mIconCreater->createColorIcon(color));
+    mColorCombo->setColor(color);
     emit colorSelected(color);
 }
 
-void ColorPicker::initGui(const QString& name, int minLabelWidth)
+void ColorPicker::initGui(const QIcon& icon)
 {
     mLayout = new QHBoxLayout();
     mLayout->setContentsMargins(0, 0, 0, 0);
 
-    mLabel = new QLabel(name + QStringLiteral(": "));
-    if(minLabelWidth != -1) {
-        mLabel->setMinimumWidth(minLabelWidth);
-    }
+    mLabel = new QLabel();
+    mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
 
-    mButton = new QPushButton();
-    mButton->setIcon(mIconCreater->createColorIcon(QColor(Qt::red)));
-    mButton->setIconSize(mIconCreater->iconSize());
+    mColorCombo = new KColorCombo();
 
     mLayout->addWidget(mLabel);
-    mLayout->addWidget(mButton);
+    mLayout->addWidget(mColorCombo);
 
     setLayout(mLayout);
     setFixedSize(sizeHint());
 }
 
-void ColorPicker::buttonClicked()
+void ColorPicker::colorActivated(const QColor& color)
 {
-    auto color = QColorDialog::getColor(mSelectedColor, this, tr("Pick a Color"));
     setColor(color);
 }

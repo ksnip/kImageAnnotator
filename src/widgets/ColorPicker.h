@@ -22,34 +22,30 @@
 
 #include <QWidget>
 #include <QHBoxLayout>
-#include <QPushButton>
 #include <QLabel>
-#include <QColorDialog>
-
-#include "../common/helper/IconCreater.h"
+#include <KColorCombo>
 
 class ColorPicker : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ColorPicker(const QString& name, int minLabelWidth = -1);
+    explicit ColorPicker(const QIcon& icon);
     ~ColorPicker();
     void setColor(const QColor& color);
 
 signals:
-    void colorSelected(const QColor& newColor);
+    void colorSelected(const QColor& color);
 
 private:
     QHBoxLayout*           mLayout;
-    QPushButton*           mButton;
     QLabel*                mLabel;
     QColor                 mSelectedColor;
-    IconCreater*           mIconCreater;
+    KColorCombo*           mColorCombo;
 
-    void initGui(const QString& name, int minLabelWidth);
+    void initGui(const QIcon& icon);
 
 private slots:
-    void buttonClicked();
+    void colorActivated(const QColor& color);
 };
 
 #endif // COLORPICKER_H

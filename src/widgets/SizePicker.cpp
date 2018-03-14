@@ -57,16 +57,16 @@ void SizePicker::initGui(const QString& name, int minLabelWidth)
     mLayout = new QHBoxLayout(this);
     mLayout->setContentsMargins(0, 0, 0, 0);
 
-    mLabel = new QLabel(name + QStringLiteral(": "));
-    if(minLabelWidth != -1) {
-        mLabel->setMinimumWidth(minLabelWidth);
-    }
+//     mLabel = new QLabel(name + QStringLiteral(": "));
+//     if(minLabelWidth != -1) {
+//         mLabel->setMinimumWidth(minLabelWidth);
+//     }
 
     mComboBox = new QComboBox(this);
     mComboBox->setIconSize(mIconCreater->iconSize());
 
     for(auto size : mSizeList) {
-        mComboBox->addItem(mIconCreater->createSizeIcon(size), QString::number(size) + QStringLiteral("px"), size);
+        mComboBox->addItem(mIconCreater->createSizeIcon(size), QString(), size);
     }
 
     mLayout->addWidget(mLabel);

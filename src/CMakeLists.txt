@@ -1,5 +1,7 @@
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Widgets)
 
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons I18n WidgetsAddons)
+
 set(kimageannotator_SRCS main.cpp
                          gui/KImageAnnotator.cpp
                          gui/VisibilitySwitcher.cpp
@@ -27,4 +29,4 @@ set(kimageannotator_SRCS main.cpp
 
 add_executable(kimageannotator_app ${kimageannotator_SRCS} ${kimageannotator_ICON_RES_RCC})
 
-target_link_libraries(kimageannotator_app Qt5::Widgets)
+target_link_libraries(kimageannotator_app Qt5::Widgets KF5::CoreAddons KF5::I18n KF5::WidgetsAddons)
