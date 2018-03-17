@@ -22,17 +22,16 @@
 
 #include <QWidget>
 #include <QHBoxLayout>
-#include <QComboBox>
+#include <QSpinBox>
 #include <QLabel>
-
-#include "../common/helper/IconCreater.h"
+#include <QIcon>
 
 class SizePicker : public QWidget
 {
     Q_OBJECT
 
 public:
-    SizePicker(const QString& name, int minLabelWidth = -1);
+    SizePicker(const QIcon& icon);
     ~SizePicker();
     void setSize(int size);
 
@@ -40,14 +39,12 @@ signals:
     void sizeSelected(int size) const;
 
 private:
-    QHBoxLayout*  mLayout;
-    QComboBox*    mComboBox;
-    QLabel*       mLabel;
-    QList<int>    mSizeList;
-    int           mSelectedSize;
-    IconCreater*  mIconCreater;
+    QHBoxLayout* mLayout;
+    QSpinBox*    mSpinBox;
+    QLabel*      mLabel;
+    int          mSelectedSize;
 
-    void initGui(const QString& name, int minLabelWidth);
+    void initGui(const QIcon& icon);
     void setSizeAndNotify(int size);
 
 private slots:

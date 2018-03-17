@@ -61,7 +61,7 @@ void KImageAnnotator::initGui()
     mToolPicker = new ToolPicker();
     mOutlineColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("color-fill")));
     mForegroundColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("format-text-color")));
-    mSizePicker = new SizePicker(tr("Size"), 70);
+    mSizePicker = new SizePicker(QIcon::fromTheme(QStringLiteral("newline")));
     mFillPicker = new FillPicker(tr("Fill"), 70);
 
     mToolsLayout->addWidget(mToolPicker);

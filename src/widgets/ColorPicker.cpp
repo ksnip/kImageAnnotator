@@ -49,6 +49,7 @@ void ColorPicker::initGui(const QIcon& icon)
     mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
 
     mColorCombo = new KColorCombo();
+    mColorCombo->setFixedSize(QSize(55, mColorCombo->sizeHint().height()));
 
     mLayout->addWidget(mLabel);
     mLayout->addWidget(mColorCombo);

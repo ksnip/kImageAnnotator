@@ -19,58 +19,41 @@
 
 #include "SizePicker.h"
 
-SizePicker::SizePicker(const QString& name, int minLabelWidth)
+SizePicker::SizePicker(const QIcon& icon)
 {
-    mSizeList.append(2);
-    mSizeList.append(3);
-    mSizeList.append(4);
-    mSizeList.append(5);
-    mSizeList.append(8);
-    mSizeList.append(12);
+    initGui(icon);
 
-    mIconCreater = new IconCreater();
-
-    initGui(name, minLabelWidth);
-
-    connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &SizePicker::selectionChanged);
+    connect(mSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SizePicker::selectionChanged);
 }
 
 SizePicker::~SizePicker()
 {
     delete mLayout;
-    delete mComboBox;
+    delete mSpinBox;
     delete mLabel;
-    delete mIconCreater;
 }
 
 void SizePicker::setSize(int size)
 {
-    auto index = mComboBox->findData(size);
-    if(index != -1) {
-        mComboBox->setCurrentIndex(index);
-        setSizeAndNotify(size);
-    }
+    mSpinBox->setValue(size);
 }
 
-void SizePicker::initGui(const QString& name, int minLabelWidth)
+void SizePicker::initGui(const QIcon& icon)
 {
     mLayout = new QHBoxLayout(this);
     mLayout->setContentsMargins(0, 0, 0, 0);
 
-//     mLabel = new QLabel(name + QStringLiteral(": "));
-//     if(minLabelWidth != -1) {
-//         mLabel->setMinimumWidth(minLabelWidth);
-//     }
+    mLabel = new QLabel();
+    mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
 
-    mComboBox = new QComboBox(this);
-    mComboBox->setIconSize(mIconCreater->iconSize());
-
-    for(auto size : mSizeList) {
-        mComboBox->addItem(mIconCreater->createSizeIcon(size), QString(), size);
-    }
+    mSpinBox = new QSpinBox(this);
+    mSpinBox->setFixedSize(QSize(55, mSpinBox->sizeHint().height()));
+    mSpinBox->setSuffix(QStringLiteral("px"));
+    mSpinBox->setMinimum(1);
+    mSpinBox->setMaximum(20);
 
     mLayout->addWidget(mLabel);
-    mLayout->addWidget(mComboBox);
+    mLayout->addWidget(mSpinBox);
 
     setLayout(mLayout);
     setFixedSize(sizeHint());
@@ -84,6 +67,5 @@ void SizePicker::setSizeAndNotify(int size)
 
 void SizePicker::selectionChanged()
 {
-    auto size = mComboBox->currentData().toInt();
-    setSizeAndNotify(size);
+    setSizeAndNotify(mSpinBox->value());
 }

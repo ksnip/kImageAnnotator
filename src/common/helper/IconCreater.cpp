@@ -48,8 +48,6 @@ QIcon IconCreater::createColorIcon(const QColor& color) const
 
 QIcon IconCreater::createSizeIcon(int size) const
 {
-    auto icon = QIcon::fromTheme(QStringLiteral("format-align-vertical-center"));
-    
     QPixmap pixmap(mIconSize);
     pixmap.fill(Qt::transparent);
     QPainter painter(&pixmap);
@@ -57,8 +55,7 @@ QIcon IconCreater::createSizeIcon(int size) const
     pen.setColor(QColor(Qt::black));
     pen.setWidth(size);
     painter.setPen(pen);
-    painter.drawPixmap(QPointF(0,0), icon.pixmap(QSize(15, 15)));
-    painter.drawLine(QPointF(17, mIconSize.height() / 2), QPointF(mIconSize.width(), mIconSize.height() / 2));
+    painter.drawLine(QPointF(0, mIconSize.height() / 2), QPointF(mIconSize.width(), mIconSize.height() / 2));
 
     return QIcon(pixmap);
 }
