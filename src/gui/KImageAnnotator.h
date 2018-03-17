@@ -46,7 +46,6 @@ private:
     QGraphicsView*  mView;
     QHBoxLayout*    mMainLayout;
     QVBoxLayout*    mToolsLayout;
-    QVBoxLayout*    mPropertiesLayout;
     ToolPicker*     mToolPicker;
     ColorPicker*    mOutlineColorPicker;
     ColorPicker*    mForegroundColorPicker;

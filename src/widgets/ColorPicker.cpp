@@ -50,6 +50,7 @@ void ColorPicker::initGui(const QIcon& icon)
 
     mColorCombo = new KColorCombo();
     mColorCombo->setFixedSize(QSize(55, mColorCombo->sizeHint().height()));
+    mColorCombo->setFocusPolicy(Qt::NoFocus);
 
     mLayout->addWidget(mLabel);
     mLayout->addWidget(mColorCombo);

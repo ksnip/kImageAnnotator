@@ -23,17 +23,18 @@ ToolPicker::ToolPicker()
 {
     initGui();
 
-    connect(this, &QToolBar::actionTriggered, this, &ToolPicker::actionTriggered);
+    connect(mButtonGroup, static_cast<void (QButtonGroup::*)(QAbstractButton*)>(&QButtonGroup::buttonClicked), this, &ToolPicker::buttonClicked);
 }
 
 ToolPicker::~ToolPicker()
 {
-    delete mActionGroup;
+    delete mButtonGroup;
+    delete mLayout;
 }
 
 void ToolPicker::setTool(ToolTypes newTool)
 {
-    auto selectedAction = mActionToTool.key(newTool);
+    auto selectedAction = mButtonToTool.key(newTool);
     selectedAction->setChecked(true);
     setToolAndNotify(newTool);
 }
@@ -45,54 +46,59 @@ ToolTypes ToolPicker::tool()
 
 void ToolPicker::initGui()
 {
-    setOrientation(Qt::Vertical);
+    mLayout = new QGridLayout(this);
+    mLayout->setContentsMargins(0, 0, 0, 0);
+    mButtonGroup = new QButtonGroup(this);
 
-    mSelectAction = addAction(tr("Select"));
-    mSelectAction->setCheckable(true);
-    mSelectAction->setIcon(QPixmap(QStringLiteral(":/icons/select")));
-    mActionToTool[mSelectAction] = ToolTypes::Select;
+    auto button = createButton(i18n("Select"), QPixmap(QStringLiteral(":/icons/select")));
+    mButtonToTool[button] = ToolTypes::Select;
+    mLayout->addWidget(button, 0, 0);
+    mButtonGroup->addButton(button);
 
-    addSeparator();
+    button = createButton(i18n("Line"), QPixmap(QStringLiteral(":/icons/line")));
+    mButtonToTool[button] = ToolTypes::Line;
+    mLayout->addWidget(button, 0, 1);
+    mButtonGroup->addButton(button);
 
-    mLineAction = addAction(tr("Line"));
-    mLineAction->setCheckable(true);
-    mLineAction->setIcon(QPixmap(QStringLiteral(":/icons/line")));
-    mActionToTool[mLineAction] = ToolTypes::Line;
+    button = createButton(i18n("Rect"), QPixmap(QStringLiteral(":/icons/rect")));
+    mButtonToTool[button] = ToolTypes::Rect;
+    mLayout->addWidget(button, 2, 0);
+    mButtonGroup->addButton(button);
 
-    mRectAction = addAction(tr("Rect"));
-    mRectAction->setCheckable(true);
-    mRectAction->setIcon(QPixmap(QStringLiteral(":/icons/rect")));
-    mActionToTool[mRectAction] = ToolTypes::Rect;
+    button = createButton(i18n("Ellipse"), QPixmap(QStringLiteral(":/icons/ellipse")));
+    mButtonToTool[button] = ToolTypes::Ellipse;
+    mLayout->addWidget(button, 2, 1);
+    mButtonGroup->addButton(button);
 
-    mEllipseAction = addAction(tr("Ellipse"));
-    mEllipseAction->setCheckable(true);
-    mEllipseAction->setIcon(QPixmap(QStringLiteral(":/icons/ellipse")));
-    mActionToTool[mEllipseAction] = ToolTypes::Ellipse;
+    button = createButton(i18n("Arrow"), QPixmap(QStringLiteral(":/icons/arrow")));
+    mButtonToTool[button] = ToolTypes::Arrow;
+    mLayout->addWidget(button, 3, 0);
+    mButtonGroup->addButton(button);
 
-    mArrowAction = addAction(tr("Arrow"));
-    mArrowAction->setCheckable(true);
-    mArrowAction->setIcon(QPixmap(QStringLiteral(":/icons/arrow")));
-    mActionToTool[mArrowAction] = ToolTypes::Arrow;
+    button = createButton(i18n("Number"), QPixmap(QStringLiteral(":/icons/number")));
+    mButtonToTool[button] = ToolTypes::Number;
+    mLayout->addWidget(button, 3, 1);
+    mButtonGroup->addButton(button);
 
-    mNumberAction = addAction(tr("Number"));
-    mNumberAction->setCheckable(true);
-    mNumberAction->setIcon(QPixmap(QStringLiteral(":/icons/number")));
-    mActionToTool[mNumberAction] = ToolTypes::Number;
-
-    mActionGroup = new QActionGroup(this);
-    mActionGroup->addAction(mSelectAction);
-    mActionGroup->addAction(mLineAction);
-    mActionGroup->addAction(mRectAction);
-    mActionGroup->addAction(mEllipseAction);
-    mActionGroup->addAction(mArrowAction);
-    mActionGroup->addAction(mNumberAction);
-
+    setLayout(mLayout);
     setFixedSize(sizeHint());
 }
 
-void ToolPicker::actionTriggered(QAction* action)
+QToolButton* ToolPicker::createButton(const QString& tooltip, const QPixmap& pixmap)
 {
-    setToolAndNotify(mActionToTool.value(action));
+    auto button = new QToolButton(this);
+    button->setCheckable(true);
+    button->setAutoRaise(true);
+    button->setIconSize(QSize(24, 24));
+    button->setIcon(pixmap);
+    button->setToolTip(tooltip);
+    button->setFocusPolicy(Qt::NoFocus);
+    return button;
+}
+
+void ToolPicker::buttonClicked(QAbstractButton* button)
+{
+    setToolAndNotify(mButtonToTool.value(button));
 }
 
 void ToolPicker::setToolAndNotify(ToolTypes newTool)

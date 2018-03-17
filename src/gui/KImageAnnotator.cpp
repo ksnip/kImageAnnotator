@@ -34,7 +34,6 @@ KImageAnnotator::~KImageAnnotator()
     delete mView;
     delete mMainLayout;
     delete mToolsLayout;
-    delete mPropertiesLayout;
     delete mToolPicker;
     delete mOutlineColorPicker;
     delete mForegroundColorPicker;
@@ -57,7 +56,6 @@ void KImageAnnotator::initGui()
     mView = new QGraphicsView(mAnnotationArea);
     mMainLayout = new QHBoxLayout();
     mToolsLayout = new QVBoxLayout();
-    mPropertiesLayout = new QVBoxLayout();
     mToolPicker = new ToolPicker();
     mOutlineColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("color-fill")));
     mForegroundColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("format-text-color")));
@@ -65,18 +63,14 @@ void KImageAnnotator::initGui()
     mFillPicker = new FillPicker(tr("Fill"), 70);
 
     mToolsLayout->addWidget(mToolPicker);
+    mToolsLayout->addSpacing(20);
     mToolsLayout->addWidget(mOutlineColorPicker);
     mToolsLayout->addWidget(mForegroundColorPicker);
     mToolsLayout->addWidget(mSizePicker);
     mToolsLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 
-    mPropertiesLayout->addWidget(mSizePicker);
-    mPropertiesLayout->addWidget(mFillPicker);
-    mPropertiesLayout->setAlignment(Qt::AlignTop);
-
     mMainLayout->addLayout(mToolsLayout);
     mMainLayout->addWidget(mView);
-//     mMainLayout->addLayout(mPropertiesLayout);
     setLayout(mMainLayout);
 
     mVisibilitySwitcher.setOutlineColorWidget(mOutlineColorPicker);

@@ -51,6 +51,7 @@ void SizePicker::initGui(const QIcon& icon)
     mSpinBox->setSuffix(QStringLiteral("px"));
     mSpinBox->setMinimum(1);
     mSpinBox->setMaximum(20);
+    mSpinBox->setFocusPolicy(Qt::NoFocus);
 
     mLayout->addWidget(mLabel);
     mLayout->addWidget(mSpinBox);

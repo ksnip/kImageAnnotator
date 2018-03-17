@@ -20,13 +20,16 @@
 #ifndef TOOLPICKER_H
 #define TOOLPICKER_H
 
-#include <QToolBar>
-#include <QActionGroup>
+#include <QWidget>
+#include <QButtonGroup>
 #include <QToolButton>
+#include <QGridLayout>
+
+#include <KLocalizedString>
 
 #include "../common/enum/ToolTypes.h"
 
-class ToolPicker : public QToolBar
+class ToolPicker : public QWidget
 {
     Q_OBJECT
 public:
@@ -39,20 +42,16 @@ signals:
     void toolSelected(ToolTypes newTool);
 
 private:
-    QActionGroup*   mActionGroup;
-    QAction*        mSelectAction;
-    QAction*        mLineAction;
-    QAction*        mRectAction;
-    QAction*        mEllipseAction;
-    QAction*        mArrowAction;
-    QAction*        mNumberAction;
-    ToolTypes       mSelectedToolType;
-    QHash<QAction*,ToolTypes> mActionToTool;
+    QButtonGroup*                 mButtonGroup;
+    QGridLayout*                  mLayout;
+    ToolTypes                     mSelectedToolType;
+    QHash<QAbstractButton*,ToolTypes> mButtonToTool;
 
     void initGui();
+    QToolButton* createButton(const QString& tooltip, const QPixmap& pixmap);
 
 private slots:
-    void actionTriggered(QAction* action);
+    void buttonClicked(QAbstractButton *button);
     void setToolAndNotify(ToolTypes newTool);
 };
 
