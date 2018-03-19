@@ -26,13 +26,14 @@
 #include <QLabel>
 
 #include "../common/enum/FillTypes.h"
+#include "../common/helper/IconCreater.h"
 
 class FillPicker : public QWidget
 {
 Q_OBJECT
 
 public:
-    FillPicker(const QString& name, int minLabelWidth = -1);
+    FillPicker(const QIcon& icon);
     ~FillPicker();
     void setFill(FillTypes fill);
 
@@ -45,8 +46,9 @@ private:
     QComboBox        *mComboBox;
     QList<FillTypes>  mFillList;
     FillTypes         mSelectedFill;
+    IconCreater      *mIconCreator;
 
-    void initGui(const QString& name, int minLabelWidth);
+    void initGui(const QIcon& icon);
     void setFillAndNotify(FillTypes fill);
 
 private slots:

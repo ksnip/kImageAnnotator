@@ -31,9 +31,7 @@ AnnotationProperties AnnotationPropertiesFactory::createProperties(ToolTypes too
     properties.setFillColor(mConfig->toolFillColor(tool));
     properties.setForegroundColor(mConfig->toolForegroundColor(tool));
     properties.setSize(mConfig->toolSize(tool));
-    if(tool == ToolTypes::Arrow) {
-        properties.setFillType(FillTypes::SameFillAsOutline);
-    } else if(tool == ToolTypes::Number) {
+    if(tool == ToolTypes::Arrow || tool == ToolTypes::Number) {
         properties.setFillType(FillTypes::Fill);
     } else {
         properties.setFillType(mConfig->toolFillType(tool));

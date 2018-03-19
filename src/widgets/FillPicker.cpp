@@ -19,13 +19,14 @@
 
 #include "FillPicker.h"
 
-FillPicker::FillPicker(const QString& name, int minLabelWidth)
+FillPicker::FillPicker(const QIcon& icon)
 {
-    mFillList.append(FillTypes::NoFill);
     mFillList.append(FillTypes::Fill);
-    mFillList.append(FillTypes::SameFillAsOutline);
+    mFillList.append(FillTypes::NoFill);
 
-    initGui(name, minLabelWidth);
+    mIconCreator = new IconCreater();
+
+    initGui(icon);
 
     connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &FillPicker::selectionChanged);
 }
@@ -46,21 +47,20 @@ void FillPicker::setFill(FillTypes fill)
     }
 }
 
-void FillPicker::initGui(const QString& name, int minLabelWidth)
+void FillPicker::initGui(const QIcon& icon)
 {
     mLayout = new QHBoxLayout(this);
     mLayout->setContentsMargins(0, 0, 0, 0);
 
-    mLabel = new QLabel(name + QStringLiteral(": "));
-    if(minLabelWidth != -1) {
-        mLabel->setMinimumWidth(minLabelWidth);
-    }
+    mLabel = new QLabel();
+    mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
 
     mComboBox = new QComboBox(this);
 
-    mComboBox->addItem(tr("No Fill"), mFillList.indexOf(FillTypes::NoFill));
-    mComboBox->addItem(tr("Fill"), mFillList.indexOf(FillTypes::Fill));
-    mComboBox->addItem(tr("Same as Outline"), mFillList.indexOf(FillTypes::SameFillAsOutline));
+    mComboBox->addItem(mIconCreator->createFillIcon(true), QString(), mFillList.indexOf(FillTypes::Fill));
+    mComboBox->addItem(mIconCreator->createFillIcon(false), QString(), mFillList.indexOf(FillTypes::NoFill));
+    mComboBox->setFixedSize(QSize(55, mComboBox->sizeHint().height()));
+    mComboBox->setIconSize(mIconCreator->iconSize());
 
     mLayout->addWidget(mLabel);
     mLayout->addWidget(mComboBox);

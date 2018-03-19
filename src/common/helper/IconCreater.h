@@ -27,12 +27,13 @@
 class IconCreater
 {
 public:
-    IconCreater(QSize iconSize = QSize(50, 15));
+    IconCreater(QSize iconSize = QSize(25, 20));
     ~IconCreater() = default;
     void setIconSize(const QSize& iconSize);
     QSize iconSize() const;
     QIcon createColorIcon(const QColor& color) const;
     QIcon createSizeIcon(int size) const;
+    QIcon createFillIcon(bool withFill) const;
 
 private:
     QSize mIconSize;

@@ -50,22 +50,22 @@ void ToolPicker::initGui()
     mLayout->setContentsMargins(0, 0, 0, 0);
     mButtonGroup = new QButtonGroup(this);
 
-    auto button = createButton(i18n("Select"), QPixmap(QStringLiteral(":/icons/select")));
+    auto button = createButton(i18n("Select"), QIcon::fromTheme(QStringLiteral("edit-select")));
     mButtonToTool[button] = ToolTypes::Select;
     mLayout->addWidget(button, 0, 0);
     mButtonGroup->addButton(button);
 
-    button = createButton(i18n("Line"), QPixmap(QStringLiteral(":/icons/line")));
+    button = createButton(i18n("Line"), QIcon::fromTheme(QStringLiteral("draw-line")));
     mButtonToTool[button] = ToolTypes::Line;
     mLayout->addWidget(button, 0, 1);
     mButtonGroup->addButton(button);
 
-    button = createButton(i18n("Rect"), QPixmap(QStringLiteral(":/icons/rect")));
+    button = createButton(i18n("Rect"), QIcon::fromTheme(QStringLiteral("draw-rectangle")));
     mButtonToTool[button] = ToolTypes::Rect;
     mLayout->addWidget(button, 2, 0);
     mButtonGroup->addButton(button);
 
-    button = createButton(i18n("Ellipse"), QPixmap(QStringLiteral(":/icons/ellipse")));
+    button = createButton(i18n("Ellipse"), QIcon::fromTheme(QStringLiteral("draw-ellipse")));
     mButtonToTool[button] = ToolTypes::Ellipse;
     mLayout->addWidget(button, 2, 1);
     mButtonGroup->addButton(button);
@@ -84,13 +84,13 @@ void ToolPicker::initGui()
     setFixedSize(sizeHint());
 }
 
-QToolButton* ToolPicker::createButton(const QString& tooltip, const QPixmap& pixmap)
+QToolButton* ToolPicker::createButton(const QString& tooltip, const QIcon& icon)
 {
     auto button = new QToolButton(this);
     button->setCheckable(true);
     button->setAutoRaise(true);
     button->setIconSize(QSize(24, 24));
-    button->setIcon(pixmap);
+    button->setIcon(icon);
     button->setToolTip(tooltip);
     button->setFocusPolicy(Qt::NoFocus);
     return button;

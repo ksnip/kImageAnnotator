@@ -57,16 +57,17 @@ void KImageAnnotator::initGui()
     mMainLayout = new QHBoxLayout();
     mToolsLayout = new QVBoxLayout();
     mToolPicker = new ToolPicker();
-    mOutlineColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("color-fill")));
+    mOutlineColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("tool_color_picker")));
     mForegroundColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("format-text-color")));
     mSizePicker = new SizePicker(QIcon::fromTheme(QStringLiteral("newline")));
-    mFillPicker = new FillPicker(tr("Fill"), 70);
+    mFillPicker = new FillPicker(QIcon::fromTheme(QStringLiteral("fill-color")));
 
     mToolsLayout->addWidget(mToolPicker);
     mToolsLayout->addSpacing(20);
     mToolsLayout->addWidget(mOutlineColorPicker);
     mToolsLayout->addWidget(mForegroundColorPicker);
     mToolsLayout->addWidget(mSizePicker);
+    mToolsLayout->addWidget(mFillPicker);
     mToolsLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 
     mMainLayout->addLayout(mToolsLayout);

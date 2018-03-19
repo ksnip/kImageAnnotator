@@ -48,7 +48,7 @@ private:
     QHash<QAbstractButton*,ToolTypes> mButtonToTool;
 
     void initGui();
-    QToolButton* createButton(const QString& tooltip, const QPixmap& pixmap);
+    QToolButton* createButton(const QString& tooltip, const QIcon& icon);
 
 private slots:
     void buttonClicked(QAbstractButton *button);

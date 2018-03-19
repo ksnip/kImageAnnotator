@@ -59,3 +59,21 @@ QIcon IconCreater::createSizeIcon(int size) const
 
     return QIcon(pixmap);
 }
+
+QIcon IconCreater::createFillIcon(bool withFill) const
+{
+    QPixmap pixmap(mIconSize);
+    pixmap.fill(Qt::transparent);
+    QPen pen(QColor(Qt::black));
+    pen.setWidth(2);
+    pen.setJoinStyle(Qt::MiterJoin);
+    QPainter painter(&pixmap);
+    painter.setPen(pen);
+    if(withFill) {
+        painter.setBrush(Qt::black);
+    }
+    auto penWidth = painter.pen().width();
+    painter.drawRect(penWidth, penWidth, mIconSize.width() - penWidth * 2, mIconSize.height() - penWidth * 2);
+
+    return QIcon(pixmap);
+}
