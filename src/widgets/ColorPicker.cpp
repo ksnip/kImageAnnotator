@@ -19,41 +19,43 @@
 
 #include "ColorPicker.h"
 
-ColorPicker::ColorPicker(const QIcon& icon)
+ColorPicker::ColorPicker(const QIcon& icon, const QString& tooltip)
 {
-    initGui(icon);
+    initGui(icon, tooltip);
 
-    connect(mColorCombo, &KColorCombo::activated, this, &ColorPicker::colorActivated);
+    connect(mComboBox, &KColorCombo::activated, this, &ColorPicker::colorActivated);
 }
 
 ColorPicker::~ColorPicker()
 {
     delete mLayout;
     delete mLabel;
-    delete mColorCombo;
+    delete mComboBox;
 }
 
 void ColorPicker::setColor(const QColor& color)
 {
     mSelectedColor = color;
-    mColorCombo->setColor(color);
+    mComboBox->setColor(color);
     emit colorSelected(color);
 }
 
-void ColorPicker::initGui(const QIcon& icon)
+void ColorPicker::initGui(const QIcon& icon, const QString& tooltip)
 {
     mLayout = new QHBoxLayout();
     mLayout->setContentsMargins(0, 0, 0, 0);
 
     mLabel = new QLabel();
     mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
+    mLabel->setToolTip(tooltip);
 
-    mColorCombo = new KColorCombo();
-    mColorCombo->setFixedSize(QSize(55, mColorCombo->sizeHint().height()));
-    mColorCombo->setFocusPolicy(Qt::NoFocus);
+    mComboBox = new KColorCombo();
+    mComboBox->setFixedSize(QSize(55, mComboBox->sizeHint().height()));
+    mComboBox->setFocusPolicy(Qt::NoFocus);
+    mComboBox->setToolTip(tooltip);
 
     mLayout->addWidget(mLabel);
-    mLayout->addWidget(mColorCombo);
+    mLayout->addWidget(mComboBox);
 
     setLayout(mLayout);
     setFixedSize(sizeHint());

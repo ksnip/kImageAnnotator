@@ -31,7 +31,7 @@ class SizePicker : public QWidget
     Q_OBJECT
 
 public:
-    SizePicker(const QIcon& icon);
+    SizePicker(const QIcon& icon, const QString& tooltip);
     ~SizePicker();
     void setSize(int size);
 
@@ -44,7 +44,7 @@ private:
     QLabel*      mLabel;
     int          mSelectedSize;
 
-    void initGui(const QIcon& icon);
+    void initGui(const QIcon& icon, const QString& tooltip);
     void setSizeAndNotify(int size);
 
 private slots:

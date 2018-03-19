@@ -33,7 +33,7 @@ class FillPicker : public QWidget
 Q_OBJECT
 
 public:
-    FillPicker(const QIcon& icon);
+    FillPicker(const QIcon& icon, const QString& tooltip);
     ~FillPicker();
     void setFill(FillTypes fill);
 
@@ -48,7 +48,7 @@ private:
     FillTypes         mSelectedFill;
     IconCreater      *mIconCreator;
 
-    void initGui(const QIcon& icon);
+    void initGui(const QIcon& icon, const QString& tooltip);
     void setFillAndNotify(FillTypes fill);
 
 private slots:

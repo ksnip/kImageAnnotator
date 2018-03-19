@@ -26,6 +26,8 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 
+#include <KLocalizedString>
+
 #include "VisibilitySwitcher.h"
 #include "../annotations/AnnotationArea.h"
 #include "../backend/Config.h"
@@ -47,7 +49,7 @@ private:
     QHBoxLayout*    mMainLayout;
     QVBoxLayout*    mToolsLayout;
     ToolPicker*     mToolPicker;
-    ColorPicker*    mOutlineColorPicker;
+    ColorPicker*    mColorPicker;
     ColorPicker*    mForegroundColorPicker;
     SizePicker*     mSizePicker;
     FillPicker*     mFillPicker;

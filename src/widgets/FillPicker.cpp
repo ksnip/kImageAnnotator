@@ -19,14 +19,14 @@
 
 #include "FillPicker.h"
 
-FillPicker::FillPicker(const QIcon& icon)
+FillPicker::FillPicker(const QIcon& icon, const QString& tooltip)
 {
     mFillList.append(FillTypes::Fill);
     mFillList.append(FillTypes::NoFill);
 
     mIconCreator = new IconCreater();
 
-    initGui(icon);
+    initGui(icon, tooltip);
 
     connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &FillPicker::selectionChanged);
 }
@@ -47,13 +47,14 @@ void FillPicker::setFill(FillTypes fill)
     }
 }
 
-void FillPicker::initGui(const QIcon& icon)
+void FillPicker::initGui(const QIcon& icon, const QString& tooltip)
 {
     mLayout = new QHBoxLayout(this);
     mLayout->setContentsMargins(0, 0, 0, 0);
 
     mLabel = new QLabel();
     mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
+    mLabel->setToolTip(tooltip);
 
     mComboBox = new QComboBox(this);
 
@@ -61,6 +62,8 @@ void FillPicker::initGui(const QIcon& icon)
     mComboBox->addItem(mIconCreator->createFillIcon(false), QString(), mFillList.indexOf(FillTypes::NoFill));
     mComboBox->setFixedSize(QSize(55, mComboBox->sizeHint().height()));
     mComboBox->setIconSize(mIconCreator->iconSize());
+    mComboBox->setToolTip(tooltip);
+    mComboBox->setFocusPolicy(Qt::NoFocus);
 
     mLayout->addWidget(mLabel);
     mLayout->addWidget(mComboBox);

@@ -29,7 +29,7 @@ class ColorPicker : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ColorPicker(const QIcon& icon);
+    explicit ColorPicker(const QIcon& icon, const QString& tooltip);
     ~ColorPicker();
     void setColor(const QColor& color);
 
@@ -37,12 +37,12 @@ signals:
     void colorSelected(const QColor& color);
 
 private:
-    QHBoxLayout*           mLayout;
-    QLabel*                mLabel;
-    QColor                 mSelectedColor;
-    KColorCombo*           mColorCombo;
+    QHBoxLayout* mLayout;
+    QLabel*      mLabel;
+    QColor       mSelectedColor;
+    KColorCombo* mComboBox;
 
-    void initGui(const QIcon& icon);
+    void initGui(const QIcon& icon, const QString& tooltip);
 
 private slots:
     void colorActivated(const QColor& color);

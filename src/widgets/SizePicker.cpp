@@ -19,9 +19,9 @@
 
 #include "SizePicker.h"
 
-SizePicker::SizePicker(const QIcon& icon)
+SizePicker::SizePicker(const QIcon& icon, const QString& tooltip)
 {
-    initGui(icon);
+    initGui(icon, tooltip);
 
     connect(mSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SizePicker::selectionChanged);
 }
@@ -38,13 +38,14 @@ void SizePicker::setSize(int size)
     mSpinBox->setValue(size);
 }
 
-void SizePicker::initGui(const QIcon& icon)
+void SizePicker::initGui(const QIcon& icon, const QString& tooltip)
 {
     mLayout = new QHBoxLayout(this);
     mLayout->setContentsMargins(0, 0, 0, 0);
 
     mLabel = new QLabel();
     mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
+    mLabel->setToolTip(tooltip);
 
     mSpinBox = new QSpinBox(this);
     mSpinBox->setFixedSize(QSize(55, mSpinBox->sizeHint().height()));
@@ -52,6 +53,7 @@ void SizePicker::initGui(const QIcon& icon)
     mSpinBox->setMinimum(1);
     mSpinBox->setMaximum(20);
     mSpinBox->setFocusPolicy(Qt::NoFocus);
+    mSpinBox->setToolTip(tooltip);
 
     mLayout->addWidget(mLabel);
     mLayout->addWidget(mSpinBox);
