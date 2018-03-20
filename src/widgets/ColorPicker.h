@@ -45,7 +45,7 @@ private:
     void initGui(const QIcon& icon, const QString& tooltip);
 
 private slots:
-    void colorActivated(const QColor& color);
+    void colorChanged(const QColor& color);
 };
 
 #endif // COLORPICKER_H

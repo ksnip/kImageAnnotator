@@ -23,7 +23,7 @@ ColorPicker::ColorPicker(const QIcon& icon, const QString& tooltip)
 {
     initGui(icon, tooltip);
 
-    connect(mComboBox, &KColorCombo::activated, this, &ColorPicker::colorActivated);
+    connect(mComboBox, &KColorCombo::activated, this, &ColorPicker::colorChanged);
 }
 
 ColorPicker::~ColorPicker()
@@ -61,7 +61,7 @@ void ColorPicker::initGui(const QIcon& icon, const QString& tooltip)
     setFixedSize(sizeHint());
 }
 
-void ColorPicker::colorActivated(const QColor& color)
+void ColorPicker::colorChanged(const QColor& color)
 {
     setColor(color);
 }
