@@ -21,30 +21,19 @@
 
 AnnotationProperties::AnnotationProperties(const QColor& color, int size)
 {
-    mOutlineColor = color;
-    mFillColor = color;
+    mColor = color;
     mForegroundColor = color;
     mSize = size;
 }
 
-QColor AnnotationProperties::outlineColor() const
+QColor AnnotationProperties::color() const
 {
-    return mOutlineColor;
+    return mColor;
 }
 
-void AnnotationProperties::setOutlineColor(const QColor& color)
+void AnnotationProperties::setColor(const QColor& color)
 {
-    mOutlineColor = qMove(color);
-}
-
-QColor AnnotationProperties::fillColor() const
-{
-    return mFillColor;
-}
-
-void AnnotationProperties::setFillColor(const QColor& color)
-{
-    mFillColor = qMove(color);
+    mColor = qMove(color);
 }
 
 QColor AnnotationProperties::foregroundColor() const

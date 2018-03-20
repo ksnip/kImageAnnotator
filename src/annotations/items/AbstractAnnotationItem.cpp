@@ -89,14 +89,14 @@ void AbstractAnnotationItem::addShadowEffect()
 void AbstractAnnotationItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*)
 {
     QPen pen;
-    pen.setColor(mProperties->outlineColor());
+    pen.setColor(mProperties->color());
     pen.setWidth(mProperties->size());
     pen.setCapStyle(Qt::RoundCap);
     pen.setJoinStyle(Qt::RoundJoin);
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(pen);
     if (mProperties->fillType() == FillTypes::Fill) {
-        painter->setBrush(mProperties->outlineColor());
+        painter->setBrush(mProperties->color());
     }
     painter->drawPath(*mShape);
 }

@@ -30,10 +30,8 @@ public:
     AnnotationProperties() = default;
     AnnotationProperties(const QColor& color, int size);
     ~AnnotationProperties() = default;
-    QColor outlineColor() const;
-    void setOutlineColor(const QColor& color);
-    QColor fillColor() const;
-    void setFillColor(const QColor& color);
+    QColor color() const;
+    void setColor(const QColor& color);
     QColor foregroundColor() const;
     void setForegroundColor(const QColor& color);
     int size() const;
@@ -42,8 +40,7 @@ public:
     void setFillType(FillTypes fillType);
 
 private:
-    QColor    mOutlineColor;
-    QColor    mFillColor;
+    QColor    mColor;
     QColor    mForegroundColor;
     int       mSize;
     FillTypes mFillType;

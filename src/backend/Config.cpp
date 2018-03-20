@@ -40,33 +40,18 @@ void Config::setSelectedTool(ToolTypes tool)
     mConfig.sync();
 }
 
-QColor Config::toolOutlineColor(ToolTypes tool) const
+QColor Config::toolColor(ToolTypes tool) const
 {
     return mConfig.value(ConfigNameFormatter::toolOutlineColor(tool), QColor(Qt::red)).value<QColor>();
 }
 
-void Config::setToolOutlineColor(const QColor& color, ToolTypes tool)
+void Config::setToolColor(const QColor& color, ToolTypes tool)
 {
-    if(toolOutlineColor(tool) == color) {
+    if(toolColor(tool) == color) {
         return;
     }
 
     mConfig.setValue(ConfigNameFormatter::toolOutlineColor(tool), color);
-    mConfig.sync();
-}
-
-QColor Config::toolFillColor(ToolTypes tool) const
-{
-    return mConfig.value(ConfigNameFormatter::toolFillColor(tool), QColor(Qt::blue)).value<QColor>();
-}
-
-void Config::setToolFillColor(const QColor& color, ToolTypes tool)
-{
-    if(toolFillColor(tool) == color) {
-        return;
-    }
-
-    mConfig.setValue(ConfigNameFormatter::toolFillColor(tool), color);
     mConfig.sync();
 }
 

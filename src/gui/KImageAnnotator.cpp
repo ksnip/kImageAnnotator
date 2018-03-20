@@ -84,7 +84,7 @@ void KImageAnnotator::initGui()
     connect(mToolPicker, &ToolPicker::toolSelected, mConfig, &Config::setSelectedTool);
     connect(mToolPicker, &ToolPicker::toolSelected, this, &KImageAnnotator::updateSelection);
     connect(mColorPicker, &ColorPicker::colorSelected, [this](const QColor & color) {
-        mConfig->setToolOutlineColor(color, mToolPicker->tool());
+        mConfig->setToolColor(color, mToolPicker->tool());
     });
     connect(mForegroundColorPicker, &ColorPicker::colorSelected, [this](const QColor & color) {
         mConfig->setToolForegroundColor(color, mToolPicker->tool());
@@ -104,7 +104,7 @@ void KImageAnnotator::setupDefaults()
 
 void KImageAnnotator::updateSelection(ToolTypes tool)
 {
-    mColorPicker->setColor(mConfig->toolOutlineColor(tool));
+    mColorPicker->setColor(mConfig->toolColor(tool));
     mForegroundColorPicker->setColor(mConfig->toolForegroundColor(tool));
     mSizePicker->setSize(mConfig->toolSize(tool));
     mFillPicker->setFill(mConfig->toolFillType(tool));
