@@ -21,7 +21,7 @@
 
 void SizePickerTest::TestSelectSize_Should_EmitSignal_When_SizeChanged()
 {
-    SizePicker sizePicker(QStringLiteral("test"));
+    SizePicker sizePicker(QIcon(), QStringLiteral("test"));
     QSignalSpy spy(&sizePicker, &SizePicker::sizeSelected);
     auto expectedSize = 8;
 
@@ -30,17 +30,6 @@ void SizePickerTest::TestSelectSize_Should_EmitSignal_When_SizeChanged()
     QCOMPARE(spy.count(), 1);
     auto resultSize = qvariant_cast<int>(spy.at(0).at(0));
     QCOMPARE(resultSize, expectedSize);
-}
-
-void SizePickerTest::TestSelectSize_Should_NotEmitSignal_When_SelectedSizeDoesntExists()
-{
-    SizePicker sizePicker(QStringLiteral("test"));
-    QSignalSpy spy(&sizePicker, &SizePicker::sizeSelected);
-    auto sizeNotInList = 99;
-
-    sizePicker.setSize(sizeNotInList);
-
-    QCOMPARE(spy.count(), 0);
 }
 
 QTEST_MAIN(SizePickerTest);

@@ -30,7 +30,6 @@ Q_OBJECT
 
 private slots:
     void TestSelectSize_Should_EmitSignal_When_SizeChanged();
-    void TestSelectSize_Should_NotEmitSignal_When_SelectedSizeDoesntExists();
 };
 
 #endif // SIZEPICKERTEST_H

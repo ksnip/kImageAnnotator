@@ -21,9 +21,9 @@
 
 void SizePickerTest::TestSelectFill_Should_EmitSignal_When_FillChanged()
 {
-    FillPicker fillPicker(QStringLiteral("test"));
+    FillPicker fillPicker(QIcon(), QStringLiteral("test"));
     QSignalSpy spy(&fillPicker, &FillPicker::fillSelected);
-    auto expectedFill = FillTypes::SameFillAsOutline;
+    auto expectedFill = FillTypes::Fill;
 
     fillPicker.setFill(expectedFill);
 

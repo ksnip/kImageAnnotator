@@ -21,7 +21,7 @@
 
 void ColorPickerTest::TestSelectColor_Should_EmitSignal_When_ColorChanged()
 {
-    ColorPicker colorPicker(QStringLiteral("test"));
+    ColorPicker colorPicker(QIcon(), QStringLiteral("test"));
     QSignalSpy spy(&colorPicker, &ColorPicker::colorSelected);
     auto expectedColor = QColor(Qt::blue);
 

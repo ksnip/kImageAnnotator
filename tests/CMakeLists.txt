@@ -2,6 +2,8 @@ enable_testing(true)
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Test Widgets)
 
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons I18n WidgetsAddons)
+
 set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
                          ${CMAKE_SOURCE_DIR}/src/gui/VisibilitySwitcher.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationArea.cpp
@@ -37,6 +39,6 @@ set(ListOfUnitTests AnnotationAreaTest
 
 foreach(unitTest ${ListOfUnitTests})
     add_executable(${unitTest} ${unitTest}.cpp ${kimageannotator_SRCS})
-    target_link_libraries(${unitTest} Qt5::Test Qt5::Widgets)
+    target_link_libraries(${unitTest} Qt5::Test Qt5::Widgets KF5::CoreAddons KF5::I18n KF5::WidgetsAddons)
     add_test(${unitTest} ${unitTest})
 endforeach(unitTest)
