@@ -35,7 +35,9 @@ set(ListOfUnitTests AnnotationAreaTest
                     FillPickerTest
                     ControlPointsTest
                     AnnotationItemModifierTest
-                    ConfigNameFormatterTest)
+                    ConfigNameFormatterTest
+                    AnnotationItemFactoryTest
+                    AnnotationPropertiesFactoryTest)
 
 foreach(unitTest ${ListOfUnitTests})
     add_executable(${unitTest} ${unitTest}.cpp ${kimageannotator_SRCS})

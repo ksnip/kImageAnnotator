@@ -45,7 +45,7 @@ void KImageAnnotator::initAppSettings()
 {
     QCoreApplication::setOrganizationName(QStringLiteral("kimageannotator"));
     QCoreApplication::setOrganizationDomain(QStringLiteral("kimageannotator.kde.org"));
-    QCoreApplication::setApplicationName(QStringLiteral("kimageAnnotator"));
+    QCoreApplication::setApplicationName(QStringLiteral("KImageAnnotator"));
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 }
 

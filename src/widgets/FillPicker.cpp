@@ -83,4 +83,3 @@ void FillPicker::selectionChanged()
     auto fill = mFillList[mComboBox->currentData().toInt()];
     setFillAndNotify(fill);
 }
-
