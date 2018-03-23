@@ -1,65 +1,48 @@
 /*
  * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
- *
+ * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONAREA_H
-#define ANNOTATIONAREA_H
+#ifndef ANNOTATIONITEMSELECTOR_H
+#define ANNOTATIONITEMSELECTOR_H
 
-#include <QGraphicsScene>
+#include <QGraphicsWidget>
 #include <QGraphicsSceneMouseEvent>
-#include <QKeyEvent>
-#include <QPainter>
 
-#include "AnnotationItemFactory.h"
-#include "AnnotationItemModifier.h"
-#include "AnnotationItemSelector.h"
-#include "../backend/Config.h"
-#include "../common/enum/ToolTypes.h"
+#include "items/AbstractAnnotationItem.h"
 
-class AnnotationArea : public QGraphicsScene
+class AnnotationItemSelector : public QGraphicsWidget
 {
-    Q_OBJECT
 public:
-    AnnotationArea();
-    ~AnnotationArea();
-
-    void setBackgroundImage(const QPixmap& image);
-    QImage exportAsImage();
+    explicit AnnotationItemSelector();
+    ~AnnotationItemSelector() = default;
+    virtual QRectF boundingRect() const override;
 
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
-    virtual void keyReleaseEvent(QKeyEvent *event) override;
+    virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) override;
 
 private:
-    AnnotationItemFactory*  mItemFactory;
-    QGraphicsPixmapItem*    mBackgroundImage;
-    AbstractAnnotationItem* mCurrentItem;
-    AnnotationItemModifier* mItemModifier;
-    AnnotationItemSelector* mItemSelector;
-    Config*                 mConfig;
+    QRectF mSelectionRect;
 
-    void addItemAtPosition(const QPointF& position);
-    void addPointToCurrentItem(const QPointF& position);
-    AbstractAnnotationItem* findItemAt(const QPointF& point) const;
-    void deleteSelectedItem();
-    void clearSelection();
+    void initSelectionRectAt(const QPointF& position);
+    void updateSelectionRect(const QPointF& position);
 };
 
-#endif // ANNOTATIONAREA_H
+#endif // ANNOTATIONITEMSELECTOR_H

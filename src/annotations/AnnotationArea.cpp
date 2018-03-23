@@ -26,8 +26,11 @@ AnnotationArea::AnnotationArea()
     mBackgroundImage = nullptr;
     mCurrentItem = nullptr;
     mItemModifier = new AnnotationItemModifier();
+    mItemSelector = new AnnotationItemSelector();
     mItemModifier->setZValue(100);
+    mItemSelector->setZValue(101);
     addItem(mItemModifier);
+    addItem(mItemSelector);
 }
 
 AnnotationArea::~AnnotationArea()

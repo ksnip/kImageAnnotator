@@ -9,6 +9,7 @@ set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationArea.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemFactory.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemModifier.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemSelector.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationProperties.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationPropertiesFactory.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/ControlPoints.cpp

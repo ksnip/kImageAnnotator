@@ -8,6 +8,7 @@ set(kimageannotator_SRCS main.cpp
                          annotations/AnnotationArea.cpp
                          annotations/AnnotationItemFactory.cpp
                          annotations/AnnotationItemModifier.cpp
+                         annotations/AnnotationItemSelector.cpp
                          annotations/AnnotationProperties.cpp
                          annotations/AnnotationPropertiesFactory.cpp
                          annotations/ControlPoints.cpp
