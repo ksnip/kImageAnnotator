@@ -26,6 +26,8 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationProperties& prope
 
     // Add shadow, for now for every item
     addShadowEffect();
+
+    mIsSelected = false;
 }
 
 AbstractAnnotationItem::~AbstractAnnotationItem()
@@ -37,7 +39,7 @@ AbstractAnnotationItem::~AbstractAnnotationItem()
 QRectF AbstractAnnotationItem::boundingRect() const
 {
     auto width = 0;
-    if (!mShape->isEmpty()) {
+    if(!mShape->isEmpty()) {
         width = mProperties->size() / 2;
     }
 
@@ -86,6 +88,20 @@ void AbstractAnnotationItem::addShadowEffect()
     }
 }
 
+bool AbstractAnnotationItem::selected() const
+{
+    return mIsSelected;
+}
+
+void AbstractAnnotationItem::select(bool isSelected)
+{
+    if(selected() == isSelected) {
+        return;
+    }
+    prepareGeometryChange();
+    mIsSelected = isSelected;
+}
+
 void AbstractAnnotationItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*)
 {
     QPen pen;
@@ -95,8 +111,15 @@ void AbstractAnnotationItem::paint(QPainter* painter, const QStyleOptionGraphics
     pen.setJoinStyle(Qt::RoundJoin);
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(pen);
-    if (mProperties->fillType() == FillTypes::Fill) {
+    if(mProperties->fillType() == FillTypes::Fill) {
         painter->setBrush(mProperties->color());
     }
     painter->drawPath(*mShape);
+
+    // TODO Paint selection rect
+    if(selected()) {
+        painter->setBrush(Qt::NoBrush);
+        painter->setPen(Qt::gray);
+        painter->drawRect(boundingRect());
+    }
 }

@@ -48,16 +48,16 @@ protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
 
 private:
-    AnnotationItemFactory*  mItemFactory;
-    QGraphicsPixmapItem*    mBackgroundImage;
-    AbstractAnnotationItem* mCurrentItem;
-    AnnotationItemModifier* mItemModifier;
-    AnnotationItemSelector* mItemSelector;
-    Config*                 mConfig;
+    AnnotationItemFactory*          mItemFactory;
+    QGraphicsPixmapItem*            mBackgroundImage;
+    AbstractAnnotationItem*         mCurrentItem;
+    AnnotationItemModifier*         mItemModifier;
+    AnnotationItemSelector*         mItemSelector;
+    Config*                         mConfig;
+    QList<AbstractAnnotationItem*> *mItems;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);
-    AbstractAnnotationItem* findItemAt(const QPointF& point) const;
     void deleteSelectedItem();
     void clearSelection();
 };

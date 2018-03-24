@@ -21,7 +21,13 @@
 
 AnnotationItemSelector::AnnotationItemSelector()
 {
-    
+    mSelectedItems = new QList<AbstractAnnotationItem*>();
+    mShowSelectionRect = false;
+}
+
+AnnotationItemSelector::~AnnotationItemSelector()
+{
+    delete mSelectedItems;
 }
 
 QRectF AnnotationItemSelector::boundingRect() const
@@ -29,28 +35,40 @@ QRectF AnnotationItemSelector::boundingRect() const
     return mSelectionRect.normalized();
 }
 
-void AnnotationItemSelector::mousePressEvent(QGraphicsSceneMouseEvent* event)
+void AnnotationItemSelector::startSelectionRectAt(const QPointF& position, QList<AbstractAnnotationItem*>* items)
 {
-    if(event->button() != Qt::LeftButton) {
-        return;
-    }
-
-    initSelectionRectAt(event->scenePos());
+    prepareGeometryChange();
+    initSelectionRectAt(position);
+    selectItemAtPosition(position, items);
+    mShowSelectionRect = true;
 }
 
-void AnnotationItemSelector::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
+void AnnotationItemSelector::extendSelectionRectTo(const QPointF& position)
 {
-    if(event->buttons() != Qt::LeftButton) {
-        return;
-    }
-    updateSelectionRect(event->scenePos());
+    prepareGeometryChange();
+    updateSelectionRect(position);
 }
 
-void AnnotationItemSelector::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
+void AnnotationItemSelector::finishSelectionRect(QList<AbstractAnnotationItem*>* items)
 {
-    if(event->button() != Qt::LeftButton) {
-        return;
+    prepareGeometryChange();
+    if(!mSelectionRect.isNull()) {
+        selectItemsUnderRect(items);
     }
+    mShowSelectionRect = false;
+}
+
+void AnnotationItemSelector::clearSelection()
+{
+    for(auto item : *mSelectedItems) {
+        item->select(false);
+    }
+    mSelectedItems->clear();
+}
+
+QList<AbstractAnnotationItem*> AnnotationItemSelector::selectedItems()
+{
+    return *mSelectedItems;
 }
 
 void AnnotationItemSelector::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
@@ -58,20 +76,52 @@ void AnnotationItemSelector::paint(QPainter* painter, const QStyleOptionGraphics
     Q_UNUSED(option)
     Q_UNUSED(widget)
 
-    painter->setPen(Qt::darkBlue);
-    painter->setBrush(QColor(0, 0, 255, 60));
-    painter->drawRect(mSelectionRect);
+    if(mShowSelectionRect) {
+        painter->setPen(Qt::darkBlue);
+        painter->setBrush(QColor(0, 0, 255, 60));
+        painter->drawRect(mSelectionRect);
+    }
 }
 
 void AnnotationItemSelector::initSelectionRectAt(const QPointF& position)
 {
-    prepareGeometryChange();
     mSelectionRect.setTopLeft(position);
     updateSelectionRect(position);
 }
 
 void AnnotationItemSelector::updateSelectionRect(const QPointF& position)
 {
-    prepareGeometryChange();
     mSelectionRect.setBottomRight(position);
+}
+
+void AnnotationItemSelector::selectItemAtPosition(const QPointF& position, QList<AbstractAnnotationItem*>* items)
+{
+    QRectF rect(position - QPointF(2, 2), QSize(4, 4));
+
+    for(auto item : *items) {
+        if(item->intersects(rect)) {
+            if(!item->selected()) {
+                clearSelection();
+                selectItem(item);
+            }
+            return;
+        }
+    }
+    clearSelection();
+}
+
+void AnnotationItemSelector::selectItemsUnderRect(QList<AbstractAnnotationItem*>* items)
+{
+    clearSelection();
+    for(auto item : *items) {
+        if(item->intersects(mSelectionRect)) {
+            selectItem(item);
+        }
+    }
+}
+
+void AnnotationItemSelector::selectItem(AbstractAnnotationItem* item)
+{
+    item->select(true);
+    mSelectedItems->append(item);
 }
