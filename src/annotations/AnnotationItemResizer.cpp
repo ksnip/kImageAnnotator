@@ -44,10 +44,6 @@ QRectF AnnotationItemResizer::boundingRect() const
 
 void AnnotationItemResizer::attachTo(AbstractAnnotationItem* item)
 {
-    if(mAnnotationItem == nullptr) {
-        grabMouse();
-    }
-
     prepareGeometryChange();
     mAnnotationItem = item;
     mControlPoints->initPoints(item);
@@ -55,13 +51,8 @@ void AnnotationItemResizer::attachTo(AbstractAnnotationItem* item)
 
 void AnnotationItemResizer::detach()
 {
-    if(mAnnotationItem == nullptr) {
-        return;
-    }
-
     prepareGeometryChange();
     mAnnotationItem = nullptr;
-    ungrabMouse();
 }
 
 AbstractAnnotationItem * AnnotationItemResizer::attachedItem() const
@@ -71,22 +62,26 @@ AbstractAnnotationItem * AnnotationItemResizer::attachedItem() const
 
 void AnnotationItemResizer::grabHandle(const QPointF& pos)
 {
-    if(mAnnotationItem != nullptr) {
-        mCurrentControlPoint = mControlPoints->indexOfPointAt(pos);
-        if(mCurrentControlPoint != -1) {
-            mClickOffset = pos - mControlPoints->point(mCurrentControlPoint).center();
-        }
+    if(mAnnotationItem == nullptr) {
+        return;
+    }
+
+    mCurrentControlPoint = mControlPoints->indexOfPointAt(pos);
+    if(mCurrentControlPoint != -1) {
+        mClickOffset = pos - mControlPoints->point(mCurrentControlPoint).center();
     }
 }
 
 void AnnotationItemResizer::moveHandle(const QPointF& pos)
 {
-    if(mAnnotationItem) {
-        prepareGeometryChange();
-        if(mCurrentControlPoint != -1) {
-            mAnnotationItem->setPointAt(pos - mClickOffset, mCurrentControlPoint);
-            mControlPoints->updatePointsPosition();
-        }
+    if(mAnnotationItem == nullptr) {
+        return;
+    }
+
+    prepareGeometryChange();
+    if(mCurrentControlPoint != -1) {
+        mAnnotationItem->setPointAt(pos - mClickOffset, mCurrentControlPoint);
+        mControlPoints->updatePointsPosition();
     }
 }
 
@@ -105,7 +100,7 @@ void AnnotationItemResizer::paint(QPainter* painter, const QStyleOptionGraphicsI
     Q_UNUSED(option)
     Q_UNUSED(widget)
 
-    if(!mAnnotationItem) {
+    if(mAnnotationItem == nullptr) {
         return;
     }
 

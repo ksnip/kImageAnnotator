@@ -21,37 +21,100 @@
 
 void AnnotationItemResizerTest::TestAttachTo_Should_AttachToAnnotationItem()
 {
-    QGraphicsScene scene;
-    AnnotationItemResizer annotationItemModifier;
-    scene.addItem(&annotationItemModifier);
-    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
+    AnnotationItemResizer itemResizer;
+    AnnotationProperties properties(Qt::red, 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
     lineItem.addPoint(p2);
 
-    annotationItemModifier.attachTo(&lineItem);
+    itemResizer.attachTo(&lineItem);
 
-    auto result = dynamic_cast<AnnotationLine*>(annotationItemModifier.attachedItem());
+    auto result = dynamic_cast<AnnotationLine*>(itemResizer.attachedItem());
     QCOMPARE(result->line(), lineItem.line());
 }
 
 void AnnotationItemResizerTest::TestDetach_Should_ClearSelectedItem()
 {
-    QGraphicsScene scene;
-    AnnotationItemResizer annotationItemModifier;
-    scene.addItem(&annotationItemModifier);
-    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
+    AnnotationItemResizer itemResizer;
+    AnnotationProperties properties(Qt::red, 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
     lineItem.addPoint(p2);
-    annotationItemModifier.attachTo(&lineItem);
+    itemResizer.attachTo(&lineItem);
 
-    annotationItemModifier.detach();
+    itemResizer.detach();
 
-    auto result = annotationItemModifier.attachedItem();
+    auto result = itemResizer.attachedItem();
     QVERIFY(result == nullptr);
+}
+
+void AnnotationItemResizerTest::TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition()
+{
+    AnnotationItemResizer itemResizer;
+    AnnotationProperties properties(Qt::red, 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    itemResizer.attachTo(&lineItem);
+
+    itemResizer.grabHandle(p1 + QPointF(2, 2));
+
+    auto isResizing = itemResizer.isResizing();
+    QCOMPARE(isResizing, true);
+}
+
+void AnnotationItemResizerTest::TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition()
+{
+    AnnotationItemResizer itemResizer;
+    AnnotationProperties properties(Qt::red, 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    itemResizer.attachTo(&lineItem);
+
+    itemResizer.grabHandle(QPointF(0, 0));
+
+    auto isResizing = itemResizer.isResizing();
+    QCOMPARE(isResizing, false);
+}
+
+void AnnotationItemResizerTest::TestGrabHandle_Should_MoveResizeItem_When_HandleGrabbed()
+{
+    AnnotationItemResizer itemResizer;
+    AnnotationProperties properties(Qt::red, 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    QPointF p3(30, 30);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    itemResizer.attachTo(&lineItem);
+    itemResizer.grabHandle(p1);
+
+    itemResizer.moveHandle(p3);
+
+    auto result = dynamic_cast<AnnotationLine*>(itemResizer.attachedItem());
+    QCOMPARE(result->line().p1(), p3);
+}
+
+void AnnotationItemResizerTest::TestReleaseHandle_Should_ReleaseHandle()
+{
+    AnnotationItemResizer itemResizer;
+    AnnotationProperties properties(Qt::red, 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    itemResizer.attachTo(&lineItem);
+    itemResizer.grabHandle(p1);
+    QCOMPARE(itemResizer.isResizing(), true);
+
+    itemResizer.releaseHandle();
+
+    QCOMPARE(itemResizer.isResizing(), false);
 }
 
 QTEST_MAIN(AnnotationItemResizerTest);
