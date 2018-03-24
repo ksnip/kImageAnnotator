@@ -17,17 +17,17 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMMODIFIERTEST_H
-#define ANNOTATIONITEMMODIFIERTEST_H
+#ifndef ANNOTATIONITEMRESIZERTEST_H
+#define ANNOTATIONITEMRESIZERTEST_H
 
 #include <QtTest>
 #include <QGraphicsView>
 #include <QGraphicsScene>
 
-#include "../src/annotations/AnnotationItemModifier.h"
+#include "../src/annotations/AnnotationItemResizer.h"
 #include "../src/annotations/items/AnnotationLine.h"
 
-class AnnotationItemModifierTest : public QObject
+class AnnotationItemResizerTest : public QObject
 {
 Q_OBJECT
 
@@ -36,4 +36,4 @@ private slots:
     void TestDetach_Should_ClearSelectedItem();
 };
 
-#endif // ANNOTATIONITEMMODIFIERTEST_H
+#endif // ANNOTATIONITEMRESIZERTEST_H

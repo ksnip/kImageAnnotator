@@ -8,7 +8,7 @@ set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
                          ${CMAKE_SOURCE_DIR}/src/gui/VisibilitySwitcher.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationArea.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemFactory.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemModifier.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemResizer.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemSelector.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationProperties.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationPropertiesFactory.cpp
@@ -35,7 +35,7 @@ set(ListOfUnitTests AnnotationAreaTest
                     SizePickerTest
                     FillPickerTest
                     ControlPointsTest
-                    AnnotationItemModifierTest
+                    AnnotationItemResizerTest
                     AnnotationItemSelectorTest
                     ConfigNameFormatterTest
                     AnnotationItemFactoryTest

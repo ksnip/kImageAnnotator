@@ -26,7 +26,7 @@
 #include <QPainter>
 
 #include "AnnotationItemFactory.h"
-#include "AnnotationItemModifier.h"
+#include "AnnotationItemResizer.h"
 #include "AnnotationItemSelector.h"
 #include "../backend/Config.h"
 #include "../common/enum/ToolTypes.h"
@@ -51,7 +51,7 @@ private:
     AnnotationItemFactory*          mItemFactory;
     QGraphicsPixmapItem*            mBackgroundImage;
     AbstractAnnotationItem*         mCurrentItem;
-    AnnotationItemModifier*         mItemModifier;
+    AnnotationItemResizer*          mItemResizer;
     AnnotationItemSelector*         mItemSelector;
     Config*                         mConfig;
     QList<AbstractAnnotationItem*> *mItems;

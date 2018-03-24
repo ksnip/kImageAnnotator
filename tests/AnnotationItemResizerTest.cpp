@@ -17,12 +17,12 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationItemModifierTest.h"
+#include "AnnotationItemResizerTest.h"
 
-void AnnotationItemModifierTest::TestAttachTo_Should_AttachToAnnotationItem()
+void AnnotationItemResizerTest::TestAttachTo_Should_AttachToAnnotationItem()
 {
     QGraphicsScene scene;
-    AnnotationItemModifier annotationItemModifier;
+    AnnotationItemResizer annotationItemModifier;
     scene.addItem(&annotationItemModifier);
     AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
     QPointF p1(10, 10);
@@ -36,10 +36,10 @@ void AnnotationItemModifierTest::TestAttachTo_Should_AttachToAnnotationItem()
     QCOMPARE(result->line(), lineItem.line());
 }
 
-void AnnotationItemModifierTest::TestDetach_Should_ClearSelectedItem()
+void AnnotationItemResizerTest::TestDetach_Should_ClearSelectedItem()
 {
     QGraphicsScene scene;
-    AnnotationItemModifier annotationItemModifier;
+    AnnotationItemResizer annotationItemModifier;
     scene.addItem(&annotationItemModifier);
     AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
     QPointF p1(10, 10);
@@ -54,4 +54,4 @@ void AnnotationItemModifierTest::TestDetach_Should_ClearSelectedItem()
     QVERIFY(result == nullptr);
 }
 
-QTEST_MAIN(AnnotationItemModifierTest);
+QTEST_MAIN(AnnotationItemResizerTest);
