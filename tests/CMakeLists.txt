@@ -36,6 +36,7 @@ set(ListOfUnitTests AnnotationAreaTest
                     FillPickerTest
                     ControlPointsTest
                     AnnotationItemModifierTest
+                    AnnotationItemSelectorTest
                     ConfigNameFormatterTest
                     AnnotationItemFactoryTest
                     AnnotationPropertiesFactoryTest)
