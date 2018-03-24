@@ -58,7 +58,7 @@ private:
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);
-    void deleteSelectedItem();
+    void deleteSelectedItems();
     void clearSelection();
 };
 

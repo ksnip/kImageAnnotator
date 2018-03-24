@@ -66,8 +66,6 @@ QImage AnnotationArea::exportAsImage()
 
 void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
-    clearSelection();
-
     if(event->button() == Qt::LeftButton) {
         if(mConfig->selectedTool() == ToolTypes::Select) {
             mItemResizer->grabHandle(event->scenePos());
@@ -122,7 +120,7 @@ void AnnotationArea::keyReleaseEvent(QKeyEvent* event)
 {
     switch(event->key()) {
         case Qt::Key_Delete:
-            deleteSelectedItem();
+            deleteSelectedItems();
             break;
         case Qt::Key_Escape:
             clearSelection();
@@ -145,18 +143,20 @@ void AnnotationArea::addPointToCurrentItem(const QPointF& position)
     mCurrentItem->addPoint(position);
 }
 
-void AnnotationArea::deleteSelectedItem()
+void AnnotationArea::deleteSelectedItems()
 {
-    auto item = mItemResizer->attachedItem();
+    auto selectedItems = mItemSelector->selectedItems();
+    clearSelection();
 
-    if(item) {
-        mItemResizer->detach();
+    for(auto item : selectedItems) {
         removeItem(item);
+        mItems->removeOne(item);
         delete item;
     }
 }
 
 void AnnotationArea::clearSelection()
 {
+    mItemSelector->clearSelection();
     mItemResizer->detach();
 }
