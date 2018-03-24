@@ -17,27 +17,32 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMRESIZERTEST_H
-#define ANNOTATIONITEMRESIZERTEST_H
+#ifndef RESIZEHANDLES_H
+#define RESIZEHANDLES_H
 
-#include <QtTest>
-#include <QGraphicsView>
-#include <QGraphicsScene>
+#include <QRectF>
+#include <QList>
 
-#include "../src/annotations/modifiers/AnnotationItemResizer.h"
-#include "../src/annotations/items/AnnotationLine.h"
+#include "../items/AbstractAnnotationLine.h"
+#include "../items/AbstractAnnotationRect.h"
 
-class AnnotationItemResizerTest : public QObject
+class ResizeHandles
 {
-Q_OBJECT
+public:
+    explicit ResizeHandles(int handleSize);
+    void initHandles(AbstractAnnotationItem *item);
+    void updateHandlesPosition();
+    int indexOfHandleAt(const QPointF& pos) const;
+    QList<QRectF> handles() const;
+    QRectF handle(int index) const;
 
-private slots:
-    void TestAttachTo_Should_AttachToAnnotationItem();
-    void TestDetach_Should_ClearSelectedItem();
-    void TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition();
-    void TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition();
-    void TestGrabHandle_Should_MoveResizeItem_When_HandleGrabbed();
-    void TestReleaseHandle_Should_ReleaseHandle();
+private:
+    AbstractAnnotationLine* mLineItem;
+    AbstractAnnotationRect* mRectItem;
+    int                     mHandleSize;
+    QList<QRectF>           mHandles;
+
+    void addHandlesToList(int count);
 };
 
-#endif // ANNOTATIONITEMRESIZERTEST_H
+#endif // RESIZEHANDLES_H

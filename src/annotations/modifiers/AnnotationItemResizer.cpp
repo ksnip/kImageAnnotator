@@ -21,21 +21,21 @@
 
 AnnotationItemResizer::AnnotationItemResizer()
 {
-    mControlPointSize = 10;
-    mControlPoints = new ControlPoints(mControlPointSize);
+    mResizeHandleSize = 10;
+    mResizeHandles = new ResizeHandles(mResizeHandleSize);
     mAnnotationItem = nullptr;
     mCurrentControlPoint = -1;
 }
 
 AnnotationItemResizer::~AnnotationItemResizer()
 {
-    delete mControlPoints;
+    delete mResizeHandles;
 }
 
 QRectF AnnotationItemResizer::boundingRect() const
 {
     if(mAnnotationItem) {
-        auto size = mControlPointSize / 2;
+        auto size = mResizeHandleSize / 2;
         return mAnnotationItem->boundingRect().adjusted(-size, -size, size, size);
     } else {
         return QRectF();
@@ -46,7 +46,7 @@ void AnnotationItemResizer::attachTo(AbstractAnnotationItem* item)
 {
     prepareGeometryChange();
     mAnnotationItem = item;
-    mControlPoints->initPoints(item);
+    mResizeHandles->initHandles(item);
 }
 
 void AnnotationItemResizer::detach()
@@ -66,9 +66,9 @@ void AnnotationItemResizer::grabHandle(const QPointF& pos)
         return;
     }
 
-    mCurrentControlPoint = mControlPoints->indexOfPointAt(pos);
+    mCurrentControlPoint = mResizeHandles->indexOfHandleAt(pos);
     if(mCurrentControlPoint != -1) {
-        mClickOffset = pos - mControlPoints->point(mCurrentControlPoint).center();
+        mClickOffset = pos - mResizeHandles->handle(mCurrentControlPoint).center();
     }
 }
 
@@ -81,7 +81,7 @@ void AnnotationItemResizer::moveHandle(const QPointF& pos)
     prepareGeometryChange();
     if(mCurrentControlPoint != -1) {
         mAnnotationItem->setPointAt(pos - mClickOffset, mCurrentControlPoint);
-        mControlPoints->updatePointsPosition();
+        mResizeHandles->updateHandlesPosition();
     }
 }
 
@@ -106,7 +106,7 @@ void AnnotationItemResizer::paint(QPainter* painter, const QStyleOptionGraphicsI
 
     painter->setPen(QColor("white"));
     painter->setBrush(QColor("gray"));
-    auto points = mControlPoints->points();
+    auto points = mResizeHandles->handles();
     for(auto point : points) {
         painter->drawRect(point);
     }

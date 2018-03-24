@@ -7,11 +7,11 @@ set(kimageannotator_SRCS main.cpp
                          gui/VisibilitySwitcher.cpp
                          annotations/AnnotationArea.cpp
                          annotations/AnnotationItemFactory.cpp
-                         annotations/AnnotationItemResizer.cpp
-                         annotations/AnnotationItemSelector.cpp
                          annotations/AnnotationProperties.cpp
                          annotations/AnnotationPropertiesFactory.cpp
-                         annotations/ControlPoints.cpp
+                         annotations/modifiers/AnnotationItemResizer.cpp
+                         annotations/modifiers/AnnotationItemSelector.cpp
+                         annotations/modifiers/ResizeHandles.cpp
                          annotations/items/AbstractAnnotationItem.cpp
                          annotations/items/AbstractAnnotationLine.cpp
                          annotations/items/AbstractAnnotationRect.cpp

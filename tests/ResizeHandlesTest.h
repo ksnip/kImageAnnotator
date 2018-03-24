@@ -17,27 +17,26 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMRESIZERTEST_H
-#define ANNOTATIONITEMRESIZERTEST_H
+#ifndef RESIZEHANDLESTEST_H
+#define RESIZEHANDLESTEST_H
 
 #include <QtTest>
-#include <QGraphicsView>
-#include <QGraphicsScene>
 
-#include "../src/annotations/modifiers/AnnotationItemResizer.h"
+#include "../src/annotations/modifiers/ResizeHandles.h"
 #include "../src/annotations/items/AnnotationLine.h"
+#include "../src/annotations/items/AnnotationRect.h"
 
-class AnnotationItemResizerTest : public QObject
+class ResizeHandlesTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestAttachTo_Should_AttachToAnnotationItem();
-    void TestDetach_Should_ClearSelectedItem();
-    void TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition();
-    void TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition();
-    void TestGrabHandle_Should_MoveResizeItem_When_HandleGrabbed();
-    void TestReleaseHandle_Should_ReleaseHandle();
+    void TestInitHandles_Should_PositionTwoHandles_When_LineItemProvided();
+    void TestInitHandles_Should_PositionEightHandles_When_RectItemProvided();
+    void TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_HandleIsAtProvidedPosition();
+    void TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_HandleIsNotAtProvidedPosition();
+    void TestHandle_Should_ReturnRectAtIndex_When_HandleAtIndexExists();
+    void TestHandle_Should_NotReturnRect_When_HandleAtIndexDoesntExists();
 };
 
-#endif // ANNOTATIONITEMRESIZERTEST_H
+#endif // RESIZEHANDLESTEST_H

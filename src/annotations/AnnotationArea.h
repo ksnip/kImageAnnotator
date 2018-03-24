@@ -26,8 +26,8 @@
 #include <QPainter>
 
 #include "AnnotationItemFactory.h"
-#include "AnnotationItemResizer.h"
-#include "AnnotationItemSelector.h"
+#include "modifiers/AnnotationItemResizer.h"
+#include "modifiers/AnnotationItemSelector.h"
 #include "../backend/Config.h"
 #include "../common/enum/ToolTypes.h"
 

@@ -8,11 +8,11 @@ set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
                          ${CMAKE_SOURCE_DIR}/src/gui/VisibilitySwitcher.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationArea.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemFactory.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemResizer.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemSelector.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationProperties.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationPropertiesFactory.cpp
-                         ${CMAKE_SOURCE_DIR}/src/annotations/ControlPoints.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemResizer.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemSelector.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/ResizeHandles.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationItem.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationLine.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationRect.cpp
@@ -34,7 +34,7 @@ set(ListOfUnitTests AnnotationAreaTest
                     ColorPickerTest
                     SizePickerTest
                     FillPickerTest
-                    ControlPointsTest
+                    ResizeHandlesTest
                     AnnotationItemResizerTest
                     AnnotationItemSelectorTest
                     ConfigNameFormatterTest

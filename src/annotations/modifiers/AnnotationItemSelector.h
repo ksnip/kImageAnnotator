@@ -23,7 +23,7 @@
 #include <QGraphicsWidget>
 #include <QGraphicsSceneMouseEvent>
 
-#include "items/AbstractAnnotationItem.h"
+#include "../items/AbstractAnnotationItem.h"
 
 class AnnotationItemSelector : public QGraphicsWidget
 {

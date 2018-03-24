@@ -22,7 +22,7 @@
 
 #include <QtTest>
 
-#include "../src/annotations/AnnotationItemSelector.h"
+#include "../src/annotations/modifiers/AnnotationItemSelector.h"
 #include "../src/annotations/items/AnnotationLine.h"
 
 class AnnotationItemSelectorTest : public QObject
