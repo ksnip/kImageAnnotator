@@ -26,6 +26,7 @@ AnnotationItemModifier::AnnotationItemModifier()
     mItemMover = new AnnotationItemMover();
     addToGroup(mItemResizer);
     addToGroup(mItemSelector);
+    setZValue(1000);
 }
 
 AnnotationItemModifier::~AnnotationItemModifier()
@@ -35,20 +36,22 @@ AnnotationItemModifier::~AnnotationItemModifier()
     delete mItemMover;
 }
 
-void AnnotationItemModifier::handleMousePress(const QPointF& pos, QList<AbstractAnnotationItem*> *items)
+void AnnotationItemModifier::handleMousePress(const QPointF& pos, QList<AbstractAnnotationItem*>* items)
 {
     mItemResizer->grabHandle(pos);
-    if(!mItemResizer->isResizing()) {
-        mItemSelector->handleSelectionAt(pos, items);
-        if(!mItemSelector->isSelecting()) {
-            auto selectedItems = mItemSelector->selectedItems();
-            mItemMover->setOffset(pos, selectedItems);
-
-            if(selectedItems.count() == 1) {
-                mItemResizer->attachTo(selectedItems.first());
-            }
-        }
+    if(mItemResizer->isResizing()) {
+        return;
     }
+
+    mItemSelector->handleSelectionAt(pos, items);
+    if(mItemSelector->isSelecting()) {
+        return;
+    } else {
+        auto selectedItems = mItemSelector->selectedItems();
+        mItemMover->setOffset(pos, selectedItems);
+    }
+
+    handleSelection();
 }
 
 void AnnotationItemModifier::handleMouseMove(const QPointF& pos)
@@ -59,10 +62,11 @@ void AnnotationItemModifier::handleMouseMove(const QPointF& pos)
         mItemSelector->extendSelectionRectWhenShown(pos);
     } else {
         mItemMover->moveItems(pos);
+        mItemResizer->refresh();
     }
 }
 
-void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem*> *items)
+void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem*>* items)
 {
     if(mItemResizer->isResizing()) {
         mItemResizer->releaseHandle();
@@ -72,10 +76,7 @@ void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem*> *
         mItemMover->clearOffset();
     }
 
-    auto selectedItems = mItemSelector->selectedItems();
-    if(selectedItems.count() == 0) {
-        clearSelection();
-    }
+    handleSelection();
 }
 
 void AnnotationItemModifier::clearSelection()
@@ -84,7 +85,20 @@ void AnnotationItemModifier::clearSelection()
     mItemResizer->detach();
 }
 
-QList<AbstractAnnotationItem *> AnnotationItemModifier::selectedItems() const
+QList<AbstractAnnotationItem*> AnnotationItemModifier::selectedItems() const
 {
     return mItemSelector->selectedItems();
+}
+
+void AnnotationItemModifier::handleSelection()
+{
+    auto selectedItems = mItemSelector->selectedItems();
+    auto count = selectedItems.count();
+    if(count == 0) {
+        clearSelection();
+    } else if(count == 1) {
+        mItemResizer->attachTo(selectedItems.first());
+    } else {
+        mItemResizer->detach();
+    }
 }

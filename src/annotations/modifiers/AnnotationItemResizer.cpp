@@ -78,10 +78,9 @@ void AnnotationItemResizer::moveHandle(const QPointF& pos)
         return;
     }
 
-    prepareGeometryChange();
     if(mCurrentControlPoint != -1) {
         mAnnotationItem->setPointAt(pos - mClickOffset, mCurrentControlPoint);
-        mResizeHandles->updateHandlesPosition();
+        refresh();
     }
 }
 
@@ -93,6 +92,16 @@ void AnnotationItemResizer::releaseHandle()
 bool AnnotationItemResizer::isResizing() const
 {
     return mCurrentControlPoint != -1;
+}
+
+void AnnotationItemResizer::refresh()
+{
+    if(mAnnotationItem == nullptr) {
+        return;
+    }
+
+    prepareGeometryChange();
+    mResizeHandles->updateHandlesPosition();
 }
 
 void AnnotationItemResizer::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

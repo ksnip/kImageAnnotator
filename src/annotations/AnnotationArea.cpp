@@ -116,7 +116,7 @@ void AnnotationArea::addItemAtPosition(const QPointF& position)
 {
     mCurrentItem = mItemFactory->createItem(position, mConfig->selectedTool());
 
-    mItems->append(mCurrentItem);
+    mItems->prepend(mCurrentItem);
     addItem(mCurrentItem);
 }
 

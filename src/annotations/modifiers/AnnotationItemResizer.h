@@ -39,6 +39,7 @@ public:
     void moveHandle(const QPointF& pos);
     void releaseHandle();
     bool isResizing() const;
+    void refresh();
 
 protected:
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) override;
