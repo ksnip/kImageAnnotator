@@ -21,11 +21,11 @@
 
 AnnotationItemModifier::AnnotationItemModifier()
 {
-    mItemResizer = new AnnotationItemResizer();
     mItemSelector = new AnnotationItemSelector();
+    mItemResizer = new AnnotationItemResizer();
     mItemMover = new AnnotationItemMover();
-    addToGroup(mItemResizer);
     addToGroup(mItemSelector);
+    addToGroup(mItemResizer);
     setZValue(1000);
 }
 
