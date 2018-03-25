@@ -9,8 +9,10 @@ set(kimageannotator_SRCS main.cpp
                          annotations/AnnotationItemFactory.cpp
                          annotations/AnnotationProperties.cpp
                          annotations/AnnotationPropertiesFactory.cpp
+                         annotations/modifiers/AnnotationItemModifier.cpp
                          annotations/modifiers/AnnotationItemResizer.cpp
                          annotations/modifiers/AnnotationItemSelector.cpp
+                         annotations/modifiers/AnnotationItemMover.cpp
                          annotations/modifiers/ResizeHandles.cpp
                          annotations/items/AbstractAnnotationItem.cpp
                          annotations/items/AbstractAnnotationLine.cpp

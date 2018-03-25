@@ -26,18 +26,15 @@ AnnotationArea::AnnotationArea()
     mBackgroundImage = nullptr;
     mCurrentItem = nullptr;
     mItems = new QList<AbstractAnnotationItem*>();
-    mItemResizer = new AnnotationItemResizer();
-    mItemSelector = new AnnotationItemSelector();
-    mItemResizer->setZValue(100);
-    mItemSelector->setZValue(101);
-    addItem(mItemResizer);
-    addItem(mItemSelector);
+    mItemModifier = new AnnotationItemModifier();
+    addItem(mItemModifier);
 }
 
 AnnotationArea::~AnnotationArea()
 {
     delete mItemFactory;
     delete mItems;
+    delete mItemModifier;
 }
 
 void AnnotationArea::setBackgroundImage(const QPixmap& image)
@@ -68,16 +65,9 @@ void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     if(event->button() == Qt::LeftButton) {
         if(mConfig->selectedTool() == ToolTypes::Select) {
-            mItemResizer->grabHandle(event->scenePos());
-            if(!mItemResizer->isResizing()) {
-                mItemSelector->startSelectionRectAt(event->scenePos(), mItems);
-                auto selectedItems = mItemSelector->selectedItems();
-                if(selectedItems.count() == 1) {
-                    mItemResizer->attachTo(selectedItems.first());
-                    mItemResizer->grabHandle(event->scenePos());
-                }
-            }
+            mItemModifier->handleMousePress(event->scenePos(), mItems);
         } else {
+            clearSelection();
             addItemAtPosition(event->scenePos());
         }
     }
@@ -90,11 +80,7 @@ void AnnotationArea::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
         if(mCurrentItem) {
             addPointToCurrentItem(event->scenePos());
         } else {
-            if(mItemResizer->isResizing()) {
-                mItemResizer->moveHandle(event->scenePos());
-            } else {
-                mItemSelector->extendSelectionRectTo(event->scenePos());
-            }
+            mItemModifier->handleMouseMove(event->scenePos());
         }
     }
     QGraphicsScene::mouseMoveEvent(event);
@@ -104,11 +90,7 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
     if(event->button() == Qt::LeftButton) {
         if(mConfig->selectedTool() == ToolTypes::Select) {
-            if(mItemResizer->isResizing()) {
-                mItemResizer->releaseHandle();
-            } else {
-                mItemSelector->finishSelectionRect(mItems);
-            }
+            mItemModifier->handleMouseRelease(mItems);
         } else {
             mCurrentItem = nullptr;
         }
@@ -123,7 +105,7 @@ void AnnotationArea::keyReleaseEvent(QKeyEvent* event)
             deleteSelectedItems();
             break;
         case Qt::Key_Escape:
-            clearSelection();
+            mItemModifier->clearSelection();
             break;
     }
 
@@ -145,18 +127,12 @@ void AnnotationArea::addPointToCurrentItem(const QPointF& position)
 
 void AnnotationArea::deleteSelectedItems()
 {
-    auto selectedItems = mItemSelector->selectedItems();
-    clearSelection();
+    auto selectedItems = mItemModifier->selectedItems();
+    mItemModifier->clearSelection();
 
     for(auto item : selectedItems) {
         removeItem(item);
         mItems->removeOne(item);
         delete item;
     }
-}
-
-void AnnotationArea::clearSelection()
-{
-    mItemSelector->clearSelection();
-    mItemResizer->detach();
 }

@@ -26,8 +26,7 @@
 #include <QPainter>
 
 #include "AnnotationItemFactory.h"
-#include "modifiers/AnnotationItemResizer.h"
-#include "modifiers/AnnotationItemSelector.h"
+#include "modifiers/AnnotationItemModifier.h"
 #include "../backend/Config.h"
 #include "../common/enum/ToolTypes.h"
 
@@ -51,15 +50,13 @@ private:
     AnnotationItemFactory*          mItemFactory;
     QGraphicsPixmapItem*            mBackgroundImage;
     AbstractAnnotationItem*         mCurrentItem;
-    AnnotationItemResizer*          mItemResizer;
-    AnnotationItemSelector*         mItemSelector;
+    AnnotationItemModifier*         mItemModifier;
     Config*                         mConfig;
     QList<AbstractAnnotationItem*> *mItems;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);
     void deleteSelectedItems();
-    void clearSelection();
 };
 
 #endif // ANNOTATIONAREA_H

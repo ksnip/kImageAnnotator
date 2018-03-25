@@ -21,7 +21,6 @@
 #define ANNOTATIONITEMSELECTOR_H
 
 #include <QGraphicsWidget>
-#include <QGraphicsSceneMouseEvent>
 
 #include "../items/AbstractAnnotationItem.h"
 
@@ -31,11 +30,12 @@ public:
     explicit AnnotationItemSelector();
     ~AnnotationItemSelector();
     virtual QRectF boundingRect() const override;
-    void startSelectionRectAt(const QPointF& position, QList<AbstractAnnotationItem*> *items);
-    void extendSelectionRectTo(const QPointF& position);
-    void finishSelectionRect(QList<AbstractAnnotationItem*>* items);
+    void handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem*> *items);
+    void extendSelectionRectWhenShown(const QPointF& pos);
+    void finishSelectionRectWhenShown(QList<AbstractAnnotationItem*>* items);
     void clearSelection();
-    QList<AbstractAnnotationItem*> selectedItems();
+    QList<AbstractAnnotationItem*> selectedItems() const;
+    bool isSelecting() const;
 
 protected:
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) override;

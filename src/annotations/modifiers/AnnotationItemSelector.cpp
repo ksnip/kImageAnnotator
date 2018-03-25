@@ -35,26 +35,36 @@ QRectF AnnotationItemSelector::boundingRect() const
     return mSelectionRect.normalized();
 }
 
-void AnnotationItemSelector::startSelectionRectAt(const QPointF& position, QList<AbstractAnnotationItem*>* items)
+void AnnotationItemSelector::handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem*>* items)
 {
+    selectItemAtPosition(pos, items);
+    if(mSelectedItems->count() > 0) {
+        return;
+    }
+
     prepareGeometryChange();
-    initSelectionRectAt(position);
-    selectItemAtPosition(position, items);
+    initSelectionRectAt(pos);
     mShowSelectionRect = true;
 }
 
-void AnnotationItemSelector::extendSelectionRectTo(const QPointF& position)
+void AnnotationItemSelector::extendSelectionRectWhenShown(const QPointF& pos)
 {
+    if(!mShowSelectionRect) {
+        return;
+    }
+
     prepareGeometryChange();
-    updateSelectionRect(position);
+    updateSelectionRect(pos);
 }
 
-void AnnotationItemSelector::finishSelectionRect(QList<AbstractAnnotationItem*>* items)
+void AnnotationItemSelector::finishSelectionRectWhenShown(QList<AbstractAnnotationItem*>* items)
 {
-    prepareGeometryChange();
-    if(!mSelectionRect.isNull()) {
-        selectItemsUnderRect(items);
+    if(!mShowSelectionRect) {
+        return;
     }
+
+    prepareGeometryChange();
+    selectItemsUnderRect(items);
     mShowSelectionRect = false;
 }
 
@@ -66,9 +76,14 @@ void AnnotationItemSelector::clearSelection()
     mSelectedItems->clear();
 }
 
-QList<AbstractAnnotationItem*> AnnotationItemSelector::selectedItems()
+QList<AbstractAnnotationItem*> AnnotationItemSelector::selectedItems() const
 {
     return *mSelectedItems;
+}
+
+bool AnnotationItemSelector::isSelecting() const
+{
+    return mShowSelectionRect;
 }
 
 void AnnotationItemSelector::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

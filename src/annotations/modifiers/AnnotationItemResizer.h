@@ -21,7 +21,6 @@
 #define ANNOTATIONITEMRESIZER_H
 
 #include <QGraphicsWidget>
-#include <QGraphicsSceneMouseEvent>
 
 #include "ResizeHandles.h"
 #include "../items/AbstractAnnotationLine.h"

@@ -29,13 +29,15 @@ class AnnotationItemSelectorTest : public QObject
 {
     Q_OBJECT
 private slots:
-    void TestStartSelectionRectAt_Should_SelectItem_When_ItemUnderProvidedPosition();
-    void TestStartSelectionRectAt_Should_NotSelectItem_When_ItemNotUnderProvidedPosition();
-    void TestStartSelectionRectAt_Should_UnselectAllItems_When_ProvidedPositionNotOverAnyItem();
-    void TestStartSelectionRectAt_Should_NotUnselectAnyItem_When_ProvidedPositionIsOverSelectedItem();
-    void TestStartSelectionRectAt_Should_UnselectItemsNotUnderPosition_When_ProvidedPositionIsOverNotSelectedItem();
-    void TestExtendSelectionRectTo_Should_SelectItems_When_ItemsWithinSelectionRect();
-    void TestExtendSelectionRectTo_Should_SelectOnlyItemWithinSelectionRect();
+    void TestHandleSelectionRectAt_Should_SelectItem_When_ItemUnderProvidedPosition();
+    void TestHandleSelectionRectAt_Should_NotSelectItem_When_ItemNotUnderProvidedPosition();
+    void TestHandleSelectionRectAt_Should_UnselectAllItems_When_ProvidedPositionNotOverAnyItem();
+    void TestHandleSelectionRectAt_Should_NotUnselectAnyItem_When_ProvidedPositionIsOverSelectedItem();
+    void TestHandleSelectionRectAt_Should_UnselectItemsNotUnderPosition_When_ProvidedPositionIsOverNotSelectedItem();
+    void TestHandleSelectionRectAt_Should_NotShowRect_When_InitialPositionNotOnItem();
+    void TestHandleSelectionRectAt_Should_ShowRect_When_InitialPositionOnItem();
+    void TestFinishSelectionRectWhenShown_Should_SelectItems_When_ItemsWithinSelectionRect();
+    void TestFinishSelectionRectWhenShown_Should_SelectOnlyItemWithinSelectionRect();
     void TestClearSelection_Should_UnselectAllSelectedItems();
 };
 

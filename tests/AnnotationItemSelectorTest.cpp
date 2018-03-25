@@ -19,7 +19,7 @@
 
 #include "AnnotationItemSelectorTest.h"
 
-void AnnotationItemSelectorTest::TestStartSelectionRectAt_Should_SelectItem_When_ItemUnderProvidedPosition()
+void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_SelectItem_When_ItemUnderProvidedPosition()
 {
     AnnotationProperties properties(Qt::red, 3);
     QPointF p1(10, 10);
@@ -30,14 +30,14 @@ void AnnotationItemSelectorTest::TestStartSelectionRectAt_Should_SelectItem_When
     items.append(&line);
     AnnotationItemSelector selector;
 
-    selector.startSelectionRectAt(p1 + QPointF(0, 5), &items);
+    selector.handleSelectionAt(p1 + QPointF(0, 5), &items);
 
     auto results = selector.selectedItems();
     QCOMPARE(results.count(), 1);
     QCOMPARE(results.first(), &line);
 }
 
-void AnnotationItemSelectorTest::TestStartSelectionRectAt_Should_NotSelectItem_When_ItemNotUnderProvidedPosition()
+void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_NotSelectItem_When_ItemNotUnderProvidedPosition()
 {
     AnnotationProperties properties(Qt::red, 3);
     QPointF p1(10, 10);
@@ -48,14 +48,14 @@ void AnnotationItemSelectorTest::TestStartSelectionRectAt_Should_NotSelectItem_W
     items.append(&line);
     AnnotationItemSelector selector;
 
-    selector.startSelectionRectAt(p1 + QPointF(0, -5), &items);
+    selector.handleSelectionAt(p1 + QPointF(0, -5), &items);
 
     auto results = selector.selectedItems();
     QCOMPARE(results.count(), 0);
     QCOMPARE(results.contains(&line), false);
 }
 
-void AnnotationItemSelectorTest::TestStartSelectionRectAt_Should_UnselectAllItems_When_ProvidedPositionNotOverAnyItem()
+void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_UnselectAllItems_When_ProvidedPositionNotOverAnyItem()
 {
     AnnotationProperties properties(Qt::red, 3);
     QPointF p1(10, 10);
@@ -70,18 +70,18 @@ void AnnotationItemSelectorTest::TestStartSelectionRectAt_Should_UnselectAllItem
     items.append(&line1);
     items.append(&line2);
     AnnotationItemSelector selector;
-    selector.startSelectionRectAt(p1 + QPointF(-5, -5), &items);
-    selector.extendSelectionRectTo(p4 + QPointF(5, 5));
-    selector.finishSelectionRect(&items);
+    selector.handleSelectionAt(p1 + QPointF(-5, -5), &items);
+    selector.extendSelectionRectWhenShown(p4 + QPointF(5, 5));
+    selector.finishSelectionRectWhenShown(&items);
     QCOMPARE(selector.selectedItems().count(), 2);
 
-    selector.startSelectionRectAt(QPointF(0, 0), &items);
+    selector.handleSelectionAt(QPointF(0, 0), &items);
 
     auto results = selector.selectedItems();
     QCOMPARE(results.count(), 0);
 }
 
-void AnnotationItemSelectorTest::TestStartSelectionRectAt_Should_NotUnselectAnyItem_When_ProvidedPositionIsOverSelectedItem()
+void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_NotUnselectAnyItem_When_ProvidedPositionIsOverSelectedItem()
 {
     AnnotationProperties properties(Qt::red, 3);
     QPointF p1(10, 10);
@@ -96,18 +96,18 @@ void AnnotationItemSelectorTest::TestStartSelectionRectAt_Should_NotUnselectAnyI
     items.append(&line1);
     items.append(&line2);
     AnnotationItemSelector selector;
-    selector.startSelectionRectAt(p1 + QPointF(-5, -5), &items);
-    selector.extendSelectionRectTo(p4 + QPointF(5, 5));
-    selector.finishSelectionRect(&items);
+    selector.handleSelectionAt(p1 + QPointF(-5, -5), &items);
+    selector.extendSelectionRectWhenShown(p4 + QPointF(5, 5));
+    selector.finishSelectionRectWhenShown(&items);
     QCOMPARE(selector.selectedItems().count(), 2);
 
-    selector.startSelectionRectAt(p1 + QPointF(0, 5), &items);
+    selector.handleSelectionAt(p1 + QPointF(0, 5), &items);
 
     auto results = selector.selectedItems();
     QCOMPARE(results.count(), 2);
 }
 
-void AnnotationItemSelectorTest::TestStartSelectionRectAt_Should_UnselectItemsNotUnderPosition_When_ProvidedPositionIsOverNotSelectedItem()
+void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_UnselectItemsNotUnderPosition_When_ProvidedPositionIsOverNotSelectedItem()
 {
     AnnotationProperties properties(Qt::red, 3);
     QPointF p1(10, 10);
@@ -122,14 +122,14 @@ void AnnotationItemSelectorTest::TestStartSelectionRectAt_Should_UnselectItemsNo
     items.append(&line1);
     items.append(&line2);
     AnnotationItemSelector selector;
-    selector.startSelectionRectAt(p1 + QPointF(-5, -5), &items);
-    selector.extendSelectionRectTo(p2 + QPointF(1, 1));
-    selector.finishSelectionRect(&items);
+    selector.handleSelectionAt(p1 + QPointF(-5, -5), &items);
+    selector.extendSelectionRectWhenShown(p2 + QPointF(1, 1));
+    selector.finishSelectionRectWhenShown(&items);
     QCOMPARE(selector.selectedItems().count(), 1);
     QCOMPARE(selector.selectedItems().contains(&line1), true);
     QCOMPARE(selector.selectedItems().contains(&line2), false);
 
-    selector.startSelectionRectAt(p3 + QPointF(2, 2), &items);
+    selector.handleSelectionAt(p3 + QPointF(2, 2), &items);
 
     auto results = selector.selectedItems();
     QCOMPARE(results.count(), 1);
@@ -137,7 +137,41 @@ void AnnotationItemSelectorTest::TestStartSelectionRectAt_Should_UnselectItemsNo
     QCOMPARE(results.contains(&line2), true);
 }
 
-void AnnotationItemSelectorTest::TestExtendSelectionRectTo_Should_SelectItems_When_ItemsWithinSelectionRect()
+void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_NotShowRect_When_InitialPositionNotOnItem()
+{
+    AnnotationProperties properties(Qt::red, 3);
+    QPointF p1(10, 10);
+    QPointF p2(10, 20);
+    AnnotationLine line(p1, properties);
+    line.addPoint(p2);
+    QList<AbstractAnnotationItem*> items;
+    items.append(&line);
+    AnnotationItemSelector selector;
+
+    selector.handleSelectionAt(QPointF(2, 2), &items);
+
+    QCOMPARE(selector.selectedItems().count(), 0);
+    QCOMPARE(selector.isSelecting(), true);
+}
+
+void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_ShowRect_When_InitialPositionOnItem()
+{
+    AnnotationProperties properties(Qt::red, 3);
+    QPointF p1(10, 10);
+    QPointF p2(10, 20);
+    AnnotationLine line(p1, properties);
+    line.addPoint(p2);
+    QList<AbstractAnnotationItem*> items;
+    items.append(&line);
+    AnnotationItemSelector selector;
+
+    selector.handleSelectionAt(p1 + QPointF(0, 5), &items);
+
+    QCOMPARE(selector.selectedItems().count(), 1);
+    QCOMPARE(selector.isSelecting(), false);
+}
+
+void AnnotationItemSelectorTest::TestFinishSelectionRectWhenShown_Should_SelectItems_When_ItemsWithinSelectionRect()
 {
     AnnotationProperties properties(Qt::red, 3);
     QPointF p1(10, 10);
@@ -153,9 +187,9 @@ void AnnotationItemSelectorTest::TestExtendSelectionRectTo_Should_SelectItems_Wh
     items.append(&line2);
     AnnotationItemSelector selector;
 
-    selector.startSelectionRectAt(p1 + QPointF(-5, -5), &items);
-    selector.extendSelectionRectTo(p4 + QPointF(5, 5));
-    selector.finishSelectionRect(&items);
+    selector.handleSelectionAt(p1 + QPointF(-5, -5), &items);
+    selector.extendSelectionRectWhenShown(p4 + QPointF(5, 5));
+    selector.finishSelectionRectWhenShown(&items);
 
     auto results = selector.selectedItems();
     QCOMPARE(results.count(), 2);
@@ -163,7 +197,7 @@ void AnnotationItemSelectorTest::TestExtendSelectionRectTo_Should_SelectItems_Wh
     QCOMPARE(results.contains(&line2), true);
 }
 
-void AnnotationItemSelectorTest::TestExtendSelectionRectTo_Should_SelectOnlyItemWithinSelectionRect()
+void AnnotationItemSelectorTest::TestFinishSelectionRectWhenShown_Should_SelectOnlyItemWithinSelectionRect()
 {
     AnnotationProperties properties(Qt::red, 3);
     QPointF p1(10, 10);
@@ -179,9 +213,9 @@ void AnnotationItemSelectorTest::TestExtendSelectionRectTo_Should_SelectOnlyItem
     items.append(&line2);
     AnnotationItemSelector selector;
 
-    selector.startSelectionRectAt(p1 + QPointF(-5, -5), &items);
-    selector.extendSelectionRectTo(p2 + QPointF(5, 5));
-    selector.finishSelectionRect(&items);
+    selector.handleSelectionAt(p1 + QPointF(-5, -5), &items);
+    selector.extendSelectionRectWhenShown(p2 + QPointF(5, 5));
+    selector.finishSelectionRectWhenShown(&items);
 
     auto results = selector.selectedItems();
     QCOMPARE(results.count(), 1);
@@ -204,9 +238,9 @@ void AnnotationItemSelectorTest::TestClearSelection_Should_UnselectAllSelectedIt
     items.append(&line1);
     items.append(&line2);
     AnnotationItemSelector selector;
-    selector.startSelectionRectAt(p1 + QPointF(-5, -5), &items);
-    selector.extendSelectionRectTo(p4 + QPointF(5, 5));
-    selector.finishSelectionRect(&items);
+    selector.handleSelectionAt(p1 + QPointF(-5, -5), &items);
+    selector.extendSelectionRectWhenShown(p4 + QPointF(5, 5));
+    selector.finishSelectionRectWhenShown(&items);
     QCOMPARE(selector.selectedItems().count(), 2);
     QCOMPARE(selector.selectedItems().contains(&line1), true);
     QCOMPARE(selector.selectedItems().contains(&line2), true);
