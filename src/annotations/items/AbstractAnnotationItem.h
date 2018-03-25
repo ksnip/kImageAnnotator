@@ -42,8 +42,6 @@ public:
     AnnotationProperties properties() const;
     void setProperties(const AnnotationProperties& properties);
     void addShadowEffect();
-    bool selected() const;
-    void select(bool isSelected);
 
 protected:
     void setShape(QPainterPath& newShape);

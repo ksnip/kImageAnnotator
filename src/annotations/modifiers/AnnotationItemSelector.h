@@ -36,12 +36,14 @@ public:
     void clearSelection();
     QList<AbstractAnnotationItem*> selectedItems() const;
     bool isSelecting() const;
+    void refresh();
 
 protected:
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) override;
 
 private:
     QRectF                          mSelectionRect;
+    QRectF                          mSelectedItemsBoundingRect;
     QList<AbstractAnnotationItem*> *mSelectedItems;
     bool                            mShowSelectionRect;
 
@@ -50,6 +52,7 @@ private:
     void selectItemAtPosition(const QPointF& position, QList<AbstractAnnotationItem*> *items);
     void selectItemsUnderRect(QList<AbstractAnnotationItem*> *items);
     void selectItem(AbstractAnnotationItem* item);
+    void addItemToBoundingRect(AbstractAnnotationItem* item);
 };
 
 #endif // ANNOTATIONITEMSELECTOR_H

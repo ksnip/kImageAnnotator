@@ -32,7 +32,11 @@ AnnotationItemSelector::~AnnotationItemSelector()
 
 QRectF AnnotationItemSelector::boundingRect() const
 {
-    return mSelectionRect.normalized();
+    if(isSelecting()) {
+        return mSelectionRect.normalized();
+    } else {
+        return mSelectedItemsBoundingRect;
+    }
 }
 
 void AnnotationItemSelector::handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem*>* items)
@@ -70,10 +74,8 @@ void AnnotationItemSelector::finishSelectionRectWhenShown(QList<AbstractAnnotati
 
 void AnnotationItemSelector::clearSelection()
 {
-    for(auto item : *mSelectedItems) {
-        item->select(false);
-    }
     mSelectedItems->clear();
+    mSelectedItemsBoundingRect = QRectF();
 }
 
 QList<AbstractAnnotationItem*> AnnotationItemSelector::selectedItems() const
@@ -86,6 +88,15 @@ bool AnnotationItemSelector::isSelecting() const
     return mShowSelectionRect;
 }
 
+void AnnotationItemSelector::refresh()
+{
+    prepareGeometryChange();
+    mSelectedItemsBoundingRect = QRectF();
+    for(auto item : *mSelectedItems) {
+        addItemToBoundingRect(item);
+    }
+}
+
 void AnnotationItemSelector::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
     Q_UNUSED(option)
@@ -95,6 +106,12 @@ void AnnotationItemSelector::paint(QPainter* painter, const QStyleOptionGraphics
         painter->setPen(Qt::darkBlue);
         painter->setBrush(QColor(0, 0, 255, 60));
         painter->drawRect(mSelectionRect);
+    }
+
+    painter->setPen(Qt::gray);
+    painter->setBrush(Qt::NoBrush);
+    for(auto item : *mSelectedItems) {
+        painter->drawRect(item->boundingRect());
     }
 }
 
@@ -115,7 +132,7 @@ void AnnotationItemSelector::selectItemAtPosition(const QPointF& position, QList
 
     for(auto item : *items) {
         if(item->intersects(rect)) {
-            if(!item->selected()) {
+            if(!mSelectedItems->contains(item)) {
                 clearSelection();
                 selectItem(item);
             }
@@ -137,6 +154,11 @@ void AnnotationItemSelector::selectItemsUnderRect(QList<AbstractAnnotationItem*>
 
 void AnnotationItemSelector::selectItem(AbstractAnnotationItem* item)
 {
-    item->select(true);
     mSelectedItems->append(item);
+    addItemToBoundingRect(item);
+}
+
+void AnnotationItemSelector::addItemToBoundingRect(AbstractAnnotationItem* item)
+{
+    mSelectedItemsBoundingRect = mSelectedItemsBoundingRect.united(item->boundingRect());
 }

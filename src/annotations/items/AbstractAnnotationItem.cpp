@@ -88,20 +88,6 @@ void AbstractAnnotationItem::addShadowEffect()
     }
 }
 
-bool AbstractAnnotationItem::selected() const
-{
-    return mIsSelected;
-}
-
-void AbstractAnnotationItem::select(bool isSelected)
-{
-    if(selected() == isSelected) {
-        return;
-    }
-    prepareGeometryChange();
-    mIsSelected = isSelected;
-}
-
 void AbstractAnnotationItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*)
 {
     QPen pen;
@@ -115,11 +101,4 @@ void AbstractAnnotationItem::paint(QPainter* painter, const QStyleOptionGraphics
         painter->setBrush(mProperties->color());
     }
     painter->drawPath(*mShape);
-
-    // TODO Paint selection rect
-    if(selected()) {
-        painter->setBrush(Qt::NoBrush);
-        painter->setPen(Qt::gray);
-        painter->drawRect(boundingRect());
-    }
 }

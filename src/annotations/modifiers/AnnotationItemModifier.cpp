@@ -63,6 +63,7 @@ void AnnotationItemModifier::handleMouseMove(const QPointF& pos)
     } else {
         mItemMover->moveItems(pos);
         mItemResizer->refresh();
+        mItemSelector->refresh();
     }
 }
 

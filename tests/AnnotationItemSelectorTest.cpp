@@ -244,15 +244,11 @@ void AnnotationItemSelectorTest::TestClearSelection_Should_UnselectAllSelectedIt
     QCOMPARE(selector.selectedItems().count(), 2);
     QCOMPARE(selector.selectedItems().contains(&line1), true);
     QCOMPARE(selector.selectedItems().contains(&line2), true);
-    QCOMPARE(line1.selected(), true);
-    QCOMPARE(line2.selected(), true);
 
     selector.clearSelection();
 
     auto results = selector.selectedItems();
     QCOMPARE(results.count(), 0);
-    QCOMPARE(line1.selected(), false);
-    QCOMPARE(line2.selected(), false);
 }
 
 QTEST_MAIN(AnnotationItemSelectorTest);
