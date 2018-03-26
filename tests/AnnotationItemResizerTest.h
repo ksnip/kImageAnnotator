@@ -21,8 +21,6 @@
 #define ANNOTATIONITEMRESIZERTEST_H
 
 #include <QtTest>
-#include <QGraphicsView>
-#include <QGraphicsScene>
 
 #include "../src/annotations/modifiers/AnnotationItemResizer.h"
 #include "../src/annotations/items/AnnotationLine.h"
