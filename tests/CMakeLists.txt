@@ -39,6 +39,7 @@ set(ListOfUnitTests AnnotationAreaTest
                     ResizeHandlesTest
                     AnnotationItemResizerTest
                     AnnotationItemSelectorTest
+                    AnnotationItemMoverTest
                     ConfigNameFormatterTest
                     AnnotationItemFactoryTest
                     AnnotationPropertiesFactoryTest)
