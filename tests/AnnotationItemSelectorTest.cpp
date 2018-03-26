@@ -251,4 +251,64 @@ void AnnotationItemSelectorTest::TestClearSelection_Should_UnselectAllSelectedIt
     QCOMPARE(results.count(), 0);
 }
 
+void AnnotationItemSelectorTest::TestBoundRect_Should_ReturnRectCoveringSelectedItems_When_ItemsSelected()
+{
+    AnnotationProperties properties(Qt::red, 3);
+    QPointF p1(10, 10);
+    QPointF p2(10, 20);
+    QPointF p3(25, 25);
+    QPointF p4(30, 30);
+    AnnotationLine line1(p1, properties);
+    AnnotationLine line2(p3, properties);
+    line1.addPoint(p2);
+    line2.addPoint(p4);
+    QList<AbstractAnnotationItem*> items;
+    items.append(&line1);
+    items.append(&line2);
+    AnnotationItemSelector selector;
+    selector.handleSelectionAt(p1 + QPointF(-5, -5), &items);
+    selector.extendSelectionRectWhenShown(p4);
+    selector.finishSelectionRectWhenShown(&items);
+
+    auto boundingRect = selector.boundingRect();
+
+    auto results = selector.selectedItems();
+    QCOMPARE(results.count(), 2);
+    QCOMPARE(results.contains(&line1), true);
+    QCOMPARE(results.contains(&line2), true);
+    QCOMPARE(boundingRect, line1.boundingRect().united(line2.boundingRect()));
+}
+
+void AnnotationItemSelectorTest::TestRefresh_Should_UpdateBoundingRect_When_CalledAfterItemsHaveBeenMoved()
+{
+    AnnotationProperties properties(Qt::red, 3);
+    QPointF p1(10, 10);
+    QPointF p2(10, 20);
+    QPointF p3(25, 25);
+    QPointF p4(30, 30);
+    QPointF p5(50, 50);
+    AnnotationLine line1(p1, properties);
+    AnnotationLine line2(p3, properties);
+    line1.addPoint(p2);
+    line2.addPoint(p4);
+    QList<AbstractAnnotationItem*> items;
+    items.append(&line1);
+    items.append(&line2);
+    AnnotationItemSelector selector;
+    selector.handleSelectionAt(p1 + QPointF(-5, -5), &items);
+    selector.extendSelectionRectWhenShown(p4);
+    selector.finishSelectionRectWhenShown(&items);
+    line1.setPosition(p5);
+    QVERIFY(selector.boundingRect() != line1.boundingRect().united(line2.boundingRect()));
+
+    selector.refresh();
+
+    auto boundingRect = selector.boundingRect();
+    auto results = selector.selectedItems();
+    QCOMPARE(results.count(), 2);
+    QCOMPARE(results.contains(&line1), true);
+    QCOMPARE(results.contains(&line2), true);
+    QCOMPARE(boundingRect, line1.boundingRect().united(line2.boundingRect()));
+}
+
 QTEST_MAIN(AnnotationItemSelectorTest);

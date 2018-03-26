@@ -39,6 +39,8 @@ private slots:
     void TestFinishSelectionRectWhenShown_Should_SelectItems_When_ItemsWithinSelectionRect();
     void TestFinishSelectionRectWhenShown_Should_SelectOnlyItemWithinSelectionRect();
     void TestClearSelection_Should_UnselectAllSelectedItems();
+    void TestBoundRect_Should_ReturnRectCoveringSelectedItems_When_ItemsSelected();
+    void TestRefresh_Should_UpdateBoundingRect_When_CalledAfterItemsHaveBeenMoved();
 };
 
 #endif // ANNOTATIONITEMSELECTORTEST_H
