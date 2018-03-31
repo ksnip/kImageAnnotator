@@ -36,6 +36,7 @@ public:
     void handleMouseRelease(QList<AbstractAnnotationItem*> *items);
     void clearSelection();
     QList<AbstractAnnotationItem*> selectedItems() const;
+    virtual QRectF boundingRect() const override;
 
 private:
     AnnotationItemResizer*  mItemResizer;

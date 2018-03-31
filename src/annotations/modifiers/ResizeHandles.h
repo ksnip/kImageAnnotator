@@ -22,6 +22,7 @@
 
 #include <QRectF>
 #include <QList>
+#include <QCursor>
 
 #include "../items/AbstractAnnotationLine.h"
 #include "../items/AbstractAnnotationRect.h"
@@ -35,14 +36,18 @@ public:
     int indexOfHandleAt(const QPointF& pos) const;
     QList<QRectF> handles() const;
     QRectF handle(int index) const;
+    Qt::CursorShape getCursorForHandle(const QPointF& pos) const;
 
 private:
     AbstractAnnotationLine* mLineItem;
     AbstractAnnotationRect* mRectItem;
     int                     mHandleSize;
     QList<QRectF>           mHandles;
+    QList<Qt::CursorShape>  mCursors;
 
     void addHandlesToList(int count);
+    void addLineCursorsToList();
+    void addRectCursorsToList();
 };
 
 #endif // RESIZEHANDLES_H

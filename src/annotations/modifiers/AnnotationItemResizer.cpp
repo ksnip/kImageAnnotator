@@ -47,15 +47,17 @@ void AnnotationItemResizer::attachTo(AbstractAnnotationItem* item)
     prepareGeometryChange();
     mAnnotationItem = item;
     mResizeHandles->initHandles(item);
+    installParentEventFilter();
 }
 
 void AnnotationItemResizer::detach()
 {
     prepareGeometryChange();
     mAnnotationItem = nullptr;
+    removeParentEventFilter();
 }
 
-AbstractAnnotationItem * AnnotationItemResizer::attachedItem() const
+AbstractAnnotationItem* AnnotationItemResizer::attachedItem() const
 {
     return mAnnotationItem;
 }
@@ -104,6 +106,18 @@ void AnnotationItemResizer::refresh()
     mResizeHandles->updateHandlesPosition();
 }
 
+bool AnnotationItemResizer::sceneEventFilter(QGraphicsItem* watched, QEvent* event)
+{
+    Q_UNUSED(watched)
+
+    if(event->type() == QEvent::GraphicsSceneHoverMove) {
+        auto hoverMoveEvent = dynamic_cast<QGraphicsSceneHoverEvent*>(event);
+        updateParentCursor(hoverMoveEvent->scenePos());
+        return false;
+    }
+    return true;
+}
+
 void AnnotationItemResizer::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
     Q_UNUSED(option)
@@ -113,10 +127,41 @@ void AnnotationItemResizer::paint(QPainter* painter, const QStyleOptionGraphicsI
         return;
     }
 
-    painter->setPen(QColor("white"));
-    painter->setBrush(QColor("gray"));
+    painter->setPen(Qt::white);
+    painter->setBrush(Qt::gray);
     auto points = mResizeHandles->handles();
     for(auto point : points) {
         painter->drawRect(point);
     }
+}
+
+void AnnotationItemResizer::installParentEventFilter()
+{
+    auto parent = parentItem();
+    if(parent != nullptr) {
+        parent->installSceneEventFilter(this);
+    }
+}
+
+void AnnotationItemResizer::removeParentEventFilter()
+{
+    auto parent = parentItem();
+    if(parent != nullptr) {
+        parent->removeSceneEventFilter(this);
+    }
+}
+
+void AnnotationItemResizer::updateParentCursor(const QPointF& pos)
+{
+    auto parent = parentItem();
+    if(parent == nullptr) {
+        return;
+    }
+
+    auto cursor = mResizeHandles->getCursorForHandle(pos);
+    if(parent->cursor().shape() == cursor) {
+        return;
+    }
+
+    parent->setCursor(cursor);
 }

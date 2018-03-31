@@ -33,8 +33,10 @@ void ResizeHandles::initHandles(AbstractAnnotationItem* item)
     mHandles.clear();
     if(mLineItem) {
         addHandlesToList(2);
+        addLineCursorsToList();
     } else if(mRectItem) {
         addHandlesToList(8);
+        addRectCursorsToList();
     }
     updateHandlesPosition();
 }
@@ -60,9 +62,9 @@ void ResizeHandles::updateHandlesPosition()
 
 int ResizeHandles::indexOfHandleAt(const QPointF& pos) const
 {
-    for(auto controlPoint : mHandles) {
-        if(controlPoint.contains(pos)) {
-            return mHandles.indexOf(controlPoint);
+    for(auto handle : mHandles) {
+        if(handle.contains(pos)) {
+            return mHandles.indexOf(handle);
         }
     }
     return -1;
@@ -82,9 +84,40 @@ QRectF ResizeHandles::handle(int index) const
     return mHandles[index];
 }
 
+Qt::CursorShape ResizeHandles::getCursorForHandle(const QPointF& pos) const
+{
+    auto index = indexOfHandleAt(pos);
+
+    if(index == -1 || mCursors.isEmpty()) {
+        return Qt::ArrowCursor;
+    }
+
+    return mCursors[index];
+}
+
 void ResizeHandles::addHandlesToList(int count)
 {
     for(auto i = 0; i < count; i++) {
         mHandles.append(QRectF(0, 0, mHandleSize, mHandleSize));
     }
+}
+
+void ResizeHandles::addLineCursorsToList()
+{
+    mCursors.clear();
+    mCursors.append(Qt::SizeAllCursor);
+    mCursors.append(Qt::SizeAllCursor);
+}
+
+void ResizeHandles::addRectCursorsToList()
+{
+    mCursors.clear();
+    mCursors.append(Qt::SizeAllCursor);
+    mCursors.append(Qt::SizeVerCursor);
+    mCursors.append(Qt::SizeAllCursor);
+    mCursors.append(Qt::SizeHorCursor);
+    mCursors.append(Qt::SizeAllCursor);
+    mCursors.append(Qt::SizeVerCursor);
+    mCursors.append(Qt::SizeAllCursor);
+    mCursors.append(Qt::SizeHorCursor);
 }

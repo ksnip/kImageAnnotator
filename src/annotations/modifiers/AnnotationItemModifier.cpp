@@ -27,6 +27,7 @@ AnnotationItemModifier::AnnotationItemModifier()
     addToGroup(mItemSelector);
     addToGroup(mItemResizer);
     setZValue(1000);
+    setAcceptHoverEvents(true);
 }
 
 AnnotationItemModifier::~AnnotationItemModifier()
@@ -90,6 +91,11 @@ void AnnotationItemModifier::clearSelection()
 QList<AbstractAnnotationItem*> AnnotationItemModifier::selectedItems() const
 {
     return mItemSelector->selectedItems();
+}
+
+QRectF AnnotationItemModifier::boundingRect() const
+{
+    return mItemResizer->boundingRect();
 }
 
 void AnnotationItemModifier::handleSelection()
