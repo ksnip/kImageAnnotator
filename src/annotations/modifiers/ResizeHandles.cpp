@@ -89,7 +89,7 @@ Qt::CursorShape ResizeHandles::getCursorForHandle(const QPointF& pos) const
     auto index = indexOfHandleAt(pos);
 
     if(index == -1 || mCursors.isEmpty()) {
-        return Qt::ArrowCursor;
+        return CursorHelper::defaultCursor();
     }
 
     return mCursors[index];
@@ -105,19 +105,19 @@ void ResizeHandles::addHandlesToList(int count)
 void ResizeHandles::addLineCursorsToList()
 {
     mCursors.clear();
-    mCursors.append(Qt::SizeAllCursor);
-    mCursors.append(Qt::SizeAllCursor);
+    mCursors.append(CursorHelper::allResizeCursor());
+    mCursors.append(CursorHelper::allResizeCursor());
 }
 
 void ResizeHandles::addRectCursorsToList()
 {
     mCursors.clear();
-    mCursors.append(Qt::SizeAllCursor);
-    mCursors.append(Qt::SizeVerCursor);
-    mCursors.append(Qt::SizeAllCursor);
-    mCursors.append(Qt::SizeHorCursor);
-    mCursors.append(Qt::SizeAllCursor);
-    mCursors.append(Qt::SizeVerCursor);
-    mCursors.append(Qt::SizeAllCursor);
-    mCursors.append(Qt::SizeHorCursor);
+    mCursors.append(CursorHelper::allResizeCursor());
+    mCursors.append(CursorHelper::verticalResizeCursor());
+    mCursors.append(CursorHelper::allResizeCursor());
+    mCursors.append(CursorHelper::horizontalResizeCursor());
+    mCursors.append(CursorHelper::allResizeCursor());
+    mCursors.append(CursorHelper::verticalResizeCursor());
+    mCursors.append(CursorHelper::allResizeCursor());
+    mCursors.append(CursorHelper::horizontalResizeCursor());
 }

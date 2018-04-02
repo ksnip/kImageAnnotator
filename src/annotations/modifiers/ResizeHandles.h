@@ -22,10 +22,10 @@
 
 #include <QRectF>
 #include <QList>
-#include <QCursor>
 
 #include "../items/AbstractAnnotationLine.h"
 #include "../items/AbstractAnnotationRect.h"
+#include "../../common/helper/CursorHelper.h"
 
 class ResizeHandles
 {
