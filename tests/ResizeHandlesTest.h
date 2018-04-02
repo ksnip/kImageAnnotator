@@ -25,6 +25,7 @@
 #include "../src/annotations/modifiers/ResizeHandles.h"
 #include "../src/annotations/items/AnnotationLine.h"
 #include "../src/annotations/items/AnnotationRect.h"
+#include "../src/common/helper/CursorHelper.h"
 
 class ResizeHandlesTest : public QObject
 {
@@ -37,6 +38,8 @@ private slots:
     void TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_HandleIsNotAtProvidedPosition();
     void TestHandle_Should_ReturnRectAtIndex_When_HandleAtIndexExists();
     void TestHandle_Should_NotReturnRect_When_HandleAtIndexDoesntExists();
+    void TestGetCursorForHandle_Should_NotReturnDefaultCursor_When_ProvidedPositionOnHandle();
+    void TestGetCursorForHandle_Should_ReturnDefaultCursor_When_ProvidedPositionNotOnHandle();
 };
 
 #endif // RESIZEHANDLESTEST_H

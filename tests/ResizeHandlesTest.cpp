@@ -21,7 +21,7 @@
 
 void ResizeHandlesTest::TestInitHandles_Should_PositionTwoHandles_When_LineItemProvided()
 {
-    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
+    AnnotationProperties properties(Qt::red, 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
@@ -37,7 +37,7 @@ void ResizeHandlesTest::TestInitHandles_Should_PositionTwoHandles_When_LineItemP
 
 void ResizeHandlesTest::TestInitHandles_Should_PositionEightHandles_When_RectItemProvided()
 {
-    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
+    AnnotationProperties properties(Qt::red, 2);
     QRectF rect(QPointF(10, 15), QPointF(20, 25));
     AnnotationRect rectItem(rect.topLeft(), properties);
     rectItem.addPoint(rect.bottomRight());
@@ -58,7 +58,7 @@ void ResizeHandlesTest::TestInitHandles_Should_PositionEightHandles_When_RectIte
 
 void ResizeHandlesTest::TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_HandleIsAtProvidedPosition()
 {
-    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
+    AnnotationProperties properties(Qt::red, 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
@@ -76,7 +76,7 @@ void ResizeHandlesTest::TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_Hand
 
 void ResizeHandlesTest::TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_HandleIsNotAtProvidedPosition()
 {
-    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
+    AnnotationProperties properties(Qt::red, 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
@@ -92,7 +92,7 @@ void ResizeHandlesTest::TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_Handle
 
 void ResizeHandlesTest::TestHandle_Should_ReturnRectAtIndex_When_HandleAtIndexExists()
 {
-    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
+    AnnotationProperties properties(Qt::red, 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
@@ -108,7 +108,7 @@ void ResizeHandlesTest::TestHandle_Should_ReturnRectAtIndex_When_HandleAtIndexEx
 
 void ResizeHandlesTest::TestHandle_Should_NotReturnRect_When_HandleAtIndexDoesntExists()
 {
-    AnnotationProperties properties(QColor(QStringLiteral("Red")), 2);
+    AnnotationProperties properties(Qt::red, 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
@@ -119,6 +119,37 @@ void ResizeHandlesTest::TestHandle_Should_NotReturnRect_When_HandleAtIndexDoesnt
     auto result = resizeHandles.handle(3);
 
     QCOMPARE(result, QRectF());
+}
+
+void ResizeHandlesTest::TestGetCursorForHandle_Should_NotReturnDefaultCursor_When_ProvidedPositionOnHandle()
+{
+    AnnotationProperties properties(Qt::red, 1);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    ResizeHandles resizeHandles(5);
+    resizeHandles.initHandles(&lineItem);
+
+    auto result = resizeHandles.getCursorForHandle(p1);
+
+    QVERIFY(result != CursorHelper::defaultCursor());
+}
+
+void ResizeHandlesTest::TestGetCursorForHandle_Should_ReturnDefaultCursor_When_ProvidedPositionNotOnHandle()
+{
+    AnnotationProperties properties(Qt::red, 1);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    QPointF p3(50, 50);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    ResizeHandles resizeHandles(5);
+    resizeHandles.initHandles(&lineItem);
+
+    auto result = resizeHandles.getCursorForHandle(p3);
+
+    QCOMPARE(result, CursorHelper::defaultCursor());
 }
 
 QTEST_MAIN(ResizeHandlesTest);
