@@ -24,6 +24,13 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationProperties& prope
     mProperties = new AnnotationProperties(properties);
     mShape = new QPainterPath();
 
+    mPainterPen.setColor(mProperties->color());
+    mPainterPen.setWidth(mProperties->size());
+    mPainterPen.setCapStyle(Qt::RoundCap);
+    mPainterPen.setJoinStyle(Qt::RoundJoin);
+
+    mStroker = new QPainterPathStroker(mPainterPen);
+
     // Add shadow, for now for every item
     addShadowEffect();
 
@@ -34,6 +41,7 @@ AbstractAnnotationItem::~AbstractAnnotationItem()
 {
     delete mProperties;
     delete mShape;
+    delete mStroker;
 }
 
 QRectF AbstractAnnotationItem::boundingRect() const
@@ -48,12 +56,22 @@ QRectF AbstractAnnotationItem::boundingRect() const
 
 QPainterPath AbstractAnnotationItem::shape() const
 {
-    return *mShape;
+//     if(hasFill()) {
+//         return *mShape;
+//     } else {
+//         return mStroker->createStroke(*mShape);
+//     }
+
+    auto path = mStroker->createStroke(*mShape);
+    if(hasFill()) {
+        path.addPath(*mShape);
+    }
+    return path;
 }
 
 bool AbstractAnnotationItem::intersects(const QRectF& rect) const
 {
-    return mShape->intersects(rect);
+    return shape().intersects(rect);
 }
 
 void AbstractAnnotationItem::setShape(QPainterPath& newShape)
@@ -90,15 +108,15 @@ void AbstractAnnotationItem::addShadowEffect()
 
 void AbstractAnnotationItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*)
 {
-    QPen pen;
-    pen.setColor(mProperties->color());
-    pen.setWidth(mProperties->size());
-    pen.setCapStyle(Qt::RoundCap);
-    pen.setJoinStyle(Qt::RoundJoin);
     painter->setRenderHint(QPainter::Antialiasing, true);
-    painter->setPen(pen);
-    if(mProperties->fillType() == FillTypes::Fill) {
+    painter->setPen(mPainterPen);
+    if(hasFill()) {
         painter->setBrush(mProperties->color());
     }
     painter->drawPath(*mShape);
+}
+
+bool AbstractAnnotationItem::hasFill() const
+{
+    return mProperties->fillType() == FillTypes::Fill;
 }

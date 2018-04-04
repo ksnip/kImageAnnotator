@@ -22,6 +22,7 @@
 
 #include <QGraphicsItem>
 #include <QPainter>
+#include <QPainterPathStroker>
 #include <QGraphicsDropShadowEffect>
 
 #include "../AnnotationProperties.h"
@@ -51,7 +52,11 @@ protected:
 private:
     AnnotationProperties* mProperties;
     QPainterPath*         mShape;
+    QPainterPathStroker*  mStroker;
+    QPen                  mPainterPen;
     bool                  mIsSelected;
+
+    bool hasFill() const;
 };
 
 #endif // ABSTRACTANNOTATIONITEM_H
