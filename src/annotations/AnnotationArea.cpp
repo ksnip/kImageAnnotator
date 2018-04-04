@@ -69,7 +69,7 @@ void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
         if(mConfig->selectedTool() == ToolTypes::Select) {
             mItemModifier->handleMousePress(event->scenePos(), mItems);
         } else {
-            clearSelection();
+            mItemModifier->clearSelection();
             addItemAtPosition(event->scenePos());
         }
     }

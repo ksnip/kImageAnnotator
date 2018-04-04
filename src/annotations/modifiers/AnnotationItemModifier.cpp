@@ -48,10 +48,10 @@ void AnnotationItemModifier::handleMousePress(const QPointF& pos, QList<Abstract
     if(mItemSelector->isSelecting()) {
         mItemResizer->detach();
         return;
-    } else {
-        auto selectedItems = mItemSelector->selectedItems();
-        mItemMover->setOffset(pos, selectedItems);
     }
+
+    auto selectedItems = mItemSelector->selectedItems();
+    mItemMover->setOffset(pos, selectedItems);
 
     handleSelection();
     updateCursor(mItemMover->cursor());
