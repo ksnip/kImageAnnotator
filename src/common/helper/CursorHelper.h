@@ -29,6 +29,8 @@ public:
     Qt::CursorShape static verticalResizeCursor();
     Qt::CursorShape static horizontalResizeCursor();
     Qt::CursorShape static allResizeCursor();
+    Qt::CursorShape static movableCursor();
+    Qt::CursorShape static movingCursor();
 };
 
 #endif // CURSORHELPER_H

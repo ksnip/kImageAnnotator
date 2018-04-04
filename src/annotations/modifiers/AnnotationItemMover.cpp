@@ -37,3 +37,17 @@ void AnnotationItemMover::clearOffset()
 {
     mItemToOffset.clear();
 }
+
+bool AnnotationItemMover::isMoving()
+{
+    return !mItemToOffset.isEmpty();
+}
+
+Qt::CursorShape AnnotationItemMover::cursor()
+{
+    if(isMoving()) {
+        return CursorHelper::movingCursor();
+    } else {
+        return CursorHelper::defaultCursor();
+    }
+}

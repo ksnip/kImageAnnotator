@@ -29,6 +29,7 @@
 #include "modifiers/AnnotationItemModifier.h"
 #include "../backend/Config.h"
 #include "../common/enum/ToolTypes.h"
+#include "../common/helper/CursorHelper.h"
 
 class AnnotationArea : public QGraphicsScene
 {
@@ -57,6 +58,7 @@ private:
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);
     void deleteSelectedItems();
+    void setCursorForTool(ToolTypes tool);
 };
 
 #endif // ANNOTATIONAREA_H

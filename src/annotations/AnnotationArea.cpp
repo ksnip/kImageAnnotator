@@ -28,6 +28,8 @@ AnnotationArea::AnnotationArea()
     mItems = new QList<AbstractAnnotationItem*>();
     mItemModifier = new AnnotationItemModifier();
     addItem(mItemModifier);
+
+    connect(mConfig, &Config::toolChanged, this, &AnnotationArea::setCursorForTool);
 }
 
 AnnotationArea::~AnnotationArea()
@@ -71,6 +73,7 @@ void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
             addItemAtPosition(event->scenePos());
         }
     }
+
     QGraphicsScene::mousePressEvent(event);
 }
 
@@ -83,6 +86,7 @@ void AnnotationArea::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
             mItemModifier->handleMouseMove(event->scenePos());
         }
     }
+
     QGraphicsScene::mouseMoveEvent(event);
 }
 
@@ -95,6 +99,7 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
             mCurrentItem = nullptr;
         }
     }
+
     QGraphicsScene::mouseReleaseEvent(event);
 }
 
@@ -134,5 +139,16 @@ void AnnotationArea::deleteSelectedItems()
         removeItem(item);
         mItems->removeOne(item);
         delete item;
+    }
+}
+
+void AnnotationArea::setCursorForTool(ToolTypes tool)
+{
+    for(auto item : *mItems) {
+        if(tool == ToolTypes::Select) {
+            item->setCursor(CursorHelper::movableCursor());
+        } else {
+            item->unsetCursor();
+        }
     }
 }

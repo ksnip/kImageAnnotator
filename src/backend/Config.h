@@ -51,6 +51,9 @@ public slots:
     FillTypes toolFillType(ToolTypes tool) const;
     void setToolFillType(FillTypes fillType, ToolTypes tool);
 
+signals:
+    void toolChanged(ToolTypes tool) const;
+
 private:
     QSettings mConfig;
 

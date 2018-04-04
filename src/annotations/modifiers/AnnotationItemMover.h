@@ -23,6 +23,7 @@
 #include <QHash>
 
 #include "../items/AbstractAnnotationItem.h"
+#include "../../common/helper/CursorHelper.h"
 
 class AnnotationItemMover
 {
@@ -32,6 +33,8 @@ public:
     void setOffset(const QPointF& pos, const QList<AbstractAnnotationItem*> &selectedItems);
     void moveItems(const QPointF& pos);
     void clearOffset();
+    bool isMoving();
+    Qt::CursorShape cursor();
 
 private:
     QHash<AbstractAnnotationItem*,QPointF> mItemToOffset;

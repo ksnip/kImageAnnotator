@@ -21,6 +21,8 @@
 #define ANNOTATIONITEMMODIFIER_H
 
 #include <QGraphicsItemGroup>
+#include <QGraphicsSceneMouseEvent>
+#include <QGraphicsSceneDragDropEvent>
 
 #include "AnnotationItemResizer.h"
 #include "AnnotationItemSelector.h"
@@ -38,12 +40,17 @@ public:
     QList<AbstractAnnotationItem*> selectedItems() const;
     virtual QRectF boundingRect() const override;
 
+protected:
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent * event) override;
+    virtual void hoverMoveEvent(QGraphicsSceneHoverEvent * event) override;
+
 private:
     AnnotationItemResizer*  mItemResizer;
     AnnotationItemSelector* mItemSelector;
     AnnotationItemMover*    mItemMover;
 
     void handleSelection();
+    void updateCursor(Qt::CursorShape cursor);
 };
 
 #endif // ANNOTATIONITEMMODIFIER_H

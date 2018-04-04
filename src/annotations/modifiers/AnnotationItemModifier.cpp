@@ -54,6 +54,7 @@ void AnnotationItemModifier::handleMousePress(const QPointF& pos, QList<Abstract
     }
 
     handleSelection();
+    updateCursor(mItemMover->cursor());
 }
 
 void AnnotationItemModifier::handleMouseMove(const QPointF& pos)
@@ -77,9 +78,11 @@ void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem*>* 
         mItemSelector->finishSelectionRectWhenShown(items);
     } else {
         mItemMover->clearOffset();
+        unsetCursor();
     }
 
     handleSelection();
+    updateCursor(mItemMover->cursor());
 }
 
 void AnnotationItemModifier::clearSelection()
@@ -98,6 +101,22 @@ QRectF AnnotationItemModifier::boundingRect() const
     return mItemResizer->boundingRect();
 }
 
+void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
+{
+    Q_UNUSED(event)
+
+    return;
+}
+
+void AnnotationItemModifier::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
+{
+    if(mItemMover->isMoving()) {
+        return;
+    }
+
+    updateCursor(mItemResizer->cursor(event->scenePos()));
+}
+
 void AnnotationItemModifier::handleSelection()
 {
     auto selectedItems = mItemSelector->selectedItems();
@@ -108,5 +127,14 @@ void AnnotationItemModifier::handleSelection()
         mItemResizer->attachTo(selectedItems.first());
     } else {
         mItemResizer->detach();
+    }
+}
+
+void AnnotationItemModifier::updateCursor(Qt::CursorShape cursor)
+{
+    if(cursor == CursorHelper::defaultCursor()) {
+        unsetCursor();
+    } else {
+        setCursor(cursor);
     }
 }

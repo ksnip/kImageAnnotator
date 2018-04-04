@@ -38,3 +38,13 @@ Qt::CursorShape CursorHelper::verticalResizeCursor()
 {
     return Qt::SizeVerCursor;
 }
+
+Qt::CursorShape CursorHelper::movableCursor()
+{
+    return Qt::OpenHandCursor;
+}
+
+Qt::CursorShape CursorHelper::movingCursor()
+{
+    return Qt::ClosedHandCursor;
+}

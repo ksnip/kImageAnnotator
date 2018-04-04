@@ -21,7 +21,6 @@
 #define ANNOTATIONITEMRESIZER_H
 
 #include <QGraphicsWidget>
-#include <QGraphicsSceneHoverEvent>
 
 #include "ResizeHandles.h"
 #include "../items/AbstractAnnotationLine.h"
@@ -41,9 +40,9 @@ public:
     void releaseHandle();
     bool isResizing() const;
     void refresh();
+    Qt::CursorShape cursor(const QPointF& pos);
 
 protected:
-    virtual bool sceneEventFilter(QGraphicsItem * watched, QEvent * event) override;
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) override;
 
 private:
@@ -52,10 +51,6 @@ private:
     int                     mResizeHandleSize;
     int                     mCurrentControlPoint;
     QPointF                 mClickOffset;
-
-    void installParentEventFilter();
-    void removeParentEventFilter();
-    void updateParentCursor(const QPointF& pos);
 };
 
 #endif // ANNOTATIONITEMRESIZER_H

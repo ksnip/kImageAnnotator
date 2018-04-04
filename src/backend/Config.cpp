@@ -38,6 +38,8 @@ void Config::setSelectedTool(ToolTypes tool)
 
     mConfig.setValue(QStringLiteral("Application/SelectedTool"), static_cast<int>(tool));
     mConfig.sync();
+
+    emit toolChanged(tool);
 }
 
 QColor Config::toolColor(ToolTypes tool) const
