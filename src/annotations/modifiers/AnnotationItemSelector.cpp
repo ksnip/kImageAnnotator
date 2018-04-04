@@ -74,6 +74,7 @@ void AnnotationItemSelector::finishSelectionRectWhenShown(QList<AbstractAnnotati
 
 void AnnotationItemSelector::clearSelection()
 {
+    prepareGeometryChange();
     mSelectedItems->clear();
     mSelectedItemsBoundingRect = QRectF();
 }
