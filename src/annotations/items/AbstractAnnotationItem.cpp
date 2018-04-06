@@ -56,12 +56,6 @@ QRectF AbstractAnnotationItem::boundingRect() const
 
 QPainterPath AbstractAnnotationItem::shape() const
 {
-//     if(hasFill()) {
-//         return *mShape;
-//     } else {
-//         return mStroker->createStroke(*mShape);
-//     }
-
     auto path = mStroker->createStroke(*mShape);
     if(hasFill()) {
         path.addPath(*mShape);
