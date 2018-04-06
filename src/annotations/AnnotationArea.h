@@ -30,7 +30,7 @@
 
 #include "AnnotationItemFactory.h"
 #include "modifiers/AnnotationItemModifier.h"
-#include "modifiers/AnnotationItemRaiser.h"
+#include "modifiers/AnnotationItemArranger.h"
 #include "../backend/Config.h"
 #include "../common/enum/ToolTypes.h"
 #include "../common/helper/CursorHelper.h"

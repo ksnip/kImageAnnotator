@@ -13,7 +13,7 @@ set(kimageannotator_SRCS main.cpp
                          annotations/modifiers/AnnotationItemResizer.cpp
                          annotations/modifiers/AnnotationItemSelector.cpp
                          annotations/modifiers/AnnotationItemMover.cpp
-                         annotations/modifiers/AnnotationItemRaiser.cpp
+                         annotations/modifiers/AnnotationItemArranger.cpp
                          annotations/modifiers/ResizeHandles.cpp
                          annotations/items/AbstractAnnotationItem.cpp
                          annotations/items/AbstractAnnotationLine.cpp

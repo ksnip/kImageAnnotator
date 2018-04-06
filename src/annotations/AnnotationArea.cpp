@@ -129,13 +129,13 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
         return;
     }
 
-    AnnotationItemRaiser itemRaiser(items);
+    AnnotationItemArranger itemArranger(items);
 
     QMenu contextMenu;
-    contextMenu.addAction(i18n("Bring to Front"), &itemRaiser, &AnnotationItemRaiser::bringToFront);
-    contextMenu.addAction(i18n("Bring Forward"), &itemRaiser, &AnnotationItemRaiser::bringForward);
-    contextMenu.addAction(i18n("Send Backward"), &itemRaiser, &AnnotationItemRaiser::sendBackward);
-    contextMenu.addAction(i18n("Bend to Back"), &itemRaiser, &AnnotationItemRaiser::sendToBack);
+    contextMenu.addAction(i18n("Bring to Front"), &itemArranger, &AnnotationItemArranger::bringToFront);
+    contextMenu.addAction(i18n("Bring Forward"), &itemArranger, &AnnotationItemArranger::bringForward);
+    contextMenu.addAction(i18n("Send Backward"), &itemArranger, &AnnotationItemArranger::sendBackward);
+    contextMenu.addAction(i18n("Bend to Back"), &itemArranger, &AnnotationItemArranger::sendToBack);
 
     contextMenu.exec(event->screenPos());
 }

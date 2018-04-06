@@ -17,29 +17,28 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationItemRaiser.h"
+#ifndef ANNOTATIONITEMARRANGER_H
+#define ANNOTATIONITEMARRANGER_H
 
-AnnotationItemRaiser::AnnotationItemRaiser(const QList<AbstractAnnotationItem*> items)
-{
-    mItems = items;
-}
+#include <QObject>
 
-void AnnotationItemRaiser::bringToFront()
-{
-    qCritical("ding1");
-}
+#include "../items/AbstractAnnotationItem.h"
 
-void AnnotationItemRaiser::bringForward()
+class AnnotationItemArranger : public QObject
 {
-    qCritical("ding2");
-}
+    Q_OBJECT
+public:
+    explicit AnnotationItemArranger(const QList<AbstractAnnotationItem*> items);
+    ~AnnotationItemArranger() = default;
 
-void AnnotationItemRaiser::sendBackward()
-{
-    qCritical("ding3");
-}
+public slots:
+    void bringToFront();
+    void bringForward();
+    void sendBackward();
+    void sendToBack();
 
-void AnnotationItemRaiser::sendToBack()
-{
-    qCritical("ding4");
-}
+private:
+    QList<AbstractAnnotationItem*> mItems;
+};
+
+#endif // ANNOTATIONITEMARRANGER_H
