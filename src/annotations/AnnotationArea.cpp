@@ -46,6 +46,7 @@ void AnnotationArea::setBackgroundImage(const QPixmap& image)
     }
 
     mBackgroundImage = addPixmap(image);
+    mItemFactory->reset();
 }
 
 QImage AnnotationArea::exportAsImage()
@@ -53,6 +54,8 @@ QImage AnnotationArea::exportAsImage()
     if(mBackgroundImage == nullptr) {
         return QImage();
     }
+
+    mItemModifier->clearSelection();
 
     QImage image(sceneRect().size().toSize(), QImage::Format_ARGB32);
     image.fill(Qt::transparent);
@@ -115,6 +118,26 @@ void AnnotationArea::keyReleaseEvent(QKeyEvent* event)
     }
 
     QGraphicsScene::keyPressEvent(event);
+}
+
+void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
+{
+    mItemModifier->handleSelectionAt(event->scenePos(), mItems);
+    auto items = mItemModifier->selectedItems();
+
+    if(items.isEmpty()) {
+        return;
+    }
+
+    AnnotationItemRaiser itemRaiser(items);
+
+    QMenu contextMenu;
+    contextMenu.addAction(i18n("Bring to Front"), &itemRaiser, &AnnotationItemRaiser::bringToFront);
+    contextMenu.addAction(i18n("Bring Forward"), &itemRaiser, &AnnotationItemRaiser::bringForward);
+    contextMenu.addAction(i18n("Send Backward"), &itemRaiser, &AnnotationItemRaiser::sendBackward);
+    contextMenu.addAction(i18n("Bend to Back"), &itemRaiser, &AnnotationItemRaiser::sendToBack);
+
+    contextMenu.exec(event->screenPos());
 }
 
 void AnnotationArea::addItemAtPosition(const QPointF& position)

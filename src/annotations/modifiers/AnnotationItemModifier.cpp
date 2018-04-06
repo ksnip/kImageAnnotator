@@ -90,6 +90,12 @@ void AnnotationItemModifier::clearSelection()
     mItemResizer->detach();
 }
 
+void AnnotationItemModifier::handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem *>* items)
+{
+    mItemSelector->handleSelectionAt(pos, items);
+    handleSelection();
+}
+
 QList<AbstractAnnotationItem*> AnnotationItemModifier::selectedItems() const
 {
     return mItemSelector->selectedItems();

@@ -20,6 +20,7 @@
 #ifndef ANNOTATIONITEMMODIFIER_H
 #define ANNOTATIONITEMMODIFIER_H
 
+#include <QObject>
 #include <QGraphicsItemGroup>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsSceneDragDropEvent>
@@ -37,6 +38,7 @@ public:
     void handleMouseMove(const QPointF& pos);
     void handleMouseRelease(QList<AbstractAnnotationItem*> *items);
     void clearSelection();
+    void handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem*> *items);
     QList<AbstractAnnotationItem*> selectedItems() const;
     virtual QRectF boundingRect() const override;
 

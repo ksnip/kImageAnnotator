@@ -17,33 +17,29 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMFACTORY_H
-#define ANNOTATIONITEMFACTORY_H
+#include "AnnotationItemRaiser.h"
 
-#include <QObject>
-
-#include "AnnotationPropertiesFactory.h"
-#include "items/AnnotationLine.h"
-#include "items/AnnotationArrow.h"
-#include "items/AnnotationRect.h"
-#include "items/AnnotationEllipse.h"
-#include "items/AnnotationNumber.h"
-#include "../common/enum/ToolTypes.h"
-
-class AnnotationItemFactory : public QObject
+AnnotationItemRaiser::AnnotationItemRaiser(const QList<AbstractAnnotationItem*> items)
 {
-    Q_OBJECT
-public:
-    explicit AnnotationItemFactory();
-    ~AnnotationItemFactory();
-    void reset();
+    mItems = items;
+}
 
-    AbstractAnnotationItem* createItem(const QPointF& initPosition, ToolTypes tool);
+void AnnotationItemRaiser::bringToFront()
+{
+    qCritical("ding1");
+}
 
-private:
-    int mNextNumber;
-    int mNextZValue;
-    AnnotationPropertiesFactory *mPropertiesFactory;
-};
+void AnnotationItemRaiser::bringForward()
+{
+    qCritical("ding2");
+}
 
-#endif // ANNOTATIONITEMFACTORY_H
+void AnnotationItemRaiser::sendBackward()
+{
+    qCritical("ding3");
+}
+
+void AnnotationItemRaiser::sendToBack()
+{
+    qCritical("ding4");
+}

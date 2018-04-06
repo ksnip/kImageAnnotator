@@ -22,7 +22,7 @@
 AnnotationItemFactory::AnnotationItemFactory()
 {
     mPropertiesFactory = new AnnotationPropertiesFactory();
-    mNumberCounter = 1;
+    reset();
 }
 
 AnnotationItemFactory::~AnnotationItemFactory()
@@ -30,22 +30,40 @@ AnnotationItemFactory::~AnnotationItemFactory()
     delete mPropertiesFactory;
 }
 
+void AnnotationItemFactory::reset()
+{
+    mNextNumber = 1;
+    mNextZValue = 1;
+}
+
 AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPosition, ToolTypes type)
 {
     auto properties = mPropertiesFactory->createProperties(type);
+    AbstractAnnotationItem* item = nullptr;
+
     switch(type) {
         case ToolTypes::Line:
-            return new AnnotationLine(initPosition, properties);
+            item = new AnnotationLine(initPosition, properties);
+            break;
         case ToolTypes::Ellipse:
-            return new AnnotationEllipse(initPosition, properties);
+            item = new AnnotationEllipse(initPosition, properties);
+            break;
         case ToolTypes::Rect:
-            return new AnnotationRect(initPosition, properties);
+            item = new AnnotationRect(initPosition, properties);
+            break;
         case ToolTypes::Arrow:
-            return new AnnotationArrow(initPosition, properties);
+            item = new AnnotationArrow(initPosition, properties);
+            break;
         case ToolTypes::Number:
-            return new AnnotationNumber(initPosition, mNumberCounter++, properties);
+            item = new AnnotationNumber(initPosition, mNextNumber++, properties);
+            break;
         default:
             qCritical("Cannot create item for provided tool type.");
-            return nullptr;
     }
+
+    if(item != nullptr) {
+        item->setZValue(mNextZValue++);
+    }
+
+    return item;
 }

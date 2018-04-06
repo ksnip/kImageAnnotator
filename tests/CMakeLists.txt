@@ -14,6 +14,7 @@ set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemResizer.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemSelector.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemMover.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemRaiser.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/ResizeHandles.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationItem.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationLine.cpp

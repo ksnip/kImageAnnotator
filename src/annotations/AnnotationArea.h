@@ -24,9 +24,13 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
+#include <QMenu>
+
+#include <KLocalizedString>
 
 #include "AnnotationItemFactory.h"
 #include "modifiers/AnnotationItemModifier.h"
+#include "modifiers/AnnotationItemRaiser.h"
 #include "../backend/Config.h"
 #include "../common/enum/ToolTypes.h"
 #include "../common/helper/CursorHelper.h"
@@ -46,6 +50,7 @@ protected:
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;
+    virtual void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) override;
 
 private:
     AnnotationItemFactory*          mItemFactory;
