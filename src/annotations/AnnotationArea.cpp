@@ -123,19 +123,22 @@ void AnnotationArea::keyReleaseEvent(QKeyEvent* event)
 void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
 {
     mItemModifier->handleSelectionAt(event->scenePos(), mItems);
-    auto items = mItemModifier->selectedItems();
+    auto selectedItems = mItemModifier->selectedItems();
 
-    if(items.isEmpty()) {
+    if(selectedItems.isEmpty()) {
         return;
     }
 
-    AnnotationItemArranger itemArranger(items);
+    AnnotationItemArranger itemArranger(selectedItems, mItems);
 
     QMenu contextMenu;
-    contextMenu.addAction(i18n("Bring to Front"), &itemArranger, &AnnotationItemArranger::bringToFront);
-    contextMenu.addAction(i18n("Bring Forward"), &itemArranger, &AnnotationItemArranger::bringForward);
-    contextMenu.addAction(i18n("Send Backward"), &itemArranger, &AnnotationItemArranger::sendBackward);
-    contextMenu.addAction(i18n("Bend to Back"), &itemArranger, &AnnotationItemArranger::sendToBack);
+    auto arrangeMenu = contextMenu.addMenu(i18n("Bring to Front"));
+    arrangeMenu->addAction(i18n("Bring to Front"), &itemArranger, &AnnotationItemArranger::bringToFront);
+    arrangeMenu->addAction(i18n("Bring Forward"), &itemArranger, &AnnotationItemArranger::bringForward);
+    arrangeMenu->addAction(i18n("Send Backward"), &itemArranger, &AnnotationItemArranger::sendBackward);
+    arrangeMenu->addAction(i18n("Send to Back"), &itemArranger, &AnnotationItemArranger::sendToBack);
+    contextMenu.addSeparator();
+    contextMenu.addAction(i18n("Delete"), this, &AnnotationArea::deleteSelectedItems);
 
     contextMenu.exec(event->screenPos());
 }
@@ -153,6 +156,17 @@ void AnnotationArea::addPointToCurrentItem(const QPointF& position)
     mCurrentItem->addPoint(position);
 }
 
+void AnnotationArea::setCursorForTool(ToolTypes tool)
+{
+    for(auto item : *mItems) {
+        if(tool == ToolTypes::Select) {
+            item->setCursor(CursorHelper::movableCursor());
+        } else {
+            item->unsetCursor();
+        }
+    }
+}
+
 void AnnotationArea::deleteSelectedItems()
 {
     auto selectedItems = mItemModifier->selectedItems();
@@ -162,16 +176,5 @@ void AnnotationArea::deleteSelectedItems()
         removeItem(item);
         mItems->removeOne(item);
         delete item;
-    }
-}
-
-void AnnotationArea::setCursorForTool(ToolTypes tool)
-{
-    for(auto item : *mItems) {
-        if(tool == ToolTypes::Select) {
-            item->setCursor(CursorHelper::movableCursor());
-        } else {
-            item->unsetCursor();
-        }
     }
 }

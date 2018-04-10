@@ -28,7 +28,7 @@ class AnnotationItemArranger : public QObject
 {
     Q_OBJECT
 public:
-    explicit AnnotationItemArranger(const QList<AbstractAnnotationItem*> items);
+    explicit AnnotationItemArranger(const QList<AbstractAnnotationItem*> selectedItems, QList<AbstractAnnotationItem*> *items);
     ~AnnotationItemArranger() = default;
 
 public slots:
@@ -38,7 +38,15 @@ public slots:
     void sendToBack();
 
 private:
-    QList<AbstractAnnotationItem*> mItems;
+    QList<AbstractAnnotationItem*>  mSelectedItems;
+    QList<AbstractAnnotationItem*> *mItems;
+
+    void moveForward(bool toFront);
+    void moveBackward(bool toBack);
+    void swapZValues(AbstractAnnotationItem* item1, AbstractAnnotationItem* item2);
+    void sortItemsByZValue();
 };
+
+bool zValueGreaterThen(const AbstractAnnotationItem* item1, const AbstractAnnotationItem* item2);
 
 #endif // ANNOTATIONITEMARRANGER_H

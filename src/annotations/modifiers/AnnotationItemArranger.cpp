@@ -19,27 +19,76 @@
 
 #include "AnnotationItemArranger.h"
 
-AnnotationItemArranger::AnnotationItemArranger(const QList<AbstractAnnotationItem*> items)
+AnnotationItemArranger::AnnotationItemArranger(const QList<AbstractAnnotationItem*> selectedItems, QList<AbstractAnnotationItem*>* items)
 {
+    mSelectedItems = selectedItems;
     mItems = items;
 }
 
 void AnnotationItemArranger::bringToFront()
 {
-    qCritical("ding1");
+    moveForward(true);
 }
 
 void AnnotationItemArranger::bringForward()
 {
-    qCritical("ding2");
+    moveForward(false);
 }
 
 void AnnotationItemArranger::sendBackward()
 {
-    qCritical("ding3");
+    moveBackward(false);
 }
 
 void AnnotationItemArranger::sendToBack()
 {
-    qCritical("ding4");
+    moveBackward(true);
+}
+
+void AnnotationItemArranger::moveForward(bool toFront)
+{
+    for(auto selected : mSelectedItems) {
+        for(auto i = mItems->count() - 1; i >= 0; i--) {
+            auto item = mItems->value(i);
+            if(zValueGreaterThen(item, selected) && !mSelectedItems.contains(item)) {
+                swapZValues(selected, item);
+                if(!toFront) {
+                    break;
+                }
+            }
+        }
+    }
+    sortItemsByZValue();
+}
+
+void AnnotationItemArranger::moveBackward(bool toBack)
+{
+    for(auto selected : mSelectedItems) {
+        for(auto item : *mItems) {
+            if(!zValueGreaterThen(item, selected) && !mSelectedItems.contains(item)) {
+                swapZValues(selected, item);
+                if(!toBack) {
+                    break;
+                }
+            }
+        }
+    }
+    sortItemsByZValue();
+}
+
+void AnnotationItemArranger::swapZValues(AbstractAnnotationItem* item1, AbstractAnnotationItem* item2)
+{
+    auto tmpZValue = item1->zValue();
+    item1->setZValue(item2->zValue());
+    item2->setZValue(tmpZValue);
+}
+
+void AnnotationItemArranger::sortItemsByZValue()
+{
+    qSort(mItems->begin(), mItems->end(), zValueGreaterThen);
+}
+
+bool zValueGreaterThen(const AbstractAnnotationItem* item1, const AbstractAnnotationItem* item2)
+{
+    return item1->zValue() > item2->zValue();
 }

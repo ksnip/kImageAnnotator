@@ -62,8 +62,10 @@ private:
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);
-    void deleteSelectedItems();
     void setCursorForTool(ToolTypes tool);
+
+private slots:
+    void deleteSelectedItems();
 };
 
 #endif // ANNOTATIONAREA_H
