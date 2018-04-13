@@ -63,7 +63,8 @@ void AnnotationItemArranger::moveForward(bool toFront)
 
 void AnnotationItemArranger::moveBackward(bool toBack)
 {
-    for(auto selected : mSelectedItems) {
+    for(auto i = mSelectedItems.count() - 1; i >= 0; i--) {
+        auto selected = mSelectedItems.value(i);
         for(auto item : *mItems) {
             if(!zValueGreaterThen(item, selected) && !mSelectedItems.contains(item)) {
                 swapZValues(selected, item);

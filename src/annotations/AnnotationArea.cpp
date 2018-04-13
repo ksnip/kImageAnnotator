@@ -132,7 +132,7 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
     AnnotationItemArranger itemArranger(selectedItems, mItems);
 
     QMenu contextMenu;
-    auto arrangeMenu = contextMenu.addMenu(i18n("Bring to Front"));
+    auto arrangeMenu = contextMenu.addMenu(i18n("Arrange"));
     arrangeMenu->addAction(i18n("Bring to Front"), &itemArranger, &AnnotationItemArranger::bringToFront);
     arrangeMenu->addAction(i18n("Bring Forward"), &itemArranger, &AnnotationItemArranger::bringForward);
     arrangeMenu->addAction(i18n("Send Backward"), &itemArranger, &AnnotationItemArranger::sendBackward);
