@@ -50,32 +50,32 @@ void ToolPicker::initGui()
     mLayout->setContentsMargins(0, 0, 0, 0);
     mButtonGroup = new QButtonGroup(this);
 
-    auto button = createButton(i18n("Select"), QIcon::fromTheme(QStringLiteral("edit-select")));
+    auto button = createButton(i18n("Select"), QIcon::fromTheme(QStringLiteral("edit-select")), Qt::Key_S);
     mButtonToTool[button] = ToolTypes::Select;
     mLayout->addWidget(button, 0, 0);
     mButtonGroup->addButton(button);
 
-    button = createButton(i18n("Line"), QIcon::fromTheme(QStringLiteral("draw-line")));
+    button = createButton(i18n("Line"), QIcon::fromTheme(QStringLiteral("draw-line")), Qt::Key_L);
     mButtonToTool[button] = ToolTypes::Line;
     mLayout->addWidget(button, 0, 1);
     mButtonGroup->addButton(button);
 
-    button = createButton(i18n("Rect"), QIcon::fromTheme(QStringLiteral("draw-rectangle")));
+    button = createButton(i18n("Rect"), QIcon::fromTheme(QStringLiteral("draw-rectangle")), Qt::Key_R);
     mButtonToTool[button] = ToolTypes::Rect;
     mLayout->addWidget(button, 2, 0);
     mButtonGroup->addButton(button);
 
-    button = createButton(i18n("Ellipse"), QIcon::fromTheme(QStringLiteral("draw-ellipse")));
+    button = createButton(i18n("Ellipse"), QIcon::fromTheme(QStringLiteral("draw-ellipse")), Qt::Key_E);
     mButtonToTool[button] = ToolTypes::Ellipse;
     mLayout->addWidget(button, 2, 1);
     mButtonGroup->addButton(button);
 
-    button = createButton(i18n("Arrow"), QPixmap(QStringLiteral(":/icons/arrow")));
+    button = createButton(i18n("Arrow"), QPixmap(QStringLiteral(":/icons/arrow")), Qt::Key_A);
     mButtonToTool[button] = ToolTypes::Arrow;
     mLayout->addWidget(button, 3, 0);
     mButtonGroup->addButton(button);
 
-    button = createButton(i18n("Number"), QPixmap(QStringLiteral(":/icons/number")));
+    button = createButton(i18n("Number"), QPixmap(QStringLiteral(":/icons/number")), Qt::Key_N);
     mButtonToTool[button] = ToolTypes::Number;
     mLayout->addWidget(button, 3, 1);
     mButtonGroup->addButton(button);
@@ -84,14 +84,15 @@ void ToolPicker::initGui()
     setFixedSize(sizeHint());
 }
 
-QToolButton* ToolPicker::createButton(const QString& tooltip, const QIcon& icon)
+QToolButton* ToolPicker::createButton(const QString& tooltip, const QIcon& icon, Qt::Key shortcut)
 {
     auto button = new QToolButton(this);
     button->setCheckable(true);
     button->setAutoRaise(true);
     button->setIconSize(QSize(24, 24));
     button->setIcon(icon);
-    button->setToolTip(tooltip);
+    button->setShortcut(shortcut);
+    button->setToolTip(tooltip + QStringLiteral(" (") + shortcut + QStringLiteral(")"));
     button->setFocusPolicy(Qt::NoFocus);
     return button;
 }
