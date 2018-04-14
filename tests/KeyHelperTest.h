@@ -29,7 +29,10 @@ class KeyHelperTest : public QObject
 {
     Q_OBJECT
 private slots:
-    void TestKeyPressed_Should_SetDeleteKeyToPressed_When_KeyPressed();
+    void TestKeyRelease_Should_EmitSignal_When_DeleteKeyReleased();
+    void TestKeyRelease_Should_EmitSignal_When_EscapeKeyReleased();
+    void TestIsControlPressed_ShouldReturnTrue_When_ControlWasPressed();
+    void TestIsControlPressed_ShouldReturnFalse_When_ControlWasReleased();
 };
 
 #endif // KEYHELPERTEST_H

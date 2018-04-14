@@ -19,4 +19,50 @@
 
 #include "KeyHelperTest.h"
 
+void KeyHelperTest::TestKeyRelease_Should_EmitSignal_When_DeleteKeyReleased()
+{
+    QKeyEvent keyEvent(QEvent::KeyRelease, Qt::Key_Delete, Qt::NoModifier);
+    KeyHelper keyHelper;
+    QSignalSpy spy(&keyHelper, &KeyHelper::deleteReleased);
+
+    keyHelper.keyRelease(&keyEvent);
+
+    QCOMPARE(spy.count(), 1);
+}
+
+void KeyHelperTest::TestKeyRelease_Should_EmitSignal_When_EscapeKeyReleased()
+{
+    QKeyEvent keyEvent(QEvent::KeyRelease, Qt::Key_Escape, Qt::NoModifier);
+    KeyHelper keyHelper;
+    QSignalSpy spy(&keyHelper, &KeyHelper::escapeReleased);
+
+    keyHelper.keyRelease(&keyEvent);
+
+    QCOMPARE(spy.count(), 1);
+}
+
+void KeyHelperTest::TestIsControlPressed_ShouldReturnTrue_When_ControlWasPressed()
+{
+    QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Control, Qt::NoModifier);
+    KeyHelper keyHelper;
+    QCOMPARE(keyHelper.isControlPressed(), false);
+
+    keyHelper.keyPress(&keyEvent);
+
+    QCOMPARE(keyHelper.isControlPressed(), true);
+}
+
+void KeyHelperTest::TestIsControlPressed_ShouldReturnFalse_When_ControlWasReleased()
+{
+    QKeyEvent keyPressEvent(QEvent::KeyPress, Qt::Key_Control, Qt::NoModifier);
+    QKeyEvent keyReleaseEvent(QEvent::KeyRelease, Qt::Key_Control, Qt::NoModifier);
+    KeyHelper keyHelper;
+    keyHelper.keyPress(&keyPressEvent);
+    QCOMPARE(keyHelper.isControlPressed(), true);
+
+    keyHelper.keyRelease(&keyReleaseEvent);
+
+    QCOMPARE(keyHelper.isControlPressed(), false);
+}
+
 QTEST_MAIN(KeyHelperTest);
