@@ -29,18 +29,21 @@
 #include "AnnotationItemSelector.h"
 #include "AnnotationItemMover.h"
 
-class AnnotationItemModifier : public QGraphicsItemGroup
+class AnnotationItemModifier : public QObject, public QGraphicsItemGroup
 {
+    Q_OBJECT
 public:
     explicit AnnotationItemModifier();
     ~AnnotationItemModifier();
     void handleMousePress(const QPointF& pos, QList<AbstractAnnotationItem*> *items);
     void handleMouseMove(const QPointF& pos);
     void handleMouseRelease(QList<AbstractAnnotationItem*> *items);
-    void clearSelection();
     void handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem*> *items);
     QList<AbstractAnnotationItem*> selectedItems() const;
     virtual QRectF boundingRect() const override;
+
+public slots:
+    void clearSelection();
 
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent * event) override;

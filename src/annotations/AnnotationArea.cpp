@@ -28,6 +28,10 @@ AnnotationArea::AnnotationArea()
     mItems = new QList<AbstractAnnotationItem*>();
     mItemModifier = new AnnotationItemModifier();
     addItem(mItemModifier);
+    mKeyHelper = new KeyHelper();
+
+    connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
+    connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clearSelection);
 
     connect(mConfig, &Config::toolChanged, this, &AnnotationArea::setCursorForTool);
 }
@@ -37,6 +41,7 @@ AnnotationArea::~AnnotationArea()
     delete mItemFactory;
     delete mItems;
     delete mItemModifier;
+    delete mKeyHelper;
 }
 
 void AnnotationArea::setBackgroundImage(const QPixmap& image)
@@ -106,18 +111,16 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
     QGraphicsScene::mouseReleaseEvent(event);
 }
 
+void AnnotationArea::keyPressEvent(QKeyEvent* event)
+{
+    mKeyHelper->keyPress(event);
+    QGraphicsScene::keyPressEvent(event);
+}
+
 void AnnotationArea::keyReleaseEvent(QKeyEvent* event)
 {
-    switch(event->key()) {
-        case Qt::Key_Delete:
-            deleteSelectedItems();
-            break;
-        case Qt::Key_Escape:
-            mItemModifier->clearSelection();
-            break;
-    }
-
-    QGraphicsScene::keyPressEvent(event);
+    mKeyHelper->keyRelease(event);
+    QGraphicsScene::keyReleaseEvent(event);
 }
 
 void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)

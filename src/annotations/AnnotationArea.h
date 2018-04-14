@@ -34,6 +34,7 @@
 #include "../backend/Config.h"
 #include "../common/enum/ToolTypes.h"
 #include "../common/helper/CursorHelper.h"
+#include "../common/helper/KeyHelper.h"
 
 class AnnotationArea : public QGraphicsScene
 {
@@ -49,6 +50,7 @@ protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) override;
 
@@ -59,6 +61,7 @@ private:
     AnnotationItemModifier*         mItemModifier;
     Config*                         mConfig;
     QList<AbstractAnnotationItem*> *mItems;
+    KeyHelper                      *mKeyHelper;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

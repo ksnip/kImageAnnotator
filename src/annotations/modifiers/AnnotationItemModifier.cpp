@@ -84,12 +84,6 @@ void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem*>* 
     handleSelection();
 }
 
-void AnnotationItemModifier::clearSelection()
-{
-    mItemSelector->clearSelection();
-    mItemResizer->detach();
-}
-
 void AnnotationItemModifier::handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem *>* items)
 {
     mItemSelector->handleSelectionAt(pos, items);
@@ -107,6 +101,12 @@ QRectF AnnotationItemModifier::boundingRect() const
         return mItemResizer->boundingRect();
     }
     return mItemSelector->boundingRect();
+}
+
+void AnnotationItemModifier::clearSelection()
+{
+    mItemSelector->clearSelection();
+    mItemResizer->detach();
 }
 
 void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
