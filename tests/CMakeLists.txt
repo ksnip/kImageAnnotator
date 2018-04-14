@@ -29,6 +29,7 @@ set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
                          ${CMAKE_SOURCE_DIR}/src/common/helper/IconCreater.cpp
                          ${CMAKE_SOURCE_DIR}/src/common/helper/CursorHelper.cpp
                          ${CMAKE_SOURCE_DIR}/src/common/helper/KeyHelper.cpp
+                         ${CMAKE_SOURCE_DIR}/src/common/helper/MathHelper.cpp
                          ${CMAKE_SOURCE_DIR}/src/widgets/ToolPicker.cpp
                          ${CMAKE_SOURCE_DIR}/src/widgets/ColorPicker.cpp
                          ${CMAKE_SOURCE_DIR}/src/widgets/SizePicker.cpp

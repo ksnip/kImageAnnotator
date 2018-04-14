@@ -31,10 +31,11 @@ AbstractAnnotationRect::~AbstractAnnotationRect()
     delete mRect;
 }
 
-void AbstractAnnotationRect::addPoint(const QPointF& position)
+void AbstractAnnotationRect::addPoint(const QPointF& position, bool modified)
 {
     prepareGeometryChange();
     mRect->setBottomRight(position);
+    makeSymmetric(modified);
     updateShape();
 }
 
@@ -80,4 +81,12 @@ void AbstractAnnotationRect::setPointAt(const QPointF& point, int index)
     }
 
     updateShape();
+}
+
+void AbstractAnnotationRect::makeSymmetric(bool enabled)
+{
+    if(enabled) {
+        mRect->setHeight(MathHelper::smallerValue(mRect->height(), mRect->width()));
+        mRect->setWidth(MathHelper::smallerValue(mRect->width(), mRect->height()));
+    }
 }

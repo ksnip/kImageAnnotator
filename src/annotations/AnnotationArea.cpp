@@ -156,7 +156,7 @@ void AnnotationArea::addItemAtPosition(const QPointF& position)
 
 void AnnotationArea::addPointToCurrentItem(const QPointF& position)
 {
-    mCurrentItem->addPoint(position);
+    mCurrentItem->addPoint(position, mKeyHelper->isControlPressed());
 }
 
 void AnnotationArea::setCursorForTool(ToolTypes tool)

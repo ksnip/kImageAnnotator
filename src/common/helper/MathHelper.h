@@ -17,28 +17,16 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ABSTRACTANNOTATIONRECT_H
-#define ABSTRACTANNOTATIONRECT_H
+#ifndef MATHHELPER_H
+#define MATHHELPER_H
 
-#include "AbstractAnnotationItem.h"
+#include <QtMath>
 
-#include "../src/common/helper/MathHelper.h"
-
-class AbstractAnnotationRect : public AbstractAnnotationItem
+class MathHelper
 {
 public:
-    AbstractAnnotationRect(const QPointF& startPosisition, const AnnotationProperties& properties);
-    ~AbstractAnnotationRect();
-    void addPoint(const QPointF & position, bool modified = false) override;
-    void setPosition(const QPointF & newPosition) override;
-    QRectF rect() const;
-    void setRect(const QRectF& rect);
-    void setPointAt(const QPointF& point, int index) override;
-
-protected:
-    QRectF* mRect;
-
-    void makeSymmetric(bool enabled);
+    static qreal roundAngleTo(const qreal currentAngle, const int increments);
+    static qreal smallerValue(qreal value1, qreal value2);
 };
 
-#endif // ABSTRACTANNOTATIONRECT_H
+#endif // MATHHELPER_H

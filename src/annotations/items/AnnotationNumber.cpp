@@ -35,9 +35,10 @@ AnnotationNumber::~AnnotationNumber()
     delete mFont;
 }
 
-void AnnotationNumber::addPoint(const QPointF& position)
+void AnnotationNumber::addPoint(const QPointF& position, bool modified)
 {
     Q_UNUSED(position);
+    Q_UNUSED(modified);
 
     // Nothing to do here
 }

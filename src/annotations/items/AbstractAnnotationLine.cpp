@@ -31,10 +31,11 @@ AbstractAnnotationLine::~AbstractAnnotationLine()
     delete mLine;
 }
 
-void AbstractAnnotationLine::addPoint(const QPointF& position)
+void AbstractAnnotationLine::addPoint(const QPointF& position, bool modified)
 {
     prepareGeometryChange();
     mLine->setP2(position);
+    snapToAngle(modified);
     updateShape();
 }
 
@@ -69,4 +70,12 @@ void AbstractAnnotationLine::setPointAt(const QPointF& point, int index)
     }
 
     updateShape();
+}
+
+void AbstractAnnotationLine::snapToAngle(bool enabled)
+{
+    if(enabled) {
+        auto newAngle = MathHelper::roundAngleTo(mLine->angle(), 45);
+        mLine->setAngle(newAngle);
+    }
 }

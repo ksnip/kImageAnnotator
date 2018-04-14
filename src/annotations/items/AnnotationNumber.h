@@ -27,7 +27,7 @@ class AnnotationNumber : public AbstractAnnotationRect
 public:
     AnnotationNumber(const QPointF& centerPosition, int number, const AnnotationProperties& properties);
     ~AnnotationNumber();
-    virtual void addPoint(const QPointF & position) override;
+    virtual void addPoint(const QPointF & position, bool modified = false) override;
 
 protected:
     virtual void updateShape() override;

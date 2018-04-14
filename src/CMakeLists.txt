@@ -28,6 +28,7 @@ set(kimageannotator_SRCS main.cpp
                          common/helper/IconCreater.cpp
                          common/helper/CursorHelper.cpp
                          common/helper/KeyHelper.cpp
+                         common/helper/MathHelper.cpp
                          widgets/ToolPicker.cpp
                          widgets/ColorPicker.cpp
                          widgets/SizePicker.cpp

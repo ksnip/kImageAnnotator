@@ -22,12 +22,14 @@
 
 #include "AbstractAnnotationItem.h"
 
+#include "../src/common/helper/MathHelper.h"
+
 class AbstractAnnotationLine : public AbstractAnnotationItem
 {
 public:
     AbstractAnnotationLine(const QPointF& startPosisition, const AnnotationProperties& properties);
     ~AbstractAnnotationLine();
-    void addPoint(const QPointF & position) override;
+    void addPoint(const QPointF & position, bool modified = false) override;
     void setPosition(const QPointF & newPosition) override;
     QLineF line() const;
     void setLine(const QLineF& line);
@@ -35,6 +37,8 @@ public:
 
 protected:
     QLineF* mLine;
+
+    void snapToAngle(bool enabled);
 };
 
 #endif // ABSTRACTANNOTATIONLINE_H
