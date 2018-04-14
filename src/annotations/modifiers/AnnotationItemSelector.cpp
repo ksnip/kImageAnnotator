@@ -39,14 +39,20 @@ QRectF AnnotationItemSelector::boundingRect() const
     }
 }
 
-void AnnotationItemSelector::handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem*>* items)
+void AnnotationItemSelector::handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem*>* items, bool modifing)
 {
-    selectItemAtPosition(pos, items);
+    prepareGeometryChange();
+
+    if(modifing) {
+        toggleItemSelectionAt(pos, items);
+    } else {
+        selectItemAt(pos, items);
+    }
+
     if(mSelectedItems->count() > 0) {
         return;
     }
 
-    prepareGeometryChange();
     initSelectionRectAt(pos);
     mShowSelectionRect = true;
 }
@@ -94,7 +100,7 @@ void AnnotationItemSelector::refresh()
     prepareGeometryChange();
     mSelectedItemsBoundingRect = QRectF();
     for(auto item : *mSelectedItems) {
-        addItemToBoundingRect(item);
+        mSelectedItemsBoundingRect = mSelectedItemsBoundingRect.united(item->boundingRect());
     }
 }
 
@@ -127,20 +133,35 @@ void AnnotationItemSelector::updateSelectionRect(const QPointF& position)
     mSelectionRect.setBottomRight(position);
 }
 
-void AnnotationItemSelector::selectItemAtPosition(const QPointF& position, QList<AbstractAnnotationItem*>* items)
+void AnnotationItemSelector::selectItemAt(const QPointF& position, QList<AbstractAnnotationItem*>* items)
 {
-    QRectF rect(position - QPointF(2, 2), QSize(4, 4));
+    auto item = findItemAt(position, items);
 
-    for(auto item : *items) {
-        if(item->intersects(rect)) {
-            if(!mSelectedItems->contains(item)) {
-                clearSelection();
-                selectItem(item);
-            }
-            return;
-        }
+    if(item == nullptr) {
+        clearSelection();
+        return;
     }
-    clearSelection();
+
+    if(!mSelectedItems->contains(item)) {
+        clearSelection();
+        selectItem(item);
+    }
+}
+
+void AnnotationItemSelector::toggleItemSelectionAt(const QPointF& position, QList<AbstractAnnotationItem*>* items)
+{
+    auto item = findItemAt(position, items);
+
+    if(item == nullptr) {
+        clearSelection();
+        return;
+    }
+
+    if(mSelectedItems->contains(item)) {
+        unselectItem(item);
+    } else {
+        selectItem(item);
+    }
 }
 
 void AnnotationItemSelector::selectItemsUnderRect(QList<AbstractAnnotationItem*>* items)
@@ -156,10 +177,24 @@ void AnnotationItemSelector::selectItemsUnderRect(QList<AbstractAnnotationItem*>
 void AnnotationItemSelector::selectItem(AbstractAnnotationItem* item)
 {
     mSelectedItems->append(item);
-    addItemToBoundingRect(item);
+    refresh();
 }
 
-void AnnotationItemSelector::addItemToBoundingRect(AbstractAnnotationItem* item)
+void AnnotationItemSelector::unselectItem(AbstractAnnotationItem* item)
 {
-    mSelectedItemsBoundingRect = mSelectedItemsBoundingRect.united(item->boundingRect());
+    mSelectedItems->removeOne(item);
+    refresh();
 }
+
+AbstractAnnotationItem* AnnotationItemSelector::findItemAt(const QPointF& position, QList<AbstractAnnotationItem*>* items)
+{
+    QRectF rect(position - QPointF(2, 2), QSize(4, 4));
+
+    for(auto item : *items) {
+        if(item->intersects(rect)) {
+            return item;
+        }
+    }
+    return nullptr;
+}
+

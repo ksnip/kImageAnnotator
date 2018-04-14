@@ -75,7 +75,7 @@ void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     if(event->button() == Qt::LeftButton) {
         if(mConfig->selectedTool() == ToolTypes::Select) {
-            mItemModifier->handleMousePress(event->scenePos(), mItems);
+            mItemModifier->handleMousePress(event->scenePos(), mItems, mKeyHelper->isControlPressed());
         } else {
             mItemModifier->clearSelection();
             addItemAtPosition(event->scenePos());
@@ -125,7 +125,7 @@ void AnnotationArea::keyReleaseEvent(QKeyEvent* event)
 
 void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
 {
-    mItemModifier->handleSelectionAt(event->scenePos(), mItems);
+    mItemModifier->handleSelectionAt(event->scenePos(), mItems, mKeyHelper->isControlPressed());
     auto selectedItems = mItemModifier->selectedItems();
 
     if(selectedItems.isEmpty()) {

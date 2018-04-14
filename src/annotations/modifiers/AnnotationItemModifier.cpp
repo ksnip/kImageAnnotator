@@ -37,14 +37,14 @@ AnnotationItemModifier::~AnnotationItemModifier()
     delete mItemMover;
 }
 
-void AnnotationItemModifier::handleMousePress(const QPointF& pos, QList<AbstractAnnotationItem*>* items)
+void AnnotationItemModifier::handleMousePress(const QPointF& pos, QList<AbstractAnnotationItem*>* items, bool isCtrlPressed)
 {
     mItemResizer->grabHandle(pos);
     if(mItemResizer->isResizing()) {
         return;
     }
 
-    mItemSelector->handleSelectionAt(pos, items);
+    mItemSelector->handleSelectionAt(pos, items, isCtrlPressed);
     if(mItemSelector->isSelecting()) {
         mItemResizer->detach();
         return;
@@ -84,9 +84,9 @@ void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem*>* 
     handleSelection();
 }
 
-void AnnotationItemModifier::handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem *>* items)
+void AnnotationItemModifier::handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem *>* items, bool isCtrlPressed)
 {
-    mItemSelector->handleSelectionAt(pos, items);
+    mItemSelector->handleSelectionAt(pos, items, isCtrlPressed);
     handleSelection();
 }
 

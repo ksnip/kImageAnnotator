@@ -30,10 +30,10 @@ void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_MoveResi
     QList<AbstractAnnotationItem*> items;
     items.append(&line);
     AnnotationItemModifier modifer;
-    modifer.handleMousePress(p1, &items);
+    modifer.handleMousePress(p1, &items, false);
     modifer.handleMouseRelease(&items);
 
-    modifer.handleMousePress(p1, &items);
+    modifer.handleMousePress(p1, &items, false);
     modifer.handleMouseMove(p3);
 
     QCOMPARE(line.line().p1(), p3);
@@ -52,10 +52,10 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_NotMoveResizerH
     QList<AbstractAnnotationItem*> items;
     items.append(&line);
     AnnotationItemModifier modifer;
-    modifer.handleMousePress(p1, &items);
+    modifer.handleMousePress(p1, &items, false);
     modifer.handleMouseRelease(&items);
 
-    modifer.handleMousePress(p3, &items);
+    modifer.handleMousePress(p3, &items, false);
     modifer.handleMouseMove(p4);
 
     QCOMPARE(line.line().p1(), p1);
@@ -78,7 +78,7 @@ void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_SelectMu
     items.append(&line2);
     AnnotationItemModifier modifer;
 
-    modifer.handleMousePress(p1 + QPointF(-5, -5), &items);
+    modifer.handleMousePress(p1 + QPointF(-5, -5), &items, false);
     modifer.handleMouseMove(p4 + QPointF(5, 5));
     modifer.handleMouseRelease(&items);
 
@@ -101,7 +101,7 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveClickedItem
     items.append(&line);
     AnnotationItemModifier modifer;
 
-    modifer.handleMousePress(clickPos, &items);
+    modifer.handleMousePress(clickPos, &items, false);
     modifer.handleMouseMove(movePos);
 
     QCOMPARE(line.boundingRect().topLeft(), movePos - (clickPos - p1));
@@ -124,12 +124,12 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveSelectedIte
     items.append(&line1);
     items.append(&line2);
     AnnotationItemModifier modifer;
-    modifer.handleMousePress(p1 + QPointF(-5, -5), &items);
+    modifer.handleMousePress(p1 + QPointF(-5, -5), &items, false);
     modifer.handleMouseMove(p4 + QPointF(5, 5));
     modifer.handleMouseRelease(&items);
     QCOMPARE(modifer.selectedItems().count(), 2);
 
-    modifer.handleMousePress(clickPos, &items);
+    modifer.handleMousePress(clickPos, &items, false);
     modifer.handleMouseMove(movePos);
 
     QCOMPARE(line1.boundingRect().topLeft(), movePos - (clickPos - p1));

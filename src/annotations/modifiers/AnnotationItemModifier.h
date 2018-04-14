@@ -35,10 +35,10 @@ class AnnotationItemModifier : public QObject, public QGraphicsItemGroup
 public:
     explicit AnnotationItemModifier();
     ~AnnotationItemModifier();
-    void handleMousePress(const QPointF& pos, QList<AbstractAnnotationItem*> *items);
+    void handleMousePress(const QPointF& pos, QList<AbstractAnnotationItem*> *items, bool isCtrlPressed);
     void handleMouseMove(const QPointF& pos);
     void handleMouseRelease(QList<AbstractAnnotationItem*> *items);
-    void handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem*> *items);
+    void handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem*> *items, bool isCtrlPressed);
     QList<AbstractAnnotationItem*> selectedItems() const;
     virtual QRectF boundingRect() const override;
 

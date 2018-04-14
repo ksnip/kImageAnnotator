@@ -36,6 +36,8 @@ private slots:
     void TestHandleSelectionRectAt_Should_UnselectItemsNotUnderPosition_When_ProvidedPositionIsOverNotSelectedItem();
     void TestHandleSelectionRectAt_Should_NotShowRect_When_InitialPositionNotOnItem();
     void TestHandleSelectionRectAt_Should_ShowRect_When_InitialPositionOnItem();
+    void TestHandleSelectionRectAt_Should_UnselectItem_When_WhenCtrlPressedAndItemUnderProvidedPositionWasSelected();
+    void TestHandleSelectionRectAt_Should_SelectItem_When_WhenCtrlPressedAndItemUnderProvidedPositionWasNotSelected();
     void TestFinishSelectionRectWhenShown_Should_SelectItems_When_ItemsWithinSelectionRect();
     void TestFinishSelectionRectWhenShown_Should_SelectOnlyItemWithinSelectionRect();
     void TestClearSelection_Should_UnselectAllSelectedItems();

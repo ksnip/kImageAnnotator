@@ -30,7 +30,7 @@ public:
     explicit AnnotationItemSelector();
     ~AnnotationItemSelector();
     virtual QRectF boundingRect() const override;
-    void handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem*> *items);
+    void handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem*> *items, bool modifing);
     void extendSelectionRectWhenShown(const QPointF& pos);
     void finishSelectionRectWhenShown(QList<AbstractAnnotationItem*>* items);
     void clearSelection();
@@ -49,10 +49,12 @@ private:
 
     void initSelectionRectAt(const QPointF& position);
     void updateSelectionRect(const QPointF& position);
-    void selectItemAtPosition(const QPointF& position, QList<AbstractAnnotationItem*> *items);
+    void selectItemAt(const QPointF& position, QList<AbstractAnnotationItem*> *items);
+    void toggleItemSelectionAt(const QPointF& position, QList<AbstractAnnotationItem*> *items);
     void selectItemsUnderRect(QList<AbstractAnnotationItem*> *items);
     void selectItem(AbstractAnnotationItem* item);
-    void addItemToBoundingRect(AbstractAnnotationItem* item);
+    void unselectItem(AbstractAnnotationItem* item);
+    AbstractAnnotationItem* findItemAt(const QPointF& position, QList<AbstractAnnotationItem*> *items);
 };
 
 #endif // ANNOTATIONITEMSELECTOR_H
