@@ -109,16 +109,18 @@ void AnnotationItemSelector::paint(QPainter* painter, const QStyleOptionGraphics
     Q_UNUSED(option)
     Q_UNUSED(widget)
 
+    painter->setRenderHint(QPainter::Antialiasing, true);
+
     if(mShowSelectionRect) {
         painter->setPen(Qt::darkBlue);
         painter->setBrush(QColor(0, 0, 255, 60));
         painter->drawRect(mSelectionRect);
     }
 
-    painter->setPen(Qt::gray);
-    painter->setBrush(Qt::NoBrush);
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(QColor(255,255,255,100));
     for(auto item : *mSelectedItems) {
-        painter->drawRect(item->boundingRect());
+        painter->drawPath(item->shape());
     }
 }
 
