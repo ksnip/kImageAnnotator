@@ -25,7 +25,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsSceneDragDropEvent>
 
-#include "AnnotationItemResizer.h"
+#include "AnnotationMultiItemResizer.h"
 #include "AnnotationItemSelector.h"
 #include "AnnotationItemMover.h"
 
@@ -50,9 +50,9 @@ protected:
     virtual void hoverMoveEvent(QGraphicsSceneHoverEvent * event) override;
 
 private:
-    AnnotationItemResizer*  mItemResizer;
-    AnnotationItemSelector* mItemSelector;
-    AnnotationItemMover*    mItemMover;
+    AnnotationMultiItemResizer* mItemResizer;
+    AnnotationItemSelector*     mItemSelector;
+    AnnotationItemMover*        mItemMover;
 
     void handleSelection();
     void updateCursor(Qt::CursorShape cursor);

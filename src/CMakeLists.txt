@@ -11,6 +11,7 @@ set(kimageannotator_SRCS main.cpp
                          annotations/AnnotationPropertiesFactory.cpp
                          annotations/modifiers/AnnotationItemModifier.cpp
                          annotations/modifiers/AnnotationItemResizer.cpp
+                         annotations/modifiers/AnnotationMultiItemResizer.cpp
                          annotations/modifiers/AnnotationItemSelector.cpp
                          annotations/modifiers/AnnotationItemMover.cpp
                          annotations/modifiers/AnnotationItemArranger.cpp

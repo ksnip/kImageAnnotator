@@ -22,7 +22,7 @@
 AnnotationItemModifier::AnnotationItemModifier()
 {
     mItemSelector = new AnnotationItemSelector();
-    mItemResizer = new AnnotationItemResizer();
+    mItemResizer = new AnnotationMultiItemResizer();
     mItemMover = new AnnotationItemMover();
     addToGroup(mItemSelector);
     addToGroup(mItemResizer);
@@ -97,7 +97,7 @@ QList<AbstractAnnotationItem*> AnnotationItemModifier::selectedItems() const
 
 QRectF AnnotationItemModifier::boundingRect() const
 {
-    if(mItemResizer->attachedItem() != nullptr) {
+    if(mItemResizer->hasItemsAttached()) {
         return mItemResizer->boundingRect();
     }
     return mItemSelector->boundingRect();
@@ -130,10 +130,8 @@ void AnnotationItemModifier::handleSelection()
     auto count = selectedItems.count();
     if(count == 0) {
         clearSelection();
-    } else if(count == 1) {
-        mItemResizer->attachTo(selectedItems.first());
     } else {
-        mItemResizer->detach();
+        mItemResizer->attachTo(selectedItems);
     }
 }
 
