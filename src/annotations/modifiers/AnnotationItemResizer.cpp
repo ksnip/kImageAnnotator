@@ -19,53 +19,31 @@
 
 #include "AnnotationItemResizer.h"
 
-AnnotationItemResizer::AnnotationItemResizer()
+AnnotationItemResizer::AnnotationItemResizer(AbstractAnnotationItem* item)
 {
+    mAnnotationItem = item;
     mResizeHandleSize = 10;
-    mResizeHandles = new ResizeHandles(mResizeHandleSize);
-    mAnnotationItem = nullptr;
     mCurrentControlPoint = -1;
+    mResizeHandles = new ResizeHandles(mResizeHandleSize);
+    mResizeHandles->initHandles(item);
+    prepareGeometryChange();
 }
 
 AnnotationItemResizer::~AnnotationItemResizer()
 {
+    mAnnotationItem = nullptr;
     delete mResizeHandles;
+    qCritical("bang deleted");
 }
 
 QRectF AnnotationItemResizer::boundingRect() const
 {
-    if(mAnnotationItem) {
-        auto size = mResizeHandleSize / 2;
-        return mAnnotationItem->boundingRect().adjusted(-size, -size, size, size);
-    } else {
-        return QRectF();
-    }
-}
-
-void AnnotationItemResizer::attachTo(AbstractAnnotationItem* item)
-{
-    prepareGeometryChange();
-    mAnnotationItem = item;
-    mResizeHandles->initHandles(item);
-}
-
-void AnnotationItemResizer::detach()
-{
-    prepareGeometryChange();
-    mAnnotationItem = nullptr;
-}
-
-AbstractAnnotationItem* AnnotationItemResizer::attachedItem() const
-{
-    return mAnnotationItem;
+    auto size = mResizeHandleSize / 2;
+    return mAnnotationItem->boundingRect().adjusted(-size, -size, size, size);
 }
 
 void AnnotationItemResizer::grabHandle(const QPointF& pos)
 {
-    if(mAnnotationItem == nullptr) {
-        return;
-    }
-
     mCurrentControlPoint = mResizeHandles->indexOfHandleAt(pos);
     if(mCurrentControlPoint != -1) {
         mClickOffset = pos - mResizeHandles->handle(mCurrentControlPoint).center();
@@ -74,10 +52,6 @@ void AnnotationItemResizer::grabHandle(const QPointF& pos)
 
 void AnnotationItemResizer::moveHandle(const QPointF& pos)
 {
-    if(mAnnotationItem == nullptr) {
-        return;
-    }
-
     if(mCurrentControlPoint != -1) {
         mAnnotationItem->setPointAt(pos - mClickOffset, mCurrentControlPoint);
         refresh();
@@ -96,10 +70,6 @@ bool AnnotationItemResizer::isResizing() const
 
 void AnnotationItemResizer::refresh()
 {
-    if(mAnnotationItem == nullptr) {
-        return;
-    }
-
     prepareGeometryChange();
     mResizeHandles->updateHandlesPosition();
 }
@@ -113,10 +83,6 @@ void AnnotationItemResizer::paint(QPainter* painter, const QStyleOptionGraphicsI
 {
     Q_UNUSED(option)
     Q_UNUSED(widget)
-
-    if(mAnnotationItem == nullptr) {
-        return;
-    }
 
     painter->setPen(Qt::white);
     painter->setBrush(Qt::gray);

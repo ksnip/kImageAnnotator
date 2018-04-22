@@ -41,8 +41,10 @@ public:
     Qt::CursorShape cursor(const QPointF& pos);
 
 private:
-    QList<AnnotationItemResizer*> mItemResizers;
-    AnnotationItemResizer        *mCurrentResizer;
+    QHash<AbstractAnnotationItem*, AnnotationItemResizer*> mItemToResizer;
+    AnnotationItemResizer                                 *mCurrentResizer;
+
+    AnnotationItemResizer* getResizerForItem(AbstractAnnotationItem* item);
 };
 
 

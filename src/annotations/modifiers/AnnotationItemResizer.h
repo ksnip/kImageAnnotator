@@ -23,18 +23,14 @@
 #include <QGraphicsWidget>
 
 #include "ResizeHandles.h"
-#include "../items/AbstractAnnotationLine.h"
-#include "../items/AbstractAnnotationRect.h"
+#include "../items/AbstractAnnotationItem.h"
 
 class AnnotationItemResizer : public QGraphicsWidget
 {
 public:
-    AnnotationItemResizer();
+    AnnotationItemResizer(AbstractAnnotationItem* item);
     ~AnnotationItemResizer();
     virtual QRectF boundingRect() const override;
-    void attachTo(AbstractAnnotationItem* item);
-    void detach();
-    AbstractAnnotationItem* attachedItem() const;
     void grabHandle(const QPointF& pos);
     void moveHandle(const QPointF& pos);
     void releaseHandle();

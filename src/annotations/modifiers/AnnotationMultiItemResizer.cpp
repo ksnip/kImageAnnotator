@@ -28,27 +28,25 @@ void AnnotationMultiItemResizer::attachTo(QList<AbstractAnnotationItem*> items)
 {
     detach();
     for(auto item : items) {
-        auto resizer = new AnnotationItemResizer();
-        resizer->attachTo(item);
-        mItemResizers.append(resizer);
+        auto resizer = getResizerForItem(item);
         addToGroup(resizer);
     }
 }
 
 void AnnotationMultiItemResizer::detach()
 {
-    for(auto resizer : mItemResizers) {
+    for(auto resizer : childItems()) {
         removeFromGroup(resizer);
         scene()->removeItem(resizer);
-        resizer->detach();
-        delete resizer;
     }
-    mItemResizers.clear();
+
+    mCurrentResizer = nullptr;
 }
 
 void AnnotationMultiItemResizer::grabHandle(const QPointF &pos)
 {
-    for(auto resizer : mItemResizers) {
+    for(auto item : childItems()) {
+        auto resizer = dynamic_cast<AnnotationItemResizer*>(item);
         resizer->grabHandle(pos);
         if(resizer->isResizing()) {
             mCurrentResizer = resizer;
@@ -83,23 +81,34 @@ bool AnnotationMultiItemResizer::isResizing() const
 
 void AnnotationMultiItemResizer::refresh()
 {
-    for(auto resizer : mItemResizers) {
+    for(auto item : childItems()) {
+        auto resizer = dynamic_cast<AnnotationItemResizer*>(item);
         resizer->refresh();
     }
 }
 
 bool AnnotationMultiItemResizer::hasItemsAttached() const
 {
-    return mItemResizers.count() > 0;
+    return childItems().count() > 0;
 }
 
 Qt::CursorShape AnnotationMultiItemResizer::cursor(const QPointF &pos)
 {
-    for(auto resizer : mItemResizers) {
+    for(auto item : childItems()) {
+        auto resizer = dynamic_cast<AnnotationItemResizer*>(item);
         if(resizer->boundingRect().contains(pos)) {
             return resizer->cursor(pos);
         }
     }
 
     return CursorHelper::defaultCursor();
+}
+
+AnnotationItemResizer* AnnotationMultiItemResizer::getResizerForItem(AbstractAnnotationItem *item)
+{
+    if(!mItemToResizer.contains(item)) {
+        mItemToResizer[item] = new AnnotationItemResizer(item);
+    }
+
+    return mItemToResizer[item];
 }

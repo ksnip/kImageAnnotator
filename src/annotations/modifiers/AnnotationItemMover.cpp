@@ -29,7 +29,9 @@ void AnnotationItemMover::setOffset(const QPointF& pos, const QList<AbstractAnno
 void AnnotationItemMover::moveItems(const QPointF& pos)
 {
     for(auto item : mItemToOffset.keys()) {
-        item->setPosition(pos - mItemToOffset[item]);
+        if(item != nullptr) {
+            item->setPosition(pos - mItemToOffset[item]);
+        }
     }
 }
 
