@@ -19,46 +19,14 @@
 
 #include "AnnotationItemResizerTest.h"
 
-void AnnotationItemResizerTest::TestAttachTo_Should_AttachToAnnotationItem()
-{
-    AnnotationItemResizer itemResizer;
-    AnnotationProperties properties(Qt::red, 2);
-    QPointF p1(10, 10);
-    QPointF p2(20, 20);
-    AnnotationLine lineItem(p1, properties);
-    lineItem.addPoint(p2);
-
-    itemResizer.attachTo(&lineItem);
-
-    auto result = dynamic_cast<AnnotationLine*>(itemResizer.attachedItem());
-    QCOMPARE(result->line(), lineItem.line());
-}
-
-void AnnotationItemResizerTest::TestDetach_Should_ClearSelectedItem()
-{
-    AnnotationItemResizer itemResizer;
-    AnnotationProperties properties(Qt::red, 2);
-    QPointF p1(10, 10);
-    QPointF p2(20, 20);
-    AnnotationLine lineItem(p1, properties);
-    lineItem.addPoint(p2);
-    itemResizer.attachTo(&lineItem);
-
-    itemResizer.detach();
-
-    auto result = itemResizer.attachedItem();
-    QVERIFY(result == nullptr);
-}
-
 void AnnotationItemResizerTest::TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition()
 {
-    AnnotationItemResizer itemResizer;
     AnnotationProperties properties(Qt::red, 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
     lineItem.addPoint(p2);
-    itemResizer.attachTo(&lineItem);
+    AnnotationItemResizer itemResizer(&lineItem);
 
     itemResizer.grabHandle(p1 + QPointF(2, 2));
 
@@ -68,13 +36,12 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_GrabHandle_When_ProvidedPo
 
 void AnnotationItemResizerTest::TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition()
 {
-    AnnotationItemResizer itemResizer;
     AnnotationProperties properties(Qt::red, 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
     lineItem.addPoint(p2);
-    itemResizer.attachTo(&lineItem);
+    AnnotationItemResizer itemResizer(&lineItem);
 
     itemResizer.grabHandle(QPointF(0, 0));
 
@@ -84,31 +51,28 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_NotGrabHandle_When_Provide
 
 void AnnotationItemResizerTest::TestGrabHandle_Should_MoveResizeItem_When_HandleGrabbed()
 {
-    AnnotationItemResizer itemResizer;
     AnnotationProperties properties(Qt::red, 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     QPointF p3(30, 30);
     AnnotationLine lineItem(p1, properties);
     lineItem.addPoint(p2);
-    itemResizer.attachTo(&lineItem);
+    AnnotationItemResizer itemResizer(&lineItem);
     itemResizer.grabHandle(p1);
 
     itemResizer.moveHandle(p3);
 
-    auto result = dynamic_cast<AnnotationLine*>(itemResizer.attachedItem());
-    QCOMPARE(result->line().p1(), p3);
+    QCOMPARE(lineItem.line().p1(), p3);
 }
 
 void AnnotationItemResizerTest::TestReleaseHandle_Should_ReleaseHandle()
 {
-    AnnotationItemResizer itemResizer;
     AnnotationProperties properties(Qt::red, 2);
     QPointF p1(10, 10);
     QPointF p2(20, 20);
     AnnotationLine lineItem(p1, properties);
     lineItem.addPoint(p2);
-    itemResizer.attachTo(&lineItem);
+    AnnotationItemResizer itemResizer(&lineItem);
     itemResizer.grabHandle(p1);
     QCOMPARE(itemResizer.isResizing(), true);
 

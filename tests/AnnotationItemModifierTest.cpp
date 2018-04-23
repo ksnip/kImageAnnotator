@@ -111,11 +111,11 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveSelectedIte
 {
     AnnotationProperties properties(Qt::red, 1);
     QPointF p1(10, 10);
-    QPointF p2(20, 20);
-    QPointF p3(15, 15);
-    QPointF p4(20, 20);
-    QPointF clickPos(15, 15);
-    QPointF movePos(30, 30);
+    QPointF p2(30, 30);
+    QPointF p3(45, 45);
+    QPointF p4(60, 60);
+    QPointF clickPos(20, 20);
+    QPointF movePos(80, 80);
     AnnotationLine line1(p1, properties);
     AnnotationLine line2(p3, properties);
     line1.addPoint(p2);

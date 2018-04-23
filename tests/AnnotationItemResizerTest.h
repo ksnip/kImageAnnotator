@@ -30,8 +30,6 @@ class AnnotationItemResizerTest : public QObject
 Q_OBJECT
 
 private slots:
-    void TestAttachTo_Should_AttachToAnnotationItem();
-    void TestDetach_Should_ClearSelectedItem();
     void TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition();
     void TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition();
     void TestGrabHandle_Should_MoveResizeItem_When_HandleGrabbed();

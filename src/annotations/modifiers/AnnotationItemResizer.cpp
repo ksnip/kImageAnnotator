@@ -33,7 +33,6 @@ AnnotationItemResizer::~AnnotationItemResizer()
 {
     mAnnotationItem = nullptr;
     delete mResizeHandles;
-    qCritical("bang deleted");
 }
 
 QRectF AnnotationItemResizer::boundingRect() const

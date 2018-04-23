@@ -17,7 +17,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include <annotations/items/AbstractAnnotationRect.h>
+#include "../items/AbstractAnnotationRect.h"
 #include "AnnotationItemSelector.h"
 
 AnnotationItemSelector::AnnotationItemSelector()

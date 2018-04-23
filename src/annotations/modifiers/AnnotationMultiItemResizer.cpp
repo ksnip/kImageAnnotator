@@ -30,6 +30,7 @@ void AnnotationMultiItemResizer::attachTo(QList<AbstractAnnotationItem*> items)
     for(auto item : items) {
         auto resizer = getResizerForItem(item);
         addToGroup(resizer);
+        resizer->show();
     }
 }
 
@@ -37,7 +38,7 @@ void AnnotationMultiItemResizer::detach()
 {
     for(auto resizer : childItems()) {
         removeFromGroup(resizer);
-        scene()->removeItem(resizer);
+        resizer->hide();
     }
 
     mCurrentResizer = nullptr;
