@@ -39,6 +39,16 @@ Qt::CursorShape CursorHelper::verticalResizeCursor()
     return Qt::SizeVerCursor;
 }
 
+Qt::CursorShape CursorHelper::bDiagResizeCursor()
+{
+    return Qt::SizeBDiagCursor;
+}
+
+Qt::CursorShape CursorHelper::fDiagResizeCursor()
+{
+    return Qt::SizeFDiagCursor;
+}
+
 Qt::CursorShape CursorHelper::movableCursor()
 {
     return Qt::OpenHandCursor;

@@ -61,6 +61,7 @@ void AnnotationItemModifier::handleMouseMove(const QPointF& pos)
 {
     if(mItemResizer->isResizing()) {
         mItemResizer->moveHandle(pos);
+        updateCursor(mItemResizer->cursorForCurrentHandle());
     } else if(mItemSelector->isSelecting()) {
         mItemSelector->extendSelectionRectWhenShown(pos);
     } else {
@@ -121,7 +122,7 @@ void AnnotationItemModifier::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
         return;
     }
 
-    updateCursor(mItemResizer->cursor(event->scenePos()));
+    updateCursor(mItemResizer->cursorForPos(event->scenePos()));
 }
 
 void AnnotationItemModifier::handleSelection()

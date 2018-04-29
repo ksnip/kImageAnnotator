@@ -57,6 +57,8 @@ void ResizeHandles::updateHandlesPosition()
         mHandles[5].moveCenter(QPointF(rect.center().x(), rect.bottom()));
         mHandles[6].moveCenter(rect.bottomLeft());
         mHandles[7].moveCenter(QPointF(rect.left(), rect.center().y()));
+
+        updateCursors();
     }
 }
 
@@ -84,10 +86,15 @@ QRectF ResizeHandles::handle(int index) const
     return mHandles[index];
 }
 
-Qt::CursorShape ResizeHandles::getCursorForHandle(const QPointF& pos) const
+Qt::CursorShape ResizeHandles::cursorForPos(const QPointF &pos) const
 {
     auto index = indexOfHandleAt(pos);
 
+    return cursorForHandle(index);
+}
+
+Qt::CursorShape ResizeHandles::cursorForHandle(int index) const
+{
     if(index == -1 || mCursors.isEmpty()) {
         return CursorHelper::defaultCursor();
     }
@@ -112,12 +119,24 @@ void ResizeHandles::addLineCursorsToList()
 void ResizeHandles::addRectCursorsToList()
 {
     mCursors.clear();
-    mCursors.append(CursorHelper::allResizeCursor());
+    mCursors.append(CursorHelper::fDiagResizeCursor());
     mCursors.append(CursorHelper::verticalResizeCursor());
-    mCursors.append(CursorHelper::allResizeCursor());
+    mCursors.append(CursorHelper::bDiagResizeCursor());
     mCursors.append(CursorHelper::horizontalResizeCursor());
-    mCursors.append(CursorHelper::allResizeCursor());
+    mCursors.append(CursorHelper::fDiagResizeCursor());
     mCursors.append(CursorHelper::verticalResizeCursor());
-    mCursors.append(CursorHelper::allResizeCursor());
+    mCursors.append(CursorHelper::bDiagResizeCursor());
     mCursors.append(CursorHelper::horizontalResizeCursor());
+}
+void ResizeHandles::updateCursors()
+{
+    if(mRectItem == nullptr || mCursors.isEmpty()) {
+        return;
+    }
+
+    auto rect = mRectItem->rect().normalized();
+    mCursors[indexOfHandleAt(rect.topLeft())] = CursorHelper::fDiagResizeCursor();
+    mCursors[indexOfHandleAt(rect.topRight())] = CursorHelper::bDiagResizeCursor();
+    mCursors[indexOfHandleAt(rect.bottomRight())] = CursorHelper::fDiagResizeCursor();
+    mCursors[indexOfHandleAt(rect.bottomLeft())] = CursorHelper::bDiagResizeCursor();
 }

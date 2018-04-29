@@ -36,7 +36,8 @@ public:
     int indexOfHandleAt(const QPointF& pos) const;
     QList<QRectF> handles() const;
     QRectF handle(int index) const;
-    Qt::CursorShape getCursorForHandle(const QPointF& pos) const;
+    Qt::CursorShape cursorForPos(const QPointF &pos) const;
+    Qt::CursorShape cursorForHandle(int index) const;
 
 private:
     AbstractAnnotationLine* mLineItem;
@@ -48,6 +49,7 @@ private:
     void addHandlesToList(int count);
     void addLineCursorsToList();
     void addRectCursorsToList();
+    void updateCursors();
 };
 
 #endif // RESIZEHANDLES_H

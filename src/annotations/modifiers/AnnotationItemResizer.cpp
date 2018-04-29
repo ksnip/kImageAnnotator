@@ -23,7 +23,7 @@ AnnotationItemResizer::AnnotationItemResizer(AbstractAnnotationItem* item)
 {
     mAnnotationItem = item;
     mResizeHandleSize = 10;
-    mCurrentControlPoint = -1;
+    mCurrentHandle = -1;
     mResizeHandles = new ResizeHandles(mResizeHandleSize);
     mResizeHandles->initHandles(item);
     prepareGeometryChange();
@@ -38,33 +38,33 @@ AnnotationItemResizer::~AnnotationItemResizer()
 QRectF AnnotationItemResizer::boundingRect() const
 {
     auto size = mResizeHandleSize / 2;
-    return mAnnotationItem->boundingRect().adjusted(-size, -size, size, size);
+    return mAnnotationItem->boundingRect().normalized().adjusted(-size, -size, size, size);
 }
 
 void AnnotationItemResizer::grabHandle(const QPointF& pos)
 {
-    mCurrentControlPoint = mResizeHandles->indexOfHandleAt(pos);
-    if(mCurrentControlPoint != -1) {
-        mClickOffset = pos - mResizeHandles->handle(mCurrentControlPoint).center();
+    mCurrentHandle = mResizeHandles->indexOfHandleAt(pos);
+    if(mCurrentHandle != -1) {
+        mClickOffset = pos - mResizeHandles->handle(mCurrentHandle).center();
     }
 }
 
 void AnnotationItemResizer::moveHandle(const QPointF& pos)
 {
-    if(mCurrentControlPoint != -1) {
-        mAnnotationItem->setPointAt(pos - mClickOffset, mCurrentControlPoint);
+    if(mCurrentHandle != -1) {
+        mAnnotationItem->setPointAt(pos - mClickOffset, mCurrentHandle);
         refresh();
     }
 }
 
 void AnnotationItemResizer::releaseHandle()
 {
-    mCurrentControlPoint = -1;
+    mCurrentHandle = -1;
 }
 
 bool AnnotationItemResizer::isResizing() const
 {
-    return mCurrentControlPoint != -1;
+    return mCurrentHandle != -1;
 }
 
 void AnnotationItemResizer::refresh()
@@ -73,9 +73,14 @@ void AnnotationItemResizer::refresh()
     mResizeHandles->updateHandlesPosition();
 }
 
-Qt::CursorShape AnnotationItemResizer::cursor(const QPointF& pos)
+Qt::CursorShape AnnotationItemResizer::cursorForPos(const QPointF &pos)
 {
-    return mResizeHandles->getCursorForHandle(pos);
+    return mResizeHandles->cursorForPos(pos);
+}
+
+Qt::CursorShape AnnotationItemResizer::cursorForCurrentHandle()
+{
+    return mResizeHandles->cursorForHandle(mCurrentHandle);
 }
 
 void AnnotationItemResizer::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)

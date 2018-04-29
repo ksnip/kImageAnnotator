@@ -131,7 +131,7 @@ void ResizeHandlesTest::TestGetCursorForHandle_Should_NotReturnDefaultCursor_Whe
     ResizeHandles resizeHandles(5);
     resizeHandles.initHandles(&lineItem);
 
-    auto result = resizeHandles.getCursorForHandle(p1);
+    auto result = resizeHandles.cursorForPos(p1);
 
     QVERIFY(result != CursorHelper::defaultCursor());
 }
@@ -147,7 +147,7 @@ void ResizeHandlesTest::TestGetCursorForHandle_Should_ReturnDefaultCursor_When_P
     ResizeHandles resizeHandles(5);
     resizeHandles.initHandles(&lineItem);
 
-    auto result = resizeHandles.getCursorForHandle(p3);
+    auto result = resizeHandles.cursorForPos(p3);
 
     QCOMPARE(result, CursorHelper::defaultCursor());
 }

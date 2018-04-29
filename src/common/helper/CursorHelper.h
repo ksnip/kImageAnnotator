@@ -28,6 +28,8 @@ public:
     Qt::CursorShape static defaultCursor();
     Qt::CursorShape static verticalResizeCursor();
     Qt::CursorShape static horizontalResizeCursor();
+    Qt::CursorShape static bDiagResizeCursor();
+    Qt::CursorShape static fDiagResizeCursor();
     Qt::CursorShape static allResizeCursor();
     Qt::CursorShape static movableCursor();
     Qt::CursorShape static movingCursor();

@@ -30,6 +30,7 @@ class AnnotationMultiItemResizer : public QGraphicsItemGroup
 public:
     explicit AnnotationMultiItemResizer();
     ~AnnotationMultiItemResizer() = default;
+    virtual QRectF boundingRect() const override;
     void attachTo(QList<AbstractAnnotationItem*> items);
     void detach();
     void grabHandle(const QPointF& pos);
@@ -38,7 +39,8 @@ public:
     bool isResizing() const;
     void refresh();
     bool hasItemsAttached() const;
-    Qt::CursorShape cursor(const QPointF& pos);
+    Qt::CursorShape cursorForPos(const QPointF &pos);
+    Qt::CursorShape cursorForCurrentHandle();
 
 private:
     QHash<AbstractAnnotationItem*, AnnotationItemResizer*> mItemToResizer;

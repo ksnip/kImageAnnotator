@@ -24,6 +24,15 @@ AnnotationMultiItemResizer::AnnotationMultiItemResizer()
     mCurrentResizer = nullptr;
 }
 
+QRectF AnnotationMultiItemResizer::boundingRect() const
+{
+    QRectF rect;
+    for (auto resizer : childItems()) {
+        rect = rect.united(resizer->boundingRect());
+    }
+    return rect;
+}
+
 void AnnotationMultiItemResizer::attachTo(QList<AbstractAnnotationItem*> items)
 {
     detach();
@@ -93,16 +102,24 @@ bool AnnotationMultiItemResizer::hasItemsAttached() const
     return childItems().count() > 0;
 }
 
-Qt::CursorShape AnnotationMultiItemResizer::cursor(const QPointF &pos)
+Qt::CursorShape AnnotationMultiItemResizer::cursorForPos(const QPointF &pos)
 {
     for(auto item : childItems()) {
         auto resizer = dynamic_cast<AnnotationItemResizer*>(item);
         if(resizer->boundingRect().contains(pos)) {
-            return resizer->cursor(pos);
+            return resizer->cursorForPos(pos);
         }
     }
 
     return CursorHelper::defaultCursor();
+}
+
+Qt::CursorShape AnnotationMultiItemResizer::cursorForCurrentHandle()
+{
+    if(mCurrentResizer == nullptr) {
+        return CursorHelper::defaultCursor();
+    }
+    return mCurrentResizer->cursorForCurrentHandle();
 }
 
 AnnotationItemResizer* AnnotationMultiItemResizer::getResizerForItem(AbstractAnnotationItem *item)
