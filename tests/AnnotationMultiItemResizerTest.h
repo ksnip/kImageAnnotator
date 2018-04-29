@@ -17,23 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMRESIZERTEST_H
-#define ANNOTATIONITEMRESIZERTEST_H
+#ifndef ANNOTATIONMULTIITEMRESIZERTEST_H
+#define ANNOTATIONMULTIITEMRESIZERTEST_H
 
 #include <QtTest>
 
-#include "../src/annotations/modifiers/AnnotationItemResizer.h"
+#include "../src/annotations/modifiers/AnnotationMultiItemResizer.h"
 #include "../src/annotations/items/AnnotationLine.h"
 
-class AnnotationItemResizerTest : public QObject
+class AnnotationMultiItemResizerTest : public QObject
 {
-Q_OBJECT
-
+    Q_OBJECT
 private slots:
     void TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition();
     void TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition();
     void TestGrabHandle_Should_MoveResizeHandle_When_HandleGrabbed();
+    void TestGrabHandle_Should_OnlyMoveOneResizeHandle_When_MultipleItemsInList();
     void TestReleaseHandle_Should_ReleaseHandle();
+    void TestHasItemsAttached_Should_ReturnFalse_When_NoItemsInList();
+    void TestHasItemsAttached_Should_ReturnTrue_When_ItemsInList();
 };
 
-#endif // ANNOTATIONITEMRESIZERTEST_H
+#endif // ANNOTATIONMULTIITEMRESIZERTEST_H

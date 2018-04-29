@@ -43,6 +43,7 @@ set(ListOfUnitTests AnnotationAreaTest
                     FillPickerTest
                     ResizeHandlesTest
                     AnnotationItemResizerTest
+                    AnnotationMultiItemResizerTest
                     AnnotationItemSelectorTest
                     AnnotationItemModifierTest
                     AnnotationItemArrangerTest

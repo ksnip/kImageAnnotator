@@ -49,7 +49,7 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_NotGrabHandle_When_Provide
     QCOMPARE(isResizing, false);
 }
 
-void AnnotationItemResizerTest::TestGrabHandle_Should_MoveResizeItem_When_HandleGrabbed()
+void AnnotationItemResizerTest::TestGrabHandle_Should_MoveResizeHandle_When_HandleGrabbed()
 {
     AnnotationProperties properties(Qt::red, 2);
     QPointF p1(10, 10);
@@ -58,8 +58,8 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_MoveResizeItem_When_Handle
     AnnotationLine lineItem(p1, properties);
     lineItem.addPoint(p2);
     AnnotationItemResizer itemResizer(&lineItem);
-    itemResizer.grabHandle(p1);
 
+    itemResizer.grabHandle(p1);
     itemResizer.moveHandle(p3);
 
     QCOMPARE(lineItem.line().p1(), p3);
