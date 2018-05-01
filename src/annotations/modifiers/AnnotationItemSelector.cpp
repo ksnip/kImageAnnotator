@@ -105,6 +105,15 @@ void AnnotationItemSelector::refresh()
     }
 }
 
+void AnnotationItemSelector::update()
+{
+    for(auto item : *mSelectedItems) {
+        if (!item->isVisible()) {
+            unselectItem(item);
+        }
+    }
+}
+
 void AnnotationItemSelector::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
     Q_UNUSED(option)

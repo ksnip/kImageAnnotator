@@ -49,7 +49,7 @@ private:
     void addHandlesToList(int count);
     void addLineCursorsToList();
     void addRectCursorsToList();
-    void updateCursors();
+    void updateRectCursors();
 };
 
 #endif // RESIZEHANDLES_H

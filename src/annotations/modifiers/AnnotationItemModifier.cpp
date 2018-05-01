@@ -110,6 +110,12 @@ void AnnotationItemModifier::clearSelection()
     mItemResizer->detach();
 }
 
+void AnnotationItemModifier::updateSelection()
+{
+    mItemSelector->update();
+    mItemResizer->update();
+}
+
 void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     Q_UNUSED(event)

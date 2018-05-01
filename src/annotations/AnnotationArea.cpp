@@ -29,11 +29,18 @@ AnnotationArea::AnnotationArea()
     mItemModifier = new AnnotationItemModifier();
     addItem(mItemModifier);
     mKeyHelper = new KeyHelper();
+    mUndoStack = new QUndoStack();
 
     connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
     connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clearSelection);
 
     connect(mConfig, &Config::toolChanged, this, &AnnotationArea::setCursorForTool);
+
+    // TODO cleanup
+    auto undoAction = mUndoStack->createUndoAction(this);
+    auto redoAction = mUndoStack->createRedoAction(this);
+    connect(mKeyHelper, &KeyHelper::undoPressed, undoAction, &QAction::trigger);
+    connect(mKeyHelper, &KeyHelper::redoPressed, redoAction, &QAction::trigger);
 }
 
 AnnotationArea::~AnnotationArea()
@@ -42,6 +49,7 @@ AnnotationArea::~AnnotationArea()
     delete mItems;
     delete mItemModifier;
     delete mKeyHelper;
+    delete mUndoStack;
 }
 
 void AnnotationArea::setBackgroundImage(const QPixmap& image)
@@ -69,6 +77,24 @@ QImage AnnotationArea::exportAsImage()
     painter.setRenderHint(QPainter::Antialiasing);
     render(&painter);
     return image;
+}
+
+void AnnotationArea::addAnnotationItem(AbstractAnnotationItem *item)
+{
+    mItems->prepend(item);
+    addItem(item);
+}
+
+void AnnotationArea::removeAnnotationItem(AbstractAnnotationItem *item)
+{
+    removeItem(item);
+    mItems->removeOne(item);
+}
+
+void AnnotationArea::update()
+{
+    mItemModifier->updateSelection();
+    QGraphicsScene::update();
 }
 
 void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
@@ -149,9 +175,7 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
 void AnnotationArea::addItemAtPosition(const QPointF& position)
 {
     mCurrentItem = mItemFactory->createItem(position, mConfig->selectedTool());
-
-    mItems->prepend(mCurrentItem);
-    addItem(mCurrentItem);
+    mUndoStack->push(new AddCommand(mCurrentItem, this));
 }
 
 void AnnotationArea::addPointToCurrentItem(const QPointF& position)

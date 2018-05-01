@@ -38,16 +38,14 @@ void AnnotationMultiItemResizer::attachTo(QList<AbstractAnnotationItem*> items)
     detach();
     for(auto item : items) {
         auto resizer = getResizerForItem(item);
-        addToGroup(resizer);
-        resizer->show();
+        showResizer(resizer);
     }
 }
 
 void AnnotationMultiItemResizer::detach()
 {
     for(auto resizer : childItems()) {
-        removeFromGroup(resizer);
-        resizer->hide();
+        hideResizer(resizer);
     }
 
     mCurrentResizer = nullptr;
@@ -56,7 +54,7 @@ void AnnotationMultiItemResizer::detach()
 void AnnotationMultiItemResizer::grabHandle(const QPointF &pos)
 {
     for(auto item : childItems()) {
-        auto resizer = dynamic_cast<AnnotationItemResizer*>(item);
+        auto resizer = castToResizer(item);
         resizer->grabHandle(pos);
         if(resizer->isResizing()) {
             mCurrentResizer = resizer;
@@ -92,8 +90,18 @@ bool AnnotationMultiItemResizer::isResizing() const
 void AnnotationMultiItemResizer::refresh()
 {
     for(auto item : childItems()) {
-        auto resizer = dynamic_cast<AnnotationItemResizer*>(item);
+        auto resizer = castToResizer(item);
         resizer->refresh();
+    }
+}
+
+void AnnotationMultiItemResizer::update()
+{
+    for(auto item : childItems()) {
+        auto resizer = castToResizer(item);
+        if(!resizer->isItemVisible()) {
+            hideResizer(resizer);
+        }
     }
 }
 
@@ -105,7 +113,7 @@ bool AnnotationMultiItemResizer::hasItemsAttached() const
 Qt::CursorShape AnnotationMultiItemResizer::cursorForPos(const QPointF &pos)
 {
     for(auto item : childItems()) {
-        auto resizer = dynamic_cast<AnnotationItemResizer*>(item);
+        auto resizer = castToResizer(item);
         if(resizer->boundingRect().contains(pos)) {
             return resizer->cursorForPos(pos);
         }
@@ -129,4 +137,21 @@ AnnotationItemResizer* AnnotationMultiItemResizer::getResizerForItem(AbstractAnn
     }
 
     return mItemToResizer[item];
+}
+
+void AnnotationMultiItemResizer::hideResizer(QGraphicsItem *resizer)
+{
+    removeFromGroup(resizer);
+    resizer->hide();
+}
+
+void AnnotationMultiItemResizer::showResizer(AnnotationItemResizer *resizer)
+{
+    addToGroup(resizer);
+    resizer->show();
+}
+
+AnnotationItemResizer *AnnotationMultiItemResizer::castToResizer(QGraphicsItem *item) const
+{
+    return dynamic_cast<AnnotationItemResizer*>(item);
 }

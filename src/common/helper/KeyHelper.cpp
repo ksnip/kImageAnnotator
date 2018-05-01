@@ -24,6 +24,8 @@ KeyHelper::KeyHelper()
     mKeyToIsPressed[Qt::Key_Delete] = false;
     mKeyToIsPressed[Qt::Key_Escape] = false;
     mKeyToIsPressed[Qt::Key_Control] = false;
+    mKeyToIsPressed[Qt::Key_Shift] = false;
+    mKeyToIsPressed[Qt::Key_Z] = false;
 }
 
 void KeyHelper::keyPress(QKeyEvent* keyEvent)
@@ -31,6 +33,7 @@ void KeyHelper::keyPress(QKeyEvent* keyEvent)
     auto key = static_cast<Qt::Key>(keyEvent->key());
     if(mKeyToIsPressed.contains(key)) {
         mKeyToIsPressed[key] = true;
+        emitPressSignal(key);
     }
 }
 
@@ -48,6 +51,11 @@ bool KeyHelper::isControlPressed() const
     return mKeyToIsPressed[Qt::Key_Control];
 }
 
+bool KeyHelper::isShiftPressed() const
+{
+    return mKeyToIsPressed[Qt::Key_Shift];
+}
+
 void KeyHelper::emitReleaseSignal(Qt::Key key)
 {
     if(key == Qt::Key_Delete) {
@@ -56,5 +64,16 @@ void KeyHelper::emitReleaseSignal(Qt::Key key)
 
     if(key == Qt::Key_Escape) {
         emit escapeReleased();
+    }
+}
+
+void KeyHelper::emitPressSignal(Qt::Key key)
+{
+    if(key == Qt::Key_Z && isControlPressed()) {
+        if(isShiftPressed()) {
+            emit redoPressed();
+        } else {
+            emit undoPressed();
+        }
     }
 }

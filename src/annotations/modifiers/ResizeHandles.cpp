@@ -58,7 +58,7 @@ void ResizeHandles::updateHandlesPosition()
         mHandles[6].moveCenter(rect.bottomLeft());
         mHandles[7].moveCenter(QPointF(rect.left(), rect.center().y()));
 
-        updateCursors();
+        updateRectCursors();
     }
 }
 
@@ -128,7 +128,7 @@ void ResizeHandles::addRectCursorsToList()
     mCursors.append(CursorHelper::bDiagResizeCursor());
     mCursors.append(CursorHelper::horizontalResizeCursor());
 }
-void ResizeHandles::updateCursors()
+void ResizeHandles::updateRectCursors()
 {
     if(mRectItem == nullptr || mCursors.isEmpty()) {
         return;

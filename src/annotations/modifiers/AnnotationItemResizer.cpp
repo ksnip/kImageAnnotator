@@ -73,6 +73,11 @@ void AnnotationItemResizer::refresh()
     mResizeHandles->updateHandlesPosition();
 }
 
+bool AnnotationItemResizer::isItemVisible() const
+{
+    return mAnnotationItem != nullptr && mAnnotationItem->isVisible();
+}
+
 Qt::CursorShape AnnotationItemResizer::cursorForPos(const QPointF &pos)
 {
     return mResizeHandles->cursorForPos(pos);

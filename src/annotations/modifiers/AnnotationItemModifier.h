@@ -44,6 +44,7 @@ public:
 
 public slots:
     void clearSelection();
+    void updateSelection();
 
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent * event) override;

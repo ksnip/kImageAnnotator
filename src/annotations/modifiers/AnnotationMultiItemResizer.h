@@ -38,6 +38,7 @@ public:
     void releaseHandle();
     bool isResizing() const;
     void refresh();
+    void update();
     bool hasItemsAttached() const;
     Qt::CursorShape cursorForPos(const QPointF &pos);
     Qt::CursorShape cursorForCurrentHandle();
@@ -47,6 +48,9 @@ private:
     AnnotationItemResizer                                 *mCurrentResizer;
 
     AnnotationItemResizer* getResizerForItem(AbstractAnnotationItem* item);
+    void showResizer(AnnotationItemResizer *resizer);
+    void hideResizer(QGraphicsItem *resizer);
+    AnnotationItemResizer *castToResizer(QGraphicsItem *item) const;
 };
 
 

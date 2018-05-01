@@ -25,6 +25,7 @@
 #include <QKeyEvent>
 #include <QPainter>
 #include <QMenu>
+#include <QUndoStack>
 
 #include <KLocalizedString>
 
@@ -35,6 +36,7 @@
 #include "../common/enum/ToolTypes.h"
 #include "../common/helper/CursorHelper.h"
 #include "../common/helper/KeyHelper.h"
+#include "undoRedo/AddCommand.h"
 
 class AnnotationArea : public QGraphicsScene
 {
@@ -42,9 +44,11 @@ class AnnotationArea : public QGraphicsScene
 public:
     AnnotationArea();
     ~AnnotationArea();
-
     void setBackgroundImage(const QPixmap& image);
     QImage exportAsImage();
+    virtual void addAnnotationItem(AbstractAnnotationItem *item);
+    virtual void removeAnnotationItem(AbstractAnnotationItem *item);
+    virtual void update();
 
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
@@ -62,6 +66,7 @@ private:
     Config*                         mConfig;
     QList<AbstractAnnotationItem*> *mItems;
     KeyHelper                      *mKeyHelper;
+    QUndoStack                     *mUndoStack;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

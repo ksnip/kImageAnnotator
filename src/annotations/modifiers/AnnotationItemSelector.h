@@ -37,6 +37,7 @@ public:
     QList<AbstractAnnotationItem*> selectedItems() const;
     bool isSelecting() const;
     void refresh();
+    void update();
 
 protected:
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) override;

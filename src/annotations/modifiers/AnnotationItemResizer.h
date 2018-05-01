@@ -36,9 +36,10 @@ public:
     void releaseHandle();
     bool isResizing() const;
     void refresh();
+    bool isItemVisible() const;
     Qt::CursorShape cursorForPos(const QPointF &pos);
-
     Qt::CursorShape cursorForCurrentHandle();
+
 protected:
     virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) override;
 

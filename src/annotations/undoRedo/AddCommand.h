@@ -17,35 +17,28 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KEYHELPER_H
-#define KEYHELPER_H
+#ifndef ADDCOMMAND_H
+#define ADDCOMMAND_H
 
-#include <QObject>
-#include <QKeyEvent>
+#include <QUndoCommand>
 
-class KeyHelper : public QObject
+#include "../items/AbstractAnnotationItem.h"
+#include "../AnnotationArea.h"
+
+class AnnotationArea;
+
+class AddCommand : public QUndoCommand
 {
-    Q_OBJECT
 public:
-    explicit KeyHelper();
-    ~KeyHelper() = default;
-
-    void keyPress(QKeyEvent *keyEvent);
-    void keyRelease(QKeyEvent *keyEvent);
-    bool isControlPressed() const;
-    bool isShiftPressed() const;
-
-signals:
-    void deleteReleased() const;
-    void escapeReleased() const;
-    void undoPressed() const;
-    void redoPressed() const;
+    AddCommand(AbstractAnnotationItem *item, AnnotationArea *annotationArea);
+    ~AddCommand();
+    virtual void undo() override;
+    virtual void redo() override;
 
 private:
-    QHash<Qt::Key, bool> mKeyToIsPressed;
-
-    void emitReleaseSignal(Qt::Key key);
-    void emitPressSignal(Qt::Key key);
+    AbstractAnnotationItem *mItem;
+    AnnotationArea         *mAnnotationArea;
 };
 
-#endif // KEYHELPER_H
+
+#endif //ADDCOMMAND_H
