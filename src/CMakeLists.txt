@@ -25,6 +25,7 @@ set(kimageannotator_SRCS main.cpp
                          annotations/items/AnnotationEllipse.cpp
                          annotations/items/AnnotationNumber.cpp
                          annotations/undoRedo/AddCommand.cpp
+                         annotations/undoRedo/DeleteCommand.cpp
                          backend/Config.cpp
                          common/formatter/ConfigNameFormatter.cpp
                          common/helper/IconCreater.cpp

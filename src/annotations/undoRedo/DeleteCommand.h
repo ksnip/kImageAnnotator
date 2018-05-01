@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ADDCOMMAND_H
-#define ADDCOMMAND_H
+#ifndef KIMAGEANNOTATOR_DELETECOMMAND_H
+#define KIMAGEANNOTATOR_DELETECOMMAND_H
 
 #include <QUndoCommand>
 
@@ -27,17 +27,16 @@
 
 class AnnotationArea;
 
-class AddCommand : public QUndoCommand
+class DeleteCommand : public QUndoCommand
 {
 public:
-    AddCommand(AbstractAnnotationItem *item, AnnotationArea *annotationArea);
-    ~AddCommand();
+    DeleteCommand(QList<AbstractAnnotationItem *> items, AnnotationArea *annotationArea);
     virtual void undo() override;
     virtual void redo() override;
 
 private:
-    AbstractAnnotationItem *mItem;
-    AnnotationArea         *mAnnotationArea;
+    QList<AbstractAnnotationItem *> mItems;
+    AnnotationArea *mAnnotationArea;
 };
 
-#endif //ADDCOMMAND_H
+#endif //KIMAGEANNOTATOR_DELETECOMMAND_H

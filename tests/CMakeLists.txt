@@ -26,6 +26,7 @@ set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationEllipse.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationNumber.cpp
                          ${CMAKE_SOURCE_DIR}/src/annotations/undoRedo/AddCommand.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/undoRedo/DeleteCommand.cpp
                          ${CMAKE_SOURCE_DIR}/src/backend/Config.cpp
                          ${CMAKE_SOURCE_DIR}/src/common/formatter/ConfigNameFormatter.cpp
                          ${CMAKE_SOURCE_DIR}/src/common/helper/IconCreater.cpp

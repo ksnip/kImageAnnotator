@@ -37,6 +37,7 @@
 #include "../common/helper/CursorHelper.h"
 #include "../common/helper/KeyHelper.h"
 #include "undoRedo/AddCommand.h"
+#include "undoRedo/DeleteCommand.h"
 
 class AnnotationArea : public QGraphicsScene
 {

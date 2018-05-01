@@ -198,10 +198,5 @@ void AnnotationArea::deleteSelectedItems()
 {
     auto selectedItems = mItemModifier->selectedItems();
     mItemModifier->clearSelection();
-
-    for(auto item : selectedItems) {
-        removeItem(item);
-        mItems->removeOne(item);
-        delete item;
-    }
+    mUndoStack->push(new DeleteCommand(selectedItems, this));
 }

@@ -17,27 +17,28 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ADDCOMMAND_H
-#define ADDCOMMAND_H
+#include "DeleteCommand.h"
 
-#include <QUndoCommand>
-
-#include "../items/AbstractAnnotationItem.h"
-#include "../AnnotationArea.h"
-
-class AnnotationArea;
-
-class AddCommand : public QUndoCommand
+DeleteCommand::DeleteCommand(QList<AbstractAnnotationItem *> items, AnnotationArea *annotationArea)
 {
-public:
-    AddCommand(AbstractAnnotationItem *item, AnnotationArea *annotationArea);
-    ~AddCommand();
-    virtual void undo() override;
-    virtual void redo() override;
+    mItems = items;
+    mAnnotationArea = annotationArea;
+}
 
-private:
-    AbstractAnnotationItem *mItem;
-    AnnotationArea         *mAnnotationArea;
-};
+void DeleteCommand::undo()
+{
+    for (auto item : mItems) {
+        mAnnotationArea->addAnnotationItem(item);
+        item->show();
+        mAnnotationArea->update();
+    }
+}
 
-#endif //ADDCOMMAND_H
+void DeleteCommand::redo()
+{
+    for (auto item : mItems) {
+        mAnnotationArea->removeAnnotationItem(item);
+        item->hide();
+        mAnnotationArea->update();
+    }
+}
