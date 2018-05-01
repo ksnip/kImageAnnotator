@@ -81,4 +81,24 @@ void AnnotationItemResizerTest::TestReleaseHandle_Should_ReleaseHandle()
     QCOMPARE(itemResizer.isResizing(), false);
 }
 
+void AnnotationItemResizerTest::TestIsItemVisible_Should_ReturnFalse_When_ItemIsHidden()
+{
+    AnnotationProperties properties(Qt::red, 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    AnnotationItemResizer itemResizer(&lineItem);
+    lineItem.hide();
+
+    auto result = itemResizer.isItemVisible();
+
+    QCOMPARE(result, false);
+}
+
+void AnnotationItemResizerTest::TestIsItemVisible_Should_ReturnTrue_When_ItemIsNotHidden()
+{
+
+}
+
 QTEST_MAIN(AnnotationItemResizerTest);

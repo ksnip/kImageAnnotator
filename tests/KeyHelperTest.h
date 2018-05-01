@@ -29,10 +29,14 @@ class KeyHelperTest : public QObject
 {
     Q_OBJECT
 private slots:
+    void TestKeyPress_Should_EmitUndoSignal_When_ControlAndZKeyArePressed();
+    void TestKeyPress_Should_EmitRedoSignal_When_ControlAndShiftAndZKeyArePressed();
     void TestKeyRelease_Should_EmitSignal_When_DeleteKeyReleased();
     void TestKeyRelease_Should_EmitSignal_When_EscapeKeyReleased();
     void TestIsControlPressed_ShouldReturnTrue_When_ControlWasPressed();
     void TestIsControlPressed_ShouldReturnFalse_When_ControlWasReleased();
+    void TestIsShiftPressed_ShouldReturnTrue_When_ShiftWasPressed();
+    void TestIsShiftPressed_ShouldReturnFalse_When_ShiftWasReleased();
 };
 
 #endif // KEYHELPERTEST_H

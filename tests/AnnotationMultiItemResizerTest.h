@@ -27,7 +27,7 @@
 
 class AnnotationMultiItemResizerTest : public QObject
 {
-    Q_OBJECT
+Q_OBJECT
 private slots:
     void TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition();
     void TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition();
@@ -36,6 +36,7 @@ private slots:
     void TestReleaseHandle_Should_ReleaseHandle();
     void TestHasItemsAttached_Should_ReturnFalse_When_NoItemsInList();
     void TestHasItemsAttached_Should_ReturnTrue_When_ItemsInList();
+    void TestUpdate_Should_HideResizers_When_ItemsOfResizersNotVisible();
 };
 
 #endif // ANNOTATIONMULTIITEMRESIZERTEST_H

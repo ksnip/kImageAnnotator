@@ -27,7 +27,7 @@
 
 class AnnotationItemSelectorTest : public QObject
 {
-    Q_OBJECT
+Q_OBJECT
 private slots:
     void TestHandleSelectionRectAt_Should_SelectItem_When_ItemUnderProvidedPosition();
     void TestHandleSelectionRectAt_Should_NotSelectItem_When_ItemNotUnderProvidedPosition();
@@ -43,6 +43,7 @@ private slots:
     void TestClearSelection_Should_UnselectAllSelectedItems();
     void TestBoundRect_Should_ReturnRectCoveringSelectedItems_When_ItemsSelected();
     void TestRefresh_Should_UpdateBoundingRect_When_CalledAfterItemsHaveBeenMoved();
+    void TestUpdate_Should_UnselectItemsThatAreNotVisible();
 };
 
 #endif // ANNOTATIONITEMSELECTORTEST_H
