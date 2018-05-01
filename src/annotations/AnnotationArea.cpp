@@ -25,7 +25,7 @@ AnnotationArea::AnnotationArea()
     mItemFactory = new AnnotationItemFactory();
     mBackgroundImage = nullptr;
     mCurrentItem = nullptr;
-    mItems = new QList<AbstractAnnotationItem*>();
+    mItems = new QList<AbstractAnnotationItem *>();
     mItemModifier = new AnnotationItemModifier();
     addItem(mItemModifier);
     mKeyHelper = new KeyHelper();
@@ -52,9 +52,9 @@ AnnotationArea::~AnnotationArea()
     delete mUndoStack;
 }
 
-void AnnotationArea::setBackgroundImage(const QPixmap& image)
+void AnnotationArea::setBackgroundImage(const QPixmap &image)
 {
-    if(image.isNull()) {
+    if (image.isNull()) {
         return;
     }
 
@@ -64,7 +64,7 @@ void AnnotationArea::setBackgroundImage(const QPixmap& image)
 
 QImage AnnotationArea::exportAsImage()
 {
-    if(mBackgroundImage == nullptr) {
+    if (mBackgroundImage == nullptr) {
         return QImage();
     }
 
@@ -97,10 +97,10 @@ void AnnotationArea::update()
     QGraphicsScene::update();
 }
 
-void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
+void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    if(event->button() == Qt::LeftButton) {
-        if(mConfig->selectedTool() == ToolTypes::Select) {
+    if (event->button() == Qt::LeftButton) {
+        if (mConfig->selectedTool() == ToolTypes::Select) {
             mItemModifier->handleMousePress(event->scenePos(), mItems, mKeyHelper->isControlPressed());
         } else {
             mItemModifier->clearSelection();
@@ -111,10 +111,10 @@ void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent* event)
     QGraphicsScene::mousePressEvent(event);
 }
 
-void AnnotationArea::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
+void AnnotationArea::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    if(event->buttons() == Qt::LeftButton) {
-        if(mCurrentItem) {
+    if (event->buttons() == Qt::LeftButton) {
+        if (mCurrentItem) {
             addPointToCurrentItem(event->scenePos());
         } else {
             mItemModifier->handleMouseMove(event->scenePos());
@@ -124,10 +124,10 @@ void AnnotationArea::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
     QGraphicsScene::mouseMoveEvent(event);
 }
 
-void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
+void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    if(event->button() == Qt::LeftButton) {
-        if(mConfig->selectedTool() == ToolTypes::Select) {
+    if (event->button() == Qt::LeftButton) {
+        if (mConfig->selectedTool() == ToolTypes::Select) {
             mItemModifier->handleMouseRelease(mItems);
         } else {
             mCurrentItem = nullptr;
@@ -137,24 +137,24 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
     QGraphicsScene::mouseReleaseEvent(event);
 }
 
-void AnnotationArea::keyPressEvent(QKeyEvent* event)
+void AnnotationArea::keyPressEvent(QKeyEvent *event)
 {
     mKeyHelper->keyPress(event);
     QGraphicsScene::keyPressEvent(event);
 }
 
-void AnnotationArea::keyReleaseEvent(QKeyEvent* event)
+void AnnotationArea::keyReleaseEvent(QKeyEvent *event)
 {
     mKeyHelper->keyRelease(event);
     QGraphicsScene::keyReleaseEvent(event);
 }
 
-void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
+void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
     mItemModifier->handleSelectionAt(event->scenePos(), mItems, mKeyHelper->isControlPressed());
     auto selectedItems = mItemModifier->selectedItems();
 
-    if(selectedItems.isEmpty()) {
+    if (selectedItems.isEmpty()) {
         return;
     }
 
@@ -172,21 +172,21 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
     contextMenu.exec(event->screenPos());
 }
 
-void AnnotationArea::addItemAtPosition(const QPointF& position)
+void AnnotationArea::addItemAtPosition(const QPointF &position)
 {
     mCurrentItem = mItemFactory->createItem(position, mConfig->selectedTool());
     mUndoStack->push(new AddCommand(mCurrentItem, this));
 }
 
-void AnnotationArea::addPointToCurrentItem(const QPointF& position)
+void AnnotationArea::addPointToCurrentItem(const QPointF &position)
 {
     mCurrentItem->addPoint(position, mKeyHelper->isControlPressed());
 }
 
 void AnnotationArea::setCursorForTool(ToolTypes tool)
 {
-    for(auto item : *mItems) {
-        if(tool == ToolTypes::Select) {
+    for (auto item : *mItems) {
+        if (tool == ToolTypes::Select) {
             item->setCursor(CursorHelper::movableCursor());
         } else {
             item->unsetCursor();
