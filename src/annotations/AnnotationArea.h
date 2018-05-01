@@ -36,15 +36,15 @@
 #include "../common/enum/ToolTypes.h"
 #include "../common/helper/CursorHelper.h"
 #include "../common/helper/KeyHelper.h"
-#include "undoRedo/AddCommand.h"
-#include "undoRedo/DeleteCommand.h"
+#include "undo/AddCommand.h"
+#include "undo/DeleteCommand.h"
 
 class AnnotationArea : public QGraphicsScene
 {
     Q_OBJECT
 public:
     AnnotationArea();
-    ~AnnotationArea();
+    ~AnnotationArea() override;
     void setBackgroundImage(const QPixmap& image);
     QImage exportAsImage();
     virtual void addAnnotationItem(AbstractAnnotationItem *item);
