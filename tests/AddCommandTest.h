@@ -17,29 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AddCommand.h"
+#ifndef ADDCOMMANDTEST
+#define ADDCOMMANDTEST
 
-AddCommand::AddCommand(AbstractAnnotationItem *item, AnnotationArea *annotationArea)
-{
-    mItem = item;
-    mAnnotationArea = annotationArea;
-}
+#include <QtTest>
 
-AddCommand::~AddCommand()
-{
-    // delete mItem;
-}
+#include "../src/annotations/undoRedo/AddCommand.h"
+#include "../src/annotations/AnnotationArea.h"
+#include "../src/annotations/items/AnnotationLine.h"
 
-void AddCommand::undo()
+class AddCommandTest: public QObject
 {
-    mAnnotationArea->removeAnnotationItem(mItem);
-    mItem->hide();
-    mAnnotationArea->update();
-}
+Q_OBJECT
 
-void AddCommand::redo()
-{
-    mAnnotationArea->addAnnotationItem(mItem);
-    mItem->show();
-    mAnnotationArea->update();
-}
+private slots:
+	void TestRedo_Should_ApplyOperation();
+	void TestUndo_Should_UndoOperation();
+};
+
+#endif //ADDCOMMANDTEST
