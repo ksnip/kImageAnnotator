@@ -2,41 +2,42 @@ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Widgets)
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons I18n WidgetsAddons)
 
-set(kimageannotator_SRCS main.cpp
-                         gui/KImageAnnotator.cpp
-                         gui/VisibilitySwitcher.cpp
-                         annotations/AnnotationArea.cpp
-                         annotations/AnnotationItemFactory.cpp
-                         annotations/AnnotationProperties.cpp
-                         annotations/AnnotationPropertiesFactory.cpp
-                         annotations/modifiers/AnnotationItemModifier.cpp
-                         annotations/modifiers/AnnotationItemResizer.cpp
-                         annotations/modifiers/AnnotationMultiItemResizer.cpp
-                         annotations/modifiers/AnnotationItemSelector.cpp
-                         annotations/modifiers/AnnotationItemMover.cpp
-                         annotations/modifiers/AnnotationItemArranger.cpp
-                         annotations/modifiers/ResizeHandles.cpp
-                         annotations/items/AbstractAnnotationItem.cpp
-                         annotations/items/AbstractAnnotationLine.cpp
-                         annotations/items/AbstractAnnotationRect.cpp
-                         annotations/items/AnnotationLine.cpp
-                         annotations/items/AnnotationArrow.cpp
-                         annotations/items/AnnotationRect.cpp
-                         annotations/items/AnnotationEllipse.cpp
-                         annotations/items/AnnotationNumber.cpp
-                         annotations/undoRedo/AddCommand.cpp
-                         annotations/undoRedo/DeleteCommand.cpp
-                         backend/Config.cpp
-                         common/formatter/ConfigNameFormatter.cpp
-                         common/helper/IconCreater.cpp
-                         common/helper/CursorHelper.cpp
-                         common/helper/KeyHelper.cpp
-                         common/helper/MathHelper.cpp
-                         widgets/ToolPicker.cpp
-                         widgets/ColorPicker.cpp
-                         widgets/SizePicker.cpp
-                         widgets/FillPicker.cpp)
+set(kimageannotator_SRCS ${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
+                         ${CMAKE_SOURCE_DIR}/src/gui/VisibilitySwitcher.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationArea.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemFactory.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationProperties.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationPropertiesFactory.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemModifier.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemResizer.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationMultiItemResizer.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemSelector.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemMover.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemArranger.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/ResizeHandles.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationItem.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationLine.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationRect.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationLine.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationArrow.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationRect.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationEllipse.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationNumber.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/undoRedo/AddCommand.cpp
+                         ${CMAKE_SOURCE_DIR}/src/annotations/undoRedo/DeleteCommand.cpp
+                         ${CMAKE_SOURCE_DIR}/src/backend/Config.cpp
+                         ${CMAKE_SOURCE_DIR}/src/common/formatter/ConfigNameFormatter.cpp
+                         ${CMAKE_SOURCE_DIR}/src/common/helper/IconCreater.cpp
+                         ${CMAKE_SOURCE_DIR}/src/common/helper/CursorHelper.cpp
+                         ${CMAKE_SOURCE_DIR}/src/common/helper/KeyHelper.cpp
+                         ${CMAKE_SOURCE_DIR}/src/common/helper/MathHelper.cpp
+                         ${CMAKE_SOURCE_DIR}/src/widgets/ToolPicker.cpp
+                         ${CMAKE_SOURCE_DIR}/src/widgets/ColorPicker.cpp
+                         ${CMAKE_SOURCE_DIR}/src/widgets/SizePicker.cpp
+                         ${CMAKE_SOURCE_DIR}/src/widgets/FillPicker.cpp)
 
-add_executable(kimageannotator_app ${kimageannotator_SRCS} ${kimageannotator_ICON_RES_RCC})
+set(kimageannotator_SRCS ${kimageannotator_SRCS} PARENT_SCOPE)
+
+add_executable(kimageannotator_app main.cpp ${kimageannotator_SRCS} ${kimageannotator_ICON_RES_RCC})
 
 target_link_libraries(kimageannotator_app Qt5::Widgets KF5::CoreAddons KF5::I18n KF5::WidgetsAddons)
