@@ -17,19 +17,23 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef SIZEPICKERTEST_H
-#define SIZEPICKERTEST_H
+#ifndef DELETECOMMANDTEST
+#define DELETECOMMANDTEST
 
 #include <QtTest>
 
-#include "../src/widgets/SizePicker.h"
+#include "../../../src/annotations/undoRedo/DeleteCommand.h"
+#include "../../../src/annotations/AnnotationArea.h"
+#include "../../../src/annotations/items/AnnotationLine.h"
 
-class SizePickerTest : public QObject
+class DeleteCommandTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestSelectSize_Should_EmitSignal_When_SizeChanged();
+    void TestRedo_Should_ApplyOperation();
+    void TestUndo_Should_UndoOperation();
+
 };
 
-#endif // SIZEPICKERTEST_H
+#endif //DELETECOMMANDTEST

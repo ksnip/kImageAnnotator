@@ -17,19 +17,23 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef FILLPICKERTEST_H
-#define FILLPICKERTEST_H
+#ifndef ANNOTATIONITEMMODIFIERTEST_H
+#define ANNOTATIONITEMMODIFIERTEST_H
 
 #include <QtTest>
 
-#include "../src/widgets/FillPicker.h"
+#include "../../../src/annotations/modifiers/AnnotationItemModifier.h"
+#include "../../../src/annotations/items/AnnotationLine.h"
 
-class SizePickerTest : public QObject
+class AnnotationItemModifierTest : public QObject
 {
-Q_OBJECT
-
+    Q_OBJECT
 private slots:
-    void TestSelectFill_Should_EmitSignal_When_FillChanged();
+    void TestHandleMousePressMoveRelease_Should_MoveResizerHandle_When_ClickedOnResizerHandle();
+    void TestHandleMousePressMove_Should_NotMoveResizerHandle_When_NotClickedOnResizerHandle();
+    void TestHandleMousePressMoveRelease_Should_SelectMultipleItems_When_ClickedNotOnItem();
+    void TestHandleMousePressMove_Should_MoveClickedItem_When_ClickedOnItemAndMoved();
+    void TestHandleMousePressMove_Should_MoveSelectedItems_When_ClickedOnOfSelectedItemsAndMoved();
 };
 
-#endif // FILLPICKERTEST_H
+#endif // ANNOTATIONITEMMODIFIERTEST_H

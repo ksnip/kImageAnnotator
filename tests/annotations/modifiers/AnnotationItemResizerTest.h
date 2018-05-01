@@ -17,22 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ADDCOMMANDTEST
-#define ADDCOMMANDTEST
+#ifndef ANNOTATIONITEMRESIZERTEST_H
+#define ANNOTATIONITEMRESIZERTEST_H
 
 #include <QtTest>
 
-#include "../src/annotations/undoRedo/AddCommand.h"
-#include "../src/annotations/AnnotationArea.h"
-#include "../src/annotations/items/AnnotationLine.h"
+#include "../../../src/annotations/modifiers/AnnotationItemResizer.h"
+#include "../../../src/annotations/items/AnnotationLine.h"
 
-class AddCommandTest: public QObject
+class AnnotationItemResizerTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-	void TestRedo_Should_ApplyOperation();
-	void TestUndo_Should_UndoOperation();
+    void TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition();
+    void TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition();
+    void TestGrabHandle_Should_MoveResizeHandle_When_HandleGrabbed();
+    void TestReleaseHandle_Should_ReleaseHandle();
+    void TestIsItemVisible_Should_ReturnFalse_When_ItemIsHidden();
+    void TestIsItemVisible_Should_ReturnTrue_When_ItemIsNotHidden();
 };
 
-#endif //ADDCOMMANDTEST
+#endif // ANNOTATIONITEMRESIZERTEST_H

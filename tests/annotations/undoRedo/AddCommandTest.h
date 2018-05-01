@@ -17,24 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMARRANGERTEST_H
-#define ANNOTATIONITEMARRANGERTEST_H
+#ifndef ADDCOMMANDTEST
+#define ADDCOMMANDTEST
 
 #include <QtTest>
 
-#include "../src/annotations/modifiers/AnnotationItemArranger.h"
-#include "../src/annotations/items/AnnotationLine.h"
+#include "../../../src/annotations/undoRedo/AddCommand.h"
+#include "../../../src/annotations/AnnotationArea.h"
+#include "../../../src/annotations/items/AnnotationLine.h"
 
-class AnnotationItemArrangerTest : public QObject
+class AddCommandTest: public QObject
 {
-    Q_OBJECT
+Q_OBJECT
+
 private slots:
-    void TestBringToFront_Should_BringAllSelectedItemsToFront();
-    void TestBringForward_Should_MoveAllSelectedItemsOnePositionUp();
-    void TestSendBackward_Should_MoveAllSelectedItemsOnePositionBack();
-    void TestSendToBack_Should_SendAllSelectedItemToBack();
-    void TestAnnotationItemArranger_Should_SortAllItemsByZValue_When_PositionHaveBeenSwapped();
-    void TestAnnotationItemArranger_Should_NotSwapAnyPosition_When_NoItemsHaveBeenSelected();
+	void TestRedo_Should_ApplyOperation();
+	void TestUndo_Should_UndoOperation();
 };
 
-#endif // ANNOTATIONITEMARRANGERTEST_H
+#endif //ADDCOMMANDTEST

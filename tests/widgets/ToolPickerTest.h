@@ -17,25 +17,21 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMRESIZERTEST_H
-#define ANNOTATIONITEMRESIZERTEST_H
+#ifndef TOOLPICKERTEST_H
+#define TOOLPICKERTEST_H
 
 #include <QtTest>
 
-#include "../src/annotations/modifiers/AnnotationItemResizer.h"
-#include "../src/annotations/items/AnnotationLine.h"
+#include "../../src/widgets/ToolPicker.h"
+#include "../../src/common/enum/ToolTypes.h"
 
-class AnnotationItemResizerTest : public QObject
+class ToolPickerTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition();
-    void TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition();
-    void TestGrabHandle_Should_MoveResizeHandle_When_HandleGrabbed();
-    void TestReleaseHandle_Should_ReleaseHandle();
-    void TestIsItemVisible_Should_ReturnFalse_When_ItemIsHidden();
-    void TestIsItemVisible_Should_ReturnTrue_When_ItemIsNotHidden();
+    void TestSelectTool_Should_EmitSignal_When_ToolChanged();
+    void TestTool_Should_ReturnSelectedTool();
 };
 
-#endif // ANNOTATIONITEMRESIZERTEST_H
+#endif // TOOLPICKERTEST_H

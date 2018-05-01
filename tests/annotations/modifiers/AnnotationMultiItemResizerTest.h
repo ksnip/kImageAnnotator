@@ -22,8 +22,8 @@
 
 #include <QtTest>
 
-#include "../src/annotations/modifiers/AnnotationMultiItemResizer.h"
-#include "../src/annotations/items/AnnotationLine.h"
+#include "../../../src/annotations/modifiers/AnnotationMultiItemResizer.h"
+#include "../../../src/annotations/items/AnnotationLine.h"
 
 class AnnotationMultiItemResizerTest : public QObject
 {

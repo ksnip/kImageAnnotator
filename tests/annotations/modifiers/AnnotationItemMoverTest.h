@@ -17,21 +17,19 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef TOOLPICKERTEST_H
-#define TOOLPICKERTEST_H
+#ifndef ANNOTATIONITEMMOVERTEST_H
+#define ANNOTATIONITEMMOVERTEST_H
 
 #include <QtTest>
 
-#include "../src/widgets/ToolPicker.h"
-#include "../src/common/enum/ToolTypes.h"
+#include "../../../src/annotations/modifiers/AnnotationItemMover.h"
+#include "../../../src/annotations/items/AnnotationLine.h"
 
-class ToolPickerTest : public QObject
+class AnnotationItemMoverTest : public QObject
 {
-Q_OBJECT
-
+    Q_OBJECT
 private slots:
-    void TestSelectTool_Should_EmitSignal_When_ToolChanged();
-    void TestTool_Should_ReturnSelectedTool();
+    void TestMoveItems_Should_MoveItemsToNewPosition();
 };
 
-#endif // TOOLPICKERTEST_H
+#endif // ANNOTATIONITEMMOVERTEST_H

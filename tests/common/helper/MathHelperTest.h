@@ -22,7 +22,7 @@
 
 #include <QtTest>
 
-#include "../src/common/helper/MathHelper.h"
+#include "../../../src/common/helper/MathHelper.h"
 
 class MathHelperTest : public QObject
 {

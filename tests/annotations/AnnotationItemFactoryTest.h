@@ -17,22 +17,29 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONAREATEST_H
-#define ANNOTATIONAREATEST_H
+#ifndef ANNOTATIONITEMFACTORYTEST_H
+#define ANNOTATIONITEMFACTORYTEST_H
 
 #include <QtTest>
 
-#include "../src/annotations/AnnotationArea.h"
+#include "../../src/annotations/AnnotationItemFactory.h"
 
-class AnnotationAreaTest : public QObject
+class AnnotationItemFactoryTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestExportAsImage_Should_ExportImage_When_ImageSet();
-    void TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet();
+    void initTestCase();
+    void cleanupTestCase();
+
+    void TestCreateItem_Should_CreateItemAtProvidedPosition();
+    void TestCreateItem_Should_ReturnNullPtrForUnknownType();
+    void TestCreateItem_Should_ReturnAnnotationLine_When_TypeIsLine();
+    void TestCreateItem_Should_ReturnAnnotationArrow_When_TypeIsArrow();
+    void TestCreateItem_Should_ReturnAnnotationRect_When_TypeIsRect();
+    void TestCreateItem_Should_ReturnAnnotationEllipse_When_TypeIsEllipse();
+    void TestCreateItem_Should_ReturnAnnotationNumber_When_TypeIsNumber();
+
 };
 
-#endif // ANNOTATIONAREATEST_H
-
-
+#endif // ANNOTATIONITEMFACTORYTEST_H

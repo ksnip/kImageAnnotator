@@ -17,29 +17,19 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMFACTORYTEST_H
-#define ANNOTATIONITEMFACTORYTEST_H
+#ifndef FILLPICKERTEST_H
+#define FILLPICKERTEST_H
 
 #include <QtTest>
 
-#include "../src/annotations/AnnotationItemFactory.h"
+#include "../../src/widgets/FillPicker.h"
 
-class AnnotationItemFactoryTest : public QObject
+class SizePickerTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void initTestCase();
-    void cleanupTestCase();
-
-    void TestCreateItem_Should_CreateItemAtProvidedPosition();
-    void TestCreateItem_Should_ReturnNullPtrForUnknownType();
-    void TestCreateItem_Should_ReturnAnnotationLine_When_TypeIsLine();
-    void TestCreateItem_Should_ReturnAnnotationArrow_When_TypeIsArrow();
-    void TestCreateItem_Should_ReturnAnnotationRect_When_TypeIsRect();
-    void TestCreateItem_Should_ReturnAnnotationEllipse_When_TypeIsEllipse();
-    void TestCreateItem_Should_ReturnAnnotationNumber_When_TypeIsNumber();
-
+    void TestSelectFill_Should_EmitSignal_When_FillChanged();
 };
 
-#endif // ANNOTATIONITEMFACTORYTEST_H
+#endif // FILLPICKERTEST_H

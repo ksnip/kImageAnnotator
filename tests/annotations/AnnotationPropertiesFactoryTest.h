@@ -17,23 +17,26 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMMODIFIERTEST_H
-#define ANNOTATIONITEMMODIFIERTEST_H
+#ifndef ANNOTATIONPROPERTIESFACTORYTEST_H
+#define ANNOTATIONPROPERTIESFACTORYTEST_H
 
 #include <QtTest>
 
-#include "../src/annotations/modifiers/AnnotationItemModifier.h"
-#include "../src/annotations/items/AnnotationLine.h"
+#include "../../src/annotations/AnnotationPropertiesFactory.h"
 
-class AnnotationItemModifierTest : public QObject
+class AnnotationPropertiesFactoryTest : public QObject
 {
     Q_OBJECT
 private slots:
-    void TestHandleMousePressMoveRelease_Should_MoveResizerHandle_When_ClickedOnResizerHandle();
-    void TestHandleMousePressMove_Should_NotMoveResizerHandle_When_NotClickedOnResizerHandle();
-    void TestHandleMousePressMoveRelease_Should_SelectMultipleItems_When_ClickedNotOnItem();
-    void TestHandleMousePressMove_Should_MoveClickedItem_When_ClickedOnItemAndMoved();
-    void TestHandleMousePressMove_Should_MoveSelectedItems_When_ClickedOnOfSelectedItemsAndMoved();
+    void initTestCase();
+    void cleanupTestCase();
+
+    void TestCreateProperties_Should_SetPropertiesSizeBasedOnConfiguration();
+    void TestCreateProperties_Should_SetPropertiesColorBasedOnConfiguration();
+    void TestCreateProperties_Should_SetPropertiesForegroundColorBasedOnConfiguration();
+    void TestCreateProperties_Should_SetPropertiesFillBasedOnConfiguration();
+    void TestCreateProperties_Should_SetAlwaysFillTypeToFill_When_ItemIsArrow();
+    void TestCreateProperties_Should_SetAlwaysFillTypeToFill_When_ItemIsNumber();
 };
 
-#endif // ANNOTATIONITEMMODIFIERTEST_H
+#endif // ANNOTATIONPROPERTIESFACTORYTEST_H

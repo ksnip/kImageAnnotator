@@ -17,19 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef COLORPICKERTEST_H
-#define COLORPICKERTEST_H
+#ifndef ANNOTATIONAREATEST_H
+#define ANNOTATIONAREATEST_H
 
 #include <QtTest>
 
-#include "../src/widgets/ColorPicker.h"
+#include "../../src/annotations/AnnotationArea.h"
 
-class ColorPickerTest : public QObject
+class AnnotationAreaTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestSelectColor_Should_EmitSignal_When_ColorChanged();
+    void TestExportAsImage_Should_ExportImage_When_ImageSet();
+    void TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet();
 };
 
-#endif // COLORPICKERTEST_H
+#endif // ANNOTATIONAREATEST_H
+
+

@@ -17,26 +17,19 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONPROPERTIESFACTORYTEST_H
-#define ANNOTATIONPROPERTIESFACTORYTEST_H
+#ifndef COLORPICKERTEST_H
+#define COLORPICKERTEST_H
 
 #include <QtTest>
 
-#include "../src/annotations/AnnotationPropertiesFactory.h"
+#include "../../src/widgets/ColorPicker.h"
 
-class AnnotationPropertiesFactoryTest : public QObject
+class ColorPickerTest : public QObject
 {
-    Q_OBJECT
-private slots:
-    void initTestCase();
-    void cleanupTestCase();
+Q_OBJECT
 
-    void TestCreateProperties_Should_SetPropertiesSizeBasedOnConfiguration();
-    void TestCreateProperties_Should_SetPropertiesColorBasedOnConfiguration();
-    void TestCreateProperties_Should_SetPropertiesForegroundColorBasedOnConfiguration();
-    void TestCreateProperties_Should_SetPropertiesFillBasedOnConfiguration();
-    void TestCreateProperties_Should_SetAlwaysFillTypeToFill_When_ItemIsArrow();
-    void TestCreateProperties_Should_SetAlwaysFillTypeToFill_When_ItemIsNumber();
+private slots:
+    void TestSelectColor_Should_EmitSignal_When_ColorChanged();
 };
 
-#endif // ANNOTATIONPROPERTIESFACTORYTEST_H
+#endif // COLORPICKERTEST_H
