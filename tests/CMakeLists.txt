@@ -53,6 +53,7 @@ set(ListOfUnitTests AnnotationAreaTest
                     AnnotationItemFactoryTest
                     AnnotationPropertiesFactoryTest
                     AddCommandTest
+                    DeleteCommandTest
                     ConfigNameFormatterTest
                     KeyHelperTest
                     MathHelperTest)
