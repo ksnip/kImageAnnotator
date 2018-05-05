@@ -19,20 +19,24 @@
 
 #include "AnnotationItemMover.h"
 
-void AnnotationItemMover::setOffset(const QPointF& pos, const QList<AbstractAnnotationItem *>& selectedItems)
+void AnnotationItemMover::setOffset(const QPointF &pos, const QList<AbstractAnnotationItem *> &selectedItems)
 {
-    for(auto item : selectedItems) {
+    for (auto item : selectedItems) {
         mItemToOffset[item] = QPointF(pos - item->position());
     }
 }
 
-void AnnotationItemMover::moveItems(const QPointF& pos)
+void AnnotationItemMover::moveItems(const QPointF &pos)
 {
-    for(auto item : mItemToOffset.keys()) {
-        if(item != nullptr) {
-            item->setPosition(pos - mItemToOffset[item]);
+    QHash<AbstractAnnotationItem *, QPointF> itemToNewPos;
+
+    for (auto item : mItemToOffset.keys()) {
+        if (item != nullptr) {
+            itemToNewPos[item] = pos - mItemToOffset[item];
         }
     }
+
+    emit newCommand(new MoveCommand(itemToNewPos));
 }
 
 void AnnotationItemMover::clearOffset()
@@ -47,7 +51,7 @@ bool AnnotationItemMover::isMoving()
 
 Qt::CursorShape AnnotationItemMover::cursor()
 {
-    if(isMoving()) {
+    if (isMoving()) {
         return CursorHelper::movingCursor();
     } else {
         return CursorHelper::defaultCursor();

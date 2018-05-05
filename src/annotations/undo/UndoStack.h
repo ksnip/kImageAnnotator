@@ -17,33 +17,19 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMMOVER_H
-#define ANNOTATIONITEMMOVER_H
+#ifndef KIMAGEANNOTATOR_UNDOSTACK_H
+#define KIMAGEANNOTATOR_UNDOSTACK_H
 
-#include <QObject>
-#include <QHash>
+#include <QUndoStack>
 
-#include "../items/AbstractAnnotationItem.h"
-#include "../undo/MoveCommand.h"
-#include "../../common/helper/CursorHelper.h"
+#include "AddCommand.h"
+#include "DeleteCommand.h"
 
-class AnnotationItemMover : public QObject
+class UndoStack : public QUndoStack
 {
-Q_OBJECT
 public:
-    explicit AnnotationItemMover() = default;
-    ~AnnotationItemMover() = default;
-    void setOffset(const QPointF &pos, const QList<AbstractAnnotationItem *> &selectedItems);
-    void moveItems(const QPointF &pos);
-    void clearOffset();
-    bool isMoving();
-    Qt::CursorShape cursor();
-
-signals:
-    void newCommand(MoveCommand *move) const;
-
-private:
-    QHash<AbstractAnnotationItem *, QPointF> mItemToOffset;
+    explicit UndoStack() = default;
+    ~UndoStack() override = default;
 };
 
-#endif // ANNOTATIONITEMMOVER_H
+#endif //KIMAGEANNOTATOR_UNDOSTACK_H

@@ -6,10 +6,8 @@ set(QT_MIN_VERSION "5.6.2")
 set(KF5_MIN_VERSION "5.29.0")
 set(PLASMA_MIN_VERSION "5.4.0")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 --coverage")
-set(QMAKE_LFLAGS "${CMAKE_CXX_FLAGS}  --coverage")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CMAKE_AUTOMOC ON)
-
 
 find_package(ECM 1.0.0 REQUIRED NO_MODULE)
 

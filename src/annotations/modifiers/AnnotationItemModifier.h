@@ -31,29 +31,32 @@
 
 class AnnotationItemModifier : public QObject, public QGraphicsItemGroup
 {
-    Q_OBJECT
+Q_OBJECT
 public:
     explicit AnnotationItemModifier();
     ~AnnotationItemModifier();
-    void handleMousePress(const QPointF& pos, QList<AbstractAnnotationItem*> *items, bool isCtrlPressed);
-    void handleMouseMove(const QPointF& pos);
-    void handleMouseRelease(QList<AbstractAnnotationItem*> *items);
-    void handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem*> *items, bool isCtrlPressed);
-    QList<AbstractAnnotationItem*> selectedItems() const;
+    void handleMousePress(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
+    void handleMouseMove(const QPointF &pos);
+    void handleMouseRelease(QList<AbstractAnnotationItem *> *items);
+    void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
+    QList<AbstractAnnotationItem *> selectedItems() const;
     virtual QRectF boundingRect() const override;
 
 public slots:
     void clearSelection();
     void updateSelection();
 
+signals:
+    void newCommand(QUndoCommand *command);
+
 protected:
-    virtual void mousePressEvent(QGraphicsSceneMouseEvent * event) override;
-    virtual void hoverMoveEvent(QGraphicsSceneHoverEvent * event) override;
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    virtual void hoverMoveEvent(QGraphicsSceneHoverEvent *event) override;
 
 private:
-    AnnotationMultiItemResizer* mItemResizer;
-    AnnotationItemSelector*     mItemSelector;
-    AnnotationItemMover*        mItemMover;
+    AnnotationMultiItemResizer *mItemResizer;
+    AnnotationItemSelector *mItemSelector;
+    AnnotationItemMover *mItemMover;
 
     void handleSelection();
     void updateCursor(Qt::CursorShape cursor);

@@ -36,8 +36,7 @@
 #include "../common/enum/ToolTypes.h"
 #include "../common/helper/CursorHelper.h"
 #include "../common/helper/KeyHelper.h"
-#include "undo/AddCommand.h"
-#include "undo/DeleteCommand.h"
+#include "undo/UndoStack.h"
 
 class AnnotationArea : public QGraphicsScene
 {
@@ -49,6 +48,8 @@ public:
     QImage exportAsImage();
     virtual void addAnnotationItem(AbstractAnnotationItem *item);
     virtual void removeAnnotationItem(AbstractAnnotationItem *item);
+
+public slots:
     virtual void update();
 
 protected:
@@ -67,7 +68,7 @@ private:
     Config*                         mConfig;
     QList<AbstractAnnotationItem*> *mItems;
     KeyHelper                      *mKeyHelper;
-    QUndoStack                     *mUndoStack;
+    UndoStack                      *mUndoStack;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

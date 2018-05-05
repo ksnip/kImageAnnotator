@@ -28,6 +28,8 @@ AnnotationItemModifier::AnnotationItemModifier()
     addToGroup(mItemResizer);
     setZValue(1000);
     setAcceptHoverEvents(true);
+
+    connect(mItemMover, &AnnotationItemMover::newCommand, this, &AnnotationItemModifier::newCommand);
 }
 
 AnnotationItemModifier::~AnnotationItemModifier()
@@ -114,6 +116,7 @@ void AnnotationItemModifier::updateSelection()
 {
     mItemSelector->update();
     mItemResizer->update();
+    mItemResizer->refresh();
 }
 
 void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)

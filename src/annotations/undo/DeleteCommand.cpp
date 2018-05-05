@@ -30,7 +30,6 @@ void DeleteCommand::undo()
     for (auto item : mItems) {
         mAnnotationArea->addAnnotationItem(item);
         item->show();
-        mAnnotationArea->update();
     }
 }
 
@@ -39,6 +38,5 @@ void DeleteCommand::redo()
     for (auto item : mItems) {
         mAnnotationArea->removeAnnotationItem(item);
         item->hide();
-        mAnnotationArea->update();
     }
 }

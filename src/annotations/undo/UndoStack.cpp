@@ -17,33 +17,4 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMMOVER_H
-#define ANNOTATIONITEMMOVER_H
-
-#include <QObject>
-#include <QHash>
-
-#include "../items/AbstractAnnotationItem.h"
-#include "../undo/MoveCommand.h"
-#include "../../common/helper/CursorHelper.h"
-
-class AnnotationItemMover : public QObject
-{
-Q_OBJECT
-public:
-    explicit AnnotationItemMover() = default;
-    ~AnnotationItemMover() = default;
-    void setOffset(const QPointF &pos, const QList<AbstractAnnotationItem *> &selectedItems);
-    void moveItems(const QPointF &pos);
-    void clearOffset();
-    bool isMoving();
-    Qt::CursorShape cursor();
-
-signals:
-    void newCommand(MoveCommand *move) const;
-
-private:
-    QHash<AbstractAnnotationItem *, QPointF> mItemToOffset;
-};
-
-#endif // ANNOTATIONITEMMOVER_H
+#include "UndoStack.h"

@@ -29,18 +29,18 @@ AnnotationArea::AnnotationArea()
     mItemModifier = new AnnotationItemModifier();
     addItem(mItemModifier);
     mKeyHelper = new KeyHelper();
-    mUndoStack = new QUndoStack();
+    mUndoStack = new UndoStack();
+
+    connect(mUndoStack, &UndoStack::indexChanged, this, &AnnotationArea::update);
 
     connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
     connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clearSelection);
 
     connect(mConfig, &Config::toolChanged, this, &AnnotationArea::setCursorForTool);
 
-    // TODO cleanup
-    auto undoAction = mUndoStack->createUndoAction(this);
-    auto redoAction = mUndoStack->createRedoAction(this);
-    connect(mKeyHelper, &KeyHelper::undoPressed, undoAction, &QAction::trigger);
-    connect(mKeyHelper, &KeyHelper::redoPressed, redoAction, &QAction::trigger);
+    connect(mKeyHelper, &KeyHelper::undoPressed, mUndoStack, &UndoStack::undo);
+    connect(mKeyHelper, &KeyHelper::redoPressed, mUndoStack, &UndoStack::redo);
+    connect(mItemModifier, &AnnotationItemModifier::newCommand, mUndoStack, &UndoStack::push);
 }
 
 AnnotationArea::~AnnotationArea()

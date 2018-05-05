@@ -17,33 +17,33 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMMOVER_H
-#define ANNOTATIONITEMMOVER_H
+#ifndef KIMAGEANNOTATOR_MOVECOMMAND_H
+#define KIMAGEANNOTATOR_MOVECOMMAND_H
 
-#include <QObject>
-#include <QHash>
+#include <QUndoCommand>
 
 #include "../items/AbstractAnnotationItem.h"
-#include "../undo/MoveCommand.h"
-#include "../../common/helper/CursorHelper.h"
 
-class AnnotationItemMover : public QObject
+class MoveCommand : public QUndoCommand
 {
-Q_OBJECT
 public:
-    explicit AnnotationItemMover() = default;
-    ~AnnotationItemMover() = default;
-    void setOffset(const QPointF &pos, const QList<AbstractAnnotationItem *> &selectedItems);
-    void moveItems(const QPointF &pos);
-    void clearOffset();
-    bool isMoving();
-    Qt::CursorShape cursor();
+    enum
+    {
+        Id = 1234
+    };
 
-signals:
-    void newCommand(MoveCommand *move) const;
+    explicit MoveCommand(QHash<AbstractAnnotationItem *, QPointF> itemToNewPos);
+    ~MoveCommand() = default;
+    virtual void undo() override;
+    virtual void redo() override;
+    virtual bool mergeWith(const QUndoCommand *command) override;
+    virtual int id() const override;
 
 private:
-    QHash<AbstractAnnotationItem *, QPointF> mItemToOffset;
+    QHash<AbstractAnnotationItem *, QPointF> mOriginalPos;
+    QHash<AbstractAnnotationItem *, QPointF> mNewPos;
+
+    void moveItems(QHash<AbstractAnnotationItem *, QPointF> &itemToPos) const;
 };
 
-#endif // ANNOTATIONITEMMOVER_H
+#endif //KIMAGEANNOTATOR_MOVECOMMAND_H
