@@ -17,6 +17,7 @@ set(ListOfUnitTests
         annotations/AnnotationPropertiesFactoryTest
         annotations/undo/AddCommandTest
         annotations/undo/DeleteCommandTest
+        annotations/undo/MoveCommandTest
         widgets/ToolPickerTest
         widgets/ColorPickerTest
         widgets/SizePickerTest

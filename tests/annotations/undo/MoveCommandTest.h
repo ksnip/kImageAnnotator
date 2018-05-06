@@ -17,30 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AddCommand.h"
+#ifndef KIMAGEANNOTATOR_MOVECOMMANDTEST
+#define KIMAGEANNOTATOR_MOVECOMMANDTEST
 
-AddCommand::AddCommand(AbstractAnnotationItem *item, AnnotationArea *annotationArea)
+#include <QtTest>
+
+#include "../../../src/annotations/undo/MoveCommand.h"
+#include "../../../src/annotations/items/AnnotationLine.h"
+
+
+class MoveCommandTest : public QObject
 {
-    mItem = item;
-    mAnnotationArea = annotationArea;
-}
+Q_OBJECT
 
-AddCommand::~AddCommand()
-{
-    // Bug #10 crash when undoing an item and trying to add a new item
-    // the item should not be deleted before the undoStack was cleared.
+private slots:
+    void TestRedo_Should_MoveItemToNewPosition();
+    void TestUndo_Should_MoveItemToInitialPosition();
+    void TestMergeWith_Should_TakeNewPositrionFromLastMoveCommand();
+    void TestMergeWith_Should_KeepInitialPositionFromFirstMoveCommand();
+    void TestMergeWith_Should_NotMergeMoveCommandsWhenItemsAreNotTheSame();
+};
 
-    // delete mItem;
-}
-
-void AddCommand::undo()
-{
-    mAnnotationArea->removeAnnotationItem(mItem);
-    mItem->hide();
-}
-
-void AddCommand::redo()
-{
-    mAnnotationArea->addAnnotationItem(mItem);
-    mItem->show();
-}
+#endif //KIMAGEANNOTATOR_MOVECOMMANDTEST
