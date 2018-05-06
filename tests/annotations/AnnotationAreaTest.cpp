@@ -41,4 +41,34 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportEmptyImage_When_NoImageS
     QCOMPARE(QImage(), resultImage);
 }
 
+void AnnotationAreaTest::TestAddAnnotationItem_Should_AddAnnotationItemToScene()
+{
+    AnnotationProperties properties(Qt::red, 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    auto lineItem = new AnnotationLine(p1, properties);
+    lineItem->addPoint(p2);
+    AnnotationArea annotationArea;
+
+    annotationArea.addAnnotationItem(lineItem);
+
+    QCOMPARE(annotationArea.items().contains(lineItem), true);
+}
+
+void AnnotationAreaTest::TestRemoveAnnotationItem_Should_RemoveAnnotationItemFromScene()
+{
+    AnnotationProperties properties(Qt::red, 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    auto lineItem = new AnnotationLine(p1, properties);
+    lineItem->addPoint(p2);
+    AnnotationArea annotationArea;
+    annotationArea.addAnnotationItem(lineItem);
+    QCOMPARE(annotationArea.items().contains(lineItem), true);
+
+    annotationArea.removeAnnotationItem(lineItem);
+
+    QCOMPARE(annotationArea.items().contains(lineItem), false);
+}
+
 QTEST_MAIN(AnnotationAreaTest);

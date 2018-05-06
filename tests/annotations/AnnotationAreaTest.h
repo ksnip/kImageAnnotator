@@ -23,6 +23,7 @@
 #include <QtTest>
 
 #include "../../src/annotations/AnnotationArea.h"
+#include "../../src/annotations/items/AnnotationLine.h"
 
 class AnnotationAreaTest : public QObject
 {
@@ -31,6 +32,8 @@ Q_OBJECT
 private slots:
     void TestExportAsImage_Should_ExportImage_When_ImageSet();
     void TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet();
+    void TestAddAnnotationItem_Should_AddAnnotationItemToScene();
+    void TestRemoveAnnotationItem_Should_RemoveAnnotationItemFromScene();
 };
 
 #endif // ANNOTATIONAREATEST_H
