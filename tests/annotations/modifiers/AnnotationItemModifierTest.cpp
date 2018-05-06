@@ -27,7 +27,7 @@ void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_MoveResi
     QPointF p3(30, 30);
     AnnotationLine line(p1, properties);
     line.addPoint(p2);
-    QList<AbstractAnnotationItem*> items;
+    QList<AbstractAnnotationItem *> items;
     items.append(&line);
     AnnotationItemModifier modifer;
     modifer.handleMousePress(p1, &items, false);
@@ -49,7 +49,7 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_NotMoveResizerH
     QPointF p4(40, 40);
     AnnotationLine line(p1, properties);
     line.addPoint(p2);
-    QList<AbstractAnnotationItem*> items;
+    QList<AbstractAnnotationItem *> items;
     items.append(&line);
     AnnotationItemModifier modifer;
     modifer.handleMousePress(p1, &items, false);
@@ -73,7 +73,7 @@ void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_SelectMu
     AnnotationLine line2(p3, properties);
     line1.addPoint(p2);
     line2.addPoint(p4);
-    QList<AbstractAnnotationItem*> items;
+    QList<AbstractAnnotationItem *> items;
     items.append(&line1);
     items.append(&line2);
     AnnotationItemModifier modifer;
@@ -97,9 +97,11 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveClickedItem
     QPointF movePos(30, 30);
     AnnotationLine line(p1, properties);
     line.addPoint(p2);
-    QList<AbstractAnnotationItem*> items;
+    QList<AbstractAnnotationItem *> items;
     items.append(&line);
     AnnotationItemModifier modifer;
+    QUndoStack undoStack;
+    connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
 
     modifer.handleMousePress(clickPos, &items, false);
     modifer.handleMouseMove(movePos);
@@ -120,10 +122,12 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveSelectedIte
     AnnotationLine line2(p3, properties);
     line1.addPoint(p2);
     line2.addPoint(p4);
-    QList<AbstractAnnotationItem*> items;
+    QList<AbstractAnnotationItem *> items;
     items.append(&line1);
     items.append(&line2);
     AnnotationItemModifier modifer;
+    QUndoStack undoStack;
+    connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
     modifer.handleMousePress(p1 + QPointF(-5, -5), &items, false);
     modifer.handleMouseMove(p4 + QPointF(5, 5));
     modifer.handleMouseRelease(&items);
