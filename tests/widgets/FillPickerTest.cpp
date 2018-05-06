@@ -32,5 +32,4 @@ void SizePickerTest::TestSelectFill_Should_EmitSignal_When_FillChanged()
     QCOMPARE(resultFill, expectedFill);
 }
 
-
 QTEST_MAIN(SizePickerTest);

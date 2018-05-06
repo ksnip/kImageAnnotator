@@ -21,6 +21,7 @@
 #define ANNOTATIONITEMMOVERTEST_H
 
 #include <QtTest>
+#include <QUndoStack>
 
 #include "../../../src/annotations/modifiers/AnnotationItemMover.h"
 #include "../../../src/annotations/items/AnnotationLine.h"

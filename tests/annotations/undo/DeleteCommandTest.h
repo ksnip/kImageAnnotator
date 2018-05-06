@@ -22,7 +22,7 @@
 
 #include <QtTest>
 
-#include "../../../src/annotations/undoRedo/DeleteCommand.h"
+#include "../../../src/annotations/undo/DeleteCommand.h"
 #include "../../../src/annotations/AnnotationArea.h"
 #include "../../../src/annotations/items/AnnotationLine.h"
 

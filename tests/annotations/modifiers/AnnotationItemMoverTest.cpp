@@ -32,14 +32,15 @@ void AnnotationItemMoverTest::TestMoveItems_Should_MoveItemsToNewPosition()
     AnnotationLine line2(p3, properties);
     line1.addPoint(p2);
     line2.addPoint(p4);
-    QList<AbstractAnnotationItem*> items;
+    QList<AbstractAnnotationItem *> items;
     items.append(&line1);
     items.append(&line2);
     AnnotationItemMover mover;
+    QUndoStack undoStack;
+    connect(&mover, &AnnotationItemMover::newCommand, &undoStack, &QUndoStack::push);
     mover.setOffset(clickPos, items);
 
     mover.moveItems(newPos);
-
     QCOMPARE(line1.boundingRect().topLeft(), newPos - (clickPos - p1));
     QCOMPARE(line2.boundingRect().topLeft(), newPos - (clickPos - p3));
 }
