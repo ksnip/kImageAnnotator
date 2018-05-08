@@ -19,7 +19,8 @@
 
 #include "AbstractAnnotationRect.h"
 
-AbstractAnnotationRect::AbstractAnnotationRect(const QPointF& startPosisition, const AnnotationProperties& properties) :
+AbstractAnnotationRect::AbstractAnnotationRect(const QPointF &startPosisition, const AnnotationProperties &properties)
+    :
     AbstractAnnotationItem(properties)
 {
     mRect = new QRectF();
@@ -31,7 +32,7 @@ AbstractAnnotationRect::~AbstractAnnotationRect()
     delete mRect;
 }
 
-void AbstractAnnotationRect::addPoint(const QPointF& position, bool modified)
+void AbstractAnnotationRect::addPoint(const QPointF &position, bool modified)
 {
     prepareGeometryChange();
     mRect->setBottomRight(position);
@@ -39,7 +40,7 @@ void AbstractAnnotationRect::addPoint(const QPointF& position, bool modified)
     updateShape();
 }
 
-void AbstractAnnotationRect::setPosition(const QPointF& newPosition)
+void AbstractAnnotationRect::setPosition(const QPointF &newPosition)
 {
     prepareGeometryChange();
     mRect->translate(newPosition - position());
@@ -51,30 +52,30 @@ QRectF AbstractAnnotationRect::rect() const
     return *mRect;
 }
 
-void AbstractAnnotationRect::setRect(const QRectF& rect)
+void AbstractAnnotationRect::setRect(const QRectF &rect)
 {
     prepareGeometryChange();
     mRect->setRect(rect.x(), rect.y(), rect.width(), rect.height());
     updateShape();
 }
 
-void AbstractAnnotationRect::setPointAt(const QPointF& point, int index)
+void AbstractAnnotationRect::setPointAt(const QPointF &point, int index)
 {
     prepareGeometryChange();
 
-    if(index <= 0) {
+    if (index <= 0) {
         mRect->setTopLeft(point);
-    } else if (index == 1){
+    } else if (index == 1) {
         mRect->setTop(point.y());
-    } else if (index == 2){
+    } else if (index == 2) {
         mRect->setTopRight(point);
-    } else if (index == 3){
+    } else if (index == 3) {
         mRect->setRight(point.x());
-    } else if (index == 4){
+    } else if (index == 4) {
         mRect->setBottomRight(point);
-    } else if (index == 5){
+    } else if (index == 5) {
         mRect->setBottom(point.y());
-    } else if (index == 6){
+    } else if (index == 6) {
         mRect->setBottomLeft(point);
     } else {
         mRect->setLeft(point.x());
@@ -83,9 +84,30 @@ void AbstractAnnotationRect::setPointAt(const QPointF& point, int index)
     updateShape();
 }
 
+QPointF AbstractAnnotationRect::pointAt(int index) const
+{
+    if (index <= 0) {
+        return mRect->topLeft();
+    } else if (index == 1) {
+        return QPointF(mRect->center().x(), mRect->top());
+    } else if (index == 2) {
+        return mRect->topRight();
+    } else if (index == 3) {
+        return QPointF(mRect->right(), mRect->center().y());
+    } else if (index == 4) {
+        return mRect->bottomRight();
+    } else if (index == 5) {
+        return QPointF(mRect->center().x(), mRect->bottom());
+    } else if (index == 6) {
+        return mRect->bottomLeft();
+    } else {
+        return QPointF(mRect->left(), mRect->center().y());
+    }
+}
+
 void AbstractAnnotationRect::makeSymmetric(bool enabled)
 {
-    if(enabled) {
+    if (enabled) {
         mRect->setHeight(MathHelper::smallerValue(mRect->height(), mRect->width()));
         mRect->setWidth(MathHelper::smallerValue(mRect->width(), mRect->height()));
     }

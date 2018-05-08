@@ -17,29 +17,33 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ABSTRACTANNOTATIONLINE_H
-#define ABSTRACTANNOTATIONLINE_H
+#ifndef KIMAGEANNOTATOR_RESIZECOMMAND_H
+#define KIMAGEANNOTATOR_RESIZECOMMAND_H
 
-#include "AbstractAnnotationItem.h"
+#include <QUndoCommand>
 
-#include "../src/common/helper/MathHelper.h"
+#include "../items/AbstractAnnotationItem.h"
 
-class AbstractAnnotationLine : public AbstractAnnotationItem
+class ResizeCommand : public QUndoCommand
 {
 public:
-    AbstractAnnotationLine(const QPointF &startPosisition, const AnnotationProperties &properties);
-    ~AbstractAnnotationLine();
-    void addPoint(const QPointF &position, bool modified = false) override;
-    void setPosition(const QPointF &newPosition) override;
-    QLineF line() const;
-    void setLine(const QLineF &line);
-    void setPointAt(const QPointF &point, int index) override;
-    virtual QPointF pointAt(int index) const override;
+    enum
+    {
+        Id = 1235
+    };
 
-protected:
-    QLineF *mLine;
+    explicit ResizeCommand(AbstractAnnotationItem *item, int handleIndex, QPointF newPos);
+    ~ResizeCommand() = default;
+    virtual void undo() override;
+    virtual void redo() override;
+    virtual bool mergeWith(const QUndoCommand *command) override;
+    virtual int id() const override;
 
-    void snapToAngle(bool enabled);
+private:
+    AbstractAnnotationItem *mItem;
+    int mHandleIndex;
+    QPointF mNewPos;
+    QPointF mOriginalPos;
 };
 
-#endif // ABSTRACTANNOTATIONLINE_H
+#endif //KIMAGEANNOTATOR_RESIZECOMMAND_H

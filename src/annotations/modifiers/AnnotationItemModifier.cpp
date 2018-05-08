@@ -30,6 +30,7 @@ AnnotationItemModifier::AnnotationItemModifier()
     setAcceptHoverEvents(true);
 
     connect(mItemMover, &AnnotationItemMover::newCommand, this, &AnnotationItemModifier::newCommand);
+    connect(mItemResizer, &AnnotationMultiItemResizer::newCommand, this, &AnnotationItemModifier::newCommand);
 }
 
 AnnotationItemModifier::~AnnotationItemModifier()

@@ -24,15 +24,17 @@
 
 #include "ResizeHandles.h"
 #include "../items/AbstractAnnotationItem.h"
+#include "../undo/ResizeCommand.h"
 
 class AnnotationItemResizer : public QGraphicsWidget
 {
+Q_OBJECT
 public:
-    AnnotationItemResizer(AbstractAnnotationItem* item);
+    AnnotationItemResizer(AbstractAnnotationItem *item);
     ~AnnotationItemResizer();
     virtual QRectF boundingRect() const override;
-    void grabHandle(const QPointF& pos);
-    void moveHandle(const QPointF& pos);
+    void grabHandle(const QPointF &pos);
+    void moveHandle(const QPointF &pos);
     void releaseHandle();
     bool isResizing() const;
     void refresh();
@@ -40,15 +42,18 @@ public:
     Qt::CursorShape cursorForPos(const QPointF &pos);
     Qt::CursorShape cursorForCurrentHandle();
 
+signals:
+    void newCommand(ResizeCommand *resize) const;
+
 protected:
-    virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = 0) override;
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) override;
 
 private:
-    ResizeHandles*          mResizeHandles;
-    AbstractAnnotationItem* mAnnotationItem;
-    int                     mResizeHandleSize;
-    int                     mCurrentHandle;
-    QPointF                 mClickOffset;
+    ResizeHandles *mResizeHandles;
+    AbstractAnnotationItem *mAnnotationItem;
+    int mResizeHandleSize;
+    int mCurrentHandle;
+    QPointF mClickOffset;
 };
 
 #endif // ANNOTATIONITEMRESIZER_H

@@ -52,8 +52,7 @@ void AnnotationItemResizer::grabHandle(const QPointF& pos)
 void AnnotationItemResizer::moveHandle(const QPointF& pos)
 {
     if(mCurrentHandle != -1) {
-        mAnnotationItem->setPointAt(pos - mClickOffset, mCurrentHandle);
-        refresh();
+        emit newCommand(new ResizeCommand(mAnnotationItem, mCurrentHandle, pos - mClickOffset));
     }
 }
 

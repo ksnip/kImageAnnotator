@@ -17,29 +17,40 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ABSTRACTANNOTATIONLINE_H
-#define ABSTRACTANNOTATIONLINE_H
+#include "ResizeCommand.h"
 
-#include "AbstractAnnotationItem.h"
-
-#include "../src/common/helper/MathHelper.h"
-
-class AbstractAnnotationLine : public AbstractAnnotationItem
+ResizeCommand::ResizeCommand(AbstractAnnotationItem *item, int handleIndex, QPointF newPos)
 {
-public:
-    AbstractAnnotationLine(const QPointF &startPosisition, const AnnotationProperties &properties);
-    ~AbstractAnnotationLine();
-    void addPoint(const QPointF &position, bool modified = false) override;
-    void setPosition(const QPointF &newPosition) override;
-    QLineF line() const;
-    void setLine(const QLineF &line);
-    void setPointAt(const QPointF &point, int index) override;
-    virtual QPointF pointAt(int index) const override;
+    mItem = item;
+    mHandleIndex = handleIndex;
+    mNewPos = newPos;
+    mOriginalPos = item->pointAt(handleIndex);
+}
 
-protected:
-    QLineF *mLine;
+void ResizeCommand::undo()
+{
+    mItem->setPointAt(mOriginalPos, mHandleIndex);
+}
 
-    void snapToAngle(bool enabled);
-};
+void ResizeCommand::redo()
+{
+    mItem->setPointAt(mNewPos, mHandleIndex);
+}
 
-#endif // ABSTRACTANNOTATIONLINE_H
+bool ResizeCommand::mergeWith(const QUndoCommand *command)
+{
+    const auto resizeCommand = dynamic_cast<const ResizeCommand *>(command);
+
+    if (mItem != resizeCommand->mItem) {
+        return false;
+    }
+
+    mNewPos = resizeCommand->mNewPos;
+
+    return true;
+}
+
+int ResizeCommand::id() const
+{
+    return Id;
+}

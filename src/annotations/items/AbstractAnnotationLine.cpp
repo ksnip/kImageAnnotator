@@ -19,7 +19,8 @@
 
 #include "AbstractAnnotationLine.h"
 
-AbstractAnnotationLine::AbstractAnnotationLine(const QPointF& startPosisition, const AnnotationProperties& properties) :
+AbstractAnnotationLine::AbstractAnnotationLine(const QPointF &startPosisition, const AnnotationProperties &properties)
+    :
     AbstractAnnotationItem(properties)
 {
     mLine = new QLineF();
@@ -31,7 +32,7 @@ AbstractAnnotationLine::~AbstractAnnotationLine()
     delete mLine;
 }
 
-void AbstractAnnotationLine::addPoint(const QPointF& position, bool modified)
+void AbstractAnnotationLine::addPoint(const QPointF &position, bool modified)
 {
     prepareGeometryChange();
     mLine->setP2(position);
@@ -39,7 +40,7 @@ void AbstractAnnotationLine::addPoint(const QPointF& position, bool modified)
     updateShape();
 }
 
-void AbstractAnnotationLine::setPosition(const QPointF& newPosition)
+void AbstractAnnotationLine::setPosition(const QPointF &newPosition)
 {
     prepareGeometryChange();
     mLine->translate(newPosition - position());
@@ -51,7 +52,7 @@ QLineF AbstractAnnotationLine::line() const
     return *mLine;
 }
 
-void AbstractAnnotationLine::setLine(const QLineF& line)
+void AbstractAnnotationLine::setLine(const QLineF &line)
 {
     prepareGeometryChange();
     mLine->setP1(line.p1());
@@ -59,11 +60,11 @@ void AbstractAnnotationLine::setLine(const QLineF& line)
     updateShape();
 }
 
-void AbstractAnnotationLine::setPointAt(const QPointF& point, int index)
+void AbstractAnnotationLine::setPointAt(const QPointF &point, int index)
 {
     prepareGeometryChange();
 
-    if(index <= 0) {
+    if (index <= 0) {
         mLine->setP1(point);
     } else {
         mLine->setP2(point);
@@ -72,9 +73,18 @@ void AbstractAnnotationLine::setPointAt(const QPointF& point, int index)
     updateShape();
 }
 
+QPointF AbstractAnnotationLine::pointAt(int index) const
+{
+    if (index <= 0) {
+        return mLine->p1();
+    } else {
+        return mLine->p2();
+    }
+}
+
 void AbstractAnnotationLine::snapToAngle(bool enabled)
 {
-    if(enabled) {
+    if (enabled) {
         auto newAngle = MathHelper::roundAngleTo(mLine->angle(), 45);
         mLine->setAngle(newAngle);
     }

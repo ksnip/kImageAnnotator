@@ -27,16 +27,17 @@
 class AbstractAnnotationRect : public AbstractAnnotationItem
 {
 public:
-    AbstractAnnotationRect(const QPointF& startPosisition, const AnnotationProperties& properties);
+    AbstractAnnotationRect(const QPointF &startPosisition, const AnnotationProperties &properties);
     ~AbstractAnnotationRect();
-    void addPoint(const QPointF & position, bool modified = false) override;
-    void setPosition(const QPointF & newPosition) override;
+    void addPoint(const QPointF &position, bool modified = false) override;
+    void setPosition(const QPointF &newPosition) override;
     QRectF rect() const;
-    void setRect(const QRectF& rect);
-    void setPointAt(const QPointF& point, int index) override;
+    void setRect(const QRectF &rect);
+    void setPointAt(const QPointF &point, int index) override;
+    virtual QPointF pointAt(int index) const override;
 
 protected:
-    QRectF* mRect;
+    QRectF *mRect;
 
     void makeSymmetric(bool enabled);
 };

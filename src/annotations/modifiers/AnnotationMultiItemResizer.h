@@ -25,16 +25,17 @@
 
 #include "AnnotationItemResizer.h"
 
-class AnnotationMultiItemResizer : public QGraphicsItemGroup
+class AnnotationMultiItemResizer : public QObject, public QGraphicsItemGroup
 {
+Q_OBJECT
 public:
     explicit AnnotationMultiItemResizer();
     ~AnnotationMultiItemResizer() = default;
     virtual QRectF boundingRect() const override;
-    void attachTo(QList<AbstractAnnotationItem*> items);
+    void attachTo(QList<AbstractAnnotationItem *> items);
     void detach();
-    void grabHandle(const QPointF& pos);
-    void moveHandle(const QPointF& pos);
+    void grabHandle(const QPointF &pos);
+    void moveHandle(const QPointF &pos);
     void releaseHandle();
     bool isResizing() const;
     void refresh();
@@ -43,15 +44,17 @@ public:
     Qt::CursorShape cursorForPos(const QPointF &pos);
     Qt::CursorShape cursorForCurrentHandle();
 
-private:
-    QHash<AbstractAnnotationItem*, AnnotationItemResizer*> mItemToResizer;
-    AnnotationItemResizer                                 *mCurrentResizer;
+signals:
+    void newCommand(ResizeCommand *resize) const;
 
-    AnnotationItemResizer* getResizerForItem(AbstractAnnotationItem* item);
+private:
+    QHash<AbstractAnnotationItem *, AnnotationItemResizer *> mItemToResizer;
+    AnnotationItemResizer *mCurrentResizer;
+
+    AnnotationItemResizer *getResizerForItem(AbstractAnnotationItem *item);
     void showResizer(AnnotationItemResizer *resizer);
     void hideResizer(QGraphicsItem *resizer);
     AnnotationItemResizer *castToResizer(QGraphicsItem *item) const;
 };
-
 
 #endif // ANNOTATIONMULTIITEMRESIZER_H
