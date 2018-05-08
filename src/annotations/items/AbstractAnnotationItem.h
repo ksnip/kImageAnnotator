@@ -25,7 +25,7 @@
 #include <QPainterPathStroker>
 #include <QGraphicsDropShadowEffect>
 
-#include "../AnnotationProperties.h"
+#include "../core/AnnotationProperties.h"
 #include "../../common/enum/FillTypes.h"
 
 class AbstractAnnotationItem : public QGraphicsItem

@@ -17,33 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONPROPERTIES_H
-#define ANNOTATIONPROPERTIES_H
+#ifndef ANNOTATIONAREATEST_H
+#define ANNOTATIONAREATEST_H
 
-#include <QColor>
+#include <QtTest>
 
-#include "../common/enum/FillTypes.h"
+#include "../../src/annotations/core/AnnotationArea.h"
+#include "../../../src/annotations/items/AnnotationLine.h"
 
-class AnnotationProperties
+class AnnotationAreaTest : public QObject
 {
-public:
-    AnnotationProperties() = default;
-    AnnotationProperties(const QColor& color, int size);
-    ~AnnotationProperties() = default;
-    QColor color() const;
-    void setColor(const QColor& color);
-    QColor foregroundColor() const;
-    void setForegroundColor(const QColor& color);
-    int size() const;
-    void setSize(int size);
-    FillTypes fillType() const;
-    void setFillType(FillTypes fillType);
+Q_OBJECT
 
-private:
-    QColor    mColor;
-    QColor    mForegroundColor;
-    int       mSize;
-    FillTypes mFillType;
+private slots:
+    void TestExportAsImage_Should_ExportImage_When_ImageSet();
+    void TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet();
+    void TestAddAnnotationItem_Should_AddAnnotationItemToScene();
+    void TestRemoveAnnotationItem_Should_RemoveAnnotationItemFromScene();
 };
 
-#endif // ANNOTATIONPROPERTIES_H
+#endif // ANNOTATIONAREATEST_H
+
+

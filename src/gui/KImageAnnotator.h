@@ -29,7 +29,7 @@
 #include <KLocalizedString>
 
 #include "VisibilitySwitcher.h"
-#include "../annotations/AnnotationArea.h"
+#include "../annotations/core/AnnotationArea.h"
 #include "../backend/Config.h"
 #include "../widgets/ToolPicker.h"
 #include "../widgets/ColorPicker.h"

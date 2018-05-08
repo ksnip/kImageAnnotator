@@ -17,23 +17,29 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONPROPERTIESFACTORY_H
-#define ANNOTATIONPROPERTIESFACTORY_H
+#ifndef ANNOTATIONITEMFACTORYTEST_H
+#define ANNOTATIONITEMFACTORYTEST_H
 
-#include "AnnotationProperties.h"
-#include "../backend/Config.h"
-#include "../common/enum/ToolTypes.h"
+#include <QtTest>
 
-class AnnotationPropertiesFactory
+#include "../../src/annotations/core/AnnotationItemFactory.h"
+
+class AnnotationItemFactoryTest : public QObject
 {
-public:
-    explicit AnnotationPropertiesFactory();
-    ~AnnotationPropertiesFactory() = default;
+Q_OBJECT
 
-    AnnotationProperties createProperties(ToolTypes tool) const;
+private slots:
+    void initTestCase();
+    void cleanupTestCase();
 
-private:
-    Config*   mConfig;
+    void TestCreateItem_Should_CreateItemAtProvidedPosition();
+    void TestCreateItem_Should_ReturnNullPtrForUnknownType();
+    void TestCreateItem_Should_ReturnAnnotationLine_When_TypeIsLine();
+    void TestCreateItem_Should_ReturnAnnotationArrow_When_TypeIsArrow();
+    void TestCreateItem_Should_ReturnAnnotationRect_When_TypeIsRect();
+    void TestCreateItem_Should_ReturnAnnotationEllipse_When_TypeIsEllipse();
+    void TestCreateItem_Should_ReturnAnnotationNumber_When_TypeIsNumber();
+
 };
 
-#endif // ANNOTATIONPROPERTIESFACTORY_H
+#endif // ANNOTATIONITEMFACTORYTEST_H

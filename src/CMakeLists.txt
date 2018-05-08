@@ -5,10 +5,10 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons I18n WidgetsA
 set(kimageannotator_SRCS
         ${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
         ${CMAKE_SOURCE_DIR}/src/gui/VisibilitySwitcher.cpp
-        ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationArea.cpp
-        ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationItemFactory.cpp
-        ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationProperties.cpp
-        ${CMAKE_SOURCE_DIR}/src/annotations/AnnotationPropertiesFactory.cpp
+        ${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationArea.cpp
+        ${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationItemFactory.cpp
+        ${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationProperties.cpp
+        ${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationPropertiesFactory.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemModifier.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemResizer.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationMultiItemResizer.cpp

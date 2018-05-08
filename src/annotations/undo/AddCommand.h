@@ -23,7 +23,7 @@
 #include <QUndoCommand>
 
 #include "../items/AbstractAnnotationItem.h"
-#include "../AnnotationArea.h"
+#include "../core/AnnotationArea.h"
 
 class AnnotationArea;
 

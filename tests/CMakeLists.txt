@@ -5,7 +5,9 @@ find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Test Widgets)
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons I18n WidgetsAddons)
 
 set(ListOfUnitTests
-        annotations/AnnotationAreaTest.cpp
+        annotations/core/AnnotationAreaTest.cpp
+        annotations/core/AnnotationItemFactoryTest
+        annotations/core/AnnotationPropertiesFactoryTest
         annotations/modifiers/ResizeHandlesTest
         annotations/modifiers/AnnotationItemResizerTest
         annotations/modifiers/AnnotationMultiItemResizerTest
@@ -13,8 +15,6 @@ set(ListOfUnitTests
         annotations/modifiers/AnnotationItemModifierTest
         annotations/modifiers/AnnotationItemArrangerTest
         annotations/modifiers/AnnotationItemMoverTest
-        annotations/AnnotationItemFactoryTest
-        annotations/AnnotationPropertiesFactoryTest
         annotations/undo/AddCommandTest
         annotations/undo/DeleteCommandTest
         annotations/undo/MoveCommandTest

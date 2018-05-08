@@ -17,25 +17,33 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONAREATEST_H
-#define ANNOTATIONAREATEST_H
+#ifndef ANNOTATIONITEMFACTORY_H
+#define ANNOTATIONITEMFACTORY_H
 
-#include <QtTest>
+#include <QObject>
 
-#include "../../src/annotations/AnnotationArea.h"
-#include "../../src/annotations/items/AnnotationLine.h"
+#include "AnnotationPropertiesFactory.h"
+#include "../items/AnnotationLine.h"
+#include "../items/AnnotationArrow.h"
+#include "../items/AnnotationRect.h"
+#include "../items/AnnotationEllipse.h"
+#include "../items/AnnotationNumber.h"
+#include "../../common/enum/ToolTypes.h"
 
-class AnnotationAreaTest : public QObject
+class AnnotationItemFactory : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
+public:
+    explicit AnnotationItemFactory();
+    ~AnnotationItemFactory();
+    void reset();
 
-private slots:
-    void TestExportAsImage_Should_ExportImage_When_ImageSet();
-    void TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet();
-    void TestAddAnnotationItem_Should_AddAnnotationItemToScene();
-    void TestRemoveAnnotationItem_Should_RemoveAnnotationItemFromScene();
+    AbstractAnnotationItem* createItem(const QPointF& initPosition, ToolTypes tool);
+
+private:
+    int mNextNumber;
+    int mNextZValue;
+    AnnotationPropertiesFactory *mPropertiesFactory;
 };
 
-#endif // ANNOTATIONAREATEST_H
-
-
+#endif // ANNOTATIONITEMFACTORY_H

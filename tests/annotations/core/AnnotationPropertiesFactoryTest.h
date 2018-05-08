@@ -22,7 +22,7 @@
 
 #include <QtTest>
 
-#include "../../src/annotations/AnnotationPropertiesFactory.h"
+#include "../../src/annotations/core/AnnotationPropertiesFactory.h"
 
 class AnnotationPropertiesFactoryTest : public QObject
 {

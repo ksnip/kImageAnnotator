@@ -17,29 +17,33 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMFACTORYTEST_H
-#define ANNOTATIONITEMFACTORYTEST_H
+#ifndef ANNOTATIONPROPERTIES_H
+#define ANNOTATIONPROPERTIES_H
 
-#include <QtTest>
+#include <QColor>
 
-#include "../../src/annotations/AnnotationItemFactory.h"
+#include "../../common/enum/FillTypes.h"
 
-class AnnotationItemFactoryTest : public QObject
+class AnnotationProperties
 {
-Q_OBJECT
+public:
+    AnnotationProperties() = default;
+    AnnotationProperties(const QColor& color, int size);
+    ~AnnotationProperties() = default;
+    QColor color() const;
+    void setColor(const QColor& color);
+    QColor foregroundColor() const;
+    void setForegroundColor(const QColor& color);
+    int size() const;
+    void setSize(int size);
+    FillTypes fillType() const;
+    void setFillType(FillTypes fillType);
 
-private slots:
-    void initTestCase();
-    void cleanupTestCase();
-
-    void TestCreateItem_Should_CreateItemAtProvidedPosition();
-    void TestCreateItem_Should_ReturnNullPtrForUnknownType();
-    void TestCreateItem_Should_ReturnAnnotationLine_When_TypeIsLine();
-    void TestCreateItem_Should_ReturnAnnotationArrow_When_TypeIsArrow();
-    void TestCreateItem_Should_ReturnAnnotationRect_When_TypeIsRect();
-    void TestCreateItem_Should_ReturnAnnotationEllipse_When_TypeIsEllipse();
-    void TestCreateItem_Should_ReturnAnnotationNumber_When_TypeIsNumber();
-
+private:
+    QColor    mColor;
+    QColor    mForegroundColor;
+    int       mSize;
+    FillTypes mFillType;
 };
 
-#endif // ANNOTATIONITEMFACTORYTEST_H
+#endif // ANNOTATIONPROPERTIES_H
