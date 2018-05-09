@@ -58,6 +58,8 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_MoveResizeHandle_When_Hand
     AnnotationLine lineItem(p1, properties);
     lineItem.addPoint(p2);
     AnnotationItemResizer itemResizer(&lineItem);
+    QUndoStack undoStack;
+    connect(&itemResizer, &AnnotationItemResizer::newCommand, &undoStack, &QUndoStack::push);
 
     itemResizer.grabHandle(p1);
     itemResizer.moveHandle(p3);

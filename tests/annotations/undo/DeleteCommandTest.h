@@ -23,7 +23,7 @@
 #include <QtTest>
 
 #include "../../../src/annotations/undo/DeleteCommand.h"
-#include "../../../src/annotations/AnnotationArea.h"
+#include "../../../src/annotations/core/AnnotationArea.h"
 #include "../../../src/annotations/items/AnnotationLine.h"
 
 class DeleteCommandTest : public QObject

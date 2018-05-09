@@ -30,6 +30,8 @@ void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_MoveResi
     QList<AbstractAnnotationItem *> items;
     items.append(&line);
     AnnotationItemModifier modifer;
+    QUndoStack undoStack;
+    connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
     modifer.handleMousePress(p1, &items, false);
     modifer.handleMouseRelease(&items);
 

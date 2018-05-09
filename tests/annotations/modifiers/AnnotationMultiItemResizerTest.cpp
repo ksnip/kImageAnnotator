@@ -58,6 +58,8 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_MoveResizeHandle_When
     item1.addPoint(line1.p2());
     QList<AbstractAnnotationItem *> items = {&item1};
     AnnotationMultiItemResizer itemResizer;
+    QUndoStack undoStack;
+    connect(&itemResizer, &AnnotationMultiItemResizer::newCommand, &undoStack, &QUndoStack::push);
     itemResizer.attachTo(items);
 
     itemResizer.grabHandle(line1.p1());
@@ -77,6 +79,8 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_OnlyMoveOneResizeHand
     item2.addPoint(line1.p2());
     QList<AbstractAnnotationItem *> items = {&item1, &item2};
     AnnotationMultiItemResizer itemResizer;
+    QUndoStack undoStack;
+    connect(&itemResizer, &AnnotationMultiItemResizer::newCommand, &undoStack, &QUndoStack::push);
     itemResizer.attachTo(items);
 
     itemResizer.grabHandle(line1.p1());
