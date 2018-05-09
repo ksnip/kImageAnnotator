@@ -17,24 +17,24 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_MOVECOMMANDTEST
-#define KIMAGEANNOTATOR_MOVECOMMANDTEST
+#ifndef KIMAGEANNOTATOR_RESIZECOMMANDTEST
+#define KIMAGEANNOTATOR_RESIZECOMMANDTEST
 
 #include <QtTest>
 
-#include "../../../src/annotations/undo/MoveCommand.h"
+#include "../../../src/annotations/undo/ResizeCommand.h"
 #include "../../../src/annotations/items/AnnotationLine.h"
 
-class MoveCommandTest : public QObject
+class ResizeCommandTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestRedo_Should_MoveItemToNewPosition();
-    void TestUndo_Should_MoveItemToInitialPosition();
-    void TestMergeWith_Should_TakeNewPositionFromLastMoveCommand();
-    void TestMergeWith_Should_KeepInitialPositionFromFirstMoveCommand();
-    void TestMergeWith_Should_NotMergeMoveCommands_When_ItemsAreNotTheSame();
+    void TestRedo_Should_MoveProvidedHandleToNewPosition();
+    void TestUndo_Should_MoveProvidedHandleToInitialPosition();
+    void TestMergeWith_Should_TakeNewHandlePositionFromLastResizeCommand();
+    void TestMergeWith_Should_KeepInitialPositionFromFirstResizeCommand();
+    void TestMergeWith_Should_NotMergeResizeCommands_When_ItemsAreNotTheSame();
 };
 
-#endif //KIMAGEANNOTATOR_MOVECOMMANDTEST
+#endif //KIMAGEANNOTATOR_RESIZECOMMANDTEST

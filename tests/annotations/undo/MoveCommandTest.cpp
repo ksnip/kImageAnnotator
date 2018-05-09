@@ -57,7 +57,7 @@ void MoveCommandTest::TestUndo_Should_MoveItemToInitialPosition()
     QCOMPARE(item->position(), oldPosition);
 }
 
-void MoveCommandTest::TestMergeWith_Should_TakeNewPositrionFromLastMoveCommand()
+void MoveCommandTest::TestMergeWith_Should_TakeNewPositionFromLastMoveCommand()
 {
     AnnotationProperties properties(Qt::red, 1);
     QLineF line(10, 10, 20, 20);
@@ -104,7 +104,7 @@ void MoveCommandTest::TestMergeWith_Should_KeepInitialPositionFromFirstMoveComma
     QCOMPARE(item->position(), oldPosition);
 }
 
-void MoveCommandTest::TestMergeWith_Should_NotMergeMoveCommandsWhenItemsAreNotTheSame()
+void MoveCommandTest::TestMergeWith_Should_NotMergeMoveCommands_When_ItemsAreNotTheSame()
 {
     AnnotationProperties properties(Qt::red, 1);
     QLineF line1(10, 10, 20, 20);

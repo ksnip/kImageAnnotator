@@ -18,6 +18,7 @@ set(ListOfUnitTests
         annotations/undo/AddCommandTest
         annotations/undo/DeleteCommandTest
         annotations/undo/MoveCommandTest
+        annotations/undo/ResizeCommandTest
         widgets/ToolPickerTest
         widgets/ColorPickerTest
         widgets/SizePickerTest
