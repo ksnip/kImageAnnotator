@@ -27,9 +27,12 @@ set(ListOfUnitTests
         common/helper/KeyHelperTest
         common/helper/MathHelperTest)
 
+add_library(kimageannotator_LIB STATIC ${kimageannotator_SRCS})
+target_link_libraries(kimageannotator_LIB Qt5::Widgets KF5::CoreAddons KF5::I18n KF5::WidgetsAddons)
+
 foreach (UnitTest ${ListOfUnitTests})
     get_filename_component(UnitTestName ${UnitTest} NAME_WE)
-    add_executable(${UnitTestName} ${UnitTest} ${kimageannotator_SRCS})
-    target_link_libraries(${UnitTestName} Qt5::Test Qt5::Widgets KF5::CoreAddons KF5::I18n KF5::WidgetsAddons)
+    add_executable(${UnitTestName} ${UnitTest})
+    target_link_libraries(${UnitTestName} Qt5::Test kimageannotator_LIB)
     add_test(${UnitTestName} ${UnitTestName})
 endforeach (UnitTest)
