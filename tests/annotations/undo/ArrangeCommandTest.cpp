@@ -23,12 +23,10 @@
 void ArrangeCommandTest::TestRedo_Should_SwapItemPosition()
 {
     AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    AnnotationLine item1(line.p1(), properties);
-    AnnotationLine item2(line.p1(), properties);
-    item1.addPoint(line.p2());
+    QPointF pos(10, 10);
+    AnnotationLine item1(pos, properties);
+    AnnotationLine item2(pos, properties);
     item1.setZValue(1);
-    item2.addPoint(line.p2());
     item2.setZValue(2);
     QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> itemToSwap;
     itemToSwap.append(qMakePair(&item1, &item2));
@@ -46,15 +44,12 @@ void ArrangeCommandTest::TestRedo_Should_SwapItemPosition()
 void ArrangeCommandTest::TestRedo_Should_SortItemByZValue()
 {
     AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    AnnotationLine item1(line.p1(), properties);
-    AnnotationLine item2(line.p1(), properties);
-    AnnotationLine item3(line.p1(), properties);
-    item1.addPoint(line.p2());
+    QPointF pos(10, 10);
+    AnnotationLine item1(pos, properties);
+    AnnotationLine item2(pos, properties);
+    AnnotationLine item3(pos, properties);
     item1.setZValue(1);
-    item2.addPoint(line.p2());
     item2.setZValue(2);
-    item3.addPoint(line.p2());
     item3.setZValue(3);
     QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> emptySwapList;
     QList<AbstractAnnotationItem *> allItems;
@@ -76,12 +71,10 @@ void ArrangeCommandTest::TestRedo_Should_SortItemByZValue()
 void ArrangeCommandTest::TestUndo_Should_SwapItemPositionBack()
 {
     AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    AnnotationLine item1(line.p1(), properties);
-    AnnotationLine item2(line.p1(), properties);
-    item1.addPoint(line.p2());
+    QPointF pos(10, 10);
+    AnnotationLine item1(pos, properties);
+    AnnotationLine item2(pos, properties);
     item1.setZValue(1);
-    item2.addPoint(line.p2());
     item2.setZValue(2);
     QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> itemToSwap;
     itemToSwap.append(qMakePair(&item1, &item2));
@@ -100,15 +93,12 @@ void ArrangeCommandTest::TestUndo_Should_SwapItemPositionBack()
 void ArrangeCommandTest::TestUndo_Should_SortItemByZValue()
 {
     AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    AnnotationLine item1(line.p1(), properties);
-    AnnotationLine item2(line.p1(), properties);
-    AnnotationLine item3(line.p1(), properties);
-    item1.addPoint(line.p2());
+    QPointF pos(10, 10);
+    AnnotationLine item1(pos, properties);
+    AnnotationLine item2(pos, properties);
+    AnnotationLine item3(pos, properties);
     item1.setZValue(1);
-    item2.addPoint(line.p2());
     item2.setZValue(2);
-    item3.addPoint(line.p2());
     item3.setZValue(3);
     QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> emptySwapList;
     QList<AbstractAnnotationItem *> allItems;
