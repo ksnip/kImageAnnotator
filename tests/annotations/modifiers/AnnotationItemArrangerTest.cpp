@@ -39,6 +39,8 @@ void AnnotationItemArrangerTest::TestBringToFront_Should_BringAllSelectedItemsTo
     selectedItems.append(&item2);
     selectedItems.append(&item1);
     AnnotationItemArranger arranger(selectedItems, &items);
+    QUndoStack undoStack;
+    connect(&arranger, &AnnotationItemArranger::newCommand, &undoStack, &QUndoStack::push);
 
     arranger.bringToFront();
 
@@ -68,6 +70,8 @@ void AnnotationItemArrangerTest::TestBringForward_Should_MoveAllSelectedItemsOne
     selectedItems.append(&item2);
     selectedItems.append(&item1);
     AnnotationItemArranger arranger(selectedItems, &items);
+    QUndoStack undoStack;
+    connect(&arranger, &AnnotationItemArranger::newCommand, &undoStack, &QUndoStack::push);
 
     arranger.bringForward();
 
@@ -97,6 +101,8 @@ void AnnotationItemArrangerTest::TestSendBackward_Should_MoveAllSelectedItemsOne
     selectedItems.append(&item4);
     selectedItems.append(&item3);
     AnnotationItemArranger arranger(selectedItems, &items);
+    QUndoStack undoStack;
+    connect(&arranger, &AnnotationItemArranger::newCommand, &undoStack, &QUndoStack::push);
 
     arranger.sendBackward();
 
@@ -126,6 +132,8 @@ void AnnotationItemArrangerTest::TestSendToBack_Should_SendAllSelectedItemToBack
     selectedItems.append(&item4);
     selectedItems.append(&item3);
     AnnotationItemArranger arranger(selectedItems, &items);
+    QUndoStack undoStack;
+    connect(&arranger, &AnnotationItemArranger::newCommand, &undoStack, &QUndoStack::push);
 
     arranger.sendToBack();
 
@@ -155,6 +163,8 @@ void AnnotationItemArrangerTest::TestAnnotationItemArranger_Should_SortAllItemsB
     selectedItems.append(&item2);
     selectedItems.append(&item1);
     AnnotationItemArranger arranger(selectedItems, &items);
+    QUndoStack undoStack;
+    connect(&arranger, &AnnotationItemArranger::newCommand, &undoStack, &QUndoStack::push);
 
     arranger.bringToFront();
 
@@ -182,6 +192,8 @@ void AnnotationItemArrangerTest::TestAnnotationItemArranger_Should_NotSwapAnyPos
     items.append(&item2);
     items.append(&item1);
     AnnotationItemArranger arranger(selectedItems, &items);
+    QUndoStack undoStack;
+    connect(&arranger, &AnnotationItemArranger::newCommand, &undoStack, &QUndoStack::push);
 
     arranger.bringToFront();
 

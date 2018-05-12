@@ -159,6 +159,7 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
     }
 
     AnnotationItemArranger itemArranger(selectedItems, mItems);
+    connect(&itemArranger, &AnnotationItemArranger::newCommand, mUndoStack, &UndoStack::push);
 
     QMenu contextMenu;
     auto arrangeMenu = contextMenu.addMenu(i18n("Arrange"));

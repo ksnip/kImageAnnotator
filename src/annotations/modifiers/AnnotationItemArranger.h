@@ -23,13 +23,18 @@
 #include <QObject>
 
 #include "../items/AbstractAnnotationItem.h"
+#include "../undo/ArrangeCommand.h"
+#include "../../common/helper/ItemHelper.h"
 
 class AnnotationItemArranger : public QObject
 {
-    Q_OBJECT
+Q_OBJECT
 public:
-    explicit AnnotationItemArranger(const QList<AbstractAnnotationItem*> selectedItems, QList<AbstractAnnotationItem*> *items);
+    explicit AnnotationItemArranger(const QList<AbstractAnnotationItem *> selectedItems, QList<AbstractAnnotationItem *> *items);
     ~AnnotationItemArranger() = default;
+
+signals:
+    void newCommand(ArrangeCommand *arrange) const;
 
 public slots:
     void bringToFront();
@@ -38,15 +43,12 @@ public slots:
     void sendToBack();
 
 private:
-    QList<AbstractAnnotationItem*>  mSelectedItems;
-    QList<AbstractAnnotationItem*> *mItems;
+    QList<AbstractAnnotationItem *> mSelectedItems;
+    QList<AbstractAnnotationItem *> *mItems;
 
     void moveForward(bool toFront);
     void moveBackward(bool toBack);
-    void swapZValues(AbstractAnnotationItem* item1, AbstractAnnotationItem* item2);
-    void sortItemsByZValue();
+    void createAndEmitArrangeCommand(const QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> &itemToSwap) const;
 };
-
-bool zValueGreaterThen(const AbstractAnnotationItem* item1, const AbstractAnnotationItem* item2);
 
 #endif // ANNOTATIONITEMARRANGER_H

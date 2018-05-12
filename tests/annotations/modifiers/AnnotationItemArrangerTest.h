@@ -21,6 +21,7 @@
 #define ANNOTATIONITEMARRANGERTEST_H
 
 #include <QtTest>
+#include <QUndoStack>
 
 #include "../../../src/annotations/modifiers/AnnotationItemArranger.h"
 #include "../../../src/annotations/items/AnnotationLine.h"

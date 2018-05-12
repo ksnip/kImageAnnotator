@@ -17,27 +17,9 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ARRANGECOMMAND_H
-#define KIMAGEANNOTATOR_ARRANGECOMMAND_H
+#include "ItemHelper.h"
 
-#include <QUndoCommand>
-
-#include "../items/AbstractAnnotationItem.h"
-#include "../../common/helper/ItemHelper.h"
-
-class ArrangeCommand : public QUndoCommand
+bool ItemHelper::zValueGreaterThen(const AbstractAnnotationItem *item1, const AbstractAnnotationItem *item2)
 {
-public:
-    ArrangeCommand(QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> itemToSwap, QList<AbstractAnnotationItem *> *allItems);
-    virtual void undo() override;
-    virtual void redo() override;
-
-private:
-    QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> mItemToSwap;
-    QList<AbstractAnnotationItem *> *mAllItems;
-
-    void swapZValues(AbstractAnnotationItem *item1, AbstractAnnotationItem *item2) const;
-    void sortItemsByZValue();
-};
-
-#endif //KIMAGEANNOTATOR_ARRANGECOMMAND_H
+    return item1->zValue() > item2->zValue();
+}

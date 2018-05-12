@@ -28,12 +28,14 @@ set(kimageannotator_SRCS
         ${CMAKE_SOURCE_DIR}/src/annotations/undo/DeleteCommand.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/undo/MoveCommand.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/undo/ResizeCommand.cpp
+        ${CMAKE_SOURCE_DIR}/src/annotations/undo/ArrangeCommand.cpp
         ${CMAKE_SOURCE_DIR}/src/backend/Config.cpp
         ${CMAKE_SOURCE_DIR}/src/common/formatter/ConfigNameFormatter.cpp
         ${CMAKE_SOURCE_DIR}/src/common/helper/IconCreater.cpp
         ${CMAKE_SOURCE_DIR}/src/common/helper/CursorHelper.cpp
         ${CMAKE_SOURCE_DIR}/src/common/helper/KeyHelper.cpp
         ${CMAKE_SOURCE_DIR}/src/common/helper/MathHelper.cpp
+        ${CMAKE_SOURCE_DIR}/src/common/helper/ItemHelper.cpp
         ${CMAKE_SOURCE_DIR}/src/widgets/ToolPicker.cpp
         ${CMAKE_SOURCE_DIR}/src/widgets/ColorPicker.cpp
         ${CMAKE_SOURCE_DIR}/src/widgets/SizePicker.cpp
