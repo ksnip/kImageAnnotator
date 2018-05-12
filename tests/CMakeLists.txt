@@ -19,6 +19,7 @@ set(ListOfUnitTests
         annotations/undo/DeleteCommandTest
         annotations/undo/MoveCommandTest
         annotations/undo/ResizeCommandTest
+        annotations/undo/ArrangeCommandTest.cpp
         widgets/ToolPickerTest
         widgets/ColorPickerTest
         widgets/SizePickerTest

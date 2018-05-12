@@ -17,22 +17,23 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef DELETECOMMANDTEST
-#define DELETECOMMANDTEST
+#ifndef KIMAGETANNOTATOR_ARRANGECOMMANDTEST
+#define KIMAGETANNOTATOR_ARRANGECOMMANDTEST
 
 #include <QtTest>
 
-#include "../../../src/annotations/undo/DeleteCommand.h"
-#include "../../../src/annotations/core/AnnotationArea.h"
+#include "../../../src/annotations/undo/ArrangeCommand.h"
 #include "../../../src/annotations/items/AnnotationLine.h"
 
-class DeleteCommandTest : public QObject
+class ArrangeCommandTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestRedo_Should_ApplyOperation();
-    void TestUndo_Should_UndoOperation();
+    void TestRedo_Should_SwapItemPosition();
+    void TestRedo_Should_SortItemByZValue();
+    void TestUndo_Should_SwapItemPositionBack();
+    void TestUndo_Should_SortItemByZValue();
 };
 
-#endif //DELETECOMMANDTEST
+#endif //KIMAGETANNOTATOR_ARRANGECOMMANDTEST
