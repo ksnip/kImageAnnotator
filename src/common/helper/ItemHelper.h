@@ -26,6 +26,7 @@ class ItemHelper
 {
 public:
     static bool zValueGreaterThen(const AbstractAnnotationItem *item1, const AbstractAnnotationItem *item2);
+    static void sortItemsByZValueDesc(QList<AbstractAnnotationItem *> *items);
 };
 
 #endif //KIMAGEANNOTATOR_ITEMHELPER_H

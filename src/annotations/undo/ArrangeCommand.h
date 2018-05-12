@@ -37,7 +37,6 @@ private:
     QList<AbstractAnnotationItem *> *mAllItems;
 
     void swapZValues(AbstractAnnotationItem *item1, AbstractAnnotationItem *item2) const;
-    void sortItemsByZValue();
 };
 
 #endif //KIMAGEANNOTATOR_ARRANGECOMMAND_H

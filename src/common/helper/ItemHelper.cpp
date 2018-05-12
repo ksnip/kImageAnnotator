@@ -23,3 +23,8 @@ bool ItemHelper::zValueGreaterThen(const AbstractAnnotationItem *item1, const Ab
 {
     return item1->zValue() > item2->zValue();
 }
+
+void ItemHelper::sortItemsByZValueDesc(QList<AbstractAnnotationItem *> *items)
+{
+    qSort(items->begin(), items->end(), ItemHelper::zValueGreaterThen);
+}

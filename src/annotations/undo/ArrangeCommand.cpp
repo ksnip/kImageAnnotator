@@ -31,7 +31,8 @@ void ArrangeCommand::undo()
         auto pair = mItemToSwap[i];
         swapZValues(pair.first, pair.second);
     }
-    sortItemsByZValue();
+
+    ItemHelper::sortItemsByZValueDesc(mAllItems);
 }
 
 void ArrangeCommand::redo()
@@ -39,7 +40,8 @@ void ArrangeCommand::redo()
     for (auto pair : mItemToSwap) {
         swapZValues(pair.first, pair.second);
     }
-    sortItemsByZValue();
+
+    ItemHelper::sortItemsByZValueDesc(mAllItems);
 }
 
 void ArrangeCommand::swapZValues(AbstractAnnotationItem *item1, AbstractAnnotationItem *item2) const
@@ -47,9 +49,4 @@ void ArrangeCommand::swapZValues(AbstractAnnotationItem *item1, AbstractAnnotati
     auto tmpZValue = item1->zValue();
     item1->setZValue(item2->zValue());
     item2->setZValue(tmpZValue);
-}
-
-void ArrangeCommand::sortItemsByZValue()
-{
-    qSort(mAllItems->begin(), mAllItems->end(), ItemHelper::zValueGreaterThen);
 }
