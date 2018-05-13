@@ -19,13 +19,11 @@
 
 #include "AnnotationItemResizer.h"
 
-AnnotationItemResizer::AnnotationItemResizer(AbstractAnnotationItem* item)
+AnnotationItemResizer::AnnotationItemResizer(AbstractAnnotationItem *item)
 {
     mAnnotationItem = item;
-    mResizeHandleSize = 10;
     mCurrentHandle = -1;
-    mResizeHandles = new ResizeHandles(mResizeHandleSize);
-    mResizeHandles->initHandles(item);
+    mResizeHandles = ResizeHandlesFactory::createResizeHandles(item);
     prepareGeometryChange();
 }
 
@@ -37,21 +35,21 @@ AnnotationItemResizer::~AnnotationItemResizer()
 
 QRectF AnnotationItemResizer::boundingRect() const
 {
-    auto size = mResizeHandleSize / 2;
+    auto size = mResizeHandles->handleSize() / 2;
     return mAnnotationItem->boundingRect().normalized().adjusted(-size, -size, size, size);
 }
 
-void AnnotationItemResizer::grabHandle(const QPointF& pos)
+void AnnotationItemResizer::grabHandle(const QPointF &pos)
 {
     mCurrentHandle = mResizeHandles->indexOfHandleAt(pos);
-    if(mCurrentHandle != -1) {
+    if (mCurrentHandle != -1) {
         mClickOffset = pos - mResizeHandles->handle(mCurrentHandle).center();
     }
 }
 
-void AnnotationItemResizer::moveHandle(const QPointF& pos)
+void AnnotationItemResizer::moveHandle(const QPointF &pos)
 {
-    if(mCurrentHandle != -1) {
+    if (mCurrentHandle != -1) {
         emit newCommand(new ResizeCommand(mAnnotationItem, mCurrentHandle, pos - mClickOffset));
     }
 }
@@ -69,7 +67,7 @@ bool AnnotationItemResizer::isResizing() const
 void AnnotationItemResizer::refresh()
 {
     prepareGeometryChange();
-    mResizeHandles->updateHandlesPosition();
+    mResizeHandles->update();
 }
 
 bool AnnotationItemResizer::isItemVisible() const
@@ -87,7 +85,7 @@ Qt::CursorShape AnnotationItemResizer::cursorForCurrentHandle()
     return mResizeHandles->cursorForHandle(mCurrentHandle);
 }
 
-void AnnotationItemResizer::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void AnnotationItemResizer::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option)
     Q_UNUSED(widget)
@@ -95,7 +93,7 @@ void AnnotationItemResizer::paint(QPainter* painter, const QStyleOptionGraphicsI
     painter->setPen(Qt::white);
     painter->setBrush(Qt::gray);
     auto points = mResizeHandles->handles();
-    for(auto point : points) {
+    for (auto point : points) {
         painter->drawRect(point);
     }
 }

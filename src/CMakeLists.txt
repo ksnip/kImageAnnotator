@@ -15,7 +15,10 @@ set(kimageannotator_SRCS
         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemSelector.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemMover.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemArranger.cpp
-        ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/ResizeHandles.cpp
+        ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AbstractItemResizeHandles.cpp
+        ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/LineResizeHandles.cpp
+        ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/RectResizeHandles.cpp
+        ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/ResizeHandlesFactory.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationItem.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationLine.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationRect.cpp

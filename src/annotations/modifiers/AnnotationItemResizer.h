@@ -22,7 +22,7 @@
 
 #include <QGraphicsWidget>
 
-#include "ResizeHandles.h"
+#include "ResizeHandlesFactory.h"
 #include "../items/AbstractAnnotationItem.h"
 #include "../undo/ResizeCommand.h"
 
@@ -49,9 +49,8 @@ protected:
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) override;
 
 private:
-    ResizeHandles *mResizeHandles;
+    AbstractItemResizeHandles *mResizeHandles;
     AbstractAnnotationItem *mAnnotationItem;
-    int mResizeHandleSize;
     int mCurrentHandle;
     QPointF mClickOffset;
 };

@@ -17,39 +17,26 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef RESIZEHANDLES_H
-#define RESIZEHANDLES_H
+#ifndef KIMAGEANNOTATOR_RECTRESIZEHANDLES_H
+#define KIMAGEANNOTATOR_RECTRESIZEHANDLES_H
 
-#include <QRectF>
-#include <QList>
-
-#include "../items/AbstractAnnotationLine.h"
+#include "AbstractItemResizeHandles.h"
 #include "../items/AbstractAnnotationRect.h"
-#include "../../common/helper/CursorHelper.h"
 
-class ResizeHandles
+class RectResizeHandles : public AbstractItemResizeHandles
 {
 public:
-    explicit ResizeHandles(int handleSize);
-    void initHandles(AbstractAnnotationItem *item);
-    void updateHandlesPosition();
-    int indexOfHandleAt(const QPointF& pos) const;
-    QList<QRectF> handles() const;
-    QRectF handle(int index) const;
-    Qt::CursorShape cursorForPos(const QPointF &pos) const;
-    Qt::CursorShape cursorForHandle(int index) const;
+    RectResizeHandles(AbstractAnnotationRect *rectItem);
+    ~RectResizeHandles() = default;
+    virtual void update() override;
+
+protected:
+    virtual void initCursors() override;
 
 private:
-    AbstractAnnotationLine* mLineItem;
-    AbstractAnnotationRect* mRectItem;
-    int                     mHandleSize;
-    QList<QRectF>           mHandles;
-    QList<Qt::CursorShape>  mCursors;
+    AbstractAnnotationRect *mRectItem;
 
-    void addHandlesToList(int count);
-    void addLineCursorsToList();
-    void addRectCursorsToList();
     void updateRectCursors();
 };
 
-#endif // RESIZEHANDLES_H
+#endif //KIMAGEANNOTATOR_RECTRESIZEHANDLES_H
