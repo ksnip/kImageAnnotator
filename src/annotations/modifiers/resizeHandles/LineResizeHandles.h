@@ -21,7 +21,7 @@
 #define KIMAGEANNOTATOR_LINERESIZEHANDLES_H
 
 #include "AbstractItemResizeHandles.h"
-#include "../items/AbstractAnnotationLine.h"
+#include "../../items/AbstractAnnotationLine.h"
 
 class LineResizeHandles : public AbstractItemResizeHandles
 {

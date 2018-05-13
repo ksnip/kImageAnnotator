@@ -21,7 +21,7 @@
 #define KIMAGEANNOTATOR_RECTRESIZEHANDLES_H
 
 #include "AbstractItemResizeHandles.h"
-#include "../items/AbstractAnnotationRect.h"
+#include "../../items/AbstractAnnotationRect.h"
 
 class RectResizeHandles : public AbstractItemResizeHandles
 {

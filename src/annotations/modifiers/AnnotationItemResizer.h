@@ -22,8 +22,7 @@
 
 #include <QGraphicsWidget>
 
-#include "ResizeHandlesFactory.h"
-#include "../items/AbstractAnnotationItem.h"
+#include "resizeHandles/ResizeHandlesFactory.h"
 #include "../undo/ResizeCommand.h"
 
 class AnnotationItemResizer : public QGraphicsWidget
