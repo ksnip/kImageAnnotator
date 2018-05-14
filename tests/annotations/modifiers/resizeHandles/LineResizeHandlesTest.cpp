@@ -1,0 +1,127 @@
+/*
+ * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
+ */
+
+#include "LineResizeHandlesTest.h"
+
+void LineResizeHandlesTest::TestInitHandles_Should_PositionTwoHandles()
+{
+    AnnotationProperties properties(Qt::red, 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+
+    LineResizeHandles lineResizeHandles(&lineItem);
+
+    QCOMPARE(lineResizeHandles.handles().count(), 2);
+    QCOMPARE(lineResizeHandles.handles()[0].center(), p1);
+    QCOMPARE(lineResizeHandles.handles()[1].center(), p2);
+}
+
+void LineResizeHandlesTest::TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_HandleIsAtProvidedPosition()
+{
+    AnnotationProperties properties(Qt::red, 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    LineResizeHandles lineResizeHandles(&lineItem);
+
+    auto resultP1 = lineResizeHandles.indexOfHandleAt(p1 + QPointF(2, 2));
+    auto resultP2 = lineResizeHandles.indexOfHandleAt(p2 + QPointF(-2, -2));
+
+    QCOMPARE(lineResizeHandles.handles().count(), 2);
+    QCOMPARE(resultP1, 0);
+    QCOMPARE(resultP2, 1);
+}
+
+void LineResizeHandlesTest::TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_HandleIsNotAtProvidedPosition()
+{
+    AnnotationProperties properties(Qt::red, 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    LineResizeHandles lineResizeHandles(&lineItem);
+
+    auto resultP1 = lineResizeHandles.indexOfHandleAt(QPointF(50, 50));
+
+    QCOMPARE(lineResizeHandles.handles().count(), 2);
+    QCOMPARE(resultP1, -1);
+}
+
+void LineResizeHandlesTest::TestHandle_Should_ReturnRectAtIndex_When_HandleAtIndexExists()
+{
+    AnnotationProperties properties(Qt::red, 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    LineResizeHandles lineResizeHandles(&lineItem);
+
+    auto result = lineResizeHandles.handle(1);
+
+    QVERIFY(result != QRectF());
+    QCOMPARE(result.center(), p2);
+}
+
+void LineResizeHandlesTest::TestHandle_Should_NotReturnRect_When_HandleAtIndexDoesntExists()
+{
+    AnnotationProperties properties(Qt::red, 2);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    LineResizeHandles lineResizeHandles(&lineItem);
+
+    auto result = lineResizeHandles.handle(3);
+
+    QCOMPARE(result, QRectF());
+}
+
+void LineResizeHandlesTest::TestGetCursorForHandle_Should_NotReturnDefaultCursor_When_ProvidedPositionOnHandle()
+{
+    AnnotationProperties properties(Qt::red, 1);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    LineResizeHandles lineResizeHandles(&lineItem);
+
+    auto result = lineResizeHandles.cursorForPos(p1);
+
+    QVERIFY(result != CursorHelper::defaultCursor());
+}
+
+void LineResizeHandlesTest::TestGetCursorForHandle_Should_ReturnDefaultCursor_When_ProvidedPositionNotOnHandle()
+{
+    AnnotationProperties properties(Qt::red, 1);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    QPointF p3(50, 50);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    LineResizeHandles lineResizeHandles(&lineItem);
+
+    auto result = lineResizeHandles.cursorForPos(p3);
+
+    QCOMPARE(result, CursorHelper::defaultCursor());
+}
+
+QTEST_MAIN(LineResizeHandlesTest);

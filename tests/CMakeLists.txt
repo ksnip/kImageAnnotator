@@ -8,13 +8,14 @@ set(ListOfUnitTests
         annotations/core/AnnotationAreaTest.cpp
         annotations/core/AnnotationItemFactoryTest
         annotations/core/AnnotationPropertiesFactoryTest
-        annotations/modifiers/ResizeHandlesTest
         annotations/modifiers/AnnotationItemResizerTest
         annotations/modifiers/AnnotationMultiItemResizerTest
         annotations/modifiers/AnnotationItemSelectorTest
         annotations/modifiers/AnnotationItemModifierTest
         annotations/modifiers/AnnotationItemArrangerTest
         annotations/modifiers/AnnotationItemMoverTest
+        annotations/modifiers/resizeHandles/LineResizeHandlesTest
+        annotations/modifiers/resizeHandles/RectResizeHandlesTest
         annotations/undo/AddCommandTest
         annotations/undo/DeleteCommandTest
         annotations/undo/MoveCommandTest

@@ -17,22 +17,20 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef RESIZEHANDLESTEST_H
-#define RESIZEHANDLESTEST_H
+#ifndef KIMAGEANNOTATOR_RECTRESIZEHANDLESTEST_H
+#define KIMAGEANNOTATOR_RECTRESIZEHANDLESTEST_H
 
 #include <QtTest>
 
-#include "../../../src/annotations/modifiers/ResizeHandles.h"
-#include "../../../src/annotations/items/AnnotationLine.h"
-#include "../../../src/annotations/items/AnnotationRect.h"
-#include "../../../src/common/helper/CursorHelper.h"
+#include "../../../../src/annotations/modifiers/resizeHandles/RectResizeHandles.h"
+#include "../../../../src/annotations/items/AnnotationRect.h"
+#include "../../../../src/common/helper/CursorHelper.h"
 
-class ResizeHandlesTest : public QObject
+class RectResizeHandlesTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestInitHandles_Should_PositionTwoHandles_When_LineItemProvided();
     void TestInitHandles_Should_PositionEightHandles_When_RectItemProvided();
     void TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_HandleIsAtProvidedPosition();
     void TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_HandleIsNotAtProvidedPosition();
@@ -42,4 +40,4 @@ private slots:
     void TestGetCursorForHandle_Should_ReturnDefaultCursor_When_ProvidedPositionNotOnHandle();
 };
 
-#endif // RESIZEHANDLESTEST_H
+#endif // KIMAGEANNOTATOR_RECTRESIZEHANDLESTEST_H
