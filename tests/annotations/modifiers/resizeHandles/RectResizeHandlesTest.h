@@ -38,6 +38,7 @@ private slots:
     void TestHandle_Should_NotReturnRect_When_HandleAtIndexDoesntExists();
     void TestGetCursorForHandle_Should_NotReturnDefaultCursor_When_ProvidedPositionOnHandle();
     void TestGetCursorForHandle_Should_ReturnDefaultCursor_When_ProvidedPositionNotOnHandle();
+    void TestUpdate_Should_MoveHandlesToNewPosition();
 };
 
 #endif // KIMAGEANNOTATOR_RECTRESIZEHANDLESTEST_H

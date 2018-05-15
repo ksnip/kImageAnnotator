@@ -124,4 +124,25 @@ void LineResizeHandlesTest::TestGetCursorForHandle_Should_ReturnDefaultCursor_Wh
     QCOMPARE(result, CursorHelper::defaultCursor());
 }
 
+void LineResizeHandlesTest::TestUpdate_Should_SetMoveHandlesToNewPositions()
+{
+    AnnotationProperties properties(Qt::red, 1);
+    QPointF p1(10, 10);
+    QPointF p2(20, 20);
+    QPointF p3(50, 50);
+    QPointF p4(60, 60);
+    AnnotationLine lineItem(p1, properties);
+    lineItem.addPoint(p2);
+    LineResizeHandles lineResizeHandles(&lineItem);
+    QCOMPARE(lineResizeHandles.handles()[0].center(), p1);
+    QCOMPARE(lineResizeHandles.handles()[1].center(), p2);
+    lineItem.setPointAt(p3, 0);
+    lineItem.setPointAt(p4, 1);
+
+    lineResizeHandles.update();
+
+    QCOMPARE(lineResizeHandles.handles()[0].center(), p3);
+    QCOMPARE(lineResizeHandles.handles()[1].center(), p4);
+}
+
 QTEST_MAIN(LineResizeHandlesTest);

@@ -48,13 +48,13 @@ void RectResizeHandlesTest::TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_
     RectResizeHandles rectResizeHandles(&rectItem);
 
     auto resultP1 = rectResizeHandles.indexOfHandleAt(rect.topLeft() + QPointF(2, 2));
-    auto resultP2 = rectResizeHandles.indexOfHandleAt(QPointF(rect.center().x(), rect.top()) + QPointF(-2, -2));
+    auto resultP2 = rectResizeHandles.indexOfHandleAt(MathHelper::rectTop(rect) + QPointF(-2, -2));
     auto resultP3 = rectResizeHandles.indexOfHandleAt(rect.topRight() + QPointF(-2, -2));
-    auto resultP4 = rectResizeHandles.indexOfHandleAt(QPointF(rect.right(), rect.center().y()) + QPointF(-2, -2));
+    auto resultP4 = rectResizeHandles.indexOfHandleAt(MathHelper::rectRight(rect) + QPointF(-2, -2));
     auto resultP5 = rectResizeHandles.indexOfHandleAt(rect.bottomRight() + QPointF(-2, -2));
-    auto resultP6 = rectResizeHandles.indexOfHandleAt(QPointF(rect.center().x(), rect.bottom()) + QPointF(-2, -2));
+    auto resultP6 = rectResizeHandles.indexOfHandleAt(MathHelper::rectBottom(rect) + QPointF(-2, -2));
     auto resultP7 = rectResizeHandles.indexOfHandleAt(rect.bottomLeft() + QPointF(-2, -2));
-    auto resultP8 = rectResizeHandles.indexOfHandleAt(QPointF(rect.left(), rect.center().y()) + QPointF(-2, -2));
+    auto resultP8 = rectResizeHandles.indexOfHandleAt(MathHelper::rectLeft(rect) + QPointF(-2, -2));
 
     QCOMPARE(rectResizeHandles.handles().count(), 8);
     QCOMPARE(resultP1, 0);
@@ -133,6 +133,37 @@ void RectResizeHandlesTest::TestGetCursorForHandle_Should_ReturnDefaultCursor_Wh
     auto result = rectResizeHandles.cursorForPos(otherPos);
 
     QCOMPARE(result, CursorHelper::defaultCursor());
+}
+
+void RectResizeHandlesTest::TestUpdate_Should_MoveHandlesToNewPosition()
+{
+    AnnotationProperties properties(Qt::red, 2);
+    QRectF rect(QPointF(10, 15), QPointF(20, 25));
+    QRectF newRect(QPointF(60, 75), QPointF(120, 125));
+    AnnotationRect rectItem(rect.topLeft(), properties);
+    rectItem.addPoint(rect.bottomRight());
+    RectResizeHandles rectResizeHandles(&rectItem);
+    QCOMPARE(rectResizeHandles.handles()[0].center(), rect.topLeft());
+    QCOMPARE(rectResizeHandles.handles()[1].center(), MathHelper::rectTop(rect));
+    QCOMPARE(rectResizeHandles.handles()[2].center(), rect.topRight());
+    QCOMPARE(rectResizeHandles.handles()[3].center(), MathHelper::rectRight(rect));
+    QCOMPARE(rectResizeHandles.handles()[4].center(), rect.bottomRight());
+    QCOMPARE(rectResizeHandles.handles()[5].center(), MathHelper::rectBottom(rect));
+    QCOMPARE(rectResizeHandles.handles()[6].center(), rect.bottomLeft());
+    QCOMPARE(rectResizeHandles.handles()[7].center(), MathHelper::rectLeft(rect));
+    rectItem.setPointAt(newRect.topLeft(), 0);
+    rectItem.addPoint(newRect.bottomRight());
+
+    rectResizeHandles.update();
+
+    QCOMPARE(rectResizeHandles.handles()[0].center(), newRect.topLeft());
+    QCOMPARE(rectResizeHandles.handles()[1].center(), MathHelper::rectTop(newRect));
+    QCOMPARE(rectResizeHandles.handles()[2].center(), newRect.topRight());
+    QCOMPARE(rectResizeHandles.handles()[3].center(), MathHelper::rectRight(newRect));
+    QCOMPARE(rectResizeHandles.handles()[4].center(), newRect.bottomRight());
+    QCOMPARE(rectResizeHandles.handles()[5].center(), MathHelper::rectBottom(newRect));
+    QCOMPARE(rectResizeHandles.handles()[6].center(), newRect.bottomLeft());
+    QCOMPARE(rectResizeHandles.handles()[7].center(), MathHelper::rectLeft(newRect));
 }
 
 QTEST_MAIN(RectResizeHandlesTest);

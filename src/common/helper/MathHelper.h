@@ -27,6 +27,10 @@ class MathHelper
 public:
     static qreal roundAngleTo(const qreal currentAngle, const int increments);
     static qreal smallerValue(qreal value1, qreal value2);
+    static QPointF rectTop(const QRectF &rect);
+    static QPointF rectRight(const QRectF &rect);
+    static QPointF rectBottom(const QRectF &rect);
+    static QPointF rectLeft(const QRectF &rect);
 };
 
 #endif // MATHHELPER_H

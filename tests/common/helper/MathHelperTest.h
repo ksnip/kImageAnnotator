@@ -26,12 +26,16 @@
 
 class MathHelperTest : public QObject
 {
-    Q_OBJECT
+Q_OBJECT
 private slots:
     void TestRoundAngleTo_Should_ReturnAngleRoundedUpToIncrement();
     void TestRoundAngleTo_Should_ReturnAngleRoundedUpToIncrement_data();
     void TestSmallerValue_Should_AlwaysSmallerOfTwoValues();
     void TestSmallerValue_Should_AlwaysSmallerOfTwoValues_data();
+    void TestRectTop_ReturnsPointAtTopCentered();
+    void TestRectRight_ReturnsPointAtRightCentered();
+    void TestRectLeft_ReturnsPointAtLeftCentered();
+    void TestRectBottom_ReturnsPointAtBottomCentered();
 };
 
 #endif // MATHHELPERTEST_H
