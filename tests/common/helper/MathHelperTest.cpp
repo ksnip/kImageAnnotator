@@ -69,40 +69,4 @@ void MathHelperTest::TestSmallerValue_Should_AlwaysSmallerOfTwoValues_data()
     QTest::newRow("set6") << -2.0 << 2.0 << -2.0;
 }
 
-void MathHelperTest::TestRectTop_ReturnsPointAtTopCentered()
-{
-    QRectF rect(10, 10, 50, 50);
-
-    auto top = MathHelper::rectTop(rect);
-
-    QCOMPARE(top, QPointF(rect.center().x(), rect.top()));
-}
-
-void MathHelperTest::TestRectRight_ReturnsPointAtRightCentered()
-{
-    QRectF rect(10, 10, 50, 50);
-
-    auto right = MathHelper::rectRight(rect);
-
-    QCOMPARE(right, QPointF(rect.right(), rect.center().y()));
-}
-
-void MathHelperTest::TestRectLeft_ReturnsPointAtLeftCentered()
-{
-    QRectF rect(10, 10, 50, 50);
-
-    auto left = MathHelper::rectRight(rect);
-
-    QCOMPARE(left, QPointF(rect.left(), rect.center().y()));
-}
-
-void MathHelperTest::TestRectBottom_ReturnsPointAtBottomCentered()
-{
-    QRectF rect(10, 10, 50, 50);
-
-    auto bottom = MathHelper::rectTop(rect);
-
-    QCOMPARE(bottom, QPointF(rect.center().x(), rect.bottom()));
-}
-
 QTEST_MAIN(MathHelperTest);

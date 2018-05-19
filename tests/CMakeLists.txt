@@ -28,7 +28,8 @@ set(ListOfUnitTests
         common/formatter/ConfigNameFormatterTest
         common/helper/KeyHelperTest
         common/helper/MathHelperTest
-        common/helper/ItemHelperTest)
+        common/helper/ItemHelperTest
+        common/helper/ShapeHelperTest)
 
 add_library(kimageannotator_LIB STATIC ${kimageannotator_SRCS})
 target_link_libraries(kimageannotator_LIB Qt5::Widgets KF5::CoreAddons KF5::I18n KF5::WidgetsAddons)

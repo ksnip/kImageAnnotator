@@ -28,7 +28,7 @@ QPointF ShapeHelper::rectTopLeftWithOffset(const QRectF &rect, int offset)
 
 QPointF ShapeHelper::rectTop(const QRectF &rect)
 {
-    return QPointF(rect.topLeft().x(), rect.topLeft().y());
+    return QPointF(rect.center().x(), rect.top());
 }
 
 QPointF ShapeHelper::rectTopWithOffset(const QRectF &rect, int offset)

@@ -92,7 +92,7 @@ void LineResizeHandlesTest::TestHandle_Should_NotReturnRect_When_HandleAtIndexDo
 
     auto result = lineResizeHandles.handle(3);
 
-    QCOMPARE(result, QRectF());
+    QCOMPARE(result, ResizeHandle());
 }
 
 void LineResizeHandlesTest::TestGetCursorForHandle_Should_NotReturnDefaultCursor_When_ProvidedPositionOnHandle()
