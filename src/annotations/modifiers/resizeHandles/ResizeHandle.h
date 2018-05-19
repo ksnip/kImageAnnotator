@@ -17,16 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef MATHHELPER_H
-#define MATHHELPER_H
+#ifndef KIMAGEANNOTATOR_RESIZEHANDLE_H
+#define KIMAGEANNOTATOR_RESIZEHANDLE_H
 
-#include <QtMath>
+#include <QRectF>
 
-class MathHelper
+class ResizeHandle : public QRectF
 {
 public:
-    static qreal roundAngleTo(const qreal currentAngle, const int increments);
-    static qreal smallerValue(qreal value1, qreal value2);
+    ResizeHandle();
+    ResizeHandle(int size);
+    ~ResizeHandle() = default;
+    QPointF anchor() const;
+    void setAnchor(const QPointF &pos);
+    QPointF offset() const;
+    void setOffset(const QPointF &offset);
+
+private:
+    QPointF mOffset;
+    int mSize;
 };
 
-#endif // MATHHELPER_H
+#endif //KIMAGEANNOTATOR_RESIZEHANDLE_H

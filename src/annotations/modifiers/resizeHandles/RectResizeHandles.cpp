@@ -30,14 +30,23 @@ RectResizeHandles::RectResizeHandles(AbstractAnnotationRect *rectItem)
 void RectResizeHandles::update()
 {
     auto rect = mRectItem->rect();
-    mHandles[0].moveCenter(rect.topLeft());
-    mHandles[1].moveCenter(QPointF(rect.center().x(), rect.top()));
-    mHandles[2].moveCenter(rect.topRight());
-    mHandles[3].moveCenter(QPointF(rect.right(), rect.center().y()));
-    mHandles[4].moveCenter(rect.bottomRight());
-    mHandles[5].moveCenter(QPointF(rect.center().x(), rect.bottom()));
-    mHandles[6].moveCenter(rect.bottomLeft());
-    mHandles[7].moveCenter(QPointF(rect.left(), rect.center().y()));
+    auto offset = mRectItem->properties().size() / 2;
+    mHandles[0].moveCenter(ShapeHelper::rectTopLeftWithOffset(rect, offset));
+    mHandles[0].setAnchor(rect.topLeft());
+    mHandles[1].moveCenter(ShapeHelper::rectTopWithOffset(rect, offset));
+    mHandles[1].setAnchor(ShapeHelper::rectTop(rect));
+    mHandles[2].moveCenter(ShapeHelper::rectTopRightWithOffset(rect, offset));
+    mHandles[2].setAnchor(rect.topRight());
+    mHandles[3].moveCenter(ShapeHelper::rectRightWithOffset(rect, offset));
+    mHandles[3].setAnchor(ShapeHelper::rectRight(rect));
+    mHandles[4].moveCenter(ShapeHelper::rectBottomRightWithOffset(rect, offset));
+    mHandles[4].setAnchor(rect.bottomRight());
+    mHandles[5].moveCenter(ShapeHelper::rectBottomWithOffset(rect, offset));
+    mHandles[5].setAnchor(ShapeHelper::rectBottom(rect));
+    mHandles[6].moveCenter(ShapeHelper::rectBottomLeftWithOffset(rect, offset));
+    mHandles[6].setAnchor(rect.bottomLeft());
+    mHandles[7].moveCenter(ShapeHelper::rectLeftWithOffset(rect, offset));
+    mHandles[7].setAnchor(ShapeHelper::rectLeft(rect));
 
     updateRectCursors();
 }
@@ -62,8 +71,8 @@ void RectResizeHandles::updateRectCursors()
     }
 
     auto rect = mRectItem->rect().normalized();
-    mCursors[indexOfHandleAt(rect.topLeft())] = CursorHelper::fDiagResizeCursor();
-    mCursors[indexOfHandleAt(rect.topRight())] = CursorHelper::bDiagResizeCursor();
-    mCursors[indexOfHandleAt(rect.bottomRight())] = CursorHelper::fDiagResizeCursor();
-    mCursors[indexOfHandleAt(rect.bottomLeft())] = CursorHelper::bDiagResizeCursor();
+    mCursors[indexOfHandleWithAnchorAt(rect.topLeft())] = CursorHelper::fDiagResizeCursor();
+    mCursors[indexOfHandleWithAnchorAt(rect.topRight())] = CursorHelper::bDiagResizeCursor();
+    mCursors[indexOfHandleWithAnchorAt(rect.bottomRight())] = CursorHelper::fDiagResizeCursor();
+    mCursors[indexOfHandleWithAnchorAt(rect.bottomLeft())] = CursorHelper::bDiagResizeCursor();
 }

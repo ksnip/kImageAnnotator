@@ -18,7 +18,6 @@
  */
 
 #include <QtCore/QPointF>
-#include <QtCore/QRectF>
 #include "MathHelper.h"
 
 qreal MathHelper::roundAngleTo(const qreal currentAngle, const int increments)
@@ -33,24 +32,4 @@ qreal MathHelper::smallerValue(qreal value1, qreal value2)
 {
     qreal value = (qAbs(value1) < qAbs(value2)) ? qAbs(value1) : qAbs(value2);
     return (value1 < 0) ? -value : value;
-}
-
-QPointF MathHelper::rectTop(const QRectF &rect)
-{
-    return QPointF(rect.center().x(), rect.top());
-}
-
-QPointF MathHelper::rectRight(const QRectF &rect)
-{
-    return QPointF(rect.right(), rect.center().y());
-}
-
-QPointF MathHelper::rectBottom(const QRectF &rect)
-{
-    return QPointF(rect.center().x(), rect.bottom());
-}
-
-QPointF MathHelper::rectLeft(const QRectF &rect)
-{
-    return QPointF(rect.left(), rect.center().y());;
 }

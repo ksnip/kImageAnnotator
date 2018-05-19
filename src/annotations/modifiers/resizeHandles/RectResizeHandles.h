@@ -22,7 +22,7 @@
 
 #include "AbstractItemResizeHandles.h"
 #include "../../items/AbstractAnnotationRect.h"
-#include "../../../common/helper/MathHelper.h"
+#include "../../../common/helper/ShapeHelper.h"
 
 class RectResizeHandles : public AbstractItemResizeHandles
 {

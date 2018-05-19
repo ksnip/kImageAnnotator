@@ -43,7 +43,7 @@ void AnnotationItemResizer::grabHandle(const QPointF &pos)
 {
     mCurrentHandle = mResizeHandles->indexOfHandleAt(pos);
     if (mCurrentHandle != -1) {
-        mClickOffset = pos - mResizeHandles->handle(mCurrentHandle).center();
+        mClickOffset = pos - mResizeHandles->handle(mCurrentHandle).anchor();
     }
 }
 

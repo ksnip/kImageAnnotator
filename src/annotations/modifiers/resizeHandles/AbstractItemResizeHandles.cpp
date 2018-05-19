@@ -34,16 +34,26 @@ int AbstractItemResizeHandles::indexOfHandleAt(const QPointF &pos) const
     return -1;
 }
 
-QRectF AbstractItemResizeHandles::handle(int index) const
+int AbstractItemResizeHandles::indexOfHandleWithAnchorAt(const QPointF &pos) const
+{
+    for (auto handle : mHandles) {
+        if (handle.anchor() == pos) {
+            return mHandles.indexOf(handle);
+        }
+    }
+    return -1;
+}
+
+ResizeHandle AbstractItemResizeHandles::handle(int index) const
 {
     if (index < 0 || index >= mHandles.count()) {
-        return QRectF();
+        return ResizeHandle();
     }
 
     return mHandles[index];
 }
 
-QList<QRectF> AbstractItemResizeHandles::handles() const
+QList<ResizeHandle> AbstractItemResizeHandles::handles() const
 {
     return mHandles;
 }
@@ -67,7 +77,7 @@ void AbstractItemResizeHandles::initHandles(int count)
 {
     mHandles.clear();
     for (auto i = 0; i < count; i++) {
-        mHandles.append(QRectF(0, 0, mHandleSize, mHandleSize));
+        mHandles.append(ResizeHandle(mHandleSize));
     }
 }
 

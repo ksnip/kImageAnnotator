@@ -20,6 +20,7 @@
 #ifndef KIMAGEANNOTATOR_ABSTRACTITEMRESIZEHANDLES_H
 #define KIMAGEANNOTATOR_ABSTRACTITEMRESIZEHANDLES_H
 
+#include "ResizeHandle.h"
 #include "../../items/AbstractAnnotationItem.h"
 #include "../../../common/helper/CursorHelper.h"
 
@@ -30,15 +31,16 @@ public:
     virtual ~AbstractItemResizeHandles() = default;
     virtual void update() = 0;
     virtual int indexOfHandleAt(const QPointF &pos) const;
-    virtual QRectF handle(int index) const;
-    virtual QList<QRectF> handles() const;
+    virtual int indexOfHandleWithAnchorAt(const QPointF &pos) const;
+    virtual ResizeHandle handle(int index) const;
+    virtual QList<ResizeHandle> handles() const;
     virtual Qt::CursorShape cursorForPos(const QPointF &pos) const;
     virtual Qt::CursorShape cursorForHandle(int index) const;
     int handleSize() const;
 
 protected:
     int mHandleSize;
-    QList<QRectF> mHandles;
+    QList<ResizeHandle> mHandles;
     QList<Qt::CursorShape> mCursors;
 
     virtual void initHandles(int count);

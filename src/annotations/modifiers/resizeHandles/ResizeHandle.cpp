@@ -17,16 +17,34 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef MATHHELPER_H
-#define MATHHELPER_H
+#include "ResizeHandle.h"
 
-#include <QtMath>
-
-class MathHelper
+ResizeHandle::ResizeHandle()
+    : QRectF(0, 0, 0, 0)
 {
-public:
-    static qreal roundAngleTo(const qreal currentAngle, const int increments);
-    static qreal smallerValue(qreal value1, qreal value2);
-};
+}
 
-#endif // MATHHELPER_H
+ResizeHandle::ResizeHandle(int size)
+    : QRectF(0, 0, size, size)
+{
+}
+
+QPointF ResizeHandle::anchor() const
+{
+    return center() + mOffset;
+}
+
+void ResizeHandle::setAnchor(const QPointF &pos)
+{
+    mOffset = pos - center();
+}
+
+QPointF ResizeHandle::offset() const
+{
+    return mOffset;
+}
+
+void ResizeHandle::setOffset(const QPointF &offset)
+{
+    mOffset = offset;
+}

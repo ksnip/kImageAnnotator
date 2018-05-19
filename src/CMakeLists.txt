@@ -18,6 +18,7 @@ set(kimageannotator_SRCS
         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/resizeHandles/AbstractItemResizeHandles.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/resizeHandles/LineResizeHandles.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/resizeHandles/RectResizeHandles.cpp
+        ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/resizeHandles/ResizeHandle.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/modifiers/resizeHandles/ResizeHandlesFactory.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationItem.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationLine.cpp
@@ -39,6 +40,7 @@ set(kimageannotator_SRCS
         ${CMAKE_SOURCE_DIR}/src/common/helper/KeyHelper.cpp
         ${CMAKE_SOURCE_DIR}/src/common/helper/MathHelper.cpp
         ${CMAKE_SOURCE_DIR}/src/common/helper/ItemHelper.cpp
+        ${CMAKE_SOURCE_DIR}/src/common/helper/ShapeHelper.cpp
         ${CMAKE_SOURCE_DIR}/src/widgets/ToolPicker.cpp
         ${CMAKE_SOURCE_DIR}/src/widgets/ColorPicker.cpp
         ${CMAKE_SOURCE_DIR}/src/widgets/SizePicker.cpp
