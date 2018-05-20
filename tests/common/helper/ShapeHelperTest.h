@@ -33,6 +33,23 @@ private slots:
     void TestRectRight_ReturnsPointAtRightCentered();
     void TestRectLeft_ReturnsPointAtLeftCentered();
     void TestRectBottom_ReturnsPointAtBottomCentered();
+    void TestRectTopWithOffset_ReturnsPointAtTopWithAddedOffset_When_TopSmallerThenBottom();
+    void TestRectTopWithOffset_ReturnsPointAtTopWithSubtractedOffset_When_TopLargerThenBottom();
+    void TestRectRightWithOffset_ReturnsPointAtRightWithSubtracedOffset_When_RightSmallerThenLeft();
+    void TestRectRightWithOffset_ReturnsPointAtRightWithAddedOffset_When_RightLargerThenLeft();
+    void TestRectBottomWithOffset_ReturnsPointAtBottomWithSubtracedOffset_When_BottomSmallerThenTop();
+    void TestRectBottomWithOffset_ReturnsPointAtBottomWithAddedOffset_When_BottomLargerThenTop();
+    void TestRectLeftWithOffset_ReturnsPointAtLeftWithAddedOffset_When_LeftSmallerThenRight();
+    void TestRectLeftWithOffset_ReturnsPointAtLeftWithSubtracedOffset_When_LeftLargerThenRight();
+    void TestRectTopLeftWithOffset_ReturnPointWithCorrectOffset();
+    void TestRectTopLeftWithOffset_ReturnPointWithCorrectOffset_data();
+    void TestRectTopRightWithOffset_ReturnPointWithCorrectOffset();
+    void TestRectTopRightWithOffset_ReturnPointWithCorrectOffset_data();
+    void TestRectBottomLeftWithOffset_ReturnPointWithCorrectOffset();
+    void TestRectBottomLeftWithOffset_ReturnPointWithCorrectOffset_data();
+    void TestRectBottomRightWithOffset_ReturnPointWithCorrectOffset();
+    void TestRectBottomRightWithOffset_ReturnPointWithCorrectOffset_data();
+
 };
 
 #endif //KIMAGEANNOTATOR_SHAPEHELPERTEST
