@@ -21,6 +21,7 @@
 #define KIMAGEANNOTATOR_SHAPEHELPER_H
 
 #include <QRectF>
+#include <QLineF>
 
 class ShapeHelper
 {
@@ -37,6 +38,7 @@ public:
     static QPointF rectBottomLeftWithOffset(const QRectF &rect, int offset);
     static QPointF rectLeft(const QRectF &rect);
     static QPointF rectLeftWithOffset(const QRectF &rect, int offset);
+    static QLineF extendLine(const QLineF &line, int extendBy);
 
 private:
     static int invertOffsetIfTopSmallerThenBottom(const QRectF &rect, int yOffset);

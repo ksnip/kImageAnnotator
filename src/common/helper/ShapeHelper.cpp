@@ -91,6 +91,15 @@ QPointF ShapeHelper::rectLeftWithOffset(const QRectF &rect, int offset)
     return QPointF(rect.left() + offset, rect.center().y());
 }
 
+QLineF ShapeHelper::extendLine(const QLineF &line, int extendBy)
+{
+    QLineF newLine(line.p2().x(), line.p2().y(), line.p1().x(), line.p1().y());
+    newLine.setLength(newLine.length() + extendBy / 2);
+    newLine.setLine(newLine.p2().x(), newLine.p2().y(), newLine.p1().x(), newLine.p1().y());
+    newLine.setLength(newLine.length() + extendBy / 2);
+    return newLine;
+}
+
 int ShapeHelper::invertOffsetIfLeftSmallerThenRight(const QRectF &rect, int xOffset)
 {
     if (rect.left() < rect.right()) {

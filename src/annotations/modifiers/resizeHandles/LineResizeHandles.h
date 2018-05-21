@@ -22,6 +22,7 @@
 
 #include "AbstractItemResizeHandles.h"
 #include "../../items/AbstractAnnotationLine.h"
+#include "../../../common/helper/ShapeHelper.h"
 
 class LineResizeHandles : public AbstractItemResizeHandles
 {
