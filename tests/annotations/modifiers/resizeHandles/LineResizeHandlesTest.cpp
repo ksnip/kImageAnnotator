@@ -30,8 +30,8 @@ void LineResizeHandlesTest::TestInitHandles_Should_PositionTwoHandles()
     LineResizeHandles lineResizeHandles(&lineItem);
 
     QCOMPARE(lineResizeHandles.handles().count(), 2);
-    QCOMPARE(lineResizeHandles.handles()[0].center(), p1);
-    QCOMPARE(lineResizeHandles.handles()[1].center(), p2);
+    QCOMPARE(lineResizeHandles.handles()[0].anchor(), p1);
+    QCOMPARE(lineResizeHandles.handles()[1].anchor(), p2);
 }
 
 void LineResizeHandlesTest::TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_HandleIsAtProvidedPosition()
@@ -78,7 +78,7 @@ void LineResizeHandlesTest::TestHandle_Should_ReturnRectAtIndex_When_HandleAtInd
     auto result = lineResizeHandles.handle(1);
 
     QVERIFY(result != QRectF());
-    QCOMPARE(result.center(), p2);
+    QCOMPARE(result.anchor(), p2);
 }
 
 void LineResizeHandlesTest::TestHandle_Should_NotReturnRect_When_HandleAtIndexDoesntExists()
