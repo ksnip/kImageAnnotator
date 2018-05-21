@@ -260,4 +260,22 @@ void ShapeHelperTest::TestRectBottomRightWithOffset_ReturnPointWithCorrectOffset
     QTest::newRow("set4") << -10 << -10 << -5 << -5;
 }
 
+void ShapeHelperTest::TestExtendLine_Should_ReturnNewLineExtendBySizeWithSameAngle()
+{
+    QLineF line(10, 10, 20, 20);
+    auto extendBy = 12;
+
+    auto result = ShapeHelper::extendLine(line, extendBy);
+
+    QLineF lineExtendP1(line.p2(), line.p1());
+    lineExtendP1.setLength(line.length() + extendBy / 2);
+    lineExtendP1.setLine(lineExtendP1.p2().x(), lineExtendP1.p2().y(), lineExtendP1.p1().x(), lineExtendP1.p1().y());
+    auto lineExtendP2 = line;
+    lineExtendP2.setLength(line.length() + extendBy / 2);
+    QCOMPARE(result.length(), line.length() + extendBy);
+    QCOMPARE(result.angle(), line.angle());
+    QCOMPARE(result.p1(), lineExtendP1.p1());
+    QCOMPARE(result.p2(), lineExtendP2.p2());
+}
+
 QTEST_MAIN(ShapeHelperTest);

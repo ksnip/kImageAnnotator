@@ -49,7 +49,7 @@ private slots:
     void TestRectBottomLeftWithOffset_ReturnPointWithCorrectOffset_data();
     void TestRectBottomRightWithOffset_ReturnPointWithCorrectOffset();
     void TestRectBottomRightWithOffset_ReturnPointWithCorrectOffset_data();
-
+    void TestExtendLine_Should_ReturnNewLineExtendBySizeWithSameAngle();
 };
 
 #endif //KIMAGEANNOTATOR_SHAPEHELPERTEST
