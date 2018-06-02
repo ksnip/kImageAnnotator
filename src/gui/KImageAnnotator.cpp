@@ -19,7 +19,7 @@
 
 #include "KImageAnnotator.h"
 
-KImageAnnotator::KImageAnnotator(const QPixmap& image)
+KImageAnnotator::KImageAnnotator(const QPixmap &image)
 {
     initAppSettings();
     initGui();
@@ -36,7 +36,7 @@ KImageAnnotator::~KImageAnnotator()
     delete mToolsLayout;
     delete mToolPicker;
     delete mColorPicker;
-    delete mForegroundColorPicker;
+    delete mTextColorPicker;
     delete mSizePicker;
     delete mFillPicker;
 }
@@ -58,14 +58,14 @@ void KImageAnnotator::initGui()
     mToolsLayout = new QVBoxLayout();
     mToolPicker = new ToolPicker();
     mColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("tool_color_picker")), i18n("Color"));
-    mForegroundColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("format-text-color")), i18n("Foreground Color"));
+    mTextColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("format-text-color")), i18n("Text Color"));
     mSizePicker = new SizePicker(QIcon::fromTheme(QStringLiteral("newline")), i18n("Size"));
-    mFillPicker = new FillPicker(QIcon::fromTheme(QStringLiteral("fill-color")), i18n("Fill"));
+    mFillPicker = new FillPicker(QIcon::fromTheme(QStringLiteral("fill-color")), i18n("Fill Type"));
 
     mToolsLayout->addWidget(mToolPicker);
     mToolsLayout->addSpacing(20);
     mToolsLayout->addWidget(mColorPicker);
-    mToolsLayout->addWidget(mForegroundColorPicker);
+    mToolsLayout->addWidget(mTextColorPicker);
     mToolsLayout->addWidget(mSizePicker);
     mToolsLayout->addWidget(mFillPicker);
     mToolsLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
@@ -75,7 +75,7 @@ void KImageAnnotator::initGui()
     setLayout(mMainLayout);
 
     mVisibilitySwitcher.setOutlineColorWidget(mColorPicker);
-    mVisibilitySwitcher.setForegroundColorWidget(mForegroundColorPicker);
+    mVisibilitySwitcher.setForegroundColorWidget(mTextColorPicker);
     mVisibilitySwitcher.setSizeWidget(mSizePicker);
     mVisibilitySwitcher.setFillWidget(mFillPicker);
 
@@ -83,16 +83,20 @@ void KImageAnnotator::initGui()
 
     connect(mToolPicker, &ToolPicker::toolSelected, mConfig, &Config::setSelectedTool);
     connect(mToolPicker, &ToolPicker::toolSelected, this, &KImageAnnotator::updateSelection);
-    connect(mColorPicker, &ColorPicker::colorSelected, [this](const QColor & color) {
+    connect(mColorPicker, &ColorPicker::colorSelected, [this](const QColor &color)
+    {
         mConfig->setToolColor(color, mToolPicker->tool());
     });
-    connect(mForegroundColorPicker, &ColorPicker::colorSelected, [this](const QColor & color) {
+    connect(mTextColorPicker, &ColorPicker::colorSelected, [this](const QColor &color)
+    {
         mConfig->setToolForegroundColor(color, mToolPicker->tool());
     });
-    connect(mSizePicker, &SizePicker::sizeSelected, [this](int size) {
+    connect(mSizePicker, &SizePicker::sizeSelected, [this](int size)
+    {
         mConfig->setToolSize(size, mToolPicker->tool());
     });
-    connect(mFillPicker, &FillPicker::fillSelected, [this](FillTypes fill) {
+    connect(mFillPicker, &FillPicker::fillSelected, [this](FillTypes fill)
+    {
         mConfig->setToolFillType(fill, mToolPicker->tool());
     });
 }
@@ -105,7 +109,7 @@ void KImageAnnotator::setupDefaults()
 void KImageAnnotator::updateSelection(ToolTypes tool)
 {
     mColorPicker->setColor(mConfig->toolColor(tool));
-    mForegroundColorPicker->setColor(mConfig->toolForegroundColor(tool));
+    mTextColorPicker->setColor(mConfig->toolForegroundColor(tool));
     mSizePicker->setSize(mConfig->toolSize(tool));
     mFillPicker->setFill(mConfig->toolFillType(tool));
 

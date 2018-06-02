@@ -38,22 +38,22 @@
 
 class KImageAnnotator : public QWidget
 {
-    Q_OBJECT
+Q_OBJECT
 public:
-    KImageAnnotator(const QPixmap& image);
+    KImageAnnotator(const QPixmap &image);
     ~KImageAnnotator();
 
 private:
-    AnnotationArea* mAnnotationArea;
-    QGraphicsView*  mView;
-    QHBoxLayout*    mMainLayout;
-    QVBoxLayout*    mToolsLayout;
-    ToolPicker*     mToolPicker;
-    ColorPicker*    mColorPicker;
-    ColorPicker*    mForegroundColorPicker;
-    SizePicker*     mSizePicker;
-    FillPicker*     mFillPicker;
-    Config*         mConfig;
+    AnnotationArea *mAnnotationArea;
+    QGraphicsView *mView;
+    QHBoxLayout *mMainLayout;
+    QVBoxLayout *mToolsLayout;
+    ToolPicker *mToolPicker;
+    ColorPicker *mColorPicker;
+    ColorPicker *mTextColorPicker;
+    SizePicker *mSizePicker;
+    FillPicker *mFillPicker;
+    Config *mConfig;
     VisibilitySwitcher mVisibilitySwitcher;
 
     void initAppSettings();

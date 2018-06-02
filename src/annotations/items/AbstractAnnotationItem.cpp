@@ -19,7 +19,7 @@
 
 #include "AbstractAnnotationItem.h"
 
-AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationProperties& properties)
+AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationProperties &properties)
 {
     mProperties = new AnnotationProperties(properties);
     mShape = new QPainterPath();
@@ -47,7 +47,7 @@ AbstractAnnotationItem::~AbstractAnnotationItem()
 QRectF AbstractAnnotationItem::boundingRect() const
 {
     auto width = 0;
-    if(!mShape->isEmpty()) {
+    if (!mShape->isEmpty()) {
         width = mProperties->size() / 2;
     }
 
@@ -57,18 +57,18 @@ QRectF AbstractAnnotationItem::boundingRect() const
 QPainterPath AbstractAnnotationItem::shape() const
 {
     auto path = mStroker->createStroke(*mShape);
-    if(hasFill()) {
+    if (hasFill()) {
         path.addPath(*mShape);
     }
     return path;
 }
 
-bool AbstractAnnotationItem::intersects(const QRectF& rect) const
+bool AbstractAnnotationItem::intersects(const QRectF &rect) const
 {
     return shape().intersects(rect);
 }
 
-void AbstractAnnotationItem::setShape(QPainterPath& newShape)
+void AbstractAnnotationItem::setShape(QPainterPath &newShape)
 {
     mShape->swap(newShape);
 }
@@ -83,15 +83,15 @@ AnnotationProperties AbstractAnnotationItem::properties() const
     return *mProperties;
 }
 
-void AbstractAnnotationItem::setProperties(const AnnotationProperties& properties)
+void AbstractAnnotationItem::setProperties(const AnnotationProperties &properties)
 {
     *mProperties = properties;
 }
 
 void AbstractAnnotationItem::addShadowEffect()
 {
-    auto shadowEffect = dynamic_cast<QGraphicsDropShadowEffect*>(graphicsEffect());
-    if(!shadowEffect) {
+    auto shadowEffect = dynamic_cast<QGraphicsDropShadowEffect *>(graphicsEffect());
+    if (!shadowEffect) {
         shadowEffect = new QGraphicsDropShadowEffect();
         shadowEffect->setColor(QColor(63, 63, 63, 190));
         shadowEffect->setBlurRadius(7);
@@ -100,11 +100,11 @@ void AbstractAnnotationItem::addShadowEffect()
     }
 }
 
-void AbstractAnnotationItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*)
+void AbstractAnnotationItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(mPainterPen);
-    if(hasFill()) {
+    if (hasFill()) {
         painter->setBrush(mProperties->color());
     }
     painter->drawPath(*mShape);

@@ -23,7 +23,7 @@ ToolPicker::ToolPicker()
 {
     initGui();
 
-    connect(mButtonGroup, static_cast<void (QButtonGroup::*)(QAbstractButton*)>(&QButtonGroup::buttonClicked), this, &ToolPicker::buttonClicked);
+    connect(mButtonGroup, static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonClicked), this, &ToolPicker::buttonClicked);
 }
 
 ToolPicker::~ToolPicker()
@@ -60,7 +60,7 @@ void ToolPicker::initGui()
     mLayout->addWidget(button, 0, 1);
     mButtonGroup->addButton(button);
 
-    button = createButton(i18n("Rect"), QIcon::fromTheme(QStringLiteral("draw-rectangle")), Qt::Key_R);
+    button = createButton(i18n("Rectangle"), QIcon::fromTheme(QStringLiteral("draw-rectangle")), Qt::Key_R);
     mButtonToTool[button] = ToolTypes::Rect;
     mLayout->addWidget(button, 2, 0);
     mButtonGroup->addButton(button);
@@ -84,7 +84,7 @@ void ToolPicker::initGui()
     setFixedSize(sizeHint());
 }
 
-QToolButton* ToolPicker::createButton(const QString& tooltip, const QIcon& icon, Qt::Key shortcut)
+QToolButton *ToolPicker::createButton(const QString &tooltip, const QIcon &icon, Qt::Key shortcut)
 {
     auto button = new QToolButton(this);
     button->setCheckable(true);
@@ -97,7 +97,7 @@ QToolButton* ToolPicker::createButton(const QString& tooltip, const QIcon& icon,
     return button;
 }
 
-void ToolPicker::buttonClicked(QAbstractButton* button)
+void ToolPicker::buttonClicked(QAbstractButton *button)
 {
     setToolAndNotify(mButtonToTool.value(button));
 }
