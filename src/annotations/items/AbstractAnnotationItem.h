@@ -31,33 +31,32 @@
 class AbstractAnnotationItem : public QGraphicsItem
 {
 public:
-    AbstractAnnotationItem(const AnnotationProperties& properties);
+    AbstractAnnotationItem(const AnnotationProperties &properties);
     ~AbstractAnnotationItem();
     virtual QRectF boundingRect() const override;
     virtual QPainterPath shape() const override;
-    virtual bool intersects(const QRectF& rect) const;
+    virtual bool intersects(const QRectF &rect) const;
     virtual void addPoint(const QPointF &position, bool modified = false) = 0;
-    virtual void setPointAt(const QPointF& point, int index) = 0;
+    virtual void setPointAt(const QPointF &point, int index) = 0;
     virtual QPointF pointAt(int index) const = 0;
     virtual void setPosition(const QPointF &newPosition) = 0;
     virtual QPointF position();
     AnnotationProperties properties() const;
-    void setProperties(const AnnotationProperties& properties);
     void addShadowEffect();
 
 protected:
-    void setShape(QPainterPath& newShape);
+    void setShape(QPainterPath &newShape);
     virtual void updateShape() = 0;
-    virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*) override;
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 
 private:
-    AnnotationProperties* mProperties;
-    QPainterPath*         mShape;
-    QPainterPathStroker*  mStroker;
-    QPen                  mPainterPen;
-    bool                  mIsSelected;
+    AnnotationProperties *mProperties;
+    QPainterPath *mShape;
+    QPainterPathStroker *mStroker;
+    QPen mPainterPen;
 
     bool hasFill() const;
+    void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
 };
 
 #endif // ABSTRACTANNOTATIONITEM_H

@@ -31,10 +31,7 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationProperties &prope
 
     mStroker = new QPainterPathStroker(mPainterPen);
 
-    // Add shadow, for now for every item
     addShadowEffect();
-
-    mIsSelected = false;
 }
 
 AbstractAnnotationItem::~AbstractAnnotationItem()
@@ -83,11 +80,6 @@ AnnotationProperties AbstractAnnotationItem::properties() const
     return *mProperties;
 }
 
-void AbstractAnnotationItem::setProperties(const AnnotationProperties &properties)
-{
-    *mProperties = properties;
-}
-
 void AbstractAnnotationItem::addShadowEffect()
 {
     auto shadowEffect = dynamic_cast<QGraphicsDropShadowEffect *>(graphicsEffect());
@@ -102,12 +94,21 @@ void AbstractAnnotationItem::addShadowEffect()
 
 void AbstractAnnotationItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
+    shiftPainterForAllOddShapeWidth(painter);
+
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(mPainterPen);
     if (hasFill()) {
         painter->setBrush(mProperties->color());
     }
     painter->drawPath(*mShape);
+}
+
+void AbstractAnnotationItem::shiftPainterForAllOddShapeWidth(QPainter *painter) const
+{
+    if (mPainterPen.width() % 2 != 0) {
+        painter->translate(0.5, 0.5);
+    }
 }
 
 bool AbstractAnnotationItem::hasFill() const

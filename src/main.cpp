@@ -21,11 +21,11 @@
 
 #include "gui/KImageAnnotator.h"
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
     QPixmap pixmap(QSize(500, 500));
-    pixmap.fill(QColor(QStringLiteral("Green")));
+    pixmap.fill(QColor(Qt::green));
     auto kImageAnnotator = new KImageAnnotator(pixmap);
     kImageAnnotator->show();
 

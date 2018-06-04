@@ -19,10 +19,11 @@
 
 #include "AnnotationNumber.h"
 
-AnnotationNumber::AnnotationNumber(const QPointF& centerPosition, int number, const AnnotationProperties& properties) :
+AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, int number, const AnnotationProperties &properties)
+    :
     AbstractAnnotationRect(centerPosition, properties)
 {
-    mFont = new QFont("Helvetica", QFont::Bold);
+    mFont = new QFont(QStringLiteral("Helvetica"), QFont::Bold);
     mNumberString = QString::number(number);
     mRect->setHeight(50);
     mRect->setWidth(50);
@@ -35,7 +36,7 @@ AnnotationNumber::~AnnotationNumber()
     delete mFont;
 }
 
-void AnnotationNumber::addPoint(const QPointF& position, bool modified)
+void AnnotationNumber::addPoint(const QPointF &position, bool modified)
 {
     Q_UNUSED(position);
     Q_UNUSED(modified);
@@ -45,14 +46,14 @@ void AnnotationNumber::addPoint(const QPointF& position, bool modified)
 
 void AnnotationNumber::updateShape()
 {
-    QPainterPath path  ;
+    QPainterPath path;
     path.addEllipse(*mRect);
     setShape(path);
 
     updateFontSize();
 }
 
-void AnnotationNumber::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void AnnotationNumber::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     AbstractAnnotationRect::paint(painter, option, widget);
 
@@ -65,10 +66,10 @@ void AnnotationNumber::updateFontSize()
 {
     auto mainRect = boundingRect().adjusted(0, 0, -10, -10);
     mFont->setPixelSize(mainRect.height());
-    while(mFont->pixelSize() > 10) {
+    while (mFont->pixelSize() > 10) {
         QFontMetricsF metrics(*mFont);
         auto textRect = metrics.boundingRect(mNumberString);
-        if(textRect.width() > mainRect.width() || textRect.height() > mainRect.height()) {
+        if (textRect.width() > mainRect.width() || textRect.height() > mainRect.height()) {
             mFont->setPixelSize(mFont->pixelSize() - 3);
         } else {
             break;
