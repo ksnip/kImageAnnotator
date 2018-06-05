@@ -36,7 +36,7 @@ AnnotationArea::AnnotationArea()
     connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
     connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clearSelection);
 
-    connect(mConfig, &Config::toolChanged, this, &AnnotationArea::setCursorForTool);
+    connect(mConfig, &Config::toolChanged, this, &AnnotationArea::setItemDecorationForTool);
 
     connect(mKeyHelper, &KeyHelper::undoPressed, mUndoStack, &UndoStack::undo);
     connect(mKeyHelper, &KeyHelper::redoPressed, mUndoStack, &UndoStack::redo);
@@ -184,13 +184,15 @@ void AnnotationArea::addPointToCurrentItem(const QPointF &position)
     mCurrentItem->addPoint(position, mKeyHelper->isControlPressed());
 }
 
-void AnnotationArea::setCursorForTool(ToolTypes tool)
+void AnnotationArea::setItemDecorationForTool(ToolTypes tool)
 {
     for (auto item : *mItems) {
         if (tool == ToolTypes::Select) {
             item->setCursor(CursorHelper::movableCursor());
+            item->setHoverEffectEnabled(true);
         } else {
             item->unsetCursor();
+            item->setHoverEffectEnabled(false);
         }
     }
 }

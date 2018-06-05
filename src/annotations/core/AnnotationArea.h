@@ -72,7 +72,7 @@ private:
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);
-    void setCursorForTool(ToolTypes tool);
+    void setItemDecorationForTool(ToolTypes tool);
 
 private slots:
     void deleteSelectedItems();
