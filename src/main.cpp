@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
     QPixmap pixmap(QSize(500, 500));
-    pixmap.fill(QColor(Qt::green));
+    pixmap.fill(QColor(Qt::darkGreen));
     auto kImageAnnotator = new KImageAnnotator(pixmap);
     kImageAnnotator->show();
 

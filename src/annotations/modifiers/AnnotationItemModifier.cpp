@@ -40,68 +40,69 @@ AnnotationItemModifier::~AnnotationItemModifier()
     delete mItemMover;
 }
 
-void AnnotationItemModifier::handleMousePress(const QPointF& pos, QList<AbstractAnnotationItem*>* items, bool isCtrlPressed)
+void AnnotationItemModifier::handleMousePress(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed)
 {
     mItemResizer->grabHandle(pos);
-    if(mItemResizer->isResizing()) {
+    if (mItemResizer->isResizing()) {
         return;
     }
 
     mItemSelector->handleSelectionAt(pos, items, isCtrlPressed);
-    if(mItemSelector->isSelecting()) {
+    if (mItemSelector->isSelecting()) {
         mItemResizer->detach();
         return;
     }
 
     auto selectedItems = mItemSelector->selectedItems();
     mItemMover->setOffset(pos, selectedItems);
+    mItemResizer->hide();
 
     handleSelection();
     updateCursor(mItemMover->cursor());
 }
 
-void AnnotationItemModifier::handleMouseMove(const QPointF& pos)
+void AnnotationItemModifier::handleMouseMove(const QPointF &pos)
 {
-    if(mItemResizer->isResizing()) {
+    if (mItemResizer->isResizing()) {
         mItemResizer->moveHandle(pos);
         updateCursor(mItemResizer->cursorForCurrentHandle());
-    } else if(mItemSelector->isSelecting()) {
+    } else if (mItemSelector->isSelecting()) {
         mItemSelector->extendSelectionRectWhenShown(pos);
     } else {
         mItemMover->moveItems(pos);
-        mItemResizer->refresh();
         mItemSelector->refresh();
     }
 }
 
-void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem*>* items)
+void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem *> *items)
 {
-    if(mItemResizer->isResizing()) {
+    if (mItemResizer->isResizing()) {
         mItemResizer->releaseHandle();
-    } else if(mItemSelector->isSelecting()) {
+    } else if (mItemSelector->isSelecting()) {
         mItemSelector->finishSelectionRectWhenShown(items);
     } else {
         mItemMover->clearOffset();
+        mItemResizer->show();
         updateCursor(mItemMover->cursor());
     }
 
     handleSelection();
 }
 
-void AnnotationItemModifier::handleSelectionAt(const QPointF& pos, QList<AbstractAnnotationItem *>* items, bool isCtrlPressed)
+void AnnotationItemModifier::handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed)
 {
     mItemSelector->handleSelectionAt(pos, items, isCtrlPressed);
     handleSelection();
 }
 
-QList<AbstractAnnotationItem*> AnnotationItemModifier::selectedItems() const
+QList<AbstractAnnotationItem *> AnnotationItemModifier::selectedItems() const
 {
     return mItemSelector->selectedItems();
 }
 
 QRectF AnnotationItemModifier::boundingRect() const
 {
-    if(mItemResizer->hasItemsAttached()) {
+    if (mItemResizer->hasItemsAttached()) {
         return mItemResizer->boundingRect();
     }
     return mItemSelector->boundingRect();
@@ -120,15 +121,15 @@ void AnnotationItemModifier::updateSelection()
     mItemResizer->refresh();
 }
 
-void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent* event)
+void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     Q_UNUSED(event)
     // Move Cursor disappears when we let this event propagate
 }
 
-void AnnotationItemModifier::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
+void AnnotationItemModifier::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
 {
-    if(mItemMover->isMoving()) {
+    if (mItemMover->isMoving()) {
         return;
     }
 
@@ -139,7 +140,7 @@ void AnnotationItemModifier::handleSelection()
 {
     auto selectedItems = mItemSelector->selectedItems();
     auto count = selectedItems.count();
-    if(count == 0) {
+    if (count == 0) {
         clearSelection();
     } else {
         mItemResizer->attachTo(selectedItems);
@@ -148,7 +149,7 @@ void AnnotationItemModifier::handleSelection()
 
 void AnnotationItemModifier::updateCursor(Qt::CursorShape cursor)
 {
-    if(cursor == CursorHelper::defaultCursor()) {
+    if (cursor == CursorHelper::defaultCursor()) {
         unsetCursor();
     } else {
         setCursor(cursor);
