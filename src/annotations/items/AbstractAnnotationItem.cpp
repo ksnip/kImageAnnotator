@@ -23,6 +23,7 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationProperties &prope
 {
     mProperties = new AnnotationProperties(properties);
     mShape = new QPainterPath();
+    mShadowEffect = new ShadowEffect();
 
     mPainterPen.setColor(mProperties->color());
     mPainterPen.setWidth(mProperties->size());
@@ -31,7 +32,7 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationProperties &prope
 
     mStroker = new QPainterPathStroker(mPainterPen);
 
-    addShadowEffect();
+    setGraphicsEffect(mShadowEffect);
 }
 
 AbstractAnnotationItem::~AbstractAnnotationItem()
@@ -80,18 +81,6 @@ AnnotationProperties AbstractAnnotationItem::properties() const
     return *mProperties;
 }
 
-void AbstractAnnotationItem::addShadowEffect()
-{
-    auto shadowEffect = dynamic_cast<QGraphicsDropShadowEffect *>(graphicsEffect());
-    if (!shadowEffect) {
-        shadowEffect = new QGraphicsDropShadowEffect();
-        shadowEffect->setColor(QColor(63, 63, 63, 190));
-        shadowEffect->setBlurRadius(7);
-        shadowEffect->setOffset(QPoint(2, 2));
-        setGraphicsEffect(shadowEffect);
-    }
-}
-
 void AbstractAnnotationItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     shiftPainterForAllOddShapeWidth(painter);
@@ -104,6 +93,18 @@ void AbstractAnnotationItem::paint(QPainter *painter, const QStyleOptionGraphics
     painter->drawPath(*mShape);
 }
 
+void AbstractAnnotationItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+{
+    mShadowEffect->setHoveredEnabled(true);
+    QGraphicsItem::hoverEnterEvent(event);
+}
+
+void AbstractAnnotationItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+{
+    mShadowEffect->setHoveredEnabled(false);
+    QGraphicsItem::hoverLeaveEvent(event);
+}
+
 void AbstractAnnotationItem::shiftPainterForAllOddShapeWidth(QPainter *painter) const
 {
     if (mPainterPen.width() % 2 != 0) {
@@ -114,4 +115,9 @@ void AbstractAnnotationItem::shiftPainterForAllOddShapeWidth(QPainter *painter) 
 bool AbstractAnnotationItem::hasFill() const
 {
     return mProperties->fillType() == FillTypes::Fill;
+}
+
+void AbstractAnnotationItem::setHoverEffectEnabled(bool enabled)
+{
+    setAcceptHoverEvents(enabled);
 }
