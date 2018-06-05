@@ -90,6 +90,10 @@ void AnnotationItemResizer::paint(QPainter *painter, const QStyleOptionGraphicsI
     Q_UNUSED(option)
     Q_UNUSED(widget)
 
+    if (isResizing()) {
+        return;
+    }
+
     painter->setPen(Qt::white);
     painter->setBrush(Qt::gray);
     auto points = mResizeHandles->handles();
