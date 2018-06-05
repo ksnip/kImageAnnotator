@@ -47,6 +47,7 @@ private:
     QRectF mSelectedItemsBoundingRect;
     QList<AbstractAnnotationItem *> *mSelectedItems;
     bool mShowSelectionRect;
+    QPen mSelectionPen;
 
     void initSelectionRectAt(const QPointF &position);
     void updateSelectionRect(const QPointF &position);
