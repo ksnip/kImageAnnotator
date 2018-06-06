@@ -1,4 +1,4 @@
-# imageAnnotator
+# kImageAnnotator
 Tool for annotating images
 
 Version v0.1.0 - alpha
