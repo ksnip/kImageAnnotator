@@ -44,6 +44,7 @@ void AnnotationItemModifier::handleMousePress(const QPointF &pos, QList<Abstract
 {
     mItemResizer->grabHandle(pos);
     if (mItemResizer->isResizing()) {
+        mItemResizer->hide();
         return;
     }
 
@@ -78,6 +79,7 @@ void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem *> 
 {
     if (mItemResizer->isResizing()) {
         mItemResizer->releaseHandle();
+        mItemResizer->show();
     } else if (mItemSelector->isSelecting()) {
         mItemSelector->finishSelectionRectWhenShown(items);
     } else {
