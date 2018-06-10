@@ -22,7 +22,7 @@
 ShadowEffect::ShadowEffect()
 {
     mDefaultColor.setRgb(63, 63, 63, 190);
-    mHoverColor.setRgb(93, 93, 93, 190);
+    mHoverColor.setRgb(123, 123, 123, 190);
 
     setColor(mDefaultColor);
     setBlurRadius(7);
