@@ -23,6 +23,7 @@ set(kimageannotator_SRCS
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationItem.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationLine.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationRect.cpp
+        ${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationPath.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationLine.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationArrow.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationRect.cpp
