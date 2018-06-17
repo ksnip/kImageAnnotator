@@ -44,3 +44,13 @@ void AbstractAnnotationPath::setPosition(const QPointF &newPosition)
     mPath->translate(newPosition - position());
     updateShape();
 }
+
+void AbstractAnnotationPath::setPointAt(const QPointF &point, int index)
+{
+
+}
+
+QPointF AbstractAnnotationPath::pointAt(int index) const
+{
+    return QPointF();
+}
