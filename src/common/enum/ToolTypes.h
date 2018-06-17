@@ -25,6 +25,7 @@
 enum class ToolTypes
 {
     Select,
+    Pen,
     Line,
     Arrow,
     Rect,
