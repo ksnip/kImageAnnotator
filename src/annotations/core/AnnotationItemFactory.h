@@ -23,6 +23,7 @@
 #include <QObject>
 
 #include "AnnotationPropertiesFactory.h"
+#include "../items/AnnotationPen.h"
 #include "../items/AnnotationLine.h"
 #include "../items/AnnotationArrow.h"
 #include "../items/AnnotationRect.h"

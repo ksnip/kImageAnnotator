@@ -42,6 +42,9 @@ AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPos
     AbstractAnnotationItem* item = nullptr;
 
     switch(type) {
+        case ToolTypes::Pen:
+            item = new AnnotationPen(initPosition, properties);
+            break;
         case ToolTypes::Line:
             item = new AnnotationLine(initPosition, properties);
             break;

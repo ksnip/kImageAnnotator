@@ -30,10 +30,14 @@ AnnotationProperties AnnotationPropertiesFactory::createProperties(ToolTypes too
     properties.setColor(mConfig->toolColor(tool));
     properties.setForegroundColor(mConfig->toolForegroundColor(tool));
     properties.setSize(mConfig->toolSize(tool));
-    if(tool == ToolTypes::Arrow || tool == ToolTypes::Number) {
+
+    if (tool == ToolTypes::Arrow || tool == ToolTypes::Number) {
         properties.setFillType(FillTypes::Fill);
+    } else if (tool == ToolTypes::Pen) {
+        properties.setFillType(FillTypes::NoFill);
     } else {
         properties.setFillType(mConfig->toolFillType(tool));
     }
+
     return properties;
 }
