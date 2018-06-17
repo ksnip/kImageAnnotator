@@ -89,19 +89,19 @@ QPointF AbstractAnnotationRect::pointAt(int index) const
     if (index <= 0) {
         return mRect->topLeft();
     } else if (index == 1) {
-        return QPointF(mRect->center().x(), mRect->top());
+        return { mRect->center().x(), mRect->top() };
     } else if (index == 2) {
         return mRect->topRight();
     } else if (index == 3) {
-        return QPointF(mRect->right(), mRect->center().y());
+        return { mRect->right(), mRect->center().y() };
     } else if (index == 4) {
         return mRect->bottomRight();
     } else if (index == 5) {
-        return QPointF(mRect->center().x(), mRect->bottom());
+        return { mRect->center().x(), mRect->bottom() };
     } else if (index == 6) {
         return mRect->bottomLeft();
     } else {
-        return QPointF(mRect->left(), mRect->center().y());
+        return { mRect->left(), mRect->center().y() };
     }
 }
 
