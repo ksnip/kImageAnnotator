@@ -34,7 +34,7 @@ public:
     QRectF rect() const;
     void setRect(const QRectF &rect);
     void setPointAt(const QPointF &point, int index) override;
-    virtual QPointF pointAt(int index) const override;
+    QPointF pointAt(int index) const override;
 
 protected:
     QRectF *mRect;
