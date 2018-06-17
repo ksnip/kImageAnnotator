@@ -21,15 +21,43 @@
 
 AbstractItemResizeHandles *ResizeHandlesFactory::createResizeHandles(AbstractAnnotationItem *item)
 {
-    auto lineItem = dynamic_cast<AbstractAnnotationLine *>(item);
+    auto resizeHandles = GetLineResizeHandles(item);
+    if (resizeHandles != nullptr) {
+        return resizeHandles;
+    }
 
+    resizeHandles = GetRectResizeHandles(item);
+    if (resizeHandles != nullptr) {
+        return resizeHandles;
+    }
+
+    resizeHandles = GetPathResizeHandles(item);
+    return resizeHandles;
+}
+
+AbstractItemResizeHandles *ResizeHandlesFactory::GetLineResizeHandles(AbstractAnnotationItem *item)
+{
+    auto lineItem = dynamic_cast<AbstractAnnotationLine *>(item);
     if (lineItem != nullptr) {
         return new LineResizeHandles(lineItem);
-    } else {
-        auto rectItem = dynamic_cast<AbstractAnnotationRect *>(item);
-        if (rectItem != nullptr) {
-            return new RectResizeHandles(rectItem);
-        }
+    }
+    return nullptr;
+}
+
+AbstractItemResizeHandles *ResizeHandlesFactory::GetRectResizeHandles(AbstractAnnotationItem *item)
+{
+    auto rectItem = dynamic_cast<AbstractAnnotationRect *>(item);
+    if (rectItem != nullptr) {
+        return new RectResizeHandles(rectItem);
+    }
+    return nullptr;
+}
+
+AbstractItemResizeHandles *ResizeHandlesFactory::GetPathResizeHandles(AbstractAnnotationItem *item)
+{
+    auto pathItem = dynamic_cast<AbstractAnnotationPath *>(item);
+    if (pathItem != nullptr) {
+        return new PathResizeHandles(pathItem);
     }
     return nullptr;
 }

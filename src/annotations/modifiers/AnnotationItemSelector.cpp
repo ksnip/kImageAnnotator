@@ -17,7 +17,6 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "../items/AbstractAnnotationRect.h"
 #include "AnnotationItemSelector.h"
 
 AnnotationItemSelector::AnnotationItemSelector()
@@ -131,11 +130,15 @@ void AnnotationItemSelector::paint(QPainter *painter, const QStyleOptionGraphics
     painter->setPen(mSelectionPen);
     painter->setBrush(Qt::NoBrush);
     for (auto item : *mSelectedItems) {
-        auto rectItem = dynamic_cast<AbstractAnnotationRect *>(item);
-        if (rectItem != nullptr) {
+        if (!isLineItem(item)) {
             painter->drawRect(item->boundingRect());
         }
     }
+}
+
+bool AnnotationItemSelector::isLineItem(AbstractAnnotationItem *item) const
+{
+    return dynamic_cast<AbstractAnnotationLine *>(item) != nullptr;
 }
 
 void AnnotationItemSelector::initSelectionRectAt(const QPointF &position)

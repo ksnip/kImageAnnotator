@@ -23,13 +23,14 @@
 #include <QGraphicsWidget>
 
 #include "../items/AbstractAnnotationItem.h"
+#include "../items/AbstractAnnotationLine.h"
 
 class AnnotationItemSelector : public QGraphicsWidget
 {
 public:
     explicit AnnotationItemSelector();
-    ~AnnotationItemSelector();
-    virtual QRectF boundingRect() const override;
+    ~AnnotationItemSelector() override;
+    QRectF boundingRect() const override;
     void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifing);
     void extendSelectionRectWhenShown(const QPointF &pos);
     void finishSelectionRectWhenShown(QList<AbstractAnnotationItem *> *items);
@@ -57,6 +58,7 @@ private:
     void selectItem(AbstractAnnotationItem *item);
     void unselectItem(AbstractAnnotationItem *item);
     AbstractAnnotationItem *findItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
+    bool isLineItem(AbstractAnnotationItem *item) const;
 };
 
 #endif // ANNOTATIONITEMSELECTOR_H

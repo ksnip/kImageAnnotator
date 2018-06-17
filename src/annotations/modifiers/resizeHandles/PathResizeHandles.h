@@ -17,22 +17,27 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_RESIZEHANDLESFACTORY_H
-#define KIMAGEANNOTATOR_RESIZEHANDLESFACTORY_H
+#ifndef KIMAGEANNOTATOR_PATHRESIZEHANDLES_H
+#define KIMAGEANNOTATOR_PATHRESIZEHANDLES_H
 
-#include "LineResizeHandles.h"
-#include "RectResizeHandles.h"
-#include "PathResizeHandles.h"
+#include "AbstractItemResizeHandles.h"
+#include "../../items/AbstractAnnotationPath.h"
+#include "../../../common/helper/ShapeHelper.h"
 
-class ResizeHandlesFactory
+class PathResizeHandles : public AbstractItemResizeHandles
 {
 public:
-    static AbstractItemResizeHandles *createResizeHandles(AbstractAnnotationItem *item);
+    PathResizeHandles(AbstractAnnotationPath *pathItem);
+    ~PathResizeHandles() override = default;
+    void update() override;
+
+protected:
+    void initCursors() override;
 
 private:
-    static AbstractItemResizeHandles *GetPathResizeHandles(AbstractAnnotationItem *item);
-    static AbstractItemResizeHandles *GetRectResizeHandles(AbstractAnnotationItem *item);
-    static AbstractItemResizeHandles *GetLineResizeHandles(AbstractAnnotationItem *item);
+    AbstractAnnotationPath *mPathItem;
+
+    void updateRectCursors();
 };
 
-#endif //KIMAGEANNOTATOR_RESIZEHANDLESFACTORY_H
+#endif //KIMAGEANNOTATOR_PATHRESIZEHANDLES_H
