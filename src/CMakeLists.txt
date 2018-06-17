@@ -29,6 +29,7 @@ set(kimageannotator_SRCS
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationRect.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationEllipse.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationNumber.cpp
+        ${CMAKE_SOURCE_DIR}/src/annotations/items/AnnotationPen.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/undo/AddCommand.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/undo/DeleteCommand.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/undo/MoveCommand.cpp
