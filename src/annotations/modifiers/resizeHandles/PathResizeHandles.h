@@ -20,24 +20,22 @@
 #ifndef KIMAGEANNOTATOR_PATHRESIZEHANDLES_H
 #define KIMAGEANNOTATOR_PATHRESIZEHANDLES_H
 
-#include "AbstractItemResizeHandles.h"
+#include "AbstractRectResizeHandles.h"
 #include "../../items/AbstractAnnotationPath.h"
-#include "../../../common/helper/ShapeHelper.h"
 
-class PathResizeHandles : public AbstractItemResizeHandles
+class PathResizeHandles : public AbstractRectResizeHandles
 {
 public:
-    PathResizeHandles(AbstractAnnotationPath *pathItem);
+    explicit PathResizeHandles(AbstractAnnotationPath *pathItem);
     ~PathResizeHandles() override = default;
-    void update() override;
 
 protected:
-    void initCursors() override;
+    QRectF getRect() const override;
+    int getOffset() const override;
+    QRectF getItemBoundingRect() const override;
 
 private:
     AbstractAnnotationPath *mPathItem;
-
-    void updateRectCursors();
 };
 
 #endif //KIMAGEANNOTATOR_PATHRESIZEHANDLES_H

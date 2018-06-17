@@ -17,27 +17,28 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "RectResizeHandles.h"
+#ifndef KIMAGEANNOTATOR_ABSTRACTRECTRESIZEHANDLES_H
+#define KIMAGEANNOTATOR_ABSTRACTRECTRESIZEHANDLES_H
 
-RectResizeHandles::RectResizeHandles(AbstractAnnotationRect *rectItem)
-{
-    mRectItem = rectItem;
-    initHandles(8);
-    initCursors();
-    update();
-}
+#include "AbstractItemResizeHandles.h"
+#include "../../items/AbstractAnnotationRect.h"
+#include "../../../common/helper/ShapeHelper.h"
 
-QRectF RectResizeHandles::getRect() const
+class AbstractRectResizeHandles : public AbstractItemResizeHandles
 {
-    return mRectItem->rect();
-}
+public:
+    AbstractRectResizeHandles() = default;
+    ~AbstractRectResizeHandles() override = default;
+    void update() override;
 
-int RectResizeHandles::getOffset() const
-{
-    return mRectItem->properties().size() / 2;
-}
+protected:
+    void initCursors() override;
+    virtual QRectF getRect() const = 0;
+    virtual int getOffset() const = 0;
+    virtual QRectF getItemBoundingRect() const = 0;
 
-QRectF RectResizeHandles::getItemBoundingRect() const
-{
-    return mRectItem->rect().normalized();
-}
+private:
+    void updateRectCursors();
+};
+
+#endif //KIMAGEANNOTATOR_ABSTRACTRECTRESIZEHANDLES_H

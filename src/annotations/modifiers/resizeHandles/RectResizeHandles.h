@@ -20,24 +20,22 @@
 #ifndef KIMAGEANNOTATOR_RECTRESIZEHANDLES_H
 #define KIMAGEANNOTATOR_RECTRESIZEHANDLES_H
 
-#include "AbstractItemResizeHandles.h"
+#include "AbstractRectResizeHandles.h"
 #include "../../items/AbstractAnnotationRect.h"
-#include "../../../common/helper/ShapeHelper.h"
 
-class RectResizeHandles : public AbstractItemResizeHandles
+class RectResizeHandles : public AbstractRectResizeHandles
 {
 public:
-    RectResizeHandles(AbstractAnnotationRect *rectItem);
-    ~RectResizeHandles() = default;
-    virtual void update() override;
+    explicit RectResizeHandles(AbstractAnnotationRect *rectItem);
+    ~RectResizeHandles() override = default;
 
 protected:
-    virtual void initCursors() override;
+    QRectF getRect() const override;
+    int getOffset() const override;
+    QRectF getItemBoundingRect() const override;
 
 private:
     AbstractAnnotationRect *mRectItem;
-
-    void updateRectCursors();
 };
 
 #endif //KIMAGEANNOTATOR_RECTRESIZEHANDLES_H
