@@ -49,15 +49,15 @@ void AbstractAnnotationPath::setPosition(const QPointF &newPosition)
 
 void AbstractAnnotationPath::setPointAt(const QPointF &point, int handleIndex)
 {
-    prepareGeometryChange();
-
     auto oppositeIndex = (handleIndex + 4) % 8;
     auto currentPos = ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex);
     auto rect = ShapeHelper::setRectPointAtIndex(boundingRect(), handleIndex, point);
-    scalePath(rect);
-    mPath->translate(currentPos - ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex));
-
-    updateShape();
+    if (rect.width() >= 20 && rect.height() >= 20) {
+        prepareGeometryChange();
+        scalePath(rect);
+        mPath->translate(currentPos - ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex));
+        updateShape();
+    }
 }
 
 QPointF AbstractAnnotationPath::pointAt(int index) const
