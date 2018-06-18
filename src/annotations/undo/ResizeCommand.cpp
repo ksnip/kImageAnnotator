@@ -41,7 +41,7 @@ bool ResizeCommand::mergeWith(const QUndoCommand *command)
 {
     const auto resizeCommand = dynamic_cast<const ResizeCommand *>(command);
 
-    if (mItem != resizeCommand->mItem) {
+    if (mItem != resizeCommand->mItem || mHandleIndex != resizeCommand->mHandleIndex) {
         return false;
     }
 
