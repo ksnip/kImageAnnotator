@@ -35,6 +35,7 @@ private slots:
     void TestMergeWith_Should_TakeNewHandlePositionFromLastResizeCommand();
     void TestMergeWith_Should_KeepInitialPositionFromFirstResizeCommand();
     void TestMergeWith_Should_NotMergeResizeCommands_When_ItemsAreNotTheSame();
+    void TestMergeWith_Should_NotMergeResizeCommands_When_HandlesAreNotTheSame();
 };
 
 #endif //KIMAGEANNOTATOR_RESIZECOMMANDTEST
