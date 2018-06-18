@@ -33,6 +33,8 @@ AbstractAnnotationPath::~AbstractAnnotationPath()
 
 void AbstractAnnotationPath::addPoint(const QPointF &position, bool modified)
 {
+    Q_UNUSED(modified)
+
     prepareGeometryChange();
     mPath->lineTo(position);
     updateShape();
@@ -49,33 +51,18 @@ void AbstractAnnotationPath::setPointAt(const QPointF &point, int handleIndex)
 {
     prepareGeometryChange();
 
-    auto currentPos = ShapeHelper::rectPointAtIndex(boundingRect(), handleIndex);
+    auto oppositeIndex = (handleIndex + 4) % 8;
+    auto currentPos = ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex);
     auto rect = ShapeHelper::setRectPointAtIndex(boundingRect(), handleIndex, point);
     scalePath(rect);
-    mPath->translate(currentPos - ShapeHelper::rectPointAtIndex(boundingRect(), handleIndex));
+    mPath->translate(currentPos - ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex));
 
     updateShape();
 }
 
 QPointF AbstractAnnotationPath::pointAt(int index) const
 {
-    if (index <= 0) {
-        return mPath->boundingRect().topLeft();
-    } else if (index == 1) {
-        return { mPath->boundingRect().center().x(), mPath->boundingRect().top() };
-    } else if (index == 2) {
-        return mPath->boundingRect().topRight();
-    } else if (index == 3) {
-        return { mPath->boundingRect().right(), mPath->boundingRect().center().y() };
-    } else if (index == 4) {
-        return mPath->boundingRect().bottomRight();
-    } else if (index == 5) {
-        return { mPath->boundingRect().center().x(), mPath->boundingRect().bottom() };
-    } else if (index == 6) {
-        return mPath->boundingRect().bottomLeft();
-    } else {
-        return { mPath->boundingRect().left(), mPath->boundingRect().center().y() };
-    }
+    return ShapeHelper::rectPointAtIndex(mPath->boundingRect(), index);
 }
 
 void AbstractAnnotationPath::scalePath(const QRectF &rect)

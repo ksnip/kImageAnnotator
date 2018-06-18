@@ -103,21 +103,21 @@ QLineF ShapeHelper::extendLine(const QLineF &line, int extendBy)
 QPointF ShapeHelper::rectPointAtIndex(const QRectF &rect, int index)
 {
     if (index == 0) {
-        return rect.bottomRight();
-    } else if (index == 1) {
-        return ShapeHelper::rectBottom(rect);
-    } else if (index == 2) {
-        return rect.bottomLeft();
-    } else if (index == 3) {
-        return ShapeHelper::rectLeft(rect);
-    } else if (index == 4) {
         return rect.topLeft();
-    } else if (index == 5) {
+    } else if (index == 1) {
         return ShapeHelper::rectTop(rect);
-    } else if (index == 6) {
+    } else if (index == 2) {
         return rect.topRight();
-    } else if (index == 7) {
+    } else if (index == 3) {
         return ShapeHelper::rectRight(rect);
+    } else if (index == 4) {
+        return rect.bottomRight();
+    } else if (index == 5) {
+        return ShapeHelper::rectBottom(rect);
+    } else if (index == 6) {
+        return rect.bottomLeft();
+    } else if (index == 7) {
+        return ShapeHelper::rectLeft(rect);
     } else {
         qCritical("Invalid rectangle index provided, returning empty point.");
         return {};
