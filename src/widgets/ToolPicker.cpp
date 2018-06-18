@@ -60,29 +60,34 @@ void ToolPicker::initGui()
     mLayout->addWidget(button, 0, 1);
     mButtonGroup->addButton(button);
 
+    button = createButton(i18n("Marker"), QPixmap(QStringLiteral(":/icons/marker")), Qt::Key_M);
+    mButtonToTool[button] = ToolTypes::Marker;
+    mLayout->addWidget(button, 2, 0);
+    mButtonGroup->addButton(button);
+
     button = createButton(i18n("Line"), QIcon::fromTheme(QStringLiteral("draw-line")), Qt::Key_L);
     mButtonToTool[button] = ToolTypes::Line;
-    mLayout->addWidget(button, 2, 0);
+    mLayout->addWidget(button, 2, 1);
     mButtonGroup->addButton(button);
 
     button = createButton(i18n("Rectangle"), QIcon::fromTheme(QStringLiteral("draw-rectangle")), Qt::Key_R);
     mButtonToTool[button] = ToolTypes::Rect;
-    mLayout->addWidget(button, 2, 1);
+    mLayout->addWidget(button, 3, 0);
     mButtonGroup->addButton(button);
 
     button = createButton(i18n("Ellipse"), QIcon::fromTheme(QStringLiteral("draw-ellipse")), Qt::Key_E);
     mButtonToTool[button] = ToolTypes::Ellipse;
-    mLayout->addWidget(button, 3, 0);
+    mLayout->addWidget(button, 3, 1);
     mButtonGroup->addButton(button);
 
     button = createButton(i18n("Arrow"), QPixmap(QStringLiteral(":/icons/arrow")), Qt::Key_A);
     mButtonToTool[button] = ToolTypes::Arrow;
-    mLayout->addWidget(button, 3, 1);
+    mLayout->addWidget(button, 4, 0);
     mButtonGroup->addButton(button);
 
     button = createButton(i18n("Number"), QPixmap(QStringLiteral(":/icons/number")), Qt::Key_N);
     mButtonToTool[button] = ToolTypes::Number;
-    mLayout->addWidget(button, 4, 0);
+    mLayout->addWidget(button, 4, 1);
     mButtonGroup->addButton(button);
 
     setLayout(mLayout);
