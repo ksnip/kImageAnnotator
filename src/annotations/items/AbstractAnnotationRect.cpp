@@ -19,12 +19,12 @@
 
 #include "AbstractAnnotationRect.h"
 
-AbstractAnnotationRect::AbstractAnnotationRect(const QPointF &startPosisition, const AnnotationProperties &properties)
+AbstractAnnotationRect::AbstractAnnotationRect(const QPointF &startPosition, const AnnotationProperties &properties)
     :
     AbstractAnnotationItem(properties)
 {
     mRect = new QRectF();
-    mRect->setTopLeft(startPosisition);
+    mRect->setTopLeft(startPosition);
 }
 
 AbstractAnnotationRect::~AbstractAnnotationRect()
@@ -55,47 +55,16 @@ QRectF AbstractAnnotationRect::rect() const
 void AbstractAnnotationRect::setPointAt(const QPointF &point, int index)
 {
     prepareGeometryChange();
-
-    if (index <= 0) {
-        mRect->setTopLeft(point);
-    } else if (index == 1) {
-        mRect->setTop(point.y());
-    } else if (index == 2) {
-        mRect->setTopRight(point);
-    } else if (index == 3) {
-        mRect->setRight(point.x());
-    } else if (index == 4) {
-        mRect->setBottomRight(point);
-    } else if (index == 5) {
-        mRect->setBottom(point.y());
-    } else if (index == 6) {
-        mRect->setBottomLeft(point);
-    } else {
-        mRect->setLeft(point.x());
+    auto newRect = ShapeHelper::setRectPointAtIndex(*mRect, index, point);
+    if (newRect.width() >= 20 && newRect.height() >= 20) {
+        mRect->setRect(newRect.x(), newRect.y(), newRect.width(), newRect.height());
     }
-
     updateShape();
 }
 
 QPointF AbstractAnnotationRect::pointAt(int index) const
 {
-    if (index <= 0) {
-        return mRect->topLeft();
-    } else if (index == 1) {
-        return { mRect->center().x(), mRect->top() };
-    } else if (index == 2) {
-        return mRect->topRight();
-    } else if (index == 3) {
-        return { mRect->right(), mRect->center().y() };
-    } else if (index == 4) {
-        return mRect->bottomRight();
-    } else if (index == 5) {
-        return { mRect->center().x(), mRect->bottom() };
-    } else if (index == 6) {
-        return mRect->bottomLeft();
-    } else {
-        return { mRect->left(), mRect->center().y() };
-    }
+    return ShapeHelper::rectPointAtIndex(*mRect, index);
 }
 
 void AbstractAnnotationRect::makeSymmetric(bool enabled)

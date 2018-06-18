@@ -22,12 +22,13 @@
 
 #include "AbstractAnnotationItem.h"
 
-#include "../src/common/helper/MathHelper.h"
+#include "../../common/helper/MathHelper.h"
+#include "../../common/helper/ShapeHelper.h"
 
 class AbstractAnnotationRect : public AbstractAnnotationItem
 {
 public:
-    AbstractAnnotationRect(const QPointF &startPosisition, const AnnotationProperties &properties);
+    AbstractAnnotationRect(const QPointF &startPosition, const AnnotationProperties &properties);
     ~AbstractAnnotationRect();
     void addPoint(const QPointF &position, bool modified = false) override;
     void setPosition(const QPointF &newPosition) override;

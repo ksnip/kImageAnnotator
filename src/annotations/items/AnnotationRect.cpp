@@ -19,8 +19,8 @@
 
 #include "AnnotationRect.h"
 
-AnnotationRect::AnnotationRect(const QPointF& startPosisition, const AnnotationProperties& properties) :
-    AbstractAnnotationRect(startPosisition, properties)
+AnnotationRect::AnnotationRect(const QPointF& startPosition, const AnnotationProperties& properties) :
+    AbstractAnnotationRect(startPosition, properties)
 {
 }
 
