@@ -21,6 +21,7 @@
 #define KIMAGEANNOTATOR_ABSTRACTANNOTATIONPATH_H
 
 #include "AbstractAnnotationItem.h"
+#include "../../common/helper/ShapeHelper.h"
 
 class AbstractAnnotationPath : public AbstractAnnotationItem
 {
@@ -34,6 +35,9 @@ public:
 
 protected:
     QPainterPath *mPath;
+
+private:
+    void scalePath(const QRectF &rect);
 };
 
 #endif //KIMAGEANNOTATOR_ABSTRACTANNOTATIONPATH_H
