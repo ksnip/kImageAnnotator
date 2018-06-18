@@ -109,4 +109,22 @@ void ResizeCommandTest::TestMergeWith_Should_NotMergeResizeCommands_When_ItemsAr
     QCOMPARE(item1->line().p2(), newPosition1);
 }
 
+void ResizeCommandTest::TestMergeWith_Should_NotMergeResizeCommands_When_HandlesAreNotTheSame()
+{
+    AnnotationProperties properties(Qt::red, 1);
+    QLineF line1(10, 10, 20, 20);
+    auto item1 = new AnnotationLine(line1.p1(), properties);
+    item1->addPoint(line1.p2());
+    QPointF newPosition1(50, 50);
+    QPointF newPosition2(60, 60);
+    ResizeCommand resize1(item1, 1, newPosition1);
+    ResizeCommand resize2(item1, 3, newPosition2);
+    QCOMPARE(item1->line().p2(), line1.p2());
+
+    resize1.mergeWith(&resize2);
+
+    resize1.redo();
+    QCOMPARE(item1->line().p2(), newPosition1);
+}
+
 QTEST_MAIN(ResizeCommandTest);
