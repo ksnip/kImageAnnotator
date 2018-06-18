@@ -45,6 +45,9 @@ AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPos
         case ToolTypes::Pen:
             item = new AnnotationPen(initPosition, properties);
             break;
+        case ToolTypes::Marker:
+            item = new AnnotationPen(initPosition, properties);
+            break;
         case ToolTypes::Line:
             item = new AnnotationLine(initPosition, properties);
             break;

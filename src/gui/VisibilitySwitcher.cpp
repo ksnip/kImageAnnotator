@@ -73,6 +73,7 @@ void VisibilitySwitcher::updateVisibility()
             setFillWidgetVisibility(false);
             break;
         case ToolTypes::Pen:
+        case ToolTypes::Marker:
             setColorWidgetVisibility(true);
             setTextColorWidgetVisibility(false);
             setSizeWidgetVisibility(true);

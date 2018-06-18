@@ -33,10 +33,17 @@ AnnotationProperties AnnotationPropertiesFactory::createProperties(ToolTypes too
 
     if (tool == ToolTypes::Arrow || tool == ToolTypes::Number) {
         properties.setFillType(FillTypes::Fill);
-    } else if (tool == ToolTypes::Pen) {
+    } else if (tool == ToolTypes::Pen || tool == ToolTypes::Marker) {
         properties.setFillType(FillTypes::NoFill);
     } else {
         properties.setFillType(mConfig->toolFillType(tool));
+    }
+
+    if(tool == ToolTypes::Marker) {
+        properties.setSize(properties.size() * 3);
+        auto color = properties.color();
+        color.setAlpha(120);
+        properties.setColor(color);
     }
 
     return properties;
