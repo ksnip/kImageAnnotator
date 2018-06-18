@@ -30,7 +30,7 @@ public:
     virtual ~AbstractAnnotationPath();
     void addPoint(const QPointF &position, bool modified = false) override;
     void setPosition(const QPointF &newPosition) override;
-    void setPointAt(const QPointF &point, int index) override;
+    void setPointAt(const QPointF &point, int handleIndex) override;
     QPointF pointAt(int index) const override;
 
 protected:

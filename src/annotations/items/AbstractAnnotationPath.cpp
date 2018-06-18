@@ -45,59 +45,14 @@ void AbstractAnnotationPath::setPosition(const QPointF &newPosition)
     updateShape();
 }
 
-void AbstractAnnotationPath::setPointAt(const QPointF &point, int index)
+void AbstractAnnotationPath::setPointAt(const QPointF &point, int handleIndex)
 {
     prepareGeometryChange();
 
-    if (index <= 0) {
-        auto currentPos = boundingRect().bottomRight();
-        auto rect = boundingRect();
-        rect.setTopLeft(point);
-        scalePath(rect);
-        mPath->translate(currentPos - boundingRect().bottomRight());
-    } else if (index == 1) {
-        auto currentPos = ShapeHelper::rectBottom(boundingRect());
-        auto rect = boundingRect();
-        rect.setTop(point.y());
-        scalePath(rect);
-        mPath->translate(currentPos - ShapeHelper::rectBottom(boundingRect()));
-    } else if (index == 2) {
-        auto currentPos = boundingRect().bottomLeft();
-        auto rect = boundingRect();
-        rect.setTopRight(point);
-        scalePath(rect);
-        mPath->translate(currentPos - boundingRect().bottomLeft());
-    } else if (index == 3) {
-        auto currentPos = ShapeHelper::rectLeft(boundingRect());
-        auto rect = boundingRect();
-        rect.setRight(point.x());
-        scalePath(rect);
-        mPath->translate(currentPos - ShapeHelper::rectLeft(boundingRect()));
-    } else if (index == 4) {
-        auto currentPos = boundingRect().topLeft();
-        auto rect = boundingRect();
-        rect.setBottomRight(point);
-        scalePath(rect);
-        mPath->translate(currentPos - boundingRect().topLeft());
-    } else if (index == 5) {
-        auto currentPos = ShapeHelper::rectTop(boundingRect());
-        auto rect = boundingRect();
-        rect.setBottom(point.y());
-        scalePath(rect);
-        mPath->translate(currentPos - ShapeHelper::rectTop(boundingRect()));
-    } else if (index == 6) {
-        auto currentPos = boundingRect().topRight();
-        auto rect = boundingRect();
-        rect.setBottomLeft(point);
-        scalePath(rect);
-        mPath->translate(currentPos - boundingRect().topRight());
-    } else {
-        auto currentPos = ShapeHelper::rectRight(boundingRect());
-        auto rect = boundingRect();
-        rect.setLeft(point.x());
-        scalePath(rect);
-        mPath->translate(currentPos - ShapeHelper::rectRight(boundingRect()));
-    }
+    auto currentPos = ShapeHelper::rectPointAtIndex(boundingRect(), handleIndex);
+    auto rect = ShapeHelper::setRectPointAtIndex(boundingRect(), handleIndex, point);
+    scalePath(rect);
+    mPath->translate(currentPos - ShapeHelper::rectPointAtIndex(boundingRect(), handleIndex));
 
     updateShape();
 }

@@ -52,13 +52,6 @@ QRectF AbstractAnnotationRect::rect() const
     return *mRect;
 }
 
-void AbstractAnnotationRect::setRect(const QRectF &rect)
-{
-    prepareGeometryChange();
-    mRect->setRect(rect.x(), rect.y(), rect.width(), rect.height());
-    updateShape();
-}
-
 void AbstractAnnotationRect::setPointAt(const QPointF &point, int index)
 {
     prepareGeometryChange();

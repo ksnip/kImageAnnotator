@@ -39,6 +39,8 @@ public:
     static QPointF rectLeft(const QRectF &rect);
     static QPointF rectLeftWithOffset(const QRectF &rect, int offset);
     static QLineF extendLine(const QLineF &line, int extendBy);
+    static QPointF rectPointAtIndex(const QRectF &rect, int index);
+    static QRectF setRectPointAtIndex(const QRectF &rect, int index, const QPointF &pos);
 
 private:
     static int invertOffsetIfTopSmallerThenBottom(const QRectF &rect, int yOffset);

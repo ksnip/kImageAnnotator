@@ -32,7 +32,6 @@ public:
     void addPoint(const QPointF &position, bool modified = false) override;
     void setPosition(const QPointF &newPosition) override;
     QRectF rect() const;
-    void setRect(const QRectF &rect);
     void setPointAt(const QPointF &point, int index) override;
     QPointF pointAt(int index) const override;
 
