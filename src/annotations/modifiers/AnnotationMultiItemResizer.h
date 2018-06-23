@@ -30,8 +30,8 @@ class AnnotationMultiItemResizer : public QObject, public QGraphicsItemGroup
 Q_OBJECT
 public:
     explicit AnnotationMultiItemResizer();
-    ~AnnotationMultiItemResizer() = default;
-    virtual QRectF boundingRect() const override;
+    ~AnnotationMultiItemResizer() override = default;
+    QRectF boundingRect() const override;
     void attachTo(QList<AbstractAnnotationItem *> items);
     void detach();
     void grabHandle(const QPointF &pos);

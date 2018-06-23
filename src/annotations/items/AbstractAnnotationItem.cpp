@@ -93,18 +93,6 @@ void AbstractAnnotationItem::paint(QPainter *painter, const QStyleOptionGraphics
     painter->drawPath(*mShape);
 }
 
-void AbstractAnnotationItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
-{
-    mShadowEffect->setHoveredEnabled(true);
-    QGraphicsItem::hoverEnterEvent(event);
-}
-
-void AbstractAnnotationItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
-{
-    mShadowEffect->setHoveredEnabled(false);
-    QGraphicsItem::hoverLeaveEvent(event);
-}
-
 void AbstractAnnotationItem::shiftPainterForAllOddShapeWidth(QPainter *painter) const
 {
     if (mPainterPen.width() % 2 != 0) {
@@ -115,9 +103,4 @@ void AbstractAnnotationItem::shiftPainterForAllOddShapeWidth(QPainter *painter) 
 bool AbstractAnnotationItem::hasFill() const
 {
     return mProperties->fillType() == FillTypes::Fill;
-}
-
-void AbstractAnnotationItem::setHoverEffectEnabled(bool enabled)
-{
-    setAcceptHoverEvents(enabled);
 }

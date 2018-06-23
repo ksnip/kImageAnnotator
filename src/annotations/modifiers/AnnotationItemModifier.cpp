@@ -136,6 +136,7 @@ void AnnotationItemModifier::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
     }
 
     updateCursor(mItemResizer->cursorForPos(event->scenePos()));
+    QGraphicsItemGroup::hoverMoveEvent(event);
 }
 
 void AnnotationItemModifier::handleSelection()

@@ -26,12 +26,10 @@ class ShadowEffect : public QGraphicsDropShadowEffect
 {
 public:
     explicit ShadowEffect();
-    virtual ~ShadowEffect() = default;
-    void setHoveredEnabled(bool enabled);
+    ~ShadowEffect() override = default;
 
 private:
-    QColor mDefaultColor;
-    QColor mHoverColor;
+    QColor mColor;
 };
 
 #endif //KIMAGEANNOTATOR_SHADOWEFFECT_H

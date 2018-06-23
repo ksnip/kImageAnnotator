@@ -21,19 +21,9 @@
 
 ShadowEffect::ShadowEffect()
 {
-    mDefaultColor.setRgb(63, 63, 63, 190);
-    mHoverColor.setRgb(123, 123, 123, 190);
+    mColor.setRgb(63, 63, 63, 190);
 
-    setColor(mDefaultColor);
+    setColor(mColor);
     setBlurRadius(7);
     setOffset(QPoint(2, 2));
-}
-
-void ShadowEffect::setHoveredEnabled(bool enabled)
-{
-    if (enabled) {
-        setColor(mHoverColor);
-    } else {
-        setColor(mDefaultColor);
-    }
 }

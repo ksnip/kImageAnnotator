@@ -42,14 +42,11 @@ public:
     virtual void setPosition(const QPointF &newPosition) = 0;
     virtual QPointF position();
     AnnotationProperties properties() const;
-    void setHoverEffectEnabled(bool enabled);
 
 protected:
     void setShape(QPainterPath &newShape);
     virtual void updateShape() = 0;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
-    virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
-    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
 
 private:
     AnnotationProperties *mProperties;
