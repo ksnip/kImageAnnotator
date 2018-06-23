@@ -189,10 +189,8 @@ void AnnotationArea::setItemDecorationForTool(ToolTypes tool)
     for (auto item : *mItems) {
         if (tool == ToolTypes::Select) {
             item->setCursor(CursorHelper::movableCursor());
-            item->setHoverEffectEnabled(true);
         } else {
             item->unsetCursor();
-            item->setHoverEffectEnabled(false);
         }
     }
 }
