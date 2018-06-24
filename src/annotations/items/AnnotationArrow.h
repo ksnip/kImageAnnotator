@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONARROW_H
-#define ANNOTATIONARROW_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONARROW_H
+#define KIMAGEANNOTATOR_ANNOTATIONARROW_H
 
 #include "AbstractAnnotationLine.h"
 
@@ -36,4 +36,4 @@ private:
     QPolygonF rotateAndPositionArrow(const QPolygonF& arrow) const;
 };
 
-#endif // ANNOTATIONARROW_H
+#endif // KIMAGEANNOTATOR_ANNOTATIONARROW_H

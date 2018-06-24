@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ABSTRACTANNOTATIONRECT_H
-#define ABSTRACTANNOTATIONRECT_H
+#ifndef KIMAGEANNOTATOR_ABSTRACTANNOTATIONRECT_H
+#define KIMAGEANNOTATOR_ABSTRACTANNOTATIONRECT_H
 
 #include "AbstractAnnotationItem.h"
 
@@ -43,4 +43,4 @@ protected:
     void makeSymmetric(bool enabled);
 };
 
-#endif // ABSTRACTANNOTATIONRECT_H
+#endif // KIMAGEANNOTATOR_ABSTRACTANNOTATIONRECT_H

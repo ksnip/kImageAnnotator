@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef TOOLPICKERTEST_H
-#define TOOLPICKERTEST_H
+#ifndef KIMAGEANNOTATOR_TOOLPICKERTEST_H
+#define KIMAGEANNOTATOR_TOOLPICKERTEST_H
 
 #include <QtTest>
 
@@ -34,4 +34,4 @@ private slots:
     void TestTool_Should_ReturnSelectedTool();
 };
 
-#endif // TOOLPICKERTEST_H
+#endif // KIMAGEANNOTATOR_TOOLPICKERTEST_H

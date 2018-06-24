@@ -56,4 +56,4 @@ private:
     static QPainterPath createSmoothPath(const QList<QPointF> &points);
 };
 
-#endif //KIMAGEANNOTATOR_SHAPEHELPER_H
+#endif // KIMAGEANNOTATOR_SHAPEHELPER_H

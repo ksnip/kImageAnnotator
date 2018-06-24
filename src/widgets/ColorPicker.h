@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef COLORPICKER_H
-#define COLORPICKER_H
+#ifndef KIMAGEANNOTATOR_COLORPICKER_H
+#define KIMAGEANNOTATOR_COLORPICKER_H
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -48,4 +48,4 @@ private slots:
     void colorChanged(const QColor& color);
 };
 
-#endif // COLORPICKER_H
+#endif // KIMAGEANNOTATOR_COLORPICKER_H

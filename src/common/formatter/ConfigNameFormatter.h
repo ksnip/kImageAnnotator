@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef CONFIGNAMEFORMATTER_H
-#define CONFIGNAMEFORMATTER_H
+#ifndef KIMAGEANNOTATOR_CONFIGNAMEFORMATTER_H
+#define KIMAGEANNOTATOR_CONFIGNAMEFORMATTER_H
 
 #include <QString>
 
@@ -38,4 +38,4 @@ private:
     explicit ConfigNameFormatter() = default;
 };
 
-#endif // CONFIGNAMEFORMATTER_H
+#endif // KIMAGEANNOTATOR_CONFIGNAMEFORMATTER_H

@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef COLORPICKERTEST_H
-#define COLORPICKERTEST_H
+#ifndef KIMAGEANNOTATOR_COLORPICKERTEST_H
+#define KIMAGEANNOTATOR_COLORPICKERTEST_H
 
 #include <QtTest>
 
@@ -32,4 +32,4 @@ private slots:
     void TestSelectColor_Should_EmitSignal_When_ColorChanged();
 };
 
-#endif // COLORPICKERTEST_H
+#endif // KIMAGEANNOTATOR_COLORPICKERTEST_H

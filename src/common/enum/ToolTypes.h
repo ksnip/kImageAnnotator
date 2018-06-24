@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef TOOLTYPES_H
-#define TOOLTYPES_H
+#ifndef KIMAGEANNOTATOR_TOOLTYPES_H
+#define KIMAGEANNOTATOR_TOOLTYPES_H
 
 #include <QMetaType>
 
@@ -36,4 +36,4 @@ enum class ToolTypes
 
 Q_DECLARE_METATYPE(ToolTypes)
 
-#endif // TOOLTYPES_H
+#endif // KIMAGEANNOTATOR_TOOLTYPES_H

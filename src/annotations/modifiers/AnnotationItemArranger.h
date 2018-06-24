@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMARRANGER_H
-#define ANNOTATIONITEMARRANGER_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONITEMARRANGER_H
+#define KIMAGEANNOTATOR_ANNOTATIONITEMARRANGER_H
 
 #include <QObject>
 
@@ -51,4 +51,4 @@ private:
     void createAndEmitArrangeCommand(const QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> &itemToSwap) const;
 };
 
-#endif // ANNOTATIONITEMARRANGER_H
+#endif // KIMAGEANNOTATOR_ANNOTATIONITEMARRANGER_H

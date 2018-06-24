@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef MATHHELPER_H
-#define MATHHELPER_H
+#ifndef KIMAGEANNOTATOR_MATHHELPER_H
+#define KIMAGEANNOTATOR_MATHHELPER_H
 
 #include <QtMath>
 
@@ -30,4 +30,4 @@ public:
     static qreal distanceBetweenPoints(const QPointF& point1, const QPointF& point2);
 };
 
-#endif // MATHHELPER_H
+#endif // KIMAGEANNOTATOR_MATHHELPER_H

@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef VISIBILITYSWITCHER_H
-#define VISIBILITYSWITCHER_H
+#ifndef KIMAGEANNOTATOR_VISIBILITYSWITCHER_H
+#define KIMAGEANNOTATOR_VISIBILITYSWITCHER_H
 
 #include <QWidget>
 
@@ -49,4 +49,4 @@ private:
     void setFillWidgetVisibility(bool enabled);
 };
 
-#endif // VISIBILITYSWITCHER_H
+#endif // KIMAGEANNOTATOR_VISIBILITYSWITCHER_H

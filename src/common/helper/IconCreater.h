@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ICONCREATER_H
-#define ICONCREATER_H
+#ifndef KIMAGEANNOTATOR_ICONCREATER_H
+#define KIMAGEANNOTATOR_ICONCREATER_H
 
 #include <QIcon>
 #include <QColor>
@@ -39,4 +39,4 @@ private:
     QSize mIconSize;
 };
 
-#endif // ICONCREATER_H
+#endif // KIMAGEANNOTATOR_ICONCREATER_H

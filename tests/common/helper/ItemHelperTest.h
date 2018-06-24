@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ITEMHELPERTEST
-#define KIMAGEANNOTATOR_ITEMHELPERTEST
+#ifndef KIMAGEANNOTATOR_ITEMHELPERTEST_H
+#define KIMAGEANNOTATOR_ITEMHELPERTEST_H
 
 #include <QtTest>
 
@@ -36,4 +36,4 @@ private slots:
     void TestSortItemsByZValueDesc_Should_SortItemsByZValueInDescendingOrder();
 };
 
-#endif //KIMAGEANNOTATOR_ITEMHELPERTEST
+#endif // KIMAGEANNOTATOR_ITEMHELPERTEST_H

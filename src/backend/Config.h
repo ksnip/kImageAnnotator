@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef CONFIG_H
-#define CONFIG_H
+#ifndef KIMAGEANNOTATOR_CONFIG_H
+#define KIMAGEANNOTATOR_CONFIG_H
 
 #include <QObject>
 #include <QSettings>
@@ -60,4 +60,4 @@ private:
     explicit Config();
 };
 
-#endif // CONFIG_H
+#endif // KIMAGEANNOTATOR_CONFIG_H

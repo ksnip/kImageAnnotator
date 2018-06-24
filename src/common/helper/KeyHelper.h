@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KEYHELPER_H
-#define KEYHELPER_H
+#ifndef KIMAGEANNOTATOR_KEYHELPER_H
+#define KIMAGEANNOTATOR_KEYHELPER_H
 
 #include <QObject>
 #include <QKeyEvent>
@@ -48,4 +48,4 @@ private:
     void emitPressSignal(Qt::Key key);
 };
 
-#endif // KEYHELPER_H
+#endif // KIMAGEANNOTATOR_KEYHELPER_H

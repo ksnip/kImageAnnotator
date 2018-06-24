@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_MOVECOMMANDTEST
-#define KIMAGEANNOTATOR_MOVECOMMANDTEST
+#ifndef KIMAGEANNOTATOR_MOVECOMMANDTEST_H
+#define KIMAGEANNOTATOR_MOVECOMMANDTEST_H
 
 #include <QtTest>
 
@@ -37,4 +37,4 @@ private slots:
     void TestMergeWith_Should_NotMergeMoveCommands_When_ItemsAreNotTheSame();
 };
 
-#endif //KIMAGEANNOTATOR_MOVECOMMANDTEST
+#endif // KIMAGEANNOTATOR_MOVECOMMANDTEST_H

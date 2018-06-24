@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMARRANGERTEST_H
-#define ANNOTATIONITEMARRANGERTEST_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONITEMARRANGERTEST_H
+#define KIMAGEANNOTATOR_ANNOTATIONITEMARRANGERTEST_H
 
 #include <QtTest>
 #include <QUndoStack>
@@ -38,4 +38,4 @@ private slots:
     void TestAnnotationItemArranger_Should_NotSwapAnyPosition_When_NoItemsHaveBeenSelected();
 };
 
-#endif // ANNOTATIONITEMARRANGERTEST_H
+#endif // KIMAGEANNOTATOR_ANNOTATIONITEMARRANGERTEST_H

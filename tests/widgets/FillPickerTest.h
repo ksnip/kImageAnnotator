@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef FILLPICKERTEST_H
-#define FILLPICKERTEST_H
+#ifndef KIMAGEANNOTATOR_FILLPICKERTEST_H
+#define KIMAGEANNOTATOR_FILLPICKERTEST_H
 
 #include <QtTest>
 
@@ -32,4 +32,4 @@ private slots:
     void TestSelectFill_Should_EmitSignal_When_FillChanged();
 };
 
-#endif // FILLPICKERTEST_H
+#endif // KIMAGEANNOTATOR_FILLPICKERTEST_H

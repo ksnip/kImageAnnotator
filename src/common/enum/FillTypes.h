@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef FILLTYPES_H
-#define FILLTYPES_H
+#ifndef KIMAGEANNOTATOR_FILLTYPES_H
+#define KIMAGEANNOTATOR_FILLTYPES_H
 
 #include <QMetaType>
 
@@ -30,4 +30,4 @@ enum class FillTypes
 
 Q_DECLARE_METATYPE(FillTypes);
 
-#endif // FILLTYPES_H
+#endif // KIMAGEANNOTATOR_FILLTYPES_H

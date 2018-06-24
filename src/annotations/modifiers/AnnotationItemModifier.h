@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMMODIFIER_H
-#define ANNOTATIONITEMMODIFIER_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONITEMMODIFIER_H
+#define KIMAGEANNOTATOR_ANNOTATIONITEMMODIFIER_H
 
 #include <QObject>
 #include <QGraphicsItemGroup>
@@ -62,4 +62,4 @@ private:
     void updateCursor(Qt::CursorShape cursor);
 };
 
-#endif // ANNOTATIONITEMMODIFIER_H
+#endif // KIMAGEANNOTATOR_ANNOTATIONITEMMODIFIER_H

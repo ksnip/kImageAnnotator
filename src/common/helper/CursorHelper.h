@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef CURSORHELPER_H
-#define CURSORHELPER_H
+#ifndef KIMAGEANNOTATOR_CURSORHELPER_H
+#define KIMAGEANNOTATOR_CURSORHELPER_H
 
 #include <QCursor>
 
@@ -35,4 +35,4 @@ public:
     Qt::CursorShape static movingCursor();
 };
 
-#endif // CURSORHELPER_H
+#endif // KIMAGEANNOTATOR_CURSORHELPER_H

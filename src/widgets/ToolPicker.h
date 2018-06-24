@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef TOOLPICKER_H
-#define TOOLPICKER_H
+#ifndef KIMAGEANNOTATOR_TOOLPICKER_H
+#define KIMAGEANNOTATOR_TOOLPICKER_H
 
 #include <QWidget>
 #include <QButtonGroup>
@@ -55,4 +55,4 @@ private slots:
     void setToolAndNotify(ToolTypes newTool);
 };
 
-#endif // TOOLPICKER_H
+#endif // KIMAGEANNOTATOR_TOOLPICKER_H

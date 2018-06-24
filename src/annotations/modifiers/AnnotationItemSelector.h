@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMSELECTOR_H
-#define ANNOTATIONITEMSELECTOR_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONITEMSELECTOR_H
+#define KIMAGEANNOTATOR_ANNOTATIONITEMSELECTOR_H
 
 #include <QGraphicsWidget>
 
@@ -61,4 +61,4 @@ private:
     bool isLineItem(AbstractAnnotationItem *item) const;
 };
 
-#endif // ANNOTATIONITEMSELECTOR_H
+#endif // KIMAGEANNOTATOR_ANNOTATIONITEMSELECTOR_H

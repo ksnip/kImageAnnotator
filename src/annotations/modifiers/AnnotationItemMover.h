@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONITEMMOVER_H
-#define ANNOTATIONITEMMOVER_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONITEMMOVER_H
+#define KIMAGEANNOTATOR_ANNOTATIONITEMMOVER_H
 
 #include <QObject>
 #include <QHash>
@@ -46,4 +46,4 @@ private:
     QHash<AbstractAnnotationItem *, QPointF> mItemToOffset;
 };
 
-#endif // ANNOTATIONITEMMOVER_H
+#endif // KIMAGEANNOTATOR_ANNOTATIONITEMMOVER_H

@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef MATHHELPERTEST_H
-#define MATHHELPERTEST_H
+#ifndef KIMAGEANNOTATOR_MATHHELPERTEST_H
+#define KIMAGEANNOTATOR_MATHHELPERTEST_H
 
 #include <QtTest>
 
@@ -36,4 +36,4 @@ private slots:
     void TestDistanceBetweenPoints_Should_ReturnCorrectDistance_data();
 };
 
-#endif // MATHHELPERTEST_H
+#endif // KIMAGEANNOTATOR_MATHHELPERTEST_H

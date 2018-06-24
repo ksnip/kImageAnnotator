@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ADDCOMMANDTEST
-#define ADDCOMMANDTEST
+#ifndef KIMAGEANNOTATOR_ADDCOMMANDTEST_H
+#define KIMAGEANNOTATOR_ADDCOMMANDTEST_H
 
 #include <QtTest>
 
@@ -35,4 +35,4 @@ private slots:
 	void TestUndo_Should_UndoOperation();
 };
 
-#endif //ADDCOMMANDTEST
+#endif // KIMAGEANNOTATOR_ADDCOMMANDTEST_H

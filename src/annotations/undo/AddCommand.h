@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ADDCOMMAND_H
-#define ADDCOMMAND_H
+#ifndef KIMAGEANNOTATOR_ADDCOMMAND_H
+#define KIMAGEANNOTATOR_ADDCOMMAND_H
 
 #include <QUndoCommand>
 
@@ -40,4 +40,4 @@ private:
     AnnotationArea         *mAnnotationArea;
 };
 
-#endif //ADDCOMMAND_H
+#endif //KIMAGEANNOTATOR_ADDCOMMAND_H

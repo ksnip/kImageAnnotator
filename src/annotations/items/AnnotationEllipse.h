@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONELLIPSE_H
-#define ANNOTATIONELLIPSE_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONELLIPSE_H
+#define KIMAGEANNOTATOR_ANNOTATIONELLIPSE_H
 
 #include "AbstractAnnotationRect.h"
 
@@ -32,4 +32,4 @@ protected:
     virtual void updateShape() override;
 };
 
-#endif // ANNOTATIONELLIPSE_H
+#endif // KIMAGEANNOTATOR_ANNOTATIONELLIPSE_H

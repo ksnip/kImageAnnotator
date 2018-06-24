@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef SIZEPICKERTEST_H
-#define SIZEPICKERTEST_H
+#ifndef KIMAGEANNOTATOR_SIZEPICKERTEST_H
+#define KIMAGEANNOTATOR_SIZEPICKERTEST_H
 
 #include <QtTest>
 
@@ -32,4 +32,4 @@ private slots:
     void TestSelectSize_Should_EmitSignal_When_SizeChanged();
 };
 
-#endif // SIZEPICKERTEST_H
+#endif // KIMAGEANNOTATOR_SIZEPICKERTEST_H

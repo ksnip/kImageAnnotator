@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONMULTIITEMRESIZER_H
-#define ANNOTATIONMULTIITEMRESIZER_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONMULTIITEMRESIZER_H
+#define KIMAGEANNOTATOR_ANNOTATIONMULTIITEMRESIZER_H
 
 #include <QGraphicsItemGroup>
 #include <QGraphicsScene>
@@ -59,4 +59,4 @@ private:
     AnnotationItemResizer *castToResizer(QGraphicsItem *item) const;
 };
 
-#endif // ANNOTATIONMULTIITEMRESIZER_H
+#endif // KIMAGEANNOTATOR_ANNOTATIONMULTIITEMRESIZER_H

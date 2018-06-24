@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONAREA_H
-#define ANNOTATIONAREA_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONAREA_H
+#define KIMAGEANNOTATOR_ANNOTATIONAREA_H
 
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
@@ -78,4 +78,4 @@ private slots:
     void deleteSelectedItems();
 };
 
-#endif // ANNOTATIONAREA_H
+#endif // KIMAGEANNOTATOR_ANNOTATIONAREA_H

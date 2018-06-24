@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef FILLPICKER_H
-#define FILLPICKER_H
+#ifndef KIMAGEANNOTATOR_FILLPICKER_H
+#define KIMAGEANNOTATOR_FILLPICKER_H
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -55,4 +55,4 @@ private slots:
     void selectionChanged();
 };
 
-#endif // FILLPICKER_H
+#endif // KIMAGEANNOTATOR_FILLPICKER_H

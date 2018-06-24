@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_H
-#define KIMAGEANNOTATOR_H
+#ifndef KIMAGEANNOTATOR_KIMAGEANNOTATOR_H
+#define KIMAGEANNOTATOR_KIMAGEANNOTATOR_H
 
 #include <QWidget>
 #include <QCoreApplication>
@@ -64,4 +64,4 @@ private slots:
     void updateSelection(ToolTypes tool);
 };
 
-#endif // KIMAGEANNOTATOR_H
+#endif // KIMAGEANNOTATOR_KIMAGEANNOTATOR_H

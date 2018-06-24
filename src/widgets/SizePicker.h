@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef SIZEPICKER_H
-#define SIZEPICKER_H
+#ifndef KIMAGEANNOTATOR_SIZEPICKER_H
+#define KIMAGEANNOTATOR_SIZEPICKER_H
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -51,4 +51,4 @@ private slots:
     void selectionChanged();
 };
 
-#endif // SIZEPICKER_H
+#endif // KIMAGEANNOTATOR_SIZEPICKER_H

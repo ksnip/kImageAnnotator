@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ABSTRACTANNOTATIONITEM_H
-#define ABSTRACTANNOTATIONITEM_H
+#ifndef KIMAGEANNOTATOR_ABSTRACTANNOTATIONITEM_H
+#define KIMAGEANNOTATOR_ABSTRACTANNOTATIONITEM_H
 
 #include <QGraphicsItem>
 #include <QPainter>
@@ -60,4 +60,4 @@ private:
     void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
 };
 
-#endif // ABSTRACTANNOTATIONITEM_H
+#endif // KIMAGEANNOTATOR_ABSTRACTANNOTATIONITEM_H

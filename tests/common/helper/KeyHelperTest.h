@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KEYHELPERTEST_H
-#define KEYHELPERTEST_H
+#ifndef KIMAGEANNOTATOR_KEYHELPERTEST_H
+#define KIMAGEANNOTATOR_KEYHELPERTEST_H
 
 #include <QtTest>
 #include <QKeyEvent>
@@ -39,4 +39,4 @@ private slots:
     void TestIsShiftPressed_ShouldReturnFalse_When_ShiftWasReleased();
 };
 
-#endif // KEYHELPERTEST_H
+#endif // KIMAGEANNOTATOR_KEYHELPERTEST_H
