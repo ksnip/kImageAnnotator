@@ -50,6 +50,10 @@ private slots:
     void TestRectBottomRightWithOffset_ReturnPointWithCorrectOffset();
     void TestRectBottomRightWithOffset_ReturnPointWithCorrectOffset_data();
     void TestExtendLine_Should_ReturnNewLineExtendBySizeWithSameAngle();
+    void TestRectPointAtIndex_Should_ReturnPointAtIndexPosition();
+    void TestRectPointAtIndex_Should_ReturnPointAtIndexPosition_data();
+    void TestSetRectPointAtIndex_Should_SetRectPointAtIndexToProvidedPoint();
+    void TestSetRectPointAtIndex_Should_SetRectPointAtIndexToProvidedPoint_data();
 };
 
 #endif //KIMAGEANNOTATOR_SHAPEHELPERTEST

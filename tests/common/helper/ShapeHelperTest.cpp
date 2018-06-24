@@ -278,4 +278,62 @@ void ShapeHelperTest::TestExtendLine_Should_ReturnNewLineExtendBySizeWithSameAng
     QCOMPARE(result.p2(), lineExtendP2.p2());
 }
 
+void ShapeHelperTest::TestRectPointAtIndex_Should_ReturnPointAtIndexPosition()
+{
+    QFETCH(QRectF, rect);
+    QFETCH(int, index);
+    QFETCH(QPointF, expected);
+
+    auto result = ShapeHelper::rectPointAtIndex(rect, index);
+
+    QCOMPARE(result, expected);
+}
+
+void ShapeHelperTest::TestRectPointAtIndex_Should_ReturnPointAtIndexPosition_data()
+{
+    QTest::addColumn<QRectF>("rect");
+    QTest::addColumn<int>("index");
+    QTest::addColumn<QPointF>("expected");
+
+    QTest::newRow("set1") << QRectF(10, 10, 10, 10) << 0 << QPointF(10, 10);
+    QTest::newRow("set2") << QRectF(10, 10, 10, 10) << 1 << QPointF(15, 10);
+    QTest::newRow("set3") << QRectF(10, 10, 10, 10) << 2 << QPointF(20, 10);
+    QTest::newRow("set4") << QRectF(10, 10, 10, 10) << 3 << QPointF(20, 15);
+    QTest::newRow("set5") << QRectF(10, 10, 10, 10) << 4 << QPointF(20, 20);
+    QTest::newRow("set6") << QRectF(10, 10, 10, 10) << 5 << QPointF(15, 20);
+    QTest::newRow("set7") << QRectF(10, 10, 10, 10) << 6 << QPointF(10, 20);
+    QTest::newRow("set8") << QRectF(10, 10, 10, 10) << 7 << QPointF(10, 15);
+    QTest::newRow("set8") << QRectF(10, 10, 10, 10) << 8 << QPointF();
+}
+
+void ShapeHelperTest::TestSetRectPointAtIndex_Should_SetRectPointAtIndexToProvidedPoint()
+{
+    QFETCH(QRectF, rectInitial);
+    QFETCH(int, index);
+    QFETCH(QPointF, point);
+    QFETCH(QRectF, expected);
+
+    auto result = ShapeHelper::setRectPointAtIndex(rectInitial, index, point);
+
+    QCOMPARE(result, expected);
+}
+
+void ShapeHelperTest::TestSetRectPointAtIndex_Should_SetRectPointAtIndexToProvidedPoint_data()
+{
+    QTest::addColumn<QRectF>("rectInitial");
+    QTest::addColumn<int>("index");
+    QTest::addColumn<QPointF>("point");
+    QTest::addColumn<QRectF>("expected");
+
+    QTest::newRow("set1") << QRectF(10, 10, 10, 10) << 0 << QPointF(5, 5) << QRectF(5, 5, 15, 15);
+    QTest::newRow("set2") << QRectF(10, 10, 10, 10) << 1 << QPointF(15, 5) << QRectF(10, 5, 10, 15);
+    QTest::newRow("set3") << QRectF(10, 10, 10, 10) << 2 << QPointF(25, 5) << QRectF(10, 5, 15, 15);
+    QTest::newRow("set4") << QRectF(10, 10, 10, 10) << 3 << QPointF(25, 15) << QRectF(10, 10, 15, 10);
+    QTest::newRow("set5") << QRectF(10, 10, 10, 10) << 4 << QPointF(25, 25) << QRectF(10, 10, 15, 15);
+    QTest::newRow("set6") << QRectF(10, 10, 10, 10) << 5 << QPointF(15, 25) << QRectF(10, 10, 10, 15);
+    QTest::newRow("set7") << QRectF(10, 10, 10, 10) << 6 << QPointF(5, 25) << QRectF(5, 10, 15, 15);
+    QTest::newRow("set8") << QRectF(10, 10, 10, 10) << 7 << QPointF(5, 15) << QRectF(5, 10, 15, 10);
+    QTest::newRow("set8") << QRectF(10, 10, 10, 10) << 8 << QPointF(60, 60) << QRectF(10, 10, 10, 10);
+}
+
 QTEST_MAIN(ShapeHelperTest);
