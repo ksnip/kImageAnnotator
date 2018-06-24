@@ -26,6 +26,7 @@ KImageAnnotator::KImageAnnotator(const QPixmap &image)
     setupDefaults();
 
     mAnnotationArea->setBackgroundImage(image);
+    mView->setFixedSize(image.size() + QSize(50, 50));
 }
 
 KImageAnnotator::~KImageAnnotator()
