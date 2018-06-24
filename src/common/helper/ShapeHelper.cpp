@@ -152,6 +152,35 @@ QRectF ShapeHelper::setRectPointAtIndex(const QRectF &rect, int index, const QPo
 
 QPainterPath ShapeHelper::smoothOut(const QPainterPath &path)
 {
+    auto points = getPathPoints(path);
+
+    // Don't proceed if we only have 3 or less points.
+    if (points.count() < 3) {
+        return path;
+    }
+
+    return createSmoothPath(points);
+}
+
+QPainterPath ShapeHelper::createSmoothPath(const QList<QPointF> &points)
+{
+    QPointF point1, point2;
+    QPainterPath smoothPath;
+
+    smoothPath.moveTo(points[0]);
+    smoothPath.lineTo(points[1]);
+    for (auto i = 2; i < points.count() - 2; i++) {
+        point1 = getBeginOfRounding(points[i], points[i + 1]);
+        smoothPath.quadTo(points[i], point1);
+        point2 = getEndOfRounding(points[i], points[i + 1]);
+        smoothPath.lineTo(point2);
+    }
+    smoothPath.lineTo(points[points.count() - 1]);
+    return smoothPath;
+}
+
+QList<QPointF> ShapeHelper::getPathPoints(const QPainterPath &path)
+{
     QList<QPointF> points;
     QPointF p;
     for (auto i = 0; i < path.elementCount() - 1; i++) {
@@ -164,27 +193,7 @@ QPainterPath ShapeHelper::smoothOut(const QPainterPath &path)
         }
         points.append(p);
     }
-
-    // Don't proceed if we only have 3 or less points.
-    if (points.count() < 3) {
-        return path;
-    }
-
-    QPointF point1, point2;
-    QPainterPath smoothPath;
-
-    for (auto i = 0; i < points.count() - 1; i++) {
-        point1 = getBeginOfRounding(points[i], points[i + 1]);
-        if (i == 0) {
-            smoothPath.moveTo(point1);
-        } else {
-            smoothPath.quadTo(points[i], point1);
-        }
-        point2 = getEndOfRounding(points[i], points[i + 1]);
-        smoothPath.lineTo(point2);
-    }
-
-    return smoothPath;
+    return points;
 }
 
 int ShapeHelper::invertOffsetIfLeftSmallerThenRight(const QRectF &rect, int xOffset)

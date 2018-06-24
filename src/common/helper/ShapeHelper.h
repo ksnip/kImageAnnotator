@@ -52,6 +52,8 @@ private:
     static QPointF getBeginOfRounding(const QPointF &point1, const QPointF &point2);
     static QPointF getEndOfRounding(const QPointF &point1, const QPointF &point2);
     static double getRoundingRate(const QPointF &point1, const QPointF &point2);
+    static QList<QPointF> getPathPoints(const QPainterPath &path);
+    static QPainterPath createSmoothPath(const QList<QPointF> &points);
 };
 
 #endif //KIMAGEANNOTATOR_SHAPEHELPER_H
