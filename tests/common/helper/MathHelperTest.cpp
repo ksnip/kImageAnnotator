@@ -69,4 +69,27 @@ void MathHelperTest::TestSmallerValue_Should_AlwaysSmallerOfTwoValues_data()
     QTest::newRow("set6") << -2.0 << 2.0 << -2.0;
 }
 
+void MathHelperTest::TestDistanceBetweenPoints_Should_ReturnCorrectDistance()
+{
+    QFETCH(QPointF, point1);
+    QFETCH(QPointF, point2);
+    QFETCH(double, expected);
+
+    auto result = MathHelper::distanceBetweenPoints(point1, point2);
+
+    QCOMPARE(result, expected);
+}
+
+void MathHelperTest::TestDistanceBetweenPoints_Should_ReturnCorrectDistance_data()
+{
+    QTest::addColumn<QPointF>("point1");
+    QTest::addColumn<QPointF>("point2");
+    QTest::addColumn<double>("expected");
+
+    QTest::newRow("set1") << QPointF(10, 10) << QPointF(20, 10) << 10.0;
+    QTest::newRow("set2") << QPointF(10, 10) << QPointF(10, 20) << 10.0;
+    QTest::newRow("set3") << QPointF(-10, 10) << QPointF(10, 10) << 20.0;
+    QTest::newRow("set4") << QPointF(-4, -3) << QPointF(8, 6) << 15.0;
+}
+
 QTEST_MAIN(MathHelperTest);

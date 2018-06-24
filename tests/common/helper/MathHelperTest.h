@@ -32,6 +32,8 @@ private slots:
     void TestRoundAngleTo_Should_ReturnAngleRoundedUpToIncrement_data();
     void TestSmallerValue_Should_AlwaysSmallerOfTwoValues();
     void TestSmallerValue_Should_AlwaysSmallerOfTwoValues_data();
+    void TestDistanceBetweenPoints_Should_ReturnCorrectDistance();
+    void TestDistanceBetweenPoints_Should_ReturnCorrectDistance_data();
 };
 
 #endif // MATHHELPERTEST_H
