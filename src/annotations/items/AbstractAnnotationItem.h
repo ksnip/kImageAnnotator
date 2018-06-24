@@ -42,6 +42,7 @@ public:
     virtual void setPosition(const QPointF &newPosition) = 0;
     virtual QPointF position();
     AnnotationProperties properties() const;
+    virtual void finish();
 
 protected:
     void setShape(QPainterPath &newShape);

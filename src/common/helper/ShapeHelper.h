@@ -23,6 +23,9 @@
 #include <QRectF>
 #include <QLineF>
 
+#include "../../common/helper/MathHelper.h"
+#include "../../common/constants/AnnotationConstants.h"
+
 class ShapeHelper
 {
 public:
@@ -41,10 +44,14 @@ public:
     static QLineF extendLine(const QLineF &line, int extendBy);
     static QPointF rectPointAtIndex(const QRectF &rect, int index);
     static QRectF setRectPointAtIndex(const QRectF &rect, int index, const QPointF &pos);
+    static QPainterPath smoothOut(const QPainterPath &path);
 
 private:
     static int invertOffsetIfTopSmallerThenBottom(const QRectF &rect, int yOffset);
     static int invertOffsetIfLeftSmallerThenRight(const QRectF &rect, int xOffset);
+    static QPointF getBeginOfRounding(const QPointF &point1, const QPointF &point2);
+    static QPointF getEndOfRounding(const QPointF &point1, const QPointF &point2);
+    static double getRoundingRate(const QPointF &point1, const QPointF &point2);
 };
 
 #endif //KIMAGEANNOTATOR_SHAPEHELPER_H

@@ -17,13 +17,14 @@
  * Boston, MA 02110-1301, USA.
  */
 
+
 #include "AbstractAnnotationPath.h"
 
-AbstractAnnotationPath::AbstractAnnotationPath(const QPointF &startPosisition, const AnnotationProperties &properties) : AbstractAnnotationItem(properties)
+AbstractAnnotationPath::AbstractAnnotationPath(const QPointF &startPosition, const AnnotationProperties &properties) : AbstractAnnotationItem(properties)
 {
     mPath = new QPainterPath();
-    mPath->moveTo(startPosisition);
-    mPath->lineTo(startPosisition + QPointF(1, 1));
+    mPath->moveTo(startPosition);
+    mPath->lineTo(startPosition + QPointF(1, 1));
 }
 
 AbstractAnnotationPath::~AbstractAnnotationPath()
@@ -52,7 +53,7 @@ void AbstractAnnotationPath::setPointAt(const QPointF &point, int handleIndex)
     auto oppositeIndex = (handleIndex + 4) % 8;
     auto currentPos = ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex);
     auto rect = ShapeHelper::setRectPointAtIndex(boundingRect(), handleIndex, point);
-    if (rect.width() >= 20 && rect.height() >= 20) {
+    if (rect.width() >= AnnotationConstants::MinResizeRectSize && rect.height() >= AnnotationConstants::MinResizeRectSize) {
         prepareGeometryChange();
         scalePath(rect);
         mPath->translate(currentPos - ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex));
@@ -63,6 +64,14 @@ void AbstractAnnotationPath::setPointAt(const QPointF &point, int handleIndex)
 QPointF AbstractAnnotationPath::pointAt(int index) const
 {
     return ShapeHelper::rectPointAtIndex(mPath->boundingRect(), index);
+}
+
+void AbstractAnnotationPath::finish()
+{
+    prepareGeometryChange();
+    auto smoothPath = ShapeHelper::smoothOut(*mPath);
+    mPath->swap(smoothPath);
+    updateShape();
 }
 
 void AbstractAnnotationPath::scalePath(const QRectF &rect)

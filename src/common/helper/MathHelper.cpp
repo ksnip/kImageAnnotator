@@ -33,3 +33,10 @@ qreal MathHelper::smallerValue(qreal value1, qreal value2)
     qreal value = (qAbs(value1) < qAbs(value2)) ? qAbs(value1) : qAbs(value2);
     return (value1 < 0) ? -value : value;
 }
+
+qreal MathHelper::distanceBetweenPoints(const QPointF &point1, const QPointF &point2)
+{
+    auto horizontalDistance = (point1.x() - point2.x()) * (point1.x() - point2.x());
+    auto verticalDistance = (point1.y() - point2.y()) * (point1.y() - point2.y());
+    return qSqrt(horizontalDistance + verticalDistance);
+}

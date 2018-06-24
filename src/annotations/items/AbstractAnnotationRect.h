@@ -24,12 +24,13 @@
 
 #include "../../common/helper/MathHelper.h"
 #include "../../common/helper/ShapeHelper.h"
+#include "../../common/constants/AnnotationConstants.h"
 
 class AbstractAnnotationRect : public AbstractAnnotationItem
 {
 public:
     AbstractAnnotationRect(const QPointF &startPosition, const AnnotationProperties &properties);
-    ~AbstractAnnotationRect();
+    ~AbstractAnnotationRect() override;
     void addPoint(const QPointF &position, bool modified = false) override;
     void setPosition(const QPointF &newPosition) override;
     QRectF rect() const;

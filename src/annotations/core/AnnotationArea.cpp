@@ -130,6 +130,7 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         if (mConfig->selectedTool() == ToolTypes::Select) {
             mItemModifier->handleMouseRelease(mItems);
         } else {
+            mCurrentItem->finish();
             mCurrentItem = nullptr;
         }
     }

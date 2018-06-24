@@ -104,3 +104,8 @@ bool AbstractAnnotationItem::hasFill() const
 {
     return mProperties->fillType() == FillTypes::Fill;
 }
+
+void AbstractAnnotationItem::finish()
+{
+    // By default, does nothing
+}

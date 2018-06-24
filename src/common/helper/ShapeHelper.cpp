@@ -17,6 +17,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#include <QtGui/QPainterPath>
 #include "ShapeHelper.h"
 
 QPointF ShapeHelper::rectTopLeftWithOffset(const QRectF &rect, int offset)
@@ -149,6 +150,43 @@ QRectF ShapeHelper::setRectPointAtIndex(const QRectF &rect, int index, const QPo
     return updatedRect;
 }
 
+QPainterPath ShapeHelper::smoothOut(const QPainterPath &path)
+{
+    QList<QPointF> points;
+    QPointF p;
+    for (auto i = 0; i < path.elementCount() - 1; i++) {
+        p = QPointF(path.elementAt(i).x, path.elementAt(i).y);
+
+        // Except for first and last points, check what the distance between two
+        // points is and if its less the min, don't add them to the list.
+        if (points.count() > 1 && (i < path.elementCount() - 2) && (MathHelper::distanceBetweenPoints(points.last(), p) < AnnotationConstants::PathSmoothFactor)) {
+            continue;
+        }
+        points.append(p);
+    }
+
+    // Don't proceed if we only have 3 or less points.
+    if (points.count() < 3) {
+        return path;
+    }
+
+    QPointF point1, point2;
+    QPainterPath smoothPath;
+
+    for (auto i = 0; i < points.count() - 1; i++) {
+        point1 = getBeginOfRounding(points[i], points[i + 1]);
+        if (i == 0) {
+            smoothPath.moveTo(point1);
+        } else {
+            smoothPath.quadTo(points[i], point1);
+        }
+        point2 = getEndOfRounding(points[i], points[i + 1]);
+        smoothPath.lineTo(point2);
+    }
+
+    return smoothPath;
+}
+
 int ShapeHelper::invertOffsetIfLeftSmallerThenRight(const QRectF &rect, int xOffset)
 {
     if (rect.left() < rect.right()) {
@@ -163,4 +201,31 @@ int ShapeHelper::invertOffsetIfTopSmallerThenBottom(const QRectF &rect, int yOff
         yOffset *= -1;
     }
     return yOffset;
+}
+
+QPointF ShapeHelper::getBeginOfRounding(const QPointF &point1, const QPointF &point2)
+{
+    QPointF startPoint;
+    auto rat = getRoundingRate(point1, point2);
+    startPoint.setX((1.0 - rat) * point1.x() + rat * point2.x());
+    startPoint.setY((1.0 - rat) * point1.y() + rat * point2.y());
+    return startPoint;
+}
+
+QPointF ShapeHelper::getEndOfRounding(const QPointF &point1, const QPointF &point2)
+{
+    QPointF endPoint;
+    auto rat = getRoundingRate(point1, point2);
+    endPoint.setX(rat * point1.x() + (1.0 - rat) * point2.x());
+    endPoint.setY(rat * point1.y() + (1.0 - rat) * point2.y());
+    return endPoint;
+}
+
+double ShapeHelper::getRoundingRate(const QPointF &point1, const QPointF &point2)
+{
+    auto rat = 10.0 / MathHelper::distanceBetweenPoints(point1, point2);
+    if (rat > 0.5) {
+        rat = 0.5;
+    }
+    return rat;
 }

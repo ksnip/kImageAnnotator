@@ -22,16 +22,18 @@
 
 #include "AbstractAnnotationItem.h"
 #include "../../common/helper/ShapeHelper.h"
+#include "../../common/constants/AnnotationConstants.h"
 
 class AbstractAnnotationPath : public AbstractAnnotationItem
 {
 public:
-    AbstractAnnotationPath(const QPointF &startPosisition, const AnnotationProperties &properties);
-    virtual ~AbstractAnnotationPath();
+    AbstractAnnotationPath(const QPointF &startPosition, const AnnotationProperties &properties);
+    ~AbstractAnnotationPath() override;
     void addPoint(const QPointF &position, bool modified = false) override;
     void setPosition(const QPointF &newPosition) override;
     void setPointAt(const QPointF &point, int handleIndex) override;
     QPointF pointAt(int index) const override;
+    void finish() override;
 
 protected:
     QPainterPath *mPath;

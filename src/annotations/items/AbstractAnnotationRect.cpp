@@ -56,7 +56,7 @@ void AbstractAnnotationRect::setPointAt(const QPointF &point, int index)
 {
     prepareGeometryChange();
     auto newRect = ShapeHelper::setRectPointAtIndex(*mRect, index, point);
-    if (newRect.width() >= 20 && newRect.height() >= 20) {
+    if (newRect.width() >= AnnotationConstants::MinResizeRectSize && newRect.height() >= AnnotationConstants::MinResizeRectSize) {
         mRect->setRect(newRect.x(), newRect.y(), newRect.width(), newRect.height());
     }
     updateShape();
