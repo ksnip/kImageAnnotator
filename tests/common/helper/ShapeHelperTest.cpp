@@ -336,4 +336,33 @@ void ShapeHelperTest::TestSetRectPointAtIndex_Should_SetRectPointAtIndexToProvid
     QTest::newRow("set8") << QRectF(10, 10, 10, 10) << 8 << QPointF(60, 60) << QRectF(10, 10, 10, 10);
 }
 
+void ShapeHelperTest::TestSmoothOut_Should_RetunSamePath_When_PathHasOnlyThreeElement()
+{
+    QPainterPath path;
+    path.moveTo(10, 10);
+    path.lineTo(20, -10);
+    path.lineTo(30, 10);
+
+    auto result = ShapeHelper::smoothOut(path);
+
+    QCOMPARE(result, path);
+}
+
+void ShapeHelperTest::TestSmoothOut_Should_StartWithMoveToAndLineToAndEndWithLineTo()
+{
+    QPainterPath path;
+    path.moveTo(10, 10);
+    path.lineTo(20, -10);
+    path.lineTo(30, 10);
+    path.lineTo(40, -10);
+    path.lineTo(50, 10);
+
+    auto result = ShapeHelper::smoothOut(path);
+
+    QVERIFY(result != path);
+    QVERIFY(result.elementAt(0).isMoveTo());
+    QVERIFY(result.elementAt(1).isLineTo());
+    QVERIFY(result.elementAt(path.elementCount() - 1).isLineTo());
+}
+
 QTEST_MAIN(ShapeHelperTest);
