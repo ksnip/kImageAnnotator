@@ -20,7 +20,7 @@
 
 #include "ShapeHelperTest.h"
 
-void ShapeHelperTest::TestRectTop_ReturnsPointAtTopCentered()
+void ShapeHelperTest::TestRectTop_Should_ReturnPointAtTopCentered()
 {
     QRectF rect(10, 10, 50, 50);
 
@@ -29,7 +29,7 @@ void ShapeHelperTest::TestRectTop_ReturnsPointAtTopCentered()
     QCOMPARE(top, QPointF(rect.center().x(), rect.top()));
 }
 
-void ShapeHelperTest::TestRectRight_ReturnsPointAtRightCentered()
+void ShapeHelperTest::TestRectRight_Should_ReturnPointAtRightCentered()
 {
     QRectF rect(10, 10, 50, 50);
 
@@ -38,7 +38,7 @@ void ShapeHelperTest::TestRectRight_ReturnsPointAtRightCentered()
     QCOMPARE(right, QPointF(rect.right(), rect.center().y()));
 }
 
-void ShapeHelperTest::TestRectLeft_ReturnsPointAtLeftCentered()
+void ShapeHelperTest::TestRectLeft_Should_ReturnPointAtLeftCentered()
 {
     QRectF rect(10, 10, 50, 50);
 
@@ -47,7 +47,7 @@ void ShapeHelperTest::TestRectLeft_ReturnsPointAtLeftCentered()
     QCOMPARE(left, QPointF(rect.left(), rect.center().y()));
 }
 
-void ShapeHelperTest::TestRectBottom_ReturnsPointAtBottomCentered()
+void ShapeHelperTest::TestRectBottom_Should_ReturnPointAtBottomCentered()
 {
     QRectF rect(10, 10, 50, 50);
 
@@ -56,7 +56,7 @@ void ShapeHelperTest::TestRectBottom_ReturnsPointAtBottomCentered()
     QCOMPARE(bottom, QPointF(rect.center().x(), rect.bottom()));
 }
 
-void ShapeHelperTest::TestRectTopWithOffset_ReturnsPointAtTopWithAddedOffset_When_TopSmallerThenBottom()
+void ShapeHelperTest::TestRectTopWithOffset_Should_ReturnPointAtTopWithAddedOffset_When_TopSmallerThenBottom()
 {
     QRectF rect(10, 10, 50, 50);
     rect.setTop(rect.bottom() + 20);
@@ -67,7 +67,7 @@ void ShapeHelperTest::TestRectTopWithOffset_ReturnsPointAtTopWithAddedOffset_Whe
     QCOMPARE(top, QPointF(rect.center().x(), rect.top() + offset));
 }
 
-void ShapeHelperTest::TestRectTopWithOffset_ReturnsPointAtTopWithSubtractedOffset_When_TopLargerThenBottom()
+void ShapeHelperTest::TestRectTopWithOffset_Should_ReturnPointAtTopWithSubtractedOffset_When_TopLargerThenBottom()
 {
     QRectF rect(10, 10, 50, 50);
     auto offset = 5;
@@ -77,7 +77,7 @@ void ShapeHelperTest::TestRectTopWithOffset_ReturnsPointAtTopWithSubtractedOffse
     QCOMPARE(top, QPointF(rect.center().x(), rect.top() - offset));
 }
 
-void ShapeHelperTest::TestRectRightWithOffset_ReturnsPointAtRightWithSubtracedOffset_When_RightSmallerThenLeft()
+void ShapeHelperTest::TestRectRightWithOffset_Should_ReturnPointAtRightWithSubtracedOffset_When_RightSmallerThenLeft()
 {
     QRectF rect(10, 10, 50, 50);
     rect.setRight(rect.left() - 20);
@@ -88,7 +88,7 @@ void ShapeHelperTest::TestRectRightWithOffset_ReturnsPointAtRightWithSubtracedOf
     QCOMPARE(right, QPointF(rect.right() - offset, rect.center().y()));
 }
 
-void ShapeHelperTest::TestRectRightWithOffset_ReturnsPointAtRightWithAddedOffset_When_RightLargerThenLeft()
+void ShapeHelperTest::TestRectRightWithOffset_Should_ReturnPointAtRightWithAddedOffset_When_RightLargerThenLeft()
 {
     QRectF rect(10, 10, 50, 50);
     auto offset = 5;
@@ -98,7 +98,7 @@ void ShapeHelperTest::TestRectRightWithOffset_ReturnsPointAtRightWithAddedOffset
     QCOMPARE(right, QPointF(rect.right() + offset, rect.center().y()));
 }
 
-void ShapeHelperTest::TestRectBottomWithOffset_ReturnsPointAtBottomWithSubtracedOffset_When_BottomSmallerThenTop()
+void ShapeHelperTest::TestRectBottomWithOffset_Should_ReturnPointAtBottomWithSubtracedOffset_When_BottomSmallerThenTop()
 {
     QRectF rect(10, 10, 50, 50);
     rect.setBottom(rect.top() - 20);
@@ -109,7 +109,7 @@ void ShapeHelperTest::TestRectBottomWithOffset_ReturnsPointAtBottomWithSubtraced
     QCOMPARE(bottom, QPointF(rect.center().x(), rect.bottom() - offset));
 }
 
-void ShapeHelperTest::TestRectBottomWithOffset_ReturnsPointAtBottomWithAddedOffset_When_BottomLargerThenTop()
+void ShapeHelperTest::TestRectBottomWithOffset_Should_ReturnPointAtBottomWithAddedOffset_When_BottomLargerThenTop()
 {
     QRectF rect(10, 10, 50, 50);
     auto offset = 5;
@@ -119,7 +119,7 @@ void ShapeHelperTest::TestRectBottomWithOffset_ReturnsPointAtBottomWithAddedOffs
     QCOMPARE(bottom, QPointF(rect.center().x(), rect.bottom() + offset));
 }
 
-void ShapeHelperTest::TestRectLeftWithOffset_ReturnsPointAtLeftWithAddedOffset_When_LeftSmallerThenRight()
+void ShapeHelperTest::TestRectLeftWithOffset_Should_ReturnPointAtLeftWithAddedOffset_When_LeftSmallerThenRight()
 {
     QRectF rect(10, 10, 50, 50);
     rect.setLeft(rect.right() + 20);
@@ -130,7 +130,7 @@ void ShapeHelperTest::TestRectLeftWithOffset_ReturnsPointAtLeftWithAddedOffset_W
     QCOMPARE(left, QPointF(rect.left() + offset, rect.center().y()));
 }
 
-void ShapeHelperTest::TestRectLeftWithOffset_ReturnsPointAtLeftWithSubtracedOffset_When_LeftLargerThenRight()
+void ShapeHelperTest::TestRectLeftWithOffset_Should_ReturnPointAtLeftWithSubtracedOffset_When_LeftLargerThenRight()
 {
     QRectF rect(10, 10, 50, 50);
     auto offset = 5;
@@ -140,7 +140,7 @@ void ShapeHelperTest::TestRectLeftWithOffset_ReturnsPointAtLeftWithSubtracedOffs
     QCOMPARE(left, QPointF(rect.left() - offset, rect.center().y()));
 }
 
-void ShapeHelperTest::TestRectTopLeftWithOffset_ReturnPointWithCorrectOffset()
+void ShapeHelperTest::TestRectTopLeftWithOffset_Should_ReturnPointWithCorrectOffset()
 {
     QFETCH(int, addToRight);
     QFETCH(int, addToBottom);
@@ -157,7 +157,7 @@ void ShapeHelperTest::TestRectTopLeftWithOffset_ReturnPointWithCorrectOffset()
     QCOMPARE(topLeft, QPointF(rect.topLeft().x() + expectedOffsetX, rect.topLeft().y() + expectedOffsetY));
 }
 
-void ShapeHelperTest::TestRectTopLeftWithOffset_ReturnPointWithCorrectOffset_data()
+void ShapeHelperTest::TestRectTopLeftWithOffset_Should_ReturnPointWithCorrectOffset_data()
 {
     QTest::addColumn<int>("addToRight");
     QTest::addColumn<int>("addToBottom");
@@ -170,7 +170,7 @@ void ShapeHelperTest::TestRectTopLeftWithOffset_ReturnPointWithCorrectOffset_dat
     QTest::newRow("set4") << -10 << -10 << 5 << 5;
 }
 
-void ShapeHelperTest::TestRectTopRightWithOffset_ReturnPointWithCorrectOffset()
+void ShapeHelperTest::TestRectTopRightWithOffset_Should_ReturnPointWithCorrectOffset()
 {
     QFETCH(int, addToRight);
     QFETCH(int, addToBottom);
@@ -187,7 +187,7 @@ void ShapeHelperTest::TestRectTopRightWithOffset_ReturnPointWithCorrectOffset()
     QCOMPARE(topRight, QPointF(rect.topRight().x() + expectedOffsetX, rect.topRight().y() + expectedOffsetY));
 }
 
-void ShapeHelperTest::TestRectTopRightWithOffset_ReturnPointWithCorrectOffset_data()
+void ShapeHelperTest::TestRectTopRightWithOffset_Should_ReturnPointWithCorrectOffset_data()
 {
     QTest::addColumn<int>("addToRight");
     QTest::addColumn<int>("addToBottom");
@@ -200,7 +200,7 @@ void ShapeHelperTest::TestRectTopRightWithOffset_ReturnPointWithCorrectOffset_da
     QTest::newRow("set4") << -10 << -10 << -5 << 5;
 }
 
-void ShapeHelperTest::TestRectBottomLeftWithOffset_ReturnPointWithCorrectOffset()
+void ShapeHelperTest::TestRectBottomLeftWithOffset_Should_ReturnPointWithCorrectOffset()
 {
     QFETCH(int, addToRight);
     QFETCH(int, addToBottom);
@@ -217,7 +217,7 @@ void ShapeHelperTest::TestRectBottomLeftWithOffset_ReturnPointWithCorrectOffset(
     QCOMPARE(bottomLeft, QPointF(rect.bottomLeft().x() + expectedOffsetX, rect.bottomLeft().y() + expectedOffsetY));
 }
 
-void ShapeHelperTest::TestRectBottomLeftWithOffset_ReturnPointWithCorrectOffset_data()
+void ShapeHelperTest::TestRectBottomLeftWithOffset_Should_ReturnPointWithCorrectOffset_data()
 {
     QTest::addColumn<int>("addToRight");
     QTest::addColumn<int>("addToBottom");
@@ -230,7 +230,7 @@ void ShapeHelperTest::TestRectBottomLeftWithOffset_ReturnPointWithCorrectOffset_
     QTest::newRow("set4") << -10 << -10 << 5 << -5;
 }
 
-void ShapeHelperTest::TestRectBottomRightWithOffset_ReturnPointWithCorrectOffset()
+void ShapeHelperTest::TestRectBottomRightWithOffset_Should_ReturnPointWithCorrectOffset()
 {
     QFETCH(int, addToRight);
     QFETCH(int, addToBottom);
@@ -247,7 +247,7 @@ void ShapeHelperTest::TestRectBottomRightWithOffset_ReturnPointWithCorrectOffset
     QCOMPARE(bottomRight, QPointF(rect.bottomRight().x() + expectedOffsetX, rect.bottomRight().y() + expectedOffsetY));
 }
 
-void ShapeHelperTest::TestRectBottomRightWithOffset_ReturnPointWithCorrectOffset_data()
+void ShapeHelperTest::TestRectBottomRightWithOffset_Should_ReturnPointWithCorrectOffset_data()
 {
     QTest::addColumn<int>("addToRight");
     QTest::addColumn<int>("addToBottom");

@@ -29,26 +29,26 @@ class ShapeHelperTest : public QObject
 Q_OBJECT
 
 private slots:
-    void TestRectTop_ReturnsPointAtTopCentered();
-    void TestRectRight_ReturnsPointAtRightCentered();
-    void TestRectLeft_ReturnsPointAtLeftCentered();
-    void TestRectBottom_ReturnsPointAtBottomCentered();
-    void TestRectTopWithOffset_ReturnsPointAtTopWithAddedOffset_When_TopSmallerThenBottom();
-    void TestRectTopWithOffset_ReturnsPointAtTopWithSubtractedOffset_When_TopLargerThenBottom();
-    void TestRectRightWithOffset_ReturnsPointAtRightWithSubtracedOffset_When_RightSmallerThenLeft();
-    void TestRectRightWithOffset_ReturnsPointAtRightWithAddedOffset_When_RightLargerThenLeft();
-    void TestRectBottomWithOffset_ReturnsPointAtBottomWithSubtracedOffset_When_BottomSmallerThenTop();
-    void TestRectBottomWithOffset_ReturnsPointAtBottomWithAddedOffset_When_BottomLargerThenTop();
-    void TestRectLeftWithOffset_ReturnsPointAtLeftWithAddedOffset_When_LeftSmallerThenRight();
-    void TestRectLeftWithOffset_ReturnsPointAtLeftWithSubtracedOffset_When_LeftLargerThenRight();
-    void TestRectTopLeftWithOffset_ReturnPointWithCorrectOffset();
-    void TestRectTopLeftWithOffset_ReturnPointWithCorrectOffset_data();
-    void TestRectTopRightWithOffset_ReturnPointWithCorrectOffset();
-    void TestRectTopRightWithOffset_ReturnPointWithCorrectOffset_data();
-    void TestRectBottomLeftWithOffset_ReturnPointWithCorrectOffset();
-    void TestRectBottomLeftWithOffset_ReturnPointWithCorrectOffset_data();
-    void TestRectBottomRightWithOffset_ReturnPointWithCorrectOffset();
-    void TestRectBottomRightWithOffset_ReturnPointWithCorrectOffset_data();
+    void TestRectTop_Should_ReturnPointAtTopCentered();
+    void TestRectRight_Should_ReturnPointAtRightCentered();
+    void TestRectLeft_Should_ReturnPointAtLeftCentered();
+    void TestRectBottom_Should_ReturnPointAtBottomCentered();
+    void TestRectTopWithOffset_Should_ReturnPointAtTopWithAddedOffset_When_TopSmallerThenBottom();
+    void TestRectTopWithOffset_Should_ReturnPointAtTopWithSubtractedOffset_When_TopLargerThenBottom();
+    void TestRectRightWithOffset_Should_ReturnPointAtRightWithSubtracedOffset_When_RightSmallerThenLeft();
+    void TestRectRightWithOffset_Should_ReturnPointAtRightWithAddedOffset_When_RightLargerThenLeft();
+    void TestRectBottomWithOffset_Should_ReturnPointAtBottomWithSubtracedOffset_When_BottomSmallerThenTop();
+    void TestRectBottomWithOffset_Should_ReturnPointAtBottomWithAddedOffset_When_BottomLargerThenTop();
+    void TestRectLeftWithOffset_Should_ReturnPointAtLeftWithAddedOffset_When_LeftSmallerThenRight();
+    void TestRectLeftWithOffset_Should_ReturnPointAtLeftWithSubtracedOffset_When_LeftLargerThenRight();
+    void TestRectTopLeftWithOffset_Should_ReturnPointWithCorrectOffset();
+    void TestRectTopLeftWithOffset_Should_ReturnPointWithCorrectOffset_data();
+    void TestRectTopRightWithOffset_Should_ReturnPointWithCorrectOffset();
+    void TestRectTopRightWithOffset_Should_ReturnPointWithCorrectOffset_data();
+    void TestRectBottomLeftWithOffset_Should_ReturnPointWithCorrectOffset();
+    void TestRectBottomLeftWithOffset_Should_ReturnPointWithCorrectOffset_data();
+    void TestRectBottomRightWithOffset_Should_ReturnPointWithCorrectOffset();
+    void TestRectBottomRightWithOffset_Should_ReturnPointWithCorrectOffset_data();
     void TestExtendLine_Should_ReturnNewLineExtendBySizeWithSameAngle();
     void TestRectPointAtIndex_Should_ReturnPointAtIndexPosition();
     void TestRectPointAtIndex_Should_ReturnPointAtIndexPosition_data();
