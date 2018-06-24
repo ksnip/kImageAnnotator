@@ -34,7 +34,7 @@ QRectF PathResizeHandles::getRect() const
 
 int PathResizeHandles::getOffset() const
 {
-    return mPathItem->properties().size() / 2;
+    return 0;
 }
 
 QRectF PathResizeHandles::getItemBoundingRect() const
