@@ -43,6 +43,8 @@ public:
     bool hasItemsAttached() const;
     Qt::CursorShape cursorForPos(const QPointF &pos);
     Qt::CursorShape cursorForCurrentHandle();
+    void hideCurrentResizer();
+    void showCurrentResizer();
 
 signals:
     void newCommand(ResizeCommand *resize) const;

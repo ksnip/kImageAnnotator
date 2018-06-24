@@ -130,6 +130,24 @@ Qt::CursorShape AnnotationMultiItemResizer::cursorForCurrentHandle()
     return mCurrentResizer->cursorForCurrentHandle();
 }
 
+void AnnotationMultiItemResizer::hideCurrentResizer()
+{
+    if (mCurrentResizer == nullptr) {
+        return;
+    }
+
+    mCurrentResizer->hide();
+}
+
+void AnnotationMultiItemResizer::showCurrentResizer()
+{
+    if (mCurrentResizer == nullptr) {
+        return;
+    }
+
+    mCurrentResizer->show();
+}
+
 AnnotationItemResizer *AnnotationMultiItemResizer::getResizerForItem(AbstractAnnotationItem *item)
 {
     if (!mItemToResizer.contains(item)) {
