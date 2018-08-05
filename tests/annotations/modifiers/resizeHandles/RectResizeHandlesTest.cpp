@@ -138,7 +138,7 @@ void RectResizeHandlesTest::TestGetCursorForHandle_Should_ReturnDefaultCursor_Wh
 void RectResizeHandlesTest::TestUpdate_Should_MoveHandlesToNewPosition()
 {
     AnnotationProperties properties(Qt::red, 2);
-    QRectF rect(QPointF(10, 15), QPointF(20, 25));
+    QRectF rect(QPointF(10, 15), QPointF(80, 95));
     QRectF newRect(QPointF(60, 75), QPointF(120, 125));
     AnnotationRect rectItem(rect.topLeft(), properties);
     rectItem.addPoint(rect.bottomRight());
