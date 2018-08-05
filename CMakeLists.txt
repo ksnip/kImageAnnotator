@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 
 project(kimageannotator)
 
-set(QT_MIN_VERSION "5.6.2")
+set(QT_MIN_VERSION "5.6.1")
 set(KF5_MIN_VERSION "5.29.0")
 set(PLASMA_MIN_VERSION "5.4.0")
 
