@@ -9,9 +9,9 @@ The tool is currently work in Progress
 
 
 ### Building from source
-1. Get latest release from GitHub by cloning the repo
+1. Get latest release from GitHub by cloning the repo:  
     `$ git clone https://github.com/DamirPorobic/kImageAnnotator`
-2. Change to repo directory 
+2. Change to repo directory:  
     `$ cd kImageAnnotator`    
 3. Make new build directory and enter it:  
     `$ mkdir build`  
