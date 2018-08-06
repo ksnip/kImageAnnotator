@@ -65,3 +65,13 @@ void AnnotationProperties::setFillType(FillTypes fillType)
 {
     mFillType = fillType;
 }
+
+bool AnnotationProperties::shadowEnabled() const
+{
+    return mShadowEnabled;
+}
+
+void AnnotationProperties::setShadowEnabled(bool enabled)
+{
+    mShadowEnabled = enabled;
+}

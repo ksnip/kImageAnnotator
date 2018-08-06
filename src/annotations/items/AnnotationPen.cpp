@@ -19,7 +19,7 @@
 
 #include "AnnotationPen.h"
 
-AnnotationPen::AnnotationPen(const QPointF &startPosisition, const AnnotationProperties &properties) : AbstractAnnotationPath(startPosisition, properties)
+AnnotationPen::AnnotationPen(const QPointF &startPosition, const AnnotationProperties &properties) : AbstractAnnotationPath(startPosition, properties)
 {
 
 }

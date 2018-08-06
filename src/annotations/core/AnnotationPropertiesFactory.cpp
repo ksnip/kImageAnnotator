@@ -46,5 +46,12 @@ AnnotationProperties AnnotationPropertiesFactory::createProperties(ToolTypes too
         properties.setColor(color);
     }
 
+    setShadowEnabled(properties, tool);
+
     return properties;
+}
+
+void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties &properties, ToolTypes tool) const
+{
+    properties.setShadowEnabled(tool != ToolTypes::Marker);
 }

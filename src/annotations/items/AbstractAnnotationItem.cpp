@@ -23,7 +23,6 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationProperties &prope
 {
     mProperties = new AnnotationProperties(properties);
     mShape = new QPainterPath();
-    mShadowEffect = new ShadowEffect();
 
     mPainterPen.setColor(mProperties->color());
     mPainterPen.setWidth(mProperties->size());
@@ -32,7 +31,10 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationProperties &prope
 
     mStroker = new QPainterPathStroker(mPainterPen);
 
-    setGraphicsEffect(mShadowEffect);
+    if(properties.shadowEnabled()) {
+        mShadowEffect = new ShadowEffect();
+        setGraphicsEffect(mShadowEffect);
+    }
 }
 
 AbstractAnnotationItem::~AbstractAnnotationItem()

@@ -34,6 +34,7 @@ public:
 
 private:
     Config*   mConfig;
+    void setShadowEnabled(AnnotationProperties &properties, ToolTypes tool) const;
 };
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONPROPERTIESFACTORY_H

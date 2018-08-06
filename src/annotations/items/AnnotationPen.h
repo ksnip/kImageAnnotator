@@ -25,7 +25,7 @@
 class AnnotationPen : public AbstractAnnotationPath
 {
 public:
-    AnnotationPen(const QPointF& startPosisition, const AnnotationProperties& properties);
+    AnnotationPen(const QPointF& startPosition, const AnnotationProperties& properties);
     ~AnnotationPen() = default;
 
 protected:

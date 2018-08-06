@@ -36,7 +36,7 @@ class AnnotationItemFactory : public QObject
     Q_OBJECT
 public:
     explicit AnnotationItemFactory();
-    ~AnnotationItemFactory();
+    ~AnnotationItemFactory() override;
     void reset();
 
     AbstractAnnotationItem* createItem(const QPointF& initPosition, ToolTypes tool);

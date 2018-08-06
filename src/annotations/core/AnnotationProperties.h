@@ -38,12 +38,15 @@ public:
     void setSize(int size);
     FillTypes fillType() const;
     void setFillType(FillTypes fillType);
+    bool shadowEnabled() const;
+    void setShadowEnabled(bool enabled);
 
 private:
     QColor    mColor;
     QColor    mForegroundColor;
     int       mSize;
     FillTypes mFillType;
+    bool      mShadowEnabled;
 };
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONPROPERTIES_H
