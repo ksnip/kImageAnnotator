@@ -27,10 +27,45 @@ AnnotationPropertiesFactory::AnnotationPropertiesFactory()
 AnnotationProperties AnnotationPropertiesFactory::createProperties(ToolTypes tool) const
 {
     AnnotationProperties properties;
-    properties.setColor(mConfig->toolColor(tool));
-    properties.setForegroundColor(mConfig->toolForegroundColor(tool));
-    properties.setSize(mConfig->toolSize(tool));
 
+    setColor(properties, tool);
+    setForegroundColor(tool, properties);
+    setSize(tool, properties);
+    setFill(tool, properties);
+    setShadowEnabled(properties, tool);
+
+    return properties;
+}
+
+void AnnotationPropertiesFactory::setColor(AnnotationProperties &properties, ToolTypes tool) const
+{
+    auto color = mConfig->toolColor(tool);
+
+    if (tool == ToolTypes::Marker) {
+        color.setAlpha(120);
+    }
+
+    properties.setColor(color);
+}
+
+void AnnotationPropertiesFactory::setForegroundColor(const ToolTypes &tool, AnnotationProperties &properties) const
+{
+    properties.setForegroundColor(mConfig->toolForegroundColor(tool));
+}
+
+void AnnotationPropertiesFactory::setSize(const ToolTypes &tool, AnnotationProperties &properties) const
+{
+    auto size = mConfig->toolSize(tool);
+
+    if (tool == ToolTypes::Marker) {
+        size = size * 3;
+    }
+
+    properties.setSize(size);
+}
+
+void AnnotationPropertiesFactory::setFill(const ToolTypes &tool, AnnotationProperties &properties) const
+{
     if (tool == ToolTypes::Arrow || tool == ToolTypes::Number) {
         properties.setFillType(FillTypes::Fill);
     } else if (tool == ToolTypes::Pen || tool == ToolTypes::Marker) {
@@ -38,17 +73,6 @@ AnnotationProperties AnnotationPropertiesFactory::createProperties(ToolTypes too
     } else {
         properties.setFillType(mConfig->toolFillType(tool));
     }
-
-    if(tool == ToolTypes::Marker) {
-        properties.setSize(properties.size() * 3);
-        auto color = properties.color();
-        color.setAlpha(120);
-        properties.setColor(color);
-    }
-
-    setShadowEnabled(properties, tool);
-
-    return properties;
 }
 
 void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties &properties, ToolTypes tool) const
