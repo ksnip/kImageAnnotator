@@ -107,4 +107,37 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetAlwaysFillT
     QCOMPARE(properties.fillType(), FillTypes::Fill);
 }
 
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetShadowEnabledToFalse_When_ToolIsMarker()
+{
+    const ToolTypes tool = ToolTypes::Marker;
+    AnnotationPropertiesFactory propertiesFactory;
+
+    auto properties = propertiesFactory.createProperties(tool);
+
+    QCOMPARE(properties.shadowEnabled(), false);
+}
+
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetShadowEnabledToTrue_When_ToolIsNotMarker()
+{
+    QFETCH(ToolTypes, testTool);
+    const ToolTypes tool = testTool;
+    AnnotationPropertiesFactory propertiesFactory;
+
+    auto properties = propertiesFactory.createProperties(tool);
+
+    QCOMPARE(properties.shadowEnabled(), true);
+}
+
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetShadowEnabledToTrue_When_ToolIsNotMarker_data()
+{
+    QTest::addColumn<ToolTypes>("testTool");
+
+    QTest::newRow("set1") << ToolTypes::Pen;
+    QTest::newRow("set2") << ToolTypes::Number;
+    QTest::newRow("set3") << ToolTypes::Arrow;
+    QTest::newRow("set4") << ToolTypes::Line;
+    QTest::newRow("set5") << ToolTypes::Ellipse;
+    QTest::newRow("set6") << ToolTypes::Rect;
+}
+
 QTEST_MAIN(AnnotationPropertiesFactoryTest);
