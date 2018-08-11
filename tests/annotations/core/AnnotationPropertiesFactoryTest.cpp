@@ -81,32 +81,6 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesF
     QCOMPARE(properties.fillType(), fill);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetAlwaysFillTypeToFill_When_ItemIsArrow()
-{
-    const FillTypes fill = FillTypes::NoFill;
-    const ToolTypes tool = ToolTypes::Arrow;
-    auto configInstance = Config::instance();
-    configInstance->setToolFillType(fill, tool);
-    AnnotationPropertiesFactory propertiesFactory;
-
-    auto properties = propertiesFactory.createProperties(tool);
-
-    QCOMPARE(properties.fillType(), FillTypes::Fill);
-}
-
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetAlwaysFillTypeToFill_When_ItemIsNumber()
-{
-    const FillTypes fill = FillTypes::NoFill;
-    const ToolTypes tool = ToolTypes::Number;
-    auto configInstance = Config::instance();
-    configInstance->setToolFillType(fill, tool);
-    AnnotationPropertiesFactory propertiesFactory;
-
-    auto properties = propertiesFactory.createProperties(tool);
-
-    QCOMPARE(properties.fillType(), FillTypes::Fill);
-}
-
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetShadowEnabledToFalse_When_ToolIsMarker()
 {
     const ToolTypes tool = ToolTypes::Marker;

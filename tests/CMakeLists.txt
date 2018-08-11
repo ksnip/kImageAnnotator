@@ -25,7 +25,6 @@ set(ListOfUnitTests
         widgets/ColorPickerTest
         widgets/SizePickerTest
         widgets/FillPickerTest
-        common/formatter/ConfigNameFormatterTest
         common/helper/KeyHelperTest
         common/helper/MathHelperTest
         common/helper/ItemHelperTest

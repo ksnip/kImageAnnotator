@@ -35,8 +35,6 @@ private slots:
     void TestCreateProperties_Should_SetPropertiesColorBasedOnConfiguration();
     void TestCreateProperties_Should_SetPropertiesForegroundColorBasedOnConfiguration();
     void TestCreateProperties_Should_SetPropertiesFillBasedOnConfiguration();
-    void TestCreateProperties_Should_SetAlwaysFillTypeToFill_When_ItemIsArrow();
-    void TestCreateProperties_Should_SetAlwaysFillTypeToFill_When_ItemIsNumber();
     void TestCreateProperties_Should_SetShadowEnabledToFalse_When_ToolIsMarker();
     void TestCreateProperties_Should_SetShadowEnabledToTrue_When_ToolIsNotMarker();
     void TestCreateProperties_Should_SetShadowEnabledToTrue_When_ToolIsNotMarker_data();
