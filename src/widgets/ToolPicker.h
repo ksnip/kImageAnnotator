@@ -34,7 +34,7 @@ class ToolPicker : public QWidget
     Q_OBJECT
 public:
     explicit ToolPicker();
-    ~ToolPicker();
+    ~ToolPicker() override;
     void setTool(ToolTypes newTool);
     ToolTypes tool();
 

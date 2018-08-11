@@ -27,7 +27,7 @@ Config* Config::instance()
 
 ToolTypes Config::selectedTool() const
 {
-    return mConfig.value(QStringLiteral("Application/SelectedTool"), static_cast<int>(ToolTypes::Arrow)).value<ToolTypes>();
+    return mSelectTool;
 }
 
 void Config::setSelectedTool(ToolTypes tool)
@@ -36,15 +36,13 @@ void Config::setSelectedTool(ToolTypes tool)
         return;
     }
 
-    mConfig.setValue(QStringLiteral("Application/SelectedTool"), static_cast<int>(tool));
-    mConfig.sync();
-
+    mSelectTool = tool;
     emit toolChanged(tool);
 }
 
 QColor Config::toolColor(ToolTypes tool) const
 {
-    return mConfig.value(ConfigNameFormatter::toolOutlineColor(tool), QColor(Qt::red)).value<QColor>();
+    return mToolToColor[tool];
 }
 
 void Config::setToolColor(const QColor& color, ToolTypes tool)
@@ -53,13 +51,12 @@ void Config::setToolColor(const QColor& color, ToolTypes tool)
         return;
     }
 
-    mConfig.setValue(ConfigNameFormatter::toolOutlineColor(tool), color);
-    mConfig.sync();
+    mToolToColor[tool] = color;
 }
 
 QColor Config::toolForegroundColor(ToolTypes tool) const
 {
-    return mConfig.value(ConfigNameFormatter::toolForegroundColor(tool), QColor(Qt::white)).value<QColor>();
+    return mToolToForegroundColor[tool];
 }
 
 void Config::setToolForegroundColor(const QColor& color, ToolTypes tool)
@@ -68,13 +65,12 @@ void Config::setToolForegroundColor(const QColor& color, ToolTypes tool)
         return;
     }
 
-    mConfig.setValue(ConfigNameFormatter::toolForegroundColor(tool), color);
-    mConfig.sync();
+    mToolToForegroundColor[tool] = color;
 }
 
 int Config::toolSize(ToolTypes tool) const
 {
-    return mConfig.value(ConfigNameFormatter::toolSize(tool), 3).value<int>();
+    return mToolToSize[tool];
 }
 
 void Config::setToolSize(int size, ToolTypes tool)
@@ -83,13 +79,12 @@ void Config::setToolSize(int size, ToolTypes tool)
         return;
     }
 
-    mConfig.setValue(ConfigNameFormatter::toolSize(tool), size);
-    mConfig.sync();
+    mToolToSize[tool] = size;
 }
 
 FillTypes Config::toolFillType(ToolTypes tool) const
 {
-    return mConfig.value(ConfigNameFormatter::toolFillType(tool), static_cast<int>(FillTypes::Fill)).value<FillTypes>();
+    return mToolToFillType[tool];
 }
 
 void Config::setToolFillType(FillTypes fillType, ToolTypes tool)
@@ -98,16 +93,59 @@ void Config::setToolFillType(FillTypes fillType, ToolTypes tool)
         return;
     }
 
-    mConfig.setValue(ConfigNameFormatter::toolFillType(tool), static_cast<int>(fillType));
-    mConfig.sync();
+    mToolToFillType[tool] = fillType;
 }
 
 // Private Methodes
 
 Config::Config()
 {
-    // You must set the application name via QCoreApplication::setApplicationName before using the configuration
-    if(mConfig.status() == QSettings::AccessError) {
-        qCritical("Configuration error! Are you trying to read configuration before settings Application Name?");
-    }
+    initSelectedTool();
+    initDefaultToolColors();
+    initDefaultForegroundColors();
+    initDefaultSizes();
+    initDefaultFillTypes();
+}
+
+void Config::initSelectedTool()
+{
+    mSelectTool = ToolTypes::Pen;
 };
+
+void Config::initDefaultToolColors()
+{
+    mToolToColor[ToolTypes::Pen] = QColor(Qt::red);
+    mToolToColor[ToolTypes::Marker] = QColor(Qt::yellow);
+    mToolToColor[ToolTypes::Line] = QColor(Qt::blue);
+    mToolToColor[ToolTypes::Arrow] = QColor(Qt::red);
+    mToolToColor[ToolTypes::Rect] = QColor(Qt::green);
+    mToolToColor[ToolTypes::Ellipse] = QColor(Qt::gray);
+    mToolToColor[ToolTypes::Number] = QColor(Qt::red);
+}
+
+void Config::initDefaultForegroundColors()
+{
+    mToolToForegroundColor[ToolTypes::Number] = QColor(Qt::white);
+}
+
+void Config::initDefaultSizes()
+{
+    mToolToSize[ToolTypes::Pen] = 3;
+    mToolToSize[ToolTypes::Marker] = 10;
+    mToolToSize[ToolTypes::Line] = 3;
+    mToolToSize[ToolTypes::Arrow] = 6;
+    mToolToSize[ToolTypes::Rect] = 3;
+    mToolToSize[ToolTypes::Ellipse] = 3;
+    mToolToSize[ToolTypes::Number] = 5;
+}
+
+void Config::initDefaultFillTypes()
+{
+    mToolToFillType[ToolTypes::Pen] = FillTypes::NoFill;
+    mToolToFillType[ToolTypes::Marker] = FillTypes::NoFill;
+    mToolToFillType[ToolTypes::Line] = FillTypes::NoFill;
+    mToolToFillType[ToolTypes::Arrow] = FillTypes::Fill;
+    mToolToFillType[ToolTypes::Rect] = FillTypes::NoFill;
+    mToolToFillType[ToolTypes::Ellipse] = FillTypes::NoFill;
+    mToolToFillType[ToolTypes::Number] = FillTypes::Fill;
+}

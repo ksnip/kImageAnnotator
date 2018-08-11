@@ -34,6 +34,13 @@ enum class ToolTypes
     Number
 };
 
+inline uint qHash(const ToolTypes &tool, uint seed)
+{
+    Q_UNUSED(seed)
+
+    return static_cast<uint>(tool);
+}
+
 Q_DECLARE_METATYPE(ToolTypes)
 
 #endif // KIMAGEANNOTATOR_TOOLTYPES_H

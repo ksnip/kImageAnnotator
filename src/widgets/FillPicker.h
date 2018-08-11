@@ -34,7 +34,7 @@ Q_OBJECT
 
 public:
     FillPicker(const QIcon& icon, const QString& tooltip);
-    ~FillPicker();
+    ~FillPicker() override;
     void setFill(FillTypes fill);
 
 signals:
@@ -45,7 +45,6 @@ private:
     QLabel           *mLabel;
     QComboBox        *mComboBox;
     QList<FillTypes>  mFillList;
-    FillTypes         mSelectedFill;
     IconCreater      *mIconCreator;
 
     void initGui(const QIcon& icon, const QString& tooltip);

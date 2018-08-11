@@ -21,13 +21,12 @@
 #define KIMAGEANNOTATOR_CONFIG_H
 
 #include <QObject>
-#include <QSettings>
 #include <QPointF>
 #include <QColor>
+#include <QHash>
 
 #include "../common/enum/ToolTypes.h"
 #include "../common/enum/FillTypes.h"
-#include "../common/formatter/ConfigNameFormatter.h"
 
 class Config : public QObject
 {
@@ -55,9 +54,18 @@ signals:
     void toolChanged(ToolTypes tool) const;
 
 private:
-    QSettings mConfig;
+    ToolTypes mSelectTool;
+    QHash<ToolTypes, QColor> mToolToColor;
+    QHash<ToolTypes, QColor> mToolToForegroundColor;
+    QHash<ToolTypes, int> mToolToSize;
+    QHash<ToolTypes, FillTypes> mToolToFillType;
 
     explicit Config();
+    void initSelectedTool();
+    void initDefaultToolColors();
+    void initDefaultForegroundColors();
+    void initDefaultSizes();
+    void initDefaultFillTypes();
 };
 
 #endif // KIMAGEANNOTATOR_CONFIG_H

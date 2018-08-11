@@ -35,7 +35,6 @@ ColorPicker::~ColorPicker()
 
 void ColorPicker::setColor(const QColor& color)
 {
-    mSelectedColor = color;
     mComboBox->setColor(color);
     emit colorSelected(color);
 }

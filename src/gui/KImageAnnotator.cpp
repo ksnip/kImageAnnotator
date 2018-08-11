@@ -52,7 +52,6 @@ void KImageAnnotator::initAppSettings()
 
 void KImageAnnotator::initGui()
 {
-
     mAnnotationArea = new AnnotationArea();
     mView = new QGraphicsView(mAnnotationArea);
     mMainLayout = new QHBoxLayout();

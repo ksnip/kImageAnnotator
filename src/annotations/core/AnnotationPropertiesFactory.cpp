@@ -66,13 +66,7 @@ void AnnotationPropertiesFactory::setSize(const ToolTypes &tool, AnnotationPrope
 
 void AnnotationPropertiesFactory::setFill(const ToolTypes &tool, AnnotationProperties &properties) const
 {
-    if (tool == ToolTypes::Arrow || tool == ToolTypes::Number) {
-        properties.setFillType(FillTypes::Fill);
-    } else if (tool == ToolTypes::Pen || tool == ToolTypes::Marker) {
-        properties.setFillType(FillTypes::NoFill);
-    } else {
-        properties.setFillType(mConfig->toolFillType(tool));
-    }
+    properties.setFillType(mConfig->toolFillType(tool));
 }
 
 void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties &properties, ToolTypes tool) const

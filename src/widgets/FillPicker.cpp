@@ -74,7 +74,6 @@ void FillPicker::initGui(const QIcon& icon, const QString& tooltip)
 
 void FillPicker::setFillAndNotify(FillTypes fill)
 {
-    mSelectedFill = fill;
     emit fillSelected(fill);
 }
 
