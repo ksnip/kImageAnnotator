@@ -53,9 +53,8 @@ set(kimageannotator_SRCS
 
 set(kimageannotator_SRCS ${kimageannotator_SRCS} PARENT_SCOPE)
 
-set_source_files_properties(${kimageannotator_ICON_RES_RCC} PROPERTIES GENERATED ON)
-set_source_files_properties(${kimageannotator_ICON_RES_RCC} PROPERTIES SKIP_AUTOMOC ON)
+set(kimageannotator_ICON_QRC ${CMAKE_SOURCE_DIR}/icons/resources.qrc)
 
-add_executable(kimageannotator_app main.cpp ${kimageannotator_SRCS} ${kimageannotator_ICON_RES_RCC})
+add_executable(kimageannotator_app main.cpp ${kimageannotator_SRCS} ${kimageannotator_ICON_QRC})
 
 target_link_libraries(kimageannotator_app Qt5::Widgets KF5::CoreAddons KF5::I18n KF5::WidgetsAddons)

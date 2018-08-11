@@ -8,6 +8,7 @@ set(PLASMA_MIN_VERSION "5.4.0")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 find_package(ECM 1.0.0 REQUIRED NO_MODULE)
 
@@ -24,6 +25,5 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(FeatureSummary)
 
-add_subdirectory(icons)
 add_subdirectory(src)
 add_subdirectory(tests)
