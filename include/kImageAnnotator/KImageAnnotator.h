@@ -28,13 +28,13 @@
 
 #include <KLocalizedString>
 
-#include "VisibilitySwitcher.h"
-#include "../annotations/core/AnnotationArea.h"
-#include "../backend/Config.h"
-#include "../widgets/ToolPicker.h"
-#include "../widgets/ColorPicker.h"
-#include "../widgets/SizePicker.h"
-#include "../widgets/FillPicker.h"
+#include "../../src/gui/VisibilitySwitcher.h"
+#include "../../src/annotations/core/AnnotationArea.h"
+#include "../../src/backend/Config.h"
+#include "../../src/widgets/ToolPicker.h"
+#include "../../src/widgets/ColorPicker.h"
+#include "../../src/widgets/SizePicker.h"
+#include "../../src/widgets/FillPicker.h"
 
 class KImageAnnotator : public QWidget
 {

@@ -18,8 +18,7 @@
  */
 
 #include <QApplication>
-
-#include "gui/KImageAnnotator.h"
+#include <kImageAnnotator/KImageAnnotator.h>
 
 int main(int argc, char **argv)
 {

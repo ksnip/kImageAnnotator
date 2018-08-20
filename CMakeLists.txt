@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
-project(kimageannotator)
+project(kImageAnnotator LANGUAGES CXX VERSION 0.0.1)
 
 set(QT_MIN_VERSION "5.6.1")
 set(KF5_MIN_VERSION "5.29.0")
@@ -26,4 +26,6 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(FeatureSummary)
 
 add_subdirectory(src)
-add_subdirectory(tests)
+# add_subdirectory(tests)
+add_subdirectory(example)
+
