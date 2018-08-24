@@ -17,9 +17,84 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#include <QCoreApplication>
+#include <QGraphicsView>
+#include <QHBoxLayout>
+
+#include "../../src/gui/VisibilitySwitcher.h"
+#include "../../src/annotations/core/AnnotationArea.h"
+#include "../../src/widgets/ToolPicker.h"
+#include "../../src/widgets/ColorPicker.h"
+#include "../../src/widgets/SizePicker.h"
+#include "../../src/widgets/FillPicker.h"
+
 #include <kImageAnnotator/KImageAnnotator.h>
 
-KImageAnnotator::KImageAnnotator(const QPixmap &image)
+// Impl Definition
+class KImageAnnotator::Impl : public QSharedData
+{
+public:
+    explicit Impl(const QPixmap &image);
+    ~Impl();
+
+public:
+    AnnotationArea *mAnnotationArea;
+    QGraphicsView *mView;
+    QHBoxLayout *mMainLayout;
+    QVBoxLayout *mToolsLayout;
+    ToolPicker *mToolPicker;
+    ColorPicker *mColorPicker;
+    ColorPicker *mTextColorPicker;
+    SizePicker *mSizePicker;
+    FillPicker *mFillPicker;
+    Config *mConfig;
+    VisibilitySwitcher mVisibilitySwitcher;
+
+    void initAppSettings();
+    void initGui();
+    void setupDefaults();
+    void updateSelection(ToolTypes tool);
+};
+
+// KImageAnnotator Implementation
+KImageAnnotator::KImageAnnotator(const QPixmap &image) : mImpl(new Impl(image))
+{
+    setLayout(mImpl->mMainLayout);
+
+    connect(mImpl->mToolPicker, &ToolPicker::toolSelected, mImpl->mConfig, &Config::setSelectedTool);
+    connect(mImpl->mToolPicker, &ToolPicker::toolSelected, [this](ToolTypes tool)
+    {
+        mImpl->updateSelection(tool);
+    });
+    connect(mImpl->mColorPicker, &ColorPicker::colorSelected, [this](const QColor &color)
+    {
+        mImpl->mConfig->setToolColor(color, mImpl->mToolPicker->tool());
+    });
+    connect(mImpl->mTextColorPicker, &ColorPicker::colorSelected, [this](const QColor &color)
+    {
+        mImpl->mConfig->setToolForegroundColor(color, mImpl->mToolPicker->tool());
+    });
+    connect(mImpl->mSizePicker, &SizePicker::sizeSelected, [this](int size)
+    {
+        mImpl->mConfig->setToolSize(size, mImpl->mToolPicker->tool());
+    });
+    connect(mImpl->mFillPicker, &FillPicker::fillSelected, [this](FillTypes fill)
+    {
+        mImpl->mConfig->setToolFillType(fill, mImpl->mToolPicker->tool());
+    });
+}
+
+KImageAnnotator::~KImageAnnotator()
+{
+}
+
+void KImageAnnotator::testMethod()
+{
+
+}
+
+// Impl Implementation
+KImageAnnotator::Impl::Impl(const QPixmap &image)
 {
     initAppSettings();
     initGui();
@@ -29,7 +104,7 @@ KImageAnnotator::KImageAnnotator(const QPixmap &image)
     mView->setFixedSize(image.size() + QSize(50, 50));
 }
 
-KImageAnnotator::~KImageAnnotator()
+KImageAnnotator::Impl::~Impl()
 {
     delete mAnnotationArea;
     delete mView;
@@ -42,7 +117,7 @@ KImageAnnotator::~KImageAnnotator()
     delete mFillPicker;
 }
 
-void KImageAnnotator::initAppSettings()
+void KImageAnnotator::Impl::initAppSettings()
 {
     QCoreApplication::setOrganizationName(QStringLiteral("kimageannotator"));
     QCoreApplication::setOrganizationDomain(QStringLiteral("kimageannotator.kde.org"));
@@ -50,7 +125,7 @@ void KImageAnnotator::initAppSettings()
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 }
 
-void KImageAnnotator::initGui()
+void KImageAnnotator::Impl::initGui()
 {
     mAnnotationArea = new AnnotationArea();
     mView = new QGraphicsView(mAnnotationArea);
@@ -72,7 +147,6 @@ void KImageAnnotator::initGui()
 
     mMainLayout->addLayout(mToolsLayout);
     mMainLayout->addWidget(mView);
-    setLayout(mMainLayout);
 
     mVisibilitySwitcher.setOutlineColorWidget(mColorPicker);
     mVisibilitySwitcher.setForegroundColorWidget(mTextColorPicker);
@@ -80,33 +154,14 @@ void KImageAnnotator::initGui()
     mVisibilitySwitcher.setFillWidget(mFillPicker);
 
     mConfig = Config::instance();
-
-    connect(mToolPicker, &ToolPicker::toolSelected, mConfig, &Config::setSelectedTool);
-    connect(mToolPicker, &ToolPicker::toolSelected, this, &KImageAnnotator::updateSelection);
-    connect(mColorPicker, &ColorPicker::colorSelected, [this](const QColor &color)
-    {
-        mConfig->setToolColor(color, mToolPicker->tool());
-    });
-    connect(mTextColorPicker, &ColorPicker::colorSelected, [this](const QColor &color)
-    {
-        mConfig->setToolForegroundColor(color, mToolPicker->tool());
-    });
-    connect(mSizePicker, &SizePicker::sizeSelected, [this](int size)
-    {
-        mConfig->setToolSize(size, mToolPicker->tool());
-    });
-    connect(mFillPicker, &FillPicker::fillSelected, [this](FillTypes fill)
-    {
-        mConfig->setToolFillType(fill, mToolPicker->tool());
-    });
 }
 
-void KImageAnnotator::setupDefaults()
+void KImageAnnotator::Impl::setupDefaults()
 {
     mToolPicker->setTool(mConfig->selectedTool());
 }
 
-void KImageAnnotator::updateSelection(ToolTypes tool)
+void KImageAnnotator::Impl::updateSelection(ToolTypes tool)
 {
     mColorPicker->setColor(mConfig->toolColor(tool));
     mTextColorPicker->setColor(mConfig->toolForegroundColor(tool));

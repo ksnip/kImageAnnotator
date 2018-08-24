@@ -52,16 +52,16 @@ install(FILES
         ${CMAKE_BINARY_DIR}/cmake/kImageAnnotator-config.cmake
         ${CMAKE_BINARY_DIR}/cmake/kImageAnnotator-config-version.cmake
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/kImageAnnotator
-)
+        )
 
 
 export(EXPORT kImageAnnotator-targets
         FILE ${CMAKE_BINARY_DIR}/cmake/kImageAnnotator-targets.cmake
         NAMESPACE kImageAnnotator::
-)
+        )
 
 install(EXPORT kImageAnnotator-targets
         FILE kImageAnnotator-targets.cmake
         NAMESPACE kImageAnnotator::
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/kImageAnnotator
-)
+        )

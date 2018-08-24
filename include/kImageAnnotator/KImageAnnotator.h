@@ -21,49 +21,23 @@
 #define KIMAGEANNOTATOR_KIMAGEANNOTATOR_H
 
 #include <QWidget>
-#include <QCoreApplication>
-#include <QGraphicsView>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-
-#include <KLocalizedString>
 
 #include <kImageAnnotator/KImageAnnotatorExport.h>
-
-#include "../../src/gui/VisibilitySwitcher.h"
-#include "../../src/annotations/core/AnnotationArea.h"
-#include "../../src/backend/Config.h"
-#include "../../src/widgets/ToolPicker.h"
-#include "../../src/widgets/ColorPicker.h"
-#include "../../src/widgets/SizePicker.h"
-#include "../../src/widgets/FillPicker.h"
 
 class KIMAGEANNOTATOR_EXPORT KImageAnnotator : public QWidget
 {
 Q_OBJECT
 public:
-    KImageAnnotator(const QPixmap &image);
+    explicit KImageAnnotator(const QPixmap &image);
+    KImageAnnotator(KImageAnnotator &&other) noexcept = default;
+    KImageAnnotator &operator=(KImageAnnotator &&other) noexcept = default;
     ~KImageAnnotator();
+    void testMethod();
 
 private:
-    AnnotationArea *mAnnotationArea;
-    QGraphicsView *mView;
-    QHBoxLayout *mMainLayout;
-    QVBoxLayout *mToolsLayout;
-    ToolPicker *mToolPicker;
-    ColorPicker *mColorPicker;
-    ColorPicker *mTextColorPicker;
-    SizePicker *mSizePicker;
-    FillPicker *mFillPicker;
-    Config *mConfig;
-    VisibilitySwitcher mVisibilitySwitcher;
+    class Impl;
 
-    void initAppSettings();
-    void initGui();
-    void setupDefaults();
-
-private slots:
-    void updateSelection(ToolTypes tool);
+    QSharedDataPointer<Impl> mImpl;
 };
 
 #endif // KIMAGEANNOTATOR_KIMAGEANNOTATOR_H

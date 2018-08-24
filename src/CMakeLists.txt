@@ -46,11 +46,14 @@ set(kimageannotator_SRCS
         widgets/SizePicker.cpp
         widgets/FillPicker.cpp)
 
+set(kimageannotator_ICON_QRC ${CMAKE_SOURCE_DIR}/icons/resources.qrc)
 
 add_library(kImageAnnotator
         ${kimageannotator_SRCS}
         ${CMAKE_SOURCE_DIR}/include/kImageAnnotator/KImageAnnotator.h
+        ${kimageannotator_ICON_QRC}
         )
+
 add_library(kImageAnnotator::kImageAnnotator ALIAS kImageAnnotator)
 
 target_include_directories(kImageAnnotator
@@ -70,12 +73,6 @@ set_target_properties(kImageAnnotator PROPERTIES
         LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
         )
-
-
-# set(kimageannotator_ICON_QRC ${CMAKE_SOURCE_DIR}/icons/resources.qrc)
-# add_executable(kimageannotator_app main.cpp ${kimageannotator_ICON_QRC})
-# target_link_libraries(kimageannotator_app PRIVATE kImageAnnotator)
-
 
 install(TARGETS kImageAnnotator
         EXPORT kImageAnnotator-targets
