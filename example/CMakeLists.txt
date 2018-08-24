@@ -1,3 +1,3 @@
-add_executable(kImageAnnotator-example ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
+add_executable(kImageAnnotator-example main.cpp)
 
-target_link_libraries(kImageAnnotator-example PRIVATE kImageAnnotator::kImageAnnotator)
+target_link_libraries(kImageAnnotator-example kImageAnnotator)

@@ -28,6 +28,8 @@
 
 #include <KLocalizedString>
 
+#include <kImageAnnotator/KImageAnnotatorExport.h>
+
 #include "../../src/gui/VisibilitySwitcher.h"
 #include "../../src/annotations/core/AnnotationArea.h"
 #include "../../src/backend/Config.h"
@@ -36,7 +38,7 @@
 #include "../../src/widgets/SizePicker.h"
 #include "../../src/widgets/FillPicker.h"
 
-class KImageAnnotator : public QWidget
+class KIMAGEANNOTATOR_EXPORT KImageAnnotator : public QWidget
 {
 Q_OBJECT
 public:

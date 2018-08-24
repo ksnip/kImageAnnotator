@@ -1,41 +1,37 @@
 enable_testing(true)
 
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Test Widgets)
-
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons I18n WidgetsAddons)
-
 set(ListOfUnitTests
         annotations/core/AnnotationAreaTest.cpp
-        annotations/core/AnnotationItemFactoryTest
-        annotations/core/AnnotationPropertiesFactoryTest
-        annotations/modifiers/AnnotationItemResizerTest
-        annotations/modifiers/AnnotationMultiItemResizerTest
-        annotations/modifiers/AnnotationItemSelectorTest
-        annotations/modifiers/AnnotationItemModifierTest
-        annotations/modifiers/AnnotationItemArrangerTest
-        annotations/modifiers/AnnotationItemMoverTest
-        annotations/modifiers/resizeHandles/LineResizeHandlesTest
-        annotations/modifiers/resizeHandles/RectResizeHandlesTest
-        annotations/undo/AddCommandTest
-        annotations/undo/DeleteCommandTest
-        annotations/undo/MoveCommandTest
-        annotations/undo/ResizeCommandTest
+        annotations/core/AnnotationItemFactoryTest.cpp
+        annotations/core/AnnotationPropertiesFactoryTest.cpp
+        annotations/modifiers/AnnotationItemResizerTest.cpp
+        annotations/modifiers/AnnotationMultiItemResizerTest.cpp
+        annotations/modifiers/AnnotationItemSelectorTest.cpp
+        annotations/modifiers/AnnotationItemModifierTest.cpp
+        annotations/modifiers/AnnotationItemArrangerTest.cpp
+        annotations/modifiers/AnnotationItemMoverTest.cpp
+        annotations/modifiers/resizeHandles/LineResizeHandlesTest.cpp
+        annotations/modifiers/resizeHandles/RectResizeHandlesTest.cpp
+        annotations/undo/AddCommandTest.cpp
+        annotations/undo/DeleteCommandTest.cpp
+        annotations/undo/MoveCommandTest.cpp
+        annotations/undo/ResizeCommandTest.cpp
         annotations/undo/ArrangeCommandTest.cpp
-        widgets/ToolPickerTest
-        widgets/ColorPickerTest
-        widgets/SizePickerTest
-        widgets/FillPickerTest
-        common/helper/KeyHelperTest
-        common/helper/MathHelperTest
-        common/helper/ItemHelperTest
-        common/helper/ShapeHelperTest)
+        widgets/ToolPickerTest.cpp
+        widgets/ColorPickerTest.cpp
+        widgets/SizePickerTest.cpp
+        widgets/FillPickerTest.cpp
+        common/helper/KeyHelperTest.cpp
+        common/helper/MathHelperTest.cpp
+        common/helper/ItemHelperTest.cpp
+        common/helper/ShapeHelperTest.cpp)
 
-add_library(kimageannotator_LIB STATIC ${kimageannotator_SRCS})
-target_link_libraries(kimageannotator_LIB Qt5::Widgets KF5::CoreAddons KF5::I18n KF5::WidgetsAddons)
+add_library(kImageAnnotatorStatic STATIC ${kimageannotator_SRCS})
+target_link_libraries(kImageAnnotatorStatic Qt5::Widgets KF5::CoreAddons KF5::I18n KF5::WidgetsAddons)
 
 foreach (UnitTest ${ListOfUnitTests})
     get_filename_component(UnitTestName ${UnitTest} NAME_WE)
     add_executable(${UnitTestName} ${UnitTest})
-    target_link_libraries(${UnitTestName} Qt5::Test kimageannotator_LIB)
+    target_link_libraries(${UnitTestName} kImageAnnotatorStatic Qt5::Test)
     add_test(${UnitTestName} ${UnitTestName})
 endforeach (UnitTest)

@@ -17,7 +17,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "../../include/kImageAnnotator/KImageAnnotator.h"
+#include <kImageAnnotator/KImageAnnotator.h>
 
 KImageAnnotator::KImageAnnotator(const QPixmap &image)
 {
