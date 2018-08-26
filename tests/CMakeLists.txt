@@ -1,6 +1,6 @@
 enable_testing(true)
 
-set(ListOfUnitTests
+set(UnitTests
         annotations/core/AnnotationAreaTest.cpp
         annotations/core/AnnotationItemFactoryTest.cpp
         annotations/core/AnnotationPropertiesFactoryTest.cpp
@@ -24,12 +24,14 @@ set(ListOfUnitTests
         common/helper/KeyHelperTest.cpp
         common/helper/MathHelperTest.cpp
         common/helper/ItemHelperTest.cpp
-        common/helper/ShapeHelperTest.cpp)
+        common/helper/ShapeHelperTest.cpp
+        )
 
 add_library(kImageAnnotatorStatic STATIC ${kimageannotator_SRCS})
+
 target_link_libraries(kImageAnnotatorStatic Qt5::Widgets KF5::CoreAddons KF5::I18n KF5::WidgetsAddons)
 
-foreach (UnitTest ${ListOfUnitTests})
+foreach (UnitTest ${UnitTests})
     get_filename_component(UnitTestName ${UnitTest} NAME_WE)
     add_executable(${UnitTestName} ${UnitTest})
     target_link_libraries(${UnitTestName} kImageAnnotatorStatic Qt5::Test)

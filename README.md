@@ -1,7 +1,7 @@
 # kImageAnnotator
 Tool for annotating images
 
-Version v0.1.0 - alpha
+Version v0.0.1 - alpha
 
 The tool is currently work in Progress
 

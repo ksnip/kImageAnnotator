@@ -30,7 +30,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(FeatureSummary)
 
 add_subdirectory(src)
-# add_subdirectory(tests)
+add_subdirectory(tests)
 add_subdirectory(example)
 
 
@@ -55,13 +55,15 @@ install(FILES
         )
 
 
-export(EXPORT kImageAnnotator-targets
+export(
+        EXPORT kImageAnnotator-targets
         FILE ${CMAKE_BINARY_DIR}/cmake/kImageAnnotator-targets.cmake
         NAMESPACE kImageAnnotator::
-        )
+)
 
-install(EXPORT kImageAnnotator-targets
+install(
+        EXPORT kImageAnnotator-targets
         FILE kImageAnnotator-targets.cmake
         NAMESPACE kImageAnnotator::
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/kImageAnnotator
-        )
+)
