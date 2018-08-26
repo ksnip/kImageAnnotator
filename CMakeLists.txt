@@ -4,7 +4,6 @@ project(kImageAnnotator LANGUAGES CXX VERSION 0.0.1)
 
 set(QT_MIN_VERSION "5.6.1")
 set(KF5_MIN_VERSION "5.29.0")
-set(PLASMA_MIN_VERSION "5.4.0")
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -21,7 +20,7 @@ set(CMAKE_MODULE_PATH
         ${ECM_KDE_MODULE_DIR})
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Test)
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons I18n WidgetsAddons)
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons WidgetsAddons)
 
 include(GNUInstallDirs)
 include(KDEInstallDirs)

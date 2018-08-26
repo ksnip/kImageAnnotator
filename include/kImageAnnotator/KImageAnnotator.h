@@ -32,7 +32,6 @@ public:
     KImageAnnotator(KImageAnnotator &&other) noexcept = default;
     KImageAnnotator &operator=(KImageAnnotator &&other) noexcept = default;
     ~KImageAnnotator();
-    void testMethod();
 
 private:
     class Impl;

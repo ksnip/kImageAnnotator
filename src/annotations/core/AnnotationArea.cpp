@@ -163,13 +163,13 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
     connect(&itemArranger, &AnnotationItemArranger::newCommand, mUndoStack, &UndoStack::push);
 
     QMenu contextMenu;
-    auto arrangeMenu = contextMenu.addMenu(i18n("Arrange"));
-    arrangeMenu->addAction(i18n("Bring to Front"), &itemArranger, &AnnotationItemArranger::bringToFront);
-    arrangeMenu->addAction(i18n("Bring Forward"), &itemArranger, &AnnotationItemArranger::bringForward);
-    arrangeMenu->addAction(i18n("Send Backward"), &itemArranger, &AnnotationItemArranger::sendBackward);
-    arrangeMenu->addAction(i18n("Send to Back"), &itemArranger, &AnnotationItemArranger::sendToBack);
+    auto arrangeMenu = contextMenu.addMenu(tr("Arrange"));
+    arrangeMenu->addAction(tr("Bring to Front"), &itemArranger, &AnnotationItemArranger::bringToFront);
+    arrangeMenu->addAction(tr("Bring Forward"), &itemArranger, &AnnotationItemArranger::bringForward);
+    arrangeMenu->addAction(tr("Send Backward"), &itemArranger, &AnnotationItemArranger::sendBackward);
+    arrangeMenu->addAction(tr("Send to Back"), &itemArranger, &AnnotationItemArranger::sendToBack);
     contextMenu.addSeparator();
-    contextMenu.addAction(i18n("Delete"), this, &AnnotationArea::deleteSelectedItems);
+    contextMenu.addAction(tr("Delete"), this, &AnnotationArea::deleteSelectedItems);
 
     contextMenu.exec(event->screenPos());
 }

@@ -29,7 +29,7 @@ set(UnitTests
 
 add_library(kImageAnnotatorStatic STATIC ${kimageannotator_SRCS})
 
-target_link_libraries(kImageAnnotatorStatic Qt5::Widgets KF5::CoreAddons KF5::I18n KF5::WidgetsAddons)
+target_link_libraries(kImageAnnotatorStatic Qt5::Widgets KF5::CoreAddons KF5::WidgetsAddons)
 
 foreach (UnitTest ${UnitTests})
     get_filename_component(UnitTestName ${UnitTest} NAME_WE)

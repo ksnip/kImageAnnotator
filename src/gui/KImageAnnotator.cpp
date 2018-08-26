@@ -88,11 +88,6 @@ KImageAnnotator::~KImageAnnotator()
 {
 }
 
-void KImageAnnotator::testMethod()
-{
-
-}
-
 // Impl Implementation
 KImageAnnotator::Impl::Impl(const QPixmap &image)
 {
@@ -119,9 +114,6 @@ KImageAnnotator::Impl::~Impl()
 
 void KImageAnnotator::Impl::initAppSettings()
 {
-    QCoreApplication::setOrganizationName(QStringLiteral("kimageannotator"));
-    QCoreApplication::setOrganizationDomain(QStringLiteral("kimageannotator.kde.org"));
-    QCoreApplication::setApplicationName(QStringLiteral("kImageAnnotator"));
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 }
 
@@ -132,10 +124,10 @@ void KImageAnnotator::Impl::initGui()
     mMainLayout = new QHBoxLayout();
     mToolsLayout = new QVBoxLayout();
     mToolPicker = new ToolPicker();
-    mColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("tool_color_picker")), i18n("Color"));
-    mTextColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("format-text-color")), i18n("Text Color"));
-    mSizePicker = new SizePicker(QIcon::fromTheme(QStringLiteral("newline")), i18n("Size"));
-    mFillPicker = new FillPicker(QIcon::fromTheme(QStringLiteral("fill-color")), i18n("Fill Type"));
+    mColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("tool_color_picker")), tr("Color"));
+    mTextColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("format-text-color")), tr("Text Color"));
+    mSizePicker = new SizePicker(QIcon::fromTheme(QStringLiteral("newline")), tr("Size"));
+    mFillPicker = new FillPicker(QIcon::fromTheme(QStringLiteral("fill-color")), tr("Fill Type"));
 
     mToolsLayout->addWidget(mToolPicker);
     mToolsLayout->addSpacing(20);

@@ -25,13 +25,11 @@
 #include <QToolButton>
 #include <QGridLayout>
 
-#include <KLocalizedString>
-
 #include "../common/enum/ToolTypes.h"
 
 class ToolPicker : public QWidget
 {
-    Q_OBJECT
+Q_OBJECT
 public:
     explicit ToolPicker();
     ~ToolPicker() override;
@@ -42,13 +40,13 @@ signals:
     void toolSelected(ToolTypes newTool);
 
 private:
-    QButtonGroup*                 mButtonGroup;
-    QGridLayout*                  mLayout;
-    ToolTypes                     mSelectedToolType;
-    QHash<QAbstractButton*,ToolTypes> mButtonToTool;
+    QButtonGroup *mButtonGroup;
+    QGridLayout *mLayout;
+    ToolTypes mSelectedToolType;
+    QHash<QAbstractButton *, ToolTypes> mButtonToTool;
 
     void initGui();
-    QToolButton* createButton(const QString& tooltip, const QIcon& icon, Qt::Key shortcut);
+    QToolButton *createButton(const QString &tooltip, const QIcon &icon, Qt::Key shortcut);
 
 private slots:
     void buttonClicked(QAbstractButton *button);

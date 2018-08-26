@@ -27,8 +27,6 @@
 #include <QMenu>
 #include <QUndoStack>
 
-#include <KLocalizedString>
-
 #include "AnnotationItemFactory.h"
 #include "../modifiers/AnnotationItemModifier.h"
 #include "../modifiers/AnnotationItemArranger.h"
