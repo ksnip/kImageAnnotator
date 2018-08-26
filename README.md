@@ -18,6 +18,8 @@ The tool is currently work in Progress
     `$ cd build`  
 4. Create the makefile and build the project:  
     `$ cmake ..`  
-    `$ make`  
-5. Run the application:  
-    `$ ./src/kimageannotator_app` 
+    `$ make`
+5. Install shared library (not required when only using the example):  
+    `$ sudo make install`
+6. Run the example application:  
+    `$ ./example/kImageAnnotator-example`
