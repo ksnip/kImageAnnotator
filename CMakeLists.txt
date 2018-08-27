@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.5)
-
 project(kImageAnnotator LANGUAGES CXX VERSION 0.0.1)
 
 set(QT_MIN_VERSION "5.6.1")

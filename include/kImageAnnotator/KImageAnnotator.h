@@ -30,8 +30,8 @@ Q_OBJECT
 public:
     explicit KImageAnnotator(const QPixmap &image);
     KImageAnnotator(KImageAnnotator &&other) noexcept = default;
-    KImageAnnotator &operator=(KImageAnnotator &&other) noexcept = default;
     ~KImageAnnotator();
+    KImageAnnotator &operator=(KImageAnnotator &&other) noexcept = default;
 
 private:
     class Impl;
