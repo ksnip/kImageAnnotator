@@ -1,5 +1,3 @@
-enable_testing(true)
-
 set(UnitTests
         annotations/core/AnnotationAreaTest.cpp
         annotations/core/AnnotationItemFactoryTest.cpp

@@ -60,7 +60,7 @@ void ToolPicker::initGui()
     mLayout->addWidget(button, 0, 1);
     mButtonGroup->addButton(button);
 
-    button = createButton(tr("Marker"), QPixmap(QStringLiteral(":/icons/marker")), Qt::Key_M);
+    button = createButton(tr("Marker"), QPixmap(QStringLiteral(":/icons/ellipsis")), Qt::Key_M);
     mButtonToTool[button] = ToolTypes::Marker;
     mLayout->addWidget(button, 2, 0);
     mButtonGroup->addButton(button);

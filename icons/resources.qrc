@@ -1,4 +1,5 @@
-<!DOCTYPE RCC><RCC version="1.0">
+<!DOCTYPE RCC>
+<RCC version="1.0">
     <qresource prefix="/icons">
         <file alias="arrow">arrow.64.png</file>
         <file alias="number">number.64.png</file>
