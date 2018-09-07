@@ -20,6 +20,7 @@ set(CMAKE_MODULE_PATH
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Test)
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS CoreAddons WidgetsAddons)
+find_package(kColorPicker REQUIRED)
 
 include(GNUInstallDirs)
 include(KDEInstallDirs)
@@ -38,20 +39,20 @@ add_subdirectory(example)
 include(CMakePackageConfigHelpers)
 
 configure_package_config_file(
-        ${CMAKE_SOURCE_DIR}/cmake/kImageAnnotator-config.cmake.in
-        ${CMAKE_BINARY_DIR}/cmake/kImageAnnotator-config.cmake
+        ${CMAKE_SOURCE_DIR}/cmake/kImageAnnotatorConfig.cmake.in
+        ${CMAKE_BINARY_DIR}/cmake/kImageAnnotatorConfig.cmake
         INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/kImageAnnotator
 )
 
 write_basic_package_version_file(
-        ${CMAKE_BINARY_DIR}/cmake/kImageAnnotator-config-version.cmake
+        ${CMAKE_BINARY_DIR}/cmake/kImageAnnotatorConfig-version.cmake
         VERSION ${PROJECT_VERSION}
         COMPATIBILITY AnyNewerVersion
 )
 
 install(FILES
-        ${CMAKE_BINARY_DIR}/cmake/kImageAnnotator-config.cmake
-        ${CMAKE_BINARY_DIR}/cmake/kImageAnnotator-config-version.cmake
+        ${CMAKE_BINARY_DIR}/cmake/kImageAnnotatorConfig.cmake
+        ${CMAKE_BINARY_DIR}/cmake/kImageAnnotatorConfig-version.cmake
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/kImageAnnotator
         )
 
