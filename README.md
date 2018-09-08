@@ -1,4 +1,4 @@
-# kImageAnnotator
+# kImageAnnotator [![Build Status](https://travis-ci.org/DamirPorobic/kImageAnnotator.svg?branch=master)](https://travis-ci.org/DamirPorobic/kImageAnnotator)
 Tool for annotating images
 
 Version v0.0.1 - alpha
