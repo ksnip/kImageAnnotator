@@ -10,10 +10,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_MODULE_PATH
-        ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules
-        ${CMAKE_MODULE_PATH})
-
 option(BUILD_TESTS "Build Unit Tests" OFF)
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Test)
