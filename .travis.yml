@@ -1,0 +1,25 @@
+language: cpp
+compiler: gcc
+sudo: required
+dist: trusty
+
+before_install:
+- sudo add-apt-repository ppa:beineri/opt-qt593-trusty -y
+- sudo apt-get update -qq
+
+install:
+- sudo apt-get -y install qt59base
+- source /opt/qt*/bin/qt*-env.sh
+- git clone git://github.com/DamirPorobic/kColorPicker
+- cd kColorPicker
+- mkdir build && cd build
+- cmake ..
+- make && sudo make install
+- cd ../..
+
+script:
+- mkdir build
+- cd build
+- cmake ..
+- make VERBOSE=1
+- xvfb-run make test CTEST_OUTPUT_ON_FAILURE=1 TESTARGS="-platform minimal"
