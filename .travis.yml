@@ -4,12 +4,11 @@ sudo: required
 dist: trusty
 
 before_install:
-- sudo add-apt-repository ppa:beineri/opt-qt593-trusty -y
-- sudo apt-get update -qq
+- wget http://download.qt.io/official_releases/qt/5.6/5.6.2/qt-opensource-linux-x64-5.6.2.run
+- sudo chmod +x qt-opensource-linux-x64-5.6.2.run
 
 install:
-- sudo apt-get -y install qt59base
-- source /opt/qt*/bin/qt*-env.sh
+- sudo ./qt-opensource-linux-x64-5.6.2.run
 - git clone git://github.com/DamirPorobic/kColorPicker
 - cd kColorPicker
 - mkdir build && cd build
