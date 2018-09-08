@@ -67,7 +67,7 @@ target_include_directories(kImageAnnotator
         )
 
 target_link_libraries(kImageAnnotator PUBLIC
-        Qt5::Widgets KF5::CoreAddons KF5::WidgetsAddons
+        Qt5::Widgets KF5::CoreAddons KF5::WidgetsAddons kColorPicker
         )
 
 target_compile_definitions(kImageAnnotator PRIVATE KIMAGEANNOTATOR_LIB)

@@ -23,28 +23,29 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <KColorCombo>
+
+#include <kColorPicker/KColorPicker.h>
 
 class ColorPicker : public QWidget
 {
-    Q_OBJECT
+Q_OBJECT
 public:
-    explicit ColorPicker(const QIcon& icon, const QString& tooltip);
+    explicit ColorPicker(const QIcon &icon, const QString &tooltip);
     ~ColorPicker() override;
-    void setColor(const QColor& color);
+    void setColor(const QColor &color);
 
 signals:
-    void colorSelected(const QColor& color);
+    void colorSelected(const QColor &color);
 
 private:
-    QHBoxLayout* mLayout;
-    QLabel*      mLabel;
-    KColorCombo* mComboBox;
+    QHBoxLayout *mLayout;
+    QLabel *mLabel;
+    KColorPicker *mkColorPicker;
 
-    void initGui(const QIcon& icon, const QString& tooltip);
+    void initGui(const QIcon &icon, const QString &tooltip);
 
 private slots:
-    void colorChanged(const QColor& color);
+    void colorChanged(const QColor &color);
 };
 
 #endif // KIMAGEANNOTATOR_COLORPICKER_H
