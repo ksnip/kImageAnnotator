@@ -4,5 +4,11 @@
         <file alias="arrow">arrow.64.png</file>
         <file alias="number">number.64.png</file>
         <file alias="marker">marker.64.png</file>
+        <file alias="line">line.64.png</file>
+        <file alias="pen">pen.64.png</file>
+        <file alias="rect">rect.64.png</file>
+        <file alias="select">select.64.png</file>
+        <file alias="text">text.64.png</file>
+        <file alias="ellipse">ellipse.64.png</file>
     </qresource>
 </RCC>

@@ -49,12 +49,11 @@ set(kimageannotator_SRCS
 
 set(kimageannotator_SRCS ${kimageannotator_SRCS} PARENT_SCOPE)
 
-set(kimageannotator_ICON_QRC ${CMAKE_SOURCE_DIR}/icons/resources.qrc)
-
 add_library(kImageAnnotator
+        SHARED
         ${kimageannotator_SRCS}
         ${CMAKE_SOURCE_DIR}/include/kImageAnnotator/KImageAnnotator.h
-        ${kimageannotator_ICON_QRC}
+        ${CMAKE_SOURCE_DIR}/icons/resources.qrc
         )
 
 add_library(kImageAnnotator::kImageAnnotator ALIAS kImageAnnotator)
@@ -66,9 +65,7 @@ target_include_directories(kImageAnnotator
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
         )
 
-target_link_libraries(kImageAnnotator PUBLIC
-        Qt5::Widgets KF5::CoreAddons KF5::WidgetsAddons kColorPicker
-        )
+target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets kColorPicker)
 
 target_compile_definitions(kImageAnnotator PRIVATE KIMAGEANNOTATOR_LIB)
 

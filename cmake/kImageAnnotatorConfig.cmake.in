@@ -2,12 +2,7 @@ include(CMakeFindDependencyMacro)
 
 @PACKAGE_INIT@
 
-find_dependency(ECM @KF5_MIN_VERSION@)
-list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-
 find_dependency(Qt5 @QT_MIN_VERSION@ COMPONENTS Widgets)
-find_dependency(KF5 @KF5_MIN_VERSION@ COMPONENTS CoreAddons I18n WidgetsAddons)
-
 if(NOT TARGET kImageAnnotator::kImageAnnotator)
   include("${CMAKE_CURRENT_LIST_DIR}/kImageAnnotator-targets.cmake")
 endif()

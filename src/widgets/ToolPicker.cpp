@@ -50,42 +50,42 @@ void ToolPicker::initGui()
     mLayout->setContentsMargins(0, 0, 0, 0);
     mButtonGroup = new QButtonGroup(this);
 
-    auto button = createButton(tr("Select"), QIcon::fromTheme(QStringLiteral("edit-select")), Qt::Key_S);
+    auto button = createButton(tr("Select"), QIcon(QStringLiteral(":/icons/select")), Qt::Key_S);
     mButtonToTool[button] = ToolTypes::Select;
     mLayout->addWidget(button, 0, 0);
     mButtonGroup->addButton(button);
 
-    button = createButton(tr("Pen"), QIcon::fromTheme(QStringLiteral("tool_pen")), Qt::Key_P);
+    button = createButton(tr("Pen"), QIcon(QStringLiteral(":/icons/pen")), Qt::Key_P);
     mButtonToTool[button] = ToolTypes::Pen;
     mLayout->addWidget(button, 0, 1);
     mButtonGroup->addButton(button);
 
-    button = createButton(tr("Marker"), QPixmap(QStringLiteral(":/icons/ellipsis")), Qt::Key_M);
+    button = createButton(tr("Marker"), QIcon(QStringLiteral(":/icons/marker")), Qt::Key_M);
     mButtonToTool[button] = ToolTypes::Marker;
     mLayout->addWidget(button, 2, 0);
     mButtonGroup->addButton(button);
 
-    button = createButton(tr("Line"), QIcon::fromTheme(QStringLiteral("draw-line")), Qt::Key_L);
+    button = createButton(tr("Line"), QIcon(QStringLiteral(":/icons/line")), Qt::Key_L);
     mButtonToTool[button] = ToolTypes::Line;
     mLayout->addWidget(button, 2, 1);
     mButtonGroup->addButton(button);
 
-    button = createButton(tr("Rectangle"), QIcon::fromTheme(QStringLiteral("draw-rectangle")), Qt::Key_R);
+    button = createButton(tr("Rectangle"), QIcon(QStringLiteral(":/icons/rect")), Qt::Key_R);
     mButtonToTool[button] = ToolTypes::Rect;
     mLayout->addWidget(button, 3, 0);
     mButtonGroup->addButton(button);
 
-    button = createButton(tr("Ellipse"), QIcon::fromTheme(QStringLiteral("draw-ellipse")), Qt::Key_E);
+    button = createButton(tr("Ellipse"), QIcon(QStringLiteral(":/icons/ellipse")), Qt::Key_E);
     mButtonToTool[button] = ToolTypes::Ellipse;
     mLayout->addWidget(button, 3, 1);
     mButtonGroup->addButton(button);
 
-    button = createButton(tr("Arrow"), QPixmap(QStringLiteral(":/icons/arrow")), Qt::Key_A);
+    button = createButton(tr("Arrow"), QIcon(QStringLiteral(":/icons/arrow")), Qt::Key_A);
     mButtonToTool[button] = ToolTypes::Arrow;
     mLayout->addWidget(button, 4, 0);
     mButtonGroup->addButton(button);
 
-    button = createButton(tr("Number"), QPixmap(QStringLiteral(":/icons/number")), Qt::Key_N);
+    button = createButton(tr("Number"), QIcon(QStringLiteral(":/icons/number")), Qt::Key_N);
     mButtonToTool[button] = ToolTypes::Number;
     mLayout->addWidget(button, 4, 1);
     mButtonGroup->addButton(button);
