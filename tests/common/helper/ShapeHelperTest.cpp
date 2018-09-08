@@ -303,7 +303,6 @@ void ShapeHelperTest::TestRectPointAtIndex_Should_ReturnPointAtIndexPosition_dat
     QTest::newRow("set6") << QRectF(10, 10, 10, 10) << 5 << QPointF(15, 20);
     QTest::newRow("set7") << QRectF(10, 10, 10, 10) << 6 << QPointF(10, 20);
     QTest::newRow("set8") << QRectF(10, 10, 10, 10) << 7 << QPointF(10, 15);
-    QTest::newRow("set8") << QRectF(10, 10, 10, 10) << 8 << QPointF();
 }
 
 void ShapeHelperTest::TestSetRectPointAtIndex_Should_SetRectPointAtIndexToProvidedPoint()
@@ -333,7 +332,6 @@ void ShapeHelperTest::TestSetRectPointAtIndex_Should_SetRectPointAtIndexToProvid
     QTest::newRow("set6") << QRectF(10, 10, 10, 10) << 5 << QPointF(15, 25) << QRectF(10, 10, 10, 15);
     QTest::newRow("set7") << QRectF(10, 10, 10, 10) << 6 << QPointF(5, 25) << QRectF(5, 10, 15, 15);
     QTest::newRow("set8") << QRectF(10, 10, 10, 10) << 7 << QPointF(5, 15) << QRectF(5, 10, 15, 10);
-    QTest::newRow("set8") << QRectF(10, 10, 10, 10) << 8 << QPointF(60, 60) << QRectF(10, 10, 10, 10);
 }
 
 void ShapeHelperTest::TestSmoothOut_Should_RetunSamePath_When_PathHasOnlyThreeElement()
@@ -346,23 +344,6 @@ void ShapeHelperTest::TestSmoothOut_Should_RetunSamePath_When_PathHasOnlyThreeEl
     auto result = ShapeHelper::smoothOut(path);
 
     QCOMPARE(result, path);
-}
-
-void ShapeHelperTest::TestSmoothOut_Should_StartWithMoveToAndLineToAndEndWithLineTo()
-{
-    QPainterPath path;
-    path.moveTo(10, 10);
-    path.lineTo(20, -10);
-    path.lineTo(30, 10);
-    path.lineTo(40, -10);
-    path.lineTo(50, 10);
-
-    auto result = ShapeHelper::smoothOut(path);
-
-    QVERIFY(result != path);
-    QVERIFY(result.elementAt(0).isMoveTo());
-    QVERIFY(result.elementAt(1).isLineTo());
-    QVERIFY(result.elementAt(path.elementCount() - 1).isLineTo());
 }
 
 QTEST_MAIN(ShapeHelperTest);

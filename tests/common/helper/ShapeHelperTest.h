@@ -55,7 +55,6 @@ private slots:
     void TestSetRectPointAtIndex_Should_SetRectPointAtIndexToProvidedPoint();
     void TestSetRectPointAtIndex_Should_SetRectPointAtIndexToProvidedPoint_data();
     void TestSmoothOut_Should_RetunSamePath_When_PathHasOnlyThreeElement();
-    void TestSmoothOut_Should_StartWithMoveToAndLineToAndEndWithLineTo();
 };
 
 #endif //KIMAGEANNOTATOR_SHAPEHELPERTEST_H
