@@ -35,7 +35,7 @@ ColorPicker::~ColorPicker()
 
 void ColorPicker::setColor(const QColor &color)
 {
-    mkColorPicker->selectColor(color);
+    mkColorPicker->setColor(color);
     emit colorSelected(color);
 }
 

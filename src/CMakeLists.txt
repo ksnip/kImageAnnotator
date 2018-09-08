@@ -53,7 +53,7 @@ add_library(kImageAnnotator
         SHARED
         ${kimageannotator_SRCS}
         ${CMAKE_SOURCE_DIR}/include/kImageAnnotator/KImageAnnotator.h
-        ${CMAKE_SOURCE_DIR}/icons/resources.qrc
+        ${CMAKE_SOURCE_DIR}/icons/kImageAnnotator_resources.qrc
         )
 
 add_library(kImageAnnotator::kImageAnnotator ALIAS kImageAnnotator)
