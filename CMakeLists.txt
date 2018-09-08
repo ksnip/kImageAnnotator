@@ -15,6 +15,8 @@ set(CMAKE_MODULE_PATH
         ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules
         ${CMAKE_MODULE_PATH})
 
+option(BUILD_TESTS "Build Unit Tests" OFF)
+
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Test)
 find_package(kColorPicker REQUIRED)
 
@@ -22,12 +24,12 @@ include(GNUInstallDirs)
 include(FeatureSummary)
 
 add_subdirectory(src)
-
-enable_testing()
-add_subdirectory(tests)
-
 add_subdirectory(example)
 
+if (BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(tests)
+endif (BUILD_TESTS)
 
 include(CMakePackageConfigHelpers)
 
