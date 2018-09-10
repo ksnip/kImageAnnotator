@@ -44,6 +44,7 @@ set(kimageannotator_SRCS
         ${CMAKE_SOURCE_DIR}/src/common/helper/MathHelper.cpp
         ${CMAKE_SOURCE_DIR}/src/common/helper/ItemHelper.cpp
         ${CMAKE_SOURCE_DIR}/src/common/helper/ShapeHelper.cpp
+        ${CMAKE_SOURCE_DIR}/src/common/filter/IgnoreShortcutsFilter.cpp
         ${CMAKE_SOURCE_DIR}/src/widgets/ToolPicker.cpp
         ${CMAKE_SOURCE_DIR}/src/widgets/ColorPicker.cpp
         ${CMAKE_SOURCE_DIR}/src/widgets/SizePicker.cpp

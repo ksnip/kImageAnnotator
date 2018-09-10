@@ -47,6 +47,7 @@ void AnnotationText::updateShape()
 void AnnotationText::focusOutEvent(QFocusEvent *event)
 {
     mTextCursor.stop();
+    mIgnoreShortcutsFilter.remove();
     QGraphicsItem::focusOutEvent(event);
 }
 
@@ -58,8 +59,10 @@ void AnnotationText::keyPressEvent(QKeyEvent *event)
 
 void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget)
 {
+    // Paint border
     AbstractAnnotationRect::paint(painter, style, widget);
 
+    // Paint text
     painter->setPen(properties().textColor());
     auto margine = properties().size();
 
@@ -73,9 +76,6 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
         auto blockLength = block.length();
         QTextLayout textLayout(block);
         textLayout.setFont(mFont);
-        QTextOption option;
-        option.setWrapMode(QTextOption::NoWrap);
-        textLayout.setTextOption(option);
         auto blockHeight = 0;
         textLayout.setCacheEnabled(true);
 
@@ -106,6 +106,7 @@ void AnnotationText::finish()
 {
     setFocus();
     mTextCursor.start();
+    mIgnoreShortcutsFilter.apply();
 }
 
 void AnnotationText::removeText(TextPositions direction)

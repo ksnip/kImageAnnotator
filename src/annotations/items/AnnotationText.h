@@ -23,6 +23,7 @@
 #include "AbstractAnnotationRect.h"
 #include "helper/KeyInputHelper.h"
 #include "helper/TextCursor.h"
+#include "../../common/filter/IgnoreShortcutsFilter.h"
 
 class AnnotationText : public QObject, public AbstractAnnotationRect
 {
@@ -43,6 +44,7 @@ private:
     KeyInputHelper mKeyInputHelper;
     TextCursor mTextCursor;
     QFont mFont;
+    IgnoreShortcutsFilter mIgnoreShortcutsFilter;
 
 private slots:
     void removeText(TextPositions direction);
