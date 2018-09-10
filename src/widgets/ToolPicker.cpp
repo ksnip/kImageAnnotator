@@ -23,6 +23,8 @@ ToolPicker::ToolPicker()
 {
     initGui();
 
+    setFocusPolicy(Qt::ClickFocus);
+
     connect(mButtonGroup, static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonClicked), this, &ToolPicker::buttonClicked);
 }
 

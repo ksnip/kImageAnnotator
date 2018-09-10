@@ -60,6 +60,7 @@ public:
 KImageAnnotator::KImageAnnotator(const QPixmap &image) : mImpl(new Impl(image))
 {
     setLayout(mImpl->mMainLayout);
+    setFocusPolicy(Qt::ClickFocus);
 
     connect(mImpl->mToolPicker, &ToolPicker::toolSelected, mImpl->mConfig, &Config::setSelectedTool);
     connect(mImpl->mToolPicker, &ToolPicker::toolSelected, [this](ToolTypes tool)
