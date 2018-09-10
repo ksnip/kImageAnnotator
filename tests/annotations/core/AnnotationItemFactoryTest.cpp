@@ -47,7 +47,7 @@ void AnnotationItemFactoryTest::TestCreateItem_Should_ReturnNullPtrForUnknownTyp
 {
     AnnotationItemFactory itemFactory;
 
-    auto item = itemFactory.createItem(QPoint(0, 0), (ToolTypes)8);
+    auto item = itemFactory.createItem(QPoint(0, 0), (ToolTypes) 9);
 
     QVERIFY(item == nullptr);
 }
@@ -58,7 +58,7 @@ void AnnotationItemFactoryTest::TestCreateItem_Should_ReturnAnnotationLine_When_
 
     auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Line);
 
-    auto result = dynamic_cast<AnnotationLine*>(item);
+    auto result = dynamic_cast<AnnotationLine *>(item);
     QVERIFY(result != nullptr);
 }
 
@@ -68,7 +68,7 @@ void AnnotationItemFactoryTest::TestCreateItem_Should_ReturnAnnotationArrow_When
 
     auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Arrow);
 
-    auto result = dynamic_cast<AnnotationArrow*>(item);
+    auto result = dynamic_cast<AnnotationArrow *>(item);
     QVERIFY(result != nullptr);
 }
 
@@ -78,7 +78,7 @@ void AnnotationItemFactoryTest::TestCreateItem_Should_ReturnAnnotationRect_When_
 
     auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Rect);
 
-    auto result = dynamic_cast<AnnotationRect*>(item);
+    auto result = dynamic_cast<AnnotationRect *>(item);
     QVERIFY(result != nullptr);
 }
 
@@ -88,7 +88,7 @@ void AnnotationItemFactoryTest::TestCreateItem_Should_ReturnAnnotationEllipse_Wh
 
     auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Ellipse);
 
-    auto result = dynamic_cast<AnnotationEllipse*>(item);
+    auto result = dynamic_cast<AnnotationEllipse *>(item);
     QVERIFY(result != nullptr);
 }
 
@@ -98,7 +98,7 @@ void AnnotationItemFactoryTest::TestCreateItem_Should_ReturnAnnotationNumber_Whe
 
     auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Number);
 
-    auto result = dynamic_cast<AnnotationNumber*>(item);
+    auto result = dynamic_cast<AnnotationNumber *>(item);
     QVERIFY(result != nullptr);
 }
 
