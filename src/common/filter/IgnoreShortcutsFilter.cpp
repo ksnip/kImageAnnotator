@@ -21,13 +21,11 @@
 
 void IgnoreShortcutsFilter::apply()
 {
-    qDebug("apply filter");
     QCoreApplication::instance()->installEventFilter(this);
 }
 
 void IgnoreShortcutsFilter::remove()
 {
-    qDebug("remove filter");
     QCoreApplication::instance()->removeEventFilter(this);
 }
 

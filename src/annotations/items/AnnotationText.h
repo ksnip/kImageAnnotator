@@ -21,6 +21,7 @@
 #define KIMAGEANNOTATOR_ANNOTATIONTEXT_H
 
 #include <QClipboard>
+#include <QtMath>
 
 #include "AbstractAnnotationRect.h"
 #include "helper/KeyInputHelper.h"
@@ -54,6 +55,7 @@ private slots:
     void moveCursor(TextPositions direction);
     void pasteText();
     void escape();
+    void adjustRect();
 };
 
 #endif //KIMAGEANNOTATOR_ANNOTATIONTEXT_H

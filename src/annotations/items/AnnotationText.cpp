@@ -54,7 +54,7 @@ void AnnotationText::focusOutEvent(QFocusEvent *event)
 void AnnotationText::keyPressEvent(QKeyEvent *event)
 {
     mKeyInputHelper.handleKeyPress(event);
-    prepareGeometryChange();
+    adjustRect();
 }
 
 void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget)
@@ -104,6 +104,7 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 
 void AnnotationText::finish()
 {
+    adjustRect();
     setFocus();
     mTextCursor.start();
     mIgnoreShortcutsFilter.apply();
@@ -150,4 +151,20 @@ void AnnotationText::pasteText()
 void AnnotationText::escape()
 {
     clearFocus();
+}
+
+void AnnotationText::adjustRect()
+{
+    prepareGeometryChange();
+    QFontMetrics fontMetrics(mFont);
+    auto margine = properties().size();
+    auto newRect = fontMetrics.boundingRect(mRect->toRect().normalized(), Qt::AlignLeft, mText);
+    newRect.adjust(0, 0, margine * 2, margine * 2);
+    if (newRect.width() > mRect->width()) {
+        mRect->setWidth(newRect.width());
+    }
+    if (newRect.height() > mRect->height()) {
+        mRect->setHeight(newRect.height());
+    }
+    updateShape();
 }
