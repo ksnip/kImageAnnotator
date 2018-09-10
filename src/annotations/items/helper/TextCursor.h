@@ -33,13 +33,19 @@ public:
     explicit TextCursor();
     ~TextCursor() override;
     void move(TextPositions direction, const QString &text);
+    void start();
+    void stop();
     int position() const;
+    bool isVisible() const;
+
+signals:
+    void tick() const;
 
 private:
     int mBlinkIntervalInMs = 1000;
     QTimer *mBlinkTimer;
     int mPosition = 0;
-    bool mIsVisible;
+    bool mIsVisible = false;
 
     void moveCursorForward(const QString &text);
     void moveCursorBack(const QString &text);

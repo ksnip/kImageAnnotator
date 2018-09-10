@@ -21,22 +21,35 @@
 #define KIMAGEANNOTATOR_ANNOTATIONTEXT_H
 
 #include "AbstractAnnotationRect.h"
+#include "helper/KeyInputHelper.h"
+#include "helper/TextCursor.h"
 
-class AnnotationText : public AbstractAnnotationRect
+class AnnotationText : public QObject, public AbstractAnnotationRect
 {
+Q_OBJECT
 public:
-    AnnotationText(const QPointF &startPosition, const AnnotationProperties &properties);
+    AnnotationText(const QPointF &startPosition, const QFont &font, const AnnotationProperties &properties);
     ~AnnotationText() override = default;
     void finish() override;
 
 protected:
     void updateShape() override;
     void focusOutEvent(QFocusEvent *event) override;
-    void focusInEvent(QFocusEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
+    void paint(QPainter *, const QStyleOptionGraphicsItem *, QWidget *) override;
 
 private:
     QString mText;
+    KeyInputHelper mKeyInputHelper;
+    TextCursor mTextCursor;
+    QFont mFont;
+
+private slots:
+    void removeText(TextPositions direction);
+    void insertText(const QString &text);
+    void moveCursor(TextPositions direction);
+    void pasteText();
+    void escape();
 };
 
 #endif //KIMAGEANNOTATOR_ANNOTATIONTEXT_H

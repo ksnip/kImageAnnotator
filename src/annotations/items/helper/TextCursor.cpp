@@ -26,9 +26,8 @@ TextCursor::TextCursor()
     connect(mBlinkTimer, &QTimer::timeout, [this]()
     {
         mIsVisible = !mIsVisible;
+        emit tick();
     });
-
-    mBlinkTimer->start(mBlinkIntervalInMs);
 }
 
 TextCursor::~TextCursor()
@@ -55,9 +54,25 @@ void TextCursor::move(TextPositions direction, const QString &text)
     mIsVisible = true;
 }
 
+void TextCursor::start()
+{
+    mBlinkTimer->start(mBlinkIntervalInMs);
+}
+
+void TextCursor::stop()
+{
+    mBlinkTimer->stop();
+    mIsVisible = false;
+}
+
 int TextCursor::position() const
 {
     return mPosition;
+}
+
+bool TextCursor::isVisible() const
+{
+    return mIsVisible;
 }
 
 void TextCursor::moveCursorForward(const QString &text)

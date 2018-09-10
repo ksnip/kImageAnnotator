@@ -19,12 +19,22 @@
 
 #include "AnnotationText.h"
 
-#include <QFocusEvent>
-
-AnnotationText::AnnotationText(const QPointF &startPosition, const AnnotationProperties &properties) :
+AnnotationText::AnnotationText(const QPointF &startPosition, const QFont &font, const AnnotationProperties &properties) :
     AbstractAnnotationRect(startPosition, properties)
 {
+    mFont = font;
+
     setFlag(QGraphicsItem::ItemIsFocusable, true);
+
+    connect(&mKeyInputHelper, &KeyInputHelper::move, this, &AnnotationText::moveCursor);
+    connect(&mKeyInputHelper, &KeyInputHelper::insert, this, &AnnotationText::insertText);
+    connect(&mKeyInputHelper, &KeyInputHelper::remove, this, &AnnotationText::removeText);
+    connect(&mKeyInputHelper, &KeyInputHelper::paste, this, &AnnotationText::pasteText);
+    connect(&mKeyInputHelper, &KeyInputHelper::escape, this, &AnnotationText::escape);
+    connect(&mTextCursor, &TextCursor::tick, [this]()
+    {
+        prepareGeometryChange();
+    });
 }
 
 void AnnotationText::updateShape()
@@ -36,23 +46,104 @@ void AnnotationText::updateShape()
 
 void AnnotationText::focusOutEvent(QFocusEvent *event)
 {
-    auto reason = event->reason();
-    qDebug("Focus out %s", qPrintable(QString::number((int) reason)));
+    mTextCursor.stop();
     QGraphicsItem::focusOutEvent(event);
-}
-
-void AnnotationText::focusInEvent(QFocusEvent *event)
-{
-    qDebug("Focus in");
-    QGraphicsItem::focusInEvent(event);
 }
 
 void AnnotationText::keyPressEvent(QKeyEvent *event)
 {
-    qDebug("Key press");
+    mKeyInputHelper.handleKeyPress(event);
+    prepareGeometryChange();
+}
+
+void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget)
+{
+//    painter->setPen(attributes());
+
+//    if (mEditable) {
+//        painter->drawRect(mRect);
+//    }
+
+    QFontMetrics fontMetrics(mFont);
+    auto boxHeight = 0;
+    QTextDocument document(mText);
+    for (auto block = document.begin(); block != document.end(); block = block.next()) {
+        auto blockPosition = block.position();
+        auto blockLength = block.length();
+        QTextLayout textLayout(block);
+        textLayout.setFont(mFont);
+        auto leading = fontMetrics.leading();
+        auto blockHeight = 0;
+        textLayout.setCacheEnabled(true);
+
+        textLayout.beginLayout();
+        while (1) {
+            auto line = textLayout.createLine();
+            if (!line.isValid()) {
+                break;
+            }
+
+            line.setLineWidth(mRect->width());
+            blockHeight += leading;
+            line.setPosition(mRect->adjusted(2, 2, 0, 0).topLeft());
+            blockHeight += line.height();
+        }
+        textLayout.endLayout();
+
+        textLayout.draw(painter, QPoint(0, boxHeight));
+        if (mTextCursor.isVisible() && (mTextCursor.position() >= blockPosition && mTextCursor.position() < blockPosition + blockLength)) {
+            textLayout.drawCursor(painter, QPointF(0, boxHeight), mTextCursor.position() - blockPosition, 1);
+        }
+        boxHeight += blockHeight;
+    }
+    AbstractAnnotationRect::paint(painter, style, widget);
 }
 
 void AnnotationText::finish()
 {
     setFocus();
+    mTextCursor.start();
+}
+
+void AnnotationText::removeText(TextPositions direction)
+{
+    auto currentCursorPos = mTextCursor.position();
+    if (direction == TextPositions::Previous) {
+        if (currentCursorPos == 0) {
+            return;
+        }
+        mText.remove(currentCursorPos - 1, 1);
+        moveCursor(TextPositions::Previous);
+    } else if (direction == TextPositions::Next) {
+        if (currentCursorPos >= mText.length()) {
+            return;
+        }
+        mText.remove(currentCursorPos, 1);
+    }
+}
+
+void AnnotationText::insertText(const QString &text)
+{
+    mText.insert(mTextCursor.position(), text);
+    mTextCursor.move(TextPositions::Next, mText);
+}
+
+void AnnotationText::moveCursor(TextPositions direction)
+{
+    mTextCursor.move(direction, mText);
+}
+
+void AnnotationText::pasteText()
+{
+//    auto clipboard = QApplication::clipboard();
+//    if (clipboard->text().isEmpty()) {
+//        return;
+//    }
+//    mText.insert(mCursorPos, clipboard->text());
+//    mCursorPos += clipboard->text().length();
+}
+
+void AnnotationText::escape()
+{
+    clearFocus();
 }
