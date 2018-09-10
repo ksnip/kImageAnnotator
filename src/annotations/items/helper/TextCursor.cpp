@@ -46,23 +46,10 @@ void TextCursor::move(TextPositions direction, const QString &text)
             moveCursorBack(text);
             break;
         case TextPositions::Up:
+            moveCursorUp(text);
+            break;
         case TextPositions::Down:
-            QTextDocument document(text);
-            auto block = document.findBlock(mPosition);
-            if ((direction == TextPositions::Up && block == document.firstBlock()) || (direction == TextPositions::Down && block == document.lastBlock())) {
-                break;
-            }
-            auto blockPos = block.position();
-            if (direction == TextPositions::Up) {
-                block = block.previous();
-            } else {
-                block = block.next();
-            }
-            if ((mPosition - blockPos) < block.length()) {
-                mPosition = block.position() + mPosition - blockPos;
-            } else {
-                mPosition = block.position() + block.length() - 1;
-            }
+            moveCursorDown(text);
             break;
     }
     mIsVisible = true;
@@ -87,4 +74,52 @@ void TextCursor::moveCursorBack(const QString &text)
     if (mPosition < 0) {
         mPosition = text.length();
     }
+}
+
+void TextCursor::moveCursorUp(const QString &text)
+{
+    QTextDocument document(text);
+    auto currentBlock = document.findBlock(mPosition);
+
+    if (currentBlock == document.firstBlock()) {
+        return;
+    }
+
+    auto positionInBlock = currentBlock.position();
+    auto previousBlock = currentBlock.previous();
+
+    fitPositionToNewBlock(positionInBlock, previousBlock);
+}
+
+void TextCursor::moveCursorDown(const QString &text)
+{
+    QTextDocument document(text);
+    auto currentBlock = document.findBlock(mPosition);
+    if (currentBlock == document.lastBlock()) {
+        return;
+    }
+
+    auto positionInBlock = currentBlock.position();
+    auto nextBlock = currentBlock.next();
+
+    fitPositionToNewBlock(positionInBlock, nextBlock);
+}
+
+void TextCursor::fitPositionToNewBlock(int positionInBlock, const QTextBlock &targetBlock)
+{
+    if ((mPosition - positionInBlock) < targetBlock.length()) {
+        moveToSamePositionInNewBlock(positionInBlock, targetBlock);
+    } else {
+        movePositionToEndOfBlock(targetBlock);
+    }
+}
+
+void TextCursor::moveToSamePositionInNewBlock(int positionInBlock, const QTextBlock &targetBlock)
+{
+    mPosition = targetBlock.position() + mPosition - positionInBlock;
+}
+
+void TextCursor::movePositionToEndOfBlock(const QTextBlock &targetBlock)
+{
+    mPosition = targetBlock.position() + targetBlock.length() - 1;
 }

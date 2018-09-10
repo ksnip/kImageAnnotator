@@ -43,6 +43,11 @@ private:
 
     void moveCursorForward(const QString &text);
     void moveCursorBack(const QString &text);
+    void moveCursorUp(const QString &text);
+    void moveCursorDown(const QString &text);
+    void fitPositionToNewBlock(int positionInBlock, const QTextBlock &targetBlock);
+    void movePositionToEndOfBlock(const QTextBlock &targetBlock);
+    void moveToSamePositionInNewBlock(int positionInBlock, const QTextBlock &targetBlock);
 };
 
 #endif //KIMAGEANNOTATOR_TEXTCURSOR_H
