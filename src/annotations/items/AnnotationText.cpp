@@ -61,6 +61,9 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
     AbstractAnnotationRect::paint(painter, style, widget);
 
     painter->setPen(properties().textColor());
+    auto margine = properties().size();
+
+    painter->setClipRect(boundingRect().adjusted(margine, margine, -margine, -margine));
 
     QFontMetrics fontMetrics(mFont);
     auto boxHeight = 0;
@@ -70,7 +73,9 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
         auto blockLength = block.length();
         QTextLayout textLayout(block);
         textLayout.setFont(mFont);
-        auto leading = fontMetrics.leading();
+        QTextOption option;
+        option.setWrapMode(QTextOption::NoWrap);
+        textLayout.setTextOption(option);
         auto blockHeight = 0;
         textLayout.setCacheEnabled(true);
 
@@ -81,9 +86,9 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
                 break;
             }
 
-            line.setLineWidth(mRect->width() - 5);
-            blockHeight += leading;
-            line.setPosition(mRect->adjusted(2, 2, 0, 0).topLeft());
+            line.setLineWidth(mRect->width() - margine * 2);
+            blockHeight += fontMetrics.leading();
+            line.setPosition(mRect->adjusted(margine, margine, 0, 0).topLeft());
             blockHeight += line.height();
         }
         textLayout.endLayout();

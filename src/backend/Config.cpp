@@ -19,7 +19,7 @@
 
 #include "Config.h"
 
-Config* Config::instance()
+Config *Config::instance()
 {
     static Config instance;
     return &instance;
@@ -32,7 +32,7 @@ ToolTypes Config::selectedTool() const
 
 void Config::setSelectedTool(ToolTypes tool)
 {
-    if(selectedTool() == tool) {
+    if (selectedTool() == tool) {
         return;
     }
 
@@ -45,9 +45,9 @@ QColor Config::toolColor(ToolTypes tool) const
     return mToolToColor[tool];
 }
 
-void Config::setToolColor(const QColor& color, ToolTypes tool)
+void Config::setToolColor(const QColor &color, ToolTypes tool)
 {
-    if(toolColor(tool) == color) {
+    if (toolColor(tool) == color) {
         return;
     }
 
@@ -59,9 +59,9 @@ QColor Config::toolTextColor(ToolTypes tool) const
     return mToolToTextColor[tool];
 }
 
-void Config::setToolForegroundColor(const QColor& color, ToolTypes tool)
+void Config::setToolForegroundColor(const QColor &color, ToolTypes tool)
 {
-    if(toolTextColor(tool) == color) {
+    if (toolTextColor(tool) == color) {
         return;
     }
 
@@ -75,7 +75,7 @@ int Config::toolSize(ToolTypes tool) const
 
 void Config::setToolSize(int size, ToolTypes tool)
 {
-    if(toolSize(tool) == size) {
+    if (toolSize(tool) == size) {
         return;
     }
 
@@ -89,7 +89,7 @@ FillTypes Config::toolFillType(ToolTypes tool) const
 
 void Config::setToolFillType(FillTypes fillType, ToolTypes tool)
 {
-    if(toolFillType(tool) == fillType) {
+    if (toolFillType(tool) == fillType) {
         return;
     }
 
@@ -151,5 +151,5 @@ void Config::initDefaultFillTypes()
     mToolToFillType[ToolTypes::Rect] = FillTypes::NoFill;
     mToolToFillType[ToolTypes::Ellipse] = FillTypes::NoFill;
     mToolToFillType[ToolTypes::Number] = FillTypes::Fill;
-    mToolToFillType[ToolTypes::Text] = FillTypes::Fill;
+    mToolToFillType[ToolTypes::Text] = FillTypes::NoFill;
 }
