@@ -38,7 +38,7 @@ public:
 private:
     int mBlinkIntervalInMs = 1000;
     QTimer *mBlinkTimer;
-    int mPosition;
+    int mPosition = 0;
     bool mIsVisible;
 
     void moveCursorForward(const QString &text);
