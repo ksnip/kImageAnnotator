@@ -20,6 +20,8 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONTEXT_H
 #define KIMAGEANNOTATOR_ANNOTATIONTEXT_H
 
+#include <QClipboard>
+
 #include "AbstractAnnotationRect.h"
 #include "helper/KeyInputHelper.h"
 #include "helper/TextCursor.h"

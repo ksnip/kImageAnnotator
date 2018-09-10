@@ -139,12 +139,12 @@ void AnnotationText::moveCursor(TextPositions direction)
 
 void AnnotationText::pasteText()
 {
-//    auto clipboard = QApplication::clipboard();
-//    if (clipboard->text().isEmpty()) {
-//        return;
-//    }
-//    mText.insert(mCursorPos, clipboard->text());
-//    mCursorPos += clipboard->text().length();
+    auto clipboard = QApplication::clipboard();
+    if (clipboard->text().isEmpty()) {
+        return;
+    }
+    mText.insert(mTextCursor.position(), clipboard->text());
+    mTextCursor.setPosition(mTextCursor.position() + clipboard->text().length());
 }
 
 void AnnotationText::escape()

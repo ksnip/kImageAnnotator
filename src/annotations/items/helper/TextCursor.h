@@ -36,6 +36,7 @@ public:
     void start();
     void stop();
     int position() const;
+    void setPosition(int newPosition);
     bool isVisible() const;
 
 signals:

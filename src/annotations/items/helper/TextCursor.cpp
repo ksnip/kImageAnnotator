@@ -70,6 +70,11 @@ int TextCursor::position() const
     return mPosition;
 }
 
+void TextCursor::setPosition(int newPosition)
+{
+    mPosition = newPosition;
+}
+
 bool TextCursor::isVisible() const
 {
     return mIsVisible;
