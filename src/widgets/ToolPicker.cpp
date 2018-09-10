@@ -90,6 +90,11 @@ void ToolPicker::initGui()
     mLayout->addWidget(button, 4, 1);
     mButtonGroup->addButton(button);
 
+    button = createButton(tr("Text"), QIcon(QStringLiteral(":/icons/text")), Qt::Key_T);
+    mButtonToTool[button] = ToolTypes::Text;
+    mLayout->addWidget(button, 5, 0);
+    mButtonGroup->addButton(button);
+
     setLayout(mLayout);
     setFixedSize(sizeHint());
 }

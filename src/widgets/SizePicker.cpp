@@ -19,7 +19,7 @@
 
 #include "SizePicker.h"
 
-SizePicker::SizePicker(const QIcon& icon, const QString& tooltip)
+SizePicker::SizePicker(const QIcon &icon, const QString &tooltip)
 {
     initGui(icon, tooltip);
 
@@ -38,7 +38,7 @@ void SizePicker::setSize(int size)
     mSpinBox->setValue(size);
 }
 
-void SizePicker::initGui(const QIcon& icon, const QString& tooltip)
+void SizePicker::initGui(const QIcon &icon, const QString &tooltip)
 {
     mLayout = new QHBoxLayout(this);
     mLayout->setContentsMargins(0, 0, 0, 0);

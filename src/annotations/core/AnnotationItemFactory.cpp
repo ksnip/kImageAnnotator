@@ -36,12 +36,12 @@ void AnnotationItemFactory::reset()
     mNextZValue = 1;
 }
 
-AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPosition, ToolTypes type)
+AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPosition, ToolTypes type)
 {
     auto properties = mPropertiesFactory->createProperties(type);
-    AbstractAnnotationItem* item = nullptr;
+    AbstractAnnotationItem *item = nullptr;
 
-    switch(type) {
+    switch (type) {
         case ToolTypes::Pen:
             item = new AnnotationPen(initPosition, properties);
             break;
@@ -63,11 +63,14 @@ AbstractAnnotationItem* AnnotationItemFactory::createItem(const QPointF& initPos
         case ToolTypes::Number:
             item = new AnnotationNumber(initPosition, mNextNumber++, properties);
             break;
+        case ToolTypes::Text:
+            item = new AnnotationText(initPosition, properties);
+            break;
         default:
             qCritical("Cannot create item for provided tool type.");
     }
 
-    if(item != nullptr) {
+    if (item != nullptr) {
         item->setZValue(mNextZValue++);
     }
 

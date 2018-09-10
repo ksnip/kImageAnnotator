@@ -31,7 +31,8 @@ enum class ToolTypes
     Arrow,
     Rect,
     Ellipse,
-    Number
+    Number,
+    Text
 };
 
 inline uint qHash(const ToolTypes &tool, uint seed)

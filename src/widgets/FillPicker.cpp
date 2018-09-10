@@ -19,7 +19,7 @@
 
 #include "FillPicker.h"
 
-FillPicker::FillPicker(const QIcon& icon, const QString& tooltip)
+FillPicker::FillPicker(const QIcon &icon, const QString &tooltip)
 {
     mFillList.append(FillTypes::Fill);
     mFillList.append(FillTypes::NoFill);
@@ -41,13 +41,13 @@ FillPicker::~FillPicker()
 void FillPicker::setFill(FillTypes fill)
 {
     auto index = mComboBox->findData(mFillList.indexOf(fill));
-    if(index != -1) {
+    if (index != -1) {
         mComboBox->setCurrentIndex(index);
         setFillAndNotify(fill);
     }
 }
 
-void FillPicker::initGui(const QIcon& icon, const QString& tooltip)
+void FillPicker::initGui(const QIcon &icon, const QString &tooltip)
 {
     mLayout = new QHBoxLayout(this);
     mLayout->setContentsMargins(0, 0, 0, 0);

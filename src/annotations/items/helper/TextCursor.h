@@ -17,35 +17,32 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONITEMFACTORY_H
-#define KIMAGEANNOTATOR_ANNOTATIONITEMFACTORY_H
+#ifndef KIMAGEANNOTATOR_TEXTCURSOR_H
+#define KIMAGEANNOTATOR_TEXTCURSOR_H
 
-#include <QObject>
+#include <QTimer>
+#include <QTextDocument>
+#include <QTextBlock>
 
-#include "AnnotationPropertiesFactory.h"
-#include "../items/AnnotationPen.h"
-#include "../items/AnnotationLine.h"
-#include "../items/AnnotationArrow.h"
-#include "../items/AnnotationRect.h"
-#include "../items/AnnotationEllipse.h"
-#include "../items/AnnotationNumber.h"
-#include "../items/AnnotationText.h"
-#include "../../common/enum/ToolTypes.h"
+#include "TextPositions.h"
 
-class AnnotationItemFactory : public QObject
+class TextCursor : public QObject
 {
 Q_OBJECT
 public:
-    explicit AnnotationItemFactory();
-    ~AnnotationItemFactory() override;
-    void reset();
-
-    AbstractAnnotationItem *createItem(const QPointF &initPosition, ToolTypes tool);
+    explicit TextCursor();
+    ~TextCursor() override;
+    void move(TextPositions direction, const QString &text);
+    int position() const;
 
 private:
-    int mNextNumber;
-    int mNextZValue;
-    AnnotationPropertiesFactory *mPropertiesFactory;
+    int mBlinkIntervalInMs = 1000;
+    QTimer *mBlinkTimer;
+    int mPosition;
+    bool mIsVisible;
+
+    void moveCursorForward(const QString &text);
+    void moveCursorBack(const QString &text);
 };
 
-#endif // KIMAGEANNOTATOR_ANNOTATIONITEMFACTORY_H
+#endif //KIMAGEANNOTATOR_TEXTCURSOR_H
