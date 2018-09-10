@@ -29,7 +29,7 @@ AnnotationProperties AnnotationPropertiesFactory::createProperties(ToolTypes too
     AnnotationProperties properties;
 
     setColor(properties, tool);
-    setForegroundColor(tool, properties);
+    setTextColor(tool, properties);
     setSize(tool, properties);
     setFill(tool, properties);
     setShadowEnabled(properties, tool);
@@ -48,9 +48,9 @@ void AnnotationPropertiesFactory::setColor(AnnotationProperties &properties, Too
     properties.setColor(color);
 }
 
-void AnnotationPropertiesFactory::setForegroundColor(const ToolTypes &tool, AnnotationProperties &properties) const
+void AnnotationPropertiesFactory::setTextColor(const ToolTypes &tool, AnnotationProperties &properties) const
 {
-    properties.setForegroundColor(mConfig->toolForegroundColor(tool));
+    properties.setTextColor(mConfig->toolTextColor(tool));
 }
 
 void AnnotationPropertiesFactory::setSize(const ToolTypes &tool, AnnotationProperties &properties) const

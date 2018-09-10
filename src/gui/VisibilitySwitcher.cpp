@@ -31,7 +31,7 @@ VisibilitySwitcher::VisibilitySwitcher()
 
 void VisibilitySwitcher::setCurrentTool(ToolTypes tool)
 {
-    if(mCurrentTool == tool) {
+    if (mCurrentTool == tool) {
         return;
     }
 
@@ -39,25 +39,25 @@ void VisibilitySwitcher::setCurrentTool(ToolTypes tool)
     updateVisibility();
 }
 
-void VisibilitySwitcher::setOutlineColorWidget(QWidget* widget)
+void VisibilitySwitcher::setOutlineColorWidget(QWidget *widget)
 {
     mColorWidget = widget;
     updateVisibility();
 }
 
-void VisibilitySwitcher::setForegroundColorWidget(QWidget* widget)
+void VisibilitySwitcher::setForegroundColorWidget(QWidget *widget)
 {
     mTextColorWidget = widget;
     updateVisibility();
 }
 
-void VisibilitySwitcher::setSizeWidget(QWidget* widget)
+void VisibilitySwitcher::setSizeWidget(QWidget *widget)
 {
     mSizeWidget = widget;
     updateVisibility();
 }
 
-void VisibilitySwitcher::setFillWidget(QWidget* widget)
+void VisibilitySwitcher::setFillWidget(QWidget *widget)
 {
     mFillWidget = widget;
     updateVisibility();
@@ -65,7 +65,7 @@ void VisibilitySwitcher::setFillWidget(QWidget* widget)
 
 void VisibilitySwitcher::updateVisibility()
 {
-    switch(mCurrentTool) {
+    switch (mCurrentTool) {
         case ToolTypes::Select:
             setColorWidgetVisibility(false);
             setTextColorWidgetVisibility(false);
@@ -98,6 +98,11 @@ void VisibilitySwitcher::updateVisibility()
             setTextColorWidgetVisibility(true);
             setSizeWidgetVisibility(true);
             setFillWidgetVisibility(false);
+        case ToolTypes::Text:
+            setColorWidgetVisibility(true);
+            setTextColorWidgetVisibility(true);
+            setSizeWidgetVisibility(true);
+            setFillWidgetVisibility(true);
             break;
         default:
             qCritical("Unknown tooltype in VisibilitySwitcher");
@@ -106,29 +111,28 @@ void VisibilitySwitcher::updateVisibility()
 
 void VisibilitySwitcher::setColorWidgetVisibility(bool enabled)
 {
-    if(mColorWidget) {
+    if (mColorWidget) {
         mColorWidget->setEnabled(enabled);
     }
 }
 
 void VisibilitySwitcher::setTextColorWidgetVisibility(bool enabled)
 {
-    if(mTextColorWidget) {
+    if (mTextColorWidget) {
         mTextColorWidget->setEnabled(enabled);
     }
 }
 
-
 void VisibilitySwitcher::setSizeWidgetVisibility(bool enabled)
 {
-    if(mSizeWidget) {
+    if (mSizeWidget) {
         mSizeWidget->setEnabled(enabled);
     }
 }
 
 void VisibilitySwitcher::setFillWidgetVisibility(bool enabled)
 {
-    if(mFillWidget) {
+    if (mFillWidget) {
         mFillWidget->setEnabled(enabled);
     }
 }

@@ -58,11 +58,9 @@ void AnnotationText::keyPressEvent(QKeyEvent *event)
 
 void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget)
 {
-//    painter->setPen(attributes());
+    AbstractAnnotationRect::paint(painter, style, widget);
 
-//    if (mEditable) {
-//        painter->drawRect(mRect);
-//    }
+    painter->setPen(properties().textColor());
 
     QFontMetrics fontMetrics(mFont);
     auto boxHeight = 0;
@@ -83,7 +81,7 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
                 break;
             }
 
-            line.setLineWidth(mRect->width());
+            line.setLineWidth(mRect->width() - 5);
             blockHeight += leading;
             line.setPosition(mRect->adjusted(2, 2, 0, 0).topLeft());
             blockHeight += line.height();
@@ -91,12 +89,12 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
         textLayout.endLayout();
 
         textLayout.draw(painter, QPoint(0, boxHeight));
+
         if (mTextCursor.isVisible() && (mTextCursor.position() >= blockPosition && mTextCursor.position() < blockPosition + blockLength)) {
             textLayout.drawCursor(painter, QPointF(0, boxHeight), mTextCursor.position() - blockPosition, 1);
         }
         boxHeight += blockHeight;
     }
-    AbstractAnnotationRect::paint(painter, style, widget);
 }
 
 void AnnotationText::finish()

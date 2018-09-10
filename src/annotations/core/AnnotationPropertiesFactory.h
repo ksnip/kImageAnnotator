@@ -36,7 +36,7 @@ private:
     Config*   mConfig;
     void setShadowEnabled(AnnotationProperties &properties, ToolTypes tool) const;
     void setColor(AnnotationProperties &properties, ToolTypes types) const;
-    void setForegroundColor(const ToolTypes &tool, AnnotationProperties &properties) const;
+    void setTextColor(const ToolTypes &tool, AnnotationProperties &properties) const;
     void setSize(const ToolTypes &tool, AnnotationProperties &properties) const;
     void setFill(const ToolTypes &tool, AnnotationProperties &properties) const;
 };

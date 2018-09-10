@@ -41,7 +41,7 @@ public slots:
     QColor toolColor(ToolTypes tool) const;
     void setToolColor(const QColor& color, ToolTypes tool);
 
-    QColor toolForegroundColor(ToolTypes tool) const;
+    QColor toolTextColor(ToolTypes tool) const;
     void setToolForegroundColor(const QColor& color, ToolTypes tool);
 
     int toolSize(ToolTypes tool) const;
@@ -56,14 +56,14 @@ signals:
 private:
     ToolTypes mSelectTool;
     QHash<ToolTypes, QColor> mToolToColor;
-    QHash<ToolTypes, QColor> mToolToForegroundColor;
+    QHash<ToolTypes, QColor> mToolToTextColor;
     QHash<ToolTypes, int> mToolToSize;
     QHash<ToolTypes, FillTypes> mToolToFillType;
 
     explicit Config();
     void initSelectedTool();
     void initDefaultToolColors();
-    void initDefaultForegroundColors();
+    void initDefaultTextColors();
     void initDefaultSizes();
     void initDefaultFillTypes();
 };

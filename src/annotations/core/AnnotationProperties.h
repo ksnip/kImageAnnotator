@@ -28,12 +28,12 @@ class AnnotationProperties
 {
 public:
     AnnotationProperties() = default;
-    AnnotationProperties(const QColor& color, int size);
+    AnnotationProperties(const QColor &color, int size);
     ~AnnotationProperties() = default;
     QColor color() const;
-    void setColor(const QColor& color);
-    QColor foregroundColor() const;
-    void setForegroundColor(const QColor& color);
+    void setColor(const QColor &color);
+    QColor textColor() const;
+    void setTextColor(const QColor &color);
     int size() const;
     void setSize(int size);
     FillTypes fillType() const;
@@ -42,11 +42,11 @@ public:
     void setShadowEnabled(bool enabled);
 
 private:
-    QColor    mColor;
-    QColor    mForegroundColor;
-    int       mSize;
+    QColor mColor;
+    QColor mTextColor;
+    int mSize;
     FillTypes mFillType;
-    bool      mShadowEnabled;
+    bool mShadowEnabled;
 };
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONPROPERTIES_H

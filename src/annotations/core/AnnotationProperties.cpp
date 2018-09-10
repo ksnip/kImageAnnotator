@@ -19,10 +19,10 @@
 
 #include "AnnotationProperties.h"
 
-AnnotationProperties::AnnotationProperties(const QColor& color, int size)
+AnnotationProperties::AnnotationProperties(const QColor &color, int size)
 {
     mColor = color;
-    mForegroundColor = color;
+    mTextColor = color;
     mSize = size;
 }
 
@@ -31,19 +31,19 @@ QColor AnnotationProperties::color() const
     return mColor;
 }
 
-void AnnotationProperties::setColor(const QColor& color)
+void AnnotationProperties::setColor(const QColor &color)
 {
     mColor = qMove(color);
 }
 
-QColor AnnotationProperties::foregroundColor() const
+QColor AnnotationProperties::textColor() const
 {
-    return mForegroundColor;
+    return mTextColor;
 }
 
-void AnnotationProperties::setForegroundColor(const QColor& color)
+void AnnotationProperties::setTextColor(const QColor &color)
 {
-    mForegroundColor = qMove(color);
+    mTextColor = qMove(color);
 }
 
 int AnnotationProperties::size() const

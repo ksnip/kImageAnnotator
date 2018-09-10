@@ -54,18 +54,18 @@ void Config::setToolColor(const QColor& color, ToolTypes tool)
     mToolToColor[tool] = color;
 }
 
-QColor Config::toolForegroundColor(ToolTypes tool) const
+QColor Config::toolTextColor(ToolTypes tool) const
 {
-    return mToolToForegroundColor[tool];
+    return mToolToTextColor[tool];
 }
 
 void Config::setToolForegroundColor(const QColor& color, ToolTypes tool)
 {
-    if(toolForegroundColor(tool) == color) {
+    if(toolTextColor(tool) == color) {
         return;
     }
 
-    mToolToForegroundColor[tool] = color;
+    mToolToTextColor[tool] = color;
 }
 
 int Config::toolSize(ToolTypes tool) const
@@ -102,7 +102,7 @@ Config::Config()
 {
     initSelectedTool();
     initDefaultToolColors();
-    initDefaultForegroundColors();
+    initDefaultTextColors();
     initDefaultSizes();
     initDefaultFillTypes();
 }
@@ -121,11 +121,13 @@ void Config::initDefaultToolColors()
     mToolToColor[ToolTypes::Rect] = QColor(Qt::green);
     mToolToColor[ToolTypes::Ellipse] = QColor(Qt::gray);
     mToolToColor[ToolTypes::Number] = QColor(Qt::red);
+    mToolToColor[ToolTypes::Text] = QColor(Qt::black);
 }
 
-void Config::initDefaultForegroundColors()
+void Config::initDefaultTextColors()
 {
-    mToolToForegroundColor[ToolTypes::Number] = QColor(Qt::white);
+    mToolToTextColor[ToolTypes::Number] = QColor(Qt::white);
+    mToolToTextColor[ToolTypes::Text] = QColor(Qt::white);
 }
 
 void Config::initDefaultSizes()
@@ -137,6 +139,7 @@ void Config::initDefaultSizes()
     mToolToSize[ToolTypes::Rect] = 3;
     mToolToSize[ToolTypes::Ellipse] = 3;
     mToolToSize[ToolTypes::Number] = 5;
+    mToolToSize[ToolTypes::Text] = 10;
 }
 
 void Config::initDefaultFillTypes()
@@ -148,4 +151,5 @@ void Config::initDefaultFillTypes()
     mToolToFillType[ToolTypes::Rect] = FillTypes::NoFill;
     mToolToFillType[ToolTypes::Ellipse] = FillTypes::NoFill;
     mToolToFillType[ToolTypes::Number] = FillTypes::Fill;
+    mToolToFillType[ToolTypes::Text] = FillTypes::Fill;
 }

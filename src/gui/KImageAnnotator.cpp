@@ -156,7 +156,7 @@ void KImageAnnotator::Impl::setupDefaults()
 void KImageAnnotator::Impl::updateSelection(ToolTypes tool)
 {
     mColorPicker->setColor(mConfig->toolColor(tool));
-    mTextColorPicker->setColor(mConfig->toolForegroundColor(tool));
+    mTextColorPicker->setColor(mConfig->toolTextColor(tool));
     mSizePicker->setSize(mConfig->toolSize(tool));
     mFillPicker->setFill(mConfig->toolFillType(tool));
 

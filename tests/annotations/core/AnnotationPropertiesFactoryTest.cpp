@@ -65,7 +65,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesF
 
     auto properties = propertiesFactory.createProperties(tool);
 
-    QCOMPARE(properties.foregroundColor(), foregroundColor);
+    QCOMPARE(properties.textColor(), foregroundColor);
 }
 
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesFillBasedOnConfiguration()
