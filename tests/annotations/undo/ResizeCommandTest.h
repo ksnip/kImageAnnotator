@@ -22,8 +22,8 @@
 
 #include <QtTest>
 
-#include "../../../src/annotations/undo/ResizeCommand.h"
-#include "../../../src/annotations/items/AnnotationLine.h"
+#include "src/annotations/undo/ResizeCommand.h"
+#include "src/annotations/items/AnnotationLine.h"
 
 class ResizeCommandTest : public QObject
 {

@@ -22,7 +22,7 @@
 
 #include <QKeyEvent>
 
-#include "TextPositions.h"
+#include "src/annotations/items/helper/TextPositions.h"
 
 class KeyInputHelper : public QObject
 {

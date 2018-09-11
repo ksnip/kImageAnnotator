@@ -24,9 +24,9 @@
 #include <QPainter>
 #include <QPainterPathStroker>
 
-#include "../core/AnnotationProperties.h"
-#include "../../common/enum/FillTypes.h"
-#include "../misc/ShadowEffect.h"
+#include "src/annotations/core/AnnotationProperties.h"
+#include "src/common/enum/FillTypes.h"
+#include "src/annotations/misc/ShadowEffect.h"
 
 class AbstractAnnotationItem : public QGraphicsItem
 {

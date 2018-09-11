@@ -24,9 +24,9 @@
 #include <QtMath>
 
 #include "AbstractAnnotationRect.h"
-#include "helper/KeyInputHelper.h"
-#include "helper/TextCursor.h"
-#include "../../common/filter/IgnoreShortcutsFilter.h"
+#include "src/annotations/items/helper/KeyInputHelper.h"
+#include "src/annotations/items/helper/TextCursor.h"
+#include "src/common/filter/IgnoreShortcutsFilter.h"
 
 class AnnotationText : public QObject, public AbstractAnnotationRect
 {

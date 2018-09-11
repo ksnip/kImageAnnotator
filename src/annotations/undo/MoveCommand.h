@@ -22,7 +22,7 @@
 
 #include <QUndoCommand>
 
-#include "../items/AbstractAnnotationItem.h"
+#include "src/annotations/items/AbstractAnnotationItem.h"
 
 class MoveCommand : public QUndoCommand
 {

@@ -21,10 +21,9 @@
 #define KIMAGEANNOTATOR_ABSTRACTANNOTATIONRECT_H
 
 #include "AbstractAnnotationItem.h"
-
-#include "../../common/helper/MathHelper.h"
-#include "../../common/helper/ShapeHelper.h"
-#include "../../common/constants/AnnotationConstants.h"
+#include "src/common/helper/MathHelper.h"
+#include "src/common/helper/ShapeHelper.h"
+#include "src/common/constants/AnnotationConstants.h"
 
 class AbstractAnnotationRect : public AbstractAnnotationItem
 {

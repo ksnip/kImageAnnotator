@@ -22,8 +22,8 @@
 
 #include <QGraphicsWidget>
 
-#include "../items/AbstractAnnotationItem.h"
-#include "../items/AbstractAnnotationLine.h"
+#include "src/annotations/items/AbstractAnnotationItem.h"
+#include "src/annotations/items/AbstractAnnotationLine.h"
 
 class AnnotationItemSelector : public QGraphicsWidget
 {

@@ -25,8 +25,8 @@
 #include <QComboBox>
 #include <QLabel>
 
-#include "../common/enum/FillTypes.h"
-#include "../common/helper/IconCreater.h"
+#include "src/common/enum/FillTypes.h"
+#include "src/common/helper/IconCreater.h"
 
 class FillPicker : public QWidget
 {

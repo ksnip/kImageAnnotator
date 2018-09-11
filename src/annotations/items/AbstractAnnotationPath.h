@@ -21,8 +21,8 @@
 #define KIMAGEANNOTATOR_ABSTRACTANNOTATIONPATH_H
 
 #include "AbstractAnnotationItem.h"
-#include "../../common/helper/ShapeHelper.h"
-#include "../../common/constants/AnnotationConstants.h"
+#include "src/common/helper/ShapeHelper.h"
+#include "src/common/constants/AnnotationConstants.h"
 
 class AbstractAnnotationPath : public AbstractAnnotationItem
 {

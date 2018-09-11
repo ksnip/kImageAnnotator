@@ -21,7 +21,7 @@
 #define KIMAGEANNOTATOR_PATHRESIZEHANDLES_H
 
 #include "AbstractRectResizeHandles.h"
-#include "../../items/AbstractAnnotationPath.h"
+#include "src/annotations/items/AbstractAnnotationPath.h"
 
 class PathResizeHandles : public AbstractRectResizeHandles
 {

@@ -22,9 +22,9 @@
 
 #include <QtTest>
 
-#include "../../../src/annotations/undo/AddCommand.h"
-#include "../../../src/annotations/core/AnnotationArea.h"
-#include "../../../src/annotations/items/AnnotationLine.h"
+#include "src/annotations/undo/AddCommand.h"
+#include "src/annotations/core/AnnotationArea.h"
+#include "src/annotations/items/AnnotationLine.h"
 
 class AddCommandTest: public QObject
 {

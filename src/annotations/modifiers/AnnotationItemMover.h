@@ -23,9 +23,9 @@
 #include <QObject>
 #include <QHash>
 
-#include "../items/AbstractAnnotationItem.h"
-#include "../undo/MoveCommand.h"
-#include "../../common/helper/CursorHelper.h"
+#include "src/annotations/items/AbstractAnnotationItem.h"
+#include "src/annotations/undo/MoveCommand.h"
+#include "src/common/helper/CursorHelper.h"
 
 class AnnotationItemMover : public QObject
 {

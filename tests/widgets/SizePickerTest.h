@@ -22,7 +22,7 @@
 
 #include <QtTest>
 
-#include "../../src/widgets/SizePicker.h"
+#include "src/widgets/SizePicker.h"
 
 class SizePickerTest : public QObject
 {

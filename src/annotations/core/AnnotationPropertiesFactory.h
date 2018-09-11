@@ -21,8 +21,8 @@
 #define KIMAGEANNOTATOR_ANNOTATIONPROPERTIESFACTORY_H
 
 #include "AnnotationProperties.h"
-#include "../../backend/Config.h"
-#include "../../common/enum/ToolTypes.h"
+#include "src/backend/Config.h"
+#include "src/common/enum/ToolTypes.h"
 
 class AnnotationPropertiesFactory
 {
@@ -33,7 +33,7 @@ public:
     AnnotationProperties createProperties(ToolTypes tool) const;
 
 private:
-    Config*   mConfig;
+    Config *mConfig;
     void setShadowEnabled(AnnotationProperties &properties, ToolTypes tool) const;
     void setColor(AnnotationProperties &properties, ToolTypes types) const;
     void setTextColor(const ToolTypes &tool, AnnotationProperties &properties) const;

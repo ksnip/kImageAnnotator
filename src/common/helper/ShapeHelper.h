@@ -23,8 +23,8 @@
 #include <QRectF>
 #include <QLineF>
 
-#include "../../common/helper/MathHelper.h"
-#include "../../common/constants/AnnotationConstants.h"
+#include "src/common/helper/MathHelper.h"
+#include "src/common/constants/AnnotationConstants.h"
 
 class ShapeHelper
 {

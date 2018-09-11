@@ -21,12 +21,12 @@
 #include <QGraphicsView>
 #include <QHBoxLayout>
 
-#include "../../src/gui/VisibilitySwitcher.h"
-#include "../../src/annotations/core/AnnotationArea.h"
-#include "../../src/widgets/ToolPicker.h"
-#include "../../src/widgets/ColorPicker.h"
-#include "../../src/widgets/SizePicker.h"
-#include "../../src/widgets/FillPicker.h"
+#include "src/gui/VisibilitySwitcher.h"
+#include "src/annotations/core/AnnotationArea.h"
+#include "src/widgets/ToolPicker.h"
+#include "src/widgets/ColorPicker.h"
+#include "src/widgets/SizePicker.h"
+#include "src/widgets/FillPicker.h"
 
 #include <kImageAnnotator/KImageAnnotator.h>
 

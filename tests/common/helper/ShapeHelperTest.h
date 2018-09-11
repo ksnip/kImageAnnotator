@@ -22,7 +22,7 @@
 
 #include <QtTest>
 
-#include "../../../src/common/helper/ShapeHelper.h"
+#include "src/common/helper/ShapeHelper.h"
 
 class ShapeHelperTest : public QObject
 {

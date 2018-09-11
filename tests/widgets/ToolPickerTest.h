@@ -22,8 +22,8 @@
 
 #include <QtTest>
 
-#include "../../src/widgets/ToolPicker.h"
-#include "../../src/common/enum/ToolTypes.h"
+#include "src/widgets/ToolPicker.h"
+#include "src/common/enum/ToolTypes.h"
 
 class ToolPickerTest : public QObject
 {

@@ -28,13 +28,13 @@
 #include <QUndoStack>
 
 #include "AnnotationItemFactory.h"
-#include "../modifiers/AnnotationItemModifier.h"
-#include "../modifiers/AnnotationItemArranger.h"
-#include "../../backend/Config.h"
-#include "../../common/enum/ToolTypes.h"
-#include "../../common/helper/CursorHelper.h"
-#include "../../common/helper/KeyHelper.h"
-#include "../undo/UndoStack.h"
+#include "src/annotations/modifiers/AnnotationItemModifier.h"
+#include "src/annotations//modifiers/AnnotationItemArranger.h"
+#include "src/backend/Config.h"
+#include "src/common/enum/ToolTypes.h"
+#include "src/common/helper/CursorHelper.h"
+#include "src/common/helper/KeyHelper.h"
+#include "src/annotations/undo/UndoStack.h"
 
 class AnnotationArea : public QGraphicsScene
 {

@@ -22,9 +22,9 @@
 
 #include <QtTest>
 
-#include "../../../../src/annotations/modifiers/resizeHandles/RectResizeHandles.h"
-#include "../../../../src/annotations/items/AnnotationRect.h"
-#include "../../../../src/common/helper/CursorHelper.h"
+#include "src/annotations/modifiers/resizeHandles/RectResizeHandles.h"
+#include "src/annotations/items/AnnotationRect.h"
+#include "src/common/helper/CursorHelper.h"
 
 class RectResizeHandlesTest : public QObject
 {

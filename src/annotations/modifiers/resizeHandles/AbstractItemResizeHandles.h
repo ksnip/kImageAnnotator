@@ -21,8 +21,8 @@
 #define KIMAGEANNOTATOR_ABSTRACTITEMRESIZEHANDLES_H
 
 #include "ResizeHandle.h"
-#include "../../items/AbstractAnnotationItem.h"
-#include "../../../common/helper/CursorHelper.h"
+#include "src/annotations/items/AbstractAnnotationItem.h"
+#include "src/common/helper/CursorHelper.h"
 
 class AbstractItemResizeHandles
 {

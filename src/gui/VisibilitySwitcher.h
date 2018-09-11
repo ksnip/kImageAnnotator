@@ -22,7 +22,7 @@
 
 #include <QWidget>
 
-#include "../common/enum/ToolTypes.h"
+#include "src/common/enum/ToolTypes.h"
 
 class VisibilitySwitcher
 {

@@ -20,7 +20,7 @@
 #ifndef KIMAGEANNOTATOR_ITEMHELPER_H
 #define KIMAGEANNOTATOR_ITEMHELPER_H
 
-#include "../../annotations/items/AbstractAnnotationItem.h"
+#include "src/annotations/items/AbstractAnnotationItem.h"
 
 class ItemHelper
 {

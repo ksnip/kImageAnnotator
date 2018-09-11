@@ -18,6 +18,9 @@ find_package(kColorPicker REQUIRED)
 include(GNUInstallDirs)
 include(FeatureSummary)
 
+set(BASEPATH "${CMAKE_SOURCE_DIR}")
+include_directories("${BASEPATH}")
+
 add_subdirectory(src)
 add_subdirectory(example)
 

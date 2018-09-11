@@ -21,8 +21,7 @@
 #define KIMAGEANNOTATOR_ABSTRACTANNOTATIONLINE_H
 
 #include "AbstractAnnotationItem.h"
-
-#include "../src/common/helper/MathHelper.h"
+#include "src/common/helper/MathHelper.h"
 
 class AbstractAnnotationLine : public AbstractAnnotationItem
 {

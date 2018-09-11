@@ -23,8 +23,8 @@
 #include <QtTest>
 #include <QUndoStack>
 
-#include "../../../src/annotations/modifiers/AnnotationItemMover.h"
-#include "../../../src/annotations/items/AnnotationLine.h"
+#include "src/annotations/modifiers/AnnotationItemMover.h"
+#include "src/annotations/items/AnnotationLine.h"
 
 class AnnotationItemMoverTest : public QObject
 {

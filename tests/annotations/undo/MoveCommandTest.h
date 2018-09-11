@@ -22,8 +22,8 @@
 
 #include <QtTest>
 
-#include "../../../src/annotations/undo/MoveCommand.h"
-#include "../../../src/annotations/items/AnnotationLine.h"
+#include "src/annotations/undo/MoveCommand.h"
+#include "src/annotations/items/AnnotationLine.h"
 
 class MoveCommandTest : public QObject
 {

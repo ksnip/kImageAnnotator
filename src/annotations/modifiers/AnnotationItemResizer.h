@@ -23,7 +23,7 @@
 #include <QGraphicsWidget>
 
 #include "resizeHandles/ResizeHandlesFactory.h"
-#include "../undo/ResizeCommand.h"
+#include "src/annotations/undo/ResizeCommand.h"
 
 class AnnotationItemResizer : public QGraphicsWidget
 {

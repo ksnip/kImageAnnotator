@@ -22,8 +22,8 @@
 
 #include <QUndoCommand>
 
-#include "../items/AbstractAnnotationItem.h"
-#include "../../common/helper/ItemHelper.h"
+#include "src/annotations/items/AbstractAnnotationItem.h"
+#include "src/common/helper/ItemHelper.h"
 
 class ArrangeCommand : public QUndoCommand
 {

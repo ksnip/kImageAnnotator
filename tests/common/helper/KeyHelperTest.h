@@ -23,7 +23,7 @@
 #include <QtTest>
 #include <QKeyEvent>
 
-#include "../../../src/common/helper/KeyHelper.h"
+#include "src/common/helper/KeyHelper.h"
 
 class KeyHelperTest : public QObject
 {

@@ -24,7 +24,7 @@
 #include <QTextDocument>
 #include <QTextBlock>
 
-#include "TextPositions.h"
+#include "src/annotations/items/helper/TextPositions.h"
 
 class TextCursor : public QObject
 {

@@ -21,8 +21,8 @@
 #define KIMAGEANNOTATOR_ABSTRACTRECTRESIZEHANDLES_H
 
 #include "AbstractItemResizeHandles.h"
-#include "../../items/AbstractAnnotationRect.h"
-#include "../../../common/helper/ShapeHelper.h"
+#include "src/annotations/items/AbstractAnnotationRect.h"
+#include "src/common/helper/ShapeHelper.h"
 
 class AbstractRectResizeHandles : public AbstractItemResizeHandles
 {

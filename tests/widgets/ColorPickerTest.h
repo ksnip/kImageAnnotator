@@ -22,7 +22,7 @@
 
 #include <QtTest>
 
-#include "../../src/widgets/ColorPicker.h"
+#include "src/widgets/ColorPicker.h"
 
 class ColorPickerTest : public QObject
 {

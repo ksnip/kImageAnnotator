@@ -22,7 +22,7 @@
 
 #include <QtTest>
 
-#include "../../../../src/annotations/items/helper/KeyInputHelper.h"
+#include "src/annotations/items/helper/KeyInputHelper.h"
 
 class KeyInputHelperTest : public QObject
 {

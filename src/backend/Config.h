@@ -25,8 +25,8 @@
 #include <QColor>
 #include <QHash>
 
-#include "../common/enum/ToolTypes.h"
-#include "../common/enum/FillTypes.h"
+#include "src/common/enum/ToolTypes.h"
+#include "src/common/enum/FillTypes.h"
 
 class Config : public QObject
 {

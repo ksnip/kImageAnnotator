@@ -22,8 +22,8 @@
 
 #include <QtTest>
 
-#include "../../../src/annotations/items/AnnotationLine.h"
-#include "../../../src/common/helper/ItemHelper.h"
+#include "src/annotations/items/AnnotationLine.h"
+#include "src/common/helper/ItemHelper.h"
 
 class ItemHelperTest : public QObject
 {

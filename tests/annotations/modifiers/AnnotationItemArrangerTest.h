@@ -23,8 +23,8 @@
 #include <QtTest>
 #include <QUndoStack>
 
-#include "../../../src/annotations/modifiers/AnnotationItemArranger.h"
-#include "../../../src/annotations/items/AnnotationLine.h"
+#include "src/annotations/modifiers/AnnotationItemArranger.h"
+#include "src/annotations/items/AnnotationLine.h"
 
 class AnnotationItemArrangerTest : public QObject
 {

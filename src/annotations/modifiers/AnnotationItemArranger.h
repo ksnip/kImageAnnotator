@@ -22,9 +22,9 @@
 
 #include <QObject>
 
-#include "../items/AbstractAnnotationItem.h"
-#include "../undo/ArrangeCommand.h"
-#include "../../common/helper/ItemHelper.h"
+#include "src/annotations/items/AbstractAnnotationItem.h"
+#include "src/annotations/undo/ArrangeCommand.h"
+#include "src/common/helper/ItemHelper.h"
 
 class AnnotationItemArranger : public QObject
 {
