@@ -26,8 +26,8 @@ namespace kImageAnnotator {
 
 enum class FillTypes
 {
-    NoFill,
-    Fill,
+	NoFill,
+	Fill,
 };
 
 } // namespace kImageAnnotator

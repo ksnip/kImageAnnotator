@@ -22,152 +22,158 @@
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitRemoveSignal_When_KeyIsBackspace()
 {
-    KeyInputHelper keyInputHelper;
-    QSignalSpy spy(&keyInputHelper, &KeyInputHelper::remove);
-    QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Backspace, Qt::NoModifier);
+	qRegisterMetaType<TextPositions>("TextPositions");
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::remove);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Backspace, Qt::NoModifier);
 
-    keyInputHelper.handleKeyPress(&keyEvent);
+	keyInputHelper.handleKeyPress(&keyEvent);
 
-    QCOMPARE(spy.count(), 1);
-    auto resultDirection = qvariant_cast<int>(spy.at(0).at(0));
-    QCOMPARE(resultDirection, (int) TextPositions::Previous);
+	QCOMPARE(spy.count(), 1);
+	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, TextPositions::Previous);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitRemoveSignal_When_KeyIsDelete()
 {
-    KeyInputHelper keyInputHelper;
-    QSignalSpy spy(&keyInputHelper, &KeyInputHelper::remove);
-    QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Delete, Qt::NoModifier);
+	qRegisterMetaType<TextPositions>("TextPositions");
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::remove);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Delete, Qt::NoModifier);
 
-    keyInputHelper.handleKeyPress(&keyEvent);
+	keyInputHelper.handleKeyPress(&keyEvent);
 
-    QCOMPARE(spy.count(), 1);
-    auto resultDirection = qvariant_cast<int>(spy.at(0).at(0));
-    QCOMPARE(resultDirection, (int) TextPositions::Next);
+	QCOMPARE(spy.count(), 1);
+	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, TextPositions::Next);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsReturn()
 {
-    KeyInputHelper keyInputHelper;
-    QSignalSpy spy(&keyInputHelper, &KeyInputHelper::insert);
-    QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::insert);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
 
-    keyInputHelper.handleKeyPress(&keyEvent);
+	keyInputHelper.handleKeyPress(&keyEvent);
 
-    QCOMPARE(spy.count(), 1);
-    auto resultText = qvariant_cast<QString>(spy.at(0).at(0));
-    QCOMPARE(resultText, QStringLiteral("\n"));
+	QCOMPARE(spy.count(), 1);
+	auto resultText = qvariant_cast<QString>(spy.at(0).at(0));
+	QCOMPARE(resultText, QStringLiteral("\n"));
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsEnter()
 {
-    KeyInputHelper keyInputHelper;
-    QSignalSpy spy(&keyInputHelper, &KeyInputHelper::insert);
-    QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Enter, Qt::NoModifier);
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::insert);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Enter, Qt::NoModifier);
 
-    keyInputHelper.handleKeyPress(&keyEvent);
+	keyInputHelper.handleKeyPress(&keyEvent);
 
-    QCOMPARE(spy.count(), 1);
-    auto resultText = qvariant_cast<QString>(spy.at(0).at(0));
-    QCOMPARE(resultText, QStringLiteral("\n"));
+	QCOMPARE(spy.count(), 1);
+	auto resultText = qvariant_cast<QString>(spy.at(0).at(0));
+	QCOMPARE(resultText, QStringLiteral("\n"));
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitEscapeSignal_When_KeyIsEscape()
 {
-    KeyInputHelper keyInputHelper;
-    QSignalSpy spy(&keyInputHelper, &KeyInputHelper::escape);
-    QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Escape, Qt::NoModifier);
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::escape);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Escape, Qt::NoModifier);
 
-    keyInputHelper.handleKeyPress(&keyEvent);
+	keyInputHelper.handleKeyPress(&keyEvent);
 
-    QCOMPARE(spy.count(), 1);
+	QCOMPARE(spy.count(), 1);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowLeft()
 {
-    KeyInputHelper keyInputHelper;
-    QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
-    QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Left, Qt::NoModifier);
+	qRegisterMetaType<TextPositions>("TextPositions");
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Left, Qt::NoModifier);
 
-    keyInputHelper.handleKeyPress(&keyEvent);
+	keyInputHelper.handleKeyPress(&keyEvent);
 
-    QCOMPARE(spy.count(), 1);
-    auto resultDirection = qvariant_cast<int>(spy.at(0).at(0));
-    QCOMPARE(resultDirection, (int) TextPositions::Previous);
+	QCOMPARE(spy.count(), 1);
+	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, TextPositions::Previous);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowRight()
 {
-    KeyInputHelper keyInputHelper;
-    QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
-    QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Right, Qt::NoModifier);
+	qRegisterMetaType<TextPositions>("TextPositions");
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Right, Qt::NoModifier);
 
-    keyInputHelper.handleKeyPress(&keyEvent);
+	keyInputHelper.handleKeyPress(&keyEvent);
 
-    QCOMPARE(spy.count(), 1);
-    auto resultDirection = qvariant_cast<int>(spy.at(0).at(0));
-    QCOMPARE(resultDirection, (int) TextPositions::Next);
+	QCOMPARE(spy.count(), 1);
+	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, TextPositions::Next);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowUp()
 {
-    KeyInputHelper keyInputHelper;
-    QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
-    QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Up, Qt::NoModifier);
+	qRegisterMetaType<TextPositions>("TextPositions");
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Up, Qt::NoModifier);
 
-    keyInputHelper.handleKeyPress(&keyEvent);
+	keyInputHelper.handleKeyPress(&keyEvent);
 
-    QCOMPARE(spy.count(), 1);
-    auto resultDirection = qvariant_cast<int>(spy.at(0).at(0));
-    QCOMPARE(resultDirection, (int) TextPositions::Up);
+	QCOMPARE(spy.count(), 1);
+	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, TextPositions::Up);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowDown()
 {
-    KeyInputHelper keyInputHelper;
-    QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
-    QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier);
+	qRegisterMetaType<TextPositions>("TextPositions");
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier);
 
-    keyInputHelper.handleKeyPress(&keyEvent);
+	keyInputHelper.handleKeyPress(&keyEvent);
 
-    QCOMPARE(spy.count(), 1);
-    auto resultDirection = qvariant_cast<int>(spy.at(0).at(0));
-    QCOMPARE(resultDirection, (int) TextPositions::Down);
+	QCOMPARE(spy.count(), 1);
+	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, TextPositions::Down);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitPasteSignal_When_KeyIsPaste()
 {
-    KeyInputHelper keyInputHelper;
-    QSignalSpy spy(&keyInputHelper, &KeyInputHelper::paste);
-    QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Paste, Qt::NoModifier);
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::paste);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Paste, Qt::NoModifier);
 
-    keyInputHelper.handleKeyPress(&keyEvent);
+	keyInputHelper.handleKeyPress(&keyEvent);
 
-    QCOMPARE(spy.count(), 1);
+	QCOMPARE(spy.count(), 1);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitPasteSignal_When_KeySequenceIsPaste()
 {
-    KeyInputHelper keyInputHelper;
-    QSignalSpy spy(&keyInputHelper, &KeyInputHelper::paste);
-    QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_V, Qt::ControlModifier);
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::paste);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_V, Qt::ControlModifier);
 
-    keyInputHelper.handleKeyPress(&keyEvent);
+	keyInputHelper.handleKeyPress(&keyEvent);
 
-    QCOMPARE(spy.count(), 1);
+	QCOMPARE(spy.count(), 1);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitInsertSignal_When_KeyIsCharacter()
 {
-    KeyInputHelper keyInputHelper;
-    QSignalSpy spy(&keyInputHelper, &KeyInputHelper::insert);
-    QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_J, Qt::NoModifier, QStringLiteral("j"));
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::insert);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_J, Qt::NoModifier, QStringLiteral("j"));
 
-    keyInputHelper.handleKeyPress(&keyEvent);
+	keyInputHelper.handleKeyPress(&keyEvent);
 
-    QCOMPARE(spy.count(), 1);
-    auto resultText = qvariant_cast<QString>(spy.at(0).at(0));
-    QCOMPARE(resultText, QStringLiteral("j"));
+	QCOMPARE(spy.count(), 1);
+	auto resultText = qvariant_cast<QString>(spy.at(0).at(0));
+	QCOMPARE(resultText, QStringLiteral("j"));
 }
 
 QTEST_MAIN(KeyInputHelperTest);

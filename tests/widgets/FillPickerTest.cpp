@@ -21,15 +21,16 @@
 
 void SizePickerTest::TestSelectFill_Should_EmitSignal_When_FillChanged()
 {
-    FillPicker fillPicker(QIcon(), QStringLiteral("test"));
-    QSignalSpy spy(&fillPicker, &FillPicker::fillSelected);
-    auto expectedFill = FillTypes::Fill;
+	qRegisterMetaType<FillTypes>("FillTypes");
+	FillPicker fillPicker(QIcon(), QStringLiteral("test"));
+	QSignalSpy spy(&fillPicker, &FillPicker::fillSelected);
+	auto expectedFill = FillTypes::Fill;
 
-    fillPicker.setFill(expectedFill);
+	fillPicker.setFill(expectedFill);
 
-    QCOMPARE(spy.count(), 1);
-    auto resultFill = qvariant_cast<FillTypes>(spy.at(0).at(0));
-    QCOMPARE(resultFill, expectedFill);
+	QCOMPARE(spy.count(), 1);
+	auto resultFill = qvariant_cast<FillTypes>(spy.at(0).at(0));
+	QCOMPARE(resultFill, expectedFill);
 }
 
 QTEST_MAIN(SizePickerTest);
