@@ -1,6 +1,8 @@
 set(kimageannotator_SRCS
         ${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
         ${CMAKE_SOURCE_DIR}/src/gui/VisibilitySwitcher.cpp
+        ${CMAKE_SOURCE_DIR}/src/gui/CoreView.cpp
+        ${CMAKE_SOURCE_DIR}/src/gui/AnnotationView.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationArea.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationItemFactory.cpp
         ${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationProperties.cpp

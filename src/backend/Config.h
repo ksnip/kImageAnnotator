@@ -30,7 +30,7 @@
 
 class Config : public QObject
 {
-    Q_OBJECT
+Q_OBJECT
 
 public slots:
     static Config *instance();
@@ -39,10 +39,10 @@ public slots:
     void setSelectedTool(ToolTypes tool);
 
     QColor toolColor(ToolTypes tool) const;
-    void setToolColor(const QColor& color, ToolTypes tool);
+    void setToolColor(const QColor &color, ToolTypes tool);
 
     QColor toolTextColor(ToolTypes tool) const;
-    void setToolForegroundColor(const QColor& color, ToolTypes tool);
+    void setToolTextColor(const QColor &color, ToolTypes tool);
 
     int toolSize(ToolTypes tool) const;
     void setToolSize(int size, ToolTypes tool);

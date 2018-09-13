@@ -59,7 +59,7 @@ QColor Config::toolTextColor(ToolTypes tool) const
     return mToolToTextColor[tool];
 }
 
-void Config::setToolForegroundColor(const QColor &color, ToolTypes tool)
+void Config::setToolTextColor(const QColor &color, ToolTypes tool)
 {
     if (toolTextColor(tool) == color) {
         return;

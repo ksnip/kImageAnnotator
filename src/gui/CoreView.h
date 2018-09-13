@@ -17,30 +17,36 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_KIMAGEANNOTATOR_H
-#define KIMAGEANNOTATOR_KIMAGEANNOTATOR_H
+#ifndef KIMAGEANNOTATOR_SWITCHER_H
+#define KIMAGEANNOTATOR_SWITCHER_H
 
-#include <QWidget>
+#include <QStackedWidget>
 
-#include <kImageAnnotator/KImageAnnotatorExport.h>
+#include "src/annotations/core/AnnotationArea.h"
+#include "src/gui/AnnotationView.h"
 
-class KIMAGEANNOTATOR_EXPORT KImageAnnotator : public QWidget
+class CoreView : public QStackedWidget
 {
 Q_OBJECT
 public:
-    explicit KImageAnnotator();
-    KImageAnnotator(KImageAnnotator &&other) noexcept = default;
-    ~KImageAnnotator();
-    KImageAnnotator &operator=(KImageAnnotator &&other) noexcept = default;
+    explicit CoreView();
+    ~CoreView();
     QImage image() const;
+
+signals:
+    void imageChanged() const;
 
 public slots:
     void loadImage(const QPixmap &pixmap);
+    void showAnnotator();
+    void showCropper();
+    void showScaler();
 
 private:
-    class Impl;
+    AnnotationArea *mAnnotationArea;
+    AnnotationView *mAnnotationView;
 
-    QSharedDataPointer<Impl> mImpl;
+    void adjustSizeToImage(const QPixmap &pixmap);
 };
 
-#endif // KIMAGEANNOTATOR_KIMAGEANNOTATOR_H
+#endif //KIMAGEANNOTATOR_SWITCHER_H

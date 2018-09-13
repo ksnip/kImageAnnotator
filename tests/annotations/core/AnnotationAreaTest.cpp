@@ -24,7 +24,7 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
     QPixmap pixmap(QSize(400, 400));
     pixmap.fill(QColor(QStringLiteral("Green")));
     AnnotationArea annotationArea;
-    annotationArea.setBackgroundImage(pixmap);
+    annotationArea.loadImage(pixmap);
 
     auto resultImage = annotationArea.exportAsImage();
 

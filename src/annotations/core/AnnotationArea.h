@@ -42,7 +42,7 @@ class AnnotationArea : public QGraphicsScene
 public:
     AnnotationArea();
     ~AnnotationArea() override;
-    void setBackgroundImage(const QPixmap& image);
+    void loadImage(const QPixmap &image);
     QImage exportAsImage();
     virtual void addAnnotationItem(AbstractAnnotationItem *item);
     virtual void removeAnnotationItem(AbstractAnnotationItem *item);

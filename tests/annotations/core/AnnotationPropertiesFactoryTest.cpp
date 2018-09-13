@@ -60,7 +60,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesF
     const QColor foregroundColor(Qt::darkMagenta);
     const ToolTypes tool = ToolTypes::Number;
     auto configInstance = Config::instance();
-    configInstance->setToolForegroundColor(foregroundColor, tool);
+    configInstance->setToolTextColor(foregroundColor, tool);
     AnnotationPropertiesFactory propertiesFactory;
 
     auto properties = propertiesFactory.createProperties(tool);

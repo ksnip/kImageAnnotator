@@ -17,30 +17,48 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_KIMAGEANNOTATOR_H
-#define KIMAGEANNOTATOR_KIMAGEANNOTATOR_H
+#include "CoreView.h"
 
-#include <QWidget>
-
-#include <kImageAnnotator/KImageAnnotatorExport.h>
-
-class KIMAGEANNOTATOR_EXPORT KImageAnnotator : public QWidget
+CoreView::CoreView()
 {
-Q_OBJECT
-public:
-    explicit KImageAnnotator();
-    KImageAnnotator(KImageAnnotator &&other) noexcept = default;
-    ~KImageAnnotator();
-    KImageAnnotator &operator=(KImageAnnotator &&other) noexcept = default;
-    QImage image() const;
+    mAnnotationArea = new AnnotationArea();
+    mAnnotationView = new AnnotationView(mAnnotationArea);
+    addWidget(mAnnotationView);
+}
 
-public slots:
-    void loadImage(const QPixmap &pixmap);
+CoreView::~CoreView()
+{
+    delete mAnnotationArea;
+    delete mAnnotationView;
+}
 
-private:
-    class Impl;
+QImage CoreView::image() const
+{
+    return mAnnotationArea->exportAsImage();
+}
 
-    QSharedDataPointer<Impl> mImpl;
-};
+void CoreView::loadImage(const QPixmap &pixmap)
+{
+    mAnnotationArea->loadImage(pixmap);
+    adjustSizeToImage(pixmap);
+}
 
-#endif // KIMAGEANNOTATOR_KIMAGEANNOTATOR_H
+void CoreView::showAnnotator()
+{
+
+}
+
+void CoreView::showCropper()
+{
+
+}
+
+void CoreView::showScaler()
+{
+
+}
+
+void CoreView::adjustSizeToImage(const QPixmap &pixmap)
+{
+    setFixedSize(pixmap.size() + QSize(160, 80));
+}

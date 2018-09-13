@@ -52,7 +52,7 @@ AnnotationArea::~AnnotationArea()
     delete mUndoStack;
 }
 
-void AnnotationArea::setBackgroundImage(const QPixmap &image)
+void AnnotationArea::loadImage(const QPixmap &image)
 {
     if (image.isNull()) {
         return;
