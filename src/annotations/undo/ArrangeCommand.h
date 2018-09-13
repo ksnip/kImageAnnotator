@@ -25,6 +25,8 @@
 #include "src/annotations/items/AbstractAnnotationItem.h"
 #include "src/common/helper/ItemHelper.h"
 
+namespace kImageAnnotator {
+
 class ArrangeCommand : public QUndoCommand
 {
 public:
@@ -38,5 +40,7 @@ private:
 
     void swapZValues(AbstractAnnotationItem *item1, AbstractAnnotationItem *item2) const;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_ARRANGECOMMAND_H

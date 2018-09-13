@@ -28,6 +28,8 @@
 #include "src/common/enum/ToolTypes.h"
 #include "src/common/enum/FillTypes.h"
 
+namespace kImageAnnotator {
+
 class Config : public QObject
 {
 Q_OBJECT
@@ -67,5 +69,7 @@ private:
     void initDefaultSizes();
     void initDefaultFillTypes();
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_CONFIG_H

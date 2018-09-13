@@ -19,6 +19,8 @@
 
 #include "MoveCommand.h"
 
+namespace kImageAnnotator {
+
 MoveCommand::MoveCommand(QHash<AbstractAnnotationItem *, QPointF> itemToNewPos)
 {
     mNewPos = itemToNewPos;
@@ -63,3 +65,5 @@ void MoveCommand::moveItems(QHash<AbstractAnnotationItem *, QPointF> &itemToPos)
         item->setPosition(itemToPos[item]);
     }
 }
+
+} // namespace kImageAnnotator

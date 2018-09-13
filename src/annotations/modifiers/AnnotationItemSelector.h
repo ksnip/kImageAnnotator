@@ -25,6 +25,8 @@
 #include "src/annotations/items/AbstractAnnotationItem.h"
 #include "src/annotations/items/AbstractAnnotationLine.h"
 
+namespace kImageAnnotator {
+
 class AnnotationItemSelector : public QGraphicsWidget
 {
 public:
@@ -60,5 +62,7 @@ private:
     AbstractAnnotationItem *findItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
     bool isLineItem(AbstractAnnotationItem *item) const;
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONITEMSELECTOR_H

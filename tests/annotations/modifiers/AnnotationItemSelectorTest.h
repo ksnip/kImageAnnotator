@@ -25,25 +25,30 @@
 #include "src/annotations/modifiers/AnnotationItemSelector.h"
 #include "src/annotations/items/AnnotationLine.h"
 
+using kImageAnnotator::AnnotationItemSelector;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::AbstractAnnotationItem;
+
 class AnnotationItemSelectorTest : public QObject
 {
 Q_OBJECT
 private slots:
-    void TestHandleSelectionRectAt_Should_SelectItem_When_ItemUnderProvidedPosition();
-    void TestHandleSelectionRectAt_Should_NotSelectItem_When_ItemNotUnderProvidedPosition();
-    void TestHandleSelectionRectAt_Should_UnselectAllItems_When_ProvidedPositionNotOverAnyItem();
-    void TestHandleSelectionRectAt_Should_NotUnselectAnyItem_When_ProvidedPositionIsOverSelectedItem();
-    void TestHandleSelectionRectAt_Should_UnselectItemsNotUnderPosition_When_ProvidedPositionIsOverNotSelectedItem();
-    void TestHandleSelectionRectAt_Should_NotShowRect_When_InitialPositionNotOnItem();
-    void TestHandleSelectionRectAt_Should_ShowRect_When_InitialPositionOnItem();
-    void TestHandleSelectionRectAt_Should_UnselectItem_When_WhenCtrlPressedAndItemUnderProvidedPositionWasSelected();
-    void TestHandleSelectionRectAt_Should_SelectItem_When_WhenCtrlPressedAndItemUnderProvidedPositionWasNotSelected();
-    void TestFinishSelectionRectWhenShown_Should_SelectItems_When_ItemsWithinSelectionRect();
-    void TestFinishSelectionRectWhenShown_Should_SelectOnlyItemWithinSelectionRect();
-    void TestClearSelection_Should_UnselectAllSelectedItems();
-    void TestBoundRect_Should_ReturnRectCoveringSelectedItems_When_ItemsSelected();
-    void TestRefresh_Should_UpdateBoundingRect_When_CalledAfterItemsHaveBeenMoved();
-    void TestUpdate_Should_UnselectItemsThatAreNotVisible();
+	void TestHandleSelectionRectAt_Should_SelectItem_When_ItemUnderProvidedPosition();
+	void TestHandleSelectionRectAt_Should_NotSelectItem_When_ItemNotUnderProvidedPosition();
+	void TestHandleSelectionRectAt_Should_UnselectAllItems_When_ProvidedPositionNotOverAnyItem();
+	void TestHandleSelectionRectAt_Should_NotUnselectAnyItem_When_ProvidedPositionIsOverSelectedItem();
+	void TestHandleSelectionRectAt_Should_UnselectItemsNotUnderPosition_When_ProvidedPositionIsOverNotSelectedItem();
+	void TestHandleSelectionRectAt_Should_NotShowRect_When_InitialPositionNotOnItem();
+	void TestHandleSelectionRectAt_Should_ShowRect_When_InitialPositionOnItem();
+	void TestHandleSelectionRectAt_Should_UnselectItem_When_WhenCtrlPressedAndItemUnderProvidedPositionWasSelected();
+	void TestHandleSelectionRectAt_Should_SelectItem_When_WhenCtrlPressedAndItemUnderProvidedPositionWasNotSelected();
+	void TestFinishSelectionRectWhenShown_Should_SelectItems_When_ItemsWithinSelectionRect();
+	void TestFinishSelectionRectWhenShown_Should_SelectOnlyItemWithinSelectionRect();
+	void TestClearSelection_Should_UnselectAllSelectedItems();
+	void TestBoundRect_Should_ReturnRectCoveringSelectedItems_When_ItemsSelected();
+	void TestRefresh_Should_UpdateBoundingRect_When_CalledAfterItemsHaveBeenMoved();
+	void TestUpdate_Should_UnselectItemsThatAreNotVisible();
 };
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONITEMSELECTORTEST_H

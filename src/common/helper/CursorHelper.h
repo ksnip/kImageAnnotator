@@ -22,6 +22,8 @@
 
 #include <QCursor>
 
+namespace kImageAnnotator {
+
 class CursorHelper
 {
 public:
@@ -34,5 +36,7 @@ public:
     Qt::CursorShape static movableCursor();
     Qt::CursorShape static movingCursor();
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_CURSORHELPER_H

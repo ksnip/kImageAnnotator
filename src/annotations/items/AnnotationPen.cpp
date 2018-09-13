@@ -19,6 +19,8 @@
 
 #include "AnnotationPen.h"
 
+namespace kImageAnnotator {
+
 AnnotationPen::AnnotationPen(const QPointF &startPosition, const AnnotationProperties &properties) : AbstractAnnotationPath(startPosition, properties)
 {
 
@@ -29,3 +31,5 @@ void AnnotationPen::updateShape()
     QPainterPath path(*mPath);
     setShape(path);
 }
+
+} // namespace kImageAnnotator

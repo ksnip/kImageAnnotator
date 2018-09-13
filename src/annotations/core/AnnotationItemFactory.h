@@ -32,6 +32,8 @@
 #include "src/annotations/items/AnnotationText.h"
 #include "src/common/enum/ToolTypes.h"
 
+namespace kImageAnnotator {
+
 class AnnotationItemFactory : public QObject
 {
 Q_OBJECT
@@ -47,5 +49,7 @@ private:
     int mNextZValue;
     AnnotationPropertiesFactory *mPropertiesFactory;
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONITEMFACTORY_H

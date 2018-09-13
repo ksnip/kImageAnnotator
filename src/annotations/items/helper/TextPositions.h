@@ -22,6 +22,8 @@
 
 #include <QMetaType>
 
+namespace kImageAnnotator {
+
 enum class TextPositions
 {
     Next,
@@ -30,6 +32,8 @@ enum class TextPositions
     Down
 };
 
-Q_DECLARE_METATYPE(TextPositions)
+} // namespace kImageAnnotator
+
+Q_DECLARE_METATYPE(kImageAnnotator::TextPositions)
 
 #endif //KIMAGEANNOTATOR_TEXTPOSITIONS_H

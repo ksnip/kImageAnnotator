@@ -19,6 +19,8 @@
 
 #include "AnnotationMultiItemResizer.h"
 
+namespace kImageAnnotator {
+
 AnnotationMultiItemResizer::AnnotationMultiItemResizer()
 {
     mCurrentResizer = nullptr;
@@ -174,3 +176,5 @@ AnnotationItemResizer *AnnotationMultiItemResizer::castToResizer(QGraphicsItem *
 {
     return dynamic_cast<AnnotationItemResizer *>(item);
 }
+
+} // namespace kImageAnnotator

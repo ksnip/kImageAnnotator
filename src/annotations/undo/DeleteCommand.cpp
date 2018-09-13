@@ -19,6 +19,8 @@
 
 #include "DeleteCommand.h"
 
+namespace kImageAnnotator {
+
 DeleteCommand::DeleteCommand(QList<AbstractAnnotationItem *> items, AnnotationArea *annotationArea)
 {
     mItems = items;
@@ -40,3 +42,5 @@ void DeleteCommand::redo()
         item->hide();
     }
 }
+
+} // namespace kImageAnnotator

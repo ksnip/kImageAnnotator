@@ -26,6 +26,8 @@
 #include <QKeyEvent>
 #include <QWidget>
 
+namespace kImageAnnotator {
+
 class IgnoreShortcutsFilter : public QObject
 {
 public:
@@ -39,5 +41,7 @@ protected:
     bool ignoreShortcut(const QString &shortcutString) const;
     QKeyEvent *createKeyEvent(const QString &text) const;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_IGNORESHORTCUTSFILTER_H

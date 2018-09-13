@@ -25,16 +25,21 @@
 #include "src/annotations/undo/MoveCommand.h"
 #include "src/annotations/items/AnnotationLine.h"
 
+using kImageAnnotator::MoveCommand;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::AbstractAnnotationItem;
+
 class MoveCommandTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestRedo_Should_MoveItemToNewPosition();
-    void TestUndo_Should_MoveItemToInitialPosition();
-    void TestMergeWith_Should_TakeNewPositionFromLastMoveCommand();
-    void TestMergeWith_Should_KeepInitialPositionFromFirstMoveCommand();
-    void TestMergeWith_Should_NotMergeMoveCommands_When_ItemsAreNotTheSame();
+	void TestRedo_Should_MoveItemToNewPosition();
+	void TestUndo_Should_MoveItemToInitialPosition();
+	void TestMergeWith_Should_TakeNewPositionFromLastMoveCommand();
+	void TestMergeWith_Should_KeepInitialPositionFromFirstMoveCommand();
+	void TestMergeWith_Should_NotMergeMoveCommands_When_ItemsAreNotTheSame();
 };
 
 #endif // KIMAGEANNOTATOR_MOVECOMMANDTEST_H

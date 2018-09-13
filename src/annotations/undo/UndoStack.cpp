@@ -18,3 +18,7 @@
  */
 
 #include "UndoStack.h"
+
+namespace kImageAnnotator {
+
+} // namespace kImageAnnotator

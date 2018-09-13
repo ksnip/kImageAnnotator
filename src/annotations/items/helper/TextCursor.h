@@ -26,6 +26,8 @@
 
 #include "src/annotations/items/helper/TextPositions.h"
 
+namespace kImageAnnotator {
+
 class TextCursor : public QObject
 {
 Q_OBJECT
@@ -57,4 +59,5 @@ private:
     void moveToSamePositionInNewBlock(int positionInBlock, const QTextBlock &targetBlock);
 };
 
+} // namespace kImageAnnotator
 #endif //KIMAGEANNOTATOR_TEXTCURSOR_H

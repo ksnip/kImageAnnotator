@@ -23,6 +23,8 @@
 #include "AbstractRectResizeHandles.h"
 #include "src/annotations/items/AbstractAnnotationRect.h"
 
+namespace kImageAnnotator {
+
 class RectResizeHandles : public AbstractRectResizeHandles
 {
 public:
@@ -37,5 +39,7 @@ protected:
 private:
     AbstractAnnotationRect *mRectItem;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_RECTRESIZEHANDLES_H

@@ -25,6 +25,8 @@
 #include "src/annotations/items/AbstractAnnotationItem.h"
 #include "src/annotations/core/AnnotationArea.h"
 
+namespace kImageAnnotator {
+
 class AnnotationArea;
 
 class DeleteCommand : public QUndoCommand
@@ -38,5 +40,7 @@ private:
     QList<AbstractAnnotationItem *> mItems;
     AnnotationArea *mAnnotationArea;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_DELETECOMMAND_H

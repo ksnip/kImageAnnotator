@@ -19,6 +19,8 @@
 
 #include "Config.h"
 
+namespace kImageAnnotator {
+
 Config *Config::instance()
 {
     static Config instance;
@@ -153,3 +155,5 @@ void Config::initDefaultFillTypes()
     mToolToFillType[ToolTypes::Number] = FillTypes::Fill;
     mToolToFillType[ToolTypes::Text] = FillTypes::NoFill;
 }
+
+} // namespace kImageAnnotator

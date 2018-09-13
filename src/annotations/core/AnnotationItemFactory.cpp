@@ -19,6 +19,8 @@
 
 #include "AnnotationItemFactory.h"
 
+namespace kImageAnnotator {
+
 AnnotationItemFactory::AnnotationItemFactory()
 {
     mPropertiesFactory = new AnnotationPropertiesFactory();
@@ -76,3 +78,5 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 
     return item;
 }
+
+} // namespace kImageAnnotator

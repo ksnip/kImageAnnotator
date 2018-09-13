@@ -25,6 +25,8 @@
 
 #include "src/common/helper/KeyHelper.h"
 
+using kImageAnnotator::KeyHelper;
+
 class KeyHelperTest : public QObject
 {
     Q_OBJECT

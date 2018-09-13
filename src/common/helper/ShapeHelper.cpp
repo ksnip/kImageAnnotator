@@ -20,6 +20,8 @@
 #include <QtGui/QPainterPath>
 #include "ShapeHelper.h"
 
+namespace kImageAnnotator {
+
 QPointF ShapeHelper::rectTopLeftWithOffset(const QRectF &rect, int offset)
 {
     auto xOffset = invertOffsetIfLeftSmallerThenRight(rect, offset);
@@ -238,3 +240,5 @@ double ShapeHelper::getRoundingRate(const QPointF &point1, const QPointF &point2
     }
     return rat;
 }
+
+} // namespace kImageAnnotator

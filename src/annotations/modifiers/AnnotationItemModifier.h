@@ -29,6 +29,8 @@
 #include "AnnotationItemSelector.h"
 #include "AnnotationItemMover.h"
 
+namespace kImageAnnotator {
+
 class AnnotationItemModifier : public QObject, public QGraphicsItemGroup
 {
 Q_OBJECT
@@ -61,5 +63,7 @@ private:
     void handleSelection();
     void updateCursor(Qt::CursorShape cursor);
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONITEMMODIFIER_H

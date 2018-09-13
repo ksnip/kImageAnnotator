@@ -27,6 +27,8 @@
 
 #include "src/common/enum/ToolTypes.h"
 
+namespace kImageAnnotator {
+
 class ToolPicker : public QWidget
 {
 Q_OBJECT
@@ -52,5 +54,7 @@ private slots:
     void buttonClicked(QAbstractButton *button);
     void setToolAndNotify(ToolTypes newTool);
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_TOOLPICKER_H

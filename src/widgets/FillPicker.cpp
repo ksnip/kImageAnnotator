@@ -19,6 +19,8 @@
 
 #include "FillPicker.h"
 
+namespace kImageAnnotator {
+
 FillPicker::FillPicker(const QIcon &icon, const QString &tooltip)
 {
     mFillList.append(FillTypes::Fill);
@@ -82,3 +84,5 @@ void FillPicker::selectionChanged()
     auto fill = mFillList[mComboBox->currentData().toInt()];
     setFillAndNotify(fill);
 }
+
+} // namespace kImageAnnotator

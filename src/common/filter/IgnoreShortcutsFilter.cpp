@@ -19,6 +19,8 @@
 
 #include "IgnoreShortcutsFilter.h"
 
+namespace kImageAnnotator {
+
 void IgnoreShortcutsFilter::apply()
 {
     QCoreApplication::instance()->installEventFilter(this);
@@ -61,3 +63,5 @@ QKeyEvent *IgnoreShortcutsFilter::createKeyEvent(const QString &text) const
 {
     return new QKeyEvent(QEvent::KeyPress, Qt::Key_unknown, Qt::NoModifier, text);
 }
+
+} // namespace kImageAnnotator

@@ -22,14 +22,18 @@
 
 #include "AbstractAnnotationPath.h"
 
+namespace kImageAnnotator {
+
 class AnnotationPen : public AbstractAnnotationPath
 {
 public:
-    AnnotationPen(const QPointF& startPosition, const AnnotationProperties& properties);
+    AnnotationPen(const QPointF &startPosition, const AnnotationProperties &properties);
     ~AnnotationPen() = default;
 
 protected:
     virtual void updateShape() override;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_ANNOTATIONPEN_H

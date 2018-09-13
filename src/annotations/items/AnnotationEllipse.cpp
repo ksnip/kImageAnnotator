@@ -19,7 +19,9 @@
 
 #include "AnnotationEllipse.h"
 
-AnnotationEllipse::AnnotationEllipse(const QPointF& startPosisition, const AnnotationProperties& properties) :
+namespace kImageAnnotator {
+
+AnnotationEllipse::AnnotationEllipse(const QPointF &startPosisition, const AnnotationProperties &properties) :
     AbstractAnnotationRect(startPosisition, properties)
 {
 }
@@ -30,3 +32,5 @@ void AnnotationEllipse::updateShape()
     path.addEllipse(*mRect);
     setShape(path);
 }
+
+} // namespace kImageAnnotator

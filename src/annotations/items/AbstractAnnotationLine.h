@@ -23,6 +23,8 @@
 #include "AbstractAnnotationItem.h"
 #include "src/common/helper/MathHelper.h"
 
+namespace kImageAnnotator {
+
 class AbstractAnnotationLine : public AbstractAnnotationItem
 {
 public:
@@ -40,5 +42,7 @@ protected:
 
     void snapToAngle(bool enabled);
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ABSTRACTANNOTATIONLINE_H

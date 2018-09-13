@@ -19,6 +19,8 @@
 
 #include "IconCreater.h"
 
+namespace kImageAnnotator {
+
 IconCreater::IconCreater(QSize iconSize)
 {
     setIconSize(iconSize);
@@ -29,19 +31,19 @@ QSize IconCreater::iconSize() const
     return mIconSize;
 }
 
-void IconCreater::setIconSize(const QSize& iconSize)
+void IconCreater::setIconSize(const QSize &iconSize)
 {
     mIconSize = iconSize;
 }
 
-QIcon IconCreater::createColorIcon(const QColor& color) const
+QIcon IconCreater::createColorIcon(const QColor &color) const
 {
     QPixmap pixmap(mIconSize);
     pixmap.fill(color);
     QPainter painter(&pixmap);
     auto penWidth = painter.pen().width();
     painter.setPen(QColor(Qt::gray));
-    painter.drawRect(0,0, mIconSize.width() - penWidth, mIconSize.height() - penWidth);
+    painter.drawRect(0, 0, mIconSize.width() - penWidth, mIconSize.height() - penWidth);
 
     return QIcon(pixmap);
 }
@@ -69,7 +71,7 @@ QIcon IconCreater::createFillIcon(bool withFill) const
     pen.setJoinStyle(Qt::MiterJoin);
     QPainter painter(&pixmap);
     painter.setPen(pen);
-    if(withFill) {
+    if (withFill) {
         painter.setBrush(Qt::black);
     }
     auto penWidth = painter.pen().width();
@@ -77,3 +79,5 @@ QIcon IconCreater::createFillIcon(bool withFill) const
 
     return QIcon(pixmap);
 }
+
+} // namespace kImageAnnotator

@@ -25,6 +25,8 @@
 #include "src/annotations/items/AbstractAnnotationItem.h"
 #include "src/annotations/core/AnnotationArea.h"
 
+namespace kImageAnnotator {
+
 class AnnotationArea;
 
 class AddCommand : public QUndoCommand
@@ -37,7 +39,9 @@ public:
 
 private:
     AbstractAnnotationItem *mItem;
-    AnnotationArea         *mAnnotationArea;
+    AnnotationArea *mAnnotationArea;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_ADDCOMMAND_H

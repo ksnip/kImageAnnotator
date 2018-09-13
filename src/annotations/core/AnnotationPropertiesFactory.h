@@ -24,6 +24,8 @@
 #include "src/backend/Config.h"
 #include "src/common/enum/ToolTypes.h"
 
+namespace kImageAnnotator {
+
 class AnnotationPropertiesFactory
 {
 public:
@@ -40,5 +42,7 @@ private:
     void setSize(const ToolTypes &tool, AnnotationProperties &properties) const;
     void setFill(const ToolTypes &tool, AnnotationProperties &properties) const;
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONPROPERTIESFACTORY_H

@@ -23,9 +23,11 @@
 #include <QObject>
 #include <QKeyEvent>
 
+namespace kImageAnnotator {
+
 class KeyHelper : public QObject
 {
-    Q_OBJECT
+Q_OBJECT
 public:
     explicit KeyHelper();
     ~KeyHelper() = default;
@@ -47,5 +49,7 @@ private:
     void emitReleaseSignal(Qt::Key key);
     void emitPressSignal(Qt::Key key);
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_KEYHELPER_H

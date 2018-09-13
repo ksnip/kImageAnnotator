@@ -24,6 +24,8 @@
 
 #include "src/common/helper/ShapeHelper.h"
 
+using kImageAnnotator::ShapeHelper;
+
 class ShapeHelperTest : public QObject
 {
 Q_OBJECT

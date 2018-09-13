@@ -25,6 +25,8 @@
 #include "resizeHandles/ResizeHandlesFactory.h"
 #include "src/annotations/undo/ResizeCommand.h"
 
+namespace kImageAnnotator {
+
 class AnnotationItemResizer : public QGraphicsWidget
 {
 Q_OBJECT
@@ -53,5 +55,7 @@ private:
     int mCurrentHandle;
     QPointF mClickOffset;
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONITEMRESIZER_H

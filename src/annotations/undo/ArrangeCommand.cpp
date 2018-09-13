@@ -19,6 +19,8 @@
 
 #include "ArrangeCommand.h"
 
+namespace kImageAnnotator {
+
 ArrangeCommand::ArrangeCommand(QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> itemToSwap, QList<AbstractAnnotationItem *> *allItems)
 {
     mItemToSwap = itemToSwap;
@@ -50,3 +52,5 @@ void ArrangeCommand::swapZValues(AbstractAnnotationItem *item1, AbstractAnnotati
     item1->setZValue(item2->zValue());
     item2->setZValue(tmpZValue);
 }
+
+} // namespace kImageAnnotator

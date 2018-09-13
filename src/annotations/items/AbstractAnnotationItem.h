@@ -28,6 +28,8 @@
 #include "src/common/enum/FillTypes.h"
 #include "src/annotations/misc/ShadowEffect.h"
 
+namespace kImageAnnotator {
+
 class AbstractAnnotationItem : public QGraphicsItem
 {
 public:
@@ -59,5 +61,7 @@ private:
     bool hasFill() const;
     void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ABSTRACTANNOTATIONITEM_H

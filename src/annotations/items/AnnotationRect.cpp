@@ -19,7 +19,9 @@
 
 #include "AnnotationRect.h"
 
-AnnotationRect::AnnotationRect(const QPointF& startPosition, const AnnotationProperties& properties) :
+namespace kImageAnnotator {
+
+AnnotationRect::AnnotationRect(const QPointF &startPosition, const AnnotationProperties &properties) :
     AbstractAnnotationRect(startPosition, properties)
 {
 }
@@ -30,3 +32,5 @@ void AnnotationRect::updateShape()
     path.addRect(*mRect);
     setShape(path);
 }
+
+} // namespace kImageAnnotator

@@ -19,6 +19,8 @@
 
 #include "VisibilitySwitcher.h"
 
+namespace kImageAnnotator {
+
 VisibilitySwitcher::VisibilitySwitcher()
 {
     mColorWidget = nullptr;
@@ -137,3 +139,4 @@ void VisibilitySwitcher::setFillWidgetVisibility(bool enabled)
     }
 }
 
+} // namespace kImageAnnotator

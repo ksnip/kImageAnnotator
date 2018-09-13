@@ -19,6 +19,8 @@
 
 #include "KeyInputHelper.h"
 
+namespace kImageAnnotator {
+
 void KeyInputHelper::handleKeyPress(QKeyEvent *event)
 {
     switch (event->key()) {
@@ -61,3 +63,5 @@ void KeyInputHelper::handleKeyPress(QKeyEvent *event)
             emit insert(event->text());
     }
 }
+
+} // namespace kImageAnnotator

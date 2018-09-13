@@ -24,6 +24,8 @@
 
 #include "src/common/helper/MathHelper.h"
 
+using kImageAnnotator::MathHelper;
+
 class MathHelperTest : public QObject
 {
 Q_OBJECT

@@ -25,11 +25,15 @@
 #include "AddCommand.h"
 #include "DeleteCommand.h"
 
+namespace kImageAnnotator {
+
 class UndoStack : public QUndoStack
 {
 public:
     explicit UndoStack() = default;
     ~UndoStack() override = default;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_UNDOSTACK_H

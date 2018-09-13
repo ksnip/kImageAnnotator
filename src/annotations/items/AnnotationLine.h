@@ -22,14 +22,18 @@
 
 #include "AbstractAnnotationLine.h"
 
+namespace kImageAnnotator {
+
 class AnnotationLine : public AbstractAnnotationLine
 {
 public:
-    AnnotationLine(const QPointF& startPosisition, const AnnotationProperties& properties);
+    AnnotationLine(const QPointF &startPosisition, const AnnotationProperties &properties);
     ~AnnotationLine() = default;
 
 protected:
     virtual void updateShape() override;
 };
+
+}
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONLINE_H

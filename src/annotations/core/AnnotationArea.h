@@ -36,6 +36,8 @@
 #include "src/common/helper/KeyHelper.h"
 #include "src/annotations/undo/UndoStack.h"
 
+namespace kImageAnnotator {
+
 class AnnotationArea : public QGraphicsScene
 {
     Q_OBJECT
@@ -49,6 +51,9 @@ public:
 
 public slots:
     virtual void update();
+
+signals:
+    void imageChanged() const;
 
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
@@ -75,5 +80,7 @@ private:
 private slots:
     void deleteSelectedItems();
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONAREA_H

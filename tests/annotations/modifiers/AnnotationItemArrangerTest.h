@@ -26,16 +26,21 @@
 #include "src/annotations/modifiers/AnnotationItemArranger.h"
 #include "src/annotations/items/AnnotationLine.h"
 
+using kImageAnnotator::AnnotationItemArranger;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AbstractAnnotationItem;
+
 class AnnotationItemArrangerTest : public QObject
 {
-    Q_OBJECT
+Q_OBJECT
 private slots:
-    void TestBringToFront_Should_BringAllSelectedItemsToFront();
-    void TestBringForward_Should_MoveAllSelectedItemsOnePositionUp();
-    void TestSendBackward_Should_MoveAllSelectedItemsOnePositionBack();
-    void TestSendToBack_Should_SendAllSelectedItemToBack();
-    void TestAnnotationItemArranger_Should_SortAllItemsByZValue_When_PositionHaveBeenSwapped();
-    void TestAnnotationItemArranger_Should_NotSwapAnyPosition_When_NoItemsHaveBeenSelected();
+	void TestBringToFront_Should_BringAllSelectedItemsToFront();
+	void TestBringForward_Should_MoveAllSelectedItemsOnePositionUp();
+	void TestSendBackward_Should_MoveAllSelectedItemsOnePositionBack();
+	void TestSendToBack_Should_SendAllSelectedItemToBack();
+	void TestAnnotationItemArranger_Should_SortAllItemsByZValue_When_PositionHaveBeenSwapped();
+	void TestAnnotationItemArranger_Should_NotSwapAnyPosition_When_NoItemsHaveBeenSelected();
 };
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONITEMARRANGERTEST_H

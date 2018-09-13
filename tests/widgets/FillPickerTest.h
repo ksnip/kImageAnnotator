@@ -24,12 +24,15 @@
 
 #include "src/widgets/FillPicker.h"
 
+using kImageAnnotator::FillPicker;
+using kImageAnnotator::FillTypes;
+
 class SizePickerTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestSelectFill_Should_EmitSignal_When_FillChanged();
+	void TestSelectFill_Should_EmitSignal_When_FillChanged();
 };
 
 #endif // KIMAGEANNOTATOR_FILLPICKERTEST_H

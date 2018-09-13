@@ -25,13 +25,16 @@
 #include "src/widgets/ToolPicker.h"
 #include "src/common/enum/ToolTypes.h"
 
+using kImageAnnotator::ToolPicker;
+using kImageAnnotator::ToolTypes;
+
 class ToolPickerTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestSelectTool_Should_EmitSignal_When_ToolChanged();
-    void TestTool_Should_ReturnSelectedTool();
+	void TestSelectTool_Should_EmitSignal_When_ToolChanged();
+	void TestTool_Should_ReturnSelectedTool();
 };
 
 #endif // KIMAGEANNOTATOR_TOOLPICKERTEST_H

@@ -19,6 +19,8 @@
 
 #include "AnnotationItemSelector.h"
 
+namespace kImageAnnotator {
+
 AnnotationItemSelector::AnnotationItemSelector()
 {
     mSelectedItems = new QList<AbstractAnnotationItem *>();
@@ -217,3 +219,4 @@ AbstractAnnotationItem *AnnotationItemSelector::findItemAt(const QPointF &positi
     return nullptr;
 }
 
+} // namespace kImageAnnotator

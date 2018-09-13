@@ -22,22 +22,26 @@
 
 #include "AbstractAnnotationRect.h"
 
+namespace kImageAnnotator {
+
 class AnnotationNumber : public AbstractAnnotationRect
 {
 public:
-    AnnotationNumber(const QPointF& centerPosition, int number, const AnnotationProperties& properties);
+    AnnotationNumber(const QPointF &centerPosition, int number, const AnnotationProperties &properties);
     ~AnnotationNumber();
-    virtual void addPoint(const QPointF & position, bool modified = false) override;
+    virtual void addPoint(const QPointF &position, bool modified = false) override;
 
 protected:
     virtual void updateShape() override;
-    virtual void paint(QPainter * painter, const QStyleOptionGraphicsItem *option , QWidget *widget) override;
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
-    QString       mNumberString;
-    QFont        *mFont;
+    QString mNumberString;
+    QFont *mFont;
 
     void updateFontSize();
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONNUMBER_H

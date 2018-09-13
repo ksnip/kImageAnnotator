@@ -20,6 +20,8 @@
 
 #include "AbstractAnnotationPath.h"
 
+namespace kImageAnnotator {
+
 AbstractAnnotationPath::AbstractAnnotationPath(const QPointF &startPosition, const AnnotationProperties &properties) : AbstractAnnotationItem(properties)
 {
     mPath = new QPainterPath();
@@ -82,3 +84,5 @@ void AbstractAnnotationPath::scalePath(const QRectF &rect)
     mPath->swap(sPath);
     updateShape();
 }
+
+} // namespace kImageAnnotator

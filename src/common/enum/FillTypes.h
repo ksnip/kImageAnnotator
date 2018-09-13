@@ -22,12 +22,16 @@
 
 #include <QMetaType>
 
+namespace kImageAnnotator {
+
 enum class FillTypes
 {
     NoFill,
     Fill,
 };
 
-Q_DECLARE_METATYPE(FillTypes);
+} // namespace kImageAnnotator
+
+Q_DECLARE_METATYPE(kImageAnnotator::FillTypes);
 
 #endif // KIMAGEANNOTATOR_FILLTYPES_H

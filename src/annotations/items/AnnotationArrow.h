@@ -22,10 +22,12 @@
 
 #include "AbstractAnnotationLine.h"
 
+namespace kImageAnnotator {
+
 class AnnotationArrow : public AbstractAnnotationLine
 {
 public:
-    AnnotationArrow(const QPointF& startPosisition, const AnnotationProperties& properties);
+    AnnotationArrow(const QPointF &startPosisition, const AnnotationProperties &properties);
     ~AnnotationArrow() = default;
 
 protected:
@@ -33,7 +35,9 @@ protected:
 
 private:
     QPolygonF createArrow() const;
-    QPolygonF rotateAndPositionArrow(const QPolygonF& arrow) const;
+    QPolygonF rotateAndPositionArrow(const QPolygonF &arrow) const;
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONARROW_H

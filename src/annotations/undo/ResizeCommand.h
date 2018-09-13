@@ -24,6 +24,8 @@
 
 #include "src/annotations/items/AbstractAnnotationItem.h"
 
+namespace kImageAnnotator {
+
 class ResizeCommand : public QUndoCommand
 {
 public:
@@ -45,5 +47,7 @@ private:
     QPointF mNewPos;
     QPointF mOriginalPos;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_RESIZECOMMAND_H

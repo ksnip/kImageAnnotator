@@ -24,6 +24,8 @@
 
 #include "src/annotations/items/helper/TextPositions.h"
 
+namespace kImageAnnotator {
+
 class KeyInputHelper : public QObject
 {
 Q_OBJECT
@@ -39,5 +41,7 @@ signals:
     void paste() const;
     void escape() const;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_KEYINPUTHELPER_H

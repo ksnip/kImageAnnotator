@@ -19,6 +19,8 @@
 
 #include "CursorHelper.h"
 
+namespace kImageAnnotator {
+
 Qt::CursorShape CursorHelper::defaultCursor()
 {
     return Qt::ArrowCursor;
@@ -58,3 +60,5 @@ Qt::CursorShape CursorHelper::movingCursor()
 {
     return Qt::ClosedHandCursor;
 }
+
+} // namespace kImageAnnotator

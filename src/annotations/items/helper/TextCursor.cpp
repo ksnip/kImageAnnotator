@@ -19,6 +19,8 @@
 
 #include "TextCursor.h"
 
+namespace kImageAnnotator {
+
 TextCursor::TextCursor()
 {
     mBlinkTimer = new QTimer(this);
@@ -143,3 +145,5 @@ void TextCursor::movePositionToEndOfBlock(const QTextBlock &targetBlock)
 {
     mPosition = targetBlock.position() + targetBlock.length() - 1;
 }
+
+} // namespace kImageAnnotator

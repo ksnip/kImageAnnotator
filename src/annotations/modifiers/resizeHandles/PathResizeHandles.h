@@ -23,6 +23,8 @@
 #include "AbstractRectResizeHandles.h"
 #include "src/annotations/items/AbstractAnnotationPath.h"
 
+namespace kImageAnnotator {
+
 class PathResizeHandles : public AbstractRectResizeHandles
 {
 public:
@@ -37,5 +39,7 @@ protected:
 private:
     AbstractAnnotationPath *mPathItem;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_PATHRESIZEHANDLES_H

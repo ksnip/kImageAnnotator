@@ -19,6 +19,8 @@
 
 #include "AbstractAnnotationLine.h"
 
+namespace kImageAnnotator {
+
 AbstractAnnotationLine::AbstractAnnotationLine(const QPointF &startPosisition, const AnnotationProperties &properties)
     :
     AbstractAnnotationItem(properties)
@@ -89,3 +91,5 @@ void AbstractAnnotationLine::snapToAngle(bool enabled)
         mLine->setAngle(newAngle);
     }
 }
+
+} // namespace kImageAnnotator

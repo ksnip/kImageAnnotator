@@ -22,6 +22,8 @@
 
 #include <QMetaType>
 
+namespace kImageAnnotator {
+
 enum class ToolTypes
 {
     Select,
@@ -42,6 +44,8 @@ inline uint qHash(const ToolTypes &tool, uint seed)
     return static_cast<uint>(tool);
 }
 
-Q_DECLARE_METATYPE(ToolTypes)
+} // namespace kImageAnnotator
+
+Q_DECLARE_METATYPE(kImageAnnotator::ToolTypes)
 
 #endif // KIMAGEANNOTATOR_TOOLTYPES_H

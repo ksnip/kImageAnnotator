@@ -26,11 +26,16 @@
 #include "src/annotations/modifiers/AnnotationItemMover.h"
 #include "src/annotations/items/AnnotationLine.h"
 
+using kImageAnnotator::AnnotationItemMover;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AbstractAnnotationItem;
+
 class AnnotationItemMoverTest : public QObject
 {
-    Q_OBJECT
+Q_OBJECT
 private slots:
-    void TestMoveItems_Should_MoveItemsToNewPosition();
+	void TestMoveItems_Should_MoveItemsToNewPosition();
 };
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONITEMMOVERTEST_H

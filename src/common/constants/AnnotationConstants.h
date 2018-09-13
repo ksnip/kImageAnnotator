@@ -19,11 +19,14 @@
 
 #ifndef KIMAGEANNOTATOR_ANNOTATIONCONSTANTS_H
 #define KIMAGEANNOTATOR_ANNOTATIONCONSTANTS_H
+namespace kImageAnnotator {
 
-namespace AnnotationConstants
-{
-    const int MinResizeRectSize = 20;
-    const int PathSmoothFactor = 7;
-}
+inline namespace AnnotationConstants {
+const int MinResizeRectSize = 20;
+
+const int PathSmoothFactor = 7;
+} // namespace AnnotationConstants
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_ANNOTATIONCONSTANTS_H

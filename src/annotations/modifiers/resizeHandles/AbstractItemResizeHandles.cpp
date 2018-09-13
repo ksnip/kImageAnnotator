@@ -19,6 +19,8 @@
 
 #include "AbstractItemResizeHandles.h"
 
+namespace kImageAnnotator {
+
 AbstractItemResizeHandles::AbstractItemResizeHandles()
 {
     mHandleSize = 10;
@@ -85,3 +87,5 @@ int AbstractItemResizeHandles::handleSize() const
 {
     return mHandleSize;
 }
+
+} // namespace kImageAnnotator

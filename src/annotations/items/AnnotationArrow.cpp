@@ -19,7 +19,9 @@
 
 #include "AnnotationArrow.h"
 
-AnnotationArrow::AnnotationArrow(const QPointF& startPosisition, const AnnotationProperties& properties) :
+namespace kImageAnnotator {
+
+AnnotationArrow::AnnotationArrow(const QPointF &startPosisition, const AnnotationProperties &properties) :
     AbstractAnnotationLine(startPosisition, properties)
 {
 }
@@ -54,7 +56,7 @@ QPolygonF AnnotationArrow::createArrow() const
     return arrow;
 }
 
-QPolygonF AnnotationArrow::rotateAndPositionArrow(const QPolygonF& arrow) const
+QPolygonF AnnotationArrow::rotateAndPositionArrow(const QPolygonF &arrow) const
 {
     auto endX = mLine->p2().x();
     auto endY = mLine->p2().y();
@@ -62,3 +64,5 @@ QPolygonF AnnotationArrow::rotateAndPositionArrow(const QPolygonF& arrow) const
 
     return QTransform().translate(endX, endY).rotate(angle).map(arrow);
 }
+
+} // namespace kImageAnnotator

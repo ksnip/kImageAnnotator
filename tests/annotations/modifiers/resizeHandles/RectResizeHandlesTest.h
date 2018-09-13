@@ -26,19 +26,27 @@
 #include "src/annotations/items/AnnotationRect.h"
 #include "src/common/helper/CursorHelper.h"
 
+using kImageAnnotator::RectResizeHandles;
+using kImageAnnotator::AnnotationRect;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::AbstractAnnotationItem;
+using kImageAnnotator::CursorHelper;
+using kImageAnnotator::ShapeHelper;
+using kImageAnnotator::ResizeHandle;
+
 class RectResizeHandlesTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestInitHandles_Should_PositionEightHandles_When_RectItemProvided();
-    void TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_HandleIsAtProvidedPosition();
-    void TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_HandleIsNotAtProvidedPosition();
-    void TestHandle_Should_ReturnRectAtIndex_When_HandleAtIndexExists();
-    void TestHandle_Should_NotReturnRect_When_HandleAtIndexDoesntExists();
-    void TestGetCursorForHandle_Should_NotReturnDefaultCursor_When_ProvidedPositionOnHandle();
-    void TestGetCursorForHandle_Should_ReturnDefaultCursor_When_ProvidedPositionNotOnHandle();
-    void TestUpdate_Should_MoveHandlesToNewPosition();
+	void TestInitHandles_Should_PositionEightHandles_When_RectItemProvided();
+	void TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_HandleIsAtProvidedPosition();
+	void TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_HandleIsNotAtProvidedPosition();
+	void TestHandle_Should_ReturnRectAtIndex_When_HandleAtIndexExists();
+	void TestHandle_Should_NotReturnRect_When_HandleAtIndexDoesntExists();
+	void TestGetCursorForHandle_Should_NotReturnDefaultCursor_When_ProvidedPositionOnHandle();
+	void TestGetCursorForHandle_Should_ReturnDefaultCursor_When_ProvidedPositionNotOnHandle();
+	void TestUpdate_Should_MoveHandlesToNewPosition();
 };
 
 #endif // KIMAGEANNOTATOR_RECTRESIZEHANDLESTEST_H

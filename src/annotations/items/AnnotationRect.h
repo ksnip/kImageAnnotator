@@ -22,14 +22,18 @@
 
 #include "AbstractAnnotationRect.h"
 
+namespace kImageAnnotator {
+
 class AnnotationRect : public AbstractAnnotationRect
 {
 public:
-    AnnotationRect(const QPointF& startPosition, const AnnotationProperties& properties);
+    AnnotationRect(const QPointF &startPosition, const AnnotationProperties &properties);
     ~AnnotationRect() = default;
 
 protected:
     virtual void updateShape() override;
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONRECT_H

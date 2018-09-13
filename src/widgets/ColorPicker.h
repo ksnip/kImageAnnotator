@@ -26,6 +26,8 @@
 
 #include <kColorPicker/KColorPicker.h>
 
+namespace kImageAnnotator {
+
 class ColorPicker : public QWidget
 {
 Q_OBJECT
@@ -47,5 +49,7 @@ private:
 private slots:
     void colorChanged(const QColor &color);
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_COLORPICKER_H

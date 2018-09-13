@@ -19,6 +19,8 @@
 
 #include "AbstractAnnotationItem.h"
 
+namespace kImageAnnotator {
+
 AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationProperties &properties)
 {
     mProperties = new AnnotationProperties(properties);
@@ -31,7 +33,7 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationProperties &prope
 
     mStroker = new QPainterPathStroker(mPainterPen);
 
-    if(properties.shadowEnabled()) {
+    if (properties.shadowEnabled()) {
         mShadowEffect = new ShadowEffect();
         setGraphicsEffect(mShadowEffect);
     }
@@ -111,3 +113,5 @@ void AbstractAnnotationItem::finish()
 {
     // By default, does nothing
 }
+
+} // namespace kImageAnnotator

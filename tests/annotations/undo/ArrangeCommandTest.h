@@ -25,15 +25,20 @@
 #include "src/annotations/undo/ArrangeCommand.h"
 #include "src/annotations/items/AnnotationLine.h"
 
+using kImageAnnotator::ArrangeCommand;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AbstractAnnotationItem;
+
 class ArrangeCommandTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestRedo_Should_SwapItemPosition();
-    void TestRedo_Should_SortItemByZValue();
-    void TestUndo_Should_SwapItemPositionBack();
-    void TestUndo_Should_SortItemByZValue();
+	void TestRedo_Should_SwapItemPosition();
+	void TestRedo_Should_SortItemByZValue();
+	void TestUndo_Should_SwapItemPositionBack();
+	void TestUndo_Should_SortItemByZValue();
 };
 
 #endif //KIMAGETANNOTATOR_ARRANGECOMMANDTEST_H

@@ -25,6 +25,8 @@
 
 #include "AnnotationItemResizer.h"
 
+namespace kImageAnnotator {
+
 class AnnotationMultiItemResizer : public QObject, public QGraphicsItemGroup
 {
 Q_OBJECT
@@ -58,5 +60,7 @@ private:
     void hideResizer(QGraphicsItem *resizer);
     AnnotationItemResizer *castToResizer(QGraphicsItem *item) const;
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONMULTIITEMRESIZER_H

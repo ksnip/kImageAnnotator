@@ -26,7 +26,12 @@
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/annotations/items/AnnotationLine.h"
 
-class AddCommandTest: public QObject
+using kImageAnnotator::AddCommand;
+using kImageAnnotator::AnnotationArea;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AnnotationProperties;
+
+class AddCommandTest : public QObject
 {
 Q_OBJECT
 

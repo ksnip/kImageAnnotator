@@ -19,6 +19,8 @@
 
 #include "AnnotationNumber.h"
 
+namespace kImageAnnotator {
+
 AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, int number, const AnnotationProperties &properties)
     :
     AbstractAnnotationRect(centerPosition, properties)
@@ -76,3 +78,5 @@ void AnnotationNumber::updateFontSize()
         }
     }
 }
+
+} // namespace kImageAnnotator

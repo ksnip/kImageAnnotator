@@ -24,6 +24,8 @@
 #include "RectResizeHandles.h"
 #include "PathResizeHandles.h"
 
+namespace kImageAnnotator {
+
 class ResizeHandlesFactory
 {
 public:
@@ -34,5 +36,7 @@ private:
     static AbstractItemResizeHandles *GetRectResizeHandles(AbstractAnnotationItem *item);
     static AbstractItemResizeHandles *GetLineResizeHandles(AbstractAnnotationItem *item);
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_RESIZEHANDLESFACTORY_H

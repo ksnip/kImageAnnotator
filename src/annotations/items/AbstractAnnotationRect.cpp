@@ -19,6 +19,8 @@
 
 #include "AbstractAnnotationRect.h"
 
+namespace kImageAnnotator {
+
 AbstractAnnotationRect::AbstractAnnotationRect(const QPointF &startPosition, const AnnotationProperties &properties)
     :
     AbstractAnnotationItem(properties)
@@ -74,3 +76,5 @@ void AbstractAnnotationRect::makeSymmetric(bool enabled)
         mRect->setWidth(MathHelper::smallerValue(mRect->width(), mRect->height()));
     }
 }
+
+} // namespace kImageAnnotator

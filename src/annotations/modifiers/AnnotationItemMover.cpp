@@ -19,6 +19,8 @@
 
 #include "AnnotationItemMover.h"
 
+namespace kImageAnnotator {
+
 void AnnotationItemMover::setOffset(const QPointF &pos, const QList<AbstractAnnotationItem *> &selectedItems)
 {
     for (auto item : selectedItems) {
@@ -57,3 +59,5 @@ Qt::CursorShape AnnotationItemMover::cursor()
         return CursorHelper::defaultCursor();
     }
 }
+
+} // namespace kImageAnnotator

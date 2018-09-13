@@ -19,6 +19,8 @@
 
 #include "ColorPicker.h"
 
+namespace kImageAnnotator {
+
 ColorPicker::ColorPicker(const QIcon &icon, const QString &tooltip)
 {
     initGui(icon, tooltip);
@@ -64,3 +66,5 @@ void ColorPicker::colorChanged(const QColor &color)
 {
     setColor(color);
 }
+
+} // namespace kImageAnnotator

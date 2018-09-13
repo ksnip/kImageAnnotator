@@ -19,6 +19,8 @@
 
 #include "AddCommand.h"
 
+namespace kImageAnnotator {
+
 AddCommand::AddCommand(AbstractAnnotationItem *item, AnnotationArea *annotationArea)
 {
     mItem = item;
@@ -44,3 +46,5 @@ void AddCommand::redo()
     mAnnotationArea->addAnnotationItem(mItem);
     mItem->show();
 }
+
+} // namespace kImageAnnotator

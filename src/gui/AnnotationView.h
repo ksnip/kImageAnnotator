@@ -31,12 +31,17 @@
 #include "src/widgets/SizePicker.h"
 #include "src/widgets/FillPicker.h"
 
+namespace kImageAnnotator {
+
 class AnnotationView : public QWidget
 {
 Q_OBJECT
 public:
     explicit AnnotationView(AnnotationArea *annotationArea);
     virtual ~AnnotationView();
+
+signals:
+    void imageChanged() const;
 
 private:
     AnnotationArea *mAnnotationArea;
@@ -61,5 +66,7 @@ private slots:
     void setToolSize(int size);
     void setToolFillType(FillTypes fill);
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_ANNOTATIONVIEW_H

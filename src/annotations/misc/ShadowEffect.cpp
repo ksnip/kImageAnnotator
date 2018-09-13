@@ -19,6 +19,8 @@
 
 #include "ShadowEffect.h"
 
+namespace kImageAnnotator {
+
 ShadowEffect::ShadowEffect()
 {
     mColor.setRgb(63, 63, 63, 190);
@@ -27,3 +29,5 @@ ShadowEffect::ShadowEffect()
     setBlurRadius(7);
     setOffset(QPoint(2, 2));
 }
+
+} // namespace kImageAnnotator

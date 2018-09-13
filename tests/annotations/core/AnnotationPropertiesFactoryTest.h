@@ -24,20 +24,26 @@
 
 #include "src/annotations/core/AnnotationPropertiesFactory.h"
 
+using kImageAnnotator::AnnotationPropertiesFactory;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::ToolTypes;
+using kImageAnnotator::FillTypes;
+using kImageAnnotator::Config;
+
 class AnnotationPropertiesFactoryTest : public QObject
 {
 Q_OBJECT
 private slots:
-    void initTestCase();
-    void cleanupTestCase();
+	void initTestCase();
+	void cleanupTestCase();
 
-    void TestCreateProperties_Should_SetPropertiesSizeBasedOnConfiguration();
-    void TestCreateProperties_Should_SetPropertiesColorBasedOnConfiguration();
-    void TestCreateProperties_Should_SetPropertiesForegroundColorBasedOnConfiguration();
-    void TestCreateProperties_Should_SetPropertiesFillBasedOnConfiguration();
-    void TestCreateProperties_Should_SetShadowEnabledToFalse_When_ToolIsMarker();
-    void TestCreateProperties_Should_SetShadowEnabledToTrue_When_ToolIsNotMarker();
-    void TestCreateProperties_Should_SetShadowEnabledToTrue_When_ToolIsNotMarker_data();
+	void TestCreateProperties_Should_SetPropertiesSizeBasedOnConfiguration();
+	void TestCreateProperties_Should_SetPropertiesColorBasedOnConfiguration();
+	void TestCreateProperties_Should_SetPropertiesForegroundColorBasedOnConfiguration();
+	void TestCreateProperties_Should_SetPropertiesFillBasedOnConfiguration();
+	void TestCreateProperties_Should_SetShadowEnabledToFalse_When_ToolIsMarker();
+	void TestCreateProperties_Should_SetShadowEnabledToTrue_When_ToolIsNotMarker();
+	void TestCreateProperties_Should_SetShadowEnabledToTrue_When_ToolIsNotMarker_data();
 };
 
 #endif // ANNOTATIONPROPERTIESFACTORYTEST_H

@@ -22,6 +22,8 @@
 
 #include <QGraphicsDropShadowEffect>
 
+namespace kImageAnnotator {
+
 class ShadowEffect : public QGraphicsDropShadowEffect
 {
 public:
@@ -31,5 +33,7 @@ public:
 private:
     QColor mColor;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_SHADOWEFFECT_H

@@ -26,12 +26,14 @@
 #include <QLabel>
 #include <QIcon>
 
+namespace kImageAnnotator {
+
 class SizePicker : public QWidget
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    SizePicker(const QIcon& icon, const QString& tooltip);
+    SizePicker(const QIcon &icon, const QString &tooltip);
     ~SizePicker();
     void setSize(int size);
 
@@ -39,16 +41,18 @@ signals:
     void sizeSelected(int size) const;
 
 private:
-    QHBoxLayout* mLayout;
-    QSpinBox*    mSpinBox;
-    QLabel*      mLabel;
-    int          mSelectedSize;
+    QHBoxLayout *mLayout;
+    QSpinBox *mSpinBox;
+    QLabel *mLabel;
+    int mSelectedSize;
 
-    void initGui(const QIcon& icon, const QString& tooltip);
+    void initGui(const QIcon &icon, const QString &tooltip);
     void setSizeAndNotify(int size);
 
 private slots:
     void selectionChanged();
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_SIZEPICKER_H

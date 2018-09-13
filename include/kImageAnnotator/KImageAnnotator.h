@@ -24,6 +24,8 @@
 
 #include <kImageAnnotator/KImageAnnotatorExport.h>
 
+namespace kImageAnnotator {
+
 class KIMAGEANNOTATOR_EXPORT KImageAnnotator : public QWidget
 {
 Q_OBJECT
@@ -37,10 +39,15 @@ public:
 public slots:
     void loadImage(const QPixmap &pixmap);
 
+signals:
+    void imageChanged() const;
+
 private:
     class Impl;
 
     QSharedDataPointer<Impl> mImpl;
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_KIMAGEANNOTATOR_H

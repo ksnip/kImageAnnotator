@@ -25,6 +25,8 @@
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/gui/AnnotationView.h"
 
+namespace kImageAnnotator {
+
 class CoreView : public QStackedWidget
 {
 Q_OBJECT
@@ -48,5 +50,7 @@ private:
 
     void adjustSizeToImage(const QPixmap &pixmap);
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_SWITCHER_H

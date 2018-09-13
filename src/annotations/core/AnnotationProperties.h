@@ -24,6 +24,8 @@
 
 #include "src/common/enum/FillTypes.h"
 
+namespace kImageAnnotator {
+
 class AnnotationProperties
 {
 public:
@@ -48,5 +50,7 @@ private:
     FillTypes mFillType;
     bool mShadowEnabled;
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONPROPERTIES_H

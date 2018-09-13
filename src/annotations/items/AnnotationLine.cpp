@@ -19,7 +19,9 @@
 
 #include "AnnotationLine.h"
 
-AnnotationLine::AnnotationLine(const QPointF& startPosisition, const AnnotationProperties& properties) :
+namespace kImageAnnotator {
+
+AnnotationLine::AnnotationLine(const QPointF &startPosisition, const AnnotationProperties &properties) :
     AbstractAnnotationLine(startPosisition, properties)
 {
 }
@@ -30,3 +32,5 @@ void AnnotationLine::updateShape()
     path.lineTo(mLine->p2());
     setShape(path);
 }
+
+} // namespace kImageAnnotator

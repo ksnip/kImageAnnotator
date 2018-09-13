@@ -25,15 +25,20 @@
 #include "src/annotations/items/AnnotationLine.h"
 #include "src/common/helper/ItemHelper.h"
 
+using kImageAnnotator::ItemHelper;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AbstractAnnotationItem;
+
 class ItemHelperTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestZValueGreaterThen_Should_ReturnTrue_When_OtherItemHasLowerZValue();
-    void TestZValueGreaterThen_Should_ReturnFalse_When_OtherItemHasHigherZValue();
-    void TestZValueGreaterThen_Should_ReturnFalse_When_OtherItemHasEqualZValue();
-    void TestSortItemsByZValueDesc_Should_SortItemsByZValueInDescendingOrder();
+	void TestZValueGreaterThen_Should_ReturnTrue_When_OtherItemHasLowerZValue();
+	void TestZValueGreaterThen_Should_ReturnFalse_When_OtherItemHasHigherZValue();
+	void TestZValueGreaterThen_Should_ReturnFalse_When_OtherItemHasEqualZValue();
+	void TestSortItemsByZValueDesc_Should_SortItemsByZValueInDescendingOrder();
 };
 
 #endif // KIMAGEANNOTATOR_ITEMHELPERTEST_H

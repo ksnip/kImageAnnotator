@@ -20,6 +20,8 @@
 #include <QApplication>
 #include <kImageAnnotator/KImageAnnotator.h>
 
+using kImageAnnotator::KImageAnnotator;
+
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);

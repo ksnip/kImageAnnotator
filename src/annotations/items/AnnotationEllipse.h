@@ -22,6 +22,8 @@
 
 #include "AbstractAnnotationRect.h"
 
+namespace kImageAnnotator {
+
 class AnnotationEllipse : public AbstractAnnotationRect
 {
 public:
@@ -31,5 +33,7 @@ public:
 protected:
     virtual void updateShape() override;
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONELLIPSE_H

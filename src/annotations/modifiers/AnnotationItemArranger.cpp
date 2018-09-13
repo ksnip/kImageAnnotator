@@ -19,6 +19,8 @@
 
 #include "AnnotationItemArranger.h"
 
+namespace kImageAnnotator {
+
 AnnotationItemArranger::AnnotationItemArranger(const QList<AbstractAnnotationItem *> selectedItems, QList<AbstractAnnotationItem *> *items)
 {
     mSelectedItems = selectedItems;
@@ -86,3 +88,5 @@ void AnnotationItemArranger::createAndEmitArrangeCommand(const QList<QPair<Abstr
 {
     emit newCommand(new ArrangeCommand(itemToSwap, mItems));
 }
+
+} // namespace kImageAnnotator

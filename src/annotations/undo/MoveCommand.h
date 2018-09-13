@@ -24,6 +24,8 @@
 
 #include "src/annotations/items/AbstractAnnotationItem.h"
 
+namespace kImageAnnotator {
+
 class MoveCommand : public QUndoCommand
 {
 public:
@@ -45,5 +47,7 @@ private:
 
     void moveItems(QHash<AbstractAnnotationItem *, QPointF> &itemToPos) const;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_MOVECOMMAND_H

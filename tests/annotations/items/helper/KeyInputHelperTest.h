@@ -24,23 +24,26 @@
 
 #include "src/annotations/items/helper/KeyInputHelper.h"
 
+using kImageAnnotator::KeyInputHelper;
+using kImageAnnotator::TextPositions;
+
 class KeyInputHelperTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestHandleKeyPress_Should_EmitRemoveSignal_When_KeyIsBackspace();
-    void TestHandleKeyPress_Should_EmitRemoveSignal_When_KeyIsDelete();
-    void TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsReturn();
-    void TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsEnter();
-    void TestHandleKeyPress_Should_EmitEscapeSignal_When_KeyIsEscape();
-    void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowLeft();
-    void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowRight();
-    void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowUp();
-    void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowDown();
-    void TestHandleKeyPress_Should_EmitPasteSignal_When_KeyIsPaste();
-    void TestHandleKeyPress_Should_EmitPasteSignal_When_KeySequenceIsPaste();
-    void TestHandleKeyPress_Should_EmitInsertSignal_When_KeyIsCharacter();
+	void TestHandleKeyPress_Should_EmitRemoveSignal_When_KeyIsBackspace();
+	void TestHandleKeyPress_Should_EmitRemoveSignal_When_KeyIsDelete();
+	void TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsReturn();
+	void TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsEnter();
+	void TestHandleKeyPress_Should_EmitEscapeSignal_When_KeyIsEscape();
+	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowLeft();
+	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowRight();
+	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowUp();
+	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowDown();
+	void TestHandleKeyPress_Should_EmitPasteSignal_When_KeyIsPaste();
+	void TestHandleKeyPress_Should_EmitPasteSignal_When_KeySequenceIsPaste();
+	void TestHandleKeyPress_Should_EmitInsertSignal_When_KeyIsCharacter();
 };
 
 #endif // KIMAGEANNOTATOR_KEYINPUTHELPERTEST_H

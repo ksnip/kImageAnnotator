@@ -24,6 +24,8 @@
 
 #include "src/widgets/ColorPicker.h"
 
+using kImageAnnotator::ColorPicker;
+
 class ColorPickerTest : public QObject
 {
 Q_OBJECT

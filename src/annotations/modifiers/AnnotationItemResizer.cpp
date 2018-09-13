@@ -19,6 +19,8 @@
 
 #include "AnnotationItemResizer.h"
 
+namespace kImageAnnotator {
+
 AnnotationItemResizer::AnnotationItemResizer(AbstractAnnotationItem *item)
 {
     mAnnotationItem = item;
@@ -97,3 +99,5 @@ void AnnotationItemResizer::paint(QPainter *painter, const QStyleOptionGraphicsI
         painter->drawRect(point);
     }
 }
+
+} // namespace kImageAnnotator

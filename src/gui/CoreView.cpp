@@ -19,11 +19,15 @@
 
 #include "CoreView.h"
 
+namespace kImageAnnotator {
+
 CoreView::CoreView()
 {
     mAnnotationArea = new AnnotationArea();
     mAnnotationView = new AnnotationView(mAnnotationArea);
     addWidget(mAnnotationView);
+
+    connect(mAnnotationView, &AnnotationView::imageChanged, this, &CoreView::imageChanged);
 }
 
 CoreView::~CoreView()
@@ -62,3 +66,5 @@ void CoreView::adjustSizeToImage(const QPixmap &pixmap)
 {
     setFixedSize(pixmap.size() + QSize(160, 80));
 }
+
+} // namespace kImageAnnotator

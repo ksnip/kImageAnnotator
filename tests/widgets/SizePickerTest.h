@@ -24,6 +24,8 @@
 
 #include "src/widgets/SizePicker.h"
 
+using kImageAnnotator::SizePicker;
+
 class SizePickerTest : public QObject
 {
 Q_OBJECT

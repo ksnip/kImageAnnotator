@@ -27,6 +27,8 @@
 #include "src/annotations/undo/MoveCommand.h"
 #include "src/common/helper/CursorHelper.h"
 
+namespace kImageAnnotator {
+
 class AnnotationItemMover : public QObject
 {
 Q_OBJECT
@@ -45,5 +47,7 @@ signals:
 private:
     QHash<AbstractAnnotationItem *, QPointF> mItemToOffset;
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONITEMMOVER_H

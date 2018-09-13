@@ -19,6 +19,8 @@
 
 #include "AnnotationItemModifier.h"
 
+namespace kImageAnnotator {
+
 AnnotationItemModifier::AnnotationItemModifier()
 {
     mItemSelector = new AnnotationItemSelector();
@@ -158,3 +160,5 @@ void AnnotationItemModifier::updateCursor(Qt::CursorShape cursor)
         setCursor(cursor);
     }
 }
+
+} // namespace kImageAnnotator

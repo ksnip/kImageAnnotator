@@ -19,6 +19,8 @@
 
 #include "RectResizeHandles.h"
 
+namespace kImageAnnotator {
+
 RectResizeHandles::RectResizeHandles(AbstractAnnotationRect *rectItem)
 {
     mRectItem = rectItem;
@@ -41,3 +43,5 @@ QRectF RectResizeHandles::getItemBoundingRect() const
 {
     return mRectItem->rect().normalized();
 }
+
+} // namespace kImageAnnotator

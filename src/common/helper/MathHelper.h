@@ -22,12 +22,16 @@
 
 #include <QtMath>
 
+namespace kImageAnnotator {
+
 class MathHelper
 {
 public:
     static qreal roundAngleTo(qreal currentAngle, int increments);
     static qreal smallerValue(qreal value1, qreal value2);
-    static qreal distanceBetweenPoints(const QPointF& point1, const QPointF& point2);
+    static qreal distanceBetweenPoints(const QPointF &point1, const QPointF &point2);
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_MATHHELPER_H

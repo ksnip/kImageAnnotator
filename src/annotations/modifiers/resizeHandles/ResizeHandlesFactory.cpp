@@ -19,6 +19,8 @@
 
 #include "ResizeHandlesFactory.h"
 
+namespace kImageAnnotator {
+
 AbstractItemResizeHandles *ResizeHandlesFactory::createResizeHandles(AbstractAnnotationItem *item)
 {
     auto resizeHandles = GetLineResizeHandles(item);
@@ -61,3 +63,5 @@ AbstractItemResizeHandles *ResizeHandlesFactory::GetPathResizeHandles(AbstractAn
     }
     return nullptr;
 }
+
+} // namespace kImageAnnotator

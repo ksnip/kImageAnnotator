@@ -22,11 +22,15 @@
 
 #include "src/annotations/items/AbstractAnnotationItem.h"
 
+namespace kImageAnnotator {
+
 class ItemHelper
 {
 public:
     static bool zValueGreaterThen(const AbstractAnnotationItem *item1, const AbstractAnnotationItem *item2);
     static void sortItemsByZValueDesc(QList<AbstractAnnotationItem *> *items);
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_ITEMHELPER_H

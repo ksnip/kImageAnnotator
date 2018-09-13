@@ -28,6 +28,8 @@
 #include "src/annotations/items/helper/TextCursor.h"
 #include "src/common/filter/IgnoreShortcutsFilter.h"
 
+namespace kImageAnnotator {
+
 class AnnotationText : public QObject, public AbstractAnnotationRect
 {
 Q_OBJECT
@@ -57,5 +59,7 @@ private slots:
     void escape();
     void adjustRect();
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_ANNOTATIONTEXT_H

@@ -25,6 +25,8 @@
 #include "src/common/helper/ShapeHelper.h"
 #include "src/common/constants/AnnotationConstants.h"
 
+namespace kImageAnnotator {
+
 class AbstractAnnotationRect : public AbstractAnnotationItem
 {
 public:
@@ -41,5 +43,7 @@ protected:
 
     void makeSymmetric(bool enabled);
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ABSTRACTANNOTATIONRECT_H

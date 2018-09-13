@@ -19,6 +19,8 @@
 
 #include "KeyHelper.h"
 
+namespace kImageAnnotator {
+
 KeyHelper::KeyHelper()
 {
     mKeyToIsPressed[Qt::Key_Delete] = false;
@@ -28,19 +30,19 @@ KeyHelper::KeyHelper()
     mKeyToIsPressed[Qt::Key_Z] = false;
 }
 
-void KeyHelper::keyPress(QKeyEvent* keyEvent)
+void KeyHelper::keyPress(QKeyEvent *keyEvent)
 {
     auto key = static_cast<Qt::Key>(keyEvent->key());
-    if(mKeyToIsPressed.contains(key)) {
+    if (mKeyToIsPressed.contains(key)) {
         mKeyToIsPressed[key] = true;
         emitPressSignal(key);
     }
 }
 
-void KeyHelper::keyRelease(QKeyEvent* keyEvent)
+void KeyHelper::keyRelease(QKeyEvent *keyEvent)
 {
     auto key = static_cast<Qt::Key>(keyEvent->key());
-    if(mKeyToIsPressed.contains(key)) {
+    if (mKeyToIsPressed.contains(key)) {
         mKeyToIsPressed[key] = false;
         emitReleaseSignal(key);
     }
@@ -58,22 +60,24 @@ bool KeyHelper::isShiftPressed() const
 
 void KeyHelper::emitReleaseSignal(Qt::Key key)
 {
-    if(key == Qt::Key_Delete) {
+    if (key == Qt::Key_Delete) {
         emit deleteReleased();
     }
 
-    if(key == Qt::Key_Escape) {
+    if (key == Qt::Key_Escape) {
         emit escapeReleased();
     }
 }
 
 void KeyHelper::emitPressSignal(Qt::Key key)
 {
-    if(key == Qt::Key_Z && isControlPressed()) {
-        if(isShiftPressed()) {
+    if (key == Qt::Key_Z && isControlPressed()) {
+        if (isShiftPressed()) {
             emit redoPressed();
         } else {
             emit undoPressed();
         }
     }
 }
+
+} // namespace kImageAnnotator

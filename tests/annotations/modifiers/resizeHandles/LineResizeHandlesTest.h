@@ -26,19 +26,25 @@
 #include "src/annotations/items/AnnotationLine.h"
 #include "src/common/helper/CursorHelper.h"
 
+using kImageAnnotator::LineResizeHandles;
+using kImageAnnotator::CursorHelper;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::ResizeHandle;
+
 class LineResizeHandlesTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestInitHandles_Should_PositionTwoHandles();
-    void TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_HandleIsAtProvidedPosition();
-    void TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_HandleIsNotAtProvidedPosition();
-    void TestHandle_Should_ReturnRectAtIndex_When_HandleAtIndexExists();
-    void TestHandle_Should_NotReturnRect_When_HandleAtIndexDoesntExists();
-    void TestGetCursorForHandle_Should_NotReturnDefaultCursor_When_ProvidedPositionOnHandle();
-    void TestGetCursorForHandle_Should_ReturnDefaultCursor_When_ProvidedPositionNotOnHandle();
-    void TestUpdate_Should_SetMoveHandlesToNewPositions();
+	void TestInitHandles_Should_PositionTwoHandles();
+	void TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_HandleIsAtProvidedPosition();
+	void TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_HandleIsNotAtProvidedPosition();
+	void TestHandle_Should_ReturnRectAtIndex_When_HandleAtIndexExists();
+	void TestHandle_Should_NotReturnRect_When_HandleAtIndexDoesntExists();
+	void TestGetCursorForHandle_Should_NotReturnDefaultCursor_When_ProvidedPositionOnHandle();
+	void TestGetCursorForHandle_Should_ReturnDefaultCursor_When_ProvidedPositionNotOnHandle();
+	void TestUpdate_Should_SetMoveHandlesToNewPositions();
 };
 
 #endif // KIMAGEANNOTATOR_LINERESIZEHANDLESTEST_H

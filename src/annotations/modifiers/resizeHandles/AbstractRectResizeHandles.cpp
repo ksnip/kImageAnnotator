@@ -19,6 +19,8 @@
 
 #include "AbstractRectResizeHandles.h"
 
+namespace kImageAnnotator {
+
 void AbstractRectResizeHandles::update()
 {
     auto rect = getRect();
@@ -69,3 +71,5 @@ void AbstractRectResizeHandles::updateRectCursors()
     mCursors[indexOfHandleWithAnchorAt(rect.bottomRight())] = CursorHelper::fDiagResizeCursor();
     mCursors[indexOfHandleWithAnchorAt(rect.bottomLeft())] = CursorHelper::bDiagResizeCursor();
 }
+
+} // namespace kImageAnnotator

@@ -19,6 +19,8 @@
 
 #include "ResizeCommand.h"
 
+namespace kImageAnnotator {
+
 ResizeCommand::ResizeCommand(AbstractAnnotationItem *item, int handleIndex, QPointF newPos)
 {
     mItem = item;
@@ -54,3 +56,5 @@ int ResizeCommand::id() const
 {
     return Id;
 }
+
+} // namespace kImageAnnotator

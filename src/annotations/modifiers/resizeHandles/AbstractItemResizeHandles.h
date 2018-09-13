@@ -24,6 +24,8 @@
 #include "src/annotations/items/AbstractAnnotationItem.h"
 #include "src/common/helper/CursorHelper.h"
 
+namespace kImageAnnotator {
+
 class AbstractItemResizeHandles
 {
 public:
@@ -46,5 +48,7 @@ protected:
     virtual void initHandles(int count);
     virtual void initCursors() = 0;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_ABSTRACTITEMRESIZEHANDLES_H

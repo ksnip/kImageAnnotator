@@ -19,6 +19,8 @@
 
 #include "ToolPicker.h"
 
+namespace kImageAnnotator {
+
 ToolPicker::ToolPicker()
 {
     initGui();
@@ -124,3 +126,5 @@ void ToolPicker::setToolAndNotify(ToolTypes newTool)
     mSelectedToolType = newTool;
     emit toolSelected(mSelectedToolType);
 }
+
+} // namespace kImageAnnotator

@@ -19,6 +19,8 @@
 
 #include "SizePicker.h"
 
+namespace kImageAnnotator {
+
 SizePicker::SizePicker(const QIcon &icon, const QString &tooltip)
 {
     initGui(icon, tooltip);
@@ -71,3 +73,5 @@ void SizePicker::selectionChanged()
 {
     setSizeAndNotify(mSpinBox->value());
 }
+
+} // namespace kImageAnnotator

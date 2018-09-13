@@ -26,6 +26,8 @@
 #include "src/annotations/undo/ArrangeCommand.h"
 #include "src/common/helper/ItemHelper.h"
 
+namespace kImageAnnotator {
+
 class AnnotationItemArranger : public QObject
 {
 Q_OBJECT
@@ -50,5 +52,7 @@ private:
     void moveBackward(bool toBack);
     void createAndEmitArrangeCommand(const QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> &itemToSwap) const;
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONITEMARRANGER_H

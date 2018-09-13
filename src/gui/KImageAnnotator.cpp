@@ -24,6 +24,8 @@
 
 #include "src/gui/CoreView.h"
 
+namespace kImageAnnotator {
+
 // Impl Definition
 class KImageAnnotator::Impl : public QSharedData
 {
@@ -33,7 +35,10 @@ public:
     QImage image() const;
 
 public slots:
-    void loadImage(const QPixmap& pixmap);
+    void loadImage(const QPixmap &pixmap);
+
+signals:
+    void imageChanged() const;
 
 public:
     QHBoxLayout *mMainLayout;
@@ -55,7 +60,7 @@ QImage KImageAnnotator::image() const
     return mImpl->image();
 }
 
-void KImageAnnotator::loadImage(const QPixmap& pixmap)
+void KImageAnnotator::loadImage(const QPixmap &pixmap)
 {
     mImpl->loadImage(pixmap);
 }
@@ -87,3 +92,4 @@ void KImageAnnotator::Impl::loadImage(const QPixmap &pixmap)
     mCoreView->loadImage(pixmap);
 }
 
+} // namespace kImageAnnotator

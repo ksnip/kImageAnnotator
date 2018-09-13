@@ -24,21 +24,31 @@
 
 #include "src/annotations/core/AnnotationItemFactory.h"
 
+using kImageAnnotator::AnnotationItemFactory;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::AnnotationArrow;
+using kImageAnnotator::AnnotationRect;
+using kImageAnnotator::AnnotationNumber;
+using kImageAnnotator::AnnotationEllipse;
+using kImageAnnotator::ToolTypes;
+using kImageAnnotator::Config;
+
 class AnnotationItemFactoryTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void initTestCase();
-    void cleanupTestCase();
+	void initTestCase();
+	void cleanupTestCase();
 
-    void TestCreateItem_Should_CreateItemAtProvidedPosition();
-    void TestCreateItem_Should_ReturnNullPtrForUnknownType();
-    void TestCreateItem_Should_ReturnAnnotationLine_When_TypeIsLine();
-    void TestCreateItem_Should_ReturnAnnotationArrow_When_TypeIsArrow();
-    void TestCreateItem_Should_ReturnAnnotationRect_When_TypeIsRect();
-    void TestCreateItem_Should_ReturnAnnotationEllipse_When_TypeIsEllipse();
-    void TestCreateItem_Should_ReturnAnnotationNumber_When_TypeIsNumber();
+	void TestCreateItem_Should_CreateItemAtProvidedPosition();
+	void TestCreateItem_Should_ReturnNullPtrForUnknownType();
+	void TestCreateItem_Should_ReturnAnnotationLine_When_TypeIsLine();
+	void TestCreateItem_Should_ReturnAnnotationArrow_When_TypeIsArrow();
+	void TestCreateItem_Should_ReturnAnnotationRect_When_TypeIsRect();
+	void TestCreateItem_Should_ReturnAnnotationEllipse_When_TypeIsEllipse();
+	void TestCreateItem_Should_ReturnAnnotationNumber_When_TypeIsNumber();
 
 };
 

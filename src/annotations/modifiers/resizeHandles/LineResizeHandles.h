@@ -24,6 +24,8 @@
 #include "src/annotations/items/AbstractAnnotationLine.h"
 #include "src/common/helper/ShapeHelper.h"
 
+namespace kImageAnnotator {
+
 class LineResizeHandles : public AbstractItemResizeHandles
 {
 public:
@@ -37,5 +39,7 @@ protected:
 private:
     AbstractAnnotationLine *mLineItem;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_LINERESIZEHANDLES_H

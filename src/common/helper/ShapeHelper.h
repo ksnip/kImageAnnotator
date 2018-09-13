@@ -26,6 +26,8 @@
 #include "src/common/helper/MathHelper.h"
 #include "src/common/constants/AnnotationConstants.h"
 
+namespace kImageAnnotator {
+
 class ShapeHelper
 {
 public:
@@ -55,5 +57,7 @@ private:
     static QList<QPointF> getPathPoints(const QPainterPath &path);
     static QPainterPath createSmoothPath(const QList<QPointF> &points);
 };
+
+} // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_SHAPEHELPER_H

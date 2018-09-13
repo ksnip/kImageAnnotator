@@ -19,6 +19,8 @@
 
 #include "AnnotationProperties.h"
 
+namespace kImageAnnotator {
+
 AnnotationProperties::AnnotationProperties(const QColor &color, int size)
 {
     mColor = color;
@@ -75,3 +77,5 @@ void AnnotationProperties::setShadowEnabled(bool enabled)
 {
     mShadowEnabled = enabled;
 }
+
+} // namespace kImageAnnotator

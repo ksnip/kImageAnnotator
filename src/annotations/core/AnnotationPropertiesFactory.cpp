@@ -19,6 +19,8 @@
 
 #include "AnnotationPropertiesFactory.h"
 
+namespace kImageAnnotator {
+
 AnnotationPropertiesFactory::AnnotationPropertiesFactory()
 {
     mConfig = Config::instance();
@@ -73,3 +75,5 @@ void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties &propert
 {
     properties.setShadowEnabled(tool != ToolTypes::Marker);
 }
+
+} // namespace kImageAnnotator

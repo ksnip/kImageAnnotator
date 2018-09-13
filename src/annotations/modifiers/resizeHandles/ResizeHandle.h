@@ -22,6 +22,8 @@
 
 #include <QRectF>
 
+namespace kImageAnnotator {
+
 class ResizeHandle : public QRectF
 {
 public:
@@ -37,5 +39,7 @@ private:
     QPointF mOffset;
     int mSize;
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_RESIZEHANDLE_H

@@ -19,6 +19,8 @@
 
 #include "LineResizeHandles.h"
 
+namespace kImageAnnotator {
+
 LineResizeHandles::LineResizeHandles(AbstractAnnotationLine *lineItem)
 {
     mLineItem = lineItem;
@@ -44,3 +46,5 @@ void LineResizeHandles::initCursors()
     mCursors.append(CursorHelper::allResizeCursor());
     mCursors.append(CursorHelper::allResizeCursor());
 }
+
+} // namespace kImageAnnotator

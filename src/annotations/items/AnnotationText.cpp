@@ -19,6 +19,8 @@
 
 #include "AnnotationText.h"
 
+namespace kImageAnnotator {
+
 AnnotationText::AnnotationText(const QPointF &startPosition, const QFont &font, const AnnotationProperties &properties) :
     AbstractAnnotationRect(startPosition, properties)
 {
@@ -168,3 +170,5 @@ void AnnotationText::adjustRect()
     }
     updateShape();
 }
+
+} // namespace kImageAnnotator

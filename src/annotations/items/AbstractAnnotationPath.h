@@ -24,6 +24,8 @@
 #include "src/common/helper/ShapeHelper.h"
 #include "src/common/constants/AnnotationConstants.h"
 
+namespace kImageAnnotator {
+
 class AbstractAnnotationPath : public AbstractAnnotationItem
 {
 public:
@@ -41,5 +43,7 @@ protected:
 private:
     void scalePath(const QRectF &rect);
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_ABSTRACTANNOTATIONPATH_H

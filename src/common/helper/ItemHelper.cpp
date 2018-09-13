@@ -19,6 +19,8 @@
 
 #include "ItemHelper.h"
 
+namespace kImageAnnotator {
+
 bool ItemHelper::zValueGreaterThen(const AbstractAnnotationItem *item1, const AbstractAnnotationItem *item2)
 {
     return item1->zValue() > item2->zValue();
@@ -28,3 +30,5 @@ void ItemHelper::sortItemsByZValueDesc(QList<AbstractAnnotationItem *> *items)
 {
     qSort(items->begin(), items->end(), ItemHelper::zValueGreaterThen);
 }
+
+} // namespace kImageAnnotator

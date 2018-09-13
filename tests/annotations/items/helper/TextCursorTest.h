@@ -24,23 +24,26 @@
 
 #include "src/annotations/items/helper/TextCursor.h"
 
+using kImageAnnotator::TextCursor;
+using kImageAnnotator::TextPositions;
+
 class TextCursorTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestMove_Should_MoveCursorByOnePointToRight_When_DirectionNext();
-    void TestMove_Should_MoveCursorByOnePointToLeft_When_DirectionPreviouse();
-    void TestMove_Should_MoveCursorToEnd_When_DirectionPreviouseAndCurrentPositionAtStart();
-    void TestMove_Should_MoveCursorToStart_When_DirectionNextAndCurrentPositionAtEnd();
-    void TestMove_Should_MoveCursorToNextLineSamePosition_When_DirectionDown();
-    void TestMove_Should_NotMoveCursor_When_DirectionDownAndInLastLine();
-    void TestMove_Should_NotMoveCursor_When_DirectionUpAndInFirstLine();
-    void TestMove_Should_MoveCursorToPreviousLineSamePosition_When_DirectionUpAndNotInFirstLine();
-    void TestMove_Should_MoveCursorToEndOfNextLine_When_DirectionDownAndPositionAtEndOfLineAndLineBelowIsSmaller();
-    void TestMove_Should_MoveCursorToEndOfPreviousLine_When_DirectionUpAndPositionAtEndOfLineAndLineAboveIsSmaller();
-    void TestMove_Should_MoveCursorToSamePositionOfPreviousLine_When_DirectionUpAndPositionAtEndOfLineAndLineAboveIsLarger();
-    void TestMove_Should_MoveCursorToSamePositionOfNextLine_When_DirectionDownAndPositionAtEndOfLineAndLineBelowIsLarger();
+	void TestMove_Should_MoveCursorByOnePointToRight_When_DirectionNext();
+	void TestMove_Should_MoveCursorByOnePointToLeft_When_DirectionPreviouse();
+	void TestMove_Should_MoveCursorToEnd_When_DirectionPreviouseAndCurrentPositionAtStart();
+	void TestMove_Should_MoveCursorToStart_When_DirectionNextAndCurrentPositionAtEnd();
+	void TestMove_Should_MoveCursorToNextLineSamePosition_When_DirectionDown();
+	void TestMove_Should_NotMoveCursor_When_DirectionDownAndInLastLine();
+	void TestMove_Should_NotMoveCursor_When_DirectionUpAndInFirstLine();
+	void TestMove_Should_MoveCursorToPreviousLineSamePosition_When_DirectionUpAndNotInFirstLine();
+	void TestMove_Should_MoveCursorToEndOfNextLine_When_DirectionDownAndPositionAtEndOfLineAndLineBelowIsSmaller();
+	void TestMove_Should_MoveCursorToEndOfPreviousLine_When_DirectionUpAndPositionAtEndOfLineAndLineAboveIsSmaller();
+	void TestMove_Should_MoveCursorToSamePositionOfPreviousLine_When_DirectionUpAndPositionAtEndOfLineAndLineAboveIsLarger();
+	void TestMove_Should_MoveCursorToSamePositionOfNextLine_When_DirectionDownAndPositionAtEndOfLineAndLineBelowIsLarger();
 };
 
 #endif // KIMAGEANNOTATOR_TEXTCURSORTEST_H

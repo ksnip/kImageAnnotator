@@ -26,15 +26,20 @@
 #include "src/annotations/modifiers/AnnotationItemModifier.h"
 #include "src/annotations/items/AnnotationLine.h"
 
+using kImageAnnotator::AnnotationItemModifier;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AbstractAnnotationItem;
+
 class AnnotationItemModifierTest : public QObject
 {
-    Q_OBJECT
+Q_OBJECT
 private slots:
-    void TestHandleMousePressMoveRelease_Should_MoveResizerHandle_When_ClickedOnResizerHandle();
-    void TestHandleMousePressMove_Should_NotMoveResizerHandle_When_NotClickedOnResizerHandle();
-    void TestHandleMousePressMoveRelease_Should_SelectMultipleItems_When_ClickedNotOnItem();
-    void TestHandleMousePressMove_Should_MoveClickedItem_When_ClickedOnItemAndMoved();
-    void TestHandleMousePressMove_Should_MoveSelectedItems_When_ClickedOnOfSelectedItemsAndMoved();
+	void TestHandleMousePressMoveRelease_Should_MoveResizerHandle_When_ClickedOnResizerHandle();
+	void TestHandleMousePressMove_Should_NotMoveResizerHandle_When_NotClickedOnResizerHandle();
+	void TestHandleMousePressMoveRelease_Should_SelectMultipleItems_When_ClickedNotOnItem();
+	void TestHandleMousePressMove_Should_MoveClickedItem_When_ClickedOnItemAndMoved();
+	void TestHandleMousePressMove_Should_MoveSelectedItems_When_ClickedOnOfSelectedItemsAndMoved();
 };
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONITEMMODIFIERTEST_H

@@ -26,13 +26,19 @@
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/annotations/items/AnnotationLine.h"
 
+using kImageAnnotator::DeleteCommand;
+using kImageAnnotator::AnnotationArea;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AbstractAnnotationItem;
+
 class DeleteCommandTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestRedo_Should_ApplyOperation();
-    void TestUndo_Should_UndoOperation();
+	void TestRedo_Should_ApplyOperation();
+	void TestUndo_Should_UndoOperation();
 };
 
 #endif // KIMAGEANNOTATOR_DELETECOMMANDTEST_H

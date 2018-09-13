@@ -19,6 +19,8 @@
 
 #include "PathResizeHandles.h"
 
+namespace kImageAnnotator {
+
 PathResizeHandles::PathResizeHandles(AbstractAnnotationPath *pathItem)
 {
     mPathItem = pathItem;
@@ -41,3 +43,5 @@ QRectF PathResizeHandles::getItemBoundingRect() const
 {
     return mPathItem->boundingRect();
 }
+
+} // namespace kImageAnnotator

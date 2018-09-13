@@ -19,6 +19,8 @@
 
 #include "ResizeHandle.h"
 
+namespace kImageAnnotator {
+
 ResizeHandle::ResizeHandle()
     : QRectF(0, 0, 0, 0)
 {
@@ -48,3 +50,5 @@ void ResizeHandle::setOffset(const QPointF &offset)
 {
     mOffset = offset;
 }
+
+} // namespace kImageAnnotator

@@ -19,6 +19,8 @@
 
 #include "AnnotationArea.h"
 
+namespace kImageAnnotator {
+
 AnnotationArea::AnnotationArea()
 {
     mConfig = Config::instance();
@@ -135,6 +137,7 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         }
     }
 
+    emit imageChanged();
     QGraphicsScene::mouseReleaseEvent(event);
 }
 
@@ -202,3 +205,5 @@ void AnnotationArea::deleteSelectedItems()
     mItemModifier->clearSelection();
     mUndoStack->push(new DeleteCommand(selectedItems, this));
 }
+
+} // namespace kImageAnnotator

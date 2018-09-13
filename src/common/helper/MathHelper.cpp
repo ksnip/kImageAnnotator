@@ -20,6 +20,8 @@
 #include <QtCore/QPointF>
 #include "MathHelper.h"
 
+namespace kImageAnnotator {
+
 qreal MathHelper::roundAngleTo(const qreal currentAngle, const int increments)
 {
     auto modulo = (int) currentAngle % increments;
@@ -40,3 +42,5 @@ qreal MathHelper::distanceBetweenPoints(const QPointF &point1, const QPointF &po
     auto verticalDistance = (point1.y() - point2.y()) * (point1.y() - point2.y());
     return qSqrt(horizontalDistance + verticalDistance);
 }
+
+} // namespace kImageAnnotator

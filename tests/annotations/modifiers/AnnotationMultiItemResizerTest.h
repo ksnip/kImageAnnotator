@@ -26,18 +26,23 @@
 #include "src/annotations/modifiers/AnnotationMultiItemResizer.h"
 #include "src/annotations/items/AnnotationLine.h"
 
+using kImageAnnotator::AnnotationMultiItemResizer;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::AbstractAnnotationItem;
+
 class AnnotationMultiItemResizerTest : public QObject
 {
 Q_OBJECT
 private slots:
-    void TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition();
-    void TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition();
-    void TestGrabHandle_Should_MoveResizeHandle_When_HandleGrabbed();
-    void TestGrabHandle_Should_OnlyMoveOneResizeHandle_When_MultipleItemsInList();
-    void TestReleaseHandle_Should_ReleaseHandle();
-    void TestHasItemsAttached_Should_ReturnFalse_When_NoItemsInList();
-    void TestHasItemsAttached_Should_ReturnTrue_When_ItemsInList();
-    void TestUpdate_Should_HideResizers_When_ItemsOfResizersNotVisible();
+	void TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition();
+	void TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition();
+	void TestGrabHandle_Should_MoveResizeHandle_When_HandleGrabbed();
+	void TestGrabHandle_Should_OnlyMoveOneResizeHandle_When_MultipleItemsInList();
+	void TestReleaseHandle_Should_ReleaseHandle();
+	void TestHasItemsAttached_Should_ReturnFalse_When_NoItemsInList();
+	void TestHasItemsAttached_Should_ReturnTrue_When_ItemsInList();
+	void TestUpdate_Should_HideResizers_When_ItemsOfResizersNotVisible();
 };
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONMULTIITEMRESIZERTEST_H

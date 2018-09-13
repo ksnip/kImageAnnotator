@@ -24,6 +24,8 @@
 #include "src/annotations/items/AbstractAnnotationRect.h"
 #include "src/common/helper/ShapeHelper.h"
 
+namespace kImageAnnotator {
+
 class AbstractRectResizeHandles : public AbstractItemResizeHandles
 {
 public:
@@ -40,5 +42,7 @@ protected:
 private:
     void updateRectCursors();
 };
+
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_ABSTRACTRECTRESIZEHANDLES_H

@@ -25,17 +25,22 @@
 #include "src/annotations/undo/ResizeCommand.h"
 #include "src/annotations/items/AnnotationLine.h"
 
+using kImageAnnotator::ResizeCommand;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::AbstractAnnotationItem;
+
 class ResizeCommandTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-    void TestRedo_Should_MoveProvidedHandleToNewPosition();
-    void TestUndo_Should_MoveProvidedHandleToInitialPosition();
-    void TestMergeWith_Should_TakeNewHandlePositionFromLastResizeCommand();
-    void TestMergeWith_Should_KeepInitialPositionFromFirstResizeCommand();
-    void TestMergeWith_Should_NotMergeResizeCommands_When_ItemsAreNotTheSame();
-    void TestMergeWith_Should_NotMergeResizeCommands_When_HandlesAreNotTheSame();
+	void TestRedo_Should_MoveProvidedHandleToNewPosition();
+	void TestUndo_Should_MoveProvidedHandleToInitialPosition();
+	void TestMergeWith_Should_TakeNewHandlePositionFromLastResizeCommand();
+	void TestMergeWith_Should_KeepInitialPositionFromFirstResizeCommand();
+	void TestMergeWith_Should_NotMergeResizeCommands_When_ItemsAreNotTheSame();
+	void TestMergeWith_Should_NotMergeResizeCommands_When_HandlesAreNotTheSame();
 };
 
 #endif // KIMAGEANNOTATOR_RESIZECOMMANDTEST_H
