@@ -26,70 +26,47 @@
 
 namespace kImageAnnotator {
 
-// Impl Definition
-class KImageAnnotator::Impl : public QSharedData
+class KImageAnnotatorPrivate
 {
-public:
-    explicit Impl();
-    ~Impl();
-    QImage image() const;
+	Q_DISABLE_COPY(KImageAnnotatorPrivate)
 
-public slots:
-    void loadImage(const QPixmap &pixmap);
+	Q_DECLARE_PUBLIC(KImageAnnotator)
 
-signals:
-    void imageChanged() const;
+	explicit KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator);
 
-public:
-    QHBoxLayout *mMainLayout;
-    CoreView *mCoreView;
+	KImageAnnotator *const q_ptr;
+	CoreView mCoreView;
+	QHBoxLayout mMainLayout;
 };
 
-// KImageAnnotator Implementation
-KImageAnnotator::KImageAnnotator() : mImpl(new Impl)
-{
-    setLayout(mImpl->mMainLayout);
-}
+KImageAnnotator::KImageAnnotator() : d_ptr(new KImageAnnotatorPrivate(this))
+{}
 
 KImageAnnotator::~KImageAnnotator()
-{
-}
+{}
 
 QImage KImageAnnotator::image() const
 {
-    return mImpl->image();
+	Q_D(const KImageAnnotator);
+	return d->mCoreView.image();
 }
 
 void KImageAnnotator::loadImage(const QPixmap &pixmap)
 {
-    mImpl->loadImage(pixmap);
+	Q_D(KImageAnnotator);
+	d->mCoreView.loadImage(pixmap);
 }
 
-// Impl
+// KImageAnnotatorPrivate
 
-KImageAnnotator::Impl::Impl()
+KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator) : q_ptr(kImageAnnotator)
 {
-    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+	QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
-    mCoreView = new CoreView();
-    mMainLayout = new QHBoxLayout();
-    mMainLayout->addWidget(mCoreView);
-}
+	mMainLayout.addWidget(&mCoreView);
+	kImageAnnotator->setLayout(&mMainLayout);
 
-KImageAnnotator::Impl::~Impl()
-{
-    delete mCoreView;
-    delete mMainLayout;
-}
-
-QImage KImageAnnotator::Impl::image() const
-{
-    return mCoreView->image();
-}
-
-void KImageAnnotator::Impl::loadImage(const QPixmap &pixmap)
-{
-    mCoreView->loadImage(pixmap);
+	kImageAnnotator->connect(&mCoreView, &CoreView::imageChanged, kImageAnnotator, &KImageAnnotator::imageChanged);
 }
 
 } // namespace kImageAnnotator

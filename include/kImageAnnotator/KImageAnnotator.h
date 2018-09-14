@@ -26,26 +26,27 @@
 
 namespace kImageAnnotator {
 
+class KImageAnnotatorPrivate;
+
 class KIMAGEANNOTATOR_EXPORT KImageAnnotator : public QWidget
 {
 Q_OBJECT
+
+	Q_DECLARE_PRIVATE(KImageAnnotator)
+
 public:
-    explicit KImageAnnotator();
-    KImageAnnotator(KImageAnnotator &&other) noexcept = default;
-    ~KImageAnnotator();
-    KImageAnnotator &operator=(KImageAnnotator &&other) noexcept = default;
-    QImage image() const;
+	explicit KImageAnnotator();
+	~KImageAnnotator();
+	QImage image() const;
 
 public slots:
-    void loadImage(const QPixmap &pixmap);
+	void loadImage(const QPixmap &pixmap);
 
 signals:
-    void imageChanged() const;
+	void imageChanged() const;
 
 private:
-    class Impl;
-
-    QSharedDataPointer<Impl> mImpl;
+	QScopedPointer<KImageAnnotatorPrivate> const d_ptr;
 };
 
 } // namespace kImageAnnotator
