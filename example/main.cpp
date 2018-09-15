@@ -29,6 +29,7 @@ int main(int argc, char **argv)
 	pixmap.fill(QColor(Qt::darkGreen));
 	auto kImageAnnotator = new KImageAnnotator();
 	kImageAnnotator->loadImage(pixmap);
+	kImageAnnotator->adjustSize();
 	kImageAnnotator->show();
 
 	return app.exec();

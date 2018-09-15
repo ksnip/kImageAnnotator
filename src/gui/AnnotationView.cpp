@@ -49,7 +49,7 @@ QSize AnnotationView::sizeHint() const
 	auto sceneHeight = mAnnotationArea->sceneRect().height();
 	auto width = minWidth + sceneWidth;
 	auto height = (minHeight > sceneHeight) ? minHeight : sceneHeight;
-	auto offset = QSize(100, 150);
+	auto offset = QSize(100, 100);
 	return QSize(width, height) + offset;
 }
 
