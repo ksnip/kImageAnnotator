@@ -37,34 +37,32 @@ class AnnotationView : public QWidget
 {
 Q_OBJECT
 public:
-    explicit AnnotationView(AnnotationArea *annotationArea);
-    virtual ~AnnotationView();
-
-signals:
-    void imageChanged() const;
+	explicit AnnotationView(AnnotationArea *annotationArea);
+	virtual ~AnnotationView();
+	QSize sizeHint() const;
 
 private:
-    AnnotationArea *mAnnotationArea;
-    QGraphicsView *mView;
-    QHBoxLayout *mMainLayout;
-    QVBoxLayout *mToolsLayout;
-    ToolPicker *mToolPicker;
-    ColorPicker *mColorPicker;
-    ColorPicker *mTextColorPicker;
-    SizePicker *mSizePicker;
-    FillPicker *mFillPicker;
-    Config *mConfig;
-    VisibilitySwitcher mVisibilitySwitcher;
+	AnnotationArea *mAnnotationArea;
+	QGraphicsView *mView;
+	QHBoxLayout *mMainLayout;
+	QVBoxLayout *mToolsLayout;
+	ToolPicker *mToolPicker;
+	ColorPicker *mColorPicker;
+	ColorPicker *mTextColorPicker;
+	SizePicker *mSizePicker;
+	FillPicker *mFillPicker;
+	Config *mConfig;
+	VisibilitySwitcher mVisibilitySwitcher;
 
-    void initGui();
-    void setupDefaults();
-    void updateSelection(ToolTypes tool);
+	void initGui();
+	void setupDefaults();
+	void updateSelection(ToolTypes tool);
 
 private slots:
-    void setToolColor(const QColor &color);
-    void setToolTextColor(const QColor &color);
-    void setToolSize(int size);
-    void setToolFillType(FillTypes fill);
+	void setToolColor(const QColor &color);
+	void setToolTextColor(const QColor &color);
+	void setToolSize(int size);
+	void setToolFillType(FillTypes fill);
 };
 
 } // namespace kImageAnnotator

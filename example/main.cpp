@@ -24,12 +24,12 @@ using kImageAnnotator::KImageAnnotator;
 
 int main(int argc, char **argv)
 {
-    QApplication app(argc, argv);
-    QPixmap pixmap(QSize(500, 500));
-    pixmap.fill(QColor(Qt::darkGreen));
-    auto kImageAnnotator = new KImageAnnotator();
-    kImageAnnotator->loadImage(pixmap);
-    kImageAnnotator->show();
+	QApplication app(argc, argv);
+	QPixmap pixmap(QSize(500, 500));
+	pixmap.fill(QColor(Qt::darkGreen));
+	auto kImageAnnotator = new KImageAnnotator();
+	kImageAnnotator->loadImage(pixmap);
+	kImageAnnotator->show();
 
-    return app.exec();
+	return app.exec();
 }

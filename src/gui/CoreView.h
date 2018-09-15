@@ -31,24 +31,25 @@ class CoreView : public QStackedWidget
 {
 Q_OBJECT
 public:
-    explicit CoreView();
-    ~CoreView();
-    QImage image() const;
+	explicit CoreView();
+	~CoreView();
+	QImage image() const;
+	QAction *undoAction();
+	QAction *redoAction();
+	QSize sizeHint() const;
 
 signals:
-    void imageChanged() const;
+	void imageChanged() const;
 
 public slots:
-    void loadImage(const QPixmap &pixmap);
-    void showAnnotator();
-    void showCropper();
-    void showScaler();
+	void loadImage(const QPixmap &pixmap);
+	void showAnnotator();
+	void showCropper();
+	void showScaler();
 
 private:
-    AnnotationArea *mAnnotationArea;
-    AnnotationView *mAnnotationView;
-
-    void adjustSizeToImage(const QPixmap &pixmap);
+	AnnotationArea *mAnnotationArea;
+	AnnotationView *mAnnotationView;
 };
 
 } // namespace kImageAnnotator

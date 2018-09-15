@@ -45,7 +45,9 @@ public:
     AnnotationArea();
     ~AnnotationArea() override;
     void loadImage(const QPixmap &image);
-    QImage exportAsImage();
+    QImage image();
+	QAction* undoAction();
+	QAction* redoAction();
     virtual void addAnnotationItem(AbstractAnnotationItem *item);
     virtual void removeAnnotationItem(AbstractAnnotationItem *item);
 
@@ -65,7 +67,7 @@ protected:
 
 private:
     AnnotationItemFactory*          mItemFactory;
-    QGraphicsPixmapItem*            mBackgroundImage;
+    QGraphicsPixmapItem*            mImage;
     AbstractAnnotationItem*         mCurrentItem;
     AnnotationItemModifier*         mItemModifier;
     Config*                         mConfig;
@@ -76,6 +78,9 @@ private:
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);
     void setItemDecorationForTool(ToolTypes tool);
+	void resetAnnotationArea();
+	void removeAllItems();
+	void replaceBackgroundImage(const QPixmap &image);
 
 private slots:
     void deleteSelectedItems();

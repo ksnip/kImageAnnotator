@@ -41,6 +41,18 @@ AnnotationView::~AnnotationView()
 	delete mFillPicker;
 }
 
+QSize AnnotationView::sizeHint() const
+{
+	auto minWidth = mToolsLayout->sizeHint().width();
+	auto minHeight = mToolsLayout->sizeHint().height();
+	auto sceneWidth = mAnnotationArea->sceneRect().width();
+	auto sceneHeight = mAnnotationArea->sceneRect().height();
+	auto width = minWidth + sceneWidth;
+	auto height = (minHeight > sceneHeight) ? minHeight : sceneHeight;
+	auto offset = QSize(100, 150);
+	return QSize(width, height) + offset;
+}
+
 void AnnotationView::initGui()
 {
 	mView = new QGraphicsView(mAnnotationArea);
@@ -80,7 +92,6 @@ void AnnotationView::initGui()
 	connect(mTextColorPicker, &ColorPicker::colorSelected, this, &AnnotationView::setToolTextColor);
 	connect(mSizePicker, &SizePicker::sizeSelected, this, &AnnotationView::setToolSize);
 	connect(mFillPicker, &FillPicker::fillSelected, this, &AnnotationView::setToolFillType);
-	connect(mAnnotationArea, &AnnotationArea::imageChanged, this, &AnnotationView::imageChanged);
 }
 
 void AnnotationView::setupDefaults()

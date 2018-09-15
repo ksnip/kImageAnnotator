@@ -51,10 +51,36 @@ QImage KImageAnnotator::image() const
 	return d->mCoreView.image();
 }
 
+QAction *KImageAnnotator::undoAction()
+{
+	Q_D(KImageAnnotator);
+	return d->mCoreView.undoAction();
+}
+
+QAction *KImageAnnotator::redoAction()
+{
+	Q_D(KImageAnnotator);
+	return d->mCoreView.redoAction();
+}
+
 void KImageAnnotator::loadImage(const QPixmap &pixmap)
 {
 	Q_D(KImageAnnotator);
 	d->mCoreView.loadImage(pixmap);
+
+	if (isHidden()) {
+		show();
+	}
+}
+
+QSize KImageAnnotator::sizeHint() const
+{
+	Q_D(const KImageAnnotator);
+	if (isVisible()) {
+		return d->mCoreView.sizeHint();
+	} else {
+		return { 0, 0 };
+	}
 }
 
 // KImageAnnotatorPrivate
@@ -65,6 +91,7 @@ KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator)
 
 	mMainLayout.addWidget(&mCoreView);
 	kImageAnnotator->setLayout(&mMainLayout);
+	kImageAnnotator->hide();
 
 	kImageAnnotator->connect(&mCoreView, &CoreView::imageChanged, kImageAnnotator, &KImageAnnotator::imageChanged);
 }

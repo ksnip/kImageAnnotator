@@ -21,54 +21,54 @@
 
 void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
 {
-    QPixmap pixmap(QSize(400, 400));
-    pixmap.fill(QColor(QStringLiteral("Green")));
-    AnnotationArea annotationArea;
-    annotationArea.loadImage(pixmap);
+	QPixmap pixmap(QSize(400, 400));
+	pixmap.fill(QColor(QStringLiteral("Green")));
+	AnnotationArea annotationArea;
+	annotationArea.loadImage(pixmap);
 
-    auto resultImage = annotationArea.exportAsImage();
+	auto resultImage = annotationArea.image();
 
-    auto expectedImage = pixmap.toImage().convertToFormat(QImage::Format_ARGB32);
-    QCOMPARE(expectedImage, resultImage);
+	auto expectedImage = pixmap.toImage().convertToFormat(QImage::Format_ARGB32);
+	QCOMPARE(expectedImage, resultImage);
 }
 
 void AnnotationAreaTest::TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet()
 {
-    AnnotationArea annotationArea;
+	AnnotationArea annotationArea;
 
-    auto resultImage = annotationArea.exportAsImage();
+	auto resultImage = annotationArea.image();
 
-    QCOMPARE(QImage(), resultImage);
+	QCOMPARE(QImage(), resultImage);
 }
 
 void AnnotationAreaTest::TestAddAnnotationItem_Should_AddAnnotationItemToScene()
 {
-    AnnotationProperties properties(Qt::red, 2);
-    QPointF p1(10, 10);
-    QPointF p2(20, 20);
-    auto lineItem = new AnnotationLine(p1, properties);
-    lineItem->addPoint(p2);
-    AnnotationArea annotationArea;
+	AnnotationProperties properties(Qt::red, 2);
+	QPointF p1(10, 10);
+	QPointF p2(20, 20);
+	auto lineItem = new AnnotationLine(p1, properties);
+	lineItem->addPoint(p2);
+	AnnotationArea annotationArea;
 
-    annotationArea.addAnnotationItem(lineItem);
+	annotationArea.addAnnotationItem(lineItem);
 
-    QCOMPARE(annotationArea.items().contains(lineItem), true);
+	QCOMPARE(annotationArea.items().contains(lineItem), true);
 }
 
 void AnnotationAreaTest::TestRemoveAnnotationItem_Should_RemoveAnnotationItemFromScene()
 {
-    AnnotationProperties properties(Qt::red, 2);
-    QPointF p1(10, 10);
-    QPointF p2(20, 20);
-    auto lineItem = new AnnotationLine(p1, properties);
-    lineItem->addPoint(p2);
-    AnnotationArea annotationArea;
-    annotationArea.addAnnotationItem(lineItem);
-    QCOMPARE(annotationArea.items().contains(lineItem), true);
+	AnnotationProperties properties(Qt::red, 2);
+	QPointF p1(10, 10);
+	QPointF p2(20, 20);
+	auto lineItem = new AnnotationLine(p1, properties);
+	lineItem->addPoint(p2);
+	AnnotationArea annotationArea;
+	annotationArea.addAnnotationItem(lineItem);
+	QCOMPARE(annotationArea.items().contains(lineItem), true);
 
-    annotationArea.removeAnnotationItem(lineItem);
+	annotationArea.removeAnnotationItem(lineItem);
 
-    QCOMPARE(annotationArea.items().contains(lineItem), false);
+	QCOMPARE(annotationArea.items().contains(lineItem), false);
 }
 
 QTEST_MAIN(AnnotationAreaTest);

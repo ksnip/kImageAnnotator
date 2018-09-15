@@ -23,28 +23,27 @@ namespace kImageAnnotator {
 
 CoreView::CoreView()
 {
-    mAnnotationArea = new AnnotationArea();
-    mAnnotationView = new AnnotationView(mAnnotationArea);
-    addWidget(mAnnotationView);
+	mAnnotationArea = new AnnotationArea();
+	mAnnotationView = new AnnotationView(mAnnotationArea);
+	addWidget(mAnnotationView);
 
-    connect(mAnnotationView, &AnnotationView::imageChanged, this, &CoreView::imageChanged);
+	connect(mAnnotationArea, &AnnotationArea::imageChanged, this, &CoreView::imageChanged);
 }
 
 CoreView::~CoreView()
 {
-    delete mAnnotationArea;
-    delete mAnnotationView;
+	delete mAnnotationArea;
+	delete mAnnotationView;
 }
 
 QImage CoreView::image() const
 {
-    return mAnnotationArea->exportAsImage();
+	return mAnnotationArea->image();
 }
 
 void CoreView::loadImage(const QPixmap &pixmap)
 {
-    mAnnotationArea->loadImage(pixmap);
-    adjustSizeToImage(pixmap);
+	mAnnotationArea->loadImage(pixmap);
 }
 
 void CoreView::showAnnotator()
@@ -62,9 +61,19 @@ void CoreView::showScaler()
 
 }
 
-void CoreView::adjustSizeToImage(const QPixmap &pixmap)
+QAction *CoreView::undoAction()
 {
-    setFixedSize(pixmap.size() + QSize(160, 80));
+	return mAnnotationArea->undoAction();
+}
+
+QAction *CoreView::redoAction()
+{
+	return mAnnotationArea->redoAction();
+}
+
+QSize CoreView::sizeHint() const
+{
+	return mAnnotationView->sizeHint();
 }
 
 } // namespace kImageAnnotator

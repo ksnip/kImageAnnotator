@@ -38,6 +38,9 @@ public:
 	explicit KImageAnnotator();
 	~KImageAnnotator();
 	QImage image() const;
+	QAction *undoAction();
+	QAction *redoAction();
+	QSize sizeHint() const;
 
 public slots:
 	void loadImage(const QPixmap &pixmap);
