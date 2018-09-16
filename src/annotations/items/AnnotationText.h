@@ -24,6 +24,7 @@
 #include <QtMath>
 
 #include "AbstractAnnotationRect.h"
+#include "src/annotations/properties/AnnotationTextProperties.h"
 #include "src/annotations/items/helper/KeyInputHelper.h"
 #include "src/annotations/items/helper/TextCursor.h"
 #include "src/common/filter/IgnoreShortcutsFilter.h"
@@ -34,30 +35,30 @@ class AnnotationText : public QObject, public AbstractAnnotationRect
 {
 Q_OBJECT
 public:
-    AnnotationText(const QPointF &startPosition, const QFont &font, AnnotationProperties *properties);
-    ~AnnotationText() override = default;
-    void finish() override;
+	AnnotationText(const QPointF &startPosition, AnnotationTextProperties *properties);
+	~AnnotationText() override = default;
+	void finish() override;
+	const AnnotationTextProperties *properties() const override;
 
 protected:
-    void updateShape() override;
-    void focusOutEvent(QFocusEvent *event) override;
-    void keyPressEvent(QKeyEvent *event) override;
-    void paint(QPainter *, const QStyleOptionGraphicsItem *, QWidget *) override;
+	void updateShape() override;
+	void focusOutEvent(QFocusEvent *event) override;
+	void keyPressEvent(QKeyEvent *event) override;
+	void paint(QPainter *, const QStyleOptionGraphicsItem *, QWidget *) override;
 
 private:
-    QString mText;
-    KeyInputHelper mKeyInputHelper;
-    TextCursor mTextCursor;
-    QFont mFont;
-    IgnoreShortcutsFilter mIgnoreShortcutsFilter;
+	QString mText;
+	KeyInputHelper mKeyInputHelper;
+	TextCursor mTextCursor;
+	IgnoreShortcutsFilter mIgnoreShortcutsFilter;
 
 private slots:
-    void removeText(TextPositions direction);
-    void insertText(const QString &text);
-    void moveCursor(TextPositions direction);
-    void pasteText();
-    void escape();
-    void adjustRect();
+	void removeText(TextPositions direction);
+	void insertText(const QString &text);
+	void moveCursor(TextPositions direction);
+	void pasteText();
+	void escape();
+	void adjustRect();
 };
 
 } // namespace kImageAnnotator

@@ -67,7 +67,7 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 			item = new AnnotationNumber(initPosition, mNextNumber++, dynamic_cast<AnnotationTextProperties *>(properties));
 			break;
 		case ToolTypes::Text:
-			item = new AnnotationText(initPosition, mConfig->textFont(), properties);
+			item = new AnnotationText(initPosition, dynamic_cast<AnnotationTextProperties *>(properties));
 			break;
 		default:
 			qCritical("Cannot create item for provided tool type.");

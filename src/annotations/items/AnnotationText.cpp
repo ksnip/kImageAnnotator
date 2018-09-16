@@ -21,11 +21,9 @@
 
 namespace kImageAnnotator {
 
-AnnotationText::AnnotationText(const QPointF &startPosition, const QFont &font, AnnotationProperties *properties) :
+AnnotationText::AnnotationText(const QPointF &startPosition, AnnotationTextProperties *properties) :
 	AbstractAnnotationRect(startPosition, properties)
 {
-	mFont = font;
-
 	setFlag(QGraphicsItem::ItemIsFocusable, true);
 
 	connect(&mKeyInputHelper, &KeyInputHelper::move, this, &AnnotationText::moveCursor);
@@ -70,14 +68,14 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 
 	painter->setClipRect(boundingRect().adjusted(margine, margine, -margine, -margine));
 
-	QFontMetrics fontMetrics(mFont);
+	QFontMetrics fontMetrics(properties()->font());
 	auto boxHeight = 0;
 	QTextDocument document(mText);
 	for (auto block = document.begin(); block != document.end(); block = block.next()) {
 		auto blockPosition = block.position();
 		auto blockLength = block.length();
 		QTextLayout textLayout(block);
-		textLayout.setFont(mFont);
+		textLayout.setFont(properties()->font());
 		auto blockHeight = 0;
 		textLayout.setCacheEnabled(true);
 
@@ -110,6 +108,11 @@ void AnnotationText::finish()
 	setFocus();
 	mTextCursor.start();
 	mIgnoreShortcutsFilter.apply();
+}
+
+const AnnotationTextProperties *AnnotationText::properties() const
+{
+	return dynamic_cast<const AnnotationTextProperties *>(AbstractAnnotationItem::properties());
 }
 
 void AnnotationText::removeText(TextPositions direction)
@@ -158,7 +161,7 @@ void AnnotationText::escape()
 void AnnotationText::adjustRect()
 {
 	prepareGeometryChange();
-	QFontMetrics fontMetrics(mFont);
+	QFontMetrics fontMetrics(properties()->font());
 	auto margine = properties()->size();
 	auto newRect = fontMetrics.boundingRect(mRect->toRect().normalized(), Qt::AlignLeft, mText);
 	newRect.adjust(0, 0, margine * 2, margine * 2);
