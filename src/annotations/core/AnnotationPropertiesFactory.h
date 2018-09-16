@@ -32,6 +32,7 @@ class AnnotationPropertiesFactory
 {
 public:
 	explicit AnnotationPropertiesFactory();
+	AnnotationPropertiesFactory(Config *config);
 	~AnnotationPropertiesFactory() = default;
 
 	AnnotationProperties *createProperties(ToolTypes toolType) const;

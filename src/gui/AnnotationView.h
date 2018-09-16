@@ -37,7 +37,7 @@ class AnnotationView : public QWidget
 {
 Q_OBJECT
 public:
-	explicit AnnotationView(AnnotationArea *annotationArea);
+	explicit AnnotationView(AnnotationArea *annotationArea, Config *config);
 	virtual ~AnnotationView();
 	QSize sizeHint() const;
 

@@ -23,8 +23,9 @@ namespace kImageAnnotator {
 
 CoreView::CoreView()
 {
-	mAnnotationArea = new AnnotationArea();
-	mAnnotationView = new AnnotationView(mAnnotationArea);
+	mConfig = new Config;
+	mAnnotationArea = new AnnotationArea(mConfig);
+	mAnnotationView = new AnnotationView(mAnnotationArea, mConfig);
 	addWidget(mAnnotationView);
 
 	connect(mAnnotationArea, &AnnotationArea::imageChanged, this, &CoreView::imageChanged);
@@ -34,6 +35,7 @@ CoreView::~CoreView()
 {
 	delete mAnnotationArea;
 	delete mAnnotationView;
+	delete mConfig;
 }
 
 QImage CoreView::image() const

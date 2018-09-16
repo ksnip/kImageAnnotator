@@ -21,8 +21,9 @@
 
 namespace kImageAnnotator {
 
-AnnotationView::AnnotationView(AnnotationArea *annotationArea)
+AnnotationView::AnnotationView(AnnotationArea *annotationArea, Config *config)
 {
+	mConfig = config;
 	mAnnotationArea = annotationArea;
 
 	initGui();
@@ -79,8 +80,6 @@ void AnnotationView::initGui()
 	mVisibilitySwitcher.setForegroundColorWidget(mTextColorPicker);
 	mVisibilitySwitcher.setSizeWidget(mSizePicker);
 	mVisibilitySwitcher.setFillWidget(mFillTypePicker);
-
-	mConfig = Config::instance();
 
 	setLayout(mMainLayout);
 

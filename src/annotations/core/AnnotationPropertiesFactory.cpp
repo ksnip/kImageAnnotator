@@ -21,9 +21,9 @@
 
 namespace kImageAnnotator {
 
-AnnotationPropertiesFactory::AnnotationPropertiesFactory()
+AnnotationPropertiesFactory::AnnotationPropertiesFactory(Config *config)
 {
-	mConfig = Config::instance();
+	mConfig = config;
 }
 
 AnnotationProperties *AnnotationPropertiesFactory::createProperties(ToolTypes toolType) const

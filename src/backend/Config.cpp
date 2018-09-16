@@ -21,14 +21,25 @@
 
 namespace kImageAnnotator {
 
-Config *Config::instance()
+Config::Config()
 {
-	static Config instance;
-	return &instance;
-}
-
-void Config::reset()
-{
+	mAllTools = QList<ToolTypes>{
+		ToolTypes::Pen,
+		ToolTypes::Marker,
+		ToolTypes::Line,
+		ToolTypes::Arrow,
+		ToolTypes::Rect,
+		ToolTypes::Ellipse,
+		ToolTypes::Number,
+		ToolTypes::Text
+	};
+	initGeneralSettings();
+	initSelectedTool();
+	initToolColors();
+	initToolTextColors();
+	initToolSizes();
+	initToolFillTypes();
+	initFonts();
 }
 
 ToolTypes Config::selectedTool() const
@@ -163,21 +174,6 @@ void Config::setSmoothFactor(int factor)
 }
 
 // Private Methodes
-
-Config::Config()
-{
-	mAllTools = QList<ToolTypes>{
-		ToolTypes::Pen,
-		ToolTypes::Marker,
-		ToolTypes::Line,
-		ToolTypes::Arrow,
-		ToolTypes::Rect,
-		ToolTypes::Ellipse,
-		ToolTypes::Number,
-		ToolTypes::Text
-	};
-	reset();
-}
 
 void Config::initSelectedTool()
 {

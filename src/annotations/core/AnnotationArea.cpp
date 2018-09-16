@@ -21,10 +21,10 @@
 
 namespace kImageAnnotator {
 
-AnnotationArea::AnnotationArea()
+AnnotationArea::AnnotationArea(Config *config)
 {
-	mConfig = Config::instance();
-	mItemFactory = new AnnotationItemFactory();
+	mConfig = config;
+	mItemFactory = new AnnotationItemFactory(config);
 	mImage = nullptr;
 	mCurrentItem = nullptr;
 	mItems = new QList<AbstractAnnotationItem *>();

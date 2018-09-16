@@ -21,9 +21,9 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemFactory::AnnotationItemFactory()
+AnnotationItemFactory::AnnotationItemFactory(Config *config)
 {
-	mPropertiesFactory = new AnnotationPropertiesFactory();
+	mPropertiesFactory = new AnnotationPropertiesFactory(config);
 	reset();
 }
 

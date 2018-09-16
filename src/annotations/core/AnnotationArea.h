@@ -42,7 +42,7 @@ class AnnotationArea : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    AnnotationArea();
+	AnnotationArea(Config *config);
     ~AnnotationArea() override;
     void loadImage(const QPixmap &image);
     QImage image();

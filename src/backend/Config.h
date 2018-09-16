@@ -37,10 +37,11 @@ class Config : public QObject
 {
 Q_OBJECT
 
-public slots:
-	static Config *instance();
-	void reset();
+public:
+	explicit Config();
+	~Config() override = default;
 
+public slots:
 	ToolTypes selectedTool() const;
 	void setSelectedTool(ToolTypes tool);
 
@@ -91,7 +92,6 @@ private:
 	bool mSaveToolSelection;
 	int mSmoothFactor;
 
-	explicit Config();
 	void initSelectedTool();
 	void initToolColors();
 	void initToolTextColors();

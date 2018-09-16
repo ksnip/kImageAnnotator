@@ -48,6 +48,7 @@ public slots:
 	void showScaler();
 
 private:
+	Config *mConfig;
 	AnnotationArea *mAnnotationArea;
 	AnnotationView *mAnnotationView;
 };

@@ -38,7 +38,7 @@ class AnnotationItemFactory : public QObject
 {
 Q_OBJECT
 public:
-	explicit AnnotationItemFactory();
+	explicit AnnotationItemFactory(Config *config);
 	~AnnotationItemFactory() override;
 	void reset();
 
