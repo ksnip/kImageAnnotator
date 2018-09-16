@@ -21,97 +21,97 @@
 
 namespace kImageAnnotator {
 
-AbstractAnnotationItem::AbstractAnnotationItem(const AnnotationProperties &properties)
+AbstractAnnotationItem::AbstractAnnotationItem(AnnotationProperties *properties)
 {
-    mProperties = new AnnotationProperties(properties);
-    mShape = new QPainterPath();
+	mProperties = properties;
+	mShape = new QPainterPath();
 
-    mPainterPen.setColor(mProperties->color());
-    mPainterPen.setWidth(mProperties->size());
-    mPainterPen.setCapStyle(Qt::RoundCap);
-    mPainterPen.setJoinStyle(Qt::RoundJoin);
+	mPainterPen.setColor(mProperties->color());
+	mPainterPen.setWidth(mProperties->size());
+	mPainterPen.setCapStyle(Qt::RoundCap);
+	mPainterPen.setJoinStyle(Qt::RoundJoin);
 
-    mStroker = new QPainterPathStroker(mPainterPen);
+	mStroker = new QPainterPathStroker(mPainterPen);
 
-    if (properties.shadowEnabled()) {
-        mShadowEffect = new ShadowEffect();
-        setGraphicsEffect(mShadowEffect);
-    }
+	if (mProperties->shadowEnabled()) {
+		mShadowEffect = new ShadowEffect();
+		setGraphicsEffect(mShadowEffect);
+	}
 }
 
 AbstractAnnotationItem::~AbstractAnnotationItem()
 {
-    delete mProperties;
-    delete mShape;
-    delete mStroker;
+	delete mProperties;
+	delete mShape;
+	delete mStroker;
 }
 
 QRectF AbstractAnnotationItem::boundingRect() const
 {
-    auto width = 0;
-    if (!mShape->isEmpty()) {
-        width = mProperties->size() / 2;
-    }
+	auto width = 0;
+	if (!mShape->isEmpty()) {
+		width = mProperties->size() / 2;
+	}
 
-    return mShape->boundingRect().adjusted(-width, -width, width, width);
+	return mShape->boundingRect().adjusted(-width, -width, width, width);
 }
 
 QPainterPath AbstractAnnotationItem::shape() const
 {
-    auto path = mStroker->createStroke(*mShape);
-    if (hasFill()) {
-        path.addPath(*mShape);
-    }
-    return path;
+	auto path = mStroker->createStroke(*mShape);
+	if (hasFill()) {
+		path.addPath(*mShape);
+	}
+	return path;
 }
 
 bool AbstractAnnotationItem::intersects(const QRectF &rect) const
 {
-    return shape().intersects(rect);
+	return shape().intersects(rect);
 }
 
 void AbstractAnnotationItem::setShape(QPainterPath &newShape)
 {
-    mShape->swap(newShape);
+	mShape->swap(newShape);
 }
 
 QPointF AbstractAnnotationItem::position()
 {
-    return boundingRect().topLeft();
+	return boundingRect().topLeft();
 }
 
-AnnotationProperties AbstractAnnotationItem::properties() const
+const AnnotationProperties* AbstractAnnotationItem::properties() const
 {
-    return *mProperties;
+	return mProperties;
 }
 
 void AbstractAnnotationItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    shiftPainterForAllOddShapeWidth(painter);
+	shiftPainterForAllOddShapeWidth(painter);
 
-    painter->setRenderHint(QPainter::Antialiasing, true);
-    painter->setPen(mPainterPen);
-    if (hasFill()) {
-        painter->setBrush(mProperties->color());
-    }
-    painter->drawPath(*mShape);
+	painter->setRenderHint(QPainter::Antialiasing, true);
+	painter->setPen(mPainterPen);
+	if (hasFill()) {
+		painter->setBrush(mProperties->color());
+	}
+	painter->drawPath(*mShape);
 }
 
 void AbstractAnnotationItem::shiftPainterForAllOddShapeWidth(QPainter *painter) const
 {
-    if (mPainterPen.width() % 2 != 0) {
-        painter->translate(0.5, 0.5);
-    }
+	if (mPainterPen.width() % 2 != 0) {
+		painter->translate(0.5, 0.5);
+	}
 }
 
 bool AbstractAnnotationItem::hasFill() const
 {
-    return mProperties->fillType() == FillTypes::Fill;
+	return mProperties->fillType() == FillTypes::Fill;
 }
 
 void AbstractAnnotationItem::finish()
 {
-    // By default, does nothing
+	// By default, does nothing
 }
 
 } // namespace kImageAnnotator

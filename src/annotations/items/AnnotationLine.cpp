@@ -21,8 +21,8 @@
 
 namespace kImageAnnotator {
 
-AnnotationLine::AnnotationLine(const QPointF &startPosisition, const AnnotationProperties &properties) :
-    AbstractAnnotationLine(startPosisition, properties)
+AnnotationLine::AnnotationLine(const QPointF &startPosition, AnnotationProperties *properties) :
+    AbstractAnnotationLine(startPosition, properties)
 {
 }
 

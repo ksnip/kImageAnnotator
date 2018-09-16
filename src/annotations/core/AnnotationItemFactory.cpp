@@ -39,12 +39,12 @@ void AnnotationItemFactory::reset()
 	mNextZValue = 1;
 }
 
-AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPosition, ToolTypes type)
+AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPosition, ToolTypes toolType)
 {
-	auto properties = mPropertiesFactory->createProperties(type);
+	auto properties = mPropertiesFactory->createProperties(toolType);
 	AbstractAnnotationItem *item = nullptr;
 
-	switch (type) {
+	switch (toolType) {
 		case ToolTypes::Pen:
 			item = new AnnotationPen(initPosition, properties);
 			break;

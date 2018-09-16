@@ -26,54 +26,65 @@ AnnotationPropertiesFactory::AnnotationPropertiesFactory()
     mConfig = Config::instance();
 }
 
-AnnotationProperties AnnotationPropertiesFactory::createProperties(ToolTypes tool) const
+AnnotationProperties *AnnotationPropertiesFactory::createProperties(ToolTypes toolType) const
 {
-    AnnotationProperties properties;
+    auto properties = createPropertiesObject(toolType);
 
-    setColor(properties, tool);
-    setTextColor(tool, properties);
-    setSize(tool, properties);
-    setFill(tool, properties);
-    setShadowEnabled(properties, tool);
+    setColor(properties, toolType);
+	setTextColor(properties, toolType);
+	setSize(properties, toolType);
+	setFill(properties, toolType);
+	setShadowEnabled(properties);
 
     return properties;
 }
 
-void AnnotationPropertiesFactory::setColor(AnnotationProperties &properties, ToolTypes tool) const
+AnnotationProperties* AnnotationPropertiesFactory::createPropertiesObject(ToolTypes toolType) const
 {
-    auto color = mConfig->toolColor(tool);
+	switch (toolType) {
+		case ToolTypes::Pen:
+		case ToolTypes::Marker:
+			return new AnnotationPathProperties();
+		default:
+			return new AnnotationProperties();
+	}
+}
 
-    if (tool == ToolTypes::Marker) {
+void AnnotationPropertiesFactory::setColor(AnnotationProperties *properties, ToolTypes toolType) const
+{
+    auto color = mConfig->toolColor(toolType);
+
+    if (toolType == ToolTypes::Marker) {
         color.setAlpha(120);
     }
 
-    properties.setColor(color);
+    properties->setColor(color);
 }
 
-void AnnotationPropertiesFactory::setTextColor(const ToolTypes &tool, AnnotationProperties &properties) const
+void AnnotationPropertiesFactory::setTextColor(AnnotationProperties *properties, ToolTypes toolType) const
 {
-    properties.setTextColor(mConfig->toolTextColor(tool));
+    properties->setTextColor(mConfig->toolTextColor(toolType));
 }
 
-void AnnotationPropertiesFactory::setSize(const ToolTypes &tool, AnnotationProperties &properties) const
+void AnnotationPropertiesFactory::setSize(AnnotationProperties *properties, ToolTypes toolType) const
 {
-    auto size = mConfig->toolSize(tool);
+    auto size = mConfig->toolSize(toolType);
 
-    if (tool == ToolTypes::Marker) {
+    if (toolType == ToolTypes::Marker) {
         size = size * 3;
     }
 
-    properties.setSize(size);
+    properties->setSize(size);
 }
 
-void AnnotationPropertiesFactory::setFill(const ToolTypes &tool, AnnotationProperties &properties) const
+void AnnotationPropertiesFactory::setFill(AnnotationProperties *properties, ToolTypes toolType) const
 {
-    properties.setFillType(mConfig->toolFillType(tool));
+    properties->setFillType(mConfig->toolFillType(toolType));
 }
 
-void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties &properties, ToolTypes tool) const
+void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties *properties) const
 {
-    properties.setShadowEnabled(mConfig->itemShadowEnabled());
+    properties->setShadowEnabled(mConfig->itemShadowEnabled());
 }
 
 } // namespace kImageAnnotator

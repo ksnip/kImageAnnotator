@@ -17,20 +17,34 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationEllipse.h"
+#include "AnnotationPathProperties.h"
 
 namespace kImageAnnotator {
 
-AnnotationEllipse::AnnotationEllipse(const QPointF &startPosition, AnnotationProperties *properties) :
-    AbstractAnnotationRect(startPosition, properties)
+AnnotationPathProperties::AnnotationPathProperties(const QColor &color, int size) : AnnotationProperties(color, size)
 {
+	mSmootPathEnabled = true;
+	mSmootFactor = 7;
 }
 
-void AnnotationEllipse::updateShape()
+bool AnnotationPathProperties::smoothPathEnabled() const
 {
-    QPainterPath path;
-    path.addEllipse(*mRect);
-    setShape(path);
+	return mSmootPathEnabled;
 }
 
-} // namespace kImageAnnotator
+void AnnotationPathProperties::setSmoothPathEnabled(bool enabled)
+{
+	mSmootPathEnabled = enabled;
+}
+
+int AnnotationPathProperties::smoothFactor() const
+{
+	return mSmootFactor;
+}
+
+void AnnotationPathProperties::setSmoothFactor(int factor)
+{
+	mSmootFactor = factor;
+}
+
+}

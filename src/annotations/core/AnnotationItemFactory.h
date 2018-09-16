@@ -43,7 +43,7 @@ public:
 	~AnnotationItemFactory() override;
 	void reset();
 
-	AbstractAnnotationItem *createItem(const QPointF &initPosition, ToolTypes tool);
+	AbstractAnnotationItem *createItem(const QPointF &initPosition, ToolTypes toolType);
 
 private:
 	int mNextNumber;

@@ -27,8 +27,8 @@ namespace kImageAnnotator {
 class AnnotationNumber : public AbstractAnnotationRect
 {
 public:
-	AnnotationNumber(const QPointF &centerPosition, int number, const QFont &font, const AnnotationProperties &properties);
-	~AnnotationNumber() = default;
+	AnnotationNumber(const QPointF &centerPosition, int number, const QFont &font, AnnotationProperties *properties);
+	~AnnotationNumber() override = default;
 	virtual void addPoint(const QPointF &position, bool modified = false) override;
 
 protected:

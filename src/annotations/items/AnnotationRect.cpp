@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationRect::AnnotationRect(const QPointF &startPosition, const AnnotationProperties &properties) :
+AnnotationRect::AnnotationRect(const QPointF &startPosition, AnnotationProperties *properties) :
     AbstractAnnotationRect(startPosition, properties)
 {
 }

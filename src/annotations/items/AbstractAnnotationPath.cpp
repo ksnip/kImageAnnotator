@@ -22,67 +22,72 @@
 
 namespace kImageAnnotator {
 
-AbstractAnnotationPath::AbstractAnnotationPath(const QPointF &startPosition, const AnnotationProperties &properties) : AbstractAnnotationItem(properties)
+AbstractAnnotationPath::AbstractAnnotationPath(const QPointF &startPosition, AnnotationProperties *properties) : AbstractAnnotationItem(properties)
 {
-    mPath = new QPainterPath();
-    mPath->moveTo(startPosition);
-    mPath->lineTo(startPosition + QPointF(1, 1));
+	mPath = new QPainterPath();
+	mPath->moveTo(startPosition);
+	mPath->lineTo(startPosition + QPointF(1, 1));
 }
 
 AbstractAnnotationPath::~AbstractAnnotationPath()
 {
-    delete mPath;
+	delete mPath;
 }
 
 void AbstractAnnotationPath::addPoint(const QPointF &position, bool modified)
 {
-    Q_UNUSED(modified)
+	Q_UNUSED(modified)
 
-    prepareGeometryChange();
-    mPath->lineTo(position);
-    updateShape();
+	prepareGeometryChange();
+	mPath->lineTo(position);
+	updateShape();
 }
 
 void AbstractAnnotationPath::setPosition(const QPointF &newPosition)
 {
-    prepareGeometryChange();
-    mPath->translate(newPosition - position());
-    updateShape();
+	prepareGeometryChange();
+	mPath->translate(newPosition - position());
+	updateShape();
 }
 
 void AbstractAnnotationPath::setPointAt(const QPointF &point, int handleIndex)
 {
-    auto oppositeIndex = (handleIndex + 4) % 8;
-    auto currentPos = ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex);
-    auto rect = ShapeHelper::setRectPointAtIndex(boundingRect(), handleIndex, point);
-    if (rect.width() >= AnnotationConstants::MinResizeRectSize && rect.height() >= AnnotationConstants::MinResizeRectSize) {
-        prepareGeometryChange();
-        scalePath(rect);
-        mPath->translate(currentPos - ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex));
-        updateShape();
-    }
+	auto oppositeIndex = (handleIndex + 4) % 8;
+	auto currentPos = ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex);
+	auto rect = ShapeHelper::setRectPointAtIndex(boundingRect(), handleIndex, point);
+	if (rect.width() >= AnnotationConstants::MinResizeRectSize && rect.height() >= AnnotationConstants::MinResizeRectSize) {
+		prepareGeometryChange();
+		scalePath(rect);
+		mPath->translate(currentPos - ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex));
+		updateShape();
+	}
 }
 
 QPointF AbstractAnnotationPath::pointAt(int index) const
 {
-    return ShapeHelper::rectPointAtIndex(mPath->boundingRect(), index);
+	return ShapeHelper::rectPointAtIndex(mPath->boundingRect(), index);
 }
 
 void AbstractAnnotationPath::finish()
 {
-    prepareGeometryChange();
-    auto smoothPath = ShapeHelper::smoothOut(*mPath);
-    mPath->swap(smoothPath);
-    updateShape();
+	prepareGeometryChange();
+	auto smoothPath = ShapeHelper::smoothOut(*mPath);
+	mPath->swap(smoothPath);
+	updateShape();
 }
 
 void AbstractAnnotationPath::scalePath(const QRectF &rect)
 {
-    QTransform transform;
-    transform.scale(rect.width() / boundingRect().width(), rect.height() / boundingRect().height());
-    auto sPath = transform.map(*mPath);
-    mPath->swap(sPath);
-    updateShape();
+	QTransform transform;
+	transform.scale(rect.width() / boundingRect().width(), rect.height() / boundingRect().height());
+	auto sPath = transform.map(*mPath);
+	mPath->swap(sPath);
+	updateShape();
+}
+
+const AnnotationPathProperties *AbstractAnnotationPath::properties() const
+{
+	return static_cast<const AnnotationPathProperties *>(AbstractAnnotationItem::properties());
 }
 
 } // namespace kImageAnnotator

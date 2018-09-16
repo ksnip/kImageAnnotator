@@ -23,25 +23,25 @@ namespace kImageAnnotator {
 
 RectResizeHandles::RectResizeHandles(AbstractAnnotationRect *rectItem)
 {
-    mRectItem = rectItem;
-    initHandles(8);
-    initCursors();
-    update();
+	mRectItem = rectItem;
+	initHandles(8);
+	initCursors();
+	update();
 }
 
 QRectF RectResizeHandles::getRect() const
 {
-    return mRectItem->rect();
+	return mRectItem->rect();
 }
 
 int RectResizeHandles::getOffset() const
 {
-    return mRectItem->properties().size() / 2;
+	return mRectItem->properties()->size() / 2;
 }
 
 QRectF RectResizeHandles::getItemBoundingRect() const
 {
-    return mRectItem->rect().normalized();
+	return mRectItem->rect().normalized();
 }
 
 } // namespace kImageAnnotator

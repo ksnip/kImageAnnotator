@@ -23,28 +23,28 @@ namespace kImageAnnotator {
 
 LineResizeHandles::LineResizeHandles(AbstractAnnotationLine *lineItem)
 {
-    mLineItem = lineItem;
-    initHandles(2);
-    initCursors();
-    update();
+	mLineItem = lineItem;
+	initHandles(2);
+	initCursors();
+	update();
 }
 
 void LineResizeHandles::update()
 {
-    auto line = mLineItem->line();
-    auto offset = mLineItem->properties().size();
-    auto outerLine = ShapeHelper::extendLine(line, offset);
-    mHandles[0].moveCenter(QPointF(outerLine.p1().x(), outerLine.p1().y()));
-    mHandles[0].setAnchor(line.p1());
-    mHandles[1].moveCenter(QPointF(outerLine.p2().x(), outerLine.p2().y()));
-    mHandles[1].setAnchor(line.p2());
+	auto line = mLineItem->line();
+	auto offset = mLineItem->properties()->size();
+	auto outerLine = ShapeHelper::extendLine(line, offset);
+	mHandles[0].moveCenter(QPointF(outerLine.p1().x(), outerLine.p1().y()));
+	mHandles[0].setAnchor(line.p1());
+	mHandles[1].moveCenter(QPointF(outerLine.p2().x(), outerLine.p2().y()));
+	mHandles[1].setAnchor(line.p2());
 }
 
 void LineResizeHandles::initCursors()
 {
-    mCursors.clear();
-    mCursors.append(CursorHelper::allResizeCursor());
-    mCursors.append(CursorHelper::allResizeCursor());
+	mCursors.clear();
+	mCursors.append(CursorHelper::allResizeCursor());
+	mCursors.append(CursorHelper::allResizeCursor());
 }
 
 } // namespace kImageAnnotator

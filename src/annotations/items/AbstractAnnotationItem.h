@@ -24,7 +24,7 @@
 #include <QPainter>
 #include <QPainterPathStroker>
 
-#include "src/annotations/core/AnnotationProperties.h"
+#include "src/annotations/properties/AnnotationProperties.h"
 #include "src/common/enum/FillTypes.h"
 #include "src/annotations/misc/ShadowEffect.h"
 
@@ -33,33 +33,33 @@ namespace kImageAnnotator {
 class AbstractAnnotationItem : public QGraphicsItem
 {
 public:
-    explicit AbstractAnnotationItem(const AnnotationProperties &properties);
-    virtual ~AbstractAnnotationItem();
-    virtual QRectF boundingRect() const override;
-    virtual QPainterPath shape() const override;
-    virtual bool intersects(const QRectF &rect) const;
-    virtual void addPoint(const QPointF &position, bool modified = false) = 0;
-    virtual void setPointAt(const QPointF &point, int index) = 0;
-    virtual QPointF pointAt(int index) const = 0;
-    virtual void setPosition(const QPointF &newPosition) = 0;
-    virtual QPointF position();
-    AnnotationProperties properties() const;
-    virtual void finish();
+	explicit AbstractAnnotationItem(AnnotationProperties *properties);
+	virtual ~AbstractAnnotationItem();
+	virtual QRectF boundingRect() const override;
+	virtual QPainterPath shape() const override;
+	virtual bool intersects(const QRectF &rect) const;
+	virtual void addPoint(const QPointF &position, bool modified = false) = 0;
+	virtual void setPointAt(const QPointF &point, int index) = 0;
+	virtual QPointF pointAt(int index) const = 0;
+	virtual void setPosition(const QPointF &newPosition) = 0;
+	virtual QPointF position();
+	virtual const AnnotationProperties *properties() const;
+	virtual void finish();
 
 protected:
-    void setShape(QPainterPath &newShape);
-    virtual void updateShape() = 0;
-    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
+	void setShape(QPainterPath &newShape);
+	virtual void updateShape() = 0;
+	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 
 private:
-    AnnotationProperties *mProperties;
-    QPainterPath *mShape;
-    QPainterPathStroker *mStroker;
-    QPen mPainterPen;
-    ShadowEffect *mShadowEffect;
+	AnnotationProperties *mProperties;
+	QPainterPath *mShape;
+	QPainterPathStroker *mStroker;
+	QPen mPainterPen;
+	ShadowEffect *mShadowEffect;
 
-    bool hasFill() const;
-    void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
+	bool hasFill() const;
+	void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
 };
 
 } // namespace kImageAnnotator

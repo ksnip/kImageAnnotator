@@ -21,12 +21,12 @@
 
 namespace kImageAnnotator {
 
-AbstractAnnotationLine::AbstractAnnotationLine(const QPointF &startPosisition, const AnnotationProperties &properties)
+AbstractAnnotationLine::AbstractAnnotationLine(const QPointF &startPosition, AnnotationProperties *properties)
     :
     AbstractAnnotationItem(properties)
 {
     mLine = new QLineF();
-    mLine->setP1(startPosisition);
+    mLine->setP1(startPosition);
 }
 
 AbstractAnnotationLine::~AbstractAnnotationLine()

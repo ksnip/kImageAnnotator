@@ -30,7 +30,7 @@ namespace kImageAnnotator {
 class AbstractAnnotationRect : public AbstractAnnotationItem
 {
 public:
-    AbstractAnnotationRect(const QPointF &startPosition, const AnnotationProperties &properties);
+    AbstractAnnotationRect(const QPointF &startPosition, AnnotationProperties *properties);
     ~AbstractAnnotationRect() override;
     void addPoint(const QPointF &position, bool modified = false) override;
     void setPosition(const QPointF &newPosition) override;

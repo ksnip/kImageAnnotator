@@ -34,7 +34,7 @@ class AnnotationText : public QObject, public AbstractAnnotationRect
 {
 Q_OBJECT
 public:
-    AnnotationText(const QPointF &startPosition, const QFont &font, const AnnotationProperties &properties);
+    AnnotationText(const QPointF &startPosition, const QFont &font, AnnotationProperties *properties);
     ~AnnotationText() override = default;
     void finish() override;
 

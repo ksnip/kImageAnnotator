@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, int number, const QFont &font, const AnnotationProperties &properties)
+AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, int number, const QFont &font, AnnotationProperties *properties)
 	:
 	AbstractAnnotationRect(centerPosition, properties)
 {
@@ -55,7 +55,7 @@ void AnnotationNumber::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 	AbstractAnnotationRect::paint(painter, option, widget);
 
 	painter->setFont(mFont);
-	painter->setPen(properties().textColor());
+	painter->setPen(properties()->textColor());
 	painter->drawText(boundingRect(), Qt::AlignCenter, mNumberString);
 }
 

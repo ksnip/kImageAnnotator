@@ -21,6 +21,7 @@
 #define KIMAGEANNOTATOR_ABSTRACTANNOTATIONPATH_H
 
 #include "AbstractAnnotationItem.h"
+#include "src/annotations/properties/AnnotationPathProperties.h"
 #include "src/common/helper/ShapeHelper.h"
 #include "src/common/constants/AnnotationConstants.h"
 
@@ -29,19 +30,20 @@ namespace kImageAnnotator {
 class AbstractAnnotationPath : public AbstractAnnotationItem
 {
 public:
-    AbstractAnnotationPath(const QPointF &startPosition, const AnnotationProperties &properties);
-    ~AbstractAnnotationPath() override;
-    void addPoint(const QPointF &position, bool modified = false) override;
-    void setPosition(const QPointF &newPosition) override;
-    void setPointAt(const QPointF &point, int handleIndex) override;
-    QPointF pointAt(int index) const override;
-    void finish() override;
+	AbstractAnnotationPath(const QPointF &startPosition, AnnotationProperties *properties);
+	~AbstractAnnotationPath() override;
+	void addPoint(const QPointF &position, bool modified = false) override;
+	void setPosition(const QPointF &newPosition) override;
+	void setPointAt(const QPointF &point, int handleIndex) override;
+	QPointF pointAt(int index) const override;
+	void finish() override;
+	virtual const AnnotationPathProperties *properties() const;
 
 protected:
-    QPainterPath *mPath;
+	QPainterPath *mPath;
 
 private:
-    void scalePath(const QRectF &rect);
+	void scalePath(const QRectF &rect);
 };
 
 } // namespace kImageAnnotator

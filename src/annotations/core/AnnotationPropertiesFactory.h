@@ -20,7 +20,8 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONPROPERTIESFACTORY_H
 #define KIMAGEANNOTATOR_ANNOTATIONPROPERTIESFACTORY_H
 
-#include "AnnotationProperties.h"
+#include "src/annotations/properties/AnnotationProperties.h"
+#include "src/annotations/properties/AnnotationPathProperties.h"
 #include "src/backend/Config.h"
 #include "src/common/enum/ToolTypes.h"
 
@@ -29,18 +30,19 @@ namespace kImageAnnotator {
 class AnnotationPropertiesFactory
 {
 public:
-    explicit AnnotationPropertiesFactory();
-    ~AnnotationPropertiesFactory() = default;
+	explicit AnnotationPropertiesFactory();
+	~AnnotationPropertiesFactory() = default;
 
-    AnnotationProperties createProperties(ToolTypes tool) const;
+	AnnotationProperties *createProperties(ToolTypes toolType) const;
 
 private:
-    Config *mConfig;
-    void setShadowEnabled(AnnotationProperties &properties, ToolTypes tool) const;
-    void setColor(AnnotationProperties &properties, ToolTypes types) const;
-    void setTextColor(const ToolTypes &tool, AnnotationProperties &properties) const;
-    void setSize(const ToolTypes &tool, AnnotationProperties &properties) const;
-    void setFill(const ToolTypes &tool, AnnotationProperties &properties) const;
+	Config *mConfig;
+	AnnotationProperties *createPropertiesObject(ToolTypes toolType) const;
+	void setShadowEnabled(AnnotationProperties *properties) const;
+	void setColor(AnnotationProperties *properties, ToolTypes toolType) const;
+	void setTextColor(AnnotationProperties *properties, ToolTypes toolType) const;
+	void setSize(AnnotationProperties *properties, ToolTypes toolType) const;
+	void setFill(AnnotationProperties *properties, ToolTypes toolType) const;
 };
 
 } // namespace kImageAnnotator
