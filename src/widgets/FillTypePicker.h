@@ -30,30 +30,30 @@
 
 namespace kImageAnnotator {
 
-class FillPicker : public QWidget
+class FillTypePicker : public QWidget
 {
 Q_OBJECT
 
 public:
-    FillPicker(const QIcon &icon, const QString &tooltip);
-    ~FillPicker() override;
-    void setFill(FillTypes fill);
+	FillTypePicker(const QIcon &icon, const QString &tooltip);
+	~FillTypePicker() override;
+	void setFill(FillTypes fill);
 
 signals:
-    void fillSelected(FillTypes fill) const;
+	void fillSelected(FillTypes fill) const;
 
 private:
-    QHBoxLayout *mLayout;
-    QLabel *mLabel;
-    QComboBox *mComboBox;
-    QList<FillTypes> mFillList;
-    IconCreater *mIconCreator;
+	QHBoxLayout *mLayout;
+	QLabel *mLabel;
+	QComboBox *mComboBox;
+	QList<FillTypes> mFillList;
+	IconCreater *mIconCreator;
 
-    void initGui(const QIcon &icon, const QString &tooltip);
-    void setFillAndNotify(FillTypes fill);
+	void initGui(const QIcon &icon, const QString &tooltip);
+	void setFillAndNotify(FillTypes fill);
 
 private slots:
-    void selectionChanged();
+	void selectionChanged();
 };
 
 } // namespace kImageAnnotator

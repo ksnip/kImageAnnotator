@@ -17,20 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "FillPickerTest.h"
+#ifndef KIMAGEANNOTATOR_FILLPICKERTEST_H
+#define KIMAGEANNOTATOR_FILLPICKERTEST_H
 
-void SizePickerTest::TestSelectFill_Should_EmitSignal_When_FillChanged()
+#include <QtTest>
+
+#include "src/widgets/FillTypePicker.h"
+
+using kImageAnnotator::FillTypePicker;
+using kImageAnnotator::FillTypes;
+
+class FillTypePickerTest : public QObject
 {
-	qRegisterMetaType<FillTypes>("FillTypes");
-	FillPicker fillPicker(QIcon(), QStringLiteral("test"));
-	QSignalSpy spy(&fillPicker, &FillPicker::fillSelected);
-	auto expectedFill = FillTypes::Fill;
+Q_OBJECT
 
-	fillPicker.setFill(expectedFill);
+private slots:
+	void TestSelectFill_Should_EmitSignal_When_FillChanged();
+};
 
-	QCOMPARE(spy.count(), 1);
-	auto resultFill = qvariant_cast<FillTypes>(spy.at(0).at(0));
-	QCOMPARE(resultFill, expectedFill);
-}
-
-QTEST_MAIN(SizePickerTest);
+#endif // KIMAGEANNOTATOR_FILLPICKERTEST_H

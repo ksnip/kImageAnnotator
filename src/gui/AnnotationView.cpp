@@ -38,7 +38,7 @@ AnnotationView::~AnnotationView()
 	delete mColorPicker;
 	delete mTextColorPicker;
 	delete mSizePicker;
-	delete mFillPicker;
+	delete mFillTypePicker;
 }
 
 QSize AnnotationView::sizeHint() const
@@ -62,14 +62,14 @@ void AnnotationView::initGui()
 	mColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("tool_color_picker")), tr("Color"));
 	mTextColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("format-text-color")), tr("Text Color"));
 	mSizePicker = new SizePicker(QIcon::fromTheme(QStringLiteral("newline")), tr("Size"));
-	mFillPicker = new FillPicker(QIcon::fromTheme(QStringLiteral("fill-color")), tr("Fill Type"));
+	mFillTypePicker = new FillTypePicker(QIcon::fromTheme(QStringLiteral("fill-color")), tr("Fill Type"));
 
 	mToolsLayout->addWidget(mToolPicker);
 	mToolsLayout->addSpacing(20);
 	mToolsLayout->addWidget(mColorPicker);
 	mToolsLayout->addWidget(mTextColorPicker);
 	mToolsLayout->addWidget(mSizePicker);
-	mToolsLayout->addWidget(mFillPicker);
+	mToolsLayout->addWidget(mFillTypePicker);
 	mToolsLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 
 	mMainLayout->addLayout(mToolsLayout);
@@ -78,7 +78,7 @@ void AnnotationView::initGui()
 	mVisibilitySwitcher.setOutlineColorWidget(mColorPicker);
 	mVisibilitySwitcher.setForegroundColorWidget(mTextColorPicker);
 	mVisibilitySwitcher.setSizeWidget(mSizePicker);
-	mVisibilitySwitcher.setFillWidget(mFillPicker);
+	mVisibilitySwitcher.setFillWidget(mFillTypePicker);
 
 	mConfig = Config::instance();
 
@@ -91,7 +91,7 @@ void AnnotationView::initGui()
 	connect(mColorPicker, &ColorPicker::colorSelected, this, &AnnotationView::setToolColor);
 	connect(mTextColorPicker, &ColorPicker::colorSelected, this, &AnnotationView::setToolTextColor);
 	connect(mSizePicker, &SizePicker::sizeSelected, this, &AnnotationView::setToolSize);
-	connect(mFillPicker, &FillPicker::fillSelected, this, &AnnotationView::setToolFillType);
+	connect(mFillTypePicker, &FillTypePicker::fillSelected, this, &AnnotationView::setToolFillType);
 }
 
 void AnnotationView::setupDefaults()
@@ -104,7 +104,7 @@ void AnnotationView::updateSelection(ToolTypes tool)
 	mColorPicker->setColor(mConfig->toolColor(tool));
 	mTextColorPicker->setColor(mConfig->toolTextColor(tool));
 	mSizePicker->setSize(mConfig->toolSize(tool));
-	mFillPicker->setFill(mConfig->toolFillType(tool));
+	mFillTypePicker->setFill(mConfig->toolFillType(tool));
 
 	mVisibilitySwitcher.setCurrentTool(tool);
 }

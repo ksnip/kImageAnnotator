@@ -17,11 +17,11 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "VisibilitySwitcher.h"
+#include "ConfigWidgetVisibilitySwitcher.h"
 
 namespace kImageAnnotator {
 
-VisibilitySwitcher::VisibilitySwitcher()
+ConfigWidgetVisibilitySwitcher::ConfigWidgetVisibilitySwitcher()
 {
     mColorWidget = nullptr;
     mTextColorWidget = nullptr;
@@ -31,7 +31,7 @@ VisibilitySwitcher::VisibilitySwitcher()
     mCurrentTool = ToolTypes::Select;
 }
 
-void VisibilitySwitcher::setCurrentTool(ToolTypes tool)
+void ConfigWidgetVisibilitySwitcher::setCurrentTool(ToolTypes tool)
 {
     if (mCurrentTool == tool) {
         return;
@@ -41,31 +41,31 @@ void VisibilitySwitcher::setCurrentTool(ToolTypes tool)
     updateVisibility();
 }
 
-void VisibilitySwitcher::setOutlineColorWidget(QWidget *widget)
+void ConfigWidgetVisibilitySwitcher::setOutlineColorWidget(QWidget *widget)
 {
     mColorWidget = widget;
     updateVisibility();
 }
 
-void VisibilitySwitcher::setForegroundColorWidget(QWidget *widget)
+void ConfigWidgetVisibilitySwitcher::setForegroundColorWidget(QWidget *widget)
 {
     mTextColorWidget = widget;
     updateVisibility();
 }
 
-void VisibilitySwitcher::setSizeWidget(QWidget *widget)
+void ConfigWidgetVisibilitySwitcher::setSizeWidget(QWidget *widget)
 {
     mSizeWidget = widget;
     updateVisibility();
 }
 
-void VisibilitySwitcher::setFillWidget(QWidget *widget)
+void ConfigWidgetVisibilitySwitcher::setFillWidget(QWidget *widget)
 {
     mFillWidget = widget;
     updateVisibility();
 }
 
-void VisibilitySwitcher::updateVisibility()
+void ConfigWidgetVisibilitySwitcher::updateVisibility()
 {
     switch (mCurrentTool) {
         case ToolTypes::Select:
@@ -107,32 +107,32 @@ void VisibilitySwitcher::updateVisibility()
             setFillWidgetVisibility(true);
             break;
         default:
-            qCritical("Unknown tooltype in VisibilitySwitcher");
+            qCritical("Unknown tooltype in ConfigWidgetVisibilitySwitcher");
     }
 }
 
-void VisibilitySwitcher::setColorWidgetVisibility(bool enabled)
+void ConfigWidgetVisibilitySwitcher::setColorWidgetVisibility(bool enabled)
 {
     if (mColorWidget) {
         mColorWidget->setEnabled(enabled);
     }
 }
 
-void VisibilitySwitcher::setTextColorWidgetVisibility(bool enabled)
+void ConfigWidgetVisibilitySwitcher::setTextColorWidgetVisibility(bool enabled)
 {
     if (mTextColorWidget) {
         mTextColorWidget->setEnabled(enabled);
     }
 }
 
-void VisibilitySwitcher::setSizeWidgetVisibility(bool enabled)
+void ConfigWidgetVisibilitySwitcher::setSizeWidgetVisibility(bool enabled)
 {
     if (mSizeWidget) {
         mSizeWidget->setEnabled(enabled);
     }
 }
 
-void VisibilitySwitcher::setFillWidgetVisibility(bool enabled)
+void ConfigWidgetVisibilitySwitcher::setFillWidgetVisibility(bool enabled)
 {
     if (mFillWidget) {
         mFillWidget->setEnabled(enabled);

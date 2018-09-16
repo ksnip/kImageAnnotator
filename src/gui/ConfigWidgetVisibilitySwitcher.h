@@ -26,29 +26,29 @@
 
 namespace kImageAnnotator {
 
-class VisibilitySwitcher
+class ConfigWidgetVisibilitySwitcher
 {
 public:
-    explicit VisibilitySwitcher();
-    ~VisibilitySwitcher() = default;
-    void setCurrentTool(ToolTypes tool);
-    void setOutlineColorWidget(QWidget *widget);
-    void setForegroundColorWidget(QWidget *widget);
-    void setSizeWidget(QWidget *widget);
-    void setFillWidget(QWidget *widget);
+	explicit ConfigWidgetVisibilitySwitcher();
+	~ConfigWidgetVisibilitySwitcher() = default;
+	void setCurrentTool(ToolTypes tool);
+	void setOutlineColorWidget(QWidget *widget);
+	void setForegroundColorWidget(QWidget *widget);
+	void setSizeWidget(QWidget *widget);
+	void setFillWidget(QWidget *widget);
 
 private:
-    ToolTypes mCurrentTool;
-    QWidget *mColorWidget;
-    QWidget *mTextColorWidget;
-    QWidget *mSizeWidget;
-    QWidget *mFillWidget;
+	ToolTypes mCurrentTool;
+	QWidget *mColorWidget;
+	QWidget *mTextColorWidget;
+	QWidget *mSizeWidget;
+	QWidget *mFillWidget;
 
-    void updateVisibility();
-    void setColorWidgetVisibility(bool enabled);
-    void setTextColorWidgetVisibility(bool enabled);
-    void setSizeWidgetVisibility(bool enabled);
-    void setFillWidgetVisibility(bool enabled);
+	void updateVisibility();
+	void setColorWidgetVisibility(bool enabled);
+	void setTextColorWidgetVisibility(bool enabled);
+	void setSizeWidgetVisibility(bool enabled);
+	void setFillWidgetVisibility(bool enabled);
 };
 
 } // namespace kImageAnnotator

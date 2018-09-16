@@ -17,11 +17,11 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "FillPicker.h"
+#include "FillTypePicker.h"
 
 namespace kImageAnnotator {
 
-FillPicker::FillPicker(const QIcon &icon, const QString &tooltip)
+FillTypePicker::FillTypePicker(const QIcon &icon, const QString &tooltip)
 {
     mFillList.append(FillTypes::Fill);
     mFillList.append(FillTypes::NoFill);
@@ -30,17 +30,17 @@ FillPicker::FillPicker(const QIcon &icon, const QString &tooltip)
 
     initGui(icon, tooltip);
 
-    connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &FillPicker::selectionChanged);
+    connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &FillTypePicker::selectionChanged);
 }
 
-FillPicker::~FillPicker()
+FillTypePicker::~FillTypePicker()
 {
     delete mLayout;
     delete mLabel;
     delete mComboBox;
 }
 
-void FillPicker::setFill(FillTypes fill)
+void FillTypePicker::setFill(FillTypes fill)
 {
     auto index = mComboBox->findData(mFillList.indexOf(fill));
     if (index != -1) {
@@ -49,7 +49,7 @@ void FillPicker::setFill(FillTypes fill)
     }
 }
 
-void FillPicker::initGui(const QIcon &icon, const QString &tooltip)
+void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
 {
     mLayout = new QHBoxLayout(this);
     mLayout->setContentsMargins(0, 0, 0, 0);
@@ -74,12 +74,12 @@ void FillPicker::initGui(const QIcon &icon, const QString &tooltip)
     setFixedSize(sizeHint());
 }
 
-void FillPicker::setFillAndNotify(FillTypes fill)
+void FillTypePicker::setFillAndNotify(FillTypes fill)
 {
     emit fillSelected(fill);
 }
 
-void FillPicker::selectionChanged()
+void FillTypePicker::selectionChanged()
 {
     auto fill = mFillList[mComboBox->currentData().toInt()];
     setFillAndNotify(fill);

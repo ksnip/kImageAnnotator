@@ -1,6 +1,6 @@
 set(kimageannotator_SRCS
 	${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
-	${CMAKE_SOURCE_DIR}/src/gui/VisibilitySwitcher.cpp
+	${CMAKE_SOURCE_DIR}/src/gui/ConfigWidgetVisibilitySwitcher.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/CoreView.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/AnnotationView.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationArea.cpp
@@ -53,7 +53,7 @@ set(kimageannotator_SRCS
 	${CMAKE_SOURCE_DIR}/src/widgets/ToolPicker.cpp
 	${CMAKE_SOURCE_DIR}/src/widgets/ColorPicker.cpp
 	${CMAKE_SOURCE_DIR}/src/widgets/SizePicker.cpp
-	${CMAKE_SOURCE_DIR}/src/widgets/FillPicker.cpp
+	${CMAKE_SOURCE_DIR}/src/widgets/FillTypePicker.cpp
 	)
 
 set(kimageannotator_SRCS ${kimageannotator_SRCS} PARENT_SCOPE)

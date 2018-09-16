@@ -24,12 +24,12 @@
 #include <QHBoxLayout>
 #include <QGraphicsView>
 
-#include "src/gui/VisibilitySwitcher.h"
+#include "src/gui/ConfigWidgetVisibilitySwitcher.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/widgets/ToolPicker.h"
 #include "src/widgets/ColorPicker.h"
 #include "src/widgets/SizePicker.h"
-#include "src/widgets/FillPicker.h"
+#include "src/widgets/FillTypePicker.h"
 
 namespace kImageAnnotator {
 
@@ -50,9 +50,9 @@ private:
 	ColorPicker *mColorPicker;
 	ColorPicker *mTextColorPicker;
 	SizePicker *mSizePicker;
-	FillPicker *mFillPicker;
+	FillTypePicker *mFillTypePicker;
 	Config *mConfig;
-	VisibilitySwitcher mVisibilitySwitcher;
+	ConfigWidgetVisibilitySwitcher mVisibilitySwitcher;
 
 	void initGui();
 	void setupDefaults();
