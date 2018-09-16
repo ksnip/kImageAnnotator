@@ -27,11 +27,11 @@ namespace kImageAnnotator {
 class AnnotationPen : public AbstractAnnotationPath
 {
 public:
-    AnnotationPen(const QPointF &startPosition, AnnotationProperties *properties);
-    ~AnnotationPen() override = default;
+	AnnotationPen(const QPointF &startPosition, AnnotationPathProperties *properties);
+	~AnnotationPen() override = default;
 
 protected:
-    virtual void updateShape() override;
+	virtual void updateShape() override;
 };
 
 } // namespace kImageAnnotator

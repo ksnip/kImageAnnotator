@@ -43,6 +43,7 @@ private:
 	void setTextColor(AnnotationProperties *properties, ToolTypes toolType) const;
 	void setSize(AnnotationProperties *properties, ToolTypes toolType) const;
 	void setFill(AnnotationProperties *properties, ToolTypes toolType) const;
+	void setPathProperties(AnnotationProperties *properties) const;
 };
 
 } // namespace kImageAnnotator

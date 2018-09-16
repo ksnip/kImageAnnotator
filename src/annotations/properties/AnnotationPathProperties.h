@@ -29,6 +29,7 @@ class AnnotationPathProperties : public AnnotationProperties
 public:
 	AnnotationPathProperties() = default;
 	AnnotationPathProperties(const QColor &color, int size);
+	virtual ~AnnotationPathProperties() = default;
 
 	bool smoothPathEnabled() const;
 	void setSmoothPathEnabled(bool enabled);

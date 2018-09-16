@@ -23,23 +23,24 @@ namespace kImageAnnotator {
 
 AnnotationPropertiesFactory::AnnotationPropertiesFactory()
 {
-    mConfig = Config::instance();
+	mConfig = Config::instance();
 }
 
 AnnotationProperties *AnnotationPropertiesFactory::createProperties(ToolTypes toolType) const
 {
-    auto properties = createPropertiesObject(toolType);
+	auto properties = createPropertiesObject(toolType);
 
-    setColor(properties, toolType);
+	setColor(properties, toolType);
 	setTextColor(properties, toolType);
 	setSize(properties, toolType);
 	setFill(properties, toolType);
 	setShadowEnabled(properties);
+	setPathProperties(properties);
 
-    return properties;
+	return properties;
 }
 
-AnnotationProperties* AnnotationPropertiesFactory::createPropertiesObject(ToolTypes toolType) const
+AnnotationProperties *AnnotationPropertiesFactory::createPropertiesObject(ToolTypes toolType) const
 {
 	switch (toolType) {
 		case ToolTypes::Pen:
@@ -52,39 +53,48 @@ AnnotationProperties* AnnotationPropertiesFactory::createPropertiesObject(ToolTy
 
 void AnnotationPropertiesFactory::setColor(AnnotationProperties *properties, ToolTypes toolType) const
 {
-    auto color = mConfig->toolColor(toolType);
+	auto color = mConfig->toolColor(toolType);
 
-    if (toolType == ToolTypes::Marker) {
-        color.setAlpha(120);
-    }
+	if (toolType == ToolTypes::Marker) {
+		color.setAlpha(120);
+	}
 
-    properties->setColor(color);
+	properties->setColor(color);
 }
 
 void AnnotationPropertiesFactory::setTextColor(AnnotationProperties *properties, ToolTypes toolType) const
 {
-    properties->setTextColor(mConfig->toolTextColor(toolType));
+	properties->setTextColor(mConfig->toolTextColor(toolType));
 }
 
 void AnnotationPropertiesFactory::setSize(AnnotationProperties *properties, ToolTypes toolType) const
 {
-    auto size = mConfig->toolSize(toolType);
+	auto size = mConfig->toolSize(toolType);
 
-    if (toolType == ToolTypes::Marker) {
-        size = size * 3;
-    }
+	if (toolType == ToolTypes::Marker) {
+		size = size * 3;
+	}
 
-    properties->setSize(size);
+	properties->setSize(size);
 }
 
 void AnnotationPropertiesFactory::setFill(AnnotationProperties *properties, ToolTypes toolType) const
 {
-    properties->setFillType(mConfig->toolFillType(toolType));
+	properties->setFillType(mConfig->toolFillType(toolType));
 }
 
 void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties *properties) const
 {
-    properties->setShadowEnabled(mConfig->itemShadowEnabled());
+	properties->setShadowEnabled(mConfig->itemShadowEnabled());
+}
+
+void AnnotationPropertiesFactory::setPathProperties(AnnotationProperties *properties) const
+{
+	auto pathProperties = dynamic_cast<AnnotationPathProperties *>(properties);
+	if (pathProperties != nullptr) {
+		pathProperties->setSmoothPathEnabled(mConfig->smoothPathEnabled());
+		pathProperties->setSmoothFactor(mConfig->smoothFactor());
+	}
 }
 
 } // namespace kImageAnnotator

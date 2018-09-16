@@ -31,7 +31,7 @@ class AnnotationProperties
 public:
     AnnotationProperties() = default;
     AnnotationProperties(const QColor &color, int size);
-    ~AnnotationProperties() = default;
+    virtual ~AnnotationProperties() = default;
     QColor color() const;
     void setColor(const QColor &color);
     QColor textColor() const;

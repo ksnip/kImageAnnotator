@@ -24,7 +24,6 @@ namespace kImageAnnotator {
 inline namespace AnnotationConstants {
 const int MinResizeRectSize = 20;
 
-const int PathSmoothFactor = 7;
 } // namespace AnnotationConstants
 
 } // namespace kImageAnnotator

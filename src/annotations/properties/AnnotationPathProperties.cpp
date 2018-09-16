@@ -23,8 +23,6 @@ namespace kImageAnnotator {
 
 AnnotationPathProperties::AnnotationPathProperties(const QColor &color, int size) : AnnotationProperties(color, size)
 {
-	mSmootPathEnabled = true;
-	mSmootFactor = 7;
 }
 
 bool AnnotationPathProperties::smoothPathEnabled() const

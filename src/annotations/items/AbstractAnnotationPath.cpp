@@ -22,7 +22,7 @@
 
 namespace kImageAnnotator {
 
-AbstractAnnotationPath::AbstractAnnotationPath(const QPointF &startPosition, AnnotationProperties *properties) : AbstractAnnotationItem(properties)
+AbstractAnnotationPath::AbstractAnnotationPath(const QPointF &startPosition, AnnotationPathProperties *properties) : AbstractAnnotationItem(properties)
 {
 	mPath = new QPainterPath();
 	mPath->moveTo(startPosition);
@@ -70,10 +70,12 @@ QPointF AbstractAnnotationPath::pointAt(int index) const
 
 void AbstractAnnotationPath::finish()
 {
-	prepareGeometryChange();
-	auto smoothPath = ShapeHelper::smoothOut(*mPath);
-	mPath->swap(smoothPath);
-	updateShape();
+	if (properties()->smoothPathEnabled()) {
+		prepareGeometryChange();
+		auto smoothPath = ShapeHelper::smoothOut(*mPath, properties()->smoothFactor());
+		mPath->swap(smoothPath);
+		updateShape();
+	}
 }
 
 void AbstractAnnotationPath::scalePath(const QRectF &rect)
@@ -87,7 +89,7 @@ void AbstractAnnotationPath::scalePath(const QRectF &rect)
 
 const AnnotationPathProperties *AbstractAnnotationPath::properties() const
 {
-	return static_cast<const AnnotationPathProperties *>(AbstractAnnotationItem::properties());
+	return dynamic_cast<const AnnotationPathProperties *>(AbstractAnnotationItem::properties());
 }
 
 } // namespace kImageAnnotator

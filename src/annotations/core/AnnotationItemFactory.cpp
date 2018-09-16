@@ -46,10 +46,10 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 
 	switch (toolType) {
 		case ToolTypes::Pen:
-			item = new AnnotationPen(initPosition, properties);
+			item = new AnnotationPen(initPosition, dynamic_cast<AnnotationPathProperties *>(properties));
 			break;
 		case ToolTypes::Marker:
-			item = new AnnotationPen(initPosition, properties);
+			item = new AnnotationPen(initPosition, dynamic_cast<AnnotationPathProperties *>(properties));
 			break;
 		case ToolTypes::Line:
 			item = new AnnotationLine(initPosition, properties);

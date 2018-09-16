@@ -31,31 +31,31 @@ namespace kImageAnnotator {
 class ShapeHelper
 {
 public:
-    static QPointF rectTopLeftWithOffset(const QRectF &rect, int offset);
-    static QPointF rectTop(const QRectF &rect);
-    static QPointF rectTopWithOffset(const QRectF &rect, int offset);
-    static QPointF rectTopRightWithOffset(const QRectF &rect, int offset);
-    static QPointF rectRight(const QRectF &rect);
-    static QPointF rectRightWithOffset(const QRectF &rect, int offset);
-    static QPointF rectBottomRightWithOffset(const QRectF &rect, int offset);
-    static QPointF rectBottom(const QRectF &rect);
-    static QPointF rectBottomWithOffset(const QRectF &rect, int offset);
-    static QPointF rectBottomLeftWithOffset(const QRectF &rect, int offset);
-    static QPointF rectLeft(const QRectF &rect);
-    static QPointF rectLeftWithOffset(const QRectF &rect, int offset);
-    static QLineF extendLine(const QLineF &line, int extendBy);
-    static QPointF rectPointAtIndex(const QRectF &rect, int index);
-    static QRectF setRectPointAtIndex(const QRectF &rect, int index, const QPointF &pos);
-    static QPainterPath smoothOut(const QPainterPath &path);
+	static QPointF rectTopLeftWithOffset(const QRectF &rect, int offset);
+	static QPointF rectTop(const QRectF &rect);
+	static QPointF rectTopWithOffset(const QRectF &rect, int offset);
+	static QPointF rectTopRightWithOffset(const QRectF &rect, int offset);
+	static QPointF rectRight(const QRectF &rect);
+	static QPointF rectRightWithOffset(const QRectF &rect, int offset);
+	static QPointF rectBottomRightWithOffset(const QRectF &rect, int offset);
+	static QPointF rectBottom(const QRectF &rect);
+	static QPointF rectBottomWithOffset(const QRectF &rect, int offset);
+	static QPointF rectBottomLeftWithOffset(const QRectF &rect, int offset);
+	static QPointF rectLeft(const QRectF &rect);
+	static QPointF rectLeftWithOffset(const QRectF &rect, int offset);
+	static QLineF extendLine(const QLineF &line, int extendBy);
+	static QPointF rectPointAtIndex(const QRectF &rect, int index);
+	static QRectF setRectPointAtIndex(const QRectF &rect, int index, const QPointF &pos);
+	static QPainterPath smoothOut(const QPainterPath &path, int smootFactor);
 
 private:
-    static int invertOffsetIfTopSmallerThenBottom(const QRectF &rect, int yOffset);
-    static int invertOffsetIfLeftSmallerThenRight(const QRectF &rect, int xOffset);
-    static QPointF getBeginOfRounding(const QPointF &point1, const QPointF &point2);
-    static QPointF getEndOfRounding(const QPointF &point1, const QPointF &point2);
-    static double getRoundingRate(const QPointF &point1, const QPointF &point2);
-    static QList<QPointF> getPathPoints(const QPainterPath &path);
-    static QPainterPath createSmoothPath(const QList<QPointF> &points);
+	static int invertOffsetIfTopSmallerThenBottom(const QRectF &rect, int yOffset);
+	static int invertOffsetIfLeftSmallerThenRight(const QRectF &rect, int xOffset);
+	static QPointF getBeginOfRounding(const QPointF &point1, const QPointF &point2);
+	static QPointF getEndOfRounding(const QPointF &point1, const QPointF &point2);
+	static double getRoundingRate(const QPointF &point1, const QPointF &point2);
+	static QList<QPointF> getPathPoints(const QPainterPath &path, int smootFactor);
+	static QPainterPath createSmoothPath(const QList<QPointF> &points);
 };
 
 } // namespace kImageAnnotator
