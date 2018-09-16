@@ -34,12 +34,7 @@ Config::Config()
 		ToolTypes::Text
 	};
 	initGeneralSettings();
-	initSelectedTool();
-	initToolColors();
-	initToolTextColors();
-	initToolSizes();
-	initToolFillTypes();
-	initFonts();
+	initToolSettings();
 }
 
 ToolTypes Config::selectedTool() const
@@ -161,6 +156,7 @@ void Config::setSmoothPathEnabled(bool enabled)
 void Config::setSaveToolSelection(bool enabled)
 {
 	mSaveToolSelection = enabled;
+	initToolSettings();
 }
 
 int Config::smoothFactor() const
@@ -174,6 +170,16 @@ void Config::setSmoothFactor(int factor)
 }
 
 // Private Methodes
+
+void Config::initToolSettings()
+{
+	initSelectedTool();
+	initToolColors();
+	initToolTextColors();
+	initToolSizes();
+	initToolFillTypes();
+	initFonts();
+}
 
 void Config::initSelectedTool()
 {

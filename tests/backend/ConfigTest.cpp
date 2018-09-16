@@ -33,11 +33,11 @@ void ConfigTest::cleanupTestCase()
 void ConfigTest::TestSetSelectedTool_Should_EmitSignal_When_ToolChanged()
 {
 	qRegisterMetaType<ToolTypes>("ToolTypes");
-	auto configInstance = new Config;
-	configInstance->setSaveToolSelection(false);
-	QSignalSpy spy(configInstance, &Config::toolChanged);
+	auto config = new Config;
+	config->setSaveToolSelection(false);
+	QSignalSpy spy(config, &Config::toolChanged);
 
-	configInstance->setSelectedTool(ToolTypes::Arrow);
+	config->setSelectedTool(ToolTypes::Arrow);
 
 	QCOMPARE(spy.count(), 1);
 	auto type = qvariant_cast<ToolTypes>(spy.at(0).at(0));
@@ -50,10 +50,10 @@ void ConfigTest::TestSetSelectedTool_Should_NotSaveSelection_When_SaveToolSelect
 	auto defaultTool = ToolTypes::Pen;
 	QSettings settings;
 	settings.remove(ConfigNameHelper::toolType());
-	auto configInstance = new Config;
-	configInstance->setSaveToolSelection(false);
+	auto config = new Config;
+	config->setSaveToolSelection(false);
 
-	configInstance->setSelectedTool(ToolTypes::Ellipse);
+	config->setSelectedTool(ToolTypes::Ellipse);
 
 	auto saveTool = settings.value(ConfigNameHelper::toolType(), static_cast<int>(defaultTool)).value<ToolTypes>();
 	QCOMPARE(saveTool, defaultTool);
@@ -65,10 +65,10 @@ void ConfigTest::TestSetSelectedTool_Should_SaveSelection_When_SaveToolSelection
 	auto defaultTool = ToolTypes::Pen;
 	auto selectedTool = ToolTypes::Ellipse;
 	QSettings settings;
-	auto configInstance = new Config;
-	configInstance->setSaveToolSelection(true);
+	auto config = new Config;
+	config->setSaveToolSelection(true);
 
-	configInstance->setSelectedTool(selectedTool);
+	config->setSelectedTool(selectedTool);
 
 	auto saveTool = settings.value(ConfigNameHelper::toolType(), static_cast<int>(defaultTool)).value<ToolTypes>();
 	QCOMPARE(saveTool, selectedTool);

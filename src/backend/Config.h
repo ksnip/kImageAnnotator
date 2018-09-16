@@ -92,6 +92,7 @@ private:
 	bool mSaveToolSelection;
 	int mSmoothFactor;
 
+	void initToolSettings();
 	void initSelectedTool();
 	void initToolColors();
 	void initToolTextColors();
