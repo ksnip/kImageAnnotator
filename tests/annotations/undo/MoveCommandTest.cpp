@@ -22,112 +22,112 @@
 
 void MoveCommandTest::TestRedo_Should_MoveItemToNewPosition()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    auto item = new AnnotationLine(line.p1(), properties);
-    item->addPoint(line.p2());
-    auto oldPosition = item->position();
-    QPointF newPosition(50, 50);
-    QHash<AbstractAnnotationItem *, QPointF> itemToPosition;
-    itemToPosition[item] = newPosition;
-    MoveCommand moveCommand(itemToPosition);
-    QCOMPARE(item->position(), oldPosition);
+	AnnotationProperties properties(Qt::red, 1);
+	QLineF line(10, 10, 20, 20);
+	auto item = new AnnotationLine(line.p1(), &properties);
+	item->addPoint(line.p2());
+	auto oldPosition = item->position();
+	QPointF newPosition(50, 50);
+	QHash<AbstractAnnotationItem *, QPointF> itemToPosition;
+	itemToPosition[item] = newPosition;
+	MoveCommand moveCommand(itemToPosition);
+	QCOMPARE(item->position(), oldPosition);
 
-    moveCommand.redo();
+	moveCommand.redo();
 
-    QCOMPARE(item->position(), newPosition);
+	QCOMPARE(item->position(), newPosition);
 }
 
 void MoveCommandTest::TestUndo_Should_MoveItemToInitialPosition()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    auto item = new AnnotationLine(line.p1(), properties);
-    item->addPoint(line.p2());
-    auto oldPosition = item->position();
-    QPointF newPosition(50, 50);
-    QHash<AbstractAnnotationItem *, QPointF> itemToPosition;
-    itemToPosition[item] = newPosition;
-    MoveCommand moveCommand(itemToPosition);
-    moveCommand.redo();
-    QCOMPARE(item->position(), newPosition);
+	AnnotationProperties properties(Qt::red, 1);
+	QLineF line(10, 10, 20, 20);
+	auto item = new AnnotationLine(line.p1(), &properties);
+	item->addPoint(line.p2());
+	auto oldPosition = item->position();
+	QPointF newPosition(50, 50);
+	QHash<AbstractAnnotationItem *, QPointF> itemToPosition;
+	itemToPosition[item] = newPosition;
+	MoveCommand moveCommand(itemToPosition);
+	moveCommand.redo();
+	QCOMPARE(item->position(), newPosition);
 
-    moveCommand.undo();
+	moveCommand.undo();
 
-    QCOMPARE(item->position(), oldPosition);
+	QCOMPARE(item->position(), oldPosition);
 }
 
 void MoveCommandTest::TestMergeWith_Should_TakeNewPositionFromLastMoveCommand()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    auto item = new AnnotationLine(line.p1(), properties);
-    item->addPoint(line.p2());
-    auto oldPosition = item->position();
-    QPointF firstPosition(50, 50);
-    QPointF secondPosition(70, 70);
-    QHash<AbstractAnnotationItem *, QPointF> itemToPositionFirst;
-    QHash<AbstractAnnotationItem *, QPointF> itemToPositionSecond;
-    itemToPositionFirst[item] = firstPosition;
-    itemToPositionFirst[item] = secondPosition;
-    MoveCommand moveCommandFirst(itemToPositionFirst);
-    MoveCommand moveCommandSecond(itemToPositionSecond);
+	AnnotationProperties properties(Qt::red, 1);
+	QLineF line(10, 10, 20, 20);
+	auto item = new AnnotationLine(line.p1(), &properties);
+	item->addPoint(line.p2());
+	auto oldPosition = item->position();
+	QPointF firstPosition(50, 50);
+	QPointF secondPosition(70, 70);
+	QHash<AbstractAnnotationItem *, QPointF> itemToPositionFirst;
+	QHash<AbstractAnnotationItem *, QPointF> itemToPositionSecond;
+	itemToPositionFirst[item] = firstPosition;
+	itemToPositionFirst[item] = secondPosition;
+	MoveCommand moveCommandFirst(itemToPositionFirst);
+	MoveCommand moveCommandSecond(itemToPositionSecond);
 
-    moveCommandFirst.mergeWith(&moveCommandSecond);
+	moveCommandFirst.mergeWith(&moveCommandSecond);
 
-    QCOMPARE(item->position(), oldPosition);
-    moveCommandFirst.redo();
-    QCOMPARE(item->position(), secondPosition);
+	QCOMPARE(item->position(), oldPosition);
+	moveCommandFirst.redo();
+	QCOMPARE(item->position(), secondPosition);
 }
 
 void MoveCommandTest::TestMergeWith_Should_KeepInitialPositionFromFirstMoveCommand()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    auto item = new AnnotationLine(line.p1(), properties);
-    item->addPoint(line.p2());
-    auto oldPosition = item->position();
-    QPointF firstPosition(50, 50);
-    QPointF secondPosition(70, 70);
-    QHash<AbstractAnnotationItem *, QPointF> itemToPositionFirst;
-    QHash<AbstractAnnotationItem *, QPointF> itemToPositionSecond;
-    itemToPositionFirst[item] = firstPosition;
-    itemToPositionFirst[item] = secondPosition;
-    MoveCommand moveCommandFirst(itemToPositionFirst);
-    MoveCommand moveCommandSecond(itemToPositionSecond);
+	AnnotationProperties properties(Qt::red, 1);
+	QLineF line(10, 10, 20, 20);
+	auto item = new AnnotationLine(line.p1(), &properties);
+	item->addPoint(line.p2());
+	auto oldPosition = item->position();
+	QPointF firstPosition(50, 50);
+	QPointF secondPosition(70, 70);
+	QHash<AbstractAnnotationItem *, QPointF> itemToPositionFirst;
+	QHash<AbstractAnnotationItem *, QPointF> itemToPositionSecond;
+	itemToPositionFirst[item] = firstPosition;
+	itemToPositionFirst[item] = secondPosition;
+	MoveCommand moveCommandFirst(itemToPositionFirst);
+	MoveCommand moveCommandSecond(itemToPositionSecond);
 
-    moveCommandFirst.mergeWith(&moveCommandSecond);
+	moveCommandFirst.mergeWith(&moveCommandSecond);
 
-    moveCommandFirst.redo();
-    QCOMPARE(item->position(), secondPosition);
-    moveCommandFirst.undo();
-    QCOMPARE(item->position(), oldPosition);
+	moveCommandFirst.redo();
+	QCOMPARE(item->position(), secondPosition);
+	moveCommandFirst.undo();
+	QCOMPARE(item->position(), oldPosition);
 }
 
 void MoveCommandTest::TestMergeWith_Should_NotMergeMoveCommands_When_ItemsAreNotTheSame()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line1(10, 10, 20, 20);
-    QLineF line2(15, 15, 25, 25);
-    auto item1 = new AnnotationLine(line1.p1(), properties);
-    auto item2 = new AnnotationLine(line2.p1(), properties);
-    item1->addPoint(line1.p2());
-    item2->addPoint(line2.p2());
-    QPointF newPosition1(50, 50);
-    QPointF newPosition2(60, 60);
-    QHash<AbstractAnnotationItem *, QPointF> item1ToPosition;
-    QHash<AbstractAnnotationItem *, QPointF> item2ToPosition;
-    item1ToPosition[item1] = newPosition1;
-    item2ToPosition[item2] = newPosition2;
-    MoveCommand moveCommand1(item1ToPosition);
-    MoveCommand moveCommand2(item2ToPosition);
+	AnnotationProperties properties(Qt::red, 1);
+	QLineF line1(10, 10, 20, 20);
+	QLineF line2(15, 15, 25, 25);
+	auto item1 = new AnnotationLine(line1.p1(), &properties);
+	auto item2 = new AnnotationLine(line2.p1(), &properties);
+	item1->addPoint(line1.p2());
+	item2->addPoint(line2.p2());
+	QPointF newPosition1(50, 50);
+	QPointF newPosition2(60, 60);
+	QHash<AbstractAnnotationItem *, QPointF> item1ToPosition;
+	QHash<AbstractAnnotationItem *, QPointF> item2ToPosition;
+	item1ToPosition[item1] = newPosition1;
+	item2ToPosition[item2] = newPosition2;
+	MoveCommand moveCommand1(item1ToPosition);
+	MoveCommand moveCommand2(item2ToPosition);
 
-    moveCommand1.mergeWith(&moveCommand2);
+	moveCommand1.mergeWith(&moveCommand2);
 
-    moveCommand1.redo();
-    moveCommand2.redo();
-    QCOMPARE(item1->position(), newPosition1);
-    QCOMPARE(item2->position(), newPosition2);
+	moveCommand1.redo();
+	moveCommand2.redo();
+	QCOMPARE(item1->position(), newPosition1);
+	QCOMPARE(item2->position(), newPosition2);
 }
 
 QTEST_MAIN(MoveCommandTest);

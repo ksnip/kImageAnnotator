@@ -39,11 +39,9 @@ private slots:
 
 	void TestCreateProperties_Should_SetPropertiesSizeBasedOnConfiguration();
 	void TestCreateProperties_Should_SetPropertiesColorBasedOnConfiguration();
-	void TestCreateProperties_Should_SetPropertiesForegroundColorBasedOnConfiguration();
-	void TestCreateProperties_Should_SetPropertiesFillBasedOnConfiguration();
-	void TestCreateProperties_Should_SetShadowEnabledToFalse_When_ToolIsMarker();
-	void TestCreateProperties_Should_SetShadowEnabledToTrue_When_ToolIsNotMarker();
-	void TestCreateProperties_Should_SetShadowEnabledToTrue_When_ToolIsNotMarker_data();
+	void TestCreateProperties_Should_SetPropertiesTextColorBasedOnConfiguration();
+	void TestCreateProperties_Should_SetPropertiesFillTypeBasedOnConfiguration();
+	void TestCreateProperties_Should_SetShadowEnabledBasedOnConfiguration();
 };
 
 #endif // ANNOTATIONPROPERTIESFACTORYTEST_H

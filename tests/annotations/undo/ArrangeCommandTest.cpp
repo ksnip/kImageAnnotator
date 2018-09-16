@@ -22,99 +22,105 @@
 
 void ArrangeCommandTest::TestRedo_Should_SwapItemPosition()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QPointF pos(10, 10);
-    AnnotationLine item1(pos, properties);
-    AnnotationLine item2(pos, properties);
-    item1.setZValue(1);
-    item2.setZValue(2);
-    QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> itemToSwap;
-    itemToSwap.append(qMakePair(&item1, &item2));
-    QList<AbstractAnnotationItem *> emptyItemList;
-    ArrangeCommand arrangeCommand(itemToSwap, &emptyItemList);
-    QCOMPARE((int) item1.zValue(), 1);
-    QCOMPARE((int) item2.zValue(), 2);
+	auto properties1 = new AnnotationProperties(Qt::red, 1);
+	auto properties2 = new AnnotationProperties(Qt::red, 1);
+	QPointF pos(10, 10);
+	AnnotationLine item1(pos, properties1);
+	AnnotationLine item2(pos, properties2);
+	item1.setZValue(1);
+	item2.setZValue(2);
+	QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> itemToSwap;
+	itemToSwap.append(qMakePair(&item1, &item2));
+	QList<AbstractAnnotationItem *> emptyItemList;
+	ArrangeCommand arrangeCommand(itemToSwap, &emptyItemList);
+	QCOMPARE((int) item1.zValue(), 1);
+	QCOMPARE((int) item2.zValue(), 2);
 
-    arrangeCommand.redo();
+	arrangeCommand.redo();
 
-    QCOMPARE((int) item1.zValue(), 2);
-    QCOMPARE((int) item2.zValue(), 1);
+	QCOMPARE((int) item1.zValue(), 2);
+	QCOMPARE((int) item2.zValue(), 1);
 }
 
 void ArrangeCommandTest::TestRedo_Should_SortItemByZValue()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QPointF pos(10, 10);
-    AnnotationLine item1(pos, properties);
-    AnnotationLine item2(pos, properties);
-    AnnotationLine item3(pos, properties);
-    item1.setZValue(1);
-    item2.setZValue(2);
-    item3.setZValue(3);
-    QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> emptySwapList;
-    QList<AbstractAnnotationItem *> allItems;
-    allItems.append(&item2);
-    allItems.append(&item1);
-    allItems.append(&item3);
-    ArrangeCommand arrangeCommand(emptySwapList, &allItems);
-    QCOMPARE((int) allItems[0]->zValue(), 2);
-    QCOMPARE((int) allItems[1]->zValue(), 1);
-    QCOMPARE((int) allItems[2]->zValue(), 3);
+	auto properties1 = new AnnotationProperties(Qt::red, 1);
+	auto properties2 = new AnnotationProperties(Qt::red, 1);
+	auto properties3 = new AnnotationProperties(Qt::red, 1);
+	QPointF pos(10, 10);
+	AnnotationLine item1(pos, properties1);
+	AnnotationLine item2(pos, properties2);
+	AnnotationLine item3(pos, properties3);
+	item1.setZValue(1);
+	item2.setZValue(2);
+	item3.setZValue(3);
+	QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> emptySwapList;
+	QList<AbstractAnnotationItem *> allItems;
+	allItems.append(&item2);
+	allItems.append(&item1);
+	allItems.append(&item3);
+	ArrangeCommand arrangeCommand(emptySwapList, &allItems);
+	QCOMPARE((int) allItems[0]->zValue(), 2);
+	QCOMPARE((int) allItems[1]->zValue(), 1);
+	QCOMPARE((int) allItems[2]->zValue(), 3);
 
-    arrangeCommand.redo();
+	arrangeCommand.redo();
 
-    QCOMPARE((int) allItems[0]->zValue(), 3);
-    QCOMPARE((int) allItems[1]->zValue(), 2);
-    QCOMPARE((int) allItems[2]->zValue(), 1);
+	QCOMPARE((int) allItems[0]->zValue(), 3);
+	QCOMPARE((int) allItems[1]->zValue(), 2);
+	QCOMPARE((int) allItems[2]->zValue(), 1);
 }
 
 void ArrangeCommandTest::TestUndo_Should_SwapItemPositionBack()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QPointF pos(10, 10);
-    AnnotationLine item1(pos, properties);
-    AnnotationLine item2(pos, properties);
-    item1.setZValue(1);
-    item2.setZValue(2);
-    QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> itemToSwap;
-    itemToSwap.append(qMakePair(&item1, &item2));
-    QList<AbstractAnnotationItem *> emptyItemList;
-    ArrangeCommand arrangeCommand(itemToSwap, &emptyItemList);
-    arrangeCommand.redo();
-    QCOMPARE((int) item1.zValue(), 2);
-    QCOMPARE((int) item2.zValue(), 1);
+	auto properties1 = new AnnotationProperties(Qt::red, 1);
+	auto properties2 = new AnnotationProperties(Qt::red, 1);
+	QPointF pos(10, 10);
+	AnnotationLine item1(pos, properties1);
+	AnnotationLine item2(pos, properties2);
+	item1.setZValue(1);
+	item2.setZValue(2);
+	QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> itemToSwap;
+	itemToSwap.append(qMakePair(&item1, &item2));
+	QList<AbstractAnnotationItem *> emptyItemList;
+	ArrangeCommand arrangeCommand(itemToSwap, &emptyItemList);
+	arrangeCommand.redo();
+	QCOMPARE((int) item1.zValue(), 2);
+	QCOMPARE((int) item2.zValue(), 1);
 
-    arrangeCommand.redo();
+	arrangeCommand.redo();
 
-    QCOMPARE((int) item1.zValue(), 1);
-    QCOMPARE((int) item2.zValue(), 2);
+	QCOMPARE((int) item1.zValue(), 1);
+	QCOMPARE((int) item2.zValue(), 2);
 }
 
 void ArrangeCommandTest::TestUndo_Should_SortItemByZValue()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QPointF pos(10, 10);
-    AnnotationLine item1(pos, properties);
-    AnnotationLine item2(pos, properties);
-    AnnotationLine item3(pos, properties);
-    item1.setZValue(1);
-    item2.setZValue(2);
-    item3.setZValue(3);
-    QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> emptySwapList;
-    QList<AbstractAnnotationItem *> allItems;
-    allItems.append(&item2);
-    allItems.append(&item1);
-    allItems.append(&item3);
-    ArrangeCommand arrangeCommand(emptySwapList, &allItems);
-    QCOMPARE((int) allItems[0]->zValue(), 2);
-    QCOMPARE((int) allItems[1]->zValue(), 1);
-    QCOMPARE((int) allItems[2]->zValue(), 3);
+	auto properties1 = new AnnotationProperties(Qt::red, 1);
+	auto properties2 = new AnnotationProperties(Qt::red, 1);
+	auto properties3 = new AnnotationProperties(Qt::red, 1);
+	QPointF pos(10, 10);
+	AnnotationLine item1(pos, properties1);
+	AnnotationLine item2(pos, properties2);
+	AnnotationLine item3(pos, properties3);
+	item1.setZValue(1);
+	item2.setZValue(2);
+	item3.setZValue(3);
+	QList<QPair<AbstractAnnotationItem *, AbstractAnnotationItem *>> emptySwapList;
+	QList<AbstractAnnotationItem *> allItems;
+	allItems.append(&item2);
+	allItems.append(&item1);
+	allItems.append(&item3);
+	ArrangeCommand arrangeCommand(emptySwapList, &allItems);
+	QCOMPARE((int) allItems[0]->zValue(), 2);
+	QCOMPARE((int) allItems[1]->zValue(), 1);
+	QCOMPARE((int) allItems[2]->zValue(), 3);
 
-    arrangeCommand.undo();
+	arrangeCommand.undo();
 
-    QCOMPARE((int) allItems[0]->zValue(), 3);
-    QCOMPARE((int) allItems[1]->zValue(), 2);
-    QCOMPARE((int) allItems[2]->zValue(), 1);
+	QCOMPARE((int) allItems[0]->zValue(), 3);
+	QCOMPARE((int) allItems[1]->zValue(), 2);
+	QCOMPARE((int) allItems[2]->zValue(), 1);
 }
 
 QTEST_MAIN(ArrangeCommandTest);

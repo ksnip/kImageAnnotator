@@ -21,97 +21,77 @@
 
 void AnnotationPropertiesFactoryTest::initTestCase()
 {
-    QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("/tmp"));
+	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("/tmp"));
 }
 
 void AnnotationPropertiesFactoryTest::cleanupTestCase()
 {
-    QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("$HOME/.config"));
+	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("$HOME/.config"));
 }
 
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesSizeBasedOnConfiguration()
 {
-    const int size = 13;
-    const ToolTypes tool = ToolTypes::Line;
-    auto configInstance = Config::instance();
-    configInstance->setToolSize(size, tool);
-    AnnotationPropertiesFactory propertiesFactory;
+	const int size = 13;
+	const ToolTypes tool = ToolTypes::Line;
+	auto configInstance = Config::instance();
+	configInstance->setToolSize(size, tool);
+	AnnotationPropertiesFactory propertiesFactory;
 
-    auto properties = propertiesFactory.createProperties(tool);
+	auto properties = propertiesFactory.createProperties(tool);
 
-    QCOMPARE(properties.size(), size);
+	QCOMPARE(properties->size(), size);
 }
 
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesColorBasedOnConfiguration()
 {
-    const QColor color(Qt::darkMagenta);
-    const ToolTypes tool = ToolTypes::Line;
-    auto configInstance = Config::instance();
-    configInstance->setToolColor(color, tool);
-    AnnotationPropertiesFactory propertiesFactory;
+	const QColor color(Qt::darkMagenta);
+	const ToolTypes tool = ToolTypes::Line;
+	auto configInstance = Config::instance();
+	configInstance->setToolColor(color, tool);
+	AnnotationPropertiesFactory propertiesFactory;
 
-    auto properties = propertiesFactory.createProperties(tool);
+	auto properties = propertiesFactory.createProperties(tool);
 
-    QCOMPARE(properties.color(), color);
+	QCOMPARE(properties->color(), color);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesForegroundColorBasedOnConfiguration()
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesTextColorBasedOnConfiguration()
 {
-    const QColor foregroundColor(Qt::darkMagenta);
-    const ToolTypes tool = ToolTypes::Number;
-    auto configInstance = Config::instance();
-    configInstance->setToolTextColor(foregroundColor, tool);
-    AnnotationPropertiesFactory propertiesFactory;
+	const QColor foregroundColor(Qt::darkMagenta);
+	const ToolTypes tool = ToolTypes::Number;
+	auto configInstance = Config::instance();
+	configInstance->setToolTextColor(foregroundColor, tool);
+	AnnotationPropertiesFactory propertiesFactory;
 
-    auto properties = propertiesFactory.createProperties(tool);
+	auto properties = propertiesFactory.createProperties(tool);
 
-    QCOMPARE(properties.textColor(), foregroundColor);
+	QCOMPARE(properties->textColor(), foregroundColor);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesFillBasedOnConfiguration()
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesFillTypeBasedOnConfiguration()
 {
-    const FillTypes fill = FillTypes::NoFill;
-    const ToolTypes tool = ToolTypes::Rect;
-    auto configInstance = Config::instance();
-    configInstance->setToolFillType(fill, tool);
-    AnnotationPropertiesFactory propertiesFactory;
+	const FillTypes fill = FillTypes::NoFill;
+	const ToolTypes tool = ToolTypes::Rect;
+	auto configInstance = Config::instance();
+	configInstance->setToolFillType(fill, tool);
+	AnnotationPropertiesFactory propertiesFactory;
 
-    auto properties = propertiesFactory.createProperties(tool);
+	auto properties = propertiesFactory.createProperties(tool);
 
-    QCOMPARE(properties.fillType(), fill);
+	QCOMPARE(properties->fillType(), fill);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetShadowEnabledToFalse_When_ToolIsMarker()
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetShadowEnabledBasedOnConfiguration()
 {
-    const ToolTypes tool = ToolTypes::Marker;
-    AnnotationPropertiesFactory propertiesFactory;
+	const ToolTypes tool = ToolTypes::Pen;
+	auto configInstance = Config::instance();
+	auto enabled = true;
+	configInstance->setItemShadowEnabled(enabled);
+	AnnotationPropertiesFactory propertiesFactory;
 
-    auto properties = propertiesFactory.createProperties(tool);
+	auto properties = propertiesFactory.createProperties(tool);
 
-    QCOMPARE(properties.shadowEnabled(), false);
-}
-
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetShadowEnabledToTrue_When_ToolIsNotMarker()
-{
-    QFETCH(ToolTypes, testTool);
-    const ToolTypes tool = testTool;
-    AnnotationPropertiesFactory propertiesFactory;
-
-    auto properties = propertiesFactory.createProperties(tool);
-
-    QCOMPARE(properties.shadowEnabled(), true);
-}
-
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetShadowEnabledToTrue_When_ToolIsNotMarker_data()
-{
-    QTest::addColumn<ToolTypes>("testTool");
-
-    QTest::newRow("set1") << ToolTypes::Pen;
-    QTest::newRow("set2") << ToolTypes::Number;
-    QTest::newRow("set3") << ToolTypes::Arrow;
-    QTest::newRow("set4") << ToolTypes::Line;
-    QTest::newRow("set5") << ToolTypes::Ellipse;
-    QTest::newRow("set6") << ToolTypes::Rect;
+	QCOMPARE(properties->shadowEnabled(), enabled);
 }
 
 QTEST_MAIN(AnnotationPropertiesFactoryTest);

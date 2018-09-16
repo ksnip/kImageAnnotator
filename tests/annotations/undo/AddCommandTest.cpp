@@ -21,33 +21,33 @@
 
 void AddCommandTest::TestRedo_Should_ApplyOperation()
 {
-    AnnotationArea annotationArea;
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    auto item = new AnnotationLine(line.p1(), properties);
-    item->addPoint(line.p2());
-    AddCommand addCommand(item, &annotationArea);
-    QCOMPARE(annotationArea.items().contains(item), false);
+	AnnotationArea annotationArea;
+	auto properties = new AnnotationProperties(Qt::red, 1);
+	QLineF line(10, 10, 20, 20);
+	auto item = new AnnotationLine(line.p1(), properties);
+	item->addPoint(line.p2());
+	AddCommand addCommand(item, &annotationArea);
+	QCOMPARE(annotationArea.items().contains(item), false);
 
-    addCommand.redo();
+	addCommand.redo();
 
-    QCOMPARE(annotationArea.items().contains(item), true);
+	QCOMPARE(annotationArea.items().contains(item), true);
 }
 
 void AddCommandTest::TestUndo_Should_UndoOperation()
 {
-    AnnotationArea annotationArea;
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    auto item = new AnnotationLine(line.p1(), properties);
-    item->addPoint(line.p2());
-    AddCommand addCommand(item, &annotationArea);
-    addCommand.redo();
-    QCOMPARE(annotationArea.items().contains(item), true);
+	AnnotationArea annotationArea;
+	auto properties = new AnnotationProperties(Qt::red, 1);
+	QLineF line(10, 10, 20, 20);
+	auto item = new AnnotationLine(line.p1(), properties);
+	item->addPoint(line.p2());
+	AddCommand addCommand(item, &annotationArea);
+	addCommand.redo();
+	QCOMPARE(annotationArea.items().contains(item), true);
 
-    addCommand.undo();
+	addCommand.undo();
 
-    QCOMPARE(annotationArea.items().contains(item), false);
+	QCOMPARE(annotationArea.items().contains(item), false);
 }
 
 QTEST_MAIN(AddCommandTest);

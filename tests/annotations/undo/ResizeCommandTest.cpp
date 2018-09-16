@@ -22,109 +22,109 @@
 
 void ResizeCommandTest::TestRedo_Should_MoveProvidedHandleToNewPosition()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    auto item = new AnnotationLine(line.p1(), properties);
-    item->addPoint(line.p2());
-    QPointF newPosition(50, 50);
-    ResizeCommand resize(item, 1, newPosition);
-    QCOMPARE(item->line().p2(), line.p2());
+	AnnotationProperties properties(Qt::red, 1);
+	QLineF line(10, 10, 20, 20);
+	auto item = new AnnotationLine(line.p1(), &properties);
+	item->addPoint(line.p2());
+	QPointF newPosition(50, 50);
+	ResizeCommand resize(item, 1, newPosition);
+	QCOMPARE(item->line().p2(), line.p2());
 
-    resize.redo();
+	resize.redo();
 
-    QCOMPARE(item->line().p2(), newPosition);
+	QCOMPARE(item->line().p2(), newPosition);
 }
 
 void ResizeCommandTest::TestUndo_Should_MoveProvidedHandleToInitialPosition()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    auto item = new AnnotationLine(line.p1(), properties);
-    item->addPoint(line.p2());
-    QPointF newPosition(50, 50);
-    ResizeCommand resize(item, 1, newPosition);
-    resize.redo();
-    QCOMPARE(item->line().p2(), newPosition);
+	AnnotationProperties properties(Qt::red, 1);
+	QLineF line(10, 10, 20, 20);
+	auto item = new AnnotationLine(line.p1(), &properties);
+	item->addPoint(line.p2());
+	QPointF newPosition(50, 50);
+	ResizeCommand resize(item, 1, newPosition);
+	resize.redo();
+	QCOMPARE(item->line().p2(), newPosition);
 
-    resize.undo();
+	resize.undo();
 
-    QCOMPARE(item->line().p2(), line.p2());
+	QCOMPARE(item->line().p2(), line.p2());
 }
 
 void ResizeCommandTest::TestMergeWith_Should_TakeNewHandlePositionFromLastResizeCommand()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    auto item = new AnnotationLine(line.p1(), properties);
-    item->addPoint(line.p2());
-    QPointF newPosition1(50, 50);
-    QPointF newPosition2(60, 60);
-    ResizeCommand resize1(item, 1, newPosition1);
-    ResizeCommand resize2(item, 1, newPosition2);
-    QCOMPARE(item->line().p2(), line.p2());
+	AnnotationProperties properties(Qt::red, 1);
+	QLineF line(10, 10, 20, 20);
+	auto item = new AnnotationLine(line.p1(), &properties);
+	item->addPoint(line.p2());
+	QPointF newPosition1(50, 50);
+	QPointF newPosition2(60, 60);
+	ResizeCommand resize1(item, 1, newPosition1);
+	ResizeCommand resize2(item, 1, newPosition2);
+	QCOMPARE(item->line().p2(), line.p2());
 
-    resize1.mergeWith(&resize2);
-    resize1.redo();
+	resize1.mergeWith(&resize2);
+	resize1.redo();
 
-    QCOMPARE(item->line().p2(), newPosition2);
+	QCOMPARE(item->line().p2(), newPosition2);
 }
 
 void ResizeCommandTest::TestMergeWith_Should_KeepInitialPositionFromFirstResizeCommand()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    auto item = new AnnotationLine(line.p1(), properties);
-    item->addPoint(line.p2());
-    QPointF newPosition1(50, 50);
-    QPointF newPosition2(60, 60);
-    ResizeCommand resize1(item, 1, newPosition1);
-    ResizeCommand resize2(item, 1, newPosition2);
+	AnnotationProperties properties(Qt::red, 1);
+	QLineF line(10, 10, 20, 20);
+	auto item = new AnnotationLine(line.p1(), &properties);
+	item->addPoint(line.p2());
+	QPointF newPosition1(50, 50);
+	QPointF newPosition2(60, 60);
+	ResizeCommand resize1(item, 1, newPosition1);
+	ResizeCommand resize2(item, 1, newPosition2);
 
-    resize1.mergeWith(&resize2);
+	resize1.mergeWith(&resize2);
 
-    resize1.redo();
-    QCOMPARE(item->line().p2(), newPosition2);
-    resize1.undo();
-    QCOMPARE(item->line().p2(), line.p2());
+	resize1.redo();
+	QCOMPARE(item->line().p2(), newPosition2);
+	resize1.undo();
+	QCOMPARE(item->line().p2(), line.p2());
 }
 
 void ResizeCommandTest::TestMergeWith_Should_NotMergeResizeCommands_When_ItemsAreNotTheSame()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line1(10, 10, 20, 20);
-    QLineF line2(15, 15, 25, 25);
-    auto item1 = new AnnotationLine(line1.p1(), properties);
-    auto item2 = new AnnotationLine(line2.p1(), properties);
-    item1->addPoint(line1.p2());
-    item2->addPoint(line2.p2());
-    QPointF newPosition1(50, 50);
-    QPointF newPosition2(60, 60);
-    ResizeCommand resize1(item1, 1, newPosition1);
-    ResizeCommand resize2(item2, 1, newPosition2);
-    QCOMPARE(item1->line().p2(), line1.p2());
+	AnnotationProperties properties(Qt::red, 1);
+	QLineF line1(10, 10, 20, 20);
+	QLineF line2(15, 15, 25, 25);
+	auto item1 = new AnnotationLine(line1.p1(), &properties);
+	auto item2 = new AnnotationLine(line2.p1(), &properties);
+	item1->addPoint(line1.p2());
+	item2->addPoint(line2.p2());
+	QPointF newPosition1(50, 50);
+	QPointF newPosition2(60, 60);
+	ResizeCommand resize1(item1, 1, newPosition1);
+	ResizeCommand resize2(item2, 1, newPosition2);
+	QCOMPARE(item1->line().p2(), line1.p2());
 
-    resize1.mergeWith(&resize2);
+	resize1.mergeWith(&resize2);
 
-    resize1.redo();
-    QCOMPARE(item1->line().p2(), newPosition1);
+	resize1.redo();
+	QCOMPARE(item1->line().p2(), newPosition1);
 }
 
 void ResizeCommandTest::TestMergeWith_Should_NotMergeResizeCommands_When_HandlesAreNotTheSame()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line1(10, 10, 20, 20);
-    auto item1 = new AnnotationLine(line1.p1(), properties);
-    item1->addPoint(line1.p2());
-    QPointF newPosition1(50, 50);
-    QPointF newPosition2(60, 60);
-    ResizeCommand resize1(item1, 1, newPosition1);
-    ResizeCommand resize2(item1, 3, newPosition2);
-    QCOMPARE(item1->line().p2(), line1.p2());
+	AnnotationProperties properties(Qt::red, 1);
+	QLineF line1(10, 10, 20, 20);
+	auto item1 = new AnnotationLine(line1.p1(), &properties);
+	item1->addPoint(line1.p2());
+	QPointF newPosition1(50, 50);
+	QPointF newPosition2(60, 60);
+	ResizeCommand resize1(item1, 1, newPosition1);
+	ResizeCommand resize2(item1, 3, newPosition2);
+	QCOMPARE(item1->line().p2(), line1.p2());
 
-    resize1.mergeWith(&resize2);
+	resize1.mergeWith(&resize2);
 
-    resize1.redo();
-    QCOMPARE(item1->line().p2(), newPosition1);
+	resize1.redo();
+	QCOMPARE(item1->line().p2(), newPosition1);
 }
 
 QTEST_MAIN(ResizeCommandTest);

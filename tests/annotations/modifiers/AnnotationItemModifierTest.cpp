@@ -21,125 +21,127 @@
 
 void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_MoveResizerHandle_When_ClickedOnResizerHandle()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QPointF p1(10, 10);
-    QPointF p2(10, 20);
-    QPointF p3(30, 30);
-    AnnotationLine line(p1, properties);
-    line.addPoint(p2);
-    QList<AbstractAnnotationItem *> items;
-    items.append(&line);
-    AnnotationItemModifier modifer;
-    QUndoStack undoStack;
-    connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
-    modifer.handleMousePress(p1, &items, false);
-    modifer.handleMouseRelease(&items);
+	auto properties = new AnnotationProperties(Qt::red, 1);
+	QPointF p1(10, 10);
+	QPointF p2(10, 20);
+	QPointF p3(30, 30);
+	AnnotationLine line(p1, properties);
+	line.addPoint(p2);
+	QList<AbstractAnnotationItem *> items;
+	items.append(&line);
+	AnnotationItemModifier modifer;
+	QUndoStack undoStack;
+	connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
+	modifer.handleMousePress(p1, &items, false);
+	modifer.handleMouseRelease(&items);
 
-    modifer.handleMousePress(p1, &items, false);
-    modifer.handleMouseMove(p3);
+	modifer.handleMousePress(p1, &items, false);
+	modifer.handleMouseMove(p3);
 
-    QCOMPARE(line.line().p1(), p3);
-    QCOMPARE(line.line().p2(), p2);
+	QCOMPARE(line.line().p1(), p3);
+	QCOMPARE(line.line().p2(), p2);
 }
 
 void AnnotationItemModifierTest::TestHandleMousePressMove_Should_NotMoveResizerHandle_When_NotClickedOnResizerHandle()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QPointF p1(10, 10);
-    QPointF p2(10, 20);
-    QPointF p3(30, 30);
-    QPointF p4(40, 40);
-    AnnotationLine line(p1, properties);
-    line.addPoint(p2);
-    QList<AbstractAnnotationItem *> items;
-    items.append(&line);
-    AnnotationItemModifier modifer;
-    modifer.handleMousePress(p1, &items, false);
-    modifer.handleMouseRelease(&items);
+	auto properties = new AnnotationProperties(Qt::red, 1);
+	QPointF p1(10, 10);
+	QPointF p2(10, 20);
+	QPointF p3(30, 30);
+	QPointF p4(40, 40);
+	AnnotationLine line(p1, properties);
+	line.addPoint(p2);
+	QList<AbstractAnnotationItem *> items;
+	items.append(&line);
+	AnnotationItemModifier modifer;
+	modifer.handleMousePress(p1, &items, false);
+	modifer.handleMouseRelease(&items);
 
-    modifer.handleMousePress(p3, &items, false);
-    modifer.handleMouseMove(p4);
+	modifer.handleMousePress(p3, &items, false);
+	modifer.handleMouseMove(p4);
 
-    QCOMPARE(line.line().p1(), p1);
-    QCOMPARE(line.line().p2(), p2);
+	QCOMPARE(line.line().p1(), p1);
+	QCOMPARE(line.line().p2(), p2);
 }
 
 void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_SelectMultipleItems_When_ClickedNotOnItem()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QPointF p1(10, 10);
-    QPointF p2(10, 20);
-    QPointF p3(15, 15);
-    QPointF p4(20, 20);
-    AnnotationLine line1(p1, properties);
-    AnnotationLine line2(p3, properties);
-    line1.addPoint(p2);
-    line2.addPoint(p4);
-    QList<AbstractAnnotationItem *> items;
-    items.append(&line1);
-    items.append(&line2);
-    AnnotationItemModifier modifer;
+	auto properties1 = new AnnotationProperties(Qt::red, 1);
+	auto properties2 = new AnnotationProperties(Qt::red, 1);
+	QPointF p1(10, 10);
+	QPointF p2(10, 20);
+	QPointF p3(15, 15);
+	QPointF p4(20, 20);
+	AnnotationLine line1(p1, properties1);
+	AnnotationLine line2(p3, properties2);
+	line1.addPoint(p2);
+	line2.addPoint(p4);
+	QList<AbstractAnnotationItem *> items;
+	items.append(&line1);
+	items.append(&line2);
+	AnnotationItemModifier modifer;
 
-    modifer.handleMousePress(p1 + QPointF(-5, -5), &items, false);
-    modifer.handleMouseMove(p4 + QPointF(5, 5));
-    modifer.handleMouseRelease(&items);
+	modifer.handleMousePress(p1 + QPointF(-5, -5), &items, false);
+	modifer.handleMouseMove(p4 + QPointF(5, 5));
+	modifer.handleMouseRelease(&items);
 
-    auto results = modifer.selectedItems();
-    QCOMPARE(results.count(), 2);
-    QCOMPARE(results.contains(&line1), true);
-    QCOMPARE(results.contains(&line2), true);
+	auto results = modifer.selectedItems();
+	QCOMPARE(results.count(), 2);
+	QCOMPARE(results.contains(&line1), true);
+	QCOMPARE(results.contains(&line2), true);
 }
 
 void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveClickedItem_When_ClickedOnItemAndMoved()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QPointF p1(10, 10);
-    QPointF p2(20, 20);
-    QPointF clickPos(15, 15);
-    QPointF movePos(30, 30);
-    AnnotationLine line(p1, properties);
-    line.addPoint(p2);
-    QList<AbstractAnnotationItem *> items;
-    items.append(&line);
-    AnnotationItemModifier modifer;
-    QUndoStack undoStack;
-    connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
+	auto properties = new AnnotationProperties(Qt::red, 1);
+	QPointF p1(10, 10);
+	QPointF p2(20, 20);
+	QPointF clickPos(15, 15);
+	QPointF movePos(30, 30);
+	AnnotationLine line(p1, properties);
+	line.addPoint(p2);
+	QList<AbstractAnnotationItem *> items;
+	items.append(&line);
+	AnnotationItemModifier modifer;
+	QUndoStack undoStack;
+	connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
 
-    modifer.handleMousePress(clickPos, &items, false);
-    modifer.handleMouseMove(movePos);
+	modifer.handleMousePress(clickPos, &items, false);
+	modifer.handleMouseMove(movePos);
 
-    QCOMPARE(line.boundingRect().topLeft(), movePos - (clickPos - p1));
+	QCOMPARE(line.boundingRect().topLeft(), movePos - (clickPos - p1));
 }
 
 void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveSelectedItems_When_ClickedOnOfSelectedItemsAndMoved()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QPointF p1(10, 10);
-    QPointF p2(30, 30);
-    QPointF p3(45, 45);
-    QPointF p4(60, 60);
-    QPointF clickPos(20, 20);
-    QPointF movePos(80, 80);
-    AnnotationLine line1(p1, properties);
-    AnnotationLine line2(p3, properties);
-    line1.addPoint(p2);
-    line2.addPoint(p4);
-    QList<AbstractAnnotationItem *> items;
-    items.append(&line1);
-    items.append(&line2);
-    AnnotationItemModifier modifer;
-    QUndoStack undoStack;
-    connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
-    modifer.handleMousePress(p1 + QPointF(-5, -5), &items, false);
-    modifer.handleMouseMove(p4 + QPointF(5, 5));
-    modifer.handleMouseRelease(&items);
-    QCOMPARE(modifer.selectedItems().count(), 2);
+	auto properties1 = new AnnotationProperties(Qt::red, 1);
+	auto properties2 = new AnnotationProperties(Qt::red, 1);
+	QPointF p1(10, 10);
+	QPointF p2(30, 30);
+	QPointF p3(45, 45);
+	QPointF p4(60, 60);
+	QPointF clickPos(20, 20);
+	QPointF movePos(80, 80);
+	AnnotationLine line1(p1, properties1);
+	AnnotationLine line2(p3, properties2);
+	line1.addPoint(p2);
+	line2.addPoint(p4);
+	QList<AbstractAnnotationItem *> items;
+	items.append(&line1);
+	items.append(&line2);
+	AnnotationItemModifier modifer;
+	QUndoStack undoStack;
+	connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
+	modifer.handleMousePress(p1 + QPointF(-5, -5), &items, false);
+	modifer.handleMouseMove(p4 + QPointF(5, 5));
+	modifer.handleMouseRelease(&items);
+	QCOMPARE(modifer.selectedItems().count(), 2);
 
-    modifer.handleMousePress(clickPos, &items, false);
-    modifer.handleMouseMove(movePos);
+	modifer.handleMousePress(clickPos, &items, false);
+	modifer.handleMouseMove(movePos);
 
-    QCOMPARE(line1.boundingRect().topLeft(), movePos - (clickPos - p1));
-    QCOMPARE(line2.boundingRect().topLeft(), movePos - (clickPos - p3));
+	QCOMPARE(line1.boundingRect().topLeft(), movePos - (clickPos - p1));
+	QCOMPARE(line2.boundingRect().topLeft(), movePos - (clickPos - p3));
 }
 
 QTEST_MAIN(AnnotationItemModifierTest);

@@ -21,135 +21,136 @@
 
 void AnnotationMultiItemResizerTest::TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line1(10, 10, 20, 20);
-    AnnotationLine item1(line1.p1(), properties);
-    item1.addPoint(line1.p2());
-    QList<AbstractAnnotationItem *> items = {&item1};
-    AnnotationMultiItemResizer itemResizer;
-    itemResizer.attachTo(items);
+	auto properties = new AnnotationProperties(Qt::red, 1);
+	QLineF line1(10, 10, 20, 20);
+	AnnotationLine item1(line1.p1(), properties);
+	item1.addPoint(line1.p2());
+	QList<AbstractAnnotationItem *> items = { &item1 };
+	AnnotationMultiItemResizer itemResizer;
+	itemResizer.attachTo(items);
 
-    itemResizer.grabHandle(line1.p1());
+	itemResizer.grabHandle(line1.p1());
 
-    QCOMPARE(itemResizer.isResizing(), true);
+	QCOMPARE(itemResizer.isResizing(), true);
 }
 
 void AnnotationMultiItemResizerTest::TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line1(10, 10, 20, 20);
-    AnnotationLine item1(line1.p1(), properties);
-    item1.addPoint(line1.p2());
-    QList<AbstractAnnotationItem *> items = {&item1};
-    AnnotationMultiItemResizer itemResizer;
-    itemResizer.attachTo(items);
+	auto properties = new AnnotationProperties(Qt::red, 1);
+	QLineF line1(10, 10, 20, 20);
+	AnnotationLine item1(line1.p1(), properties);
+	item1.addPoint(line1.p2());
+	QList<AbstractAnnotationItem *> items = { &item1 };
+	AnnotationMultiItemResizer itemResizer;
+	itemResizer.attachTo(items);
 
-    itemResizer.grabHandle(line1.p1() + QPointF(-10, -10));
+	itemResizer.grabHandle(line1.p1() + QPointF(-10, -10));
 
-    QCOMPARE(itemResizer.isResizing(), false);
+	QCOMPARE(itemResizer.isResizing(), false);
 }
 
 void AnnotationMultiItemResizerTest::TestGrabHandle_Should_MoveResizeHandle_When_HandleGrabbed()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line1(10, 10, 20, 20);
-    QPointF newPoint(30, 30);
-    AnnotationLine item1(line1.p1(), properties);
-    item1.addPoint(line1.p2());
-    QList<AbstractAnnotationItem *> items = {&item1};
-    AnnotationMultiItemResizer itemResizer;
-    QUndoStack undoStack;
-    connect(&itemResizer, &AnnotationMultiItemResizer::newCommand, &undoStack, &QUndoStack::push);
-    itemResizer.attachTo(items);
+	auto properties = new AnnotationProperties(Qt::red, 1);
+	QLineF line1(10, 10, 20, 20);
+	QPointF newPoint(30, 30);
+	AnnotationLine item1(line1.p1(), properties);
+	item1.addPoint(line1.p2());
+	QList<AbstractAnnotationItem *> items = { &item1 };
+	AnnotationMultiItemResizer itemResizer;
+	QUndoStack undoStack;
+	connect(&itemResizer, &AnnotationMultiItemResizer::newCommand, &undoStack, &QUndoStack::push);
+	itemResizer.attachTo(items);
 
-    itemResizer.grabHandle(line1.p1());
-    itemResizer.moveHandle(newPoint);
+	itemResizer.grabHandle(line1.p1());
+	itemResizer.moveHandle(newPoint);
 
-    QCOMPARE(item1.line().p1(), newPoint);
+	QCOMPARE(item1.line().p1(), newPoint);
 }
 
 void AnnotationMultiItemResizerTest::TestGrabHandle_Should_OnlyMoveOneResizeHandle_When_MultipleItemsInList()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line1(10, 10, 20, 20);
-    QPointF newPoint(30, 30);
-    AnnotationLine item1(line1.p1(), properties);
-    AnnotationLine item2(line1.p1(), properties);
-    item1.addPoint(line1.p2());
-    item2.addPoint(line1.p2());
-    QList<AbstractAnnotationItem *> items = {&item1, &item2};
-    AnnotationMultiItemResizer itemResizer;
-    QUndoStack undoStack;
-    connect(&itemResizer, &AnnotationMultiItemResizer::newCommand, &undoStack, &QUndoStack::push);
-    itemResizer.attachTo(items);
+	auto properties1 = new AnnotationProperties(Qt::red, 1);
+	auto properties2 = new AnnotationProperties(Qt::red, 1);
+	QLineF line1(10, 10, 20, 20);
+	QPointF newPoint(30, 30);
+	AnnotationLine item1(line1.p1(), properties1);
+	AnnotationLine item2(line1.p1(), properties2);
+	item1.addPoint(line1.p2());
+	item2.addPoint(line1.p2());
+	QList<AbstractAnnotationItem *> items = { &item1, &item2 };
+	AnnotationMultiItemResizer itemResizer;
+	QUndoStack undoStack;
+	connect(&itemResizer, &AnnotationMultiItemResizer::newCommand, &undoStack, &QUndoStack::push);
+	itemResizer.attachTo(items);
 
-    itemResizer.grabHandle(line1.p1());
-    itemResizer.moveHandle(newPoint);
+	itemResizer.grabHandle(line1.p1());
+	itemResizer.moveHandle(newPoint);
 
-    QCOMPARE(item1.line().p1(), newPoint);
-    QCOMPARE(item1.line().p2(), line1.p2());
-    QCOMPARE(item2.line().p1(), line1.p1());
-    QCOMPARE(item2.line().p2(), line1.p2());
+	QCOMPARE(item1.line().p1(), newPoint);
+	QCOMPARE(item1.line().p2(), line1.p2());
+	QCOMPARE(item2.line().p1(), line1.p1());
+	QCOMPARE(item2.line().p2(), line1.p2());
 }
 
 void AnnotationMultiItemResizerTest::TestReleaseHandle_Should_ReleaseHandle()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line1(10, 10, 20, 20);
-    AnnotationLine item1(line1.p1(), properties);
-    item1.addPoint(line1.p2());
-    QList<AbstractAnnotationItem *> items = {&item1};
-    AnnotationMultiItemResizer itemResizer;
-    itemResizer.attachTo(items);
-    itemResizer.grabHandle(line1.p1());
-    QCOMPARE(itemResizer.isResizing(), true);
+	auto properties = new AnnotationProperties(Qt::red, 1);
+	QLineF line1(10, 10, 20, 20);
+	AnnotationLine item1(line1.p1(), properties);
+	item1.addPoint(line1.p2());
+	QList<AbstractAnnotationItem *> items = { &item1 };
+	AnnotationMultiItemResizer itemResizer;
+	itemResizer.attachTo(items);
+	itemResizer.grabHandle(line1.p1());
+	QCOMPARE(itemResizer.isResizing(), true);
 
-    itemResizer.releaseHandle();
+	itemResizer.releaseHandle();
 
-    QCOMPARE(itemResizer.isResizing(), false);
+	QCOMPARE(itemResizer.isResizing(), false);
 }
 
 void AnnotationMultiItemResizerTest::TestHasItemsAttached_Should_ReturnFalse_When_NoItemsInList()
 {
-    QList<AbstractAnnotationItem *> items;
-    AnnotationMultiItemResizer itemResizer;
-    itemResizer.attachTo(items);
+	QList<AbstractAnnotationItem *> items;
+	AnnotationMultiItemResizer itemResizer;
+	itemResizer.attachTo(items);
 
-    auto result = itemResizer.hasItemsAttached();
+	auto result = itemResizer.hasItemsAttached();
 
-    QCOMPARE(result, false);
+	QCOMPARE(result, false);
 }
 
 void AnnotationMultiItemResizerTest::TestHasItemsAttached_Should_ReturnTrue_When_ItemsInList()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line1(10, 10, 20, 20);
-    AnnotationLine item1(line1.p1(), properties);
-    item1.addPoint(line1.p2());
-    QList<AbstractAnnotationItem *> items = {&item1};
-    AnnotationMultiItemResizer itemResizer;
-    itemResizer.attachTo(items);
+	auto properties = new AnnotationProperties(Qt::red, 1);
+	QLineF line1(10, 10, 20, 20);
+	AnnotationLine item1(line1.p1(), properties);
+	item1.addPoint(line1.p2());
+	QList<AbstractAnnotationItem *> items = { &item1 };
+	AnnotationMultiItemResizer itemResizer;
+	itemResizer.attachTo(items);
 
-    auto result = itemResizer.hasItemsAttached();
+	auto result = itemResizer.hasItemsAttached();
 
-    QCOMPARE(result, true);
+	QCOMPARE(result, true);
 }
 
 void AnnotationMultiItemResizerTest::TestUpdate_Should_HideResizers_When_ItemsOfResizersNotVisible()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line1(10, 10, 20, 20);
-    AnnotationLine item1(line1.p1(), properties);
-    item1.addPoint(line1.p2());
-    QList<AbstractAnnotationItem *> items = {&item1};
-    AnnotationMultiItemResizer itemResizer;
-    itemResizer.attachTo(items);
-    QCOMPARE(itemResizer.hasItemsAttached(), true);
-    item1.hide();
+	auto properties = new AnnotationProperties(Qt::red, 1);
+	QLineF line1(10, 10, 20, 20);
+	AnnotationLine item1(line1.p1(), properties);
+	item1.addPoint(line1.p2());
+	QList<AbstractAnnotationItem *> items = { &item1 };
+	AnnotationMultiItemResizer itemResizer;
+	itemResizer.attachTo(items);
+	QCOMPARE(itemResizer.hasItemsAttached(), true);
+	item1.hide();
 
-    itemResizer.update();
+	itemResizer.update();
 
-    QCOMPARE(itemResizer.hasItemsAttached(), false);
+	QCOMPARE(itemResizer.hasItemsAttached(), false);
 }
 
 QTEST_MAIN(AnnotationMultiItemResizerTest);

@@ -22,74 +22,70 @@
 
 void ItemHelperTest::TestZValueGreaterThen_Should_ReturnTrue_When_OtherItemHasLowerZValue()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QPointF pos(10, 10);
-    AnnotationLine item1(pos, properties);
-    AnnotationLine item2(pos, properties);
-    item1.setZValue(100);
-    item2.setZValue(50);
+	QPointF pos(10, 10);
+	AnnotationLine item1(pos, new AnnotationProperties(Qt::red, 1));
+	AnnotationLine item2(pos, new AnnotationProperties(Qt::red, 1));
+	item1.setZValue(100);
+	item2.setZValue(50);
 
-    auto result = ItemHelper::zValueGreaterThen(&item1, &item2);
+	auto result = ItemHelper::zValueGreaterThen(&item1, &item2);
 
-    QCOMPARE(result, true);
+	QCOMPARE(result, true);
 }
 
 void ItemHelperTest::TestZValueGreaterThen_Should_ReturnFalse_When_OtherItemHasHigherZValue()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QPointF pos(10, 10);
-    AnnotationLine item1(pos, properties);
-    AnnotationLine item2(pos, properties);
-    item1.setZValue(50);
-    item2.setZValue(100);
+	QPointF pos(10, 10);
+	AnnotationLine item1(pos, new AnnotationProperties(Qt::red, 1));
+	AnnotationLine item2(pos, new AnnotationProperties(Qt::red, 1));
+	item1.setZValue(50);
+	item2.setZValue(100);
 
-    auto result = ItemHelper::zValueGreaterThen(&item1, &item2);
+	auto result = ItemHelper::zValueGreaterThen(&item1, &item2);
 
-    QCOMPARE(result, false);
+	QCOMPARE(result, false);
 }
 
 void ItemHelperTest::TestZValueGreaterThen_Should_ReturnFalse_When_OtherItemHasEqualZValue()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QPointF pos(10, 10);
-    AnnotationLine item1(pos, properties);
-    AnnotationLine item2(pos, properties);
-    item1.setZValue(100);
-    item2.setZValue(100);
+	QPointF pos(10, 10);
+	AnnotationLine item1(pos, new AnnotationProperties(Qt::red, 1));
+	AnnotationLine item2(pos, new AnnotationProperties(Qt::red, 1));
+	item1.setZValue(100);
+	item2.setZValue(100);
 
-    auto result = ItemHelper::zValueGreaterThen(&item1, &item2);
+	auto result = ItemHelper::zValueGreaterThen(&item1, &item2);
 
-    QCOMPARE(result, false);
+	QCOMPARE(result, false);
 }
 
 void ItemHelperTest::TestSortItemsByZValueDesc_Should_SortItemsByZValueInDescendingOrder()
 {
-    AnnotationProperties properties(Qt::red, 1);
-    QPointF pos(10, 10);
-    AnnotationLine item1(pos, properties);
-    AnnotationLine item2(pos, properties);
-    AnnotationLine item3(pos, properties);
-    AnnotationLine item4(pos, properties);
-    AnnotationLine item5(pos, properties);
-    item1.setZValue(100);
-    item2.setZValue(80);
-    item3.setZValue(2);
-    item4.setZValue(60);
-    item5.setZValue(90);
-    QList<AbstractAnnotationItem *> items;
-    items.append(&item3);
-    items.append(&item1);
-    items.append(&item4);
-    items.append(&item5);
-    items.append(&item2);
+	QPointF pos(10, 10);
+	AnnotationLine item1(pos, new AnnotationProperties(Qt::red, 1));
+	AnnotationLine item2(pos, new AnnotationProperties(Qt::red, 1));
+	AnnotationLine item3(pos, new AnnotationProperties(Qt::red, 1));
+	AnnotationLine item4(pos, new AnnotationProperties(Qt::red, 1));
+	AnnotationLine item5(pos, new AnnotationProperties(Qt::red, 1));
+	item1.setZValue(100);
+	item2.setZValue(80);
+	item3.setZValue(2);
+	item4.setZValue(60);
+	item5.setZValue(90);
+	QList<AbstractAnnotationItem *> items;
+	items.append(&item3);
+	items.append(&item1);
+	items.append(&item4);
+	items.append(&item5);
+	items.append(&item2);
 
-    ItemHelper::sortItemsByZValueDesc(&items);
+	ItemHelper::sortItemsByZValueDesc(&items);
 
-    QCOMPARE((int) items[0]->zValue(), 100);
-    QCOMPARE((int) items[1]->zValue(), 90);
-    QCOMPARE((int) items[2]->zValue(), 80);
-    QCOMPARE((int) items[3]->zValue(), 60);
-    QCOMPARE((int) items[4]->zValue(), 2);
+	QCOMPARE((int) items[0]->zValue(), 100);
+	QCOMPARE((int) items[1]->zValue(), 90);
+	QCOMPARE((int) items[2]->zValue(), 80);
+	QCOMPARE((int) items[3]->zValue(), 60);
+	QCOMPARE((int) items[4]->zValue(), 2);
 }
 
 QTEST_MAIN(ItemHelperTest);

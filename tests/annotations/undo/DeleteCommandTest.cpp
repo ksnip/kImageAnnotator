@@ -22,37 +22,37 @@
 
 void DeleteCommandTest::TestRedo_Should_ApplyOperation()
 {
-    AnnotationArea annotationArea;
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    AnnotationLine item(line.p1(), properties);
-    item.addPoint(line.p2());
-    annotationArea.addAnnotationItem(&item);
-    QCOMPARE(annotationArea.items().contains(&item), true);
-    QList<AbstractAnnotationItem *> items = {&item};
-    DeleteCommand deleteCommand(items, &annotationArea);
+	AnnotationArea annotationArea;
+	auto properties = new AnnotationProperties(Qt::red, 1);
+	QLineF line(10, 10, 20, 20);
+	AnnotationLine item(line.p1(), properties);
+	item.addPoint(line.p2());
+	annotationArea.addAnnotationItem(&item);
+	QCOMPARE(annotationArea.items().contains(&item), true);
+	QList<AbstractAnnotationItem *> items = { &item };
+	DeleteCommand deleteCommand(items, &annotationArea);
 
-    deleteCommand.redo();
+	deleteCommand.redo();
 
-    QCOMPARE(annotationArea.items().contains(&item), false);
+	QCOMPARE(annotationArea.items().contains(&item), false);
 }
 
 void DeleteCommandTest::TestUndo_Should_UndoOperation()
 {
-    AnnotationArea annotationArea;
-    AnnotationProperties properties(Qt::red, 1);
-    QLineF line(10, 10, 20, 20);
-    AnnotationLine item(line.p1(), properties);
-    item.addPoint(line.p2());
-    annotationArea.addAnnotationItem(&item);
-    QList<AbstractAnnotationItem *> items = {&item};
-    DeleteCommand deleteCommand(items, &annotationArea);
-    deleteCommand.redo();
-    QCOMPARE(annotationArea.items().contains(&item), false);
+	AnnotationArea annotationArea;
+	auto properties = new AnnotationProperties(Qt::red, 1);
+	QLineF line(10, 10, 20, 20);
+	AnnotationLine item(line.p1(), properties);
+	item.addPoint(line.p2());
+	annotationArea.addAnnotationItem(&item);
+	QList<AbstractAnnotationItem *> items = { &item };
+	DeleteCommand deleteCommand(items, &annotationArea);
+	deleteCommand.redo();
+	QCOMPARE(annotationArea.items().contains(&item), false);
 
-    deleteCommand.undo();
+	deleteCommand.undo();
 
-    QCOMPARE(annotationArea.items().contains(&item), true);
+	QCOMPARE(annotationArea.items().contains(&item), true);
 }
 
 QTEST_MAIN(DeleteCommandTest);

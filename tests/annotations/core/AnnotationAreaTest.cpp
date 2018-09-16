@@ -43,7 +43,7 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportEmptyImage_When_NoImageS
 
 void AnnotationAreaTest::TestAddAnnotationItem_Should_AddAnnotationItemToScene()
 {
-	AnnotationProperties properties(Qt::red, 2);
+	auto properties = new AnnotationProperties(Qt::red, 2);
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	auto lineItem = new AnnotationLine(p1, properties);
@@ -60,7 +60,7 @@ void AnnotationAreaTest::TestRemoveAnnotationItem_Should_RemoveAnnotationItemFro
 	AnnotationProperties properties(Qt::red, 2);
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
-	auto lineItem = new AnnotationLine(p1, properties);
+	auto lineItem = new AnnotationLine(p1, &properties);
 	lineItem->addPoint(p2);
 	AnnotationArea annotationArea;
 	annotationArea.addAnnotationItem(lineItem);
