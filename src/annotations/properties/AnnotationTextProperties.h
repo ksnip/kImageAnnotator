@@ -17,32 +17,29 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONNUMBER_H
-#define KIMAGEANNOTATOR_ANNOTATIONNUMBER_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONTEXTPROPERTIES_H
+#define KIMAGEANNOTATOR_ANNOTATIONTEXTPROPERTIES_H
 
-#include "AbstractAnnotationRect.h"
-#include "src/annotations/properties/AnnotationTextProperties.h"
+#include <QFont>
+
+#include "AnnotationProperties.h"
 
 namespace kImageAnnotator {
 
-class AnnotationNumber : public AbstractAnnotationRect
+class AnnotationTextProperties : public AnnotationProperties
 {
 public:
-	AnnotationNumber(const QPointF &centerPosition, int number, AnnotationTextProperties *properties);
-	~AnnotationNumber() override = default;
-	virtual void addPoint(const QPointF &position, bool modified = false) override;
-	const AnnotationTextProperties *properties() const override;
+	AnnotationTextProperties() = default;
+	AnnotationTextProperties(const QColor &color, int size);
+	~AnnotationTextProperties() override = default;
 
-protected:
-	virtual void updateShape() override;
-	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+	QFont font() const;
+	void setFont(const QFont &font);
 
 private:
-	QString mNumberString;
-
-	QSizeF getTextRectSize() const;
+	QFont mFont;
 };
 
-} // namespace kImageAnnotator
+}
 
-#endif // KIMAGEANNOTATOR_ANNOTATIONNUMBER_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONTEXTPROPERTIES_H

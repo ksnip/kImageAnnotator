@@ -8,6 +8,7 @@ set(kimageannotator_SRCS
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationPropertiesFactory.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/properties/AnnotationProperties.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/properties/AnnotationPathProperties.cpp
+	${CMAKE_SOURCE_DIR}/src/annotations/properties/AnnotationTextProperties.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemModifier.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemResizer.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationMultiItemResizer.cpp

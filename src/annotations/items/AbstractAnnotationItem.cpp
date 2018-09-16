@@ -23,6 +23,8 @@ namespace kImageAnnotator {
 
 AbstractAnnotationItem::AbstractAnnotationItem(AnnotationProperties *properties)
 {
+	Q_ASSERT(properties != nullptr);
+
 	mProperties = properties;
 	mShape = new QPainterPath();
 
@@ -80,7 +82,7 @@ QPointF AbstractAnnotationItem::position()
 	return boundingRect().topLeft();
 }
 
-const AnnotationProperties* AbstractAnnotationItem::properties() const
+const AnnotationProperties *AbstractAnnotationItem::properties() const
 {
 	return mProperties;
 }

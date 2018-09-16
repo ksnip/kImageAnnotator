@@ -64,7 +64,7 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 			item = new AnnotationArrow(initPosition, properties);
 			break;
 		case ToolTypes::Number:
-			item = new AnnotationNumber(initPosition, mNextNumber++, mConfig->numberFont(), properties);
+			item = new AnnotationNumber(initPosition, mNextNumber++, dynamic_cast<AnnotationTextProperties *>(properties));
 			break;
 		case ToolTypes::Text:
 			item = new AnnotationText(initPosition, mConfig->textFont(), properties);

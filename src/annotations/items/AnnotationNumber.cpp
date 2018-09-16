@@ -21,16 +21,23 @@
 
 namespace kImageAnnotator {
 
-AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, int number, const QFont &font, AnnotationProperties *properties)
+AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, int number, AnnotationTextProperties *properties)
 	:
 	AbstractAnnotationRect(centerPosition, properties)
 {
-	mFont = font;
 	mNumberString = QString::number(number);
-	mRect->setHeight(50);
-	mRect->setWidth(50);
+	auto size = getTextRectSize();
+	mRect->setSize(size);
 	mRect->moveCenter(centerPosition);
 	updateShape();
+}
+
+QSizeF AnnotationNumber::getTextRectSize() const
+{
+	QFontMetricsF metrics(properties()->font());
+	auto boundingRect = metrics.boundingRect(mNumberString).adjusted(-5, -5, 5, 5);
+	auto largestSite = boundingRect.width() > boundingRect.height() ? boundingRect.width() : boundingRect.height();
+	return { largestSite, largestSite };
 }
 
 void AnnotationNumber::addPoint(const QPointF &position, bool modified)
@@ -46,32 +53,20 @@ void AnnotationNumber::updateShape()
 	QPainterPath path;
 	path.addEllipse(*mRect);
 	setShape(path);
-
-	updateFontSize();
 }
 
 void AnnotationNumber::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 	AbstractAnnotationRect::paint(painter, option, widget);
 
-	painter->setFont(mFont);
+	painter->setFont(properties()->font());
 	painter->setPen(properties()->textColor());
 	painter->drawText(boundingRect(), Qt::AlignCenter, mNumberString);
 }
 
-void AnnotationNumber::updateFontSize()
+const AnnotationTextProperties *AnnotationNumber::properties() const
 {
-	auto mainRect = boundingRect().adjusted(0, 0, -10, -10);
-	mFont.setPixelSize(mainRect.height());
-	while (mFont.pixelSize() > 10) {
-		QFontMetricsF metrics(mFont);
-		auto textRect = metrics.boundingRect(mNumberString);
-		if (textRect.width() > mainRect.width() || textRect.height() > mainRect.height()) {
-			mFont.setPixelSize(mFont.pixelSize() - 3);
-		} else {
-			break;
-		}
-	}
+	return dynamic_cast<const AnnotationTextProperties *>(AbstractAnnotationItem::properties());
 }
 
 } // namespace kImageAnnotator

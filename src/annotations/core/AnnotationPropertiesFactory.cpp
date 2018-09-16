@@ -36,6 +36,7 @@ AnnotationProperties *AnnotationPropertiesFactory::createProperties(ToolTypes to
 	setFill(properties, toolType);
 	setShadowEnabled(properties);
 	setPathProperties(properties);
+	setTextProperties(properties, toolType);
 
 	return properties;
 }
@@ -46,6 +47,9 @@ AnnotationProperties *AnnotationPropertiesFactory::createPropertiesObject(ToolTy
 		case ToolTypes::Pen:
 		case ToolTypes::Marker:
 			return new AnnotationPathProperties();
+		case ToolTypes::Number:
+		case ToolTypes::Text:
+			return new AnnotationTextProperties();
 		default:
 			return new AnnotationProperties();
 	}
@@ -94,6 +98,18 @@ void AnnotationPropertiesFactory::setPathProperties(AnnotationProperties *proper
 	if (pathProperties != nullptr) {
 		pathProperties->setSmoothPathEnabled(mConfig->smoothPathEnabled());
 		pathProperties->setSmoothFactor(mConfig->smoothFactor());
+	}
+}
+
+void AnnotationPropertiesFactory::setTextProperties(AnnotationProperties *properties, ToolTypes toolType) const
+{
+	auto pathProperties = dynamic_cast<AnnotationTextProperties *>(properties);
+	if (pathProperties != nullptr) {
+		if (toolType == ToolTypes::Text) {
+			pathProperties->setFont(mConfig->textFont());
+		} else if (toolType == ToolTypes::Number) {
+			pathProperties->setFont(mConfig->numberFont());
+		}
 	}
 }
 
