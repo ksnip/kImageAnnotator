@@ -22,22 +22,20 @@
 void AnnotationPropertiesFactoryTest::initTestCase()
 {
 	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("/tmp"));
-	Config::instance()->reset();
 }
 
 void AnnotationPropertiesFactoryTest::cleanupTestCase()
 {
 	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("$HOME/.config"));
-	Config::instance()->reset();
 }
 
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesSizeBasedOnConfiguration()
 {
 	const int size = 13;
 	const ToolTypes tool = ToolTypes::Line;
-	auto configInstance = Config::instance();
-	configInstance->setToolSize(size, tool);
-	AnnotationPropertiesFactory propertiesFactory;
+	auto config = new Config;
+	config->setToolSize(size, tool);
+	AnnotationPropertiesFactory propertiesFactory(config);
 
 	auto properties = propertiesFactory.createProperties(tool);
 
@@ -48,9 +46,9 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesC
 {
 	const QColor color(Qt::darkMagenta);
 	const ToolTypes tool = ToolTypes::Line;
-	auto configInstance = Config::instance();
-	configInstance->setToolColor(color, tool);
-	AnnotationPropertiesFactory propertiesFactory;
+	auto config = new Config;
+	config->setToolColor(color, tool);
+	AnnotationPropertiesFactory propertiesFactory(config);
 
 	auto properties = propertiesFactory.createProperties(tool);
 
@@ -61,9 +59,9 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesT
 {
 	const QColor foregroundColor(Qt::darkMagenta);
 	const ToolTypes tool = ToolTypes::Number;
-	auto configInstance = Config::instance();
-	configInstance->setToolTextColor(foregroundColor, tool);
-	AnnotationPropertiesFactory propertiesFactory;
+	auto config = new Config;
+	config->setToolTextColor(foregroundColor, tool);
+	AnnotationPropertiesFactory propertiesFactory(config);
 
 	auto properties = propertiesFactory.createProperties(tool);
 
@@ -74,9 +72,9 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesF
 {
 	const FillTypes fill = FillTypes::NoFill;
 	const ToolTypes tool = ToolTypes::Rect;
-	auto configInstance = Config::instance();
+	auto configInstance = new Config;
 	configInstance->setToolFillType(fill, tool);
-	AnnotationPropertiesFactory propertiesFactory;
+	AnnotationPropertiesFactory propertiesFactory(configInstance);
 
 	auto properties = propertiesFactory.createProperties(tool);
 
@@ -86,10 +84,10 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesF
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetShadowEnabledBasedOnConfiguration()
 {
 	const ToolTypes tool = ToolTypes::Pen;
-	auto configInstance = Config::instance();
+	auto config = new Config;
 	auto enabled = true;
-	configInstance->setItemShadowEnabled(enabled);
-	AnnotationPropertiesFactory propertiesFactory;
+	config->setItemShadowEnabled(enabled);
+	AnnotationPropertiesFactory propertiesFactory(config);
 
 	auto properties = propertiesFactory.createProperties(tool);
 
@@ -99,7 +97,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetShadowEnabl
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreatePathPropertiesWhenItemPen()
 {
 	const ToolTypes tool = ToolTypes::Pen;
-	AnnotationPropertiesFactory propertiesFactory;
+	AnnotationPropertiesFactory propertiesFactory(new Config);
 	auto properties = propertiesFactory.createProperties(tool);
 
 	auto pathProperties = dynamic_cast<AnnotationPathProperties *>(properties);
@@ -109,7 +107,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreatePathProp
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreatePathPropertiesWhenItemMarker()
 {
 	const ToolTypes tool = ToolTypes::Marker;
-	AnnotationPropertiesFactory propertiesFactory;
+	AnnotationPropertiesFactory propertiesFactory(new Config);
 	auto properties = propertiesFactory.createProperties(tool);
 
 	auto pathProperties = dynamic_cast<AnnotationPathProperties *>(properties);
@@ -119,7 +117,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreatePathProp
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreateTextPropertiesWhenItemNumber()
 {
 	const ToolTypes tool = ToolTypes::Number;
-	AnnotationPropertiesFactory propertiesFactory;
+	AnnotationPropertiesFactory propertiesFactory(new Config);
 	auto properties = propertiesFactory.createProperties(tool);
 
 	auto textProperties = dynamic_cast<AnnotationTextProperties *>(properties);
@@ -129,7 +127,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreateTextProp
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreateTextPropertiesWhenItemText()
 {
 	const ToolTypes tool = ToolTypes::Text;
-	AnnotationPropertiesFactory propertiesFactory;
+	AnnotationPropertiesFactory propertiesFactory(new Config);
 	auto properties = propertiesFactory.createProperties(tool);
 
 	auto textProperties = dynamic_cast<AnnotationTextProperties *>(properties);
@@ -139,12 +137,12 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreateTextProp
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetSmootPathBasedOnConfiguration()
 {
 	const ToolTypes tool = ToolTypes::Pen;
-	auto configInstance = Config::instance();
+	auto config = new Config;
 	auto smootPathEnabled = true;
 	auto smootPathFactor = 99;
-	configInstance->setSmoothPathEnabled(smootPathEnabled);
-	configInstance->setSmoothFactor(smootPathFactor);
-	AnnotationPropertiesFactory propertiesFactory;
+	config->setSmoothPathEnabled(smootPathEnabled);
+	config->setSmoothFactor(smootPathFactor);
+	AnnotationPropertiesFactory propertiesFactory(config);
 
 	auto properties = propertiesFactory.createProperties(tool);
 
@@ -156,10 +154,10 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetSmootPathBa
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetNumberFontBasedOnConfiguration()
 {
 	const ToolTypes tool = ToolTypes::Number;
-	auto configInstance = Config::instance();
+	auto config = new Config;
 	auto font = QFont("Helvetica [Cronyx]", 8, QFont::StyleItalic);
-	configInstance->setNumberFont(font);
-	AnnotationPropertiesFactory propertiesFactory;
+	config->setNumberFont(font);
+	AnnotationPropertiesFactory propertiesFactory(config);
 
 	auto properties = propertiesFactory.createProperties(tool);
 
@@ -170,10 +168,10 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetNumberFontB
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetTextFontBasedOnConfiguration()
 {
 	const ToolTypes tool = ToolTypes::Text;
-	auto configInstance = Config::instance();
+	auto config = new Config;
 	auto font = QFont("Helvetica [Cronyx]", 12, QFont::StyleItalic);
-	configInstance->setTextFont(font);
-	AnnotationPropertiesFactory propertiesFactory;
+	config->setTextFont(font);
+	AnnotationPropertiesFactory propertiesFactory(config);
 
 	auto properties = propertiesFactory.createProperties(tool);
 

@@ -23,19 +23,17 @@
 void ConfigTest::initTestCase()
 {
 	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("/tmp"));
-	Config::instance()->reset();
 }
 
 void ConfigTest::cleanupTestCase()
 {
 	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("$HOME/.config"));
-	Config::instance()->reset();
 }
 
 void ConfigTest::TestSetSelectedTool_Should_EmitSignal_When_ToolChanged()
 {
 	qRegisterMetaType<ToolTypes>("ToolTypes");
-	auto configInstance = Config::instance();
+	auto configInstance = new Config;
 	configInstance->setSaveToolSelection(false);
 	QSignalSpy spy(configInstance, &Config::toolChanged);
 
@@ -52,7 +50,7 @@ void ConfigTest::TestSetSelectedTool_Should_NotSaveSelection_When_SaveToolSelect
 	auto defaultTool = ToolTypes::Pen;
 	QSettings settings;
 	settings.remove(ConfigNameHelper::toolType());
-	auto configInstance = Config::instance();
+	auto configInstance = new Config;
 	configInstance->setSaveToolSelection(false);
 
 	configInstance->setSelectedTool(ToolTypes::Ellipse);
@@ -67,7 +65,7 @@ void ConfigTest::TestSetSelectedTool_Should_SaveSelection_When_SaveToolSelection
 	auto defaultTool = ToolTypes::Pen;
 	auto selectedTool = ToolTypes::Ellipse;
 	QSettings settings;
-	auto configInstance = Config::instance();
+	auto configInstance = new Config;
 	configInstance->setSaveToolSelection(true);
 
 	configInstance->setSelectedTool(selectedTool);

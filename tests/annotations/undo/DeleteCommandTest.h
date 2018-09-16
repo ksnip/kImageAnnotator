@@ -31,6 +31,7 @@ using kImageAnnotator::AnnotationArea;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AbstractAnnotationItem;
+using kImageAnnotator::Config;
 
 class DeleteCommandTest : public QObject
 {

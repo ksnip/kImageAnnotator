@@ -21,7 +21,7 @@
 
 void AddCommandTest::TestRedo_Should_ApplyOperation()
 {
-	AnnotationArea annotationArea;
+	AnnotationArea annotationArea(new Config);
 	auto properties = new AnnotationProperties(Qt::red, 1);
 	QLineF line(10, 10, 20, 20);
 	auto item = new AnnotationLine(line.p1(), properties);
@@ -36,7 +36,7 @@ void AddCommandTest::TestRedo_Should_ApplyOperation()
 
 void AddCommandTest::TestUndo_Should_UndoOperation()
 {
-	AnnotationArea annotationArea;
+	AnnotationArea annotationArea(new Config);
 	auto properties = new AnnotationProperties(Qt::red, 1);
 	QLineF line(10, 10, 20, 20);
 	auto item = new AnnotationLine(line.p1(), properties);

@@ -30,6 +30,7 @@ using kImageAnnotator::AddCommand;
 using kImageAnnotator::AnnotationArea;
 using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::Config;
 
 class AddCommandTest : public QObject
 {

@@ -21,85 +21,86 @@
 
 void AnnotationItemFactoryTest::initTestCase()
 {
-    QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("/tmp"));
+	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("/tmp"));
 }
 
 void AnnotationItemFactoryTest::cleanupTestCase()
 {
-    QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("$HOME/.config"));
+	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("$HOME/.config"));
 }
 
 void AnnotationItemFactoryTest::TestCreateItem_Should_CreateItemAtProvidedPosition()
 {
-    AnnotationItemFactory itemFactory;
-    QPointF position(10, 10);
-    ToolTypes tool = ToolTypes::Line;
-    auto configInstance = Config::instance();
-    configInstance->setToolSize(0, tool);
 
-    auto item = itemFactory.createItem(position, tool);
-    item->addPoint(QPoint(20, 20));
+	QPointF position(10, 10);
+	ToolTypes tool = ToolTypes::Line;
+	auto config = new Config;
+	config->setToolSize(0, tool);
+	AnnotationItemFactory itemFactory(config);
 
-    QCOMPARE(item->position(), position);
+	auto item = itemFactory.createItem(position, tool);
+	item->addPoint(QPoint(20, 20));
+
+	QCOMPARE(item->position(), position);
 }
 
 void AnnotationItemFactoryTest::TestCreateItem_Should_ReturnNullPtrForUnknownType()
 {
-    AnnotationItemFactory itemFactory;
+	AnnotationItemFactory itemFactory(new Config);
 
-    auto item = itemFactory.createItem(QPoint(0, 0), (ToolTypes) 9);
+	auto item = itemFactory.createItem(QPoint(0, 0), (ToolTypes) 9);
 
-    QVERIFY(item == nullptr);
+	QVERIFY(item == nullptr);
 }
 
 void AnnotationItemFactoryTest::TestCreateItem_Should_ReturnAnnotationLine_When_TypeIsLine()
 {
-    AnnotationItemFactory itemFactory;
+	AnnotationItemFactory itemFactory(new Config);
 
-    auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Line);
+	auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Line);
 
-    auto result = dynamic_cast<AnnotationLine *>(item);
-    QVERIFY(result != nullptr);
+	auto result = dynamic_cast<AnnotationLine *>(item);
+	QVERIFY(result != nullptr);
 }
 
 void AnnotationItemFactoryTest::TestCreateItem_Should_ReturnAnnotationArrow_When_TypeIsArrow()
 {
-    AnnotationItemFactory itemFactory;
+	AnnotationItemFactory itemFactory(new Config);
 
-    auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Arrow);
+	auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Arrow);
 
-    auto result = dynamic_cast<AnnotationArrow *>(item);
-    QVERIFY(result != nullptr);
+	auto result = dynamic_cast<AnnotationArrow *>(item);
+	QVERIFY(result != nullptr);
 }
 
 void AnnotationItemFactoryTest::TestCreateItem_Should_ReturnAnnotationRect_When_TypeIsRect()
 {
-    AnnotationItemFactory itemFactory;
+	AnnotationItemFactory itemFactory(new Config);
 
-    auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Rect);
+	auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Rect);
 
-    auto result = dynamic_cast<AnnotationRect *>(item);
-    QVERIFY(result != nullptr);
+	auto result = dynamic_cast<AnnotationRect *>(item);
+	QVERIFY(result != nullptr);
 }
 
 void AnnotationItemFactoryTest::TestCreateItem_Should_ReturnAnnotationEllipse_When_TypeIsEllipse()
 {
-    AnnotationItemFactory itemFactory;
+	AnnotationItemFactory itemFactory(new Config);
 
-    auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Ellipse);
+	auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Ellipse);
 
-    auto result = dynamic_cast<AnnotationEllipse *>(item);
-    QVERIFY(result != nullptr);
+	auto result = dynamic_cast<AnnotationEllipse *>(item);
+	QVERIFY(result != nullptr);
 }
 
 void AnnotationItemFactoryTest::TestCreateItem_Should_ReturnAnnotationNumber_When_TypeIsNumber()
 {
-    AnnotationItemFactory itemFactory;
+	AnnotationItemFactory itemFactory(new Config);
 
-    auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Number);
+	auto item = itemFactory.createItem(QPoint(0, 0), ToolTypes::Number);
 
-    auto result = dynamic_cast<AnnotationNumber *>(item);
-    QVERIFY(result != nullptr);
+	auto result = dynamic_cast<AnnotationNumber *>(item);
+	QVERIFY(result != nullptr);
 }
 
 QTEST_MAIN(AnnotationItemFactoryTest);

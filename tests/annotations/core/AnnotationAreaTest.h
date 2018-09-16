@@ -28,6 +28,7 @@
 using kImageAnnotator::AnnotationArea;
 using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::Config;
 
 class AnnotationAreaTest : public QObject
 {

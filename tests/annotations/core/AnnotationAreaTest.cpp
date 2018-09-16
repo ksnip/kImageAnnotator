@@ -23,7 +23,7 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
 {
 	QPixmap pixmap(QSize(400, 400));
 	pixmap.fill(QColor(QStringLiteral("Green")));
-	AnnotationArea annotationArea;
+	AnnotationArea annotationArea(new Config);
 	annotationArea.loadImage(pixmap);
 
 	auto resultImage = annotationArea.image();
@@ -34,7 +34,7 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
 
 void AnnotationAreaTest::TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet()
 {
-	AnnotationArea annotationArea;
+	AnnotationArea annotationArea(new Config);
 
 	auto resultImage = annotationArea.image();
 
@@ -48,7 +48,7 @@ void AnnotationAreaTest::TestAddAnnotationItem_Should_AddAnnotationItemToScene()
 	QPointF p2(20, 20);
 	auto lineItem = new AnnotationLine(p1, properties);
 	lineItem->addPoint(p2);
-	AnnotationArea annotationArea;
+	AnnotationArea annotationArea(new Config);
 
 	annotationArea.addAnnotationItem(lineItem);
 
@@ -62,7 +62,7 @@ void AnnotationAreaTest::TestRemoveAnnotationItem_Should_RemoveAnnotationItemFro
 	QPointF p2(20, 20);
 	auto lineItem = new AnnotationLine(p1, &properties);
 	lineItem->addPoint(p2);
-	AnnotationArea annotationArea;
+	AnnotationArea annotationArea(new Config);
 	annotationArea.addAnnotationItem(lineItem);
 	QCOMPARE(annotationArea.items().contains(lineItem), true);
 

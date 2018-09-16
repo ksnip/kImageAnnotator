@@ -22,7 +22,7 @@
 
 void DeleteCommandTest::TestRedo_Should_ApplyOperation()
 {
-	AnnotationArea annotationArea;
+	AnnotationArea annotationArea(new Config);
 	auto properties = new AnnotationProperties(Qt::red, 1);
 	QLineF line(10, 10, 20, 20);
 	AnnotationLine item(line.p1(), properties);
@@ -39,7 +39,7 @@ void DeleteCommandTest::TestRedo_Should_ApplyOperation()
 
 void DeleteCommandTest::TestUndo_Should_UndoOperation()
 {
-	AnnotationArea annotationArea;
+	AnnotationArea annotationArea(new Config);
 	auto properties = new AnnotationProperties(Qt::red, 1);
 	QLineF line(10, 10, 20, 20);
 	AnnotationLine item(line.p1(), properties);
