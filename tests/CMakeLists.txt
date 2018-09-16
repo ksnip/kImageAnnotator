@@ -1,7 +1,7 @@
 set(UnitTests
 	annotations/core/AnnotationAreaTest.cpp
 	annotations/core/AnnotationItemFactoryTest.cpp
-	annotations/core/AnnotationPropertiesFactoryTest.cpp
+	annotations/properties/AnnotationPropertiesFactoryTest.cpp
 	annotations/modifiers/AnnotationItemResizerTest.cpp
 	annotations/modifiers/AnnotationMultiItemResizerTest.cpp
 	annotations/modifiers/AnnotationItemSelectorTest.cpp

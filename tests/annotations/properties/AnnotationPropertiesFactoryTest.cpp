@@ -94,4 +94,89 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetShadowEnabl
 	QCOMPARE(properties->shadowEnabled(), enabled);
 }
 
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreatePathPropertiesWhenItemPen()
+{
+	const ToolTypes tool = ToolTypes::Pen;
+	AnnotationPropertiesFactory propertiesFactory;
+	auto properties = propertiesFactory.createProperties(tool);
+
+	auto pathProperties = dynamic_cast<AnnotationPathProperties *>(properties);
+	QVERIFY(pathProperties != nullptr);
+}
+
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreatePathPropertiesWhenItemMarker()
+{
+	const ToolTypes tool = ToolTypes::Marker;
+	AnnotationPropertiesFactory propertiesFactory;
+	auto properties = propertiesFactory.createProperties(tool);
+
+	auto pathProperties = dynamic_cast<AnnotationPathProperties *>(properties);
+	QVERIFY(pathProperties != nullptr);
+}
+
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreateTextPropertiesWhenItemNumber()
+{
+	const ToolTypes tool = ToolTypes::Number;
+	AnnotationPropertiesFactory propertiesFactory;
+	auto properties = propertiesFactory.createProperties(tool);
+
+	auto textProperties = dynamic_cast<AnnotationTextProperties *>(properties);
+	QVERIFY(textProperties != nullptr);
+}
+
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreateTextPropertiesWhenItemText()
+{
+	const ToolTypes tool = ToolTypes::Text;
+	AnnotationPropertiesFactory propertiesFactory;
+	auto properties = propertiesFactory.createProperties(tool);
+
+	auto textProperties = dynamic_cast<AnnotationTextProperties *>(properties);
+	QVERIFY(textProperties != nullptr);
+}
+
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetSmootPathBasedOnConfiguration()
+{
+	const ToolTypes tool = ToolTypes::Pen;
+	auto configInstance = Config::instance();
+	auto smootPathEnabled = true;
+	auto smootPathFactor = 99;
+	configInstance->setSmoothPathEnabled(smootPathEnabled);
+	configInstance->setSmoothFactor(smootPathFactor);
+	AnnotationPropertiesFactory propertiesFactory;
+
+	auto properties = propertiesFactory.createProperties(tool);
+
+	auto pathProperties = dynamic_cast<AnnotationPathProperties *>(properties);
+	QCOMPARE(pathProperties->smoothPathEnabled(), smootPathEnabled);
+	QCOMPARE(pathProperties->smoothFactor(), smootPathFactor);
+}
+
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetNumberFontBasedOnConfiguration()
+{
+	const ToolTypes tool = ToolTypes::Number;
+	auto configInstance = Config::instance();
+	auto font = QFont("Helvetica [Cronyx]", 8, QFont::StyleItalic);
+	configInstance->setNumberFont(font);
+	AnnotationPropertiesFactory propertiesFactory;
+
+	auto properties = propertiesFactory.createProperties(tool);
+
+	auto textProperties = dynamic_cast<AnnotationTextProperties *>(properties);
+	QCOMPARE(textProperties->font(), font);
+}
+
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetTextFontBasedOnConfiguration()
+{
+	const ToolTypes tool = ToolTypes::Text;
+	auto configInstance = Config::instance();
+	auto font = QFont("Helvetica [Cronyx]", 12, QFont::StyleItalic);
+	configInstance->setTextFont(font);
+	AnnotationPropertiesFactory propertiesFactory;
+
+	auto properties = propertiesFactory.createProperties(tool);
+
+	auto textProperties = dynamic_cast<AnnotationTextProperties *>(properties);
+	QCOMPARE(textProperties->font(), font);
+}
+
 QTEST_MAIN(AnnotationPropertiesFactoryTest);
