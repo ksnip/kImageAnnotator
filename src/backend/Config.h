@@ -67,7 +67,6 @@ public slots:
 	bool smoothPathEnabled() const;
 	void setSmoothPathEnabled(bool enabled);
 
-	bool saveToolSelection() const;
 	void setSaveToolSelection(bool enabled);
 
 	int smoothFactor() const;

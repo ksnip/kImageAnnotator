@@ -73,7 +73,7 @@ void AnnotationPropertiesFactory::setFill(const ToolTypes &tool, AnnotationPrope
 
 void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties &properties, ToolTypes tool) const
 {
-    properties.setShadowEnabled(tool != ToolTypes::Marker);
+    properties.setShadowEnabled(mConfig->itemShadowEnabled());
 }
 
 } // namespace kImageAnnotator

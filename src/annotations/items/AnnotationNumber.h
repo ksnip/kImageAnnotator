@@ -27,19 +27,19 @@ namespace kImageAnnotator {
 class AnnotationNumber : public AbstractAnnotationRect
 {
 public:
-    AnnotationNumber(const QPointF &centerPosition, int number, const AnnotationProperties &properties);
-    ~AnnotationNumber();
-    virtual void addPoint(const QPointF &position, bool modified = false) override;
+	AnnotationNumber(const QPointF &centerPosition, int number, const QFont &font, const AnnotationProperties &properties);
+	~AnnotationNumber() = default;
+	virtual void addPoint(const QPointF &position, bool modified = false) override;
 
 protected:
-    virtual void updateShape() override;
-    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+	virtual void updateShape() override;
+	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
-    QString mNumberString;
-    QFont *mFont;
+	QString mNumberString;
+	QFont mFont;
 
-    void updateFontSize();
+	void updateFontSize();
 };
 
 } // namespace kImageAnnotator

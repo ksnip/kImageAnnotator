@@ -143,11 +143,6 @@ void Config::setSmoothPathEnabled(bool enabled)
 	mSmoothPathEnabled = enabled;
 }
 
-bool Config::saveToolSelection() const
-{
-	return mSaveToolSelection;
-}
-
 void Config::setSaveToolSelection(bool enabled)
 {
 	mSaveToolSelection = enabled;
@@ -222,7 +217,7 @@ void Config::initToolFillTypes()
 void Config::initFonts()
 {
 	mTextFont = QFont(QStringLiteral("Times"), 15, QFont::Bold);
-	mNumberFont = QFont(QStringLiteral("Times"), 20, QFont::Bold);
+	mNumberFont = QFont(QStringLiteral("Helvetica"), 20, QFont::Bold);
 }
 
 void Config::initGeneralSettings()

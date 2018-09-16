@@ -23,60 +23,61 @@ namespace kImageAnnotator {
 
 AnnotationItemFactory::AnnotationItemFactory()
 {
-    mPropertiesFactory = new AnnotationPropertiesFactory();
-    reset();
+	mConfig = Config::instance();
+	mPropertiesFactory = new AnnotationPropertiesFactory();
+	reset();
 }
 
 AnnotationItemFactory::~AnnotationItemFactory()
 {
-    delete mPropertiesFactory;
+	delete mPropertiesFactory;
 }
 
 void AnnotationItemFactory::reset()
 {
-    mNextNumber = 1;
-    mNextZValue = 1;
+	mNextNumber = 1;
+	mNextZValue = 1;
 }
 
 AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPosition, ToolTypes type)
 {
-    auto properties = mPropertiesFactory->createProperties(type);
-    AbstractAnnotationItem *item = nullptr;
+	auto properties = mPropertiesFactory->createProperties(type);
+	AbstractAnnotationItem *item = nullptr;
 
-    switch (type) {
-        case ToolTypes::Pen:
-            item = new AnnotationPen(initPosition, properties);
-            break;
-        case ToolTypes::Marker:
-            item = new AnnotationPen(initPosition, properties);
-            break;
-        case ToolTypes::Line:
-            item = new AnnotationLine(initPosition, properties);
-            break;
-        case ToolTypes::Ellipse:
-            item = new AnnotationEllipse(initPosition, properties);
-            break;
-        case ToolTypes::Rect:
-            item = new AnnotationRect(initPosition, properties);
-            break;
-        case ToolTypes::Arrow:
-            item = new AnnotationArrow(initPosition, properties);
-            break;
-        case ToolTypes::Number:
-            item = new AnnotationNumber(initPosition, mNextNumber++, properties);
-            break;
-        case ToolTypes::Text:
-            item = new AnnotationText(initPosition, QFont(QStringLiteral("Times"), 15, QFont::Bold), properties);
-            break;
-        default:
-            qCritical("Cannot create item for provided tool type.");
-    }
+	switch (type) {
+		case ToolTypes::Pen:
+			item = new AnnotationPen(initPosition, properties);
+			break;
+		case ToolTypes::Marker:
+			item = new AnnotationPen(initPosition, properties);
+			break;
+		case ToolTypes::Line:
+			item = new AnnotationLine(initPosition, properties);
+			break;
+		case ToolTypes::Ellipse:
+			item = new AnnotationEllipse(initPosition, properties);
+			break;
+		case ToolTypes::Rect:
+			item = new AnnotationRect(initPosition, properties);
+			break;
+		case ToolTypes::Arrow:
+			item = new AnnotationArrow(initPosition, properties);
+			break;
+		case ToolTypes::Number:
+			item = new AnnotationNumber(initPosition, mNextNumber++, mConfig->numberFont(), properties);
+			break;
+		case ToolTypes::Text:
+			item = new AnnotationText(initPosition, mConfig->textFont(), properties);
+			break;
+		default:
+			qCritical("Cannot create item for provided tool type.");
+	}
 
-    if (item != nullptr) {
-        item->setZValue(mNextZValue++);
-    }
+	if (item != nullptr) {
+		item->setZValue(mNextZValue++);
+	}
 
-    return item;
+	return item;
 }
 
 } // namespace kImageAnnotator

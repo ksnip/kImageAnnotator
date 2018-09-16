@@ -21,62 +21,57 @@
 
 namespace kImageAnnotator {
 
-AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, int number, const AnnotationProperties &properties)
-    :
-    AbstractAnnotationRect(centerPosition, properties)
+AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, int number, const QFont &font, const AnnotationProperties &properties)
+	:
+	AbstractAnnotationRect(centerPosition, properties)
 {
-    mFont = new QFont(QStringLiteral("Helvetica"), QFont::Bold);
-    mNumberString = QString::number(number);
-    mRect->setHeight(50);
-    mRect->setWidth(50);
-    mRect->moveCenter(centerPosition);
-    updateShape();
-}
-
-AnnotationNumber::~AnnotationNumber()
-{
-    delete mFont;
+	mFont = font;
+	mNumberString = QString::number(number);
+	mRect->setHeight(50);
+	mRect->setWidth(50);
+	mRect->moveCenter(centerPosition);
+	updateShape();
 }
 
 void AnnotationNumber::addPoint(const QPointF &position, bool modified)
 {
-    Q_UNUSED(position);
-    Q_UNUSED(modified);
+	Q_UNUSED(position);
+	Q_UNUSED(modified);
 
-    // Nothing to do here
+	// Nothing to do here
 }
 
 void AnnotationNumber::updateShape()
 {
-    QPainterPath path;
-    path.addEllipse(*mRect);
-    setShape(path);
+	QPainterPath path;
+	path.addEllipse(*mRect);
+	setShape(path);
 
-    updateFontSize();
+	updateFontSize();
 }
 
 void AnnotationNumber::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    AbstractAnnotationRect::paint(painter, option, widget);
+	AbstractAnnotationRect::paint(painter, option, widget);
 
-    painter->setFont(*mFont);
-    painter->setPen(properties().textColor());
-    painter->drawText(boundingRect(), Qt::AlignCenter, mNumberString);
+	painter->setFont(mFont);
+	painter->setPen(properties().textColor());
+	painter->drawText(boundingRect(), Qt::AlignCenter, mNumberString);
 }
 
 void AnnotationNumber::updateFontSize()
 {
-    auto mainRect = boundingRect().adjusted(0, 0, -10, -10);
-    mFont->setPixelSize(mainRect.height());
-    while (mFont->pixelSize() > 10) {
-        QFontMetricsF metrics(*mFont);
-        auto textRect = metrics.boundingRect(mNumberString);
-        if (textRect.width() > mainRect.width() || textRect.height() > mainRect.height()) {
-            mFont->setPixelSize(mFont->pixelSize() - 3);
-        } else {
-            break;
-        }
-    }
+	auto mainRect = boundingRect().adjusted(0, 0, -10, -10);
+	mFont.setPixelSize(mainRect.height());
+	while (mFont.pixelSize() > 10) {
+		QFontMetricsF metrics(mFont);
+		auto textRect = metrics.boundingRect(mNumberString);
+		if (textRect.width() > mainRect.width() || textRect.height() > mainRect.height()) {
+			mFont.setPixelSize(mFont.pixelSize() - 3);
+		} else {
+			break;
+		}
+	}
 }
 
 } // namespace kImageAnnotator

@@ -23,6 +23,7 @@
 #include <QObject>
 
 #include "AnnotationPropertiesFactory.h"
+#include "src/backend/Config.h"
 #include "src/annotations/items/AnnotationPen.h"
 #include "src/annotations/items/AnnotationLine.h"
 #include "src/annotations/items/AnnotationArrow.h"
@@ -38,16 +39,17 @@ class AnnotationItemFactory : public QObject
 {
 Q_OBJECT
 public:
-    explicit AnnotationItemFactory();
-    ~AnnotationItemFactory() override;
-    void reset();
+	explicit AnnotationItemFactory();
+	~AnnotationItemFactory() override;
+	void reset();
 
-    AbstractAnnotationItem *createItem(const QPointF &initPosition, ToolTypes tool);
+	AbstractAnnotationItem *createItem(const QPointF &initPosition, ToolTypes tool);
 
 private:
-    int mNextNumber;
-    int mNextZValue;
-    AnnotationPropertiesFactory *mPropertiesFactory;
+	int mNextNumber;
+	int mNextZValue;
+	Config *mConfig;
+	AnnotationPropertiesFactory *mPropertiesFactory;
 };
 
 } // namespace kImageAnnotator
