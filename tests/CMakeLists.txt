@@ -1,7 +1,7 @@
 set(UnitTests
 	annotations/core/AnnotationAreaTest.cpp
 	annotations/core/AnnotationItemFactoryTest.cpp
-	annotations/properties/AnnotationPropertiesFactoryTest.cpp
+	annotations/core/AnnotationPropertiesFactoryTest.cpp
 	annotations/modifiers/AnnotationItemResizerTest.cpp
 	annotations/modifiers/AnnotationMultiItemResizerTest.cpp
 	annotations/modifiers/AnnotationItemSelectorTest.cpp
@@ -25,6 +25,7 @@ set(UnitTests
 	common/helper/MathHelperTest.cpp
 	common/helper/ItemHelperTest.cpp
 	common/helper/ShapeHelperTest.cpp
+	backend/ConfigTest.cpp
 	)
 
 add_library(kImageAnnotatorStatic STATIC ${kimageannotator_SRCS})

@@ -23,7 +23,6 @@ namespace kImageAnnotator {
 
 AnnotationItemFactory::AnnotationItemFactory()
 {
-	mConfig = Config::instance();
 	mPropertiesFactory = new AnnotationPropertiesFactory();
 	reset();
 }

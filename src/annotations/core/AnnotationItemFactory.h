@@ -23,7 +23,6 @@
 #include <QObject>
 
 #include "AnnotationPropertiesFactory.h"
-#include "src/backend/Config.h"
 #include "src/annotations/items/AnnotationPen.h"
 #include "src/annotations/items/AnnotationLine.h"
 #include "src/annotations/items/AnnotationArrow.h"
@@ -48,7 +47,6 @@ public:
 private:
 	int mNextNumber;
 	int mNextZValue;
-	Config *mConfig;
 	AnnotationPropertiesFactory *mPropertiesFactory;
 };
 

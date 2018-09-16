@@ -39,6 +39,7 @@ Q_OBJECT
 
 public slots:
 	static Config *instance();
+	void reset();
 
 	ToolTypes selectedTool() const;
 	void setSelectedTool(ToolTypes tool);

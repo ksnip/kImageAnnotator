@@ -27,6 +27,10 @@ Config *Config::instance()
 	return &instance;
 }
 
+void Config::reset()
+{
+}
+
 ToolTypes Config::selectedTool() const
 {
 	return mSelectTool;
@@ -172,13 +176,7 @@ Config::Config()
 		ToolTypes::Number,
 		ToolTypes::Text
 	};
-	initGeneralSettings();
-	initSelectedTool();
-	initToolColors();
-	initToolTextColors();
-	initToolSizes();
-	initToolFillTypes();
-	initFonts();
+	reset();
 }
 
 void Config::initSelectedTool()
@@ -222,7 +220,7 @@ void Config::initFonts()
 
 void Config::initGeneralSettings()
 {
-	mSaveToolSelection = true;
+	mSaveToolSelection = false;
 	mSmoothPathEnabled = true;
 	mItemShadowEnabled = true;
 	mSmoothFactor = 7;

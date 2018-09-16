@@ -22,11 +22,13 @@
 void AnnotationPropertiesFactoryTest::initTestCase()
 {
 	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("/tmp"));
+	Config::instance()->reset();
 }
 
 void AnnotationPropertiesFactoryTest::cleanupTestCase()
 {
 	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("$HOME/.config"));
+	Config::instance()->reset();
 }
 
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesSizeBasedOnConfiguration()
