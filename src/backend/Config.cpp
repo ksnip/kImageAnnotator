@@ -23,137 +23,388 @@ namespace kImageAnnotator {
 
 Config *Config::instance()
 {
-    static Config instance;
-    return &instance;
+	static Config instance;
+	return &instance;
 }
 
 ToolTypes Config::selectedTool() const
 {
-    return mSelectTool;
+	return mSelectTool;
 }
 
 void Config::setSelectedTool(ToolTypes tool)
 {
-    if (selectedTool() == tool) {
-        return;
-    }
+	if (selectedTool() == tool) {
+		return;
+	}
 
-    mSelectTool = tool;
-    emit toolChanged(tool);
+	mSelectTool = tool;
+	saveToolType(tool);
+	emit toolChanged(tool);
 }
 
 QColor Config::toolColor(ToolTypes tool) const
 {
-    return mToolToColor[tool];
+	return mToolToColor[tool];
 }
 
 void Config::setToolColor(const QColor &color, ToolTypes tool)
 {
-    if (toolColor(tool) == color) {
-        return;
-    }
+	if (toolColor(tool) == color) {
+		return;
+	}
 
-    mToolToColor[tool] = color;
+	mToolToColor[tool] = color;
+	saveToolColor(tool, color);
 }
 
 QColor Config::toolTextColor(ToolTypes tool) const
 {
-    return mToolToTextColor[tool];
+	return mToolToTextColor[tool];
 }
 
 void Config::setToolTextColor(const QColor &color, ToolTypes tool)
 {
-    if (toolTextColor(tool) == color) {
-        return;
-    }
+	if (toolTextColor(tool) == color) {
+		return;
+	}
 
-    mToolToTextColor[tool] = color;
+	mToolToTextColor[tool] = color;
+	saveToolTextColor(tool, color);
 }
 
 int Config::toolSize(ToolTypes tool) const
 {
-    return mToolToSize[tool];
+	return mToolToSize[tool];
 }
 
 void Config::setToolSize(int size, ToolTypes tool)
 {
-    if (toolSize(tool) == size) {
-        return;
-    }
+	if (toolSize(tool) == size) {
+		return;
+	}
 
-    mToolToSize[tool] = size;
+	mToolToSize[tool] = size;
+	saveToolSize(tool, size);
 }
 
 FillTypes Config::toolFillType(ToolTypes tool) const
 {
-    return mToolToFillType[tool];
+	return mToolToFillType[tool];
 }
 
 void Config::setToolFillType(FillTypes fillType, ToolTypes tool)
 {
-    if (toolFillType(tool) == fillType) {
-        return;
-    }
+	if (toolFillType(tool) == fillType) {
+		return;
+	}
 
-    mToolToFillType[tool] = fillType;
+	mToolToFillType[tool] = fillType;
+	saveToolFillType(tool, fillType);
+}
+
+QFont Config::textFont() const
+{
+	return mTextFont;
+}
+
+void Config::setTextFont(const QFont &font)
+{
+	mTextFont = font;
+}
+
+QFont Config::numberFont() const
+{
+	return mNumberFont;
+}
+
+void Config::setNumberFont(const QFont &font)
+{
+	mNumberFont = font;
+}
+
+bool Config::itemShadowEnabled() const
+{
+	return mItemShadowEnabled;
+}
+
+void Config::setItemShadowEnabled(bool enabled)
+{
+	mItemShadowEnabled = enabled;
+}
+
+bool Config::smoothPathEnabled() const
+{
+	return mSmoothPathEnabled;
+}
+
+void Config::setSmoothPathEnabled(bool enabled)
+{
+	mSmoothPathEnabled = enabled;
+}
+
+bool Config::saveToolSelection() const
+{
+	return mSaveToolSelection;
+}
+
+void Config::setSaveToolSelection(bool enabled)
+{
+	mSaveToolSelection = enabled;
+}
+
+int Config::smoothFactor() const
+{
+	return mSmoothFactor;
+}
+
+void Config::setSmoothFactor(int factor)
+{
+	mSmoothFactor = factor;
 }
 
 // Private Methodes
 
 Config::Config()
 {
-    initSelectedTool();
-    initDefaultToolColors();
-    initDefaultTextColors();
-    initDefaultSizes();
-    initDefaultFillTypes();
+	mAllTools = QList<ToolTypes>{
+		ToolTypes::Pen,
+		ToolTypes::Marker,
+		ToolTypes::Line,
+		ToolTypes::Arrow,
+		ToolTypes::Rect,
+		ToolTypes::Ellipse,
+		ToolTypes::Number,
+		ToolTypes::Text
+	};
+	initGeneralSettings();
+	initSelectedTool();
+	initToolColors();
+	initToolTextColors();
+	initToolSizes();
+	initToolFillTypes();
+	initFonts();
 }
 
 void Config::initSelectedTool()
 {
-    mSelectTool = ToolTypes::Pen;
+	mSelectTool = loadToolType();
 };
 
-void Config::initDefaultToolColors()
+void Config::initToolColors()
 {
-    mToolToColor[ToolTypes::Pen] = QColor(Qt::red);
-    mToolToColor[ToolTypes::Marker] = QColor(Qt::yellow);
-    mToolToColor[ToolTypes::Line] = QColor(Qt::blue);
-    mToolToColor[ToolTypes::Arrow] = QColor(Qt::red);
-    mToolToColor[ToolTypes::Rect] = QColor(Qt::green);
-    mToolToColor[ToolTypes::Ellipse] = QColor(Qt::gray);
-    mToolToColor[ToolTypes::Number] = QColor(Qt::red);
-    mToolToColor[ToolTypes::Text] = QColor(Qt::black);
+	for (auto toolType : mAllTools) {
+		mToolToColor[toolType] = loadToolColor(toolType);
+	}
 }
 
-void Config::initDefaultTextColors()
+void Config::initToolTextColors()
 {
-    mToolToTextColor[ToolTypes::Number] = QColor(Qt::white);
-    mToolToTextColor[ToolTypes::Text] = QColor(Qt::white);
+	for (auto toolType : mAllTools) {
+		mToolToTextColor[toolType] = loadToolTextColor(toolType);
+	}
 }
 
-void Config::initDefaultSizes()
+void Config::initToolSizes()
 {
-    mToolToSize[ToolTypes::Pen] = 3;
-    mToolToSize[ToolTypes::Marker] = 10;
-    mToolToSize[ToolTypes::Line] = 3;
-    mToolToSize[ToolTypes::Arrow] = 6;
-    mToolToSize[ToolTypes::Rect] = 3;
-    mToolToSize[ToolTypes::Ellipse] = 3;
-    mToolToSize[ToolTypes::Number] = 5;
-    mToolToSize[ToolTypes::Text] = 10;
+	for (auto toolType : mAllTools) {
+		mToolToSize[toolType] = loadToolSize(toolType);
+	}
 }
 
-void Config::initDefaultFillTypes()
+void Config::initToolFillTypes()
 {
-    mToolToFillType[ToolTypes::Pen] = FillTypes::NoFill;
-    mToolToFillType[ToolTypes::Marker] = FillTypes::NoFill;
-    mToolToFillType[ToolTypes::Line] = FillTypes::NoFill;
-    mToolToFillType[ToolTypes::Arrow] = FillTypes::Fill;
-    mToolToFillType[ToolTypes::Rect] = FillTypes::NoFill;
-    mToolToFillType[ToolTypes::Ellipse] = FillTypes::NoFill;
-    mToolToFillType[ToolTypes::Number] = FillTypes::Fill;
-    mToolToFillType[ToolTypes::Text] = FillTypes::NoFill;
+	for (auto toolType : mAllTools) {
+		mToolToFillType[toolType] = loadToolFillType(toolType);
+	}
+}
+
+void Config::initFonts()
+{
+	mTextFont = QFont(QStringLiteral("Times"), 15, QFont::Bold);
+	mNumberFont = QFont(QStringLiteral("Times"), 20, QFont::Bold);
+}
+
+void Config::initGeneralSettings()
+{
+	mSaveToolSelection = true;
+	mSmoothPathEnabled = true;
+	mItemShadowEnabled = true;
+	mSmoothFactor = 7;
+}
+
+QColor Config::loadToolColor(ToolTypes toolType)
+{
+	if (mSaveToolSelection) {
+		return mConfig.value(ConfigNameHelper::toolColor(toolType), defaultToolColor(toolType)).value<QColor>();
+	} else {
+		return defaultToolColor(toolType);
+	}
+}
+
+void Config::saveToolColor(ToolTypes toolType, const QColor &color)
+{
+	if (mSaveToolSelection) {
+		mConfig.setValue(ConfigNameHelper::toolColor(toolType), color);
+		mConfig.sync();
+	}
+}
+
+QColor Config::loadToolTextColor(ToolTypes toolType)
+{
+	if (mSaveToolSelection) {
+		return mConfig.value(ConfigNameHelper::toolTextColor(toolType), defaultToolTextColor(toolType)).value<QColor>();
+	} else {
+		return defaultToolTextColor(toolType);
+	}
+}
+
+void Config::saveToolTextColor(ToolTypes toolType, const QColor &color)
+{
+	if (mSaveToolSelection) {
+		mConfig.setValue(ConfigNameHelper::toolTextColor(toolType), color);
+		mConfig.sync();
+	}
+}
+
+int Config::loadToolSize(ToolTypes toolType)
+{
+	if (mSaveToolSelection) {
+		return mConfig.value(ConfigNameHelper::toolSize(toolType), defaultToolSize(toolType)).value<int>();
+	} else {
+		return defaultToolSize(toolType);
+	}
+}
+
+void Config::saveToolSize(ToolTypes toolType, int size)
+{
+	if (mSaveToolSelection) {
+		mConfig.setValue(ConfigNameHelper::toolSize(toolType), size);
+		mConfig.sync();
+	}
+}
+
+FillTypes Config::loadToolFillType(ToolTypes toolType)
+{
+	if (mSaveToolSelection) {
+		return mConfig.value(ConfigNameHelper::toolFillType(toolType), static_cast<int>(defaultToolFillType(toolType))).value<FillTypes>();
+	} else {
+		return defaultToolFillType(toolType);
+	}
+}
+
+void Config::saveToolFillType(ToolTypes toolType, FillTypes fillType)
+{
+	if (mSaveToolSelection) {
+		mConfig.setValue(ConfigNameHelper::toolFillType(toolType), static_cast<int>(fillType));
+		mConfig.sync();
+	}
+}
+
+ToolTypes Config::loadToolType()
+{
+	if (mSaveToolSelection) {
+		return mConfig.value(ConfigNameHelper::toolType(), static_cast<int>(defaultToolType())).value<ToolTypes>();
+	} else {
+		return defaultToolType();
+	}
+}
+
+void Config::saveToolType(ToolTypes toolType)
+{
+	if (mSaveToolSelection) {
+		mConfig.setValue(ConfigNameHelper::toolType(), static_cast<int>(toolType));
+		mConfig.sync();
+	}
+}
+
+QColor Config::defaultToolColor(ToolTypes toolType) const
+{
+	switch (toolType) {
+		case ToolTypes::Pen:
+			return { Qt::red };
+		case ToolTypes::Marker:
+			return { Qt::yellow };
+		case ToolTypes::Line:
+			return { Qt::blue };
+		case ToolTypes::Arrow:
+			return { Qt::red };
+		case ToolTypes::Rect:
+			return { Qt::gray };
+		case ToolTypes::Ellipse:
+			return { Qt::red };
+		case ToolTypes::Number:
+			return { Qt::red };
+		case ToolTypes::Text:
+			return { Qt::black };
+		default:
+			return { Qt::red };
+	}
+}
+
+QColor Config::defaultToolTextColor(ToolTypes toolType) const
+{
+	switch (toolType) {
+		case ToolTypes::Text:
+		case ToolTypes::Number:
+			return { Qt::white };
+		default:
+			return { Qt::blue };
+	}
+}
+
+int Config::defaultToolSize(ToolTypes toolType) const
+{
+	switch (toolType) {
+		case ToolTypes::Pen:
+			return 3;
+		case ToolTypes::Marker:
+			return 10;
+		case ToolTypes::Line:
+			return 3;
+		case ToolTypes::Arrow:
+			return 6;
+		case ToolTypes::Rect:
+			return 3;
+		case ToolTypes::Ellipse:
+			return 3;
+		case ToolTypes::Number:
+			return 5;
+		case ToolTypes::Text:
+			return 10;
+		default:
+			return 3;
+	}
+}
+
+FillTypes Config::defaultToolFillType(ToolTypes toolType) const
+{
+
+	switch (toolType) {
+		case ToolTypes::Pen:
+			return FillTypes::NoFill;
+		case ToolTypes::Marker:
+			return FillTypes::NoFill;
+		case ToolTypes::Line:
+			return FillTypes::NoFill;
+		case ToolTypes::Arrow:
+			return FillTypes::Fill;
+		case ToolTypes::Rect:
+			return FillTypes::NoFill;
+		case ToolTypes::Ellipse:
+			return FillTypes::NoFill;
+		case ToolTypes::Number:
+			return FillTypes::Fill;
+		case ToolTypes::Text:
+			return FillTypes::NoFill;
+		default:
+			return FillTypes::NoFill;
+	}
+}
+
+ToolTypes Config::defaultToolType()
+{
+	return ToolTypes::Pen;
 }
 
 } // namespace kImageAnnotator

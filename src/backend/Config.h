@@ -24,9 +24,12 @@
 #include <QPointF>
 #include <QColor>
 #include <QHash>
+#include <QFont>
+#include <QSettings>
 
 #include "src/common/enum/ToolTypes.h"
 #include "src/common/enum/FillTypes.h"
+#include "src/common/helper/ConfigNameHelper.h"
 
 namespace kImageAnnotator {
 
@@ -35,39 +38,83 @@ class Config : public QObject
 Q_OBJECT
 
 public slots:
-    static Config *instance();
+	static Config *instance();
 
-    ToolTypes selectedTool() const;
-    void setSelectedTool(ToolTypes tool);
+	ToolTypes selectedTool() const;
+	void setSelectedTool(ToolTypes tool);
 
-    QColor toolColor(ToolTypes tool) const;
-    void setToolColor(const QColor &color, ToolTypes tool);
+	QColor toolColor(ToolTypes tool) const;
+	void setToolColor(const QColor &color, ToolTypes tool);
 
-    QColor toolTextColor(ToolTypes tool) const;
-    void setToolTextColor(const QColor &color, ToolTypes tool);
+	QColor toolTextColor(ToolTypes tool) const;
+	void setToolTextColor(const QColor &color, ToolTypes tool);
 
-    int toolSize(ToolTypes tool) const;
-    void setToolSize(int size, ToolTypes tool);
+	int toolSize(ToolTypes tool) const;
+	void setToolSize(int size, ToolTypes tool);
 
-    FillTypes toolFillType(ToolTypes tool) const;
-    void setToolFillType(FillTypes fillType, ToolTypes tool);
+	FillTypes toolFillType(ToolTypes tool) const;
+	void setToolFillType(FillTypes fillType, ToolTypes tool);
+
+	QFont textFont() const;
+	void setTextFont(const QFont &font);
+
+	QFont numberFont() const;
+	void setNumberFont(const QFont &font);
+
+	bool itemShadowEnabled() const;
+	void setItemShadowEnabled(bool enabled);
+
+	bool smoothPathEnabled() const;
+	void setSmoothPathEnabled(bool enabled);
+
+	bool saveToolSelection() const;
+	void setSaveToolSelection(bool enabled);
+
+	int smoothFactor() const;
+	void setSmoothFactor(int factor);
 
 signals:
-    void toolChanged(ToolTypes tool) const;
+	void toolChanged(ToolTypes tool) const;
 
 private:
-    ToolTypes mSelectTool;
-    QHash<ToolTypes, QColor> mToolToColor;
-    QHash<ToolTypes, QColor> mToolToTextColor;
-    QHash<ToolTypes, int> mToolToSize;
-    QHash<ToolTypes, FillTypes> mToolToFillType;
+	QSettings mConfig;
+	QList<ToolTypes> mAllTools;
+	ToolTypes mSelectTool;
+	QHash<ToolTypes, QColor> mToolToColor;
+	QHash<ToolTypes, QColor> mToolToTextColor;
+	QHash<ToolTypes, int> mToolToSize;
+	QHash<ToolTypes, FillTypes> mToolToFillType;
+	QFont mTextFont;
+	QFont mNumberFont;
+	bool mItemShadowEnabled;
+	bool mSmoothPathEnabled;
+	bool mSaveToolSelection;
+	int mSmoothFactor;
 
-    explicit Config();
-    void initSelectedTool();
-    void initDefaultToolColors();
-    void initDefaultTextColors();
-    void initDefaultSizes();
-    void initDefaultFillTypes();
+	explicit Config();
+	void initSelectedTool();
+	void initToolColors();
+	void initToolTextColors();
+	void initToolSizes();
+	void initToolFillTypes();
+	void initFonts();
+	void initGeneralSettings();
+
+	QColor loadToolColor(ToolTypes toolType);
+	void saveToolColor(ToolTypes toolType, const QColor &color);
+	QColor loadToolTextColor(ToolTypes toolType);
+	void saveToolTextColor(ToolTypes toolType, const QColor &color);
+	int loadToolSize(ToolTypes toolType);
+	void saveToolSize(ToolTypes toolType, int size);
+	FillTypes loadToolFillType(ToolTypes toolType);
+	void saveToolFillType(ToolTypes toolType, FillTypes fillType);
+	ToolTypes loadToolType();
+	void saveToolType(ToolTypes toolType);
+	QColor defaultToolColor(ToolTypes toolType) const;
+	QColor defaultToolTextColor(ToolTypes toolType) const;
+	int defaultToolSize(ToolTypes toolType) const;
+	FillTypes defaultToolFillType(ToolTypes toolType) const;
+	ToolTypes defaultToolType();
 };
 
 } // namespace kImageAnnotator
