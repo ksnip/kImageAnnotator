@@ -48,8 +48,9 @@ private:
 	QVBoxLayout *mToolsLayout;
 	ToolPicker *mToolPicker;
 	ColorPicker *mColorPicker;
-	ColorPicker *mTextColorPicker;
 	SizePicker *mWidthPicker;
+	ColorPicker *mTextColorPicker;
+	SizePicker *mFontSizePicker;
 	FillTypePicker *mFillTypePicker;
 	Config *mConfig;
 	WidgetVisibilitySwitcher mVisibilitySwitcher;
@@ -62,6 +63,7 @@ private slots:
 	void setToolColor(const QColor &color);
 	void setToolTextColor(const QColor &color);
 	void setToolWidth(int size);
+	void setToolFontSize(int fontSize);
 	void setToolFillType(FillTypes fill);
 };
 

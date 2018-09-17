@@ -35,6 +35,7 @@ public:
 	static QString toolColor(ToolTypes tool);
 	static QString toolTextColor(ToolTypes tool);
 	static QString toolFillType(ToolTypes tool);
+	static QString toolFontSize(ToolTypes tool);
 };
 
 }

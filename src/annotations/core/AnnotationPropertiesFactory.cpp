@@ -105,11 +105,7 @@ void AnnotationPropertiesFactory::setTextProperties(AnnotationProperties *proper
 {
 	auto pathProperties = dynamic_cast<AnnotationTextProperties *>(properties);
 	if (pathProperties != nullptr) {
-		if (toolType == ToolTypes::Text) {
-			pathProperties->setFont(mConfig->textFont());
-		} else if (toolType == ToolTypes::Number) {
-			pathProperties->setFont(mConfig->numberFont());
-		}
+		pathProperties->setFont(mConfig->toolFont(toolType));
 	}
 }
 

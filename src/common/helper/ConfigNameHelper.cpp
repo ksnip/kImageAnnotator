@@ -51,4 +51,9 @@ QString ConfigNameHelper::toolFillType(ToolTypes tool)
 	return annotator() + QStringLiteral("ToolFillType_") + QString::number(static_cast<int>(tool));
 }
 
+QString ConfigNameHelper::toolFontSize(ToolTypes tool)
+{
+	return annotator() + QStringLiteral("ToolFontSize_") + QString::number(static_cast<int>(tool));
+}
+
 }

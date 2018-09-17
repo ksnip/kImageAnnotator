@@ -113,24 +113,35 @@ void Config::setToolFillType(FillTypes fillType, ToolTypes tool)
 	saveToolFillType(tool, fillType);
 }
 
-QFont Config::textFont() const
+QFont Config::toolFont(ToolTypes toolType) const
 {
-	return mTextFont;
+	return mToolToFont[toolType];
 }
 
-void Config::setTextFont(const QFont &font)
+void Config::setToolFont(const QFont &font, ToolTypes toolType)
 {
-	mTextFont = font;
+	auto tmpFont = font;
+	tmpFont.setPointSize(toolFontSize(toolType));
+	if (toolFont(toolType) == tmpFont) {
+		return;
+	}
+
+	mToolToFont[toolType] = tmpFont;
 }
 
-QFont Config::numberFont() const
+int Config::toolFontSize(ToolTypes toolType) const
 {
-	return mNumberFont;
+	return mToolToFont[toolType].pointSize();
 }
 
-void Config::setNumberFont(const QFont &font)
+void Config::setToolFontSize(int fontSize, ToolTypes toolType)
 {
-	mNumberFont = font;
+	if (toolFontSize(toolType) == fontSize) {
+		return;
+	}
+
+	mToolToFont[toolType].setPointSize(fontSize);
+	saveToolFontSize(toolType, fontSize);
 }
 
 bool Config::itemShadowEnabled() const
@@ -178,7 +189,7 @@ void Config::initToolSettings()
 	initToolTextColors();
 	initToolWidths();
 	initToolFillTypes();
-	initFonts();
+	initToolFonts();
 }
 
 void Config::initSelectedTool()
@@ -214,10 +225,10 @@ void Config::initToolFillTypes()
 	}
 }
 
-void Config::initFonts()
+void Config::initToolFonts()
 {
-	mTextFont = QFont(QStringLiteral("Times"), 15, QFont::Bold);
-	mNumberFont = QFont(QStringLiteral("Helvetica"), 20, QFont::Bold);
+	mToolToFont[ToolTypes::Text] = QFont(QStringLiteral("Times"), loadToolFontSize(ToolTypes::Text), QFont::Bold);
+	mToolToFont[ToolTypes::Number] = QFont(QStringLiteral("Helvetica"), loadToolFontSize(ToolTypes::Number), QFont::Bold);
 }
 
 void Config::initGeneralSettings()
@@ -313,6 +324,23 @@ void Config::saveToolType(ToolTypes toolType)
 	}
 }
 
+int Config::loadToolFontSize(ToolTypes toolType)
+{
+	if (mSaveToolSelection) {
+		return mConfig.value(ConfigNameHelper::toolFontSize(toolType), defaultToolFontSize(toolType)).value<int>();
+	} else {
+		return defaultToolFontSize(toolType);
+	}
+}
+
+void Config::saveToolFontSize(ToolTypes toolType, int fontSize)
+{
+	if (mSaveToolSelection) {
+		mConfig.setValue(ConfigNameHelper::toolFontSize(toolType), fontSize);
+		mConfig.sync();
+	}
+}
+
 QColor Config::defaultToolColor(ToolTypes toolType) const
 {
 	switch (toolType) {
@@ -400,6 +428,18 @@ FillTypes Config::defaultToolFillType(ToolTypes toolType) const
 ToolTypes Config::defaultToolType()
 {
 	return ToolTypes::Pen;
+}
+
+int Config::defaultToolFontSize(ToolTypes toolType) const
+{
+	switch (toolType) {
+		case ToolTypes::Text:
+			return 10;
+		case ToolTypes::Number:
+			return 20;
+		default:
+			return 5;
+	}
 }
 
 } // namespace kImageAnnotator
