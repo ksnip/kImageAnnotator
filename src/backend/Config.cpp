@@ -434,11 +434,11 @@ int Config::defaultToolFontSize(ToolTypes toolType) const
 {
 	switch (toolType) {
 		case ToolTypes::Text:
-			return 10;
+			return 15;
 		case ToolTypes::Number:
 			return 20;
 		default:
-			return 5;
+			return 10;
 	}
 }
 

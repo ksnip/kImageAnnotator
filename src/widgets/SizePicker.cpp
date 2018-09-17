@@ -23,55 +23,62 @@ namespace kImageAnnotator {
 
 SizePicker::SizePicker(const QIcon &icon, const QString &tooltip)
 {
-    initGui(icon, tooltip);
+	initGui(icon, tooltip);
 
-    connect(mSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SizePicker::selectionChanged);
+	connect(mSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SizePicker::selectionChanged);
 }
 
 SizePicker::~SizePicker()
 {
-    delete mLayout;
-    delete mSpinBox;
-    delete mLabel;
+	delete mLayout;
+	delete mSpinBox;
+	delete mLabel;
 }
 
 void SizePicker::setSize(int size)
 {
-    mSpinBox->setValue(size);
+	mSpinBox->setValue(size);
 }
 
 void SizePicker::initGui(const QIcon &icon, const QString &tooltip)
 {
-    mLayout = new QHBoxLayout(this);
-    mLayout->setContentsMargins(0, 0, 0, 0);
+	mLayout = new QHBoxLayout(this);
+	mLayout->setContentsMargins(0, 0, 0, 0);
 
-    mLabel = new QLabel();
-    mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
-    mLabel->setToolTip(tooltip);
+	mLabel = new QLabel();
+	mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
+	mLabel->setToolTip(tooltip);
 
-    mSpinBox = new QSpinBox(this);
-    mSpinBox->setFixedSize(QSize(55, mSpinBox->sizeHint().height()));
-    mSpinBox->setMinimum(1);
-    mSpinBox->setMaximum(20);
-    mSpinBox->setFocusPolicy(Qt::NoFocus);
-    mSpinBox->setToolTip(tooltip);
+	mSpinBox = new QSpinBox(this);
+	mSpinBox->setFixedSize(QSize(55, mSpinBox->sizeHint().height()));
+	mSpinBox->setMinimum(1);
+	mSpinBox->setMaximum(20);
+	mSpinBox->setFocusPolicy(Qt::NoFocus);
+	mSpinBox->setToolTip(tooltip);
 
-    mLayout->addWidget(mLabel);
-    mLayout->addWidget(mSpinBox);
+	mLayout->addWidget(mLabel);
+	mLayout->addWidget(mSpinBox);
 
-    setLayout(mLayout);
-    setFixedSize(sizeHint());
+	setLayout(mLayout);
+	setFixedSize(sizeHint());
 }
 
 void SizePicker::setSizeAndNotify(int size)
 {
-    mSelectedSize = size;
-    emit sizeSelected(size);
+	emit sizeSelected(size);
 }
 
 void SizePicker::selectionChanged()
 {
-    setSizeAndNotify(mSpinBox->value());
+	setSizeAndNotify(mSpinBox->value());
+}
+
+void SizePicker::setRange(int min, int max)
+{
+	if (min > 0 && max >= min) {
+		mSpinBox->setMinimum(min);
+		mSpinBox->setMaximum(max);
+	}
 }
 
 } // namespace kImageAnnotator

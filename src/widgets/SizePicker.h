@@ -33,24 +33,24 @@ class SizePicker : public QWidget
 Q_OBJECT
 
 public:
-    SizePicker(const QIcon &icon, const QString &tooltip);
-    ~SizePicker();
-    void setSize(int size);
+	SizePicker(const QIcon &icon, const QString &tooltip);
+	~SizePicker();
+	void setSize(int size);
+	void setRange(int min, int max);
 
 signals:
-    void sizeSelected(int size) const;
+	void sizeSelected(int size) const;
 
 private:
-    QHBoxLayout *mLayout;
-    QSpinBox *mSpinBox;
-    QLabel *mLabel;
-    int mSelectedSize;
+	QHBoxLayout *mLayout;
+	QSpinBox *mSpinBox;
+	QLabel *mLabel;
 
-    void initGui(const QIcon &icon, const QString &tooltip);
-    void setSizeAndNotify(int size);
+	void initGui(const QIcon &icon, const QString &tooltip);
+	void setSizeAndNotify(int size);
 
 private slots:
-    void selectionChanged();
+	void selectionChanged();
 };
 
 } // namespace kImageAnnotator
