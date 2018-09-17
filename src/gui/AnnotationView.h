@@ -24,7 +24,7 @@
 #include <QHBoxLayout>
 #include <QGraphicsView>
 
-#include "src/gui/ConfigWidgetVisibilitySwitcher.h"
+#include "src/gui/WidgetVisibilitySwitcher.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/widgets/ToolPicker.h"
 #include "src/widgets/ColorPicker.h"
@@ -49,10 +49,10 @@ private:
 	ToolPicker *mToolPicker;
 	ColorPicker *mColorPicker;
 	ColorPicker *mTextColorPicker;
-	SizePicker *mSizePicker;
+	SizePicker *mWidthPicker;
 	FillTypePicker *mFillTypePicker;
 	Config *mConfig;
-	ConfigWidgetVisibilitySwitcher mVisibilitySwitcher;
+	WidgetVisibilitySwitcher mVisibilitySwitcher;
 
 	void initGui();
 	void setupDefaults();
@@ -61,7 +61,7 @@ private:
 private slots:
 	void setToolColor(const QColor &color);
 	void setToolTextColor(const QColor &color);
-	void setToolSize(int size);
+	void setToolWidth(int size);
 	void setToolFillType(FillTypes fill);
 };
 

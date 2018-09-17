@@ -35,7 +35,7 @@ void AnnotationItemFactoryTest::TestCreateItem_Should_CreateItemAtProvidedPositi
 	QPointF position(10, 10);
 	ToolTypes tool = ToolTypes::Line;
 	auto config = new Config;
-	config->setToolSize(0, tool);
+	config->setToolWidth(0, tool);
 	AnnotationItemFactory itemFactory(config);
 
 	auto item = itemFactory.createItem(position, tool);

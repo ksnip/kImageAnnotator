@@ -32,7 +32,7 @@ AnnotationProperties *AnnotationPropertiesFactory::createProperties(ToolTypes to
 
 	setColor(properties, toolType);
 	setTextColor(properties, toolType);
-	setSize(properties, toolType);
+	setWidthSize(properties, toolType);
 	setFill(properties, toolType);
 	setShadowEnabled(properties);
 	setPathProperties(properties);
@@ -71,15 +71,15 @@ void AnnotationPropertiesFactory::setTextColor(AnnotationProperties *properties,
 	properties->setTextColor(mConfig->toolTextColor(toolType));
 }
 
-void AnnotationPropertiesFactory::setSize(AnnotationProperties *properties, ToolTypes toolType) const
+void AnnotationPropertiesFactory::setWidthSize(AnnotationProperties *properties, ToolTypes toolType) const
 {
-	auto size = mConfig->toolSize(toolType);
+	auto width = mConfig->toolWidth(toolType);
 
 	if (toolType == ToolTypes::Marker) {
-		size = size * 3;
+		width *= 3;
 	}
 
-	properties->setSize(size);
+	properties->setWidth(width);
 }
 
 void AnnotationPropertiesFactory::setFill(AnnotationProperties *properties, ToolTypes toolType) const

@@ -31,7 +31,7 @@ class ConfigNameHelper
 public:
 	static QString annotator();
 	static QString toolType();
-	static QString toolSize(ToolTypes tool);
+	static QString toolWidth(ToolTypes tool);
 	static QString toolColor(ToolTypes tool);
 	static QString toolTextColor(ToolTypes tool);
 	static QString toolFillType(ToolTypes tool);

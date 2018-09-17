@@ -64,7 +64,7 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 
 	// Paint text
 	painter->setPen(properties()->textColor());
-	auto margine = properties()->size();
+	auto margine = properties()->Width();
 
 	painter->setClipRect(boundingRect().adjusted(margine, margine, -margine, -margine));
 
@@ -162,7 +162,7 @@ void AnnotationText::adjustRect()
 {
 	prepareGeometryChange();
 	QFontMetrics fontMetrics(properties()->font());
-	auto margine = properties()->size();
+	auto margine = properties()->Width();
 	auto newRect = fontMetrics.boundingRect(mRect->toRect().normalized(), Qt::AlignLeft, mText);
 	newRect.adjust(0, 0, margine * 2, margine * 2);
 	if (newRect.width() > mRect->width()) {

@@ -31,8 +31,7 @@ namespace kImageAnnotator {
 class AnnotationPropertiesFactory
 {
 public:
-	explicit AnnotationPropertiesFactory();
-	AnnotationPropertiesFactory(Config *config);
+	explicit AnnotationPropertiesFactory(Config *config);
 	~AnnotationPropertiesFactory() = default;
 
 	AnnotationProperties *createProperties(ToolTypes toolType) const;
@@ -43,7 +42,7 @@ private:
 	void setShadowEnabled(AnnotationProperties *properties) const;
 	void setColor(AnnotationProperties *properties, ToolTypes toolType) const;
 	void setTextColor(AnnotationProperties *properties, ToolTypes toolType) const;
-	void setSize(AnnotationProperties *properties, ToolTypes toolType) const;
+	void setWidthSize(AnnotationProperties *properties, ToolTypes toolType) const;
 	void setFill(AnnotationProperties *properties, ToolTypes toolType) const;
 	void setPathProperties(AnnotationProperties *properties) const;
 	void setTextProperties(AnnotationProperties *properties, ToolTypes toolType) const;

@@ -29,7 +29,7 @@ AbstractAnnotationItem::AbstractAnnotationItem(AnnotationProperties *properties)
 	mShape = new QPainterPath();
 
 	mPainterPen.setColor(mProperties->color());
-	mPainterPen.setWidth(mProperties->size());
+	mPainterPen.setWidth(mProperties->Width());
 	mPainterPen.setCapStyle(Qt::RoundCap);
 	mPainterPen.setJoinStyle(Qt::RoundJoin);
 
@@ -52,7 +52,7 @@ QRectF AbstractAnnotationItem::boundingRect() const
 {
 	auto width = 0;
 	if (!mShape->isEmpty()) {
-		width = mProperties->size() / 2;
+		width = mProperties->Width() / 2;
 	}
 
 	return mShape->boundingRect().adjusted(-width, -width, width, width);

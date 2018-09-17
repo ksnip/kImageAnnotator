@@ -31,9 +31,9 @@ QString ConfigNameHelper::toolType()
 	return annotator() + QStringLiteral("ToolType");
 }
 
-QString ConfigNameHelper::toolSize(ToolTypes tool)
+QString ConfigNameHelper::toolWidth(ToolTypes tool)
 {
-	return annotator() + QStringLiteral("ToolSize_") + QString::number(static_cast<int>(tool));
+	return annotator() + QStringLiteral("ToolWidth_") + QString::number(static_cast<int>(tool));
 }
 
 QString ConfigNameHelper::toolColor(ToolTypes tool)

@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_VISIBILITYSWITCHER_H
-#define KIMAGEANNOTATOR_VISIBILITYSWITCHER_H
+#ifndef KIMAGEANNOTATOR_WIDGETVISIBILITYSWITCHER_H
+#define KIMAGEANNOTATOR_WIDGETVISIBILITYSWITCHER_H
 
 #include <QWidget>
 
@@ -26,11 +26,11 @@
 
 namespace kImageAnnotator {
 
-class ConfigWidgetVisibilitySwitcher
+class WidgetVisibilitySwitcher
 {
 public:
-	explicit ConfigWidgetVisibilitySwitcher();
-	~ConfigWidgetVisibilitySwitcher() = default;
+	explicit WidgetVisibilitySwitcher();
+	~WidgetVisibilitySwitcher() = default;
 	void setCurrentTool(ToolTypes tool);
 	void setOutlineColorWidget(QWidget *widget);
 	void setForegroundColorWidget(QWidget *widget);
@@ -41,7 +41,7 @@ private:
 	ToolTypes mCurrentTool;
 	QWidget *mColorWidget;
 	QWidget *mTextColorWidget;
-	QWidget *mSizeWidget;
+	QWidget *mWidthWidget;
 	QWidget *mFillWidget;
 
 	void updateVisibility();
@@ -53,4 +53,4 @@ private:
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_VISIBILITYSWITCHER_H
+#endif // KIMAGEANNOTATOR_WIDGETVISIBILITYSWITCHER_H

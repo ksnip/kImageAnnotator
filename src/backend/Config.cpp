@@ -83,19 +83,19 @@ void Config::setToolTextColor(const QColor &color, ToolTypes tool)
 	saveToolTextColor(tool, color);
 }
 
-int Config::toolSize(ToolTypes tool) const
+int Config::toolWidth(ToolTypes tool) const
 {
-	return mToolToSize[tool];
+	return mToolToWidth[tool];
 }
 
-void Config::setToolSize(int size, ToolTypes tool)
+void Config::setToolWidth(int size, ToolTypes tool)
 {
-	if (toolSize(tool) == size) {
+	if (toolWidth(tool) == size) {
 		return;
 	}
 
-	mToolToSize[tool] = size;
-	saveToolSize(tool, size);
+	mToolToWidth[tool] = size;
+	saveToolWidth(tool, size);
 }
 
 FillTypes Config::toolFillType(ToolTypes tool) const
@@ -176,7 +176,7 @@ void Config::initToolSettings()
 	initSelectedTool();
 	initToolColors();
 	initToolTextColors();
-	initToolSizes();
+	initToolWidths();
 	initToolFillTypes();
 	initFonts();
 }
@@ -200,10 +200,10 @@ void Config::initToolTextColors()
 	}
 }
 
-void Config::initToolSizes()
+void Config::initToolWidths()
 {
 	for (auto toolType : mAllTools) {
-		mToolToSize[toolType] = loadToolSize(toolType);
+		mToolToWidth[toolType] = loadToolWidth(toolType);
 	}
 }
 
@@ -262,19 +262,19 @@ void Config::saveToolTextColor(ToolTypes toolType, const QColor &color)
 	}
 }
 
-int Config::loadToolSize(ToolTypes toolType)
+int Config::loadToolWidth(ToolTypes toolType)
 {
 	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::toolSize(toolType), defaultToolSize(toolType)).value<int>();
+		return mConfig.value(ConfigNameHelper::toolWidth(toolType), defaultToolWidth(toolType)).value<int>();
 	} else {
-		return defaultToolSize(toolType);
+		return defaultToolWidth(toolType);
 	}
 }
 
-void Config::saveToolSize(ToolTypes toolType, int size)
+void Config::saveToolWidth(ToolTypes toolType, int size)
 {
 	if (mSaveToolSelection) {
-		mConfig.setValue(ConfigNameHelper::toolSize(toolType), size);
+		mConfig.setValue(ConfigNameHelper::toolWidth(toolType), size);
 		mConfig.sync();
 	}
 }
@@ -348,7 +348,7 @@ QColor Config::defaultToolTextColor(ToolTypes toolType) const
 	}
 }
 
-int Config::defaultToolSize(ToolTypes toolType) const
+int Config::defaultToolWidth(ToolTypes toolType) const
 {
 	switch (toolType) {
 		case ToolTypes::Pen:

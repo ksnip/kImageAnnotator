@@ -34,12 +34,12 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesS
 	const int size = 13;
 	const ToolTypes tool = ToolTypes::Line;
 	auto config = new Config;
-	config->setToolSize(size, tool);
+	config->setToolWidth(size, tool);
 	AnnotationPropertiesFactory propertiesFactory(config);
 
 	auto properties = propertiesFactory.createProperties(tool);
 
-	QCOMPARE(properties->size(), size);
+	QCOMPARE(properties->Width(), size);
 }
 
 void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesColorBasedOnConfiguration()

@@ -17,21 +17,21 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "ConfigWidgetVisibilitySwitcher.h"
+#include "WidgetVisibilitySwitcher.h"
 
 namespace kImageAnnotator {
 
-ConfigWidgetVisibilitySwitcher::ConfigWidgetVisibilitySwitcher()
+WidgetVisibilitySwitcher::WidgetVisibilitySwitcher()
 {
     mColorWidget = nullptr;
     mTextColorWidget = nullptr;
-    mSizeWidget = nullptr;
+    mWidthWidget = nullptr;
     mFillWidget = nullptr;
 
     mCurrentTool = ToolTypes::Select;
 }
 
-void ConfigWidgetVisibilitySwitcher::setCurrentTool(ToolTypes tool)
+void WidgetVisibilitySwitcher::setCurrentTool(ToolTypes tool)
 {
     if (mCurrentTool == tool) {
         return;
@@ -41,31 +41,31 @@ void ConfigWidgetVisibilitySwitcher::setCurrentTool(ToolTypes tool)
     updateVisibility();
 }
 
-void ConfigWidgetVisibilitySwitcher::setOutlineColorWidget(QWidget *widget)
+void WidgetVisibilitySwitcher::setOutlineColorWidget(QWidget *widget)
 {
     mColorWidget = widget;
     updateVisibility();
 }
 
-void ConfigWidgetVisibilitySwitcher::setForegroundColorWidget(QWidget *widget)
+void WidgetVisibilitySwitcher::setForegroundColorWidget(QWidget *widget)
 {
     mTextColorWidget = widget;
     updateVisibility();
 }
 
-void ConfigWidgetVisibilitySwitcher::setSizeWidget(QWidget *widget)
+void WidgetVisibilitySwitcher::setSizeWidget(QWidget *widget)
 {
-    mSizeWidget = widget;
+    mWidthWidget = widget;
     updateVisibility();
 }
 
-void ConfigWidgetVisibilitySwitcher::setFillWidget(QWidget *widget)
+void WidgetVisibilitySwitcher::setFillWidget(QWidget *widget)
 {
     mFillWidget = widget;
     updateVisibility();
 }
 
-void ConfigWidgetVisibilitySwitcher::updateVisibility()
+void WidgetVisibilitySwitcher::updateVisibility()
 {
     switch (mCurrentTool) {
         case ToolTypes::Select:
@@ -107,32 +107,32 @@ void ConfigWidgetVisibilitySwitcher::updateVisibility()
             setFillWidgetVisibility(true);
             break;
         default:
-            qCritical("Unknown tooltype in ConfigWidgetVisibilitySwitcher");
+            qCritical("Unknown tooltype in WidgetVisibilitySwitcher");
     }
 }
 
-void ConfigWidgetVisibilitySwitcher::setColorWidgetVisibility(bool enabled)
+void WidgetVisibilitySwitcher::setColorWidgetVisibility(bool enabled)
 {
     if (mColorWidget) {
         mColorWidget->setEnabled(enabled);
     }
 }
 
-void ConfigWidgetVisibilitySwitcher::setTextColorWidgetVisibility(bool enabled)
+void WidgetVisibilitySwitcher::setTextColorWidgetVisibility(bool enabled)
 {
     if (mTextColorWidget) {
         mTextColorWidget->setEnabled(enabled);
     }
 }
 
-void ConfigWidgetVisibilitySwitcher::setSizeWidgetVisibility(bool enabled)
+void WidgetVisibilitySwitcher::setSizeWidgetVisibility(bool enabled)
 {
-    if (mSizeWidget) {
-        mSizeWidget->setEnabled(enabled);
+    if (mWidthWidget) {
+        mWidthWidget->setEnabled(enabled);
     }
 }
 
-void ConfigWidgetVisibilitySwitcher::setFillWidgetVisibility(bool enabled)
+void WidgetVisibilitySwitcher::setFillWidgetVisibility(bool enabled)
 {
     if (mFillWidget) {
         mFillWidget->setEnabled(enabled);

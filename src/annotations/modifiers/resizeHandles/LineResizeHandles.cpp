@@ -32,7 +32,7 @@ LineResizeHandles::LineResizeHandles(AbstractAnnotationLine *lineItem)
 void LineResizeHandles::update()
 {
 	auto line = mLineItem->line();
-	auto offset = mLineItem->properties()->size();
+	auto offset = mLineItem->properties()->Width();
 	auto outerLine = ShapeHelper::extendLine(line, offset);
 	mHandles[0].moveCenter(QPointF(outerLine.p1().x(), outerLine.p1().y()));
 	mHandles[0].setAnchor(line.p1());

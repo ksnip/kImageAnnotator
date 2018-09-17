@@ -25,7 +25,7 @@ AnnotationProperties::AnnotationProperties(const QColor &color, int size)
 {
     mColor = color;
     mTextColor = color;
-    mSize = size;
+    mWidth = size;
 }
 
 QColor AnnotationProperties::color() const
@@ -48,14 +48,14 @@ void AnnotationProperties::setTextColor(const QColor &color)
     mTextColor = qMove(color);
 }
 
-int AnnotationProperties::size() const
+int AnnotationProperties::Width() const
 {
-    return mSize;
+    return mWidth;
 }
 
-void AnnotationProperties::setSize(int size)
+void AnnotationProperties::setWidth(int size)
 {
-    mSize = size;
+    mWidth = size;
 }
 
 FillTypes AnnotationProperties::fillType() const

@@ -36,8 +36,8 @@ public:
     void setColor(const QColor &color);
     QColor textColor() const;
     void setTextColor(const QColor &color);
-    int size() const;
-    void setSize(int size);
+    int Width() const;
+    void setWidth(int size);
     FillTypes fillType() const;
     void setFillType(FillTypes fillType);
     bool shadowEnabled() const;
@@ -46,7 +46,7 @@ public:
 private:
     QColor mColor;
     QColor mTextColor;
-    int mSize;
+    int mWidth;
     FillTypes mFillType;
     bool mShadowEnabled;
 };

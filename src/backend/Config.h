@@ -51,8 +51,8 @@ public slots:
 	QColor toolTextColor(ToolTypes tool) const;
 	void setToolTextColor(const QColor &color, ToolTypes tool);
 
-	int toolSize(ToolTypes tool) const;
-	void setToolSize(int size, ToolTypes tool);
+	int toolWidth(ToolTypes tool) const;
+	void setToolWidth(int size, ToolTypes tool);
 
 	FillTypes toolFillType(ToolTypes tool) const;
 	void setToolFillType(FillTypes fillType, ToolTypes tool);
@@ -83,7 +83,7 @@ private:
 	ToolTypes mSelectTool;
 	QHash<ToolTypes, QColor> mToolToColor;
 	QHash<ToolTypes, QColor> mToolToTextColor;
-	QHash<ToolTypes, int> mToolToSize;
+	QHash<ToolTypes, int> mToolToWidth;
 	QHash<ToolTypes, FillTypes> mToolToFillType;
 	QFont mTextFont;
 	QFont mNumberFont;
@@ -96,7 +96,7 @@ private:
 	void initSelectedTool();
 	void initToolColors();
 	void initToolTextColors();
-	void initToolSizes();
+	void initToolWidths();
 	void initToolFillTypes();
 	void initFonts();
 	void initGeneralSettings();
@@ -105,15 +105,15 @@ private:
 	void saveToolColor(ToolTypes toolType, const QColor &color);
 	QColor loadToolTextColor(ToolTypes toolType);
 	void saveToolTextColor(ToolTypes toolType, const QColor &color);
-	int loadToolSize(ToolTypes toolType);
-	void saveToolSize(ToolTypes toolType, int size);
+	int loadToolWidth(ToolTypes toolType);
+	void saveToolWidth(ToolTypes toolType, int size);
 	FillTypes loadToolFillType(ToolTypes toolType);
 	void saveToolFillType(ToolTypes toolType, FillTypes fillType);
 	ToolTypes loadToolType();
 	void saveToolType(ToolTypes toolType);
 	QColor defaultToolColor(ToolTypes toolType) const;
 	QColor defaultToolTextColor(ToolTypes toolType) const;
-	int defaultToolSize(ToolTypes toolType) const;
+	int defaultToolWidth(ToolTypes toolType) const;
 	FillTypes defaultToolFillType(ToolTypes toolType) const;
 	ToolTypes defaultToolType();
 };
