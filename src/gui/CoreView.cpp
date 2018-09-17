@@ -21,9 +21,9 @@
 
 namespace kImageAnnotator {
 
-CoreView::CoreView()
+CoreView::CoreView(Config *config)
 {
-	mConfig = new Config;
+	mConfig = config;
 	mAnnotationArea = new AnnotationArea(mConfig);
 	mAnnotationView = new AnnotationView(mAnnotationArea, mConfig);
 	addWidget(mAnnotationView);

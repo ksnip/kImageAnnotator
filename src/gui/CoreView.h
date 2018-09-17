@@ -31,7 +31,7 @@ class CoreView : public QStackedWidget
 {
 Q_OBJECT
 public:
-	explicit CoreView();
+	explicit CoreView(Config *config);
 	~CoreView();
 	QImage image() const;
 	QAction *undoAction();

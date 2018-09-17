@@ -35,6 +35,7 @@ class KImageAnnotatorPrivate
 	explicit KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator);
 
 	KImageAnnotator *const q_ptr;
+	Config mConfig;
 	CoreView mCoreView;
 	QHBoxLayout mMainLayout;
 };
@@ -83,9 +84,45 @@ QSize KImageAnnotator::sizeHint() const
 	}
 }
 
+void KImageAnnotator::setTextFont(const QFont &font)
+{
+	Q_D(KImageAnnotator);
+	d->mConfig.setToolFont(font, ToolTypes::Text);
+}
+
+void KImageAnnotator::setNumberFont(const QFont &font)
+{
+	Q_D(KImageAnnotator);
+	d->mConfig.setToolFont(font, ToolTypes::Number);
+}
+
+void KImageAnnotator::setItemShadowEnabled(bool enabled)
+{
+	Q_D(KImageAnnotator);
+	d->mConfig.setItemShadowEnabled(enabled);
+}
+
+void KImageAnnotator::setSmoothPathEnabled(bool enabled)
+{
+	Q_D(KImageAnnotator);
+	d->mConfig.setSmoothPathEnabled(enabled);
+}
+
+void KImageAnnotator::setSaveToolSelection(bool enabled)
+{
+	Q_D(KImageAnnotator);
+	d->mConfig.setSaveToolSelection(enabled);
+}
+
+void KImageAnnotator::setSmoothFactor(int factor)
+{
+	Q_D(KImageAnnotator);
+	d->mConfig.setSmoothFactor(factor);
+}
+
 // KImageAnnotatorPrivate
 
-KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator) : q_ptr(kImageAnnotator)
+KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator) : q_ptr(kImageAnnotator), mCoreView(&mConfig)
 {
 	QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 

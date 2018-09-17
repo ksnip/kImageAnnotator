@@ -44,6 +44,12 @@ public:
 
 public slots:
 	void loadImage(const QPixmap &pixmap);
+	void setTextFont(const QFont &font);
+	void setNumberFont(const QFont &font);
+	void setItemShadowEnabled(bool enabled);
+	void setSmoothPathEnabled(bool enabled);
+	void setSaveToolSelection(bool enabled);
+	void setSmoothFactor(int factor);
 
 signals:
 	void imageChanged() const;
