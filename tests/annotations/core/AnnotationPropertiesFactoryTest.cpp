@@ -151,26 +151,13 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetSmootPathBa
 	QCOMPARE(pathProperties->smoothFactor(), smootPathFactor);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetNumberFontBasedOnConfiguration()
+void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetToolFontAndFontSizeBasedOnConfiguration()
 {
 	const ToolTypes tool = ToolTypes::Number;
 	auto config = new Config;
 	auto font = QFont("Helvetica [Cronyx]", 8, QFont::StyleItalic);
-	config->setNumberFont(font);
-	AnnotationPropertiesFactory propertiesFactory(config);
-
-	auto properties = propertiesFactory.createProperties(tool);
-
-	auto textProperties = dynamic_cast<AnnotationTextProperties *>(properties);
-	QCOMPARE(textProperties->font(), font);
-}
-
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetTextFontBasedOnConfiguration()
-{
-	const ToolTypes tool = ToolTypes::Text;
-	auto config = new Config;
-	auto font = QFont("Helvetica [Cronyx]", 12, QFont::StyleItalic);
-	config->setTextFont(font);
+	config->setToolFont(font, tool);
+	config->setToolFontSize(8, tool);
 	AnnotationPropertiesFactory propertiesFactory(config);
 
 	auto properties = propertiesFactory.createProperties(tool);

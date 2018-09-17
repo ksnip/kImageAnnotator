@@ -49,8 +49,7 @@ private slots:
 	void TestCreateProperties_Should_CreateTextPropertiesWhenItemNumber();
 	void TestCreateProperties_Should_CreateTextPropertiesWhenItemText();
 	void TestCreateProperties_Should_SetSmootPathBasedOnConfiguration();
-	void TestCreateProperties_Should_SetNumberFontBasedOnConfiguration();
-	void TestCreateProperties_Should_SetTextFontBasedOnConfiguration();
+	void TestCreateProperties_Should_SetToolFontAndFontSizeBasedOnConfiguration();
 };
 
 #endif // ANNOTATIONPROPERTIESFACTORYTEST_H
