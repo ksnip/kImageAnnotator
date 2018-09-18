@@ -166,6 +166,10 @@ void Config::setSmoothPathEnabled(bool enabled)
 
 void Config::setSaveToolSelection(bool enabled)
 {
+	if (mSaveToolSelection == enabled) {
+		return;
+	}
+
 	mSaveToolSelection = enabled;
 	initToolSettings();
 }

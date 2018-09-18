@@ -26,28 +26,30 @@
 
 #include <kColorPicker/KColorPicker.h>
 
+using kColorPicker::KColorPicker;
+
 namespace kImageAnnotator {
 
 class ColorPicker : public QWidget
 {
 Q_OBJECT
 public:
-    explicit ColorPicker(const QIcon &icon, const QString &tooltip);
-    ~ColorPicker() override;
-    void setColor(const QColor &color);
+	explicit ColorPicker(const QIcon &icon, const QString &tooltip);
+	~ColorPicker() override;
+	void setColor(const QColor &color);
 
 signals:
-    void colorSelected(const QColor &color);
+	void colorSelected(const QColor &color);
 
 private:
-    QHBoxLayout *mLayout;
-    QLabel *mLabel;
-    KColorPicker *mkColorPicker;
+	QHBoxLayout *mLayout;
+	QLabel *mLabel;
+	KColorPicker *mkColorPicker;
 
-    void initGui(const QIcon &icon, const QString &tooltip);
+	void initGui(const QIcon &icon, const QString &tooltip);
 
 private slots:
-    void colorChanged(const QColor &color);
+	void colorChanged(const QColor &color);
 };
 
 } // namespace kImageAnnotator
