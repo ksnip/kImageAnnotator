@@ -76,6 +76,7 @@ public slots:
 
 signals:
 	void toolChanged(ToolTypes tool) const;
+	void loaded();
 
 private:
 	QSettings mConfig;

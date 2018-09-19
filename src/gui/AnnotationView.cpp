@@ -27,7 +27,7 @@ AnnotationView::AnnotationView(AnnotationArea *annotationArea, Config *config)
 	mAnnotationArea = annotationArea;
 
 	initGui();
-	setupDefaults();
+	loadConfig();
 }
 
 AnnotationView::~AnnotationView()
@@ -97,9 +97,10 @@ void AnnotationView::initGui()
 	connect(mTextColorPicker, &ColorPicker::colorSelected, this, &AnnotationView::setToolTextColor);
 	connect(mFontSizePicker, &SizePicker::sizeSelected, this, &AnnotationView::setToolFontSize);
 	connect(mFillTypePicker, &FillTypePicker::fillSelected, this, &AnnotationView::setToolFillType);
+	connect(mConfig, &Config::loaded, this, &AnnotationView::loadConfig);
 }
 
-void AnnotationView::setupDefaults()
+void AnnotationView::loadConfig()
 {
 	mToolPicker->setTool(mConfig->selectedTool());
 }

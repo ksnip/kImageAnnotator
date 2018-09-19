@@ -194,6 +194,7 @@ void Config::initToolSettings()
 	initToolWidths();
 	initToolFillTypes();
 	initToolFonts();
+	emit loaded();
 }
 
 void Config::initSelectedTool()

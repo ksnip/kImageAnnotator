@@ -56,10 +56,10 @@ private:
 	WidgetVisibilitySwitcher mVisibilitySwitcher;
 
 	void initGui();
-	void setupDefaults();
 	void updateSelection(ToolTypes tool);
 
 private slots:
+	void loadConfig();
 	void setToolColor(const QColor &color);
 	void setToolTextColor(const QColor &color);
 	void setToolWidth(int size);
