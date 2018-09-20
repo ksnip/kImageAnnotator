@@ -41,6 +41,9 @@ public:
 	QAction *undoAction();
 	QAction *redoAction();
 	QSize sizeHint() const;
+	void showAnnotator();
+	void showCropper();
+	void showScaler();
 
 public slots:
 	void loadImage(const QPixmap &pixmap);

@@ -120,6 +120,24 @@ void KImageAnnotator::setSmoothFactor(int factor)
 	d->mConfig.setSmoothFactor(factor);
 }
 
+void KImageAnnotator::showAnnotator()
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.showAnnotator();
+}
+
+void KImageAnnotator::showCropper()
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.showCropper();
+}
+
+void KImageAnnotator::showScaler()
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.showScaler();
+}
+
 // KImageAnnotatorPrivate
 
 KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator) : q_ptr(kImageAnnotator), mCoreView(&mConfig)

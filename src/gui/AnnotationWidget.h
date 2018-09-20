@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONVIEW_H
-#define KIMAGEANNOTATOR_ANNOTATIONVIEW_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONWIDGET_H
+#define KIMAGEANNOTATOR_ANNOTATIONWIDGET_H
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -33,12 +33,12 @@
 
 namespace kImageAnnotator {
 
-class AnnotationView : public QWidget
+class AnnotationWidget : public QWidget
 {
 Q_OBJECT
 public:
-	explicit AnnotationView(AnnotationArea *annotationArea, Config *config);
-	virtual ~AnnotationView();
+	explicit AnnotationWidget(AnnotationArea *annotationArea, Config *config);
+	virtual ~AnnotationWidget();
 	QSize sizeHint() const;
 
 private:
@@ -69,4 +69,4 @@ private slots:
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONVIEW_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONWIDGET_H

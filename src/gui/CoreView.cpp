@@ -25,8 +25,10 @@ CoreView::CoreView(Config *config)
 {
 	mConfig = config;
 	mAnnotationArea = new AnnotationArea(mConfig);
-	mAnnotationView = new AnnotationView(mAnnotationArea, mConfig);
-	addWidget(mAnnotationView);
+	mAnnotationWidget = new AnnotationWidget(mAnnotationArea, mConfig);
+	mCropWidget = new CropWidget(mAnnotationArea);
+	addWidget(mAnnotationWidget);
+	addWidget(mCropWidget);
 
 	connect(mAnnotationArea, &AnnotationArea::imageChanged, this, &CoreView::imageChanged);
 }
@@ -34,7 +36,7 @@ CoreView::CoreView(Config *config)
 CoreView::~CoreView()
 {
 	delete mAnnotationArea;
-	delete mAnnotationView;
+	delete mAnnotationWidget;
 	delete mConfig;
 }
 
@@ -50,12 +52,12 @@ void CoreView::loadImage(const QPixmap &pixmap)
 
 void CoreView::showAnnotator()
 {
-
+	setCurrentWidget(mAnnotationWidget);
 }
 
 void CoreView::showCropper()
 {
-
+	setCurrentWidget(mCropWidget);
 }
 
 void CoreView::showScaler()
@@ -75,7 +77,7 @@ QAction *CoreView::redoAction()
 
 QSize CoreView::sizeHint() const
 {
-	return mAnnotationView->sizeHint();
+	return mAnnotationWidget->sizeHint();
 }
 
 } // namespace kImageAnnotator

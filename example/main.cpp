@@ -18,6 +18,10 @@
  */
 
 #include <QApplication>
+#include <QMainWindow>
+#include <QVBoxLayout>
+#include <QMenuBar>
+
 #include <kImageAnnotator/KImageAnnotator.h>
 
 using kImageAnnotator::KImageAnnotator;
@@ -30,7 +34,23 @@ int main(int argc, char **argv)
 	auto kImageAnnotator = new KImageAnnotator();
 	kImageAnnotator->loadImage(pixmap);
 	kImageAnnotator->adjustSize();
-	kImageAnnotator->show();
+
+	QMainWindow mainWindow;
+	mainWindow.setCentralWidget(kImageAnnotator);
+	auto menuBar = mainWindow.menuBar();
+	auto menu = new QMenu(QStringLiteral("Edit"));
+	auto annotationAction = new QAction(QStringLiteral("Annotation"), &mainWindow);
+	auto cropAction = new QAction(QStringLiteral("Crop"), &mainWindow);
+	auto scaleAction = new QAction(QStringLiteral("Scale"), &mainWindow);
+	mainWindow.connect(annotationAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showAnnotator);
+	mainWindow.connect(cropAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showCropper);
+	mainWindow.connect(scaleAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showScaler);
+	menu->addAction(annotationAction);
+	menu->addAction(cropAction);
+	menu->addAction(scaleAction);
+	menuBar->addMenu(menu);
+	mainWindow.show();
+	mainWindow.setMinimumSize(kImageAnnotator->sizeHint());
 
 	return app.exec();
 }

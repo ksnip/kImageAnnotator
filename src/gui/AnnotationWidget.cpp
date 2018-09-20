@@ -17,11 +17,11 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationView.h"
+#include "AnnotationWidget.h"
 
 namespace kImageAnnotator {
 
-AnnotationView::AnnotationView(AnnotationArea *annotationArea, Config *config)
+AnnotationWidget::AnnotationWidget(AnnotationArea *annotationArea, Config *config)
 {
 	mConfig = config;
 	mAnnotationArea = annotationArea;
@@ -30,7 +30,7 @@ AnnotationView::AnnotationView(AnnotationArea *annotationArea, Config *config)
 	loadConfig();
 }
 
-AnnotationView::~AnnotationView()
+AnnotationWidget::~AnnotationWidget()
 {
 	delete mView;
 	delete mMainLayout;
@@ -43,7 +43,7 @@ AnnotationView::~AnnotationView()
 	delete mFillTypePicker;
 }
 
-QSize AnnotationView::sizeHint() const
+QSize AnnotationWidget::sizeHint() const
 {
 	auto minWidth = mToolsLayout->sizeHint().width();
 	auto minHeight = mToolsLayout->sizeHint().height();
@@ -55,7 +55,7 @@ QSize AnnotationView::sizeHint() const
 	return QSize(width, height) + offset;
 }
 
-void AnnotationView::initGui()
+void AnnotationWidget::initGui()
 {
 	mView = new QGraphicsView(mAnnotationArea);
 	mMainLayout = new QHBoxLayout();
@@ -91,21 +91,21 @@ void AnnotationView::initGui()
 	setFocusPolicy(Qt::ClickFocus);
 
 	connect(mToolPicker, &ToolPicker::toolSelected, mConfig, &Config::setSelectedTool);
-	connect(mToolPicker, &ToolPicker::toolSelected, this, &AnnotationView::updateSelection);
-	connect(mColorPicker, &ColorPicker::colorSelected, this, &AnnotationView::setToolColor);
-	connect(mWidthPicker, &SizePicker::sizeSelected, this, &AnnotationView::setToolWidth);
-	connect(mTextColorPicker, &ColorPicker::colorSelected, this, &AnnotationView::setToolTextColor);
-	connect(mFontSizePicker, &SizePicker::sizeSelected, this, &AnnotationView::setToolFontSize);
-	connect(mFillTypePicker, &FillTypePicker::fillSelected, this, &AnnotationView::setToolFillType);
-	connect(mConfig, &Config::loaded, this, &AnnotationView::loadConfig);
+	connect(mToolPicker, &ToolPicker::toolSelected, this, &AnnotationWidget::updateSelection);
+	connect(mColorPicker, &ColorPicker::colorSelected, this, &AnnotationWidget::setToolColor);
+	connect(mWidthPicker, &SizePicker::sizeSelected, this, &AnnotationWidget::setToolWidth);
+	connect(mTextColorPicker, &ColorPicker::colorSelected, this, &AnnotationWidget::setToolTextColor);
+	connect(mFontSizePicker, &SizePicker::sizeSelected, this, &AnnotationWidget::setToolFontSize);
+	connect(mFillTypePicker, &FillTypePicker::fillSelected, this, &AnnotationWidget::setToolFillType);
+	connect(mConfig, &Config::loaded, this, &AnnotationWidget::loadConfig);
 }
 
-void AnnotationView::loadConfig()
+void AnnotationWidget::loadConfig()
 {
 	mToolPicker->setTool(mConfig->selectedTool());
 }
 
-void AnnotationView::updateSelection(ToolTypes tool)
+void AnnotationWidget::updateSelection(ToolTypes tool)
 {
 	mColorPicker->setColor(mConfig->toolColor(tool));
 	mTextColorPicker->setColor(mConfig->toolTextColor(tool));
@@ -115,27 +115,27 @@ void AnnotationView::updateSelection(ToolTypes tool)
 	mVisibilitySwitcher.setCurrentTool(tool);
 }
 
-void AnnotationView::setToolColor(const QColor &color)
+void AnnotationWidget::setToolColor(const QColor &color)
 {
 	mConfig->setToolColor(color, mToolPicker->tool());
 }
 
-void AnnotationView::setToolTextColor(const QColor &color)
+void AnnotationWidget::setToolTextColor(const QColor &color)
 {
 	mConfig->setToolTextColor(color, mToolPicker->tool());
 }
 
-void AnnotationView::setToolWidth(int size)
+void AnnotationWidget::setToolWidth(int size)
 {
 	mConfig->setToolWidth(size, mToolPicker->tool());
 }
 
-void AnnotationView::setToolFillType(FillTypes fill)
+void AnnotationWidget::setToolFillType(FillTypes fill)
 {
 	mConfig->setToolFillType(fill, mToolPicker->tool());
 }
 
-void AnnotationView::setToolFontSize(int size)
+void AnnotationWidget::setToolFontSize(int size)
 {
 	mConfig->setToolFontSize(size, mToolPicker->tool());
 }

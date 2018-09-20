@@ -17,44 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SWITCHER_H
-#define KIMAGEANNOTATOR_SWITCHER_H
+#ifndef KIMAGEANNOTATOR_CROPVIEW_H
+#define KIMAGEANNOTATOR_CROPVIEW_H
 
-#include <QStackedWidget>
+#include <QGraphicsView>
 
 #include "src/annotations/core/AnnotationArea.h"
-#include "AnnotationWidget.h"
-#include "CropWidget.h"
 
 namespace kImageAnnotator {
 
-class CoreView : public QStackedWidget
+class CropView : public QGraphicsView
 {
-Q_OBJECT
 public:
-	explicit CoreView(Config *config);
-	~CoreView();
-	QImage image() const;
-	QAction *undoAction();
-	QAction *redoAction();
-	QSize sizeHint() const;
-
-signals:
-	void imageChanged() const;
-
-public slots:
-	void loadImage(const QPixmap &pixmap);
-	void showAnnotator();
-	void showCropper();
-	void showScaler();
-
-private:
-	Config *mConfig;
-	AnnotationArea *mAnnotationArea;
-	AnnotationWidget *mAnnotationWidget;
-	CropWidget *mCropWidget;
+	explicit CropView(AnnotationArea *annotationArea);
+	~CropView() = default;
 };
 
-} // namespace kImageAnnotator
+}
 
-#endif //KIMAGEANNOTATOR_SWITCHER_H
+#endif //KIMAGEANNOTATOR_CROPVIEW_H

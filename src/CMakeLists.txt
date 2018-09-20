@@ -2,7 +2,9 @@ set(kimageannotator_SRCS
 	${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/WidgetVisibilitySwitcher.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/CoreView.cpp
-	${CMAKE_SOURCE_DIR}/src/gui/AnnotationView.cpp
+	${CMAKE_SOURCE_DIR}/src/gui/AnnotationWidget.cpp
+	${CMAKE_SOURCE_DIR}/src/gui/CropWidget.cpp
+	${CMAKE_SOURCE_DIR}/src/gui/CropView.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationArea.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationItemFactory.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationPropertiesFactory.cpp

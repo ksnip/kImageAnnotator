@@ -17,44 +17,57 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SWITCHER_H
-#define KIMAGEANNOTATOR_SWITCHER_H
+#ifndef KIMAGEANNOTATOR_CROPWIDGET_H
+#define KIMAGEANNOTATOR_CROPWIDGET_H
 
-#include <QStackedWidget>
+#include <QWidget>
+#include <QPushButton>
+#include <QLabel>
+#include <QLineEdit>
+#include <QHBoxLayout>
+#include <QIntValidator>
 
 #include "src/annotations/core/AnnotationArea.h"
-#include "AnnotationWidget.h"
-#include "CropWidget.h"
+#include "CropView.h"
 
 namespace kImageAnnotator {
 
-class CoreView : public QStackedWidget
+class CropWidget : public QWidget
 {
 Q_OBJECT
 public:
-	explicit CoreView(Config *config);
-	~CoreView();
-	QImage image() const;
-	QAction *undoAction();
-	QAction *redoAction();
-	QSize sizeHint() const;
+	explicit CropWidget(AnnotationArea *annotationArea);
+	~CropWidget();
 
 signals:
-	void imageChanged() const;
+	void done();
 
-public slots:
-	void loadImage(const QPixmap &pixmap);
-	void showAnnotator();
-	void showCropper();
-	void showScaler();
+protected:
+	void keyPressEvent(QKeyEvent *event) override;
 
 private:
-	Config *mConfig;
 	AnnotationArea *mAnnotationArea;
-	AnnotationWidget *mAnnotationWidget;
-	CropWidget *mCropWidget;
+	CropView *mCropView;
+	QVBoxLayout *mMainLayout;
+	QHBoxLayout *mPanelLayout;
+	QPushButton *mCropButton;
+	QPushButton *mCancelButton;
+	QLineEdit *mPositionXLineEdit;
+	QLineEdit *mPositionYLineEdit;
+	QLineEdit *mWidthLineEdit;
+	QLineEdit *mHeightLineEdit;
+
+	void initGui();
+
+private slots:
+	void crop();
+	void selectedRectChanged(const QRectF &rect);
+	void xChanged(const QString &text);
+	void yChanged(const QString &text);
+	void widthChanged(const QString &text);
+	void heightChanged(const QString &text);
 };
 
-} // namespace kImageAnnotator
+}
 
-#endif //KIMAGEANNOTATOR_SWITCHER_H
+#endif //KIMAGEANNOTATOR_CROPWIDGET_H
