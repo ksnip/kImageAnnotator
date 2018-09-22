@@ -45,7 +45,7 @@ private:
 	AnnotationArea *mAnnotationArea;
 	QGraphicsView *mView;
 	QHBoxLayout *mMainLayout;
-	QVBoxLayout *mToolsLayout;
+	QVBoxLayout *mToolLayout;
 	ToolPicker *mToolPicker;
 	ColorPicker *mColorPicker;
 	SizePicker *mWidthPicker;

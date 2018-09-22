@@ -34,7 +34,6 @@ AnnotationWidget::~AnnotationWidget()
 {
 	delete mView;
 	delete mMainLayout;
-	delete mToolsLayout;
 	delete mToolPicker;
 	delete mColorPicker;
 	delete mWidthPicker;
@@ -45,8 +44,8 @@ AnnotationWidget::~AnnotationWidget()
 
 QSize AnnotationWidget::sizeHint() const
 {
-	auto minWidth = mToolsLayout->sizeHint().width();
-	auto minHeight = mToolsLayout->sizeHint().height();
+	auto minWidth = mToolLayout->sizeHint().width();
+	auto minHeight = mToolLayout->sizeHint().height();
 	auto sceneWidth = mAnnotationArea->sceneRect().width();
 	auto sceneHeight = mAnnotationArea->sceneRect().height();
 	auto width = minWidth + sceneWidth;
@@ -59,7 +58,7 @@ void AnnotationWidget::initGui()
 {
 	mView = new QGraphicsView(mAnnotationArea);
 	mMainLayout = new QHBoxLayout();
-	mToolsLayout = new QVBoxLayout();
+	mToolLayout = new QVBoxLayout();
 	mToolPicker = new ToolPicker();
 	mColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("tool_color_picker")), tr("Color"));
 	mWidthPicker = new SizePicker(QIcon::fromTheme(QStringLiteral("newline")), tr("Width"));
@@ -68,16 +67,16 @@ void AnnotationWidget::initGui()
 	mFontSizePicker->setRange(10, 40);
 	mFillTypePicker = new FillTypePicker(QIcon::fromTheme(QStringLiteral("fill-color")), tr("Fill Type"));
 
-	mToolsLayout->addWidget(mToolPicker);
-	mToolsLayout->addSpacing(20);
-	mToolsLayout->addWidget(mColorPicker);
-	mToolsLayout->addWidget(mWidthPicker);
-	mToolsLayout->addWidget(mTextColorPicker);
-	mToolsLayout->addWidget(mFontSizePicker);
-	mToolsLayout->addWidget(mFillTypePicker);
-	mToolsLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
+	mToolLayout->addWidget(mToolPicker);
+	mToolLayout->addSpacing(20);
+	mToolLayout->addWidget(mColorPicker);
+	mToolLayout->addWidget(mWidthPicker);
+	mToolLayout->addWidget(mTextColorPicker);
+	mToolLayout->addWidget(mFontSizePicker);
+	mToolLayout->addWidget(mFillTypePicker);
+	mToolLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 
-	mMainLayout->addLayout(mToolsLayout);
+	mMainLayout->addLayout(mToolLayout);
 	mMainLayout->addWidget(mView);
 
 	mVisibilitySwitcher.setOutlineColorWidget(mColorPicker);

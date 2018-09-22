@@ -19,18 +19,33 @@
 
 #include "CropWidget.h"
 
-kImageAnnotator::CropWidget::CropWidget(kImageAnnotator::AnnotationArea *annotationArea)
-{
-	mAnnotationArea = annotationArea;
-	mCropView = new CropView(annotationArea);
+namespace kImageAnnotator {
 
+CropWidget::CropWidget(kImageAnnotator::AnnotationArea *annotationArea) : mAnnotationArea(annotationArea),
+                                                                          mKeyHelper(new KeyHelper()),
+                                                                          mCropView(new CropView(annotationArea, mKeyHelper))
+{
+	initCropView();
+	initKeyHelper();
 	initGui();
 }
 
-kImageAnnotator::CropWidget::~CropWidget()
+void CropWidget::initCropView() const
 {
+	connect(mCropView, &CropView::selectionChanged, this, &CropWidget::selectionChanged);
+}
+
+void CropWidget::initKeyHelper()
+{
+	connect(mKeyHelper, &KeyHelper::escapeReleased, this, &CropWidget::closing);
+	connect(mKeyHelper, &KeyHelper::returnReleased, this, &CropWidget::crop);
+	connect(mKeyHelper, &KeyHelper::enterReleased, this, &CropWidget::crop);
+}
+
+CropWidget::~CropWidget()
+{
+	delete mKeyHelper;
 	delete mMainLayout;
-	delete mPanelLayout;
 	delete mCropButton;
 	delete mCancelButton;
 	delete mPositionXLineEdit;
@@ -39,7 +54,7 @@ kImageAnnotator::CropWidget::~CropWidget()
 	delete mHeightLineEdit;
 }
 
-void kImageAnnotator::CropWidget::initGui()
+void CropWidget::initGui()
 {
 	mCropButton = new QPushButton();
 	mCropButton->setText(tr("Crop"));
@@ -47,7 +62,7 @@ void kImageAnnotator::CropWidget::initGui()
 
 	mCancelButton = new QPushButton();
 	mCancelButton->setText(tr("Cancel"));
-	connect(mCancelButton, &QPushButton::clicked, this, &CropWidget::close);
+	connect(mCancelButton, &QPushButton::clicked, this, &CropWidget::closing);
 
 	mPanelLayout = new QHBoxLayout();
 	mPanelLayout->setAlignment(Qt::AlignCenter);
@@ -98,23 +113,19 @@ void kImageAnnotator::CropWidget::initGui()
 	setLayout(mMainLayout);
 }
 
-void kImageAnnotator::CropWidget::keyPressEvent(QKeyEvent *event)
+void CropWidget::keyReleaseEvent(QKeyEvent *event)
 {
-	if (event->key() == Qt::Key_Escape) {
-		emit done();
-	} else if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
-		crop();
-	}
-	QWidget::keyPressEvent(event);
+	mKeyHelper->keyRelease(event);
+	QWidget::keyReleaseEvent(event);
 }
 
-void kImageAnnotator::CropWidget::crop()
+void CropWidget::crop()
 {
 //	mAnnotationArea->crop(QRECT);
-	emit done();
+	emit closing();
 }
 
-void kImageAnnotator::CropWidget::selectedRectChanged(const QRectF &rect)
+void CropWidget::selectionChanged(const QRect &rect)
 {
 	mPositionXLineEdit->setText(QString::number(rect.topLeft().x()));
 	mPositionYLineEdit->setText(QString::number(rect.topLeft().y()));
@@ -124,64 +135,63 @@ void kImageAnnotator::CropWidget::selectedRectChanged(const QRectF &rect)
 
 void kImageAnnotator::CropWidget::xChanged(const QString &text)
 {
-//	auto x = text.toInt();
-//	auto rect = mCaptureView->cropRect();
-//
-//	// Can't enter negative number
-//	if ((x + rect.width()) <= mCaptureView->sceneRect().width()) {
-//		rect.moveTo(x, rect.y());
-//		mCaptureView->setCropRect(rect);
-//	} else {
-//		rect.moveTo(mCaptureView->sceneRect().width() - rect.width(), rect.y());
-//		mCaptureView->setCropRect(rect);
-//		selectedRectChanged(rect);
-//	}
+	auto x = text.toInt();
+	auto selection = mCropView->selection();
+	auto maxSelectionSize = mCropView->maxSelectionSize();
+
+	if ((x + selection.width()) <= maxSelectionSize.width()) {
+		selection.moveTo(x, selection.y());
+	} else {
+		selection.moveTo(maxSelectionSize.width() - selection.width(), selection.y());
+	}
+	mCropView->setSelection(selection);
 }
 
-void kImageAnnotator::CropWidget::yChanged(const QString &text)
+void CropWidget::yChanged(const QString &text)
 {
-//	auto y = text.toInt();
-//	auto rect = mCaptureView->cropRect();
-//
-//	// Can't enter negative number
-//	if ((y + rect.height()) <= mCaptureView->sceneRect().height()) {
-//		rect.moveTo(rect.x(), y);
-//		mCaptureView->setCropRect(rect);
-//	} else {
-//		rect.moveTo(rect.x(), mCaptureView->sceneRect().height() - rect.height());
-//		mCaptureView->setCropRect(rect);
-//		selectedRectChanged(rect);
-//	}
+	auto y = text.toInt();
+	auto selection = mCropView->selection();
+	auto maxSelectionSize = mCropView->maxSelectionSize();
+
+	if ((y + selection.height()) <= maxSelectionSize.height()) {
+		selection.moveTo(selection.x(), y);
+	} else {
+		selection.moveTo(selection.x(), maxSelectionSize.height() - selection.height());
+	}
+	mCropView->setSelection(selection);
 }
 
-void kImageAnnotator::CropWidget::widthChanged(const QString &text)
+void CropWidget::widthChanged(const QString &text)
 {
-//	auto width = text.toInt();
-//	auto rect = mCaptureView->cropRect();
-//
-//	// Can't enter negative number
-//	if ((rect.x() + width) <= mCaptureView->sceneRect().width()) {
-//		rect.setWidth(width);
-//		mCaptureView->setCropRect(rect);
-//	} else {
-//		rect.setWidth(mCaptureView->sceneRect().width() - rect.x());
-//		mCaptureView->setCropRect(rect);
-//		selectedRectChanged(rect);
-//	}
+	auto width = text.toInt();
+	auto selection = mCropView->selection();
+	auto maxSelectionSize = mCropView->maxSelectionSize();
+
+	if ((selection.x() + width) <= maxSelectionSize.width()) {
+		selection.setWidth(width);
+	} else {
+		selection.setWidth(maxSelectionSize.width() - selection.x());
+	}
+	mCropView->setSelection(selection);
 }
 
-void kImageAnnotator::CropWidget::heightChanged(const QString &text)
+void CropWidget::heightChanged(const QString &text)
 {
-//	auto height = text.toInt();
-//	auto rect = mCaptureView->cropRect();
-//
-//	// Can't enter negative number
-//	if ((rect.y() + height) <= mCaptureView->sceneRect().height()) {
-//		rect.setHeight(height);
-//		mCaptureView->setCropRect(rect);
-//	} else {
-//		rect.setHeight(mCaptureView->sceneRect().height() - rect.y());
-//		mCaptureView->setCropRect(rect);
-//		selectedRectChanged(rect);
-//	}
+	auto height = text.toInt();
+	auto selection = mCropView->selection();
+	auto maxSelectionSize = mCropView->maxSelectionSize();
+
+	if ((selection.y() + height) <= maxSelectionSize.height()) {
+		selection.setHeight(height);
+	} else {
+		selection.setHeight(maxSelectionSize.height() - selection.y());
+	}
+	mCropView->setSelection(selection);
 }
+
+void CropWidget::reset()
+{
+	mCropView->resetSelection();
+}
+
+} // namespace kImageAnnotator

@@ -19,7 +19,84 @@
 
 #include "CropView.h"
 
-kImageAnnotator::CropView::CropView(kImageAnnotator::AnnotationArea *annotationArea)
+namespace kImageAnnotator {
+
+CropView::CropView(kImageAnnotator::AnnotationArea *annotationArea, KeyHelper *keyHelper) : mKeyHelper(keyHelper)
 {
 	setScene(annotationArea);
+	resetSelection();
 }
+
+QRect CropView::selection() const
+{
+	return mSelection;
+}
+
+void CropView::setSelection(const QRect &rect)
+{
+	mSelection = rect;
+	notifyAboutChanged();
+}
+
+void CropView::resetSelection()
+{
+	mSelection = sceneRect().toRect();
+	notifyAboutChanged();
+}
+
+QSize CropView::maxSelectionSize() const
+{
+	return sceneRect().size().toSize();
+}
+
+void CropView::keyPressEvent(QKeyEvent *event)
+{
+	mKeyHelper->keyPress(event);
+}
+
+void CropView::keyReleaseEvent(QKeyEvent *event)
+{
+	mKeyHelper->keyRelease(event);
+}
+
+void CropView::mouseMoveEvent(QMouseEvent *event)
+{
+	notifyAboutChanged();
+}
+
+void CropView::mousePressEvent(QMouseEvent *event)
+{
+
+}
+
+void CropView::mouseReleaseEvent(QMouseEvent *event)
+{
+
+}
+
+void CropView::drawForeground(QPainter *painter, const QRectF &rect)
+{
+	// Draw semi transparent background for not selected area
+	painter->setClipRegion(QRegion(sceneRect().toRect()).subtracted(
+		QRegion(mSelection.normalized()))
+	);
+	painter->setBrush(QColor(0, 0, 0, 150));
+	painter->drawRect(sceneRect());
+
+
+	// Draw border around selected are
+	painter->setClipRect(rect);
+	painter->setBrush(Qt::NoBrush);
+	painter->setPen(QPen(Qt::red, 2, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
+	painter->drawRect(mSelection.normalized());
+
+	QGraphicsView::drawForeground(painter, rect);
+}
+
+void CropView::notifyAboutChanged() const
+{
+	scene()->update();
+	emit selectionChanged(mSelection);
+}
+
+} // namespace kImageAnnotator

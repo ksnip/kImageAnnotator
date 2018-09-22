@@ -27,8 +27,9 @@
 #include <QHBoxLayout>
 #include <QIntValidator>
 
-#include "src/annotations/core/AnnotationArea.h"
 #include "CropView.h"
+#include "src/annotations/core/AnnotationArea.h"
+#include "src/common/helper/KeyHelper.h"
 
 namespace kImageAnnotator {
 
@@ -38,15 +39,17 @@ Q_OBJECT
 public:
 	explicit CropWidget(AnnotationArea *annotationArea);
 	~CropWidget();
+	void reset();
 
 signals:
-	void done();
+	void closing() const;
 
 protected:
-	void keyPressEvent(QKeyEvent *event) override;
+	void keyReleaseEvent(QKeyEvent *event) override;
 
 private:
 	AnnotationArea *mAnnotationArea;
+	KeyHelper *mKeyHelper;
 	CropView *mCropView;
 	QVBoxLayout *mMainLayout;
 	QHBoxLayout *mPanelLayout;
@@ -58,14 +61,16 @@ private:
 	QLineEdit *mHeightLineEdit;
 
 	void initGui();
+	void initKeyHelper();
 
 private slots:
 	void crop();
-	void selectedRectChanged(const QRectF &rect);
+	void selectionChanged(const QRect &rect);
 	void xChanged(const QString &text);
 	void yChanged(const QString &text);
 	void widthChanged(const QString &text);
 	void heightChanged(const QString &text);
+	void initCropView() const;
 };
 
 }

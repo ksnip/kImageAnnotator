@@ -29,25 +29,27 @@ class KeyHelper : public QObject
 {
 Q_OBJECT
 public:
-    explicit KeyHelper();
-    ~KeyHelper() = default;
+	explicit KeyHelper();
+	~KeyHelper() override = default;
 
-    void keyPress(QKeyEvent *keyEvent);
-    void keyRelease(QKeyEvent *keyEvent);
-    bool isControlPressed() const;
-    bool isShiftPressed() const;
+	void keyPress(QKeyEvent *keyEvent);
+	void keyRelease(QKeyEvent *keyEvent);
+	bool isControlPressed() const;
+	bool isShiftPressed() const;
 
 signals:
-    void deleteReleased() const;
-    void escapeReleased() const;
-    void undoPressed() const;
-    void redoPressed() const;
+	void deleteReleased() const;
+	void escapeReleased() const;
+	void undoPressed() const;
+	void redoPressed() const;
+	void enterReleased() const;
+	void returnReleased() const;
 
 private:
-    QHash<Qt::Key, bool> mKeyToIsPressed;
+	QHash<Qt::Key, bool> mKeyToIsPressed;
 
-    void emitReleaseSignal(Qt::Key key);
-    void emitPressSignal(Qt::Key key);
+	void emitReleaseSignal(Qt::Key key);
+	void emitPressSignal(Qt::Key key);
 };
 
 } // namespace kImageAnnotator

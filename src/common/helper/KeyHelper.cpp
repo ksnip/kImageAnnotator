@@ -25,6 +25,8 @@ KeyHelper::KeyHelper()
 {
     mKeyToIsPressed[Qt::Key_Delete] = false;
     mKeyToIsPressed[Qt::Key_Escape] = false;
+    mKeyToIsPressed[Qt::Key_Enter] = false;
+    mKeyToIsPressed[Qt::Key_Return] = false;
     mKeyToIsPressed[Qt::Key_Control] = false;
     mKeyToIsPressed[Qt::Key_Shift] = false;
     mKeyToIsPressed[Qt::Key_Z] = false;
@@ -60,12 +62,19 @@ bool KeyHelper::isShiftPressed() const
 
 void KeyHelper::emitReleaseSignal(Qt::Key key)
 {
-    if (key == Qt::Key_Delete) {
-        emit deleteReleased();
-    }
-
-    if (key == Qt::Key_Escape) {
-        emit escapeReleased();
+    switch (key) {
+        case Qt::Key_Delete:
+            emit deleteReleased();
+            break;
+        case Qt::Key_Escape:
+            emit escapeReleased();
+            break;
+        case Qt::Key_Return:
+            emit returnReleased();
+            break;
+        case Qt::Key_Enter:
+            emit enterReleased();
+            break;
     }
 }
 

@@ -31,13 +31,13 @@ CoreView::CoreView(Config *config)
 	addWidget(mCropWidget);
 
 	connect(mAnnotationArea, &AnnotationArea::imageChanged, this, &CoreView::imageChanged);
+	connect(mCropWidget, &CropWidget::closing, this, &CoreView::showAnnotator);
 }
 
 CoreView::~CoreView()
 {
 	delete mAnnotationArea;
 	delete mAnnotationWidget;
-	delete mConfig;
 }
 
 QImage CoreView::image() const
@@ -57,6 +57,8 @@ void CoreView::showAnnotator()
 
 void CoreView::showCropper()
 {
+	mCropWidget->reset();
+	mCropWidget->setFocus();
 	setCurrentWidget(mCropWidget);
 }
 
