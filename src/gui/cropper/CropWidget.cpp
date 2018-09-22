@@ -23,16 +23,17 @@ namespace kImageAnnotator {
 
 CropWidget::CropWidget(kImageAnnotator::AnnotationArea *annotationArea) : mAnnotationArea(annotationArea),
                                                                           mKeyHelper(new KeyHelper()),
-                                                                          mCropView(new CropView(annotationArea, mKeyHelper))
+                                                                          mCropSelectionHandler(new CropSelectionHandler(annotationArea)),
+                                                                          mCropView(new CropView(annotationArea, mCropSelectionHandler, mKeyHelper))
 {
-	initCropView();
+	initCropSelectionHandler();
 	initKeyHelper();
 	initGui();
 }
 
-void CropWidget::initCropView() const
+void CropWidget::initCropSelectionHandler() const
 {
-	connect(mCropView, &CropView::selectionChanged, this, &CropWidget::selectionChanged);
+	connect(mCropSelectionHandler, &CropSelectionHandler::selectionChanged, this, &CropWidget::selectionChanged);
 }
 
 void CropWidget::initKeyHelper()
@@ -45,6 +46,8 @@ void CropWidget::initKeyHelper()
 CropWidget::~CropWidget()
 {
 	delete mKeyHelper;
+	delete mCropSelectionHandler;
+	delete mCropView;
 	delete mMainLayout;
 	delete mCropButton;
 	delete mCancelButton;
@@ -136,62 +139,30 @@ void CropWidget::selectionChanged(const QRect &rect)
 void kImageAnnotator::CropWidget::xChanged(const QString &text)
 {
 	auto x = text.toInt();
-	auto selection = mCropView->selection();
-	auto maxSelectionSize = mCropView->maxSelectionSize();
-
-	if ((x + selection.width()) <= maxSelectionSize.width()) {
-		selection.moveTo(x, selection.y());
-	} else {
-		selection.moveTo(maxSelectionSize.width() - selection.width(), selection.y());
-	}
-	mCropView->setSelection(selection);
+	mCropSelectionHandler->setPositionX(x);
 }
 
 void CropWidget::yChanged(const QString &text)
 {
 	auto y = text.toInt();
-	auto selection = mCropView->selection();
-	auto maxSelectionSize = mCropView->maxSelectionSize();
-
-	if ((y + selection.height()) <= maxSelectionSize.height()) {
-		selection.moveTo(selection.x(), y);
-	} else {
-		selection.moveTo(selection.x(), maxSelectionSize.height() - selection.height());
-	}
-	mCropView->setSelection(selection);
+	mCropSelectionHandler->setPositionY(y);
 }
 
 void CropWidget::widthChanged(const QString &text)
 {
 	auto width = text.toInt();
-	auto selection = mCropView->selection();
-	auto maxSelectionSize = mCropView->maxSelectionSize();
-
-	if ((selection.x() + width) <= maxSelectionSize.width()) {
-		selection.setWidth(width);
-	} else {
-		selection.setWidth(maxSelectionSize.width() - selection.x());
-	}
-	mCropView->setSelection(selection);
+	mCropSelectionHandler->setWidth(width);
 }
 
 void CropWidget::heightChanged(const QString &text)
 {
 	auto height = text.toInt();
-	auto selection = mCropView->selection();
-	auto maxSelectionSize = mCropView->maxSelectionSize();
-
-	if ((selection.y() + height) <= maxSelectionSize.height()) {
-		selection.setHeight(height);
-	} else {
-		selection.setHeight(maxSelectionSize.height() - selection.y());
-	}
-	mCropView->setSelection(selection);
+	mCropSelectionHandler->setHeight(height);
 }
 
 void CropWidget::reset()
 {
-	mCropView->resetSelection();
+	mCropSelectionHandler->resetSelection();
 }
 
 } // namespace kImageAnnotator

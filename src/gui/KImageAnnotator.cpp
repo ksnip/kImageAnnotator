@@ -22,7 +22,7 @@
 
 #include <kImageAnnotator/KImageAnnotator.h>
 
-#include "src/gui/CoreView.h"
+#include "CoreView.h"
 
 namespace kImageAnnotator {
 

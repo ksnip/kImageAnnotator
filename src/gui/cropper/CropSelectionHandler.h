@@ -17,45 +17,45 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPVIEW_H
-#define KIMAGEANNOTATOR_CROPVIEW_H
+#ifndef KIMAGEANNOTATOR_CROPHANDLES_H
+#define KIMAGEANNOTATOR_CROPHANDLES_H
 
-#include <QGraphicsView>
+#include <QRect>
+#include <QList>
 
 #include "src/annotations/core/AnnotationArea.h"
-#include "src/common/helper/KeyHelper.h"
+#include "src/common/helper/ShapeHelper.h"
 
 namespace kImageAnnotator {
 
-class CropView : public QGraphicsView
+class CropSelectionHandler : public QObject
 {
 Q_OBJECT
 public:
-	explicit CropView(AnnotationArea *annotationArea, KeyHelper *keyHelper);
-	~CropView() = default;
+	explicit CropSelectionHandler(AnnotationArea *annotationArea);
+	~CropSelectionHandler() override = default;
 	QRect selection() const;
-	void setSelection(const QRect &rect);
+	QList<QRect> selectionHandles() const;
+	void grabHandle(const QPoint &position);
+	void moveHandle(const QPoint &position);
+	void setWidth(int width);
+	void setHeight(int height);
+	void setPositionX(int x);
+	void setPositionY(int y);
 	void resetSelection();
-	QSize maxSelectionSize() const;
 
 signals:
 	void selectionChanged(const QRect &rect) const;
 
-protected:
-	void keyPressEvent(QKeyEvent *event) override;
-	void keyReleaseEvent(QKeyEvent *event) override;
-	void mouseMoveEvent(QMouseEvent *event) override;
-	void mousePressEvent(QMouseEvent *event) override;
-	void mouseReleaseEvent(QMouseEvent *event) override;
-	void drawForeground(QPainter *painter, const QRectF &rect) override;
-
 private:
+	AnnotationArea *mAnnotationArea;
 	QRect mSelection;
-	KeyHelper *mKeyHelper;
+	QSize mMaxSelectionSize;
+	QList<QRect> mSelectionHandles;
 
 	void notifyAboutChanged() const;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_CROPVIEW_H
+#endif //KIMAGEANNOTATOR_CROPHANDLES_H

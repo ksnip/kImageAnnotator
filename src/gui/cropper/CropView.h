@@ -17,44 +17,37 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SWITCHER_H
-#define KIMAGEANNOTATOR_SWITCHER_H
+#ifndef KIMAGEANNOTATOR_CROPVIEW_H
+#define KIMAGEANNOTATOR_CROPVIEW_H
 
-#include <QStackedWidget>
+#include <QGraphicsView>
 
+#include "CropSelectionHandler.h"
 #include "src/annotations/core/AnnotationArea.h"
-#include "src/gui/AnnotationWidget.h"
-#include "src/gui/cropper/CropWidget.h"
+#include "src/common/helper/KeyHelper.h"
 
 namespace kImageAnnotator {
 
-class CoreView : public QStackedWidget
+class CropView : public QGraphicsView
 {
 Q_OBJECT
 public:
-	explicit CoreView(Config *config);
-	~CoreView();
-	QImage image() const;
-	QAction *undoAction();
-	QAction *redoAction();
-	QSize sizeHint() const;
+	explicit CropView(AnnotationArea *annotationArea, CropSelectionHandler *cropSelectionHandler, KeyHelper *keyHelper);
+	~CropView() = default;
 
-signals:
-	void imageChanged() const;
-
-public slots:
-	void loadImage(const QPixmap &pixmap);
-	void showAnnotator();
-	void showCropper();
-	void showScaler();
+protected:
+	void keyPressEvent(QKeyEvent *event) override;
+	void keyReleaseEvent(QKeyEvent *event) override;
+	void mouseMoveEvent(QMouseEvent *event) override;
+	void mousePressEvent(QMouseEvent *event) override;
+	void mouseReleaseEvent(QMouseEvent *event) override;
+	void drawForeground(QPainter *painter, const QRectF &rect) override;
 
 private:
-	Config *mConfig;
-	AnnotationArea *mAnnotationArea;
-	AnnotationWidget *mAnnotationWidget;
-	CropWidget *mCropWidget;
+	CropSelectionHandler *mCropSelectionHandler;
+	KeyHelper *mKeyHelper;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_SWITCHER_H
+#endif //KIMAGEANNOTATOR_CROPVIEW_H

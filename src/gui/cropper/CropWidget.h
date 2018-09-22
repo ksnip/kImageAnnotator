@@ -28,6 +28,7 @@
 #include <QIntValidator>
 
 #include "CropView.h"
+#include "CropSelectionHandler.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/common/helper/KeyHelper.h"
 
@@ -50,6 +51,7 @@ protected:
 private:
 	AnnotationArea *mAnnotationArea;
 	KeyHelper *mKeyHelper;
+	CropSelectionHandler *mCropSelectionHandler;
 	CropView *mCropView;
 	QVBoxLayout *mMainLayout;
 	QHBoxLayout *mPanelLayout;
@@ -70,7 +72,7 @@ private slots:
 	void yChanged(const QString &text);
 	void widthChanged(const QString &text);
 	void heightChanged(const QString &text);
-	void initCropView() const;
+	void initCropSelectionHandler() const;
 };
 
 }
