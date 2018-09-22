@@ -93,7 +93,7 @@ void KeyHelperTest::TestIsControlPressed_ShouldReturnFalse_When_ControlWasReleas
     QCOMPARE(keyHelper.isControlPressed(), false);
 }
 
-void KeyHelperTest::TestIsShiftPressed_ShouldReturnTrue_When_ShiftWasPressed()
+void KeyHelperTest::TestIsShiftPressed_Should_ReturnTrue_When_ShiftWasPressed()
 {
     QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Shift, Qt::NoModifier);
     KeyHelper keyHelper;
@@ -104,7 +104,7 @@ void KeyHelperTest::TestIsShiftPressed_ShouldReturnTrue_When_ShiftWasPressed()
     QCOMPARE(keyHelper.isShiftPressed(), true);
 }
 
-void KeyHelperTest::TestIsShiftPressed_ShouldReturnFalse_When_ShiftWasReleased()
+void KeyHelperTest::TestIsShiftPressed_Should_ReturnFalse_When_ShiftWasReleased()
 {
     QKeyEvent keyPressEvent(QEvent::KeyPress, Qt::Key_Shift, Qt::NoModifier);
     QKeyEvent keyReleaseEvent(QEvent::KeyRelease, Qt::Key_Shift, Qt::NoModifier);
@@ -115,6 +115,28 @@ void KeyHelperTest::TestIsShiftPressed_ShouldReturnFalse_When_ShiftWasReleased()
     keyHelper.keyRelease(&keyReleaseEvent);
 
     QCOMPARE(keyHelper.isShiftPressed(), false);
+}
+
+void KeyHelperTest::TestKeyReleased_Should_EmitReturnReleased_When_ReturnWasReleased()
+{
+    QKeyEvent keyEvent(QEvent::KeyRelease, Qt::Key_Return, Qt::NoModifier);
+    KeyHelper keyHelper;
+    QSignalSpy spy(&keyHelper, &KeyHelper::returnReleased);
+
+    keyHelper.keyRelease(&keyEvent);
+
+    QCOMPARE(spy.count(), 1);
+}
+
+void KeyHelperTest::TestKeyReleased_Should_EmitEnterReleased_When_EnterWasReleased()
+{
+    QKeyEvent keyEvent(QEvent::KeyRelease, Qt::Key_Enter, Qt::NoModifier);
+    KeyHelper keyHelper;
+    QSignalSpy spy(&keyHelper, &KeyHelper::enterReleased);
+
+    keyHelper.keyRelease(&keyEvent);
+
+    QCOMPARE(spy.count(), 1);
 }
 
 QTEST_MAIN(KeyHelperTest);

@@ -29,16 +29,18 @@ using kImageAnnotator::KeyHelper;
 
 class KeyHelperTest : public QObject
 {
-    Q_OBJECT
+Q_OBJECT
 private slots:
-    void TestKeyPress_Should_EmitUndoSignal_When_ControlAndZKeyArePressed();
-    void TestKeyPress_Should_EmitRedoSignal_When_ControlAndShiftAndZKeyArePressed();
-    void TestKeyRelease_Should_EmitSignal_When_DeleteKeyReleased();
-    void TestKeyRelease_Should_EmitSignal_When_EscapeKeyReleased();
-    void TestIsControlPressed_ShouldReturnTrue_When_ControlWasPressed();
-    void TestIsControlPressed_ShouldReturnFalse_When_ControlWasReleased();
-    void TestIsShiftPressed_ShouldReturnTrue_When_ShiftWasPressed();
-    void TestIsShiftPressed_ShouldReturnFalse_When_ShiftWasReleased();
+	void TestKeyPress_Should_EmitUndoSignal_When_ControlAndZKeyArePressed();
+	void TestKeyPress_Should_EmitRedoSignal_When_ControlAndShiftAndZKeyArePressed();
+	void TestKeyRelease_Should_EmitSignal_When_DeleteKeyReleased();
+	void TestKeyRelease_Should_EmitSignal_When_EscapeKeyReleased();
+	void TestIsControlPressed_ShouldReturnTrue_When_ControlWasPressed();
+	void TestIsControlPressed_ShouldReturnFalse_When_ControlWasReleased();
+	void TestIsShiftPressed_Should_ReturnTrue_When_ShiftWasPressed();
+	void TestIsShiftPressed_Should_ReturnFalse_When_ShiftWasReleased();
+	void TestKeyReleased_Should_EmitReturnReleased_When_ReturnWasReleased();
+	void TestKeyReleased_Should_EmitEnterReleased_When_EnterWasReleased();
 };
 
 #endif // KIMAGEANNOTATOR_KEYHELPERTEST_H
