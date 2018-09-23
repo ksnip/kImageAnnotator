@@ -128,7 +128,7 @@ void CropWidget::crop()
 	emit closing();
 }
 
-void CropWidget::selectionChanged(const QRect &rect)
+void CropWidget::selectionChanged(const QRectF &rect)
 {
 	mPositionXLineEdit->setText(QString::number(rect.topLeft().x()));
 	mPositionYLineEdit->setText(QString::number(rect.topLeft().y()));

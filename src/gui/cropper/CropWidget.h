@@ -67,7 +67,7 @@ private:
 
 private slots:
 	void crop();
-	void selectionChanged(const QRect &rect);
+	void selectionChanged(const QRectF &rect);
 	void xChanged(const QString &text);
 	void yChanged(const QString &text);
 	void widthChanged(const QString &text);

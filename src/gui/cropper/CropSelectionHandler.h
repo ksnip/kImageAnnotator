@@ -20,7 +20,7 @@
 #ifndef KIMAGEANNOTATOR_CROPHANDLES_H
 #define KIMAGEANNOTATOR_CROPHANDLES_H
 
-#include <QRect>
+#include <QRectF>
 #include <QList>
 
 #include "src/annotations/core/AnnotationArea.h"
@@ -35,8 +35,8 @@ Q_OBJECT
 public:
 	explicit CropSelectionHandler(AnnotationArea *annotationArea);
 	~CropSelectionHandler() override = default;
-	QRect selection() const;
-	QVector<QRect> selectionHandles() const;
+	QRectF selection() const;
+	QVector<QRectF> selectionHandles() const;
 	void grabHandle(const QPoint &position);
 	void moveHandle(const QPoint &position);
 	void releaseHandle();
@@ -48,21 +48,21 @@ public:
 	bool isResizing() const;
 
 signals:
-	void selectionChanged(const QRect &rect) const;
+	void selectionChanged(const QRectF &rect) const;
 
 private:
 	AnnotationArea *mAnnotationArea;
-	QRect mSelection;
-	QRect mMaxSelectionSize;
-	QVector<QRect> mSelectionHandles;
+	QRectF mSelection;
+	QRectF mMaxSelectionSize;
+	QVector<QRectF> mSelectionHandles;
 	bool mIsResizing;
 	int mGrabbedHandleIndex;
-	QPoint mGrabOffset;
+	QPointF mGrabOffset;
 
 	void update();
 	void notifyAboutChanged() const;
 	void updateHandles();
-	QRect &trimToViewPort(QRect &rect) const;
+	QRectF &trimToViewPort(QRectF &rect) const;
 };
 
 } // namespace kImageAnnotator

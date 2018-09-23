@@ -60,7 +60,7 @@ void CropView::drawForeground(QPainter *painter, const QRectF &rect)
 
 	// Draw semi transparent background for not selected area
 	painter->setClipRegion(QRegion(sceneRect().toRect()).subtracted(
-		QRegion(selection))
+		QRegion(selection.toRect()))
 	);
 	painter->setBrush(QColor(0, 0, 0, 150));
 	painter->drawRect(sceneRect());
@@ -80,7 +80,6 @@ void CropView::drawForeground(QPainter *painter, const QRectF &rect)
 		for (auto handle : handles) {
 			painter->drawRect(handle);
 		}
-
 	}
 
 	QGraphicsView::drawForeground(painter, rect);

@@ -26,16 +26,16 @@ CropSelectionHandler::CropSelectionHandler(AnnotationArea *annotationArea) : mAn
                                                                              mGrabbedHandleIndex(-1)
 {
 	for (auto i = 0; i < 8; i++) {
-		mSelectionHandles.append(QRect(0, 0, Constants::ResizeHandleSize, Constants::ResizeHandleSize));
+		mSelectionHandles.append(QRectF(0, 0, Constants::ResizeHandleSize, Constants::ResizeHandleSize));
 	}
 }
 
-QRect CropSelectionHandler::selection() const
+QRectF CropSelectionHandler::selection() const
 {
 	return mSelection;
 }
 
-QVector<QRect> CropSelectionHandler::selectionHandles() const
+QVector<QRectF> CropSelectionHandler::selectionHandles() const
 {
 	return mSelectionHandles;
 }
@@ -45,7 +45,7 @@ void CropSelectionHandler::grabHandle(const QPoint &position)
 	for (auto handle : mSelectionHandles) {
 		if (handle.contains(position)) {
 			mGrabbedHandleIndex = mSelectionHandles.indexOf(handle);
-			mGrabOffset = position - ShapeHelper::rectPointAtIndex(mSelection, mGrabbedHandleIndex).toPoint();
+			mGrabOffset = position - ShapeHelper::rectPointAtIndex(mSelection, mGrabbedHandleIndex);
 			break;
 		}
 	}
@@ -56,7 +56,7 @@ void CropSelectionHandler::grabHandle(const QPoint &position)
 void CropSelectionHandler::moveHandle(const QPoint &position)
 {
 	if (mGrabbedHandleIndex != -1) {
-		auto newSelection = ShapeHelper::setRectPointAtIndex(mSelection, mGrabbedHandleIndex, position - mGrabOffset).toRect();
+		auto newSelection = ShapeHelper::setRectPointAtIndex(mSelection, mGrabbedHandleIndex, position - mGrabOffset);
 		mSelection = trimToViewPort(newSelection);
 		update();
 	}
@@ -73,8 +73,8 @@ void CropSelectionHandler::releaseHandle()
 
 void CropSelectionHandler::resetSelection()
 {
-	mSelection = mAnnotationArea->sceneRect().toRect();
-	mMaxSelectionSize = mAnnotationArea->sceneRect().toRect();
+	mSelection = mAnnotationArea->sceneRect();
+	mMaxSelectionSize = mAnnotationArea->sceneRect();
 	update();
 }
 
@@ -148,7 +148,7 @@ void CropSelectionHandler::updateHandles()
 	mSelectionHandles[7].moveCenter(ShapeHelper::rectLeftWithOffset(mSelection, -rectSize).toPoint());
 }
 
-QRect &CropSelectionHandler::trimToViewPort(QRect &rect) const
+QRectF &CropSelectionHandler::trimToViewPort(QRectF &rect) const
 {
 	if (rect.x() < 0) {
 		rect.setX(0);
