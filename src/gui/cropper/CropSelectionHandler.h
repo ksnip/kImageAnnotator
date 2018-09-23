@@ -23,6 +23,7 @@
 #include <QRectF>
 #include <QList>
 
+#include "CropSelectionRestrictor.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/common/helper/ShapeHelper.h"
 #include "src/common/constants/Constants.h"
@@ -53,17 +54,16 @@ signals:
 private:
 	AnnotationArea *mAnnotationArea;
 	QRectF mSelection;
-	QRectF mMaxSelectionSize;
+	QRectF mMaxSelection;
 	QVector<QRectF> mSelectionHandles;
 	bool mIsInMotion;
 	int mGrabbedHandleIndex;
 	QPointF mGrabOffset;
+	CropSelectionRestrictor mSelectionRestrictor;
 
 	void update();
 	void notifyAboutChanged() const;
 	void updateHandles();
-	QRectF &restrictResizeToViewPort(QRectF &rect) const;
-	QRectF &restrictMoveToViewPort(QRectF &rect);
 	void setSelection(const QRectF &rect);
 };
 

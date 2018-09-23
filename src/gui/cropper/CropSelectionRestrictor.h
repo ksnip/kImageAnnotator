@@ -17,17 +17,23 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONCONSTANTS_H
-#define KIMAGEANNOTATOR_ANNOTATIONCONSTANTS_H
+#ifndef KIMAGEANNOTATOR_CROPSELECTIONRESTRICTOR_H
+#define KIMAGEANNOTATOR_CROPSELECTIONRESTRICTOR_H
+
+#include <QRectF>
+
 namespace kImageAnnotator {
 
-inline namespace Constants {
-const int MinResizeRectSize = 20;
+class CropSelectionRestrictor
+{
+public:
+	explicit CropSelectionRestrictor() = default;
+	~CropSelectionRestrictor() = default;
 
-const int ResizeHandleSize = 16;
-
-} // namespace Constants
+	QRectF &restrictResize(QRectF &newRect, const QRectF &currentRect, const QRectF &maxRect) const;
+	QRectF &restrictMove(QRectF &newRect, const QRectF &maxRect) const;
+};
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONCONSTANTS_H
+#endif //KIMAGEANNOTATOR_CROPSELECTIONRESTRICTOR_H
