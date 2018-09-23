@@ -39,19 +39,19 @@ void CropView::keyReleaseEvent(QKeyEvent *event)
 
 void CropView::mouseMoveEvent(QMouseEvent *event)
 {
-	mCropSelectionHandler->moveHandle(mapToScene(event->pos()).toPoint());
+	mCropSelectionHandler->move(mapToScene(event->pos()).toPoint());
 }
 
 void CropView::mousePressEvent(QMouseEvent *event)
 {
-	mCropSelectionHandler->grabHandle(mapToScene(event->pos()).toPoint());
+	mCropSelectionHandler->grab(mapToScene(event->pos()).toPoint());
 }
 
 void CropView::mouseReleaseEvent(QMouseEvent *event)
 {
 	Q_UNUSED(event)
 
-	mCropSelectionHandler->releaseHandle();
+	mCropSelectionHandler->release();
 }
 
 void CropView::drawForeground(QPainter *painter, const QRectF &rect)
@@ -72,7 +72,7 @@ void CropView::drawForeground(QPainter *painter, const QRectF &rect)
 	painter->setPen(QPen(Qt::gray, 1, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
 	painter->drawRect(selection);
 
-	if (!mCropSelectionHandler->isResizing()) {
+	if (!mCropSelectionHandler->isInMotion()) {
 		painter->setPen(QPen(Qt::white, 1, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
 		painter->setBrush(QColor(Qt::gray));
 		auto handles = mCropSelectionHandler->selectionHandles();

@@ -37,15 +37,15 @@ public:
 	~CropSelectionHandler() override = default;
 	QRectF selection() const;
 	QVector<QRectF> selectionHandles() const;
-	void grabHandle(const QPoint &position);
-	void moveHandle(const QPoint &position);
-	void releaseHandle();
+	void grab(const QPoint &position);
+	void move(const QPoint &position);
+	void release();
 	void setWidth(int width);
 	void setHeight(int height);
 	void setPositionX(int x);
 	void setPositionY(int y);
 	void resetSelection();
-	bool isResizing() const;
+	bool isInMotion() const;
 
 signals:
 	void selectionChanged(const QRectF &rect) const;
@@ -55,14 +55,16 @@ private:
 	QRectF mSelection;
 	QRectF mMaxSelectionSize;
 	QVector<QRectF> mSelectionHandles;
-	bool mIsResizing;
+	bool mIsInMotion;
 	int mGrabbedHandleIndex;
 	QPointF mGrabOffset;
 
 	void update();
 	void notifyAboutChanged() const;
 	void updateHandles();
-	QRectF &trimToViewPort(QRectF &rect) const;
+	QRectF &restrictResizeToViewPort(QRectF &rect) const;
+	QRectF &restrictMoveToViewPort(QRectF &rect);
+	void setSelection(const QRectF &rect);
 };
 
 } // namespace kImageAnnotator

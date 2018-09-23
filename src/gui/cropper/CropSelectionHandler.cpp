@@ -22,7 +22,7 @@
 namespace kImageAnnotator {
 
 CropSelectionHandler::CropSelectionHandler(AnnotationArea *annotationArea) : mAnnotationArea(annotationArea),
-                                                                             mIsResizing(false),
+                                                                             mIsInMotion(false),
                                                                              mGrabbedHandleIndex(-1)
 {
 	for (auto i = 0; i < 8; i++) {
@@ -40,87 +40,83 @@ QVector<QRectF> CropSelectionHandler::selectionHandles() const
 	return mSelectionHandles;
 }
 
-void CropSelectionHandler::grabHandle(const QPoint &position)
+void CropSelectionHandler::grab(const QPoint &position)
 {
 	for (auto handle : mSelectionHandles) {
 		if (handle.contains(position)) {
 			mGrabbedHandleIndex = mSelectionHandles.indexOf(handle);
 			mGrabOffset = position - ShapeHelper::rectPointAtIndex(mSelection, mGrabbedHandleIndex);
+			mIsInMotion = true;
+			update();
 			break;
 		}
 	}
-	mIsResizing = true;
-	update();
-}
 
-void CropSelectionHandler::moveHandle(const QPoint &position)
-{
-	if (mGrabbedHandleIndex != -1) {
-		auto newSelection = ShapeHelper::setRectPointAtIndex(mSelection, mGrabbedHandleIndex, position - mGrabOffset);
-		mSelection = trimToViewPort(newSelection);
+	if (mGrabbedHandleIndex == -1) {
+		mSelection.contains(position);
+		mGrabOffset = position - mSelection.topLeft();
+		mIsInMotion = true;
 		update();
 	}
 }
 
-void CropSelectionHandler::releaseHandle()
+void CropSelectionHandler::move(const QPoint &position)
 {
-	if (mIsResizing) {
+	if (mIsInMotion) {
+		if (mGrabbedHandleIndex != -1) {
+			auto newSelection = ShapeHelper::setRectPointAtIndex(mSelection, mGrabbedHandleIndex, position - mGrabOffset);
+			setSelection(restrictResizeToViewPort(newSelection));
+		} else {
+			auto newSelection = mSelection;
+			newSelection.moveTopLeft(position - mGrabOffset);
+			setSelection(restrictMoveToViewPort(newSelection));
+		}
+		update();
+	}
+}
+
+void CropSelectionHandler::release()
+{
+	if (mIsInMotion) {
 		mGrabbedHandleIndex = -1;
-		mIsResizing = false;
+		mIsInMotion = false;
 		update();
 	}
 }
 
 void CropSelectionHandler::resetSelection()
 {
-	mSelection = mAnnotationArea->sceneRect();
 	mMaxSelectionSize = mAnnotationArea->sceneRect();
-	update();
+	setSelection(mAnnotationArea->sceneRect());
 }
 
-bool CropSelectionHandler::isResizing() const
+bool CropSelectionHandler::isInMotion() const
 {
-	return mIsResizing;
+	return mIsInMotion;
 }
 
 void CropSelectionHandler::setWidth(int width)
 {
-	if ((mSelection.x() + width) <= mMaxSelectionSize.width()) {
-		mSelection.setWidth(width);
-	} else {
-		mSelection.setWidth(mMaxSelectionSize.width() - mSelection.x());
-	}
-	update();
+	QRectF newSelection(mSelection.x(), mSelection.y(), width, mSelection.height());
+	setSelection(restrictResizeToViewPort(newSelection));
 }
 
 void CropSelectionHandler::setHeight(int height)
 {
-	if ((mSelection.y() + height) <= mMaxSelectionSize.height()) {
-		mSelection.setHeight(height);
-	} else {
-		mSelection.setHeight(mMaxSelectionSize.height() - mSelection.y());
-	}
-	update();
+	QRectF newSelection(mSelection.x(), mSelection.y(), mSelection.width(), height);
+	setSelection(restrictResizeToViewPort(newSelection));
 }
 
 void CropSelectionHandler::setPositionX(int x)
 {
-	if ((x + mSelection.width()) <= mMaxSelectionSize.width()) {
-		mSelection.moveTo(x, mSelection.y());
-	} else {
-		mSelection.moveTo(mMaxSelectionSize.width() - mSelection.width(), mSelection.y());
-	}
-	update();
+	QRectF newSelection(x, mSelection.y(), mSelection.width(), mSelection.height());
+	setSelection(restrictMoveToViewPort(newSelection));
 }
 
 void CropSelectionHandler::setPositionY(int y)
 {
-	if ((y + mSelection.height()) <= mMaxSelectionSize.height()) {
-		mSelection.moveTo(mSelection.x(), y);
-	} else {
-		mSelection.moveTo(mSelection.x(), mMaxSelectionSize.height() - mSelection.height());
-	}
-	update();
+	QRectF newSelection(mSelection.x(), y, mSelection.width(), mSelection.height());
+	setSelection(restrictMoveToViewPort(newSelection));
 }
 
 void CropSelectionHandler::update()
@@ -148,7 +144,7 @@ void CropSelectionHandler::updateHandles()
 	mSelectionHandles[7].moveCenter(ShapeHelper::rectLeftWithOffset(mSelection, -rectSize).toPoint());
 }
 
-QRectF &CropSelectionHandler::trimToViewPort(QRectF &rect) const
+QRectF &CropSelectionHandler::restrictResizeToViewPort(QRectF &rect) const
 {
 	if (rect.x() < 0) {
 		rect.setX(0);
@@ -177,6 +173,33 @@ QRectF &CropSelectionHandler::trimToViewPort(QRectF &rect) const
 	}
 
 	return rect;
+}
+
+QRectF &CropSelectionHandler::restrictMoveToViewPort(QRectF &rect)
+{
+	if (rect.x() < 0) {
+		rect.moveLeft(0);
+	}
+
+	if (rect.y() < 0) {
+		rect.moveTop(0);
+	}
+
+	if ((rect.x() + rect.width()) > mMaxSelectionSize.width()) {
+		rect.moveTo(mMaxSelectionSize.width() - rect.width(), rect.y());
+	}
+
+	if ((rect.y() + rect.height()) > mMaxSelectionSize.height()) {
+		rect.moveTo(rect.x(), mMaxSelectionSize.height() - rect.height());
+	}
+
+	return rect;
+}
+
+void CropSelectionHandler::setSelection(const QRectF &rect)
+{
+	mSelection = rect;
+	update();
 }
 
 }
