@@ -40,7 +40,7 @@ QVector<QRectF> CropSelectionHandler::selectionHandles() const
 	return mSelectionHandles;
 }
 
-void CropSelectionHandler::grab(const QPoint &position)
+void CropSelectionHandler::grab(const QPointF &position)
 {
 	for (auto handle : mSelectionHandles) {
 		if (handle.contains(position)) {
@@ -60,7 +60,7 @@ void CropSelectionHandler::grab(const QPoint &position)
 	}
 }
 
-void CropSelectionHandler::move(const QPoint &position)
+void CropSelectionHandler::move(const QPointF &position)
 {
 	if (mIsInMotion) {
 		if (mGrabbedHandleIndex != -1) {

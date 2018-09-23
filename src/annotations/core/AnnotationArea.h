@@ -35,6 +35,7 @@
 #include "src/common/helper/CursorHelper.h"
 #include "src/common/helper/KeyHelper.h"
 #include "src/annotations/undo/UndoStack.h"
+#include "src/annotations/undo/CropCommand.h"
 
 namespace kImageAnnotator {
 
@@ -50,6 +51,7 @@ public:
 	QAction* redoAction();
     virtual void addAnnotationItem(AbstractAnnotationItem *item);
     virtual void removeAnnotationItem(AbstractAnnotationItem *item);
+    virtual void crop(const QRectF& rect);
 
 public slots:
     virtual void update();

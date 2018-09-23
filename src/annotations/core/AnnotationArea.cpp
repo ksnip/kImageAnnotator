@@ -99,12 +99,20 @@ void AnnotationArea::addAnnotationItem(AbstractAnnotationItem *item)
 {
 	mItems->prepend(item);
 	addItem(item);
+	emit imageChanged();
 }
 
 void AnnotationArea::removeAnnotationItem(AbstractAnnotationItem *item)
 {
 	removeItem(item);
 	mItems->removeOne(item);
+	emit imageChanged();
+}
+
+void AnnotationArea::crop(const QRectF &rect)
+{
+	mUndoStack->push(new CropCommand(mImage, rect, this));
+	emit imageChanged();
 }
 
 void AnnotationArea::update()

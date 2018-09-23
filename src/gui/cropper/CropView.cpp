@@ -39,12 +39,12 @@ void CropView::keyReleaseEvent(QKeyEvent *event)
 
 void CropView::mouseMoveEvent(QMouseEvent *event)
 {
-	mCropSelectionHandler->move(mapToScene(event->pos()).toPoint());
+	mCropSelectionHandler->move(mapToScene(event->pos()));
 }
 
 void CropView::mousePressEvent(QMouseEvent *event)
 {
-	mCropSelectionHandler->grab(mapToScene(event->pos()).toPoint());
+	mCropSelectionHandler->grab(mapToScene(event->pos()));
 }
 
 void CropView::mouseReleaseEvent(QMouseEvent *event)

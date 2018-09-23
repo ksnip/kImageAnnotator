@@ -23,12 +23,12 @@ namespace kImageAnnotator {
 
 QRectF &CropSelectionRestrictor::restrictResize(QRectF &newRect, const QRectF &currentRect, const QRectF &maxRect) const
 {
-	if (newRect.x() < 0) {
-		newRect.setX(0);
+	if (newRect.x() < maxRect.x()) {
+		newRect.setX(maxRect.x());
 	}
 
-	if (newRect.y() < 0) {
-		newRect.setY(0);
+	if (newRect.y() < maxRect.y()) {
+		newRect.setY(maxRect.y());
 	}
 
 	if (newRect.width() < 0) {
@@ -54,12 +54,12 @@ QRectF &CropSelectionRestrictor::restrictResize(QRectF &newRect, const QRectF &c
 
 QRectF &CropSelectionRestrictor::restrictMove(QRectF &newRect, const QRectF &maxRect) const
 {
-	if (newRect.x() < 0) {
-		newRect.moveLeft(0);
+	if (newRect.x() < maxRect.x()) {
+		newRect.moveLeft(maxRect.x());
 	}
 
-	if (newRect.y() < 0) {
-		newRect.moveTop(0);
+	if (newRect.y() < maxRect.y()) {
+		newRect.moveTop(maxRect.y());
 	}
 
 	if ((newRect.x() + newRect.width()) > maxRect.width()) {

@@ -38,8 +38,8 @@ public:
 	~CropSelectionHandler() override = default;
 	QRectF selection() const;
 	QVector<QRectF> selectionHandles() const;
-	void grab(const QPoint &position);
-	void move(const QPoint &position);
+	void grab(const QPointF &position);
+	void move(const QPointF &position);
 	void release();
 	void setWidth(int width);
 	void setHeight(int height);

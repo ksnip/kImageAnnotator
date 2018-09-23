@@ -124,7 +124,7 @@ void CropWidget::keyReleaseEvent(QKeyEvent *event)
 
 void CropWidget::crop()
 {
-//	mAnnotationArea->crop(QRECT);
+	mAnnotationArea->crop(mCropSelectionHandler->selection());
 	emit closing();
 }
 
