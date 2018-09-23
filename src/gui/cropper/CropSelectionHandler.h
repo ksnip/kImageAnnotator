@@ -62,8 +62,7 @@ private:
 	void update();
 	void notifyAboutChanged() const;
 	void updateHandles();
-	void updateSelection(QRect &rect);
-	QRect & trimToViewPort(QRect &rect) const;
+	QRect &trimToViewPort(QRect &rect) const;
 };
 
 } // namespace kImageAnnotator

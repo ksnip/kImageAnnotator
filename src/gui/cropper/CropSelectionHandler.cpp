@@ -45,7 +45,7 @@ void CropSelectionHandler::grabHandle(const QPoint &position)
 	for (auto handle : mSelectionHandles) {
 		if (handle.contains(position)) {
 			mGrabbedHandleIndex = mSelectionHandles.indexOf(handle);
-			mGrabOffset = position - handle.center();
+			mGrabOffset = position - ShapeHelper::rectPointAtIndex(mSelection, mGrabbedHandleIndex).toPoint();
 			break;
 		}
 	}
@@ -137,14 +137,15 @@ void CropSelectionHandler::notifyAboutChanged() const
 
 void CropSelectionHandler::updateHandles()
 {
-	mSelectionHandles[0].moveCenter(ShapeHelper::rectTopLeftWithOffset(mSelection, 0).toPoint());
-	mSelectionHandles[1].moveCenter(ShapeHelper::rectTop(mSelection).toPoint());
-	mSelectionHandles[2].moveCenter(ShapeHelper::rectTopRightWithOffset(mSelection, 0).toPoint());
-	mSelectionHandles[3].moveCenter(ShapeHelper::rectRight(mSelection).toPoint());
-	mSelectionHandles[4].moveCenter(ShapeHelper::rectBottomRightWithOffset(mSelection, 0).toPoint());
-	mSelectionHandles[5].moveCenter(ShapeHelper::rectBottom(mSelection).toPoint());
-	mSelectionHandles[6].moveCenter(ShapeHelper::rectBottomLeftWithOffset(mSelection, 0).toPoint());
-	mSelectionHandles[7].moveCenter(ShapeHelper::rectLeft(mSelection).toPoint());
+	auto rectSize = Constants::ResizeHandleSize / 2;
+	mSelectionHandles[0].moveTopLeft(ShapeHelper::rectTopLeftWithOffset(mSelection, 0).toPoint());
+	mSelectionHandles[1].moveCenter(ShapeHelper::rectTopWithOffset(mSelection, -rectSize).toPoint());
+	mSelectionHandles[2].moveTopRight(ShapeHelper::rectTopRightWithOffset(mSelection, 0).toPoint());
+	mSelectionHandles[3].moveCenter(ShapeHelper::rectRightWithOffset(mSelection, -rectSize).toPoint());
+	mSelectionHandles[4].moveBottomRight(ShapeHelper::rectBottomRightWithOffset(mSelection, 0).toPoint());
+	mSelectionHandles[5].moveCenter(ShapeHelper::rectBottomWithOffset(mSelection, -rectSize).toPoint());
+	mSelectionHandles[6].moveBottomLeft(ShapeHelper::rectBottomLeftWithOffset(mSelection, 0).toPoint());
+	mSelectionHandles[7].moveCenter(ShapeHelper::rectLeftWithOffset(mSelection, -rectSize).toPoint());
 }
 
 QRect &CropSelectionHandler::trimToViewPort(QRect &rect) const
