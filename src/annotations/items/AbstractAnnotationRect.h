@@ -23,7 +23,7 @@
 #include "AbstractAnnotationItem.h"
 #include "src/common/helper/MathHelper.h"
 #include "src/common/helper/ShapeHelper.h"
-#include "src/common/constants/AnnotationConstants.h"
+#include "src/common/constants/Constants.h"
 
 namespace kImageAnnotator {
 

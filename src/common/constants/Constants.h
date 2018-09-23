@@ -21,10 +21,12 @@
 #define KIMAGEANNOTATOR_ANNOTATIONCONSTANTS_H
 namespace kImageAnnotator {
 
-inline namespace AnnotationConstants {
+inline namespace Constants {
 const int MinResizeRectSize = 20;
 
-} // namespace AnnotationConstants
+const int ResizeHandleSize = 15;
+
+} // namespace Constants
 
 } // namespace kImageAnnotator
 

@@ -25,6 +25,7 @@
 
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/common/helper/ShapeHelper.h"
+#include "src/common/constants/Constants.h"
 
 namespace kImageAnnotator {
 
@@ -35,14 +36,16 @@ public:
 	explicit CropSelectionHandler(AnnotationArea *annotationArea);
 	~CropSelectionHandler() override = default;
 	QRect selection() const;
-	QList<QRect> selectionHandles() const;
+	QVector<QRect> selectionHandles() const;
 	void grabHandle(const QPoint &position);
 	void moveHandle(const QPoint &position);
+	void releaseHandle();
 	void setWidth(int width);
 	void setHeight(int height);
 	void setPositionX(int x);
 	void setPositionY(int y);
 	void resetSelection();
+	bool isResizing() const;
 
 signals:
 	void selectionChanged(const QRect &rect) const;
@@ -50,10 +53,17 @@ signals:
 private:
 	AnnotationArea *mAnnotationArea;
 	QRect mSelection;
-	QSize mMaxSelectionSize;
-	QList<QRect> mSelectionHandles;
+	QRect mMaxSelectionSize;
+	QVector<QRect> mSelectionHandles;
+	bool mIsResizing;
+	int mGrabbedHandleIndex;
+	QPoint mGrabOffset;
 
+	void update();
 	void notifyAboutChanged() const;
+	void updateHandles();
+	void updateSelection(QRect &rect);
+	QRect & trimToViewPort(QRect &rect) const;
 };
 
 } // namespace kImageAnnotator
