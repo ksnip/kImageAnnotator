@@ -15,6 +15,7 @@ set(UnitTests
 	annotations/undo/MoveCommandTest.cpp
 	annotations/undo/ResizeCommandTest.cpp
 	annotations/undo/ArrangeCommandTest.cpp
+	annotations/undo/CropCommandTest.cpp
 	annotations/items/helper/KeyInputHelperTest.cpp
 	annotations/items/helper/TextCursorTest.cpp
 	widgets/ToolPickerTest.cpp
