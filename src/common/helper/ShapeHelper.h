@@ -22,6 +22,7 @@
 
 #include <QRectF>
 #include <QLineF>
+#include <QPainterPath>
 
 #include "src/common/helper/MathHelper.h"
 #include "src/common/constants/Constants.h"

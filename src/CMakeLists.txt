@@ -7,6 +7,7 @@ set(kimageannotator_SRCS
 	${CMAKE_SOURCE_DIR}/src/gui/cropper/CropView.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/cropper/CropSelectionHandler.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/cropper/CropSelectionRestrictor.cpp
+	${CMAKE_SOURCE_DIR}/src/gui/cropper/CropHandles.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationArea.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationItemFactory.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationPropertiesFactory.cpp

@@ -24,9 +24,8 @@
 #include <QList>
 
 #include "CropSelectionRestrictor.h"
+#include "CropHandles.h"
 #include "src/annotations/core/AnnotationArea.h"
-#include "src/common/helper/ShapeHelper.h"
-#include "src/common/constants/Constants.h"
 
 namespace kImageAnnotator {
 
@@ -55,16 +54,15 @@ private:
 	AnnotationArea *mAnnotationArea;
 	QRectF mSelection;
 	QRectF mMaxSelection;
-	QVector<QRectF> mSelectionHandles;
-	bool mIsInMotion;
-	int mGrabbedHandleIndex;
-	QPointF mGrabOffset;
+	bool mIsMovingSelection;
+	QPointF mMoveOffset;
 	CropSelectionRestrictor mSelectionRestrictor;
+	CropHandles mCropHandles;
 
 	void update();
-	void notifyAboutChanged() const;
-	void updateHandles();
+	void notifyAboutChange() const;
 	void setSelection(const QRectF &rect);
+	void grabSelection(const QPointF &position);
 };
 
 } // namespace kImageAnnotator
