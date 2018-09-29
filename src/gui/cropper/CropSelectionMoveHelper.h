@@ -17,36 +17,29 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPHANDELS_H
-#define KIMAGEANNOTATOR_CROPHANDELS_H
+#ifndef KIMAGEANNOTATOR_CROPSELECTIONMOVEHELPER_H
+#define KIMAGEANNOTATOR_CROPSELECTIONMOVEHELPER_H
 
+#include <QPointF>
 #include <QRectF>
-#include <QVector>
-
-#include "src/common/constants/Constants.h"
-#include "src/common/helper/ShapeHelper.h"
 
 namespace kImageAnnotator {
 
-class CropHandles
+class CropSelectionMoveHelper
 {
 public:
-	explicit CropHandles();
-	~CropHandles() = default;
-	QVector<QRectF> handles() const;
-	void grabHandle(const QPointF &position, const QRectF &selection);
-	void releaseHandle();
-	int grabbedIndex() const;
-	void updateHandles(const QRectF &selection);
-	bool isHandleGrabbed() const;
+	explicit CropSelectionMoveHelper();
+	~CropSelectionMoveHelper() = default;
+	void grabSelection(const QPointF &position, const QRectF &selection);
+	void releaseSelection();
+	bool isSelectionGabbed() const;
 	QPointF grabOffset() const;
 
 private:
-	QVector<QRectF> mHandles;
-	int mGrabbedIndex;
+	bool mIsSelectionGabbed{};
 	QPointF mGrabOffset;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_CROPHANDELS_H
+#endif //KIMAGEANNOTATOR_CROPSELECTIONMOVEHELPER_H

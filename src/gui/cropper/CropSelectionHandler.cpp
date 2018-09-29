@@ -21,8 +21,7 @@
 
 namespace kImageAnnotator {
 
-CropSelectionHandler::CropSelectionHandler(AnnotationArea *annotationArea) : mAnnotationArea(annotationArea),
-                                                                             mIsMovingSelection(false)
+CropSelectionHandler::CropSelectionHandler(AnnotationArea *annotationArea) : mAnnotationArea(annotationArea)
 {
 
 }
@@ -42,7 +41,7 @@ void CropSelectionHandler::grab(const QPointF &position)
 	mCropHandles.grabHandle(position, mSelection);
 
 	if (!mCropHandles.isHandleGrabbed()) {
-		grabSelection(position);
+		mMoveHelper.grabSelection(position, mSelection);
 	}
 
 	if (isInMotion()) {
@@ -56,9 +55,9 @@ void CropSelectionHandler::move(const QPointF &position)
 	if (mCropHandles.isHandleGrabbed()) {
 		auto newSelection = ShapeHelper::setRectPointAtIndex(mSelection, mCropHandles.grabbedIndex(), position - mCropHandles.grabOffset());
 		setSelection(mSelectionRestrictor.restrictResize(newSelection, mSelection, mMaxSelection));
-	} else if (mIsMovingSelection) {
+	} else if (mMoveHelper.isSelectionGabbed()) {
 		auto newSelection = mSelection;
-		newSelection.moveTopLeft(position - mMoveOffset);
+		newSelection.moveTopLeft(position - mMoveHelper.grabOffset());
 		setSelection(mSelectionRestrictor.restrictMove(newSelection, mMaxSelection));
 	}
 
@@ -71,7 +70,7 @@ void CropSelectionHandler::release()
 {
 	if (isInMotion()) {
 		mCropHandles.releaseHandle();
-		mIsMovingSelection = false;
+		mMoveHelper.releaseSelection();
 		update();
 	}
 }
@@ -84,7 +83,7 @@ void CropSelectionHandler::resetSelection()
 
 bool CropSelectionHandler::isInMotion() const
 {
-	return mIsMovingSelection || mCropHandles.isHandleGrabbed();
+	return mMoveHelper.isSelectionGabbed() || mCropHandles.isHandleGrabbed();
 }
 
 void CropSelectionHandler::setWidth(int width)
@@ -127,14 +126,6 @@ void CropSelectionHandler::setSelection(const QRectF &rect)
 {
 	mSelection = rect;
 	update();
-}
-
-void CropSelectionHandler::grabSelection(const QPointF &position)
-{
-	if (mSelection.contains(position)) {
-		mMoveOffset = position - mSelection.topLeft();
-		mIsMovingSelection = true;
-	}
 }
 
 }

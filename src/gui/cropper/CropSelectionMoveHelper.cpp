@@ -17,36 +17,38 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPHANDELS_H
-#define KIMAGEANNOTATOR_CROPHANDELS_H
-
-#include <QRectF>
-#include <QVector>
-
-#include "src/common/constants/Constants.h"
-#include "src/common/helper/ShapeHelper.h"
+#include "CropSelectionMoveHelper.h"
 
 namespace kImageAnnotator {
 
-class CropHandles
+CropSelectionMoveHelper::CropSelectionMoveHelper() : mIsSelectionGabbed(false)
 {
-public:
-	explicit CropHandles();
-	~CropHandles() = default;
-	QVector<QRectF> handles() const;
-	void grabHandle(const QPointF &position, const QRectF &selection);
-	void releaseHandle();
-	int grabbedIndex() const;
-	void updateHandles(const QRectF &selection);
-	bool isHandleGrabbed() const;
-	QPointF grabOffset() const;
 
-private:
-	QVector<QRectF> mHandles;
-	int mGrabbedIndex;
-	QPointF mGrabOffset;
-};
+}
 
-} // namespace kImageAnnotator
+void CropSelectionMoveHelper::grabSelection(const QPointF &position, const QRectF &selection)
+{
+	if (selection.contains(position)) {
+		mGrabOffset = position - selection.topLeft();
+		mIsSelectionGabbed = true;
+	} else {
+		mIsSelectionGabbed = false;
+	}
+}
 
-#endif //KIMAGEANNOTATOR_CROPHANDELS_H
+void CropSelectionMoveHelper::releaseSelection()
+{
+	mIsSelectionGabbed = false;
+}
+
+bool CropSelectionMoveHelper::isSelectionGabbed() const
+{
+	return mIsSelectionGabbed;
+}
+
+QPointF kImageAnnotator::CropSelectionMoveHelper::grabOffset() const
+{
+	return mGrabOffset;
+}
+
+}

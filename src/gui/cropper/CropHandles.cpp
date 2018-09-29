@@ -33,12 +33,12 @@ QVector<QRectF> CropHandles::handles() const
 	return mHandles;
 }
 
-void CropHandles::grabHandle(const QPointF &position, const QRectF &rect)
+void CropHandles::grabHandle(const QPointF &position, const QRectF &selection)
 {
 	for (auto handle : mHandles) {
 		if (handle.contains(position)) {
 			mGrabbedIndex = mHandles.indexOf(handle);
-			mGrabOffset = position - ShapeHelper::rectPointAtIndex(rect, mGrabbedIndex);
+			mGrabOffset = position - ShapeHelper::rectPointAtIndex(selection, mGrabbedIndex);
 			return;
 		}
 	}
@@ -55,17 +55,17 @@ int CropHandles::grabbedIndex() const
 	return mGrabbedIndex;
 }
 
-void CropHandles::updateHandles(const QRectF &rect)
+void CropHandles::updateHandles(const QRectF &selection)
 {
 	auto rectSize = Constants::ResizeHandleSize / 2;
-	mHandles[0].moveTopLeft(ShapeHelper::rectTopLeftWithOffset(rect, 0).toPoint());
-	mHandles[1].moveCenter(ShapeHelper::rectTopWithOffset(rect, -rectSize).toPoint());
-	mHandles[2].moveTopRight(ShapeHelper::rectTopRightWithOffset(rect, 0).toPoint());
-	mHandles[3].moveCenter(ShapeHelper::rectRightWithOffset(rect, -rectSize).toPoint());
-	mHandles[4].moveBottomRight(ShapeHelper::rectBottomRightWithOffset(rect, 0).toPoint());
-	mHandles[5].moveCenter(ShapeHelper::rectBottomWithOffset(rect, -rectSize).toPoint());
-	mHandles[6].moveBottomLeft(ShapeHelper::rectBottomLeftWithOffset(rect, 0).toPoint());
-	mHandles[7].moveCenter(ShapeHelper::rectLeftWithOffset(rect, -rectSize).toPoint());
+	mHandles[0].moveTopLeft(ShapeHelper::rectTopLeftWithOffset(selection, 0).toPoint());
+	mHandles[1].moveCenter(ShapeHelper::rectTopWithOffset(selection, -rectSize).toPoint());
+	mHandles[2].moveTopRight(ShapeHelper::rectTopRightWithOffset(selection, 0).toPoint());
+	mHandles[3].moveCenter(ShapeHelper::rectRightWithOffset(selection, -rectSize).toPoint());
+	mHandles[4].moveBottomRight(ShapeHelper::rectBottomRightWithOffset(selection, 0).toPoint());
+	mHandles[5].moveCenter(ShapeHelper::rectBottomWithOffset(selection, -rectSize).toPoint());
+	mHandles[6].moveBottomLeft(ShapeHelper::rectBottomLeftWithOffset(selection, 0).toPoint());
+	mHandles[7].moveCenter(ShapeHelper::rectLeftWithOffset(selection, -rectSize).toPoint());
 }
 
 bool CropHandles::isHandleGrabbed() const
