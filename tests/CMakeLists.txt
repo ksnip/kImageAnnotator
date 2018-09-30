@@ -30,6 +30,7 @@ set(UnitTests
 	gui/cropper/CropSelectionRestrictorTest.cpp
 	gui/cropper/CropSelectionMoveHelperTest.cpp
 	gui/cropper/CropSelectionHandlerTest.cpp
+	gui/cropper/CropHandlesTest.cpp
 	)
 
 add_library(kImageAnnotatorStatic STATIC ${kimageannotator_SRCS})
