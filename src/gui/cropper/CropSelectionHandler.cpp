@@ -23,7 +23,7 @@ namespace kImageAnnotator {
 
 CropSelectionHandler::CropSelectionHandler(AnnotationArea *annotationArea) : mAnnotationArea(annotationArea)
 {
-
+	resetSelection();
 }
 
 QRectF CropSelectionHandler::selection() const
@@ -51,7 +51,6 @@ void CropSelectionHandler::grab(const QPointF &position)
 
 void CropSelectionHandler::move(const QPointF &position)
 {
-
 	if (mCropHandles.isHandleGrabbed()) {
 		auto newSelection = ShapeHelper::setRectPointAtIndex(mSelection, mCropHandles.grabbedIndex(), position - mCropHandles.grabOffset());
 		setSelection(mSelectionRestrictor.restrictResize(newSelection, mSelection, mMaxSelection));
