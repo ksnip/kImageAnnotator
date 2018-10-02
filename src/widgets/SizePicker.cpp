@@ -25,7 +25,7 @@ SizePicker::SizePicker(const QIcon &icon, const QString &tooltip)
 {
 	initGui(icon, tooltip);
 
-	connect(mSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SizePicker::selectionChanged);
+	connect(mSpinBox, &CustomSpinBox::valueChanged, this, &SizePicker::selectionChanged);
 }
 
 SizePicker::~SizePicker()
@@ -49,7 +49,7 @@ void SizePicker::initGui(const QIcon &icon, const QString &tooltip)
 	mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
 	mLabel->setToolTip(tooltip);
 
-	mSpinBox = new QSpinBox(this);
+	mSpinBox = new CustomSpinBox(this);
 	mSpinBox->setFixedSize(QSize(55, mSpinBox->sizeHint().height()));
 	mSpinBox->setMinimum(1);
 	mSpinBox->setMaximum(20);

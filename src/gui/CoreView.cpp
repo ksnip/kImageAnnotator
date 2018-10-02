@@ -27,11 +27,14 @@ CoreView::CoreView(Config *config)
 	mAnnotationArea = new AnnotationArea(mConfig);
 	mAnnotationWidget = new AnnotationWidget(mAnnotationArea, mConfig);
 	mCropWidget = new CropWidget(mAnnotationArea);
+	mScaleWidget = new ScaleWidget(mAnnotationArea);
 	addWidget(mAnnotationWidget);
 	addWidget(mCropWidget);
+	addWidget(mScaleWidget);
 
 	connect(mAnnotationArea, &AnnotationArea::imageChanged, this, &CoreView::imageChanged);
 	connect(mCropWidget, &CropWidget::closing, this, &CoreView::showAnnotator);
+	connect(mScaleWidget, &ScaleWidget::closing, this, &CoreView::showAnnotator);
 }
 
 CoreView::~CoreView()
@@ -64,7 +67,8 @@ void CoreView::showCropper()
 
 void CoreView::showScaler()
 {
-
+	setCurrentWidget(mScaleWidget);
+	mScaleWidget->showDialog();
 }
 
 QAction *CoreView::undoAction()

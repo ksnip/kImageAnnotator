@@ -17,43 +17,38 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SIZEPICKER_H
-#define KIMAGEANNOTATOR_SIZEPICKER_H
+#ifndef KIMAGEANNOTATOR_SCALEWIDGET_H
+#define KIMAGEANNOTATOR_SCALEWIDGET_H
 
 #include <QWidget>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QIcon>
+#include <QGraphicsView>
+#include <QVBoxLayout>
 
-#include "CustomSpinBox.h"
+#include "ScaleDialog.h"
+#include "src/annotations/core/AnnotationArea.h"
 
 namespace kImageAnnotator {
 
-class SizePicker : public QWidget
+class ScaleWidget : public QWidget
 {
 Q_OBJECT
-
 public:
-	SizePicker(const QIcon &icon, const QString &tooltip);
-	~SizePicker();
-	void setSize(int size);
-	void setRange(int min, int max);
+	explicit ScaleWidget(AnnotationArea *annotationArea);
+	~ScaleWidget();
+	void showDialog();
 
 signals:
-	void sizeSelected(int size) const;
+	void closing() const;
 
 private:
-	QHBoxLayout *mLayout;
-	CustomSpinBox *mSpinBox;
-	QLabel *mLabel;
+	AnnotationArea *mAnnotationArea;
+	QGraphicsView *mView;
+	QVBoxLayout *mMainLayout;
 
-	void initGui(const QIcon &icon, const QString &tooltip);
-	void setSizeAndNotify(int size);
-
-private slots:
-	void selectionChanged();
+	void initGui();
+	void scale(int newWidth, int newHeight);
 };
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_SIZEPICKER_H
+#endif //KIMAGEANNOTATOR_SCALEWIDGET_H

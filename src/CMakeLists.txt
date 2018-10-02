@@ -9,6 +9,8 @@ set(kimageannotator_SRCS
 	${CMAKE_SOURCE_DIR}/src/gui/cropper/CropSelectionRestrictor.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/cropper/CropHandles.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/cropper/CropSelectionMoveHelper.cpp
+	${CMAKE_SOURCE_DIR}/src/gui/scaller/ScaleDialog.cpp
+	${CMAKE_SOURCE_DIR}/src/gui/scaller/ScaleWidget.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationArea.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationItemFactory.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationPropertiesFactory.cpp
@@ -61,6 +63,7 @@ set(kimageannotator_SRCS
 	${CMAKE_SOURCE_DIR}/src/widgets/ColorPicker.cpp
 	${CMAKE_SOURCE_DIR}/src/widgets/SizePicker.cpp
 	${CMAKE_SOURCE_DIR}/src/widgets/FillTypePicker.cpp
+	${CMAKE_SOURCE_DIR}/src/widgets/CustomSpinBox.cpp
 	)
 
 set(kimageannotator_SRCS ${kimageannotator_SRCS} PARENT_SCOPE)

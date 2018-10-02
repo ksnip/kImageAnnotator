@@ -17,43 +17,44 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SIZEPICKER_H
-#define KIMAGEANNOTATOR_SIZEPICKER_H
-
-#include <QWidget>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QIcon>
-
-#include "CustomSpinBox.h"
+#include "ScaleWidget.h"
 
 namespace kImageAnnotator {
 
-class SizePicker : public QWidget
+kImageAnnotator::ScaleWidget::ScaleWidget(kImageAnnotator::AnnotationArea *annotationArea)
 {
-Q_OBJECT
+	mAnnotationArea = annotationArea;
 
-public:
-	SizePicker(const QIcon &icon, const QString &tooltip);
-	~SizePicker();
-	void setSize(int size);
-	void setRange(int min, int max);
+	mView = new QGraphicsView(annotationArea);
+	initGui();
+}
 
-signals:
-	void sizeSelected(int size) const;
+ScaleWidget::~ScaleWidget()
+{
+	delete mMainLayout;
+	delete mView;
+}
 
-private:
-	QHBoxLayout *mLayout;
-	CustomSpinBox *mSpinBox;
-	QLabel *mLabel;
+void ScaleWidget::initGui()
+{
+	mMainLayout = new QVBoxLayout(this);
+	mMainLayout->addWidget(mView);
+	setLayout(mMainLayout);
+}
 
-	void initGui(const QIcon &icon, const QString &tooltip);
-	void setSizeAndNotify(int size);
+void ScaleWidget::showDialog()
+{
+	auto sceneSize = mAnnotationArea->sceneRect().size();
+	ScaleDialog scaleDialog(sceneSize.width(), sceneSize.height(), this);
+	connect(&scaleDialog, &ScaleDialog::finished, this, &ScaleWidget::scale);
+	scaleDialog.exec();
 
-private slots:
-	void selectionChanged();
-};
+	emit closing();
+}
+
+void ScaleWidget::scale(int newWidth, int newHeight)
+{
+//	mAnnotationArea->scale(newWidth, new Height);
+}
 
 } // namespace kImageAnnotator
-
-#endif // KIMAGEANNOTATOR_SIZEPICKER_H

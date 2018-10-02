@@ -17,43 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SIZEPICKER_H
-#define KIMAGEANNOTATOR_SIZEPICKER_H
-
-#include <QWidget>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QIcon>
-
 #include "CustomSpinBox.h"
 
 namespace kImageAnnotator {
 
-class SizePicker : public QWidget
+kImageAnnotator::CustomSpinBox::CustomSpinBox(QWidget *parent) : QSpinBox(parent)
 {
-Q_OBJECT
+	connect(this, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &CustomSpinBox::valueChanged);
+}
 
-public:
-	SizePicker(const QIcon &icon, const QString &tooltip);
-	~SizePicker();
-	void setSize(int size);
-	void setRange(int min, int max);
+void CustomSpinBox::setValueSilent(int value)
+{
+	blockSignals(true);
 
-signals:
-	void sizeSelected(int size) const;
+	QSpinBox::setValue(value);
 
-private:
-	QHBoxLayout *mLayout;
-	CustomSpinBox *mSpinBox;
-	QLabel *mLabel;
-
-	void initGui(const QIcon &icon, const QString &tooltip);
-	void setSizeAndNotify(int size);
-
-private slots:
-	void selectionChanged();
-};
+	blockSignals(false);
+}
 
 } // namespace kImageAnnotator
-
-#endif // KIMAGEANNOTATOR_SIZEPICKER_H
