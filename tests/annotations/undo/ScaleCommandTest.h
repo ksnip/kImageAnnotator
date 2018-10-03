@@ -17,34 +17,28 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SCALECOMMAND_H
-#define KIMAGEANNOTATOR_SCALECOMMAND_H
+#ifndef KIMAGEANNOTATOR_SCALECOMMANDTEST_H
+#define KIMAGEANNOTATOR_SCALECOMMANDTEST_H
 
-#include <QUndoCommand>
+#include <QtTest>
 
-#include "src/annotations/core/AnnotationArea.h"
+#include "src/annotations/undo/ScaleCommand.h"
 
-namespace kImageAnnotator {
+using kImageAnnotator::ScaleCommand;
+using kImageAnnotator::AnnotationArea;
+using kImageAnnotator::Config;
+using kImageAnnotator::AnnotationRect;
+using kImageAnnotator::AnnotationProperties;
 
-class ScaleCommand : public QUndoCommand
+class ScaleCommandTest : public QObject
 {
-public:
-	ScaleCommand(QGraphicsPixmapItem *image, const QSize &newSize, AnnotationArea *annotationArea);
-	~ScaleCommand();
-	void undo() override;
-	void redo() override;
+Q_OBJECT
 
-private:
-	AnnotationArea *mAnnotationArea;
-	QGraphicsPixmapItem *mImage;
-	QPixmap *mOldImage;
-	QPixmap *mNewImage;
-	qreal mWidthScaleFactor;
-	qreal mHeightScaleFactor;
-
-	void scaleItems(qreal widthScaleFactor, qreal heightScaleFactor);
+private slots:
+	void TestRedo_Should_ScaleImageToNewSize();
+	void TestUndo_Should_ScaleImageBackToOldSize();
+	void TestRedo_Should_ScaleItemsBySameFactorAsImage();
+	void TestUndo_Should_ScaleItemsBackToOriginalSize();
 };
 
-} // namespace kImageAnnotator
-
-#endif //KIMAGEANNOTATOR_SCALECOMMAND_H
+#endif // KIMAGEANNOTATOR_SCALECOMMANDTEST_H

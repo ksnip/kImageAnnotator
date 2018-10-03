@@ -40,7 +40,7 @@ ScaleCommand::~ScaleCommand()
 
 void ScaleCommand::undo()
 {
-	scaleItems(1 / mWidthScaleFactor, 1 / mHeightScaleFactor, true);
+	scaleItems(1 / mWidthScaleFactor, 1 / mHeightScaleFactor);
 	mImage->resetTransform();
 	mImage->setPixmap(*mOldImage);
 	mAnnotationArea->setSceneRect(mImage->boundingRect());
@@ -48,16 +48,14 @@ void ScaleCommand::undo()
 
 void ScaleCommand::redo()
 {
-	scaleItems(mWidthScaleFactor, mHeightScaleFactor, false);
+	scaleItems(mWidthScaleFactor, mHeightScaleFactor);
 	mImage->resetTransform();
 	mImage->setPixmap(*mNewImage);
 	mAnnotationArea->setSceneRect(mImage->boundingRect());
 }
 
-void ScaleCommand::scaleItems(qreal widthScaleFactor, qreal heightScaleFactor, bool combine)
+void ScaleCommand::scaleItems(qreal widthScaleFactor, qreal heightScaleFactor)
 {
-	QTransform transform;
-	transform.scale(widthScaleFactor, heightScaleFactor);
 	for (auto base : mAnnotationArea->items()) {
 		auto item = dynamic_cast<AbstractAnnotationItem *>(base);
 		if (item) {
