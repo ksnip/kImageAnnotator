@@ -29,9 +29,10 @@ class AnnotationPen : public AbstractAnnotationPath
 public:
 	AnnotationPen(const QPointF &startPosition, AnnotationPathProperties *properties);
 	~AnnotationPen() override = default;
+	AnnotationPen *clone() const override;
 
 protected:
-	virtual void updateShape() override;
+	void updateShape() override;
 };
 
 } // namespace kImageAnnotator

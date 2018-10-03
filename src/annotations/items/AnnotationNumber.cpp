@@ -22,8 +22,7 @@
 namespace kImageAnnotator {
 
 AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, int number, AnnotationTextProperties *properties)
-	:
-	AbstractAnnotationRect(centerPosition, properties)
+	: AbstractAnnotationRect(centerPosition, properties)
 {
 	mNumberString = QString::number(number);
 	auto size = getTextRectSize();
@@ -32,12 +31,10 @@ AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, int number, An
 	updateShape();
 }
 
-QSizeF AnnotationNumber::getTextRectSize() const
+AnnotationNumber::AnnotationNumber(const AnnotationNumber &other) : AbstractAnnotationRect(other)
 {
-	QFontMetricsF metrics(properties()->font());
-	auto boundingRect = metrics.boundingRect(mNumberString).adjusted(-5, -5, 5, 5);
-	auto largestSite = boundingRect.width() > boundingRect.height() ? boundingRect.width() : boundingRect.height();
-	return { largestSite, largestSite };
+	mNumberString = other.mNumberString;
+	updateShape();
 }
 
 void AnnotationNumber::addPoint(const QPointF &position, bool modified)
@@ -46,6 +43,16 @@ void AnnotationNumber::addPoint(const QPointF &position, bool modified)
 	Q_UNUSED(modified);
 
 	// Nothing to do here
+}
+
+const AnnotationTextProperties *AnnotationNumber::properties() const
+{
+	return dynamic_cast<const AnnotationTextProperties *>(AbstractAnnotationItem::properties());
+}
+
+AnnotationNumber *AnnotationNumber::clone() const
+{
+	return new AnnotationNumber(*this);
 }
 
 void AnnotationNumber::updateShape()
@@ -64,9 +71,12 @@ void AnnotationNumber::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 	painter->drawText(boundingRect(), Qt::AlignCenter, mNumberString);
 }
 
-const AnnotationTextProperties *AnnotationNumber::properties() const
+QSizeF AnnotationNumber::getTextRectSize() const
 {
-	return dynamic_cast<const AnnotationTextProperties *>(AbstractAnnotationItem::properties());
+	QFontMetricsF metrics(properties()->font());
+	auto boundingRect = metrics.boundingRect(mNumberString).adjusted(-5, -5, 5, 5);
+	auto largestSite = boundingRect.width() > boundingRect.height() ? boundingRect.width() : boundingRect.height();
+	return { largestSite, largestSite };
 }
 
 } // namespace kImageAnnotator

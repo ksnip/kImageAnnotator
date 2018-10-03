@@ -23,16 +23,17 @@
 #include <QList>
 
 #include "src/annotations/modifiers/AnnotationItemModifier.h"
+#include "src/annotations/core/AnnotationItemFactory.h"
 
 namespace kImageAnnotator {
 
 class AnnotationItemCopier : public QObject
 {
 Q_OBJECT
+
 public:
-	explicit AnnotationItemCopier(const AnnotationItemModifier *itemModifier);
+	explicit AnnotationItemCopier(const AnnotationItemModifier *itemModifier, const AnnotationItemFactory *annotationItemFactory);
 	~AnnotationItemCopier() override = default;
-	QList<AbstractAnnotationItem *> copiedItems() const;
 	bool isEmpty() const;
 
 public slots:
@@ -42,6 +43,7 @@ public slots:
 
 private:
 	const AnnotationItemModifier *mItemModifier;
+	const AnnotationItemFactory *mItemFactory;
 	QList<AbstractAnnotationItem *> mCopiedItems;
 };
 

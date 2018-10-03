@@ -21,9 +21,13 @@
 
 namespace kImageAnnotator {
 
-AnnotationEllipse::AnnotationEllipse(const QPointF &startPosition, AnnotationProperties *properties) :
-    AbstractAnnotationRect(startPosition, properties)
+AnnotationEllipse::AnnotationEllipse(const QPointF &startPosition, AnnotationProperties *properties) : AbstractAnnotationRect(startPosition, properties)
 {
+}
+
+AnnotationEllipse *AnnotationEllipse::clone() const
+{
+	return new AnnotationEllipse(*this);
 }
 
 void AnnotationEllipse::updateShape()

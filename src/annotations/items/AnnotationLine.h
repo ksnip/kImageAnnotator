@@ -27,11 +27,12 @@ namespace kImageAnnotator {
 class AnnotationLine : public AbstractAnnotationLine
 {
 public:
-    AnnotationLine(const QPointF &startPosition, AnnotationProperties *properties);
-    ~AnnotationLine() override = default;
+	AnnotationLine(const QPointF &startPosition, AnnotationProperties *properties);
+	~AnnotationLine() override = default;
+	AnnotationLine *clone() const override;
 
 protected:
-    virtual void updateShape() override;
+	void updateShape() override;
 };
 
 }

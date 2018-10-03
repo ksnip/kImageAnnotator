@@ -31,6 +31,7 @@ class AbstractAnnotationPath : public AbstractAnnotationItem
 {
 public:
 	AbstractAnnotationPath(const QPointF &startPosition, AnnotationPathProperties *properties);
+	AbstractAnnotationPath(const AbstractAnnotationPath &other);
 	~AbstractAnnotationPath() override;
 	void addPoint(const QPointF &position, bool modified = false) override;
 	void setPosition(const QPointF &newPosition) override;

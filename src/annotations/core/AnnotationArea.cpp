@@ -21,18 +21,18 @@
 
 namespace kImageAnnotator {
 
-AnnotationArea::AnnotationArea(Config *config)
+AnnotationArea::AnnotationArea(Config *config) : mImage(nullptr), mCurrentItem(nullptr)
 {
+	Q_ASSERT(config != nullptr);
+
 	mConfig = config;
 	mItemFactory = new AnnotationItemFactory(config);
-	mImage = nullptr;
-	mCurrentItem = nullptr;
 	mItems = new QList<AbstractAnnotationItem *>();
 	mKeyHelper = new KeyHelper();
 	mUndoStack = new UndoStack();
 	mItemModifier = new AnnotationItemModifier();
 	addItem(mItemModifier);
-	mItemCopier = new AnnotationItemCopier(mItemModifier);
+	mItemCopier = new AnnotationItemCopier(mItemModifier, mItemFactory);
 
 	connect(mItemModifier, &AnnotationItemModifier::newCommand, mUndoStack, &UndoStack::push);
 	connect(mUndoStack, &UndoStack::indexChanged, this, &AnnotationArea::update);

@@ -27,15 +27,16 @@ namespace kImageAnnotator {
 class AnnotationArrow : public AbstractAnnotationLine
 {
 public:
-    AnnotationArrow(const QPointF &startPosition, AnnotationProperties *properties);
-    ~AnnotationArrow() override = default;
+	AnnotationArrow(const QPointF &startPosition, AnnotationProperties *properties);
+	~AnnotationArrow() override = default;
+	AnnotationArrow *clone() const override;
 
 protected:
-    virtual void updateShape() override;
+	void updateShape() override;
 
 private:
-    QPolygonF createArrow() const;
-    QPolygonF rotateAndPositionArrow(const QPolygonF &arrow) const;
+	QPolygonF createArrow() const;
+	QPolygonF rotateAndPositionArrow(const QPolygonF &arrow) const;
 };
 
 } // namespace kImageAnnotator

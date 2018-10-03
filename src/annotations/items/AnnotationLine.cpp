@@ -21,16 +21,20 @@
 
 namespace kImageAnnotator {
 
-AnnotationLine::AnnotationLine(const QPointF &startPosition, AnnotationProperties *properties) :
-    AbstractAnnotationLine(startPosition, properties)
+AnnotationLine::AnnotationLine(const QPointF &startPosition, AnnotationProperties *properties) : AbstractAnnotationLine(startPosition, properties)
 {
+}
+
+AnnotationLine *AnnotationLine::clone() const
+{
+	return new AnnotationLine(*this);
 }
 
 void AnnotationLine::updateShape()
 {
-    QPainterPath path(mLine->p1());
-    path.lineTo(mLine->p2());
-    setShape(path);
+	QPainterPath path(mLine->p1());
+	path.lineTo(mLine->p2());
+	setShape(path);
 }
 
 } // namespace kImageAnnotator

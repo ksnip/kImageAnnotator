@@ -27,11 +27,12 @@ namespace kImageAnnotator {
 class AnnotationEllipse : public AbstractAnnotationRect
 {
 public:
-    AnnotationEllipse(const QPointF &startPosition, AnnotationProperties *properties);
-    ~AnnotationEllipse() override = default;
+	AnnotationEllipse(const QPointF &startPosition, AnnotationProperties *properties);
+	~AnnotationEllipse() override = default;
+	AnnotationEllipse *clone() const override;
 
 protected:
-    virtual void updateShape() override;
+	void updateShape() override;
 };
 
 } // namespace kImageAnnotator

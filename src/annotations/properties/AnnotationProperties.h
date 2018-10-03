@@ -29,26 +29,27 @@ namespace kImageAnnotator {
 class AnnotationProperties
 {
 public:
-    AnnotationProperties() = default;
-    AnnotationProperties(const QColor &color, int size);
-    virtual ~AnnotationProperties() = default;
-    QColor color() const;
-    void setColor(const QColor &color);
-    QColor textColor() const;
-    void setTextColor(const QColor &color);
-    int Width() const;
-    void setWidth(int size);
-    FillTypes fillType() const;
-    void setFillType(FillTypes fillType);
-    bool shadowEnabled() const;
-    void setShadowEnabled(bool enabled);
+	AnnotationProperties() = default;
+	AnnotationProperties(const QColor &color, int size);
+	AnnotationProperties(const AnnotationProperties &other);
+	virtual ~AnnotationProperties() = default;
+	QColor color() const;
+	void setColor(const QColor &color);
+	QColor textColor() const;
+	void setTextColor(const QColor &color);
+	int Width() const;
+	void setWidth(int size);
+	FillTypes fillType() const;
+	void setFillType(FillTypes fillType);
+	bool shadowEnabled() const;
+	void setShadowEnabled(bool enabled);
 
 private:
-    QColor mColor;
-    QColor mTextColor;
-    int mWidth;
-    FillTypes mFillType;
-    bool mShadowEnabled;
+	QColor mColor;
+	QColor mTextColor;
+	int mWidth;
+	FillTypes mFillType;
+	bool mShadowEnabled;
 };
 
 } // namespace kImageAnnotator

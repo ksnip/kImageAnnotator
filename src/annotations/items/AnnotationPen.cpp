@@ -26,6 +26,11 @@ AnnotationPen::AnnotationPen(const QPointF &startPosition, AnnotationPathPropert
 
 }
 
+AnnotationPen *AnnotationPen::clone() const
+{
+	return new AnnotationPen(*this);
+}
+
 void AnnotationPen::updateShape()
 {
 	QPainterPath path(*mPath);

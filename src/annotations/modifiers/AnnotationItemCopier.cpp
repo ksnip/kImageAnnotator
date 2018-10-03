@@ -21,14 +21,13 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemCopier::AnnotationItemCopier(const AnnotationItemModifier *itemModifier)
+AnnotationItemCopier::AnnotationItemCopier(const AnnotationItemModifier *itemModifier, const AnnotationItemFactory *annotationItemFactory)
 {
-	mItemModifier = itemModifier;
-}
+	Q_ASSERT(itemModifier != nullptr);
+	Q_ASSERT(annotationItemFactory != nullptr);
 
-QList<AbstractAnnotationItem *> AnnotationItemCopier::copiedItems() const
-{
-	return mCopiedItems;
+	mItemModifier = itemModifier;
+	mItemFactory = annotationItemFactory;
 }
 
 bool AnnotationItemCopier::isEmpty() const

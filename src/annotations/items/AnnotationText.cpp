@@ -21,20 +21,18 @@
 
 namespace kImageAnnotator {
 
-AnnotationText::AnnotationText(const QPointF &startPosition, AnnotationTextProperties *properties) :
-	AbstractAnnotationRect(startPosition, properties)
+AnnotationText::AnnotationText(const QPointF &startPosition, AnnotationTextProperties *properties) : AbstractAnnotationRect(startPosition, properties)
 {
 	setFlag(QGraphicsItem::ItemIsFocusable, true);
+	connectSlots();
+}
 
-	connect(&mKeyInputHelper, &KeyInputHelper::move, this, &AnnotationText::moveCursor);
-	connect(&mKeyInputHelper, &KeyInputHelper::insert, this, &AnnotationText::insertText);
-	connect(&mKeyInputHelper, &KeyInputHelper::remove, this, &AnnotationText::removeText);
-	connect(&mKeyInputHelper, &KeyInputHelper::paste, this, &AnnotationText::pasteText);
-	connect(&mKeyInputHelper, &KeyInputHelper::escape, this, &AnnotationText::escape);
-	connect(&mTextCursor, &TextCursor::tick, [this]()
-	{
-		prepareGeometryChange();
-	});
+AnnotationText::AnnotationText(const AnnotationText &other) : AbstractAnnotationRect(other)
+{
+	mText = other.mText;
+
+	setFlag(QGraphicsItem::ItemIsFocusable, true);
+	connectSlots();
 }
 
 void AnnotationText::updateShape()
@@ -115,6 +113,11 @@ const AnnotationTextProperties *AnnotationText::properties() const
 	return dynamic_cast<const AnnotationTextProperties *>(AbstractAnnotationItem::properties());
 }
 
+AnnotationText *AnnotationText::clone() const
+{
+	return new AnnotationText(*this);
+}
+
 void AnnotationText::removeText(TextPositions direction)
 {
 	auto currentCursorPos = mTextCursor.position();
@@ -172,6 +175,19 @@ void AnnotationText::adjustRect()
 		mRect->setHeight(newRect.height());
 	}
 	updateShape();
+}
+
+void AnnotationText::connectSlots()
+{
+	connect(&mKeyInputHelper, &KeyInputHelper::move, this, &AnnotationText::moveCursor);
+	connect(&mKeyInputHelper, &KeyInputHelper::insert, this, &AnnotationText::insertText);
+	connect(&mKeyInputHelper, &KeyInputHelper::remove, this, &AnnotationText::removeText);
+	connect(&mKeyInputHelper, &KeyInputHelper::paste, this, &AnnotationText::pasteText);
+	connect(&mKeyInputHelper, &KeyInputHelper::escape, this, &AnnotationText::escape);
+	connect(&mTextCursor, &TextCursor::tick, [this]()
+	{
+		prepareGeometryChange();
+	});
 }
 
 } // namespace kImageAnnotator

@@ -34,6 +34,7 @@ class AbstractAnnotationItem : public QGraphicsItem
 {
 public:
 	explicit AbstractAnnotationItem(AnnotationProperties *properties);
+	AbstractAnnotationItem(const AbstractAnnotationItem &other);
 	virtual ~AbstractAnnotationItem();
 	virtual QRectF boundingRect() const override;
 	virtual QPainterPath shape() const override;
@@ -46,6 +47,7 @@ public:
 	virtual const AnnotationProperties *properties() const;
 	virtual void finish();
 	virtual void scale(qreal sx, qreal sy) = 0;
+	virtual AbstractAnnotationItem *clone() const = 0;
 
 protected:
 	void setShape(QPainterPath &newShape);

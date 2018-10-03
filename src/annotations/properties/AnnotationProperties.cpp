@@ -28,6 +28,15 @@ AnnotationProperties::AnnotationProperties(const QColor &color, int size)
     mWidth = size;
 }
 
+AnnotationProperties::AnnotationProperties(const AnnotationProperties &other)
+{
+	mColor = other.mColor;
+	mTextColor = other.mTextColor;
+	mWidth = other.mWidth;
+	mFillType = other.mFillType;
+	mShadowEnabled = other.mShadowEnabled;
+}
+
 QColor AnnotationProperties::color() const
 {
     return mColor;

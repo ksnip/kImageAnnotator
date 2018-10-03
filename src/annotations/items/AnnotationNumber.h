@@ -29,13 +29,15 @@ class AnnotationNumber : public AbstractAnnotationRect
 {
 public:
 	AnnotationNumber(const QPointF &centerPosition, int number, AnnotationTextProperties *properties);
+	AnnotationNumber(const AnnotationNumber &other);
 	~AnnotationNumber() override = default;
-	virtual void addPoint(const QPointF &position, bool modified = false) override;
+	void addPoint(const QPointF &position, bool modified = false) override;
 	const AnnotationTextProperties *properties() const override;
+	AnnotationNumber *clone() const override;
 
 protected:
-	virtual void updateShape() override;
-	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+	void updateShape() override;
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
 	QString mNumberString;

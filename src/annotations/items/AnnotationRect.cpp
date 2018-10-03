@@ -21,16 +21,20 @@
 
 namespace kImageAnnotator {
 
-AnnotationRect::AnnotationRect(const QPointF &startPosition, AnnotationProperties *properties) :
-    AbstractAnnotationRect(startPosition, properties)
+AnnotationRect::AnnotationRect(const QPointF &startPosition, AnnotationProperties *properties) : AbstractAnnotationRect(startPosition, properties)
 {
+}
+
+AnnotationRect *AnnotationRect::clone() const
+{
+	return new AnnotationRect(*this);
 }
 
 void AnnotationRect::updateShape()
 {
-    QPainterPath path;
-    path.addRect(*mRect);
-    setShape(path);
+	QPainterPath path;
+	path.addRect(*mRect);
+	setShape(path);
 }
 
 } // namespace kImageAnnotator

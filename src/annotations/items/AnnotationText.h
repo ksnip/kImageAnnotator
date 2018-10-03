@@ -36,9 +36,11 @@ class AnnotationText : public QObject, public AbstractAnnotationRect
 Q_OBJECT
 public:
 	AnnotationText(const QPointF &startPosition, AnnotationTextProperties *properties);
+	AnnotationText(const AnnotationText &other);
 	~AnnotationText() override = default;
 	void finish() override;
 	const AnnotationTextProperties *properties() const override;
+	AnnotationText *clone() const override;
 
 protected:
 	void updateShape() override;
@@ -59,6 +61,7 @@ private slots:
 	void pasteText();
 	void escape();
 	void adjustRect();
+	void connectSlots();
 };
 
 } // namespace kImageAnnotator

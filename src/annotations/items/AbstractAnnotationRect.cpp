@@ -21,12 +21,15 @@
 
 namespace kImageAnnotator {
 
-AbstractAnnotationRect::AbstractAnnotationRect(const QPointF &startPosition, AnnotationProperties *properties)
-	:
-	AbstractAnnotationItem(properties)
+AbstractAnnotationRect::AbstractAnnotationRect(const QPointF &startPosition, AnnotationProperties *properties) : AbstractAnnotationItem(properties)
 {
 	mRect = new QRectF();
 	mRect->setTopLeft(startPosition);
+}
+
+AbstractAnnotationRect::AbstractAnnotationRect(const AbstractAnnotationRect &other) : AbstractAnnotationItem(other)
+{
+	mRect = new QRectF(*other.mRect);
 }
 
 AbstractAnnotationRect::~AbstractAnnotationRect()
