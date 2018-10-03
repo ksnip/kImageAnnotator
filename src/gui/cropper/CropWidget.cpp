@@ -57,6 +57,13 @@ CropWidget::~CropWidget()
 	delete mHeightLineEdit;
 }
 
+void CropWidget::activate()
+{
+	mAnnotationArea->clearSelection();
+	reset();
+	setFocus();
+}
+
 void CropWidget::initGui()
 {
 	mCropButton = new QPushButton();

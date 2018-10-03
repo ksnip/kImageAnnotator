@@ -35,6 +35,12 @@ ScaleWidget::~ScaleWidget()
 	delete mView;
 }
 
+void ScaleWidget::activate()
+{
+	mAnnotationArea->clearSelection();
+	showDialog();
+}
+
 void ScaleWidget::initGui()
 {
 	mMainLayout = new QVBoxLayout(this);
@@ -54,7 +60,7 @@ void ScaleWidget::showDialog()
 
 void ScaleWidget::scale(const QSize &newSize)
 {
-//	mAnnotationArea->scale(newSize);
+	mAnnotationArea->scale(newSize);
 }
 
 } // namespace kImageAnnotator

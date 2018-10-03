@@ -60,15 +60,14 @@ void CoreView::showAnnotator()
 
 void CoreView::showCropper()
 {
-	mCropWidget->reset();
-	mCropWidget->setFocus();
 	setCurrentWidget(mCropWidget);
+	mCropWidget->activate();
 }
 
 void CoreView::showScaler()
 {
 	setCurrentWidget(mScaleWidget);
-	mScaleWidget->showDialog();
+	mScaleWidget->activate();
 }
 
 QAction *CoreView::undoAction()

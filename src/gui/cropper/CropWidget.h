@@ -40,7 +40,7 @@ Q_OBJECT
 public:
 	explicit CropWidget(AnnotationArea *annotationArea);
 	~CropWidget();
-	void reset();
+	void activate();
 
 signals:
 	void closing() const;
@@ -64,6 +64,7 @@ private:
 
 	void initGui();
 	void initKeyHelper();
+	void reset();
 
 private slots:
 	void crop();

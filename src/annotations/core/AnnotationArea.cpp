@@ -115,6 +115,18 @@ void AnnotationArea::crop(const QRectF &rect)
 	emit imageChanged();
 }
 
+void AnnotationArea::scale(const QSize &size)
+{
+	mUndoStack->push(new ScaleCommand(mImage, size, this));
+	emit imageChanged();
+}
+
+void AnnotationArea::clearSelection()
+{
+	mItemModifier->clearSelection();
+	QGraphicsScene::clearSelection();
+}
+
 void AnnotationArea::update()
 {
 	mItemModifier->updateSelection();

@@ -17,39 +17,34 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SCALEWIDGET_H
-#define KIMAGEANNOTATOR_SCALEWIDGET_H
+#ifndef KIMAGEANNOTATOR_SCALECOMMAND_H
+#define KIMAGEANNOTATOR_SCALECOMMAND_H
 
-#include <QWidget>
-#include <QGraphicsView>
-#include <QVBoxLayout>
+#include <QUndoCommand>
 
-#include "ScaleDialog.h"
 #include "src/annotations/core/AnnotationArea.h"
 
 namespace kImageAnnotator {
 
-class ScaleWidget : public QWidget
+class ScaleCommand : public QUndoCommand
 {
-Q_OBJECT
 public:
-	explicit ScaleWidget(AnnotationArea *annotationArea);
-	~ScaleWidget();
-	void activate();
-
-signals:
-	void closing() const;
+	ScaleCommand(QGraphicsPixmapItem *image, const QSize &newSize, AnnotationArea *annotationArea);
+	~ScaleCommand();
+	void undo() override;
+	void redo() override;
 
 private:
 	AnnotationArea *mAnnotationArea;
-	QGraphicsView *mView;
-	QVBoxLayout *mMainLayout;
+	QGraphicsPixmapItem *mImage;
+	QPixmap *mOldImage;
+	QPixmap *mNewImage;
+	qreal mWidthScaleFactor;
+	qreal mHeightScaleFactor;
 
-	void initGui();
-	void showDialog();
-	void scale(const QSize &newSize);
+	void scaleItems(qreal widthScaleFactor, qreal heightScaleFactor, bool combine);
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_SCALEWIDGET_H
+#endif //KIMAGEANNOTATOR_SCALECOMMAND_H

@@ -50,6 +50,7 @@ set(kimageannotator_SRCS
 	${CMAKE_SOURCE_DIR}/src/annotations/undo/ResizeCommand.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/undo/ArrangeCommand.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/undo/CropCommand.cpp
+	${CMAKE_SOURCE_DIR}/src/annotations/undo/ScaleCommand.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/misc/ShadowEffect.cpp
 	${CMAKE_SOURCE_DIR}/src/backend/Config.cpp
 	${CMAKE_SOURCE_DIR}/src/common/helper/IconCreater.cpp
