@@ -29,6 +29,7 @@
 #include <QVBoxLayout>
 #include <QtWidgets/QSpinBox>
 
+#include "ScaleSizeHandler.h"
 #include "src/widgets/CustomSpinBox.h"
 
 namespace kImageAnnotator {
@@ -44,8 +45,7 @@ signals:
 	void finished(int newWidth, int newHeight) const;
 
 private:
-	int mWidth;
-	int mHeight;
+	ScaleSizeHandler mSizeHandler;
 	QCheckBox *mKeepAspectRatioCheckBox;
 	QLabel *mWidthPixelLabel;
 	QLabel *mHeightPixelLabel;
@@ -65,10 +65,10 @@ private:
 	QVBoxLayout *mMainLayout;
 
 	void initGui();
-	float calculatePercent(int baseValue, int newValue) const;
-	float calculatePercent(int newValue) const;
-	void setHeightInSpinBox(float percent);
-	void setWidthInSpinBox(float percent);
+//	float calculatePercent(int baseValue, int newValue) const;
+//	float calculatePercent(int newValue) const;
+//	void setHeightInSpinBox(float percent);
+//	void setWidthInSpinBox(float percent);
 };
 
 } // namespace kImageAnnotator

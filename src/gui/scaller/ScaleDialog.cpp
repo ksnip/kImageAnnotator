@@ -25,8 +25,7 @@ ScaleDialog::ScaleDialog(int width, int height, QWidget *parent) : QDialog(paren
 {
 	setWindowTitle(tr("Scale Image"));
 
-	mWidth = width;
-	mHeight = height;
+	mSizeHandler.setSize(QSize(width, height));
 
 	initGui();
 }
@@ -56,6 +55,7 @@ void ScaleDialog::initGui()
 {
 	mKeepAspectRatioCheckBox = new QCheckBox;
 	mKeepAspectRatioCheckBox->setText(tr("Keep Aspect Ratio"));
+	connect(mKeepAspectRatioCheckBox, &QCheckBox::toggled, &mSizeHandler, &ScaleSizeHandler::setAspectRatio);
 	mKeepAspectRatioCheckBox->setChecked(true);
 
 	mWidthPixelLabel = new QLabel;
@@ -74,31 +74,19 @@ void ScaleDialog::initGui()
 	mWidthPixelSpinBox->setSuffix(QStringLiteral("px"));
 	mWidthPixelSpinBox->setMinimum(1);
 	mWidthPixelSpinBox->setMaximum(4000);
-	mWidthPixelSpinBox->setValueSilent(mWidth);
+	mWidthPixelSpinBox->setValueSilent(mSizeHandler.size().width());
 	mWidthPixelSpinBox->setWrapping(false);
-	connect(mWidthPixelSpinBox, &CustomSpinBox::valueChanged, [this](int newValue)
-	{
-		auto valuePercent = calculatePercent(mWidth, newValue);
-		mWidthPercentSpinBox->setValueSilent(valuePercent * 100);
-		if (mKeepAspectRatioCheckBox->isChecked()) {
-			setHeightInSpinBox(valuePercent);
-		}
-	});
+	connect(mWidthPixelSpinBox, &CustomSpinBox::valueChanged, &mSizeHandler, &ScaleSizeHandler::setWidthPixel);
+	connect(&mSizeHandler, &ScaleSizeHandler::widthPixelChanged, mWidthPixelSpinBox, &CustomSpinBox::setValueSilent);
 
 	mHeightPixelSpinBox = new CustomSpinBox(this);
 	mHeightPixelSpinBox->setSuffix(QStringLiteral("px"));
 	mHeightPixelSpinBox->setMinimum(1);
 	mHeightPixelSpinBox->setMaximum(4000);
-	mHeightPixelSpinBox->setValueSilent(mHeight);
+	mHeightPixelSpinBox->setValueSilent(mSizeHandler.size().height());
 	mHeightPixelSpinBox->setWrapping(false);
-	connect(mHeightPixelSpinBox, &CustomSpinBox::valueChanged, [this](int newValue)
-	{
-		auto valuePercent = calculatePercent(mHeight, newValue);
-		mHeightPercentSpinBox->setValueSilent(valuePercent * 100);
-		if (mKeepAspectRatioCheckBox->isChecked()) {
-			setWidthInSpinBox(valuePercent);
-		}
-	});
+	connect(mHeightPixelSpinBox, &CustomSpinBox::valueChanged, &mSizeHandler, &ScaleSizeHandler::setHeightPixcel);
+	connect(&mSizeHandler, &ScaleSizeHandler::heightPixelChanged, mHeightPixelSpinBox, &CustomSpinBox::setValueSilent);
 
 	mWidthPercentSpinBox = new CustomSpinBox(this);
 	mWidthPercentSpinBox->setSuffix(QStringLiteral("%"));
@@ -106,14 +94,8 @@ void ScaleDialog::initGui()
 	mWidthPercentSpinBox->setMaximum(400);
 	mWidthPercentSpinBox->setValueSilent(100);
 	mWidthPercentSpinBox->setWrapping(false);
-	connect(mWidthPercentSpinBox, &CustomSpinBox::valueChanged, [this](int newValue)
-	{
-		auto valuePercent = calculatePercent(newValue);
-		mWidthPixelSpinBox->setValueSilent(valuePercent * mWidth);
-		if (mKeepAspectRatioCheckBox->isChecked()) {
-			setHeightInSpinBox(valuePercent);
-		}
-	});
+	connect(mWidthPercentSpinBox, &CustomSpinBox::valueChanged, &mSizeHandler, &ScaleSizeHandler::setWidthPercent);
+	connect(&mSizeHandler, &ScaleSizeHandler::widthPercentChanged, mWidthPercentSpinBox, &CustomSpinBox::setValueSilent);
 
 	mHeightPercentSpinBox = new CustomSpinBox(this);
 	mHeightPercentSpinBox->setSuffix(QStringLiteral("%"));
@@ -121,14 +103,8 @@ void ScaleDialog::initGui()
 	mHeightPercentSpinBox->setMaximum(400);
 	mHeightPercentSpinBox->setValueSilent(100);
 	mHeightPercentSpinBox->setWrapping(false);
-	connect(mHeightPercentSpinBox, &CustomSpinBox::valueChanged, [this](int newValue)
-	{
-		auto valuePercent = calculatePercent(newValue);
-		mHeightPixelSpinBox->setValueSilent(valuePercent * mHeight);
-		if (mKeepAspectRatioCheckBox->isChecked()) {
-			setWidthInSpinBox(valuePercent);
-		}
-	});
+	connect(mHeightPercentSpinBox, &CustomSpinBox::valueChanged, &mSizeHandler, &ScaleSizeHandler::setHeightPercent);
+	connect(&mSizeHandler, &ScaleSizeHandler::heightPercentChanged, mHeightPercentSpinBox, &CustomSpinBox::setValueSilent);
 
 	mOkButton = new QPushButton;
 	mOkButton->setText(tr("OK"));
@@ -177,28 +153,6 @@ void ScaleDialog::initGui()
 	mMainLayout->addLayout(mButtonRowLayout);
 
 	setLayout(mMainLayout);
-}
-
-float ScaleDialog::calculatePercent(int baseValue, int newValue) const
-{
-	return (float) newValue / (float) baseValue;
-}
-
-float ScaleDialog::calculatePercent(int newValue) const
-{
-	return (float) newValue / 100;
-}
-
-void ScaleDialog::setHeightInSpinBox(float percent)
-{
-	mHeightPixelSpinBox->setValueSilent(percent * mHeight);
-	mHeightPercentSpinBox->setValueSilent(percent * 100);
-}
-
-void ScaleDialog::setWidthInSpinBox(float percent)
-{
-	mWidthPixelSpinBox->setValueSilent(percent * mWidth);
-	mWidthPercentSpinBox->setValueSilent(percent * 100);
 }
 
 } // namespace kImageAnnotator
