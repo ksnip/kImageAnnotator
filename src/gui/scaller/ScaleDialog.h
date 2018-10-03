@@ -38,11 +38,11 @@ class ScaleDialog : public QDialog
 {
 Q_OBJECT
 public:
-	explicit ScaleDialog(int width, int height, QWidget *parent = nullptr);
+	explicit ScaleDialog(const QSize &imageSize, QWidget *parent = nullptr);
 	~ScaleDialog();
 
 signals:
-	void finished(int newWidth, int newHeight) const;
+	void finished(QSize newSize) const;
 
 private:
 	ScaleSizeHandler mSizeHandler;
@@ -65,10 +65,8 @@ private:
 	QVBoxLayout *mMainLayout;
 
 	void initGui();
-//	float calculatePercent(int baseValue, int newValue) const;
-//	float calculatePercent(int newValue) const;
-//	void setHeightInSpinBox(float percent);
-//	void setWidthInSpinBox(float percent);
+	void scale();
+	void cancel();
 };
 
 } // namespace kImageAnnotator

@@ -46,7 +46,7 @@ private:
 	QVBoxLayout *mMainLayout;
 
 	void initGui();
-	void scale(int newWidth, int newHeight);
+	void scale(const QSize &newSize);
 };
 
 } // namespace kImageAnnotator

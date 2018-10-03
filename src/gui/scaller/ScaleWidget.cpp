@@ -45,16 +45,16 @@ void ScaleWidget::initGui()
 void ScaleWidget::showDialog()
 {
 	auto sceneSize = mAnnotationArea->sceneRect().size();
-	ScaleDialog scaleDialog(sceneSize.width(), sceneSize.height(), this);
+	ScaleDialog scaleDialog(sceneSize.toSize(), this);
 	connect(&scaleDialog, &ScaleDialog::finished, this, &ScaleWidget::scale);
 	scaleDialog.exec();
 
 	emit closing();
 }
 
-void ScaleWidget::scale(int newWidth, int newHeight)
+void ScaleWidget::scale(const QSize &newSize)
 {
-//	mAnnotationArea->scale(newWidth, new Height);
+//	mAnnotationArea->scale(newSize);
 }
 
 } // namespace kImageAnnotator

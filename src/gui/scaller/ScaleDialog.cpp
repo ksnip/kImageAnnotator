@@ -21,11 +21,11 @@
 
 namespace kImageAnnotator {
 
-ScaleDialog::ScaleDialog(int width, int height, QWidget *parent) : QDialog(parent, Qt::WindowTitleHint | Qt::WindowCloseButtonHint)
+ScaleDialog::ScaleDialog(const QSize &imageSize, QWidget *parent) : QDialog(parent, Qt::WindowTitleHint | Qt::WindowCloseButtonHint)
 {
 	setWindowTitle(tr("Scale Image"));
 
-	mSizeHandler.setSize(QSize(width, height));
+	mSizeHandler.setSize(imageSize);
 
 	initGui();
 }
@@ -108,18 +108,11 @@ void ScaleDialog::initGui()
 
 	mOkButton = new QPushButton;
 	mOkButton->setText(tr("OK"));
-	connect(mOkButton, &QPushButton::clicked, [this]()
-	{
-		emit finished(mWidthPixelSpinBox->value(), mHeightPixelSpinBox->value());
-		close();
-	});
+	connect(mOkButton, &QPushButton::clicked, this, &ScaleDialog::scale);
 
 	mCancelButton = new QPushButton;
 	mCancelButton->setText(tr("Cancel"));
-	connect(mCancelButton, &QPushButton::clicked, [this]()
-	{
-		close();
-	});
+	connect(mCancelButton, &QPushButton::clicked, this, &ScaleDialog::cancel);
 
 	mPixelGridLayout = new QGridLayout;
 	mPixelGridLayout->addWidget(mWidthPixelLabel, 0, 0);
@@ -153,6 +146,18 @@ void ScaleDialog::initGui()
 	mMainLayout->addLayout(mButtonRowLayout);
 
 	setLayout(mMainLayout);
+}
+
+void ScaleDialog::scale()
+{
+	QSize newSize(mWidthPixelSpinBox->value(), mHeightPixelSpinBox->value());
+	emit finished(newSize);
+	close();
+}
+
+void ScaleDialog::cancel()
+{
+	close();
 }
 
 } // namespace kImageAnnotator
