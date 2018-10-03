@@ -25,7 +25,7 @@
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/gui/annotator/AnnotationWidget.h"
 #include "src/gui/cropper/CropWidget.h"
-#include "src/gui/scaller/ScaleWidget.h"
+#include "src/gui/scaler/ScaleWidget.h"
 
 namespace kImageAnnotator {
 
