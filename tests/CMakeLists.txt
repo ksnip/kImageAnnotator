@@ -28,7 +28,7 @@ set(UnitTests
 	gui/cropper/CropSelectionMoveHelperTest.cpp
 	gui/cropper/CropSelectionHandlerTest.cpp
 	gui/cropper/CropHandlesTest.cpp
-	gui/scaller/ScaleSizeHandlerTest.cpp
+	gui/scaler/ScaleSizeHandlerTest.cpp
 	widgets/ToolPickerTest.cpp
 	widgets/ColorPickerTest.cpp
 	widgets/SizePickerTest.cpp

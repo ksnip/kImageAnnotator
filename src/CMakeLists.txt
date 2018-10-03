@@ -9,9 +9,9 @@ set(kimageannotator_SRCS
 	${CMAKE_SOURCE_DIR}/src/gui/cropper/CropSelectionRestrictor.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/cropper/CropHandles.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/cropper/CropSelectionMoveHelper.cpp
-	${CMAKE_SOURCE_DIR}/src/gui/scaller/ScaleDialog.cpp
-	${CMAKE_SOURCE_DIR}/src/gui/scaller/ScaleWidget.cpp
-	${CMAKE_SOURCE_DIR}/src/gui/scaller/ScaleSizeHandler.cpp
+	${CMAKE_SOURCE_DIR}/src/gui/scaler/ScaleDialog.cpp
+	${CMAKE_SOURCE_DIR}/src/gui/scaler/ScaleWidget.cpp
+	${CMAKE_SOURCE_DIR}/src/gui/scaler/ScaleSizeHandler.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationArea.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationItemFactory.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/core/AnnotationPropertiesFactory.cpp
