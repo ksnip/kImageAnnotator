@@ -22,7 +22,7 @@
 
 #include <QtTest>
 
-#include "src/gui/scaller/ScaleSizeHandler.h"
+#include "src/gui/scaler/ScaleSizeHandler.h"
 
 using kImageAnnotator::ScaleSizeHandler;
 
