@@ -38,6 +38,7 @@
 #include "src/annotations/undo/UndoStack.h"
 #include "src/annotations/undo/CropCommand.h"
 #include "src/annotations/undo/ScaleCommand.h"
+#include "src/annotations/misc/AnnotationContextMenu.h"
 
 namespace kImageAnnotator {
 

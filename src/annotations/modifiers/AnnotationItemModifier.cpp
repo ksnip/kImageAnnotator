@@ -23,142 +23,142 @@ namespace kImageAnnotator {
 
 AnnotationItemModifier::AnnotationItemModifier()
 {
-    mItemSelector = new AnnotationItemSelector();
-    mItemResizer = new AnnotationMultiItemResizer();
-    mItemMover = new AnnotationItemMover();
-    addToGroup(mItemSelector);
-    addToGroup(mItemResizer);
-    setZValue(1000);
-    setAcceptHoverEvents(true);
+	mItemSelector = new AnnotationItemSelector();
+	mItemResizer = new AnnotationMultiItemResizer();
+	mItemMover = new AnnotationItemMover();
+	addToGroup(mItemSelector);
+	addToGroup(mItemResizer);
+	setZValue(1000);
+	setAcceptHoverEvents(true);
 
-    connect(mItemMover, &AnnotationItemMover::newCommand, this, &AnnotationItemModifier::newCommand);
-    connect(mItemResizer, &AnnotationMultiItemResizer::newCommand, this, &AnnotationItemModifier::newCommand);
+	connect(mItemMover, &AnnotationItemMover::newCommand, this, &AnnotationItemModifier::newCommand);
+	connect(mItemResizer, &AnnotationMultiItemResizer::newCommand, this, &AnnotationItemModifier::newCommand);
 }
 
 AnnotationItemModifier::~AnnotationItemModifier()
 {
-    delete mItemResizer;
-    delete mItemSelector;
-    delete mItemMover;
+	delete mItemResizer;
+	delete mItemSelector;
+	delete mItemMover;
 }
 
 void AnnotationItemModifier::handleMousePress(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed)
 {
-    mItemResizer->grabHandle(pos);
-    if (mItemResizer->isResizing()) {
-        mItemResizer->hideCurrentResizer();
-        return;
-    }
+	mItemResizer->grabHandle(pos);
+	if (mItemResizer->isResizing()) {
+		mItemResizer->hideCurrentResizer();
+		return;
+	}
 
-    mItemSelector->handleSelectionAt(pos, items, isCtrlPressed);
-    if (mItemSelector->isSelecting()) {
-        mItemResizer->detach();
-        return;
-    }
+	mItemSelector->handleSelectionAt(pos, items, isCtrlPressed);
+	if (mItemSelector->isSelecting()) {
+		mItemResizer->detach();
+		return;
+	}
 
-    auto selectedItems = mItemSelector->selectedItems();
-    mItemMover->setOffset(pos, selectedItems);
-    mItemResizer->hide();
+	auto selectedItems = mItemSelector->selectedItems();
+	mItemMover->setOffset(pos, selectedItems);
+	mItemResizer->hide();
 
-    handleSelection();
-    updateCursor(mItemMover->cursor());
+	handleSelection();
+	updateCursor(mItemMover->cursor());
 }
 
 void AnnotationItemModifier::handleMouseMove(const QPointF &pos)
 {
-    if (mItemResizer->isResizing()) {
-        mItemResizer->moveHandle(pos);
-        updateCursor(mItemResizer->cursorForCurrentHandle());
-    } else if (mItemSelector->isSelecting()) {
-        mItemSelector->extendSelectionRectWhenShown(pos);
-    } else {
-        mItemMover->moveItems(pos);
-        mItemSelector->refresh();
-    }
+	if (mItemResizer->isResizing()) {
+		mItemResizer->moveHandle(pos);
+		updateCursor(mItemResizer->cursorForCurrentHandle());
+	} else if (mItemSelector->isSelecting()) {
+		mItemSelector->extendSelectionRectWhenShown(pos);
+	} else {
+		mItemMover->moveItems(pos);
+		mItemSelector->refresh();
+	}
 }
 
 void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem *> *items)
 {
-    if (mItemResizer->isResizing()) {
-        mItemResizer->releaseHandle();
-        mItemResizer->showCurrentResizer();
-    } else if (mItemSelector->isSelecting()) {
-        mItemSelector->finishSelectionRectWhenShown(items);
-    } else {
-        mItemMover->clearOffset();
-        mItemResizer->show();
-        updateCursor(mItemMover->cursor());
-    }
+	if (mItemResizer->isResizing()) {
+		mItemResizer->releaseHandle();
+		mItemResizer->showCurrentResizer();
+	} else if (mItemSelector->isSelecting()) {
+		mItemSelector->finishSelectionRectWhenShown(items);
+	} else {
+		mItemMover->clearOffset();
+		mItemResizer->show();
+		updateCursor(mItemMover->cursor());
+	}
 
-    handleSelection();
+	handleSelection();
 }
 
 void AnnotationItemModifier::handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed)
 {
-    mItemSelector->handleSelectionAt(pos, items, isCtrlPressed);
-    handleSelection();
+	mItemSelector->handleSelectionAt(pos, items, isCtrlPressed);
+	handleSelection();
 }
 
 QList<AbstractAnnotationItem *> AnnotationItemModifier::selectedItems() const
 {
-    return mItemSelector->selectedItems();
+	return mItemSelector->selectedItems();
 }
 
 QRectF AnnotationItemModifier::boundingRect() const
 {
-    if (mItemResizer->hasItemsAttached()) {
-        return mItemResizer->boundingRect();
-    }
-    return mItemSelector->boundingRect();
+	if (mItemResizer->hasItemsAttached()) {
+		return mItemResizer->boundingRect();
+	}
+	return mItemSelector->boundingRect();
 }
 
-void AnnotationItemModifier::clearSelection()
+void AnnotationItemModifier::clear()
 {
-    mItemSelector->clearSelection();
-    mItemResizer->detach();
+	mItemSelector->clearSelection();
+	mItemResizer->detach();
 }
 
 void AnnotationItemModifier::updateSelection()
 {
-    mItemSelector->update();
-    mItemResizer->update();
-    mItemResizer->refresh();
+	mItemSelector->update();
+	mItemResizer->update();
+	mItemResizer->refresh();
 }
 
 void AnnotationItemModifier::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    Q_UNUSED(event)
-    // Move Cursor disappears when we let this event propagate
+	Q_UNUSED(event)
+	// Move Cursor disappears when we let this event propagate
 }
 
 void AnnotationItemModifier::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
 {
-    if (mItemMover->isMoving()) {
-        return;
-    }
+	if (mItemMover->isMoving()) {
+		return;
+	}
 
-    updateCursor(mItemResizer->cursorForPos(event->scenePos()));
-    QGraphicsItemGroup::hoverMoveEvent(event);
+	updateCursor(mItemResizer->cursorForPos(event->scenePos()));
+	QGraphicsItemGroup::hoverMoveEvent(event);
 }
 
 void AnnotationItemModifier::handleSelection()
 {
-    auto selectedItems = mItemSelector->selectedItems();
-    auto count = selectedItems.count();
-    if (count == 0) {
-        clearSelection();
-    } else {
-        mItemResizer->attachTo(selectedItems);
-    }
+	auto selectedItems = mItemSelector->selectedItems();
+	auto count = selectedItems.count();
+	if (count == 0) {
+		clear();
+	} else {
+		mItemResizer->attachTo(selectedItems);
+	}
 }
 
 void AnnotationItemModifier::updateCursor(Qt::CursorShape cursor)
 {
-    if (cursor == CursorHelper::defaultCursor()) {
-        unsetCursor();
-    } else {
-        setCursor(cursor);
-    }
+	if (cursor == CursorHelper::defaultCursor()) {
+		unsetCursor();
+	} else {
+		setCursor(cursor);
+	}
 }
 
 } // namespace kImageAnnotator

@@ -17,34 +17,39 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONITEMCOPIER_H
-#define KIMAGEANNOTATOR_ANNOTATIONITEMCOPIER_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONCONTEXTMENU_H
+#define KIMAGEANNOTATOR_ANNOTATIONCONTEXTMENU_H
 
-#include <QList>
-
-#include "src/annotations/modifiers/AnnotationItemModifier.h"
+#include <QMenu>
 
 namespace kImageAnnotator {
 
-class AnnotationItemCopier : public QObject
+class AnnotationContextMenu : public QMenu
 {
 Q_OBJECT
 public:
-	explicit AnnotationItemCopier(const AnnotationItemModifier *itemModifier);
-	~AnnotationItemCopier() override = default;
-	QList<AbstractAnnotationItem *> copiedItems() const;
-	bool isEmpty() const;
+	explicit AnnotationContextMenu();
+	~AnnotationContextMenu() = default;
+	void setOverItem(bool overItem);
+	void setPastEnabled(bool pastEnabled);
+	void exec(const QPointF &position);
 
-public slots:
-	void copyItems(const QPointF &position);
-	void pasteItems(const QPointF &position);
-	void clear();
+signals:
+	void bringToFront() const;
+	void bringForward() const;
+	void sendBackward() const;
+	void sendToBack() const;
+	void copy(const QPointF &position) const;
+	void paste(const QPointF &position) const;
+	void erase() const;
 
 private:
-	const AnnotationItemModifier *mItemModifier;
-	QList<AbstractAnnotationItem *> mCopiedItems;
+	QMenu *mArrangeMenu;
+	QAction *mCopyAction;
+	QAction *mPastAction;
+	QAction *mDeleteAction;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONITEMCOPIER_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONCONTEXTMENU_H

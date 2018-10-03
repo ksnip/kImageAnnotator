@@ -35,33 +35,33 @@ class AnnotationItemModifier : public QObject, public QGraphicsItemGroup
 {
 Q_OBJECT
 public:
-    explicit AnnotationItemModifier();
-    ~AnnotationItemModifier() override;
-    void handleMousePress(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
-    void handleMouseMove(const QPointF &pos);
-    void handleMouseRelease(QList<AbstractAnnotationItem *> *items);
-    void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
-    QList<AbstractAnnotationItem *> selectedItems() const;
-    QRectF boundingRect() const override;
+	explicit AnnotationItemModifier();
+	~AnnotationItemModifier() override;
+	void handleMousePress(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
+	void handleMouseMove(const QPointF &pos);
+	void handleMouseRelease(QList<AbstractAnnotationItem *> *items);
+	void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
+	QList<AbstractAnnotationItem *> selectedItems() const;
+	QRectF boundingRect() const override;
 
 public slots:
-    void clearSelection();
-    void updateSelection();
+	void clear();
+	void updateSelection();
 
 signals:
-    void newCommand(QUndoCommand *command);
+	void newCommand(QUndoCommand *command);
 
 protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
-    void hoverMoveEvent(QGraphicsSceneHoverEvent *event) override;
+	void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+	void hoverMoveEvent(QGraphicsSceneHoverEvent *event) override;
 
 private:
-    AnnotationMultiItemResizer *mItemResizer;
-    AnnotationItemSelector *mItemSelector;
-    AnnotationItemMover *mItemMover;
+	AnnotationMultiItemResizer *mItemResizer;
+	AnnotationItemSelector *mItemSelector;
+	AnnotationItemMover *mItemMover;
 
-    void handleSelection();
-    void updateCursor(Qt::CursorShape cursor);
+	void handleSelection();
+	void updateCursor(Qt::CursorShape cursor);
 };
 
 } // namespace kImageAnnotator

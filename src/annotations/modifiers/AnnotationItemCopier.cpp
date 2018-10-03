@@ -36,13 +36,13 @@ bool AnnotationItemCopier::isEmpty() const
 	return mCopiedItems.count() == 0;
 }
 
-void AnnotationItemCopier::copyItems()
+void AnnotationItemCopier::copyItems(const QPointF &position)
 {
 	clear();
 	mCopiedItems = mItemModifier->selectedItems();
 }
 
-void AnnotationItemCopier::pastItems()
+void AnnotationItemCopier::pasteItems(const QPointF &position)
 {
 
 }

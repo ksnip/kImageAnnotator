@@ -37,7 +37,7 @@ AnnotationArea::AnnotationArea(Config *config)
 	connect(mItemModifier, &AnnotationItemModifier::newCommand, mUndoStack, &UndoStack::push);
 	connect(mUndoStack, &UndoStack::indexChanged, this, &AnnotationArea::update);
 	connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
-	connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clearSelection);
+	connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clear);
 	connect(mConfig, &Config::toolChanged, this, &AnnotationArea::setItemDecorationForTool);
 
 	connect(mKeyHelper, &KeyHelper::undoPressed, mUndoStack, &UndoStack::undo);
@@ -75,7 +75,7 @@ QImage AnnotationArea::image()
 		return QImage();
 	}
 
-	mItemModifier->clearSelection();
+	mItemModifier->clear();
 
 	QImage image(sceneRect().size().toSize(), QImage::Format_ARGB32);
 	image.fill(Qt::transparent);
@@ -124,7 +124,7 @@ void AnnotationArea::scale(const QSize &size)
 
 void AnnotationArea::clearSelection()
 {
-	mItemModifier->clearSelection();
+	mItemModifier->clear();
 	QGraphicsScene::clearSelection();
 }
 
@@ -140,7 +140,7 @@ void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent *event)
 		if (mConfig->selectedTool() == ToolTypes::Select) {
 			mItemModifier->handleMousePress(event->scenePos(), mItems, mKeyHelper->isControlPressed());
 		} else {
-			mItemModifier->clearSelection();
+			mItemModifier->clear();
 			addItemAtPosition(event->scenePos());
 		}
 	}
@@ -192,27 +192,19 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
 	mItemModifier->handleSelectionAt(event->scenePos(), mItems, mKeyHelper->isControlPressed());
 	auto selectedItems = mItemModifier->selectedItems();
-	auto itemSelected = !selectedItems.isEmpty();
 
-	QMenu contextMenu;
-	if (itemSelected) {
-		AnnotationItemArranger itemArranger(selectedItems, mItems);
-		connect(&itemArranger, &AnnotationItemArranger::newCommand, mUndoStack, &UndoStack::push);
-		auto arrangeMenu = contextMenu.addMenu(tr("Arrange"));
-		arrangeMenu->addAction(tr("Bring to Front"), &itemArranger, &AnnotationItemArranger::bringToFront);
-		arrangeMenu->addAction(tr("Bring Forward"), &itemArranger, &AnnotationItemArranger::bringForward);
-		arrangeMenu->addAction(tr("Send Backward"), &itemArranger, &AnnotationItemArranger::sendBackward);
-		arrangeMenu->addAction(tr("Send to Back"), &itemArranger, &AnnotationItemArranger::sendToBack);
-		contextMenu.addSeparator();
-	}
-
-	contextMenu.addAction(tr("Copy"), mItemCopier, &AnnotationItemCopier::copyItems)->setEnabled(itemSelected);
-	contextMenu.addAction(tr("Past"), mItemCopier, &AnnotationItemCopier::pastItems)->setEnabled(!mItemCopier->isEmpty());
-
-	if (itemSelected) {
-		contextMenu.addSeparator();
-		contextMenu.addAction(tr("Delete"), this, &AnnotationArea::deleteSelectedItems);
-	}
+	AnnotationContextMenu contextMenu;
+	contextMenu.setOverItem(!selectedItems.isEmpty());
+	contextMenu.setPastEnabled(!mItemCopier->isEmpty());
+	AnnotationItemArranger itemArranger(selectedItems, mItems);
+	connect(&itemArranger, &AnnotationItemArranger::newCommand, mUndoStack, &UndoStack::push);
+	connect(&contextMenu, &AnnotationContextMenu::bringToFront, &itemArranger, &AnnotationItemArranger::bringToFront);
+	connect(&contextMenu, &AnnotationContextMenu::bringForward, &itemArranger, &AnnotationItemArranger::bringForward);
+	connect(&contextMenu, &AnnotationContextMenu::sendBackward, &itemArranger, &AnnotationItemArranger::sendBackward);
+	connect(&contextMenu, &AnnotationContextMenu::sendToBack, &itemArranger, &AnnotationItemArranger::sendToBack);
+	connect(&contextMenu, &AnnotationContextMenu::copy, mItemCopier, &AnnotationItemCopier::copyItems);
+	connect(&contextMenu, &AnnotationContextMenu::paste, mItemCopier, &AnnotationItemCopier::pasteItems);
+	connect(&contextMenu, &AnnotationContextMenu::erase, this, &AnnotationArea::deleteSelectedItems);
 
 	contextMenu.exec(event->screenPos());
 }
@@ -242,7 +234,8 @@ void AnnotationArea::setItemDecorationForTool(ToolTypes tool)
 void AnnotationArea::resetAnnotationArea()
 {
 	removeAllItems();
-	mItemModifier->clearSelection();
+	mItemModifier->clear();
+	mItemCopier->clear();
 	mUndoStack->clear();
 	mItemFactory->reset();
 }
@@ -257,7 +250,7 @@ void AnnotationArea::removeAllItems()
 void AnnotationArea::deleteSelectedItems()
 {
 	auto selectedItems = mItemModifier->selectedItems();
-	mItemModifier->clearSelection();
+	mItemModifier->clear();
 	mUndoStack->push(new DeleteCommand(selectedItems, this));
 }
 
