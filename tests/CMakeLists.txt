@@ -18,19 +18,20 @@ set(UnitTests
 	annotations/undo/CropCommandTest.cpp
 	annotations/items/helper/KeyInputHelperTest.cpp
 	annotations/items/helper/TextCursorTest.cpp
-	widgets/ToolPickerTest.cpp
-	widgets/ColorPickerTest.cpp
-	widgets/SizePickerTest.cpp
-	widgets/FillTypePickerTest.cpp
+	backend/ConfigTest.cpp
 	common/helper/KeyHelperTest.cpp
 	common/helper/MathHelperTest.cpp
 	common/helper/ItemHelperTest.cpp
 	common/helper/ShapeHelperTest.cpp
-	backend/ConfigTest.cpp
 	gui/cropper/CropSelectionRestrictorTest.cpp
 	gui/cropper/CropSelectionMoveHelperTest.cpp
 	gui/cropper/CropSelectionHandlerTest.cpp
 	gui/cropper/CropHandlesTest.cpp
+	widgets/ToolPickerTest.cpp
+	widgets/ColorPickerTest.cpp
+	widgets/SizePickerTest.cpp
+	widgets/FillTypePickerTest.cpp
+	widgets/CustomSpinBoxTest.cpp
 	)
 
 add_library(kImageAnnotatorStatic STATIC ${kimageannotator_SRCS})
