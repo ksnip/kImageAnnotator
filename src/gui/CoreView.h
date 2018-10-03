@@ -23,7 +23,7 @@
 #include <QStackedWidget>
 
 #include "src/annotations/core/AnnotationArea.h"
-#include "src/gui/AnnotationWidget.h"
+#include "src/gui/annotator/AnnotationWidget.h"
 #include "src/gui/cropper/CropWidget.h"
 #include "src/gui/scaller/ScaleWidget.h"
 

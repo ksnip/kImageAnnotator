@@ -58,7 +58,7 @@ void ScaleSizeHandler::setWidthPercent(float width)
 	}
 }
 
-void ScaleSizeHandler::setHeightPixcel(int height)
+void ScaleSizeHandler::setHeightPixel(int height)
 {
 	auto percent = calculatePercent(height, mSize.height());
 

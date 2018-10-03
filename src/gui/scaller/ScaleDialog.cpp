@@ -85,7 +85,7 @@ void ScaleDialog::initGui()
 	mHeightPixelSpinBox->setMaximum(4000);
 	mHeightPixelSpinBox->setValueSilent(mSizeHandler.size().height());
 	mHeightPixelSpinBox->setWrapping(false);
-	connect(mHeightPixelSpinBox, &CustomSpinBox::valueChanged, &mSizeHandler, &ScaleSizeHandler::setHeightPixcel);
+	connect(mHeightPixelSpinBox, &CustomSpinBox::valueChanged, &mSizeHandler, &ScaleSizeHandler::setHeightPixel);
 	connect(&mSizeHandler, &ScaleSizeHandler::heightPixelChanged, mHeightPixelSpinBox, &CustomSpinBox::setValueSilent);
 
 	mWidthPercentSpinBox = new CustomSpinBox(this);

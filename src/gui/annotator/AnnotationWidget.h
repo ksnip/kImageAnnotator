@@ -24,7 +24,7 @@
 #include <QHBoxLayout>
 #include <QGraphicsView>
 
-#include "src/gui/WidgetVisibilitySwitcher.h"
+#include "WidgetVisibilitySwitcher.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/widgets/ToolPicker.h"
 #include "src/widgets/ColorPicker.h"

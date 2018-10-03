@@ -44,7 +44,7 @@ public slots:
 	void setAspectRatio(bool keepAspectRatio);
 	void setWidthPixel(int width);
 	void setWidthPercent(float width);
-	void setHeightPixcel(int height);
+	void setHeightPixel(int height);
 	void setHeightPercent(float height);
 
 private:

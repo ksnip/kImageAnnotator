@@ -1,8 +1,8 @@
 set(kimageannotator_SRCS
 	${CMAKE_SOURCE_DIR}/src/gui/KImageAnnotator.cpp
-	${CMAKE_SOURCE_DIR}/src/gui/WidgetVisibilitySwitcher.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/CoreView.cpp
-	${CMAKE_SOURCE_DIR}/src/gui/AnnotationWidget.cpp
+	${CMAKE_SOURCE_DIR}/src/gui/annotator/AnnotationWidget.cpp
+	${CMAKE_SOURCE_DIR}/src/gui/annotator/WidgetVisibilitySwitcher.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/cropper/CropWidget.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/cropper/CropView.cpp
 	${CMAKE_SOURCE_DIR}/src/gui/cropper/CropSelectionHandler.cpp
