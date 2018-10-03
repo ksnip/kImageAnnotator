@@ -29,7 +29,8 @@
 
 #include "AnnotationItemFactory.h"
 #include "src/annotations/modifiers/AnnotationItemModifier.h"
-#include "src/annotations//modifiers/AnnotationItemArranger.h"
+#include "src/annotations/modifiers/AnnotationItemArranger.h"
+#include "src/annotations/modifiers/AnnotationItemCopier.h"
 #include "src/backend/Config.h"
 #include "src/common/enum/ToolTypes.h"
 #include "src/common/helper/CursorHelper.h"
@@ -71,14 +72,15 @@ protected:
     virtual void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) override;
 
 private:
-    AnnotationItemFactory*          mItemFactory;
-    QGraphicsPixmapItem*            mImage;
-    AbstractAnnotationItem*         mCurrentItem;
-    AnnotationItemModifier*         mItemModifier;
-    Config*                         mConfig;
+    AnnotationItemFactory *mItemFactory;
+    QGraphicsPixmapItem *mImage;
+    AbstractAnnotationItem *mCurrentItem;
+    AnnotationItemModifier *mItemModifier;
+    Config *mConfig;
     QList<AbstractAnnotationItem*> *mItems;
-    KeyHelper                      *mKeyHelper;
-    UndoStack                      *mUndoStack;
+    KeyHelper *mKeyHelper;
+    UndoStack *mUndoStack;
+	AnnotationItemCopier *mItemCopier;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

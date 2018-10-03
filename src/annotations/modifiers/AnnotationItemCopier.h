@@ -17,37 +17,34 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONITEMMOVER_H
-#define KIMAGEANNOTATOR_ANNOTATIONITEMMOVER_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONITEMCOPIER_H
+#define KIMAGEANNOTATOR_ANNOTATIONITEMCOPIER_H
 
-#include <QObject>
-#include <QHash>
+#include <QList>
 
-#include "src/annotations/items/AbstractAnnotationItem.h"
-#include "src/annotations/undo/MoveCommand.h"
-#include "src/common/helper/CursorHelper.h"
+#include "src/annotations/modifiers/AnnotationItemModifier.h"
 
 namespace kImageAnnotator {
 
-class AnnotationItemMover : public QObject
+class AnnotationItemCopier : public QObject
 {
 Q_OBJECT
 public:
-    explicit AnnotationItemMover() = default;
-    ~AnnotationItemMover() override = default;
-    void setOffset(const QPointF &pos, const QList<AbstractAnnotationItem *> &selectedItems);
-    void moveItems(const QPointF &pos);
-    void clearOffset();
-    bool isMoving();
-    Qt::CursorShape cursor();
+	explicit AnnotationItemCopier(const AnnotationItemModifier *itemModifier);
+	~AnnotationItemCopier() override = default;
+	QList<AbstractAnnotationItem *> copiedItems() const;
+	bool isEmpty() const;
 
-signals:
-    void newCommand(MoveCommand *move) const;
+public slots:
+	void copyItems();
+	void pastItems();
+	void clear();
 
 private:
-    QHash<AbstractAnnotationItem *, QPointF> mItemToOffset;
+	const AnnotationItemModifier *mItemModifier;
+	QList<AbstractAnnotationItem *> mCopiedItems;
 };
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_ANNOTATIONITEMMOVER_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONITEMCOPIER_H

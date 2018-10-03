@@ -31,7 +31,7 @@ class AnnotationItemResizer : public QGraphicsWidget
 {
 Q_OBJECT
 public:
-    AnnotationItemResizer(AbstractAnnotationItem *item);
+	explicit AnnotationItemResizer(AbstractAnnotationItem *item);
     ~AnnotationItemResizer();
     virtual QRectF boundingRect() const override;
     void grabHandle(const QPointF &pos);

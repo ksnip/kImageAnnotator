@@ -31,6 +31,7 @@ set(kimageannotator_SRCS
 	${CMAKE_SOURCE_DIR}/src/annotations/modifiers/resizeHandles/PathResizeHandles.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/modifiers/resizeHandles/ResizeHandle.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/modifiers/resizeHandles/ResizeHandlesFactory.cpp
+	${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemCopier.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationItem.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationLine.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationRect.cpp

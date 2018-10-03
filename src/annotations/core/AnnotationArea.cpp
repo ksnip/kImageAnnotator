@@ -32,6 +32,7 @@ AnnotationArea::AnnotationArea(Config *config)
 	mUndoStack = new UndoStack();
 	mItemModifier = new AnnotationItemModifier();
 	addItem(mItemModifier);
+	mItemCopier = new AnnotationItemCopier(mItemModifier);
 
 	connect(mItemModifier, &AnnotationItemModifier::newCommand, mUndoStack, &UndoStack::push);
 	connect(mUndoStack, &UndoStack::indexChanged, this, &AnnotationArea::update);
@@ -191,22 +192,27 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
 	mItemModifier->handleSelectionAt(event->scenePos(), mItems, mKeyHelper->isControlPressed());
 	auto selectedItems = mItemModifier->selectedItems();
-
-	if (selectedItems.isEmpty()) {
-		return;
-	}
-
-	AnnotationItemArranger itemArranger(selectedItems, mItems);
-	connect(&itemArranger, &AnnotationItemArranger::newCommand, mUndoStack, &UndoStack::push);
+	auto itemSelected = !selectedItems.isEmpty();
 
 	QMenu contextMenu;
-	auto arrangeMenu = contextMenu.addMenu(tr("Arrange"));
-	arrangeMenu->addAction(tr("Bring to Front"), &itemArranger, &AnnotationItemArranger::bringToFront);
-	arrangeMenu->addAction(tr("Bring Forward"), &itemArranger, &AnnotationItemArranger::bringForward);
-	arrangeMenu->addAction(tr("Send Backward"), &itemArranger, &AnnotationItemArranger::sendBackward);
-	arrangeMenu->addAction(tr("Send to Back"), &itemArranger, &AnnotationItemArranger::sendToBack);
-	contextMenu.addSeparator();
-	contextMenu.addAction(tr("Delete"), this, &AnnotationArea::deleteSelectedItems);
+	if (itemSelected) {
+		AnnotationItemArranger itemArranger(selectedItems, mItems);
+		connect(&itemArranger, &AnnotationItemArranger::newCommand, mUndoStack, &UndoStack::push);
+		auto arrangeMenu = contextMenu.addMenu(tr("Arrange"));
+		arrangeMenu->addAction(tr("Bring to Front"), &itemArranger, &AnnotationItemArranger::bringToFront);
+		arrangeMenu->addAction(tr("Bring Forward"), &itemArranger, &AnnotationItemArranger::bringForward);
+		arrangeMenu->addAction(tr("Send Backward"), &itemArranger, &AnnotationItemArranger::sendBackward);
+		arrangeMenu->addAction(tr("Send to Back"), &itemArranger, &AnnotationItemArranger::sendToBack);
+		contextMenu.addSeparator();
+	}
+
+	contextMenu.addAction(tr("Copy"), mItemCopier, &AnnotationItemCopier::copyItems)->setEnabled(itemSelected);
+	contextMenu.addAction(tr("Past"), mItemCopier, &AnnotationItemCopier::pastItems)->setEnabled(!mItemCopier->isEmpty());
+
+	if (itemSelected) {
+		contextMenu.addSeparator();
+		contextMenu.addAction(tr("Delete"), this, &AnnotationArea::deleteSelectedItems);
+	}
 
 	contextMenu.exec(event->screenPos());
 }
