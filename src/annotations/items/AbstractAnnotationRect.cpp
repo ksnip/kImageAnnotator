@@ -22,59 +22,69 @@
 namespace kImageAnnotator {
 
 AbstractAnnotationRect::AbstractAnnotationRect(const QPointF &startPosition, AnnotationProperties *properties)
-    :
-    AbstractAnnotationItem(properties)
+	:
+	AbstractAnnotationItem(properties)
 {
-    mRect = new QRectF();
-    mRect->setTopLeft(startPosition);
+	mRect = new QRectF();
+	mRect->setTopLeft(startPosition);
 }
 
 AbstractAnnotationRect::~AbstractAnnotationRect()
 {
-    delete mRect;
+	delete mRect;
 }
 
 void AbstractAnnotationRect::addPoint(const QPointF &position, bool modified)
 {
-    prepareGeometryChange();
-    mRect->setBottomRight(position);
-    makeSymmetric(modified);
-    updateShape();
+	prepareGeometryChange();
+	mRect->setBottomRight(position);
+	makeSymmetric(modified);
+	updateShape();
 }
 
 void AbstractAnnotationRect::setPosition(const QPointF &newPosition)
 {
-    prepareGeometryChange();
-    mRect->translate(newPosition - position());
-    updateShape();
+	prepareGeometryChange();
+	mRect->translate(newPosition - position());
+	updateShape();
 }
 
 QRectF AbstractAnnotationRect::rect() const
 {
-    return *mRect;
+	return *mRect;
 }
 
 void AbstractAnnotationRect::setPointAt(const QPointF &point, int index)
 {
-    prepareGeometryChange();
-    auto newRect = ShapeHelper::setRectPointAtIndex(*mRect, index, point);
-    if (newRect.width() >= Constants::MinResizeRectSize && newRect.height() >= Constants::MinResizeRectSize) {
-        mRect->setRect(newRect.x(), newRect.y(), newRect.width(), newRect.height());
-    }
-    updateShape();
+	prepareGeometryChange();
+	auto newRect = ShapeHelper::setRectPointAtIndex(*mRect, index, point);
+	if (newRect.width() >= Constants::MinResizeRectSize && newRect.height() >= Constants::MinResizeRectSize) {
+		mRect->setRect(newRect.x(), newRect.y(), newRect.width(), newRect.height());
+	}
+	updateShape();
 }
 
 QPointF AbstractAnnotationRect::pointAt(int index) const
 {
-    return ShapeHelper::rectPointAtIndex(*mRect, index);
+	return ShapeHelper::rectPointAtIndex(*mRect, index);
+}
+
+void AbstractAnnotationRect::scale(qreal sx, qreal sy)
+{
+	prepareGeometryChange();
+	QTransform transform;
+	transform.scale(sx, sy);
+	auto scaledRect = transform.mapRect(*mRect);
+	mRect->setRect(scaledRect.x(), scaledRect.y(), scaledRect.width(), scaledRect.height());
+	updateShape();
 }
 
 void AbstractAnnotationRect::makeSymmetric(bool enabled)
 {
-    if (enabled) {
-        mRect->setHeight(MathHelper::smallerValue(mRect->height(), mRect->width()));
-        mRect->setWidth(MathHelper::smallerValue(mRect->width(), mRect->height()));
-    }
+	if (enabled) {
+		mRect->setHeight(MathHelper::smallerValue(mRect->height(), mRect->width()));
+		mRect->setWidth(MathHelper::smallerValue(mRect->width(), mRect->height()));
+	}
 }
 
 } // namespace kImageAnnotator

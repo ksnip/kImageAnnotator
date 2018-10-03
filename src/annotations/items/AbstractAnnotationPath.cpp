@@ -78,18 +78,24 @@ void AbstractAnnotationPath::finish()
 	}
 }
 
-void AbstractAnnotationPath::scalePath(const QRectF &rect)
-{
-	QTransform transform;
-	transform.scale(rect.width() / boundingRect().width(), rect.height() / boundingRect().height());
-	auto sPath = transform.map(*mPath);
-	mPath->swap(sPath);
-	updateShape();
-}
-
 const AnnotationPathProperties *AbstractAnnotationPath::properties() const
 {
 	return dynamic_cast<const AnnotationPathProperties *>(AbstractAnnotationItem::properties());
+}
+
+void AbstractAnnotationPath::scale(qreal sx, qreal sy)
+{
+	prepareGeometryChange();
+	QTransform transform;
+	transform.scale(sx, sy);
+	auto scaledPath = transform.map(*mPath);
+	mPath->swap(scaledPath);
+	updateShape();
+}
+
+void AbstractAnnotationPath::scalePath(const QRectF &rect)
+{
+	scale(rect.width() / boundingRect().width(), rect.height() / boundingRect().height());
 }
 
 } // namespace kImageAnnotator

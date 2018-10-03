@@ -38,6 +38,7 @@ public:
 	QPointF pointAt(int index) const override;
 	void finish() override;
 	const AnnotationPathProperties *properties() const override;
+	void scale(qreal sx, qreal sy) override;
 
 protected:
 	QPainterPath *mPath;

@@ -22,74 +22,77 @@
 namespace kImageAnnotator {
 
 AbstractAnnotationLine::AbstractAnnotationLine(const QPointF &startPosition, AnnotationProperties *properties)
-    :
-    AbstractAnnotationItem(properties)
+	:
+	AbstractAnnotationItem(properties)
 {
-    mLine = new QLineF();
-    mLine->setP1(startPosition);
+	mLine = new QLineF();
+	mLine->setP1(startPosition);
 }
 
 AbstractAnnotationLine::~AbstractAnnotationLine()
 {
-    delete mLine;
+	delete mLine;
 }
 
 void AbstractAnnotationLine::addPoint(const QPointF &position, bool modified)
 {
-    prepareGeometryChange();
-    mLine->setP2(position);
-    snapToAngle(modified);
-    updateShape();
+	prepareGeometryChange();
+	mLine->setP2(position);
+	snapToAngle(modified);
+	updateShape();
 }
 
 void AbstractAnnotationLine::setPosition(const QPointF &newPosition)
 {
-    prepareGeometryChange();
-    mLine->translate(newPosition - position());
-    updateShape();
+	prepareGeometryChange();
+	mLine->translate(newPosition - position());
+	updateShape();
 }
 
 QLineF AbstractAnnotationLine::line() const
 {
-    return *mLine;
-}
-
-void AbstractAnnotationLine::setLine(const QLineF &line)
-{
-    prepareGeometryChange();
-    mLine->setP1(line.p1());
-    mLine->setP2(line.p2());
-    updateShape();
+	return *mLine;
 }
 
 void AbstractAnnotationLine::setPointAt(const QPointF &point, int index)
 {
-    prepareGeometryChange();
+	prepareGeometryChange();
 
-    if (index <= 0) {
-        mLine->setP1(point);
-    } else {
-        mLine->setP2(point);
-    }
+	if (index <= 0) {
+		mLine->setP1(point);
+	} else {
+		mLine->setP2(point);
+	}
 
-    updateShape();
+	updateShape();
 }
 
 QPointF AbstractAnnotationLine::pointAt(int index) const
 {
-    if (index <= 0) {
-        return mLine->p1();
-    } else {
-        return mLine->p2();
-    }
+	if (index <= 0) {
+		return mLine->p1();
+	} else {
+		return mLine->p2();
+	}
+}
+
+void AbstractAnnotationLine::scale(qreal sx, qreal sy)
+{
+	prepareGeometryChange();
+	QTransform transform;
+	transform.scale(sx, sy);
+	auto scaledLine = transform.map(*mLine);
+	mLine->setP1(scaledLine.p1());
+	mLine->setP2(scaledLine.p2());
+	updateShape();
 }
 
 void AbstractAnnotationLine::snapToAngle(bool enabled)
 {
-    if (enabled) {
-        auto newAngle = MathHelper::roundAngleTo(mLine->angle(), 45);
-        mLine->setAngle(newAngle);
-    }
+	if (enabled) {
+		auto newAngle = MathHelper::roundAngleTo(mLine->angle(), 45);
+		mLine->setAngle(newAngle);
+	}
 }
 
 } // namespace kImageAnnotator

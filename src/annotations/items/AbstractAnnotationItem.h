@@ -45,6 +45,7 @@ public:
 	virtual QPointF position();
 	virtual const AnnotationProperties *properties() const;
 	virtual void finish();
+	virtual void scale(qreal sx, qreal sy) = 0;
 
 protected:
 	void setShape(QPainterPath &newShape);

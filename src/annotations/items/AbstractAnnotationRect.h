@@ -30,18 +30,19 @@ namespace kImageAnnotator {
 class AbstractAnnotationRect : public AbstractAnnotationItem
 {
 public:
-    AbstractAnnotationRect(const QPointF &startPosition, AnnotationProperties *properties);
-    ~AbstractAnnotationRect() override;
-    void addPoint(const QPointF &position, bool modified = false) override;
-    void setPosition(const QPointF &newPosition) override;
-    QRectF rect() const;
-    void setPointAt(const QPointF &point, int index) override;
-    QPointF pointAt(int index) const override;
+	AbstractAnnotationRect(const QPointF &startPosition, AnnotationProperties *properties);
+	~AbstractAnnotationRect() override;
+	void addPoint(const QPointF &position, bool modified = false) override;
+	void setPosition(const QPointF &newPosition) override;
+	QRectF rect() const;
+	void setPointAt(const QPointF &point, int index) override;
+	QPointF pointAt(int index) const override;
+	void scale(qreal sx, qreal sy) override;
 
 protected:
-    QRectF *mRect;
+	QRectF *mRect;
 
-    void makeSymmetric(bool enabled);
+	void makeSymmetric(bool enabled);
 };
 
 } // namespace kImageAnnotator

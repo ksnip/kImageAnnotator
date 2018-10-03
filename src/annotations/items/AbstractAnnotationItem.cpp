@@ -54,7 +54,6 @@ QRectF AbstractAnnotationItem::boundingRect() const
 	if (!mShape->isEmpty()) {
 		width = mProperties->Width() / 2;
 	}
-
 	return mShape->boundingRect().adjusted(-width, -width, width, width);
 }
 

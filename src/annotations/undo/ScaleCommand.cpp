@@ -61,7 +61,7 @@ void ScaleCommand::scaleItems(qreal widthScaleFactor, qreal heightScaleFactor, b
 	for (auto base : mAnnotationArea->items()) {
 		auto item = dynamic_cast<AbstractAnnotationItem *>(base);
 		if (item) {
-			item->setTransform(transform, combine);
+			item->scale(widthScaleFactor, heightScaleFactor);
 		}
 	}
 }
