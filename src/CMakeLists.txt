@@ -31,7 +31,7 @@ set(kimageannotator_SRCS
 	${CMAKE_SOURCE_DIR}/src/annotations/modifiers/resizeHandles/PathResizeHandles.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/modifiers/resizeHandles/ResizeHandle.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/modifiers/resizeHandles/ResizeHandlesFactory.cpp
-	${CMAKE_SOURCE_DIR}/src/annotations/modifiers/AnnotationItemCopier.cpp
+	${CMAKE_SOURCE_DIR}/src/annotations/misc/AnnotationItemClipboard.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/misc/AnnotationContextMenu.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationItem.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/items/AbstractAnnotationLine.cpp
@@ -53,6 +53,7 @@ set(kimageannotator_SRCS
 	${CMAKE_SOURCE_DIR}/src/annotations/undo/ArrangeCommand.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/undo/CropCommand.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/undo/ScaleCommand.cpp
+	${CMAKE_SOURCE_DIR}/src/annotations/undo/PasteCommand.cpp
 	${CMAKE_SOURCE_DIR}/src/annotations/misc/ShadowEffect.cpp
 	${CMAKE_SOURCE_DIR}/src/backend/Config.cpp
 	${CMAKE_SOURCE_DIR}/src/common/helper/IconCreater.cpp

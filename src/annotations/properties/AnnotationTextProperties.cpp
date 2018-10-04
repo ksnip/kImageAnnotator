@@ -26,6 +26,16 @@ AnnotationTextProperties::AnnotationTextProperties(const QColor &color, int size
 
 }
 
+AnnotationTextProperties::AnnotationTextProperties(const AnnotationTextProperties &other) : AnnotationProperties(other)
+{
+	mFont = other.mFont;
+}
+
+AnnotationTextProperties *AnnotationTextProperties::clone() const
+{
+	return new AnnotationTextProperties(*this);
+}
+
 QFont AnnotationTextProperties::font() const
 {
 	return mFont;

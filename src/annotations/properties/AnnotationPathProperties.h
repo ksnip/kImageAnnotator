@@ -29,7 +29,9 @@ class AnnotationPathProperties : public AnnotationProperties
 public:
 	AnnotationPathProperties() = default;
 	AnnotationPathProperties(const QColor &color, int size);
+	AnnotationPathProperties(const AnnotationPathProperties &other);
 	~AnnotationPathProperties() override = default;
+	AnnotationPathProperties *clone() const override;
 
 	bool smoothPathEnabled() const;
 	void setSmoothPathEnabled(bool enabled);

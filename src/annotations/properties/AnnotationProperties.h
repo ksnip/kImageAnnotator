@@ -43,6 +43,7 @@ public:
 	void setFillType(FillTypes fillType);
 	bool shadowEnabled() const;
 	void setShadowEnabled(bool enabled);
+	virtual AnnotationProperties *clone() const;
 
 private:
 	QColor mColor;

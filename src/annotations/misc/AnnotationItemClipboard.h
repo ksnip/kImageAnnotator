@@ -17,31 +17,35 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONTEXTPROPERTIES_H
-#define KIMAGEANNOTATOR_ANNOTATIONTEXTPROPERTIES_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONITEMCLIPBOARD_H
+#define KIMAGEANNOTATOR_ANNOTATIONITEMCLIPBOARD_H
 
-#include <QFont>
+#include <QList>
 
-#include "AnnotationProperties.h"
+#include "src/annotations/modifiers/AnnotationItemModifier.h"
+#include "src/annotations/core/AnnotationItemFactory.h"
 
 namespace kImageAnnotator {
 
-class AnnotationTextProperties : public AnnotationProperties
+class AnnotationItemClipboard : public QObject
 {
-public:
-	AnnotationTextProperties() = default;
-	AnnotationTextProperties(const QColor &color, int size);
-	AnnotationTextProperties(const AnnotationTextProperties &other);
-	~AnnotationTextProperties() override = default;
-	AnnotationTextProperties *clone() const override;
+Q_OBJECT
 
-	QFont font() const;
-	void setFont(const QFont &font);
+public:
+	explicit AnnotationItemClipboard(const AnnotationItemModifier *itemModifier);
+	~AnnotationItemClipboard() override = default;
+	bool isEmpty() const;
+	QHash<AbstractAnnotationItem *, QPointF> copiedItemsWithOffset() const;
+
+public slots:
+	void copyItems(const QPointF &position);
+	void clear();
 
 private:
-	QFont mFont;
+	const AnnotationItemModifier *mItemModifier;
+	QHash<AbstractAnnotationItem *, QPointF> mCopiedItemsToOffset;
 };
 
-}
+} // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONTEXTPROPERTIES_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONITEMCLIPBOARD_H

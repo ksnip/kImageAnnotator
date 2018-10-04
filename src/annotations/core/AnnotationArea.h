@@ -30,7 +30,7 @@
 #include "AnnotationItemFactory.h"
 #include "src/annotations/modifiers/AnnotationItemModifier.h"
 #include "src/annotations/modifiers/AnnotationItemArranger.h"
-#include "src/annotations/modifiers/AnnotationItemCopier.h"
+#include "src/annotations/misc/AnnotationItemClipboard.h"
 #include "src/backend/Config.h"
 #include "src/common/enum/ToolTypes.h"
 #include "src/common/helper/CursorHelper.h"
@@ -38,6 +38,7 @@
 #include "src/annotations/undo/UndoStack.h"
 #include "src/annotations/undo/CropCommand.h"
 #include "src/annotations/undo/ScaleCommand.h"
+#include "src/annotations/undo/PasteCommand.h"
 #include "src/annotations/misc/AnnotationContextMenu.h"
 
 namespace kImageAnnotator {
@@ -81,7 +82,7 @@ private:
     QList<AbstractAnnotationItem*> *mItems;
     KeyHelper *mKeyHelper;
     UndoStack *mUndoStack;
-	AnnotationItemCopier *mItemCopier;
+	AnnotationItemClipboard *mItemCopier;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);
@@ -92,6 +93,7 @@ private:
 
 private slots:
     void deleteSelectedItems();
+	void pasteCopiedItems(const QPointF &position);
 };
 
 } // namespace kImageAnnotator

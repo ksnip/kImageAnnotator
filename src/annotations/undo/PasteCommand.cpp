@@ -17,36 +17,43 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONITEMCOPIER_H
-#define KIMAGEANNOTATOR_ANNOTATIONITEMCOPIER_H
-
-#include <QList>
-
-#include "src/annotations/modifiers/AnnotationItemModifier.h"
-#include "src/annotations/core/AnnotationItemFactory.h"
+#include "PasteCommand.h"
 
 namespace kImageAnnotator {
 
-class AnnotationItemCopier : public QObject
+PasteCommand::PasteCommand(const QHash<kImageAnnotator::AbstractAnnotationItem *, QPointF> &itemsWithOffset,
+                           const QPointF &position,
+                           kImageAnnotator::AnnotationArea *annotationArea)
 {
-Q_OBJECT
+	Q_ASSERT(annotationArea != nullptr);
 
-public:
-	explicit AnnotationItemCopier(const AnnotationItemModifier *itemModifier, const AnnotationItemFactory *annotationItemFactory);
-	~AnnotationItemCopier() override = default;
-	bool isEmpty() const;
+	mAnnotationArea = annotationArea;
+	for (auto item : itemsWithOffset.keys()) {
+		auto pastedItem = item->clone();
+		pastedItem->setPosition(position + itemsWithOffset[item]);
+		mPastedItems.append(pastedItem);
+	}
+}
 
-public slots:
-	void copyItems(const QPointF &position);
-	void pasteItems(const QPointF &position);
-	void clear();
+PasteCommand::~PasteCommand()
+{
+	// Deleting with the annotation area
+}
 
-private:
-	const AnnotationItemModifier *mItemModifier;
-	const AnnotationItemFactory *mItemFactory;
-	QList<AbstractAnnotationItem *> mCopiedItems;
-};
+void PasteCommand::undo()
+{
+	for (auto item : mPastedItems) {
+		mAnnotationArea->removeAnnotationItem(item);
+		item->hide();
+	}
+}
+
+void PasteCommand::redo()
+{
+	for (auto item : mPastedItems) {
+		mAnnotationArea->addAnnotationItem(item);
+		item->show();
+	}
+}
 
 } // namespace kImageAnnotator
-
-#endif //KIMAGEANNOTATOR_ANNOTATIONITEMCOPIER_H

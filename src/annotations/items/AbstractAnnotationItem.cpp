@@ -43,7 +43,7 @@ AbstractAnnotationItem::AbstractAnnotationItem(AnnotationProperties *properties)
 
 AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &other)
 {
-	mProperties = new AnnotationProperties(*other.mProperties);
+	mProperties = other.mProperties->clone();
 	mShape = new QPainterPath(*other.mShape);
 	mPainterPen = other.mPainterPen;
 	mStroker = new QPainterPathStroker(mPainterPen);

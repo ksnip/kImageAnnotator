@@ -17,38 +17,38 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationItemCopier.h"
+#include "AnnotationItemClipboard.h"
 
 namespace kImageAnnotator {
 
-AnnotationItemCopier::AnnotationItemCopier(const AnnotationItemModifier *itemModifier, const AnnotationItemFactory *annotationItemFactory)
+AnnotationItemClipboard::AnnotationItemClipboard(const AnnotationItemModifier *itemModifier)
 {
 	Q_ASSERT(itemModifier != nullptr);
-	Q_ASSERT(annotationItemFactory != nullptr);
 
 	mItemModifier = itemModifier;
-	mItemFactory = annotationItemFactory;
 }
 
-bool AnnotationItemCopier::isEmpty() const
+bool AnnotationItemClipboard::isEmpty() const
 {
-	return mCopiedItems.count() == 0;
+	return mCopiedItemsToOffset.count() == 0;
 }
 
-void AnnotationItemCopier::copyItems(const QPointF &position)
+void AnnotationItemClipboard::copyItems(const QPointF &position)
 {
 	clear();
-	mCopiedItems = mItemModifier->selectedItems();
+	for (auto item : mItemModifier->selectedItems()) {
+		mCopiedItemsToOffset[item] = item->position() - position;
+	}
 }
 
-void AnnotationItemCopier::pasteItems(const QPointF &position)
+QHash<AbstractAnnotationItem *, QPointF> AnnotationItemClipboard::copiedItemsWithOffset() const
 {
-
+	return mCopiedItemsToOffset;
 }
 
-void AnnotationItemCopier::clear()
+void AnnotationItemClipboard::clear()
 {
-	mCopiedItems.clear();
+	mCopiedItemsToOffset.clear();
 }
 
 } // namespace kImageAnnotator

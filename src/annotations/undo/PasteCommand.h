@@ -17,31 +17,28 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONTEXTPROPERTIES_H
-#define KIMAGEANNOTATOR_ANNOTATIONTEXTPROPERTIES_H
+#ifndef KIMAGEANNOTATOR_PASTECOMMAND_H
+#define KIMAGEANNOTATOR_PASTECOMMAND_H
 
-#include <QFont>
+#include <QUndoCommand>
 
-#include "AnnotationProperties.h"
+#include "src/annotations/core/AnnotationArea.h"
 
 namespace kImageAnnotator {
 
-class AnnotationTextProperties : public AnnotationProperties
+class PasteCommand : public QUndoCommand
 {
 public:
-	AnnotationTextProperties() = default;
-	AnnotationTextProperties(const QColor &color, int size);
-	AnnotationTextProperties(const AnnotationTextProperties &other);
-	~AnnotationTextProperties() override = default;
-	AnnotationTextProperties *clone() const override;
-
-	QFont font() const;
-	void setFont(const QFont &font);
+	PasteCommand(const QHash<AbstractAnnotationItem *, QPointF> &itemsWithOffset, const QPointF &position, AnnotationArea *annotationArea);
+	~PasteCommand();
+	void undo() override;
+	void redo() override;
 
 private:
-	QFont mFont;
+	AnnotationArea *mAnnotationArea;
+	QVector<AbstractAnnotationItem*> mPastedItems;
 };
 
-}
+} // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONTEXTPROPERTIES_H
+#endif //KIMAGEANNOTATOR_PASTECOMMAND_H

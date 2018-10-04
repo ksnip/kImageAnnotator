@@ -32,7 +32,7 @@ AnnotationArea::AnnotationArea(Config *config) : mImage(nullptr), mCurrentItem(n
 	mUndoStack = new UndoStack();
 	mItemModifier = new AnnotationItemModifier();
 	addItem(mItemModifier);
-	mItemCopier = new AnnotationItemCopier(mItemModifier, mItemFactory);
+	mItemCopier = new AnnotationItemClipboard(mItemModifier);
 
 	connect(mItemModifier, &AnnotationItemModifier::newCommand, mUndoStack, &UndoStack::push);
 	connect(mUndoStack, &UndoStack::indexChanged, this, &AnnotationArea::update);
@@ -202,8 +202,8 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 	connect(&contextMenu, &AnnotationContextMenu::bringForward, &itemArranger, &AnnotationItemArranger::bringForward);
 	connect(&contextMenu, &AnnotationContextMenu::sendBackward, &itemArranger, &AnnotationItemArranger::sendBackward);
 	connect(&contextMenu, &AnnotationContextMenu::sendToBack, &itemArranger, &AnnotationItemArranger::sendToBack);
-	connect(&contextMenu, &AnnotationContextMenu::copy, mItemCopier, &AnnotationItemCopier::copyItems);
-	connect(&contextMenu, &AnnotationContextMenu::paste, mItemCopier, &AnnotationItemCopier::pasteItems);
+	connect(&contextMenu, &AnnotationContextMenu::copy, mItemCopier, &AnnotationItemClipboard::copyItems);
+	connect(&contextMenu, &AnnotationContextMenu::paste, this, &AnnotationArea::pasteCopiedItems);
 	connect(&contextMenu, &AnnotationContextMenu::erase, this, &AnnotationArea::deleteSelectedItems);
 
 	contextMenu.exec(event->screenPos());
@@ -252,6 +252,12 @@ void AnnotationArea::deleteSelectedItems()
 	auto selectedItems = mItemModifier->selectedItems();
 	mItemModifier->clear();
 	mUndoStack->push(new DeleteCommand(selectedItems, this));
+}
+
+void AnnotationArea::pasteCopiedItems(const QPointF &position)
+{
+	auto copiedItems = mItemCopier->copiedItemsWithOffset();
+	mUndoStack->push(new PasteCommand(copiedItems, position, this));
 }
 
 } // namespace kImageAnnotator

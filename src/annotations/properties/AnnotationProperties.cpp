@@ -23,9 +23,9 @@ namespace kImageAnnotator {
 
 AnnotationProperties::AnnotationProperties(const QColor &color, int size)
 {
-    mColor = color;
-    mTextColor = color;
-    mWidth = size;
+	mColor = color;
+	mTextColor = color;
+	mWidth = size;
 }
 
 AnnotationProperties::AnnotationProperties(const AnnotationProperties &other)
@@ -39,52 +39,57 @@ AnnotationProperties::AnnotationProperties(const AnnotationProperties &other)
 
 QColor AnnotationProperties::color() const
 {
-    return mColor;
+	return mColor;
 }
 
 void AnnotationProperties::setColor(const QColor &color)
 {
-    mColor = qMove(color);
+	mColor = qMove(color);
 }
 
 QColor AnnotationProperties::textColor() const
 {
-    return mTextColor;
+	return mTextColor;
 }
 
 void AnnotationProperties::setTextColor(const QColor &color)
 {
-    mTextColor = qMove(color);
+	mTextColor = qMove(color);
 }
 
 int AnnotationProperties::Width() const
 {
-    return mWidth;
+	return mWidth;
 }
 
 void AnnotationProperties::setWidth(int size)
 {
-    mWidth = size;
+	mWidth = size;
 }
 
 FillTypes AnnotationProperties::fillType() const
 {
-    return mFillType;
+	return mFillType;
 }
 
 void AnnotationProperties::setFillType(FillTypes fillType)
 {
-    mFillType = fillType;
+	mFillType = fillType;
 }
 
 bool AnnotationProperties::shadowEnabled() const
 {
-    return mShadowEnabled;
+	return mShadowEnabled;
 }
 
 void AnnotationProperties::setShadowEnabled(bool enabled)
 {
-    mShadowEnabled = enabled;
+	mShadowEnabled = enabled;
+}
+
+AnnotationProperties *AnnotationProperties::clone() const
+{
+	return new AnnotationProperties(*this);
 }
 
 } // namespace kImageAnnotator
