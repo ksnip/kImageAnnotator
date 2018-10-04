@@ -30,37 +30,38 @@ namespace kImageAnnotator {
 class AnnotationItemSelector : public QGraphicsWidget
 {
 public:
-    explicit AnnotationItemSelector();
-    ~AnnotationItemSelector() override;
-    QRectF boundingRect() const override;
-    void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifing);
-    void extendSelectionRectWhenShown(const QPointF &pos);
-    void finishSelectionRectWhenShown(QList<AbstractAnnotationItem *> *items);
-    void clearSelection();
-    QList<AbstractAnnotationItem *> selectedItems() const;
-    bool isSelecting() const;
-    void refresh();
-    void update();
+	explicit AnnotationItemSelector();
+	~AnnotationItemSelector() override;
+	QRectF boundingRect() const override;
+	void handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifing);
+	void extendSelectionRectWhenShown(const QPointF &pos);
+	void finishSelectionRectWhenShown(QList<AbstractAnnotationItem *> *items);
+	void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifing);
+	void clearSelection();
+	QList<AbstractAnnotationItem *> selectedItems() const;
+	bool isSelecting() const;
+	void refresh();
+	void update();
 
 protected:
-    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) override;
+	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) override;
 
 private:
-    QRectF mSelectionRect;
-    QRectF mSelectedItemsBoundingRect;
-    QList<AbstractAnnotationItem *> *mSelectedItems;
-    bool mShowSelectionRect;
-    QPen mSelectionPen;
+	QRectF mSelectionRect;
+	QRectF mSelectedItemsBoundingRect;
+	QList<AbstractAnnotationItem *> *mSelectedItems;
+	bool mShowSelectionRect;
+	QPen mSelectionPen;
 
-    void initSelectionRectAt(const QPointF &position);
-    void updateSelectionRect(const QPointF &position);
-    void selectItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
-    void toggleItemSelectionAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
-    void selectItemsUnderRect(QList<AbstractAnnotationItem *> *items);
-    void selectItem(AbstractAnnotationItem *item);
-    void unselectItem(AbstractAnnotationItem *item);
-    AbstractAnnotationItem *findItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
-    bool isLineItem(AbstractAnnotationItem *item) const;
+	void initSelectionRectAt(const QPointF &position);
+	void updateSelectionRect(const QPointF &position);
+	void selectItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
+	void toggleItemSelectionAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
+	void selectItemsUnderRect(QList<AbstractAnnotationItem *> *items);
+	void selectItem(AbstractAnnotationItem *item);
+	void unselectItem(AbstractAnnotationItem *item);
+	AbstractAnnotationItem *findItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
+	bool isLineItem(AbstractAnnotationItem *item) const;
 };
 
 } // namespace kImageAnnotator

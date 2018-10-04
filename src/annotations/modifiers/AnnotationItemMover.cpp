@@ -23,41 +23,41 @@ namespace kImageAnnotator {
 
 void AnnotationItemMover::setOffset(const QPointF &pos, const QList<AbstractAnnotationItem *> &selectedItems)
 {
-    for (auto item : selectedItems) {
-        mItemToOffset[item] = QPointF(pos - item->position());
-    }
+	for (auto item : selectedItems) {
+		mItemToOffset[item] = QPointF(pos - item->position());
+	}
 }
 
 void AnnotationItemMover::moveItems(const QPointF &pos)
 {
-    QHash<AbstractAnnotationItem *, QPointF> itemToNewPos;
+	QHash<AbstractAnnotationItem *, QPointF> itemToNewPos;
 
-    for (auto item : mItemToOffset.keys()) {
-        if (item != nullptr) {
-            itemToNewPos[item] = pos - mItemToOffset[item];
-        }
-    }
+	for (auto item : mItemToOffset.keys()) {
+		if (item != nullptr) {
+			itemToNewPos[item] = pos - mItemToOffset[item];
+		}
+	}
 
-    emit newCommand(new MoveCommand(itemToNewPos));
+	emit newCommand(new MoveCommand(itemToNewPos));
 }
 
 void AnnotationItemMover::clearOffset()
 {
-    mItemToOffset.clear();
+	mItemToOffset.clear();
 }
 
 bool AnnotationItemMover::isMoving()
 {
-    return !mItemToOffset.isEmpty();
+	return !mItemToOffset.isEmpty();
 }
 
 Qt::CursorShape AnnotationItemMover::cursor()
 {
-    if (isMoving()) {
-        return CursorHelper::movingCursor();
-    } else {
-        return CursorHelper::defaultCursor();
-    }
+	if (isMoving()) {
+		return CursorHelper::movingCursor();
+	} else {
+		return CursorHelper::defaultCursor();
+	}
 }
 
 } // namespace kImageAnnotator

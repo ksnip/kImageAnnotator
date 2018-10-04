@@ -23,200 +23,205 @@ namespace kImageAnnotator {
 
 AnnotationItemSelector::AnnotationItemSelector()
 {
-    mSelectedItems = new QList<AbstractAnnotationItem *>();
-    mShowSelectionRect = false;
+	mSelectedItems = new QList<AbstractAnnotationItem *>();
+	mShowSelectionRect = false;
 
-    mSelectionPen.setStyle(Qt::DashLine);
-    mSelectionPen.setColor(Qt::gray);
+	mSelectionPen.setStyle(Qt::DashLine);
+	mSelectionPen.setColor(Qt::gray);
 }
 
 AnnotationItemSelector::~AnnotationItemSelector()
 {
-    delete mSelectedItems;
+	delete mSelectedItems;
 }
 
 QRectF AnnotationItemSelector::boundingRect() const
 {
-    if (isSelecting()) {
-        return mSelectionRect.normalized();
-    } else {
-        return mSelectedItemsBoundingRect;
-    }
+	if (isSelecting()) {
+		return mSelectionRect.normalized();
+	} else {
+		return mSelectedItemsBoundingRect;
+	}
+}
+
+void AnnotationItemSelector::handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifing)
+{
+	handleSelectionAt(pos, items, modifing);
+
+	if (mSelectedItems->count() > 0) {
+		return;
+	}
+
+	initSelectionRectAt(pos);
+	mShowSelectionRect = true;
 }
 
 void AnnotationItemSelector::handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifing)
 {
-    prepareGeometryChange();
+	prepareGeometryChange();
 
-    if (modifing) {
-        toggleItemSelectionAt(pos, items);
-    } else {
-        selectItemAt(pos, items);
-    }
-
-    if (mSelectedItems->count() > 0) {
-        return;
-    }
-
-    initSelectionRectAt(pos);
-    mShowSelectionRect = true;
+	if (modifing) {
+		toggleItemSelectionAt(pos, items);
+	} else {
+		selectItemAt(pos, items);
+	}
 }
 
 void AnnotationItemSelector::extendSelectionRectWhenShown(const QPointF &pos)
 {
-    if (!mShowSelectionRect) {
-        return;
-    }
+	if (!mShowSelectionRect) {
+		return;
+	}
 
-    prepareGeometryChange();
-    updateSelectionRect(pos);
+	prepareGeometryChange();
+	updateSelectionRect(pos);
 }
 
 void AnnotationItemSelector::finishSelectionRectWhenShown(QList<AbstractAnnotationItem *> *items)
 {
-    if (!mShowSelectionRect) {
-        return;
-    }
+	if (!mShowSelectionRect) {
+		return;
+	}
 
-    prepareGeometryChange();
-    selectItemsUnderRect(items);
-    mShowSelectionRect = false;
+	prepareGeometryChange();
+	mShowSelectionRect = false;
+	selectItemsUnderRect(items);
 }
 
 void AnnotationItemSelector::clearSelection()
 {
-    prepareGeometryChange();
-    mSelectedItems->clear();
-    mSelectedItemsBoundingRect = QRectF();
+	prepareGeometryChange();
+	mSelectedItems->clear();
+	mSelectedItemsBoundingRect = QRectF();
 }
 
 QList<AbstractAnnotationItem *> AnnotationItemSelector::selectedItems() const
 {
-    return *mSelectedItems;
+	return *mSelectedItems;
 }
 
 bool AnnotationItemSelector::isSelecting() const
 {
-    return mShowSelectionRect;
+	return mShowSelectionRect;
 }
 
 void AnnotationItemSelector::refresh()
 {
-    prepareGeometryChange();
-    mSelectedItemsBoundingRect = QRectF();
-    for (auto item : *mSelectedItems) {
-        mSelectedItemsBoundingRect = mSelectedItemsBoundingRect.united(item->boundingRect());
-    }
+	prepareGeometryChange();
+	mSelectedItemsBoundingRect = QRectF();
+	for (auto item : *mSelectedItems) {
+		mSelectedItemsBoundingRect = mSelectedItemsBoundingRect.united(item->boundingRect());
+	}
 }
 
 void AnnotationItemSelector::update()
 {
-    for (auto item : *mSelectedItems) {
-        if (!item->isVisible()) {
-            unselectItem(item);
-        }
-    }
+	for (auto item : *mSelectedItems) {
+		if (!item->isVisible()) {
+			unselectItem(item);
+		}
+	}
 }
 
 void AnnotationItemSelector::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    Q_UNUSED(option)
-    Q_UNUSED(widget)
+	Q_UNUSED(option)
+	Q_UNUSED(widget)
 
-    if (mShowSelectionRect) {
-        painter->setPen(Qt::darkBlue);
-        painter->setBrush(QColor(0, 0, 255, 60));
-        painter->drawRect(mSelectionRect);
-    }
+	if (mShowSelectionRect) {
+		painter->setPen(Qt::darkBlue);
+		painter->setBrush(QColor(0, 0, 255, 60));
+		painter->drawRect(mSelectionRect);
+	}
 
-    painter->setPen(mSelectionPen);
-    painter->setBrush(Qt::NoBrush);
-    for (auto item : *mSelectedItems) {
-        if (!isLineItem(item)) {
-            painter->drawRect(item->boundingRect());
-        }
-    }
+	painter->setPen(mSelectionPen);
+	painter->setBrush(Qt::NoBrush);
+	for (auto item : *mSelectedItems) {
+		if (!isLineItem(item)) {
+			painter->drawRect(item->boundingRect());
+		}
+	}
 }
 
 bool AnnotationItemSelector::isLineItem(AbstractAnnotationItem *item) const
 {
-    return dynamic_cast<AbstractAnnotationLine *>(item) != nullptr;
+	return dynamic_cast<AbstractAnnotationLine *>(item) != nullptr;
 }
 
 void AnnotationItemSelector::initSelectionRectAt(const QPointF &position)
 {
-    mSelectionRect.setTopLeft(position);
-    updateSelectionRect(position);
+	mSelectionRect.setTopLeft(position);
+	updateSelectionRect(position);
 }
 
 void AnnotationItemSelector::updateSelectionRect(const QPointF &position)
 {
-    mSelectionRect.setBottomRight(position);
+	mSelectionRect.setBottomRight(position);
 }
 
 void AnnotationItemSelector::selectItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items)
 {
-    auto item = findItemAt(position, items);
+	auto item = findItemAt(position, items);
 
-    if (item == nullptr) {
-        clearSelection();
-        return;
-    }
+	if (item == nullptr) {
+		clearSelection();
+		return;
+	}
 
-    if (!mSelectedItems->contains(item)) {
-        clearSelection();
-        selectItem(item);
-    }
+	if (!mSelectedItems->contains(item)) {
+		clearSelection();
+		selectItem(item);
+	}
 }
 
 void AnnotationItemSelector::toggleItemSelectionAt(const QPointF &position, QList<AbstractAnnotationItem *> *items)
 {
-    auto item = findItemAt(position, items);
+	auto item = findItemAt(position, items);
 
-    if (item == nullptr) {
-        clearSelection();
-        return;
-    }
+	if (item == nullptr) {
+		clearSelection();
+		return;
+	}
 
-    if (mSelectedItems->contains(item)) {
-        unselectItem(item);
-    } else {
-        selectItem(item);
-    }
+	if (mSelectedItems->contains(item)) {
+		unselectItem(item);
+	} else {
+		selectItem(item);
+	}
 }
 
 void AnnotationItemSelector::selectItemsUnderRect(QList<AbstractAnnotationItem *> *items)
 {
-    clearSelection();
-    for (auto item : *items) {
-        if (item->intersects(mSelectionRect)) {
-            selectItem(item);
-        }
-    }
+	clearSelection();
+	for (auto item : *items) {
+		if (item->intersects(mSelectionRect)) {
+			selectItem(item);
+		}
+	}
 }
 
 void AnnotationItemSelector::selectItem(AbstractAnnotationItem *item)
 {
-    mSelectedItems->append(item);
-    refresh();
+	mSelectedItems->append(item);
+	refresh();
 }
 
 void AnnotationItemSelector::unselectItem(AbstractAnnotationItem *item)
 {
-    mSelectedItems->removeOne(item);
-    refresh();
+	mSelectedItems->removeOne(item);
+	refresh();
 }
 
 AbstractAnnotationItem *AnnotationItemSelector::findItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items)
 {
-    QRectF rect(position - QPointF(2, 2), QSize(4, 4));
+	QRectF rect(position - QPointF(2, 2), QSize(4, 4));
 
-    for (auto item : *items) {
-        if (item->intersects(rect)) {
-            return item;
-        }
-    }
-    return nullptr;
+	for (auto item : *items) {
+		if (item->intersects(rect)) {
+			return item;
+		}
+	}
+	return nullptr;
 }
 
 } // namespace kImageAnnotator

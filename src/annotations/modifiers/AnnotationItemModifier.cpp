@@ -50,7 +50,7 @@ void AnnotationItemModifier::handleMousePress(const QPointF &pos, QList<Abstract
 		return;
 	}
 
-	mItemSelector->handleSelectionAt(pos, items, isCtrlPressed);
+	mItemSelector->handleSelectionOrShowSelectionRectAt(pos, items, isCtrlPressed);
 	if (mItemSelector->isSelecting()) {
 		mItemResizer->detach();
 		return;
