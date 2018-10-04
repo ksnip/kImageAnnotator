@@ -23,6 +23,7 @@
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QPainterPathStroker>
+#include <QCursor>
 
 #include "src/annotations/properties/AnnotationProperties.h"
 #include "src/common/enum/FillTypes.h"
@@ -63,6 +64,7 @@ private:
 
 	bool hasFill() const;
 	void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
+	void addShadowIfRequired();
 };
 
 } // namespace kImageAnnotator

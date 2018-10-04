@@ -35,10 +35,7 @@ AbstractAnnotationItem::AbstractAnnotationItem(AnnotationProperties *properties)
 
 	mStroker = new QPainterPathStroker(mPainterPen);
 
-	if (mProperties->shadowEnabled()) {
-		mShadowEffect = new ShadowEffect();
-		setGraphicsEffect(mShadowEffect);
-	}
+	addShadowIfRequired();
 }
 
 AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &other)
@@ -47,7 +44,9 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &oth
 	mShape = new QPainterPath(*other.mShape);
 	mPainterPen = other.mPainterPen;
 	mStroker = new QPainterPathStroker(mPainterPen);
-	mShadowEffect = other.mShadowEffect != nullptr ? new ShadowEffect() : nullptr;
+	setCursor(other.cursor());
+
+	addShadowIfRequired();
 }
 
 AbstractAnnotationItem::~AbstractAnnotationItem()
@@ -122,6 +121,14 @@ bool AbstractAnnotationItem::hasFill() const
 void AbstractAnnotationItem::finish()
 {
 	// By default, does nothing
+}
+
+void AbstractAnnotationItem::addShadowIfRequired()
+{
+	if (mProperties->shadowEnabled()) {
+		mShadowEffect = new ShadowEffect();
+		setGraphicsEffect(mShadowEffect);
+	}
 }
 
 } // namespace kImageAnnotator
