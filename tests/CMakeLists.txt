@@ -20,6 +20,7 @@ set(UnitTests
 	annotations/undo/PasteCommandTest.cpp
 	annotations/items/helper/KeyInputHelperTest.cpp
 	annotations/items/helper/TextCursorTest.cpp
+	annotations/misc/AnnotationItemClipboardTest.cpp
 	backend/ConfigTest.cpp
 	common/helper/KeyHelperTest.cpp
 	common/helper/MathHelperTest.cpp
