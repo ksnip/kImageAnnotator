@@ -9,6 +9,10 @@ The tool is currently work in Progress
 
 
 ### Building from source
+
+#### Dependencies
+kImageAnnotator requires [kColorPicker](https://github.com/DamirPorobic/kColorPicker) to be installed. Install instructions can be found on the GitHub page.
+
 1. Get latest release from GitHub by cloning the repo:  
     `$ git clone https://github.com/DamirPorobic/kImageAnnotator`
 2. Change to repo directory:  
