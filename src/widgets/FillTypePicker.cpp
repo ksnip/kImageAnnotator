@@ -23,66 +23,66 @@ namespace kImageAnnotator {
 
 FillTypePicker::FillTypePicker(const QIcon &icon, const QString &tooltip)
 {
-    mFillList.append(FillTypes::Fill);
-    mFillList.append(FillTypes::NoFill);
+	mFillList.append(FillTypes::Fill);
+	mFillList.append(FillTypes::NoFill);
 
-    mIconCreator = new IconCreater();
+	mIconCreator = new IconCreater();
 
-    initGui(icon, tooltip);
+	initGui(icon, tooltip);
 
-    connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &FillTypePicker::selectionChanged);
+	connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &FillTypePicker::selectionChanged);
 }
 
 FillTypePicker::~FillTypePicker()
 {
-    delete mLayout;
-    delete mLabel;
-    delete mComboBox;
+	delete mLayout;
+	delete mLabel;
+	delete mComboBox;
 }
 
 void FillTypePicker::setFill(FillTypes fill)
 {
-    auto index = mComboBox->findData(mFillList.indexOf(fill));
-    if (index != -1) {
-        mComboBox->setCurrentIndex(index);
-        setFillAndNotify(fill);
-    }
+	auto index = mComboBox->findData(mFillList.indexOf(fill));
+	if (index != -1) {
+		mComboBox->setCurrentIndex(index);
+		setFillAndNotify(fill);
+	}
 }
 
 void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
 {
-    mLayout = new QHBoxLayout(this);
-    mLayout->setContentsMargins(0, 0, 0, 0);
+	mLayout = new QHBoxLayout(this);
+	mLayout->setContentsMargins(0, 0, 0, 0);
 
-    mLabel = new QLabel();
-    mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
-    mLabel->setToolTip(tooltip);
+	mLabel = new QLabel();
+	mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
+	mLabel->setToolTip(tooltip);
 
-    mComboBox = new QComboBox(this);
+	mComboBox = new QComboBox(this);
 
-    mComboBox->addItem(mIconCreator->createFillIcon(true), QString(), mFillList.indexOf(FillTypes::Fill));
-    mComboBox->addItem(mIconCreator->createFillIcon(false), QString(), mFillList.indexOf(FillTypes::NoFill));
-    mComboBox->setFixedSize(QSize(55, mComboBox->sizeHint().height()));
-    mComboBox->setIconSize(mIconCreator->iconSize());
-    mComboBox->setToolTip(tooltip);
-    mComboBox->setFocusPolicy(Qt::NoFocus);
+	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndFill")), QString(), mFillList.indexOf(FillTypes::Fill));
+	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndNoFill")), QString(), mFillList.indexOf(FillTypes::NoFill));
+	mComboBox->setFixedSize(QSize(55, mComboBox->sizeHint().height()));
+	mComboBox->setIconSize(QSize(25, 25));
+	mComboBox->setToolTip(tooltip);
+	mComboBox->setFocusPolicy(Qt::NoFocus);
 
-    mLayout->addWidget(mLabel);
-    mLayout->addWidget(mComboBox);
+	mLayout->addWidget(mLabel);
+	mLayout->addWidget(mComboBox);
 
-    setLayout(mLayout);
-    setFixedSize(sizeHint());
+	setLayout(mLayout);
+	setFixedSize(sizeHint());
 }
 
 void FillTypePicker::setFillAndNotify(FillTypes fill)
 {
-    emit fillSelected(fill);
+	emit fillSelected(fill);
 }
 
 void FillTypePicker::selectionChanged()
 {
-    auto fill = mFillList[mComboBox->currentData().toInt()];
-    setFillAndNotify(fill);
+	auto fill = mFillList[mComboBox->currentData().toInt()];
+	setFillAndNotify(fill);
 }
 
 } // namespace kImageAnnotator

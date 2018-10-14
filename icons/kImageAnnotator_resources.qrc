@@ -1,14 +1,22 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
     <qresource prefix="/icons">
-        <file alias="arrow">arrow.64.png</file>
-        <file alias="number">number.64.png</file>
-        <file alias="marker">marker.64.png</file>
-        <file alias="line">line.64.png</file>
-        <file alias="pen">pen.64.png</file>
-        <file alias="rect">rect.64.png</file>
-        <file alias="select">select.64.png</file>
-        <file alias="text">text.64.png</file>
-        <file alias="ellipse">ellipse.64.png</file>
+        <file alias="arrow">arrow.svg</file>
+        <file alias="number">number.svg</file>
+        <file alias="marker">marker.svg</file>
+        <file alias="line">line.svg</file>
+        <file alias="pen">pen.svg</file>
+        <file alias="rect">rect.svg</file>
+        <file alias="select">select.svg</file>
+        <file alias="text">text.svg</file>
+        <file alias="ellipse">ellipse.svg</file>
+        <file alias="color">color.svg</file>
+        <file alias="width">width.svg</file>
+        <file alias="textColor">textColor.svg</file>
+        <file alias="fontSize">fontSize.svg</file>
+        <file alias="fillType">fillType.svg</file>
+        <file alias="fillType_borderAndFill">fillType_borderAndFill.svg</file>
+        <file alias="fillType_borderAndNoFill">fillType_borderAndNoFill.svg</file>
+        <file alias="fillType_NoBorderAndNoFill">fillType_NoBorderAndNoFill.svg</file>
     </qresource>
 </RCC>

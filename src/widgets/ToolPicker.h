@@ -33,26 +33,26 @@ class ToolPicker : public QWidget
 {
 Q_OBJECT
 public:
-    explicit ToolPicker();
-    ~ToolPicker() override;
-    void setTool(ToolTypes newTool);
-    ToolTypes tool();
+	explicit ToolPicker();
+	~ToolPicker() override;
+	void setTool(ToolTypes newTool);
+	ToolTypes tool();
 
 signals:
-    void toolSelected(ToolTypes newTool);
+	void toolSelected(ToolTypes newTool);
 
 private:
-    QButtonGroup *mButtonGroup;
-    QGridLayout *mLayout;
-    ToolTypes mSelectedToolType;
-    QHash<QAbstractButton *, ToolTypes> mButtonToTool;
+	QButtonGroup *mButtonGroup;
+	QGridLayout *mLayout;
+	ToolTypes mSelectedToolType;
+	QHash<QAbstractButton *, ToolTypes> mButtonToTool;
 
-    void initGui();
-    QToolButton *createButton(const QString &tooltip, const QIcon &icon, Qt::Key shortcut);
+	void initGui();
+	QToolButton *createButton(const QString &tooltip, const QIcon &icon, Qt::Key shortcut);
 
 private slots:
-    void buttonClicked(QAbstractButton *button);
-    void setToolAndNotify(ToolTypes newTool);
+	void buttonClicked(QAbstractButton *button);
+	void setToolAndNotify(ToolTypes newTool);
 };
 
 } // namespace kImageAnnotator

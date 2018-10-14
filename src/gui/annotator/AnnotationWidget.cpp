@@ -60,12 +60,12 @@ void AnnotationWidget::initGui()
 	mMainLayout = new QHBoxLayout();
 	mToolLayout = new QVBoxLayout();
 	mToolPicker = new ToolPicker();
-	mColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("tool_color_picker")), tr("Color"));
-	mWidthPicker = new SizePicker(QIcon::fromTheme(QStringLiteral("newline")), tr("Width"));
-	mTextColorPicker = new ColorPicker(QIcon::fromTheme(QStringLiteral("format-text-color")), tr("Text Color"));
-	mFontSizePicker = new SizePicker(QIcon::fromTheme(QStringLiteral("font-size-up")), tr("Font Size"));
+	mColorPicker = new ColorPicker(QIcon(QStringLiteral(":/icons/color")), tr("Color"));
+	mWidthPicker = new SizePicker(QIcon(QStringLiteral(":/icons/width")), tr("Width"));
+	mTextColorPicker = new ColorPicker(QIcon(QStringLiteral(":/icons/textColor")), tr("Text Color"));
+	mFontSizePicker = new SizePicker(QIcon(QStringLiteral(":/icons/fontSize")), tr("Font Size"));
 	mFontSizePicker->setRange(10, 40);
-	mFillTypePicker = new FillTypePicker(QIcon::fromTheme(QStringLiteral("fill-color")), tr("Fill Type"));
+	mFillTypePicker = new FillTypePicker(QIcon(QStringLiteral(":/icons/fillType")), tr("Fill Type"));
 
 	mToolLayout->addWidget(mToolPicker);
 	mToolLayout->addSpacing(20);
