@@ -26,8 +26,6 @@ FillTypePicker::FillTypePicker(const QIcon &icon, const QString &tooltip)
 	mFillList.append(FillTypes::Fill);
 	mFillList.append(FillTypes::NoFill);
 
-	mIconCreator = new IconCreater();
-
 	initGui(icon, tooltip);
 
 	connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &FillTypePicker::selectionChanged);

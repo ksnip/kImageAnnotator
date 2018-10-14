@@ -26,7 +26,6 @@
 #include <QLabel>
 
 #include "src/common/enum/FillTypes.h"
-#include "src/common/helper/IconCreater.h"
 
 namespace kImageAnnotator {
 
@@ -36,7 +35,7 @@ Q_OBJECT
 
 public:
 	FillTypePicker(const QIcon &icon, const QString &tooltip);
-	~FillTypePicker() override;
+	~FillTypePicker();
 	void setFill(FillTypes fill);
 
 signals:
@@ -47,7 +46,6 @@ private:
 	QLabel *mLabel;
 	QComboBox *mComboBox;
 	QList<FillTypes> mFillList;
-	IconCreater *mIconCreator;
 
 	void initGui(const QIcon &icon, const QString &tooltip);
 	void setFillAndNotify(FillTypes fill);
