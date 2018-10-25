@@ -16,11 +16,10 @@ find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Test)
 include(GNUInstallDirs)
 include(FeatureSummary)
 
-set(BASEPATH "${CMAKE_SOURCE_DIR}")
+set(BASEPATH "${CMAKE_CURRENT_SOURCE_DIR}")
 include_directories("${BASEPATH}")
 
 add_subdirectory(external/kColorPicker)
-
 add_subdirectory(src)
 add_subdirectory(example)
 
@@ -31,27 +30,66 @@ endif (BUILD_TESTS)
 
 include(CMakePackageConfigHelpers)
 
+add_library(kImageAnnotator
+			SHARED
+			${KIMAGEANNOTATOR_SRCS}
+			${CMAKE_CURRENT_SOURCE_DIR}/include/kImageAnnotator/KImageAnnotator.h
+			${CMAKE_CURRENT_SOURCE_DIR}/icons/kImageAnnotator_icons.qrc
+			)
+
+add_library(kImageAnnotator::kImageAnnotator ALIAS kImageAnnotator)
+
+target_include_directories(kImageAnnotator
+						   PUBLIC
+						   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+						   $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
+						   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+						   )
+
+target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets kColorPicker)
+
+target_compile_definitions(kImageAnnotator PRIVATE KIMAGEANNOTATOR_LIB)
+
+set_target_properties(kImageAnnotator
+					  PROPERTIES
+					  ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib
+					  LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib
+					  RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin
+					  SOVERSION ${PROJECT_VERSION}
+					  )
+
+install(TARGETS kImageAnnotator
+		EXPORT kImageAnnotator-targets
+		ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+		RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+		)
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/kImageAnnotator
+		DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+		)
+
 configure_package_config_file(
-		${CMAKE_SOURCE_DIR}/cmake/kImageAnnotatorConfig.cmake.in
-		${CMAKE_BINARY_DIR}/cmake/kImageAnnotatorConfig.cmake
+		${CMAKE_CURRENT_SOURCE_DIR}/cmake/kImageAnnotatorConfig.cmake.in
+		${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotatorConfig.cmake
 		INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/kImageAnnotator
 )
 
 write_basic_package_version_file(
-		${CMAKE_BINARY_DIR}/cmake/kImageAnnotatorConfig-version.cmake
+		${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotatorConfig-version.cmake
 		VERSION ${PROJECT_VERSION}
 		COMPATIBILITY AnyNewerVersion
 )
 
 install(FILES
-		${CMAKE_BINARY_DIR}/cmake/kImageAnnotatorConfig.cmake
-		${CMAKE_BINARY_DIR}/cmake/kImageAnnotatorConfig-version.cmake
+		${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotatorConfig.cmake
+		${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotatorConfig-version.cmake
 		DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/kImageAnnotator
 		)
 
 export(
 		EXPORT kImageAnnotator-targets
-		FILE ${CMAKE_BINARY_DIR}/cmake/kImageAnnotator-targets.cmake
+		FILE ${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotator-targets.cmake
 		NAMESPACE kImageAnnotator::
 )
 

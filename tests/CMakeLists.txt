@@ -1,4 +1,4 @@
-set(UnitTests
+set(UNITTEST_SRC
 	annotations/core/AnnotationAreaTest.cpp
 	annotations/core/AnnotationItemFactoryTest.cpp
 	annotations/core/AnnotationPropertiesFactoryTest.cpp
@@ -38,13 +38,13 @@ set(UnitTests
 	widgets/CustomSpinBoxTest.cpp
 	)
 
-add_library(kImageAnnotatorStatic STATIC ${kimageannotator_SRCS})
+add_library(KIMAGEANNOTATOR_STATIC STATIC ${KIMAGEANNOTATOR_SRCS})
 
-target_link_libraries(kImageAnnotatorStatic Qt5::Widgets kImageAnnotator)
+target_link_libraries(KIMAGEANNOTATOR_STATIC Qt5::Widgets kImageAnnotator)
 
-foreach (UnitTest ${UnitTests})
+foreach (UnitTest ${UNITTEST_SRC})
 	get_filename_component(UnitTestName ${UnitTest} NAME_WE)
 	add_executable(${UnitTestName} ${UnitTest})
-	target_link_libraries(${UnitTestName} kImageAnnotatorStatic Qt5::Test)
+	target_link_libraries(${UnitTestName} KIMAGEANNOTATOR_STATIC Qt5::Test)
 	add_test(${UnitTestName} ${UnitTestName})
 endforeach (UnitTest)
