@@ -1,0 +1,3 @@
+[submodule "external/kColorPicker"]
+	path = external/kColorPicker
+	url = https://github.com/DamirPorobic/kColorPicker
