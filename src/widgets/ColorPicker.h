@@ -24,7 +24,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
-#include <external/kColorPicker/include/kColorPicker/KColorPicker.h>
+#include <kColorPicker/KColorPicker.h>
 
 using kColorPicker::KColorPicker;
 
