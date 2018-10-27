@@ -3,9 +3,8 @@ Tool for annotating images
 
 Version 0.0.1
 
-The tool is currently work in Progress
 
-![kImageAnnotator](https://i.imgur.com/MlzhHkb.png "kImageAnnotator")
+![kImageAnnotator](https://imgur.com/y9CT0Ia.png "kImageAnnotator")
 
 
 ### Building from source
@@ -24,3 +23,12 @@ The tool is currently work in Progress
     `$ sudo make install`
 7. Run the example application:  
     `$ ./example/kImageAnnotator-example`
+
+### Integrate as shared library
+
+1. Let cmake find the shared library, optionally with version  
+    `set(KIMAGEANNOTATOR_MIN_VERSION "0.x.x")`  
+    `find_package(kImageAnnotator ${KIMAGEANNOTATOR_MIN_VERSION} REQUIRED)`  
+
+2. Link the library with your application  
+    `target_link_libraries(myApp kImageAnnotator)`  
