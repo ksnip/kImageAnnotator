@@ -31,7 +31,6 @@ endif (BUILD_TESTS)
 include(CMakePackageConfigHelpers)
 
 add_library(kImageAnnotator
-			SHARED
 			${KIMAGEANNOTATOR_SRCS}
 			${CMAKE_CURRENT_SOURCE_DIR}/include/kImageAnnotator/KImageAnnotator.h
 			${CMAKE_CURRENT_SOURCE_DIR}/icons/kImageAnnotator_icons.qrc

@@ -24,7 +24,12 @@ Version 0.0.1
 7. Run the example application:  
     `$ ./example/kImageAnnotator-example`
 
-### Integrate as shared library
+### Shared vs Static
+
+You can either build the project as shared library by providing the flag `-DBUILD_SHARED_LIBS=ON`
+to cmake or `-DBUILD_SHARED_LIBS=OFF` to build as static library
+
+### Integrate library
 
 1. Let cmake find the shared library, optionally with version  
     `set(KIMAGEANNOTATOR_MIN_VERSION "0.x.x")`  
