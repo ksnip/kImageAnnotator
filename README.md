@@ -6,6 +6,10 @@ Version 0.0.1
 
 ![kImageAnnotator](https://imgur.com/y9CT0Ia.png "kImageAnnotator")
 
+### Dependencies
+
+kImageAnnotator depends on [kColoPicker](https://github.com/DamirPorobic/kColorPicker) which needs
+to be installed before building kImageAnnotator. Install instructions can be found on the github page.
 
 ### Building from source
 
@@ -13,21 +17,20 @@ Version 0.0.1
     `$ git clone https://github.com/DamirPorobic/kImageAnnotator`
 2. Change to repo directory:  
     `$ cd kImageAnnotator`  
-3. Resolve dependencies by fetching git submodules:  
-    `$ git submodule update --init --recursive`  
-4. Make new build directory and enter it:  
+3. Make new build directory and enter it:  
     `$ mkdir build && cd build`  
-5. Create the makefile and build the project:  
+4. Create the makefile and build the project:  
     `$ cmake .. && make`  
-6. Install shared library (not required when only using the example):  
+5. Install shared library (not required when only using the example):  
     `$ sudo make install`
-7. Run the example application:  
+6. Run the example application:  
     `$ ./example/kImageAnnotator-example`
 
 ### Shared vs Static
 
 You can either build the project as shared library by providing the flag `-DBUILD_SHARED_LIBS=ON`
-to cmake or `-DBUILD_SHARED_LIBS=OFF` to build as static library
+to cmake or `-DBUILD_SHARED_LIBS=OFF` to build as static library. When no flag is provided a 
+static library is build.
 
 ### Integrate library
 
