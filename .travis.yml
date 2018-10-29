@@ -10,12 +10,17 @@ before_install:
 install:
   - sudo apt-get -y install qt56base
   - source /opt/qt*/bin/qt*-env.sh
+  - git clone git://github.com/DamirPorobic/kColorPicker
+  - cd kColorPicker
+  - mkdir build && cd build
+  - cmake ..
+  - make && sudo make install
+  - cd ../..
 
 jobs:
   include:
     - stage: build
       script:
-        - git submodule update --init --recursive
         - mkdir build ; cd build
         - cmake .. ; make VERBOSE=1
     - stage: test

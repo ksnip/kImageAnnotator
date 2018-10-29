@@ -16,10 +16,12 @@ find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Test)
 include(GNUInstallDirs)
 include(FeatureSummary)
 
+set(KCOLORPICKER_MIN_VERSION "0.0.1")
+find_package(kColorPicker ${KCOLORPICKER_MIN_VERSION} REQUIRED)
+
 set(BASEPATH "${CMAKE_CURRENT_SOURCE_DIR}")
 include_directories("${BASEPATH}")
 
-add_subdirectory(external/kColorPicker)
 add_subdirectory(src)
 add_subdirectory(example)
 
