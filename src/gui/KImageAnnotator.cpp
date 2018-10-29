@@ -24,6 +24,11 @@
 
 #include "CoreView.h"
 
+inline void initResource()
+{
+	Q_INIT_RESOURCE(kImageAnnotator_icons);
+}
+
 namespace kImageAnnotator {
 
 class KImageAnnotatorPrivate
@@ -142,6 +147,8 @@ void KImageAnnotator::showScaler()
 
 KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator) : q_ptr(kImageAnnotator), mCoreView(&mConfig)
 {
+	initResource();
+
 	QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
 	mMainLayout.addWidget(&mCoreView);
