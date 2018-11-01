@@ -38,9 +38,29 @@ void AnnotationItemFactory::reset()
 	mNextZValue = 1;
 }
 
-AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPosition, ToolTypes toolType)
+AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPosition, ToolTypes toolType)
 {
-	auto properties = mPropertiesFactory->createProperties(toolType);
+	auto properties = mPropertiesFactory->create(toolType);
+	auto *newItem = createItem(initPosition, toolType, properties);
+
+	setZValue(newItem);
+
+	return newItem;
+}
+
+AbstractAnnotationItem *AnnotationItemFactory::clone(const QPointF &initPosition, const AbstractAnnotationItem *item)
+{
+	Q_ASSERT(item != nullptr);
+
+	auto properties = mPropertiesFactory->clone(item->properties());
+	auto newItem = createItem(initPosition, item->toolType(), properties);
+	setZValue(newItem);
+
+	return newItem;
+}
+
+AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPosition, const ToolTypes &toolType, AnnotationProperties *properties)
+{
 	AbstractAnnotationItem *item = nullptr;
 
 	switch (toolType) {
@@ -74,12 +94,14 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 		default:
 			qCritical("Cannot create item for provided tool type.");
 	}
+	return item;
+}
 
+void AnnotationItemFactory::setZValue(AbstractAnnotationItem *item)
+{
 	if (item != nullptr) {
 		item->setZValue(mNextZValue++);
 	}
-
-	return item;
 }
 
 } // namespace kImageAnnotator

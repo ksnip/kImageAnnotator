@@ -43,12 +43,16 @@ public:
 	~AnnotationItemFactory() override;
 	void reset();
 
-	AbstractAnnotationItem *createItem(const QPointF &initPosition, ToolTypes toolType);
+	AbstractAnnotationItem *create(const QPointF &initPosition, ToolTypes toolType);
+	AbstractAnnotationItem *clone(const QPointF &initPosition, const AbstractAnnotationItem *item);
 
 private:
 	int mNextNumber;
 	int mNextZValue;
 	AnnotationPropertiesFactory *mPropertiesFactory;
+
+	AbstractAnnotationItem *createItem(const QPointF &initPosition, const ToolTypes &toolType, AnnotationProperties *properties);
+	void setZValue(AbstractAnnotationItem *item);
 };
 
 } // namespace kImageAnnotator

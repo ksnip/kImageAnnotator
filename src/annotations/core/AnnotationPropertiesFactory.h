@@ -34,7 +34,8 @@ public:
 	explicit AnnotationPropertiesFactory(Config *config);
 	~AnnotationPropertiesFactory() = default;
 
-	AnnotationProperties *createProperties(ToolTypes toolType) const;
+	AnnotationProperties *create(ToolTypes toolType) const;
+	AnnotationProperties *clone(const AnnotationProperties *properties) const;
 
 private:
 	Config *mConfig;

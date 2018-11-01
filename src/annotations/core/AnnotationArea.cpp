@@ -211,7 +211,7 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 
 void AnnotationArea::addItemAtPosition(const QPointF &position)
 {
-	mCurrentItem = mItemFactory->createItem(position, mConfig->selectedTool());
+	mCurrentItem = mItemFactory->create(position, mConfig->selectedTool());
 	mUndoStack->push(new AddCommand(mCurrentItem, this));
 }
 
