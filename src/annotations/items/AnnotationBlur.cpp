@@ -23,7 +23,12 @@ namespace kImageAnnotator {
 
 AnnotationBlur::AnnotationBlur(const QPointF &startPosition, AnnotationProperties *properties) : AbstractAnnotationRect(startPosition, properties)
 {
-	setGraphicsEffect(new BlurEffect());
+	addBlurEffect();
+}
+
+AnnotationBlur::AnnotationBlur(const AnnotationBlur &other) : AbstractAnnotationRect(other)
+{
+	addBlurEffect();
 }
 
 AnnotationBlur *AnnotationBlur::clone() const
@@ -52,6 +57,11 @@ void AnnotationBlur::paint(QPainter *painter, const QStyleOptionGraphicsItem *, 
 
 		painter->drawImage(*mRect, sceneBehindItem);
 	}
+}
+
+void AnnotationBlur::addBlurEffect()
+{
+	setGraphicsEffect(new BlurEffect());
 }
 
 } // namespace kImageAnnotator

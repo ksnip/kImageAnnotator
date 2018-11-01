@@ -44,6 +44,7 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &oth
 	mShape = new QPainterPath(*other.mShape);
 	mPainterPen = other.mPainterPen;
 	mStroker = new QPainterPathStroker(mPainterPen);
+	setZValue(other.zValue());
 	setCursor(other.cursor());
 
 	addShadowIfRequired();

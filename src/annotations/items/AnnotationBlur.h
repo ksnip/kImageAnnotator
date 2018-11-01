@@ -31,12 +31,14 @@ class AnnotationBlur : public AbstractAnnotationRect
 {
 public:
 	AnnotationBlur(const QPointF &startPosition, AnnotationProperties *properties);
+	AnnotationBlur(const AnnotationBlur &other);
 	~AnnotationBlur() override = default;
 	AnnotationBlur *clone() const override;
 
 protected:
 	void updateShape() override;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
+	void addBlurEffect();
 };
 
 } // namespace kImageAnnotator
