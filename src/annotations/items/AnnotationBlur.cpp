@@ -45,12 +45,12 @@ void AnnotationBlur::paint(QPainter *painter, const QStyleOptionGraphicsItem *, 
 		QImage image(parentScene->sceneRect().size().toSize(), QImage::Format_ARGB32);
 		image.fill(Qt::transparent);
 
-		QPainter tmpPainter(&image);
-		parentScene->render(&tmpPainter);
+		QPainter imagePainter(&image);
+		parentScene->render(&imagePainter);
 
-		auto partOfImage = image.copy(mRect->toRect());
+		auto sceneBehindItem = image.copy(mRect->toRect());
 
-		painter->drawImage(*mRect, partOfImage);
+		painter->drawImage(*mRect, sceneBehindItem);
 	}
 }
 
