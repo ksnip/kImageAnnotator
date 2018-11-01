@@ -48,7 +48,7 @@ AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPositio
 	return newItem;
 }
 
-AbstractAnnotationItem *AnnotationItemFactory::clone(const QPointF &initPosition, const AbstractAnnotationItem *item)
+AbstractAnnotationItem *AnnotationItemFactory::clone(const AbstractAnnotationItem *item)
 {
 	Q_ASSERT(item != nullptr);
 

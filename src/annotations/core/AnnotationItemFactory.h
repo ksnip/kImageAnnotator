@@ -44,7 +44,7 @@ public:
 	void reset();
 
 	AbstractAnnotationItem *create(const QPointF &initPosition, ToolTypes toolType);
-	AbstractAnnotationItem *clone(const QPointF &initPosition, const AbstractAnnotationItem *item);
+	AbstractAnnotationItem *clone(const AbstractAnnotationItem *item);
 
 private:
 	int mNextNumber;

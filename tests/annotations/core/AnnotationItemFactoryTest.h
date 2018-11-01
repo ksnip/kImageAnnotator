@@ -42,13 +42,15 @@ private slots:
 	void initTestCase();
 	void cleanupTestCase();
 
-	void TestCreateItem_Should_CreateItemAtProvidedPosition();
-	void TestCreateItem_Should_ReturnNullPtrForUnknownType();
-	void TestCreateItem_Should_ReturnAnnotationLine_When_TypeIsLine();
-	void TestCreateItem_Should_ReturnAnnotationArrow_When_TypeIsArrow();
-	void TestCreateItem_Should_ReturnAnnotationRect_When_TypeIsRect();
-	void TestCreateItem_Should_ReturnAnnotationEllipse_When_TypeIsEllipse();
-	void TestCreateItem_Should_ReturnAnnotationNumber_When_TypeIsNumber();
+	void TestCreate_Should_CreateItemAtProvidedPosition();
+	void TestCreate_Should_ReturnNullPtrForUnknownType();
+	void TestCreate_Should_ReturnAnnotationLine_When_TypeIsLine();
+	void TestCreate_Should_ReturnAnnotationArrow_When_TypeIsArrow();
+	void TestCreate_Should_ReturnAnnotationRect_When_TypeIsRect();
+	void TestCreate_Should_ReturnAnnotationEllipse_When_TypeIsEllipse();
+	void TestCreate_Should_ReturnAnnotationNumber_When_TypeIsNumber();
+	void TestClone_Should_ReturnNewItemOfSameType();
+	void TestClone_Should_IncrementZValueForClonedItem();
 
 };
 
