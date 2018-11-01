@@ -32,6 +32,7 @@ using kImageAnnotator::AbstractAnnotationItem;
 using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::Config;
+using kImageAnnotator::AnnotationItemFactory;
 
 using kImageAnnotator::PasteCommand;
 

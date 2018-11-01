@@ -24,14 +24,16 @@ void PasteCommandTest::TestRedo_Should_AddPastedItemsToAnnotationAreaAtGivenPosi
 {
 	auto offset = QPointF(10, 10);
 	auto position = QPointF(50, 50);
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationArea annotationArea(config);
+	AnnotationItemFactory itemFactory(config);
 	auto properties = new AnnotationProperties(Qt::red, 1);
 	QLineF line(10, 10, 20, 20);
 	auto item = new AnnotationLine(line.p1(), properties);
 	item->addPoint(line.p2());
 	QHash<AbstractAnnotationItem *, QPointF> itemsWithOffset;
 	itemsWithOffset[item] = offset;
-	PasteCommand pasteCommand(itemsWithOffset, position, &annotationArea);
+	PasteCommand pasteCommand(itemsWithOffset, position, &itemFactory, &annotationArea);
 	QVERIFY(dynamic_cast<AnnotationLine *>(annotationArea.items().last()) == nullptr);
 
 	pasteCommand.redo();
@@ -45,14 +47,16 @@ void PasteCommandTest::TestUndo_Should_RemovePastedItemsFromAnnotationArea()
 {
 	auto offset = QPointF(10, 10);
 	auto position = QPointF(50, 50);
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationArea annotationArea(config);
+	AnnotationItemFactory itemFactory(config);
 	auto properties = new AnnotationProperties(Qt::red, 1);
 	QLineF line(10, 10, 20, 20);
 	auto item = new AnnotationLine(line.p1(), properties);
 	item->addPoint(line.p2());
 	QHash<AbstractAnnotationItem *, QPointF> itemsWithOffset;
 	itemsWithOffset[item] = offset;
-	PasteCommand pasteCommand(itemsWithOffset, position, &annotationArea);
+	PasteCommand pasteCommand(itemsWithOffset, position, &itemFactory, &annotationArea);
 	pasteCommand.redo();
 	QVERIFY(dynamic_cast<AnnotationLine *>(annotationArea.items().last()) != nullptr);
 
