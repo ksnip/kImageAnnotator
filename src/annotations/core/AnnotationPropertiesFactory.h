@@ -39,7 +39,7 @@ public:
 private:
 	Config *mConfig;
 	AnnotationProperties *createPropertiesObject(ToolTypes toolType) const;
-	void setShadowEnabled(AnnotationProperties *properties) const;
+	void setShadowEnabled(AnnotationProperties *properties, ToolTypes toolType) const;
 	void setColor(AnnotationProperties *properties, ToolTypes toolType) const;
 	void setTextColor(AnnotationProperties *properties, ToolTypes toolType) const;
 	void setWidthSize(AnnotationProperties *properties, ToolTypes toolType) const;

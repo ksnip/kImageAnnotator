@@ -17,36 +17,28 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_TOOLTYPES_H
-#define KIMAGEANNOTATOR_TOOLTYPES_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONBLUR_H
+#define KIMAGEANNOTATOR_ANNOTATIONBLUR_H
 
-#include <QMetaType>
+#include <QGraphicsScene>
+
+#include "AbstractAnnotationRect.h"
+#include "src/annotations/misc/BlurEffect.h"
 
 namespace kImageAnnotator {
 
-enum class ToolTypes
+class AnnotationBlur : public AbstractAnnotationRect
 {
-	Select,
-	Pen,
-	Marker,
-	Line,
-	Arrow,
-	Rect,
-	Ellipse,
-	Number,
-	Text,
-	Blur
+public:
+	AnnotationBlur(const QPointF &startPosition, AnnotationProperties *properties);
+	~AnnotationBlur() override = default;
+	AnnotationBlur *clone() const override;
+
+protected:
+	void updateShape() override;
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 };
-
-inline uint qHash(const ToolTypes &tool, uint seed)
-{
-	Q_UNUSED(seed)
-
-	return static_cast<uint>(tool);
-}
 
 } // namespace kImageAnnotator
 
-Q_DECLARE_METATYPE(kImageAnnotator::ToolTypes)
-
-#endif // KIMAGEANNOTATOR_TOOLTYPES_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONBLUR_H

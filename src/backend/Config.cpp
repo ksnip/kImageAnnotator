@@ -31,7 +31,8 @@ Config::Config()
 		ToolTypes::Rect,
 		ToolTypes::Ellipse,
 		ToolTypes::Number,
-		ToolTypes::Text
+		ToolTypes::Text,
+		ToolTypes::Blur
 	};
 	initGeneralSettings();
 	initToolSettings();
@@ -349,22 +350,16 @@ void Config::saveToolFontSize(ToolTypes toolType, int fontSize)
 QColor Config::defaultToolColor(ToolTypes toolType) const
 {
 	switch (toolType) {
-		case ToolTypes::Pen:
-			return { Qt::red };
 		case ToolTypes::Marker:
 			return { Qt::yellow };
 		case ToolTypes::Line:
 			return { Qt::blue };
-		case ToolTypes::Arrow:
-			return { Qt::red };
 		case ToolTypes::Rect:
 			return { Qt::gray };
-		case ToolTypes::Ellipse:
-			return { Qt::red };
-		case ToolTypes::Number:
-			return { Qt::red };
 		case ToolTypes::Text:
 			return { Qt::black };
+		case ToolTypes::Blur:
+			return { Qt::white };
 		default:
 			return { Qt::red };
 	}
@@ -384,18 +379,10 @@ QColor Config::defaultToolTextColor(ToolTypes toolType) const
 int Config::defaultToolWidth(ToolTypes toolType) const
 {
 	switch (toolType) {
-		case ToolTypes::Pen:
-			return 3;
 		case ToolTypes::Marker:
 			return 10;
-		case ToolTypes::Line:
-			return 3;
 		case ToolTypes::Arrow:
 			return 6;
-		case ToolTypes::Rect:
-			return 3;
-		case ToolTypes::Ellipse:
-			return 3;
 		case ToolTypes::Number:
 			return 5;
 		case ToolTypes::Text:
@@ -409,22 +396,11 @@ FillTypes Config::defaultToolFillType(ToolTypes toolType) const
 {
 
 	switch (toolType) {
-		case ToolTypes::Pen:
-			return FillTypes::NoFill;
-		case ToolTypes::Marker:
-			return FillTypes::NoFill;
-		case ToolTypes::Line:
-			return FillTypes::NoFill;
 		case ToolTypes::Arrow:
-			return FillTypes::Fill;
 		case ToolTypes::Rect:
-			return FillTypes::NoFill;
-		case ToolTypes::Ellipse:
-			return FillTypes::NoFill;
 		case ToolTypes::Number:
+		case ToolTypes::Blur:
 			return FillTypes::Fill;
-		case ToolTypes::Text:
-			return FillTypes::NoFill;
 		default:
 			return FillTypes::NoFill;
 	}

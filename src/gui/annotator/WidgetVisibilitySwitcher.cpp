@@ -119,6 +119,13 @@ void WidgetVisibilitySwitcher::updateVisibility()
 			setFillWidgetEnabled(true);
 			setFontSizeWidgetEnabled(true);
 			break;
+		case ToolTypes::Blur:
+			setColorWidgetEnabled(false);
+			setTextColorWidgetEnabled(false);
+			setSizeWidgetEnabled(false);
+			setFillWidgetEnabled(false);
+			setFontSizeWidgetEnabled(false);
+			break;
 		default:
 			qCritical("Unknown tooltype in WidgetVisibilitySwitcher");
 	}

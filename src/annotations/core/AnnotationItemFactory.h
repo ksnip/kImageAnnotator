@@ -30,6 +30,7 @@
 #include "src/annotations/items/AnnotationEllipse.h"
 #include "src/annotations/items/AnnotationNumber.h"
 #include "src/annotations/items/AnnotationText.h"
+#include "src/annotations/items/AnnotationBlur.h"
 #include "src/common/enum/ToolTypes.h"
 
 namespace kImageAnnotator {

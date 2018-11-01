@@ -31,8 +31,6 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/resizeHandles/PathResizeHandles.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/resizeHandles/ResizeHandle.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/resizeHandles/ResizeHandlesFactory.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/AnnotationItemClipboard.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/AnnotationContextMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationItem.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationLine.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationRect.cpp
@@ -44,6 +42,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationNumber.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationPen.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationText.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationBlur.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/KeyInputHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/TextCursor.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/AddCommand.cpp
@@ -55,6 +54,9 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ScaleCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/PasteCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/ShadowEffect.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/BlurEffect.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/AnnotationItemClipboard.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/AnnotationContextMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/backend/Config.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/IconCreater.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/CursorHelper.cpp

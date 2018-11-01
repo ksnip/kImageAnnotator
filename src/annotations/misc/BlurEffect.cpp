@@ -17,36 +17,14 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_TOOLTYPES_H
-#define KIMAGEANNOTATOR_TOOLTYPES_H
-
-#include <QMetaType>
+#include "BlurEffect.h"
 
 namespace kImageAnnotator {
 
-enum class ToolTypes
+BlurEffect::BlurEffect()
 {
-	Select,
-	Pen,
-	Marker,
-	Line,
-	Arrow,
-	Rect,
-	Ellipse,
-	Number,
-	Text,
-	Blur
-};
-
-inline uint qHash(const ToolTypes &tool, uint seed)
-{
-	Q_UNUSED(seed)
-
-	return static_cast<uint>(tool);
+	setBlurRadius(7);
+	setBlurHints(QGraphicsBlurEffect::PerformanceHint);
 }
 
 } // namespace kImageAnnotator
-
-Q_DECLARE_METATYPE(kImageAnnotator::ToolTypes)
-
-#endif // KIMAGEANNOTATOR_TOOLTYPES_H

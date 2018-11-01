@@ -99,6 +99,11 @@ void ToolPicker::initGui()
 	mLayout->addWidget(button, 5, 0);
 	mButtonGroup->addButton(button);
 
+	button = createButton(tr("Blur"), QIcon(QStringLiteral(":/icons/blur")), Qt::Key_B);
+	mButtonToTool[button] = ToolTypes::Blur;
+	mLayout->addWidget(button, 5, 1);
+	mButtonGroup->addButton(button);
+
 	setLayout(mLayout);
 	setFixedSize(sizeHint());
 }

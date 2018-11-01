@@ -34,7 +34,7 @@ AnnotationProperties *AnnotationPropertiesFactory::createProperties(ToolTypes to
 	setTextColor(properties, toolType);
 	setWidthSize(properties, toolType);
 	setFill(properties, toolType);
-	setShadowEnabled(properties);
+	setShadowEnabled(properties, toolType);
 	setPathProperties(properties);
 	setTextProperties(properties, toolType);
 
@@ -87,9 +87,13 @@ void AnnotationPropertiesFactory::setFill(AnnotationProperties *properties, Tool
 	properties->setFillType(mConfig->toolFillType(toolType));
 }
 
-void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties *properties) const
+void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties *properties, ToolTypes toolType) const
 {
-	properties->setShadowEnabled(mConfig->itemShadowEnabled());
+	if (toolType == ToolTypes::Blur || toolType == ToolTypes::Marker) {
+		properties->setShadowEnabled(false);
+	} else {
+		properties->setShadowEnabled(mConfig->itemShadowEnabled());
+	}
 }
 
 void AnnotationPropertiesFactory::setPathProperties(AnnotationProperties *properties) const

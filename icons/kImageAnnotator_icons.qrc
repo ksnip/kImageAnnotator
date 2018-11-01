@@ -10,6 +10,7 @@
         <file alias="select">select.svg</file>
         <file alias="text">text.svg</file>
         <file alias="ellipse">ellipse.svg</file>
+        <file alias="blur">blur.svg</file>
         <file alias="color">color.svg</file>
         <file alias="width">width.svg</file>
         <file alias="textColor">textColor.svg</file>
