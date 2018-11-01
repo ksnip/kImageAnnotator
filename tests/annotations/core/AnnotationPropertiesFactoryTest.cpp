@@ -29,7 +29,7 @@ void AnnotationPropertiesFactoryTest::cleanupTestCase()
 	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("$HOME/.config"));
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesSizeBasedOnConfiguration()
+void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesSizeBasedOnConfiguration()
 {
 	const int size = 13;
 	const ToolTypes tool = ToolTypes::Line;
@@ -42,7 +42,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesS
 	QCOMPARE(properties->Width(), size);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesColorBasedOnConfiguration()
+void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesColorBasedOnConfiguration()
 {
 	const QColor color(Qt::darkMagenta);
 	const ToolTypes tool = ToolTypes::Line;
@@ -55,7 +55,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesC
 	QCOMPARE(properties->color(), color);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesTextColorBasedOnConfiguration()
+void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesTextColorBasedOnConfiguration()
 {
 	const QColor foregroundColor(Qt::darkMagenta);
 	const ToolTypes tool = ToolTypes::Number;
@@ -68,7 +68,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesT
 	QCOMPARE(properties->textColor(), foregroundColor);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesFillTypeBasedOnConfiguration()
+void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesFillTypeBasedOnConfiguration()
 {
 	const FillTypes fill = FillTypes::NoFill;
 	const ToolTypes tool = ToolTypes::Rect;
@@ -81,7 +81,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetPropertiesF
 	QCOMPARE(properties->fillType(), fill);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetShadowEnabledBasedOnConfiguration()
+void AnnotationPropertiesFactoryTest::TestCreate_Should_SetShadowEnabledBasedOnConfiguration()
 {
 	const ToolTypes tool = ToolTypes::Pen;
 	auto config = new Config;
@@ -94,7 +94,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetShadowEnabl
 	QCOMPARE(properties->shadowEnabled(), enabled);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreatePathPropertiesWhenItemPen()
+void AnnotationPropertiesFactoryTest::TestCreate_Should_CreatePathPropertiesWhenItemPen()
 {
 	const ToolTypes tool = ToolTypes::Pen;
 	AnnotationPropertiesFactory propertiesFactory(new Config);
@@ -104,7 +104,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreatePathProp
 	QVERIFY(pathProperties != nullptr);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreatePathPropertiesWhenItemMarker()
+void AnnotationPropertiesFactoryTest::TestCreate_Should_CreatePathPropertiesWhenItemMarker()
 {
 	const ToolTypes tool = ToolTypes::Marker;
 	AnnotationPropertiesFactory propertiesFactory(new Config);
@@ -114,7 +114,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreatePathProp
 	QVERIFY(pathProperties != nullptr);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreateTextPropertiesWhenItemNumber()
+void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhenItemNumber()
 {
 	const ToolTypes tool = ToolTypes::Number;
 	AnnotationPropertiesFactory propertiesFactory(new Config);
@@ -124,7 +124,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreateTextProp
 	QVERIFY(textProperties != nullptr);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreateTextPropertiesWhenItemText()
+void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhenItemText()
 {
 	const ToolTypes tool = ToolTypes::Text;
 	AnnotationPropertiesFactory propertiesFactory(new Config);
@@ -134,7 +134,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_CreateTextProp
 	QVERIFY(textProperties != nullptr);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetSmootPathBasedOnConfiguration()
+void AnnotationPropertiesFactoryTest::TestCreate_Should_SetSmootPathBasedOnConfiguration()
 {
 	const ToolTypes tool = ToolTypes::Pen;
 	auto config = new Config;
@@ -151,7 +151,7 @@ void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetSmootPathBa
 	QCOMPARE(pathProperties->smoothFactor(), smootPathFactor);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreateProperties_Should_SetToolFontAndFontSizeBasedOnConfiguration()
+void AnnotationPropertiesFactoryTest::TestCreate_Should_SetToolFontAndFontSizeBasedOnConfiguration()
 {
 	const ToolTypes tool = ToolTypes::Number;
 	auto config = new Config;

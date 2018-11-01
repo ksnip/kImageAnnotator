@@ -25,6 +25,10 @@ AnnotationRect::AnnotationRect(const QPointF &startPosition, AnnotationPropertie
 {
 }
 
+AnnotationRect::AnnotationRect(const AnnotationRect &other) : AbstractAnnotationRect(other)
+{
+}
+
 AnnotationRect *AnnotationRect::clone() const
 {
 	return new AnnotationRect(*this);

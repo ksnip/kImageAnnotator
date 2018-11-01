@@ -39,17 +39,17 @@ private slots:
 	void initTestCase();
 	void cleanupTestCase();
 
-	void TestCreateProperties_Should_SetPropertiesSizeBasedOnConfiguration();
-	void TestCreateProperties_Should_SetPropertiesColorBasedOnConfiguration();
-	void TestCreateProperties_Should_SetPropertiesTextColorBasedOnConfiguration();
-	void TestCreateProperties_Should_SetPropertiesFillTypeBasedOnConfiguration();
-	void TestCreateProperties_Should_SetShadowEnabledBasedOnConfiguration();
-	void TestCreateProperties_Should_CreatePathPropertiesWhenItemPen();
-	void TestCreateProperties_Should_CreatePathPropertiesWhenItemMarker();
-	void TestCreateProperties_Should_CreateTextPropertiesWhenItemNumber();
-	void TestCreateProperties_Should_CreateTextPropertiesWhenItemText();
-	void TestCreateProperties_Should_SetSmootPathBasedOnConfiguration();
-	void TestCreateProperties_Should_SetToolFontAndFontSizeBasedOnConfiguration();
+	void TestCreate_Should_SetPropertiesSizeBasedOnConfiguration();
+	void TestCreate_Should_SetPropertiesColorBasedOnConfiguration();
+	void TestCreate_Should_SetPropertiesTextColorBasedOnConfiguration();
+	void TestCreate_Should_SetPropertiesFillTypeBasedOnConfiguration();
+	void TestCreate_Should_SetShadowEnabledBasedOnConfiguration();
+	void TestCreate_Should_CreatePathPropertiesWhenItemPen();
+	void TestCreate_Should_CreatePathPropertiesWhenItemMarker();
+	void TestCreate_Should_CreateTextPropertiesWhenItemNumber();
+	void TestCreate_Should_CreateTextPropertiesWhenItemText();
+	void TestCreate_Should_SetSmootPathBasedOnConfiguration();
+	void TestCreate_Should_SetToolFontAndFontSizeBasedOnConfiguration();
 };
 
 #endif // ANNOTATIONPROPERTIESFACTORYTEST_H

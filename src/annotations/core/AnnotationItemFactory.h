@@ -52,6 +52,7 @@ private:
 	AnnotationPropertiesFactory *mPropertiesFactory;
 
 	AbstractAnnotationItem *createItem(const QPointF &initPosition, const ToolTypes &toolType, AnnotationProperties *properties);
+	AbstractAnnotationItem *cloneItem(const AbstractAnnotationItem *item);
 	void setZValue(AbstractAnnotationItem *item);
 };
 

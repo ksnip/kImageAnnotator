@@ -41,19 +41,6 @@ AnnotationProperties *AnnotationPropertiesFactory::create(ToolTypes toolType) co
 	return properties;
 }
 
-AnnotationProperties *AnnotationPropertiesFactory::clone(const AnnotationProperties *properties) const
-{
-	AnnotationProperties *newProperty = nullptr;
-	if (auto textProperties = dynamic_cast<const AnnotationTextProperties *>(properties)) {
-		newProperty = new AnnotationTextProperties(*textProperties);
-	} else if (auto pathProperties = dynamic_cast<const AnnotationPathProperties *>(properties)) {
-		newProperty = new AnnotationPathProperties(*pathProperties);
-	} else {
-		newProperty = new AnnotationProperties(*properties);
-	}
-	return newProperty;
-}
-
 AnnotationProperties *AnnotationPropertiesFactory::createPropertiesObject(ToolTypes toolType) const
 {
 	switch (toolType) {

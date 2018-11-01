@@ -25,6 +25,11 @@ AnnotationArrow::AnnotationArrow(const QPointF &startPosition, AnnotationPropert
 {
 }
 
+AnnotationArrow::AnnotationArrow(const AnnotationArrow &other) : AbstractAnnotationLine(other)
+{
+
+}
+
 AnnotationArrow *AnnotationArrow::clone() const
 {
 	return new AnnotationArrow(*this);

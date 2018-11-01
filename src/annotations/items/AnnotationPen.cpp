@@ -26,6 +26,11 @@ AnnotationPen::AnnotationPen(const QPointF &startPosition, AnnotationPathPropert
 
 }
 
+AnnotationPen::AnnotationPen(const AnnotationPen &other) : AbstractAnnotationPath(other)
+{
+
+}
+
 AnnotationPen *AnnotationPen::clone() const
 {
 	return new AnnotationPen(*this);

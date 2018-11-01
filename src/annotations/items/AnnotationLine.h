@@ -28,6 +28,7 @@ class AnnotationLine : public AbstractAnnotationLine
 {
 public:
 	AnnotationLine(const QPointF &startPosition, AnnotationProperties *properties);
+	AnnotationLine(const AnnotationLine &other);
 	~AnnotationLine() override = default;
 	AnnotationLine *clone() const override;
 	ToolTypes toolType() const override;

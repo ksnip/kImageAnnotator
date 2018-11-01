@@ -25,6 +25,11 @@ AnnotationLine::AnnotationLine(const QPointF &startPosition, AnnotationPropertie
 {
 }
 
+AnnotationLine::AnnotationLine(const AnnotationLine &other) : AbstractAnnotationLine(other)
+{
+
+}
+
 AnnotationLine *AnnotationLine::clone() const
 {
 	return new AnnotationLine(*this);

@@ -52,8 +52,7 @@ AbstractAnnotationItem *AnnotationItemFactory::clone(const QPointF &initPosition
 {
 	Q_ASSERT(item != nullptr);
 
-	auto properties = mPropertiesFactory->clone(item->properties());
-	auto newItem = createItem(initPosition, item->toolType(), properties);
+	auto newItem = cloneItem(item);
 	setZValue(newItem);
 
 	return newItem;
@@ -61,40 +60,79 @@ AbstractAnnotationItem *AnnotationItemFactory::clone(const QPointF &initPosition
 
 AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPosition, const ToolTypes &toolType, AnnotationProperties *properties)
 {
-	AbstractAnnotationItem *item = nullptr;
+	AbstractAnnotationItem *newItem = nullptr;
 
 	switch (toolType) {
 		case ToolTypes::Pen:
-			item = new AnnotationPen(initPosition, dynamic_cast<AnnotationPathProperties *>(properties));
+			newItem = new AnnotationPen(initPosition, dynamic_cast<AnnotationPathProperties *>(properties));
 			break;
 		case ToolTypes::Marker:
-			item = new AnnotationPen(initPosition, dynamic_cast<AnnotationPathProperties *>(properties));
+			newItem = new AnnotationPen(initPosition, dynamic_cast<AnnotationPathProperties *>(properties));
 			break;
 		case ToolTypes::Line:
-			item = new AnnotationLine(initPosition, properties);
+			newItem = new AnnotationLine(initPosition, properties);
 			break;
 		case ToolTypes::Ellipse:
-			item = new AnnotationEllipse(initPosition, properties);
+			newItem = new AnnotationEllipse(initPosition, properties);
 			break;
 		case ToolTypes::Rect:
-			item = new AnnotationRect(initPosition, properties);
+			newItem = new AnnotationRect(initPosition, properties);
 			break;
 		case ToolTypes::Arrow:
-			item = new AnnotationArrow(initPosition, properties);
+			newItem = new AnnotationArrow(initPosition, properties);
 			break;
 		case ToolTypes::Number:
-			item = new AnnotationNumber(initPosition, mNextNumber++, dynamic_cast<AnnotationTextProperties *>(properties));
+			newItem = new AnnotationNumber(initPosition, mNextNumber++, dynamic_cast<AnnotationTextProperties *>(properties));
 			break;
 		case ToolTypes::Text:
-			item = new AnnotationText(initPosition, dynamic_cast<AnnotationTextProperties *>(properties));
+			newItem = new AnnotationText(initPosition, dynamic_cast<AnnotationTextProperties *>(properties));
 			break;
 		case ToolTypes::Blur:
-			item = new AnnotationBlur(initPosition, properties);
+			newItem = new AnnotationBlur(initPosition, properties);
 			break;
 		default:
 			qCritical("Cannot create item for provided tool type.");
 	}
-	return item;
+	return newItem;
+}
+
+AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotationItem *item)
+{
+	Q_ASSERT(item != nullptr);
+	AbstractAnnotationItem *newItem = nullptr;
+
+	switch (item->toolType()) {
+		case ToolTypes::Pen:
+			newItem = new AnnotationPen(*(static_cast<const AnnotationPen *>(item)));
+			break;
+		case ToolTypes::Marker:
+			newItem = new AnnotationPen(*(static_cast<const AnnotationPen *>(item)));
+			break;
+		case ToolTypes::Line:
+			newItem = new AnnotationLine(*(static_cast<const AnnotationLine *>(item)));
+			break;
+		case ToolTypes::Ellipse:
+			newItem = new AnnotationEllipse(*(static_cast<const AnnotationEllipse *>(item)));
+			break;
+		case ToolTypes::Rect:
+			newItem = new AnnotationRect(*(static_cast<const AnnotationRect *>(item)));
+			break;
+		case ToolTypes::Arrow:
+			newItem = new AnnotationArrow(*(static_cast<const AnnotationArrow *>(item)));
+			break;
+		case ToolTypes::Number:
+			newItem = new AnnotationNumber(*(static_cast<const AnnotationNumber *>(item)));
+			break;
+		case ToolTypes::Text:
+			newItem = new AnnotationText(*(static_cast<const AnnotationText *>(item)));
+			break;
+		case ToolTypes::Blur:
+			newItem = new AnnotationBlur(*(static_cast<const AnnotationBlur *>(item)));
+			break;
+		default:
+			qCritical("Cannot create item for provided tool type.");
+	}
+	return newItem;
 }
 
 void AnnotationItemFactory::setZValue(AbstractAnnotationItem *item)

@@ -28,6 +28,7 @@ class AnnotationEllipse : public AbstractAnnotationRect
 {
 public:
 	AnnotationEllipse(const QPointF &startPosition, AnnotationProperties *properties);
+	AnnotationEllipse(const AnnotationEllipse &other);
 	~AnnotationEllipse() override = default;
 	AnnotationEllipse *clone() const override;
 	ToolTypes toolType() const override;

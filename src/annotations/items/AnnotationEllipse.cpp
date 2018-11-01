@@ -25,6 +25,11 @@ AnnotationEllipse::AnnotationEllipse(const QPointF &startPosition, AnnotationPro
 {
 }
 
+AnnotationEllipse::AnnotationEllipse(const AnnotationEllipse &other) : AbstractAnnotationRect(other)
+{
+
+}
+
 AnnotationEllipse *AnnotationEllipse::clone() const
 {
 	return new AnnotationEllipse(*this);
