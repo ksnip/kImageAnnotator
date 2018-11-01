@@ -31,6 +31,11 @@ AnnotationPen *AnnotationPen::clone() const
 	return new AnnotationPen(*this);
 }
 
+ToolTypes AnnotationPen::toolType() const
+{
+	return ToolTypes::Pen;
+}
+
 void AnnotationPen::updateShape()
 {
 	QPainterPath path(*mPath);

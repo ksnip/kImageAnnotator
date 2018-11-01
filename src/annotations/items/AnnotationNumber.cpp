@@ -55,6 +55,11 @@ AnnotationNumber *AnnotationNumber::clone() const
 	return new AnnotationNumber(*this);
 }
 
+ToolTypes AnnotationNumber::toolType() const
+{
+	return ToolTypes::Number;
+}
+
 void AnnotationNumber::updateShape()
 {
 	QPainterPath path;

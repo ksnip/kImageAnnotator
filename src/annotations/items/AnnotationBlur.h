@@ -34,6 +34,7 @@ public:
 	AnnotationBlur(const AnnotationBlur &other);
 	~AnnotationBlur() override = default;
 	AnnotationBlur *clone() const override;
+	ToolTypes toolType() const override;
 
 protected:
 	void updateShape() override;

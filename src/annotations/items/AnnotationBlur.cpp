@@ -36,6 +36,11 @@ AnnotationBlur *AnnotationBlur::clone() const
 	return new AnnotationBlur(*this);
 }
 
+ToolTypes AnnotationBlur::toolType() const
+{
+	return ToolTypes::Blur;
+}
+
 void AnnotationBlur::updateShape()
 {
 	QPainterPath path;

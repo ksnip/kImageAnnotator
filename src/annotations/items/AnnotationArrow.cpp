@@ -30,6 +30,11 @@ AnnotationArrow *AnnotationArrow::clone() const
 	return new AnnotationArrow(*this);
 }
 
+ToolTypes AnnotationArrow::toolType() const
+{
+	return ToolTypes::Arrow;
+}
+
 void AnnotationArrow::updateShape()
 {
 	QPainterPath path(mLine->p1());

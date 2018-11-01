@@ -30,6 +30,11 @@ AnnotationEllipse *AnnotationEllipse::clone() const
 	return new AnnotationEllipse(*this);
 }
 
+ToolTypes AnnotationEllipse::toolType() const
+{
+	return ToolTypes::Ellipse;
+}
+
 void AnnotationEllipse::updateShape()
 {
     QPainterPath path;

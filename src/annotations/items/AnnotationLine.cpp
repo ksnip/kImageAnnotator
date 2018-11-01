@@ -30,6 +30,11 @@ AnnotationLine *AnnotationLine::clone() const
 	return new AnnotationLine(*this);
 }
 
+ToolTypes AnnotationLine::toolType() const
+{
+	return ToolTypes::Line;
+}
+
 void AnnotationLine::updateShape()
 {
 	QPainterPath path(mLine->p1());

@@ -41,6 +41,7 @@ public:
 	void finish() override;
 	const AnnotationTextProperties *properties() const override;
 	AnnotationText *clone() const override;
+	ToolTypes toolType() const override;
 
 protected:
 	void updateShape() override;

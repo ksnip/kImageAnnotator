@@ -30,6 +30,7 @@ public:
 	AnnotationEllipse(const QPointF &startPosition, AnnotationProperties *properties);
 	~AnnotationEllipse() override = default;
 	AnnotationEllipse *clone() const override;
+	ToolTypes toolType() const override;
 
 protected:
 	void updateShape() override;

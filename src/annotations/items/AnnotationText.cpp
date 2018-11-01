@@ -118,6 +118,11 @@ AnnotationText *AnnotationText::clone() const
 	return new AnnotationText(*this);
 }
 
+ToolTypes AnnotationText::toolType() const
+{
+	return ToolTypes::Text;
+}
+
 void AnnotationText::removeText(TextPositions direction)
 {
 	auto currentCursorPos = mTextCursor.position();

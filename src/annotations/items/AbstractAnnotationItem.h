@@ -27,6 +27,7 @@
 
 #include "src/annotations/properties/AnnotationProperties.h"
 #include "src/common/enum/FillTypes.h"
+#include "src/common/enum/ToolTypes.h"
 #include "src/annotations/misc/ShadowEffect.h"
 
 namespace kImageAnnotator {
@@ -37,8 +38,8 @@ public:
 	explicit AbstractAnnotationItem(AnnotationProperties *properties);
 	AbstractAnnotationItem(const AbstractAnnotationItem &other);
 	virtual ~AbstractAnnotationItem();
-	virtual QRectF boundingRect() const override;
-	virtual QPainterPath shape() const override;
+	virtual QRectF boundingRect() const;
+	virtual QPainterPath shape() const;
 	virtual bool intersects(const QRectF &rect) const;
 	virtual void addPoint(const QPointF &position, bool modified = false) = 0;
 	virtual void setPointAt(const QPointF &point, int index) = 0;
@@ -49,11 +50,12 @@ public:
 	virtual void finish();
 	virtual void scale(qreal sx, qreal sy) = 0;
 	virtual AbstractAnnotationItem *clone() const = 0;
+	virtual ToolTypes toolType() const = 0;
 
 protected:
 	void setShape(QPainterPath &newShape);
 	virtual void updateShape() = 0;
-	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 
 private:
 	AnnotationProperties *mProperties;
