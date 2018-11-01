@@ -31,11 +31,6 @@ AnnotationPen::AnnotationPen(const AnnotationPen &other) : AbstractAnnotationPat
 
 }
 
-AnnotationPen *AnnotationPen::clone() const
-{
-	return new AnnotationPen(*this);
-}
-
 ToolTypes AnnotationPen::toolType() const
 {
 	return ToolTypes::Pen;

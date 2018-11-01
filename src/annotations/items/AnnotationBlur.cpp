@@ -31,11 +31,6 @@ AnnotationBlur::AnnotationBlur(const AnnotationBlur &other) : AbstractAnnotation
 	addBlurEffect();
 }
 
-AnnotationBlur *AnnotationBlur::clone() const
-{
-	return new AnnotationBlur(*this);
-}
-
 ToolTypes AnnotationBlur::toolType() const
 {
 	return ToolTypes::Blur;

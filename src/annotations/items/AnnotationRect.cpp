@@ -29,11 +29,6 @@ AnnotationRect::AnnotationRect(const AnnotationRect &other) : AbstractAnnotation
 {
 }
 
-AnnotationRect *AnnotationRect::clone() const
-{
-	return new AnnotationRect(*this);
-}
-
 ToolTypes AnnotationRect::toolType() const
 {
 	return ToolTypes::Rect;

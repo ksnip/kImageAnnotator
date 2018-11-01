@@ -30,7 +30,6 @@ public:
 	AnnotationRect(const QPointF &startPosition, AnnotationProperties *properties);
 	AnnotationRect(const AnnotationRect &other);
 	~AnnotationRect() override = default;
-	AnnotationRect *clone() const override;
 	ToolTypes toolType() const override;
 
 protected:

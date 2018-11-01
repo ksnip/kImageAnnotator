@@ -33,7 +33,6 @@ public:
 	~AnnotationNumber() override = default;
 	void addPoint(const QPointF &position, bool modified = false) override;
 	const AnnotationTextProperties *properties() const override;
-	AnnotationNumber *clone() const override;
 	ToolTypes toolType() const override;
 
 protected:

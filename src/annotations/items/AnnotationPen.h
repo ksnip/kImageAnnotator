@@ -30,7 +30,6 @@ public:
 	AnnotationPen(const QPointF &startPosition, AnnotationPathProperties *properties);
 	AnnotationPen(const AnnotationPen &other);
 	~AnnotationPen() override = default;
-	AnnotationPen *clone() const override;
 	ToolTypes toolType() const override;
 
 protected:

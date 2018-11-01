@@ -33,7 +33,6 @@ public:
 	AnnotationBlur(const QPointF &startPosition, AnnotationProperties *properties);
 	AnnotationBlur(const AnnotationBlur &other);
 	~AnnotationBlur() override = default;
-	AnnotationBlur *clone() const override;
 	ToolTypes toolType() const override;
 
 protected:

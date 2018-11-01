@@ -30,11 +30,6 @@ AnnotationArrow::AnnotationArrow(const AnnotationArrow &other) : AbstractAnnotat
 
 }
 
-AnnotationArrow *AnnotationArrow::clone() const
-{
-	return new AnnotationArrow(*this);
-}
-
 ToolTypes AnnotationArrow::toolType() const
 {
 	return ToolTypes::Arrow;

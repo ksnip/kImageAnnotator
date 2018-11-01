@@ -30,11 +30,6 @@ AnnotationLine::AnnotationLine(const AnnotationLine &other) : AbstractAnnotation
 
 }
 
-AnnotationLine *AnnotationLine::clone() const
-{
-	return new AnnotationLine(*this);
-}
-
 ToolTypes AnnotationLine::toolType() const
 {
 	return ToolTypes::Line;

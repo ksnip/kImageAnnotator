@@ -113,11 +113,6 @@ const AnnotationTextProperties *AnnotationText::properties() const
 	return dynamic_cast<const AnnotationTextProperties *>(AbstractAnnotationItem::properties());
 }
 
-AnnotationText *AnnotationText::clone() const
-{
-	return new AnnotationText(*this);
-}
-
 ToolTypes AnnotationText::toolType() const
 {
 	return ToolTypes::Text;

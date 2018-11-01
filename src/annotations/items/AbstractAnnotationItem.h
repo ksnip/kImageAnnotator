@@ -49,7 +49,6 @@ public:
 	virtual const AnnotationProperties *properties() const;
 	virtual void finish();
 	virtual void scale(qreal sx, qreal sy) = 0;
-	virtual AbstractAnnotationItem *clone() const = 0;
 	virtual ToolTypes toolType() const = 0;
 
 protected:

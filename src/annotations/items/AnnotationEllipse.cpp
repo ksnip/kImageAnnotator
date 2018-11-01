@@ -30,11 +30,6 @@ AnnotationEllipse::AnnotationEllipse(const AnnotationEllipse &other) : AbstractA
 
 }
 
-AnnotationEllipse *AnnotationEllipse::clone() const
-{
-	return new AnnotationEllipse(*this);
-}
-
 ToolTypes AnnotationEllipse::toolType() const
 {
 	return ToolTypes::Ellipse;
@@ -42,9 +37,9 @@ ToolTypes AnnotationEllipse::toolType() const
 
 void AnnotationEllipse::updateShape()
 {
-    QPainterPath path;
-    path.addEllipse(*mRect);
-    setShape(path);
+	QPainterPath path;
+	path.addEllipse(*mRect);
+	setShape(path);
 }
 
 } // namespace kImageAnnotator
