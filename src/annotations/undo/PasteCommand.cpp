@@ -23,13 +23,16 @@ namespace kImageAnnotator {
 
 PasteCommand::PasteCommand(const QHash<kImageAnnotator::AbstractAnnotationItem *, QPointF> &itemsWithOffset,
                            const QPointF &position,
+                           AnnotationItemFactory *itemFactory,
                            kImageAnnotator::AnnotationArea *annotationArea)
 {
 	Q_ASSERT(annotationArea != nullptr);
+	Q_ASSERT(itemFactory != nullptr);
 
 	mAnnotationArea = annotationArea;
+	mItemFactory = itemFactory;
 	for (auto item : itemsWithOffset.keys()) {
-		auto pastedItem = item->clone();
+		auto pastedItem = itemFactory->clone(item);
 		pastedItem->setPosition(position + itemsWithOffset[item]);
 		mPastedItems.append(pastedItem);
 	}

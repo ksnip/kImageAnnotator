@@ -257,7 +257,7 @@ void AnnotationArea::deleteSelectedItems()
 void AnnotationArea::pasteCopiedItems(const QPointF &position)
 {
 	auto copiedItems = mItemCopier->copiedItemsWithOffset();
-	mUndoStack->push(new PasteCommand(copiedItems, position, this));
+	mUndoStack->push(new PasteCommand(copiedItems, position, mItemFactory, this));
 }
 
 } // namespace kImageAnnotator

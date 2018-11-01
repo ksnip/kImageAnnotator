@@ -29,13 +29,14 @@ namespace kImageAnnotator {
 class PasteCommand : public QUndoCommand
 {
 public:
-	PasteCommand(const QHash<AbstractAnnotationItem *, QPointF> &itemsWithOffset, const QPointF &position, AnnotationArea *annotationArea);
+	PasteCommand(const QHash<AbstractAnnotationItem *, QPointF> &itemsWithOffset, const QPointF &position, AnnotationItemFactory *itemFactory, AnnotationArea *annotationArea);
 	~PasteCommand();
 	void undo() override;
 	void redo() override;
 
 private:
 	AnnotationArea *mAnnotationArea;
+	AnnotationItemFactory *mItemFactory;
 	QVector<AbstractAnnotationItem*> mPastedItems;
 };
 
