@@ -21,14 +21,10 @@
 
 namespace kImageAnnotator {
 
-AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, int number, AnnotationTextProperties *properties)
+AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, AnnotationTextProperties *properties)
 	: AbstractAnnotationRect(centerPosition, properties)
 {
-	mNumberString = QString::number(number);
-	auto size = getTextRectSize();
-	mRect->setSize(size);
 	mRect->moveCenter(centerPosition);
-	updateShape();
 }
 
 AnnotationNumber::AnnotationNumber(const AnnotationNumber &other) : AbstractAnnotationRect(other)
@@ -53,6 +49,22 @@ const AnnotationTextProperties *AnnotationNumber::properties() const
 ToolTypes AnnotationNumber::toolType() const
 {
 	return ToolTypes::Number;
+}
+
+void AnnotationNumber::setNumber(int number)
+{
+	mNumberString = QString::number(number);
+	updateRect();
+}
+
+void AnnotationNumber::updateRect()
+{
+	prepareGeometryChange();
+	auto center = mRect->center();
+	auto size = getTextRectSize();
+	mRect->setSize(size);
+	mRect->moveCenter(center);
+	updateShape();
 }
 
 void AnnotationNumber::updateShape()

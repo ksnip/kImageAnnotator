@@ -27,13 +27,16 @@ namespace kImageAnnotator {
 
 class AnnotationNumber : public AbstractAnnotationRect
 {
+Q_OBJECT
+
 public:
-	AnnotationNumber(const QPointF &centerPosition, int number, AnnotationTextProperties *properties);
+	AnnotationNumber(const QPointF &centerPosition, AnnotationTextProperties *properties);
 	AnnotationNumber(const AnnotationNumber &other);
 	~AnnotationNumber() override = default;
 	void addPoint(const QPointF &position, bool modified = false) override;
 	const AnnotationTextProperties *properties() const override;
 	ToolTypes toolType() const override;
+	void setNumber(int number);
 
 protected:
 	void updateShape() override;
@@ -43,6 +46,7 @@ private:
 	QString mNumberString;
 
 	QSizeF getTextRectSize() const;
+	void updateRect();
 };
 
 } // namespace kImageAnnotator

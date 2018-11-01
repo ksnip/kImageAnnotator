@@ -31,7 +31,7 @@
 
 namespace kImageAnnotator {
 
-class AnnotationText : public QObject, public AbstractAnnotationRect
+class AnnotationText : public AbstractAnnotationRect
 {
 Q_OBJECT
 public:

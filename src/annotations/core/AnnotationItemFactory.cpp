@@ -24,18 +24,20 @@ namespace kImageAnnotator {
 AnnotationItemFactory::AnnotationItemFactory(Config *config)
 {
 	mPropertiesFactory = new AnnotationPropertiesFactory(config);
+	mNumberManager = new NumberManager();
 	reset();
 }
 
 AnnotationItemFactory::~AnnotationItemFactory()
 {
 	delete mPropertiesFactory;
+	delete mNumberManager;
 }
 
 void AnnotationItemFactory::reset()
 {
-	mNextNumber = 1;
 	mNextZValue = 1;
+	mNumberManager->reset();
 }
 
 AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPosition, ToolTypes toolType)
@@ -82,7 +84,8 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 			newItem = new AnnotationArrow(initPosition, properties);
 			break;
 		case ToolTypes::Number:
-			newItem = new AnnotationNumber(initPosition, mNextNumber++, dynamic_cast<AnnotationTextProperties *>(properties));
+			newItem = new AnnotationNumber(initPosition, dynamic_cast<AnnotationTextProperties *>(properties));
+			mNumberManager->addItem(dynamic_cast<AnnotationNumber *>(newItem));
 			break;
 		case ToolTypes::Text:
 			newItem = new AnnotationText(initPosition, dynamic_cast<AnnotationTextProperties *>(properties));

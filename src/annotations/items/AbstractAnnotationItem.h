@@ -20,7 +20,7 @@
 #ifndef KIMAGEANNOTATOR_ABSTRACTANNOTATIONITEM_H
 #define KIMAGEANNOTATOR_ABSTRACTANNOTATIONITEM_H
 
-#include <QGraphicsItem>
+#include <QGraphicsWidget>
 #include <QPainter>
 #include <QPainterPathStroker>
 #include <QCursor>
@@ -32,7 +32,7 @@
 
 namespace kImageAnnotator {
 
-class AbstractAnnotationItem : public QGraphicsItem
+class AbstractAnnotationItem : public QGraphicsWidget
 {
 public:
 	explicit AbstractAnnotationItem(AnnotationProperties *properties);

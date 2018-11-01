@@ -57,6 +57,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/BlurEffect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/AnnotationItemClipboard.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/AnnotationContextMenu.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/NumberManager.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/backend/Config.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/IconCreater.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/CursorHelper.cpp

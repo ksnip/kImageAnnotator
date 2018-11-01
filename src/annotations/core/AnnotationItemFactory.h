@@ -31,6 +31,7 @@
 #include "src/annotations/items/AnnotationNumber.h"
 #include "src/annotations/items/AnnotationText.h"
 #include "src/annotations/items/AnnotationBlur.h"
+#include "src/annotations/misc/NumberManager.h"
 #include "src/common/enum/ToolTypes.h"
 
 namespace kImageAnnotator {
@@ -47,9 +48,9 @@ public:
 	AbstractAnnotationItem *clone(const AbstractAnnotationItem *item);
 
 private:
-	int mNextNumber;
 	int mNextZValue;
 	AnnotationPropertiesFactory *mPropertiesFactory;
+	NumberManager *mNumberManager;
 
 	AbstractAnnotationItem *createItem(const QPointF &initPosition, const ToolTypes &toolType, AnnotationProperties *properties);
 	AbstractAnnotationItem *cloneItem(const AbstractAnnotationItem *item);
