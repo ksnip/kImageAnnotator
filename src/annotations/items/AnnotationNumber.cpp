@@ -57,6 +57,11 @@ void AnnotationNumber::setNumber(int number)
 	updateRect();
 }
 
+int AnnotationNumber::number() const
+{
+	return mNumberString.toInt();
+}
+
 void AnnotationNumber::updateRect()
 {
 	prepareGeometryChange();

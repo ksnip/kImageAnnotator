@@ -37,6 +37,7 @@ public:
 	const AnnotationTextProperties *properties() const override;
 	ToolTypes toolType() const override;
 	void setNumber(int number);
+	int number() const;
 
 protected:
 	void updateShape() override;

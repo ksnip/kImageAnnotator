@@ -21,6 +21,7 @@ set(UNITTEST_SRC
 	annotations/items/helper/KeyInputHelperTest.cpp
 	annotations/items/helper/TextCursorTest.cpp
 	annotations/misc/AnnotationItemClipboardTest.cpp
+	annotations/misc/NumberManagerTest.cpp
 	backend/ConfigTest.cpp
 	common/helper/KeyHelperTest.cpp
 	common/helper/MathHelperTest.cpp

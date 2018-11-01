@@ -17,32 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "NumberManager.h"
+#ifndef KIMAGEANNOTATOR_NUMBERMANAGERTEST_H
+#define KIMAGEANNOTATOR_NUMBERMANAGERTEST_H
 
-namespace kImageAnnotator {
+#include <QtTest>
+#include <src/annotations/misc/NumberManager.h>
 
-void kImageAnnotator::NumberManager::addItem(kImageAnnotator::AnnotationNumber *item)
+using kImageAnnotator::NumberManager;
+using kImageAnnotator::AnnotationNumber;
+using kImageAnnotator::AnnotationTextProperties;
+
+#include "src/annotations/misc/NumberManager.h"
+
+class NumberManagerTest : public QObject
 {
-	Q_ASSERT(item != nullptr);
+Q_OBJECT
 
-	connect(item, &AnnotationNumber::visibleChanged, this, &NumberManager::updateNumbers);
-	mItems.append(item);
-	updateNumbers();
-}
+private    slots:
+	void TestAddItem_Should_TriggerNumberUpdate();
+	void TestUpdateNumbers_Should_BeTriggered_When_ItemIsHidden();
+};
 
-void NumberManager::reset()
-{
-	mItems.clear();
-}
-
-void NumberManager::updateNumbers()
-{
-	auto number = 1;
-	for (auto item : mItems) {
-		if (item->isVisible()) {
-			item->setNumber(number++);
-		}
-	}
-}
-
-} // namespace kImageAnnotator
+#endif // KIMAGEANNOTATOR_NUMBERMANAGERTEST_H
