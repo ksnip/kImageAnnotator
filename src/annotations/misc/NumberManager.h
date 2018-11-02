@@ -30,15 +30,17 @@ class NumberManager : public QObject
 {
 Q_OBJECT
 public:
-	explicit NumberManager() = default;
+	explicit NumberManager();
 	~NumberManager() override = default;
 	void addItem(AnnotationNumber *item);
 	void reset();
 
 public slots:
 	void updateNumbers();
+	void firstNumberChanged(int number);
 
 private:
+	int mFirstNumber;
 	QVector<AnnotationNumber *> mItems;
 };
 

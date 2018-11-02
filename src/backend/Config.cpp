@@ -185,6 +185,14 @@ void Config::setSmoothFactor(int factor)
 	mSmoothFactor = factor;
 }
 
+void Config::setFirstBadgeNumber(int number)
+{
+	if (mFirstBadgeNumber != number) {
+		mFirstBadgeNumber = number;
+		emit firstBadgeNumberChanged(number);
+	}
+}
+
 // Private Methodes
 
 void Config::initToolSettings()
@@ -243,6 +251,7 @@ void Config::initGeneralSettings()
 	mSmoothPathEnabled = true;
 	mItemShadowEnabled = true;
 	mSmoothFactor = 7;
+	mFirstBadgeNumber = 1;
 }
 
 QColor Config::loadToolColor(ToolTypes toolType)

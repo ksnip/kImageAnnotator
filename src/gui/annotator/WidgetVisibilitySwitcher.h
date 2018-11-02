@@ -37,6 +37,7 @@ public:
 	void setSizeWidget(QWidget *widget);
 	void setFillWidget(QWidget *widget);
 	void setFontSizeWidget(QWidget *widget);
+	void setFirstNumberWidget(QWidget *widget);
 
 private:
 	ToolTypes mCurrentTool;
@@ -45,6 +46,7 @@ private:
 	QWidget *mWidthWidget;
 	QWidget *mFillWidget;
 	QWidget *mFontSizeWidget;
+	QWidget *mFirstNumberWidget;
 
 	void updateVisibility();
 	void setColorWidgetEnabled(bool enabled);
@@ -52,6 +54,7 @@ private:
 	void setSizeWidgetEnabled(bool enabled);
 	void setFillWidgetEnabled(bool enabled);
 	void setFontSizeWidgetEnabled(bool enabled);
+	void setFirstNumberWidgetEnabled(bool enabled);
 };
 
 } // namespace kImageAnnotator

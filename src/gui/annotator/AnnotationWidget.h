@@ -52,6 +52,7 @@ private:
 	ColorPicker *mTextColorPicker;
 	SizePicker *mFontSizePicker;
 	FillTypePicker *mFillTypePicker;
+	SizePicker *mFirstNumberPicker;
 	Config *mConfig;
 	WidgetVisibilitySwitcher mVisibilitySwitcher;
 
@@ -65,6 +66,7 @@ private slots:
 	void setToolWidth(int size);
 	void setToolFontSize(int fontSize);
 	void setToolFillType(FillTypes fill);
+	void setFirstBadgeNumber(int fontSize);
 };
 
 } // namespace kImageAnnotator

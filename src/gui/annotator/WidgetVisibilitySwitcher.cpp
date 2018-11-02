@@ -72,6 +72,12 @@ void WidgetVisibilitySwitcher::setFontSizeWidget(QWidget *widget)
 	updateVisibility();
 }
 
+void WidgetVisibilitySwitcher::setFirstNumberWidget(QWidget *widget)
+{
+	mFirstNumberWidget = widget;
+	updateVisibility();
+}
+
 void WidgetVisibilitySwitcher::updateVisibility()
 {
 	switch (mCurrentTool) {
@@ -81,6 +87,7 @@ void WidgetVisibilitySwitcher::updateVisibility()
 			setSizeWidgetEnabled(false);
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
+			setFirstNumberWidgetEnabled(false);
 			break;
 		case ToolTypes::Pen:
 		case ToolTypes::Marker:
@@ -89,6 +96,7 @@ void WidgetVisibilitySwitcher::updateVisibility()
 			setSizeWidgetEnabled(true);
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
+			setFirstNumberWidgetEnabled(false);
 			break;
 		case ToolTypes::Line:
 		case ToolTypes::Arrow:
@@ -97,6 +105,7 @@ void WidgetVisibilitySwitcher::updateVisibility()
 			setSizeWidgetEnabled(true);
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
+			setFirstNumberWidgetEnabled(false);
 			break;
 		case ToolTypes::Ellipse:
 		case ToolTypes::Rect:
@@ -105,6 +114,7 @@ void WidgetVisibilitySwitcher::updateVisibility()
 			setSizeWidgetEnabled(true);
 			setFillWidgetEnabled(true);
 			setFontSizeWidgetEnabled(false);
+			setFirstNumberWidgetEnabled(false);
 			break;
 		case ToolTypes::Number:
 			setColorWidgetEnabled(true);
@@ -112,12 +122,15 @@ void WidgetVisibilitySwitcher::updateVisibility()
 			setSizeWidgetEnabled(true);
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(true);
+			setFirstNumberWidgetEnabled(true);
+			break;
 		case ToolTypes::Text:
 			setColorWidgetEnabled(true);
 			setTextColorWidgetEnabled(true);
 			setSizeWidgetEnabled(true);
 			setFillWidgetEnabled(true);
 			setFontSizeWidgetEnabled(true);
+			setFirstNumberWidgetEnabled(false);
 			break;
 		case ToolTypes::Blur:
 			setColorWidgetEnabled(false);
@@ -125,6 +138,7 @@ void WidgetVisibilitySwitcher::updateVisibility()
 			setSizeWidgetEnabled(false);
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
+			setFirstNumberWidgetEnabled(false);
 			break;
 		default:
 			qCritical("Unknown tooltype in WidgetVisibilitySwitcher");
@@ -163,6 +177,13 @@ void WidgetVisibilitySwitcher::setFontSizeWidgetEnabled(bool enabled)
 {
 	if (mFontSizeWidget) {
 		mFontSizeWidget->setEnabled(enabled);
+	}
+}
+
+void WidgetVisibilitySwitcher::setFirstNumberWidgetEnabled(bool enabled)
+{
+	if (mFirstNumberWidget) {
+		mFirstNumberWidget->setEnabled(enabled);
 	}
 }
 

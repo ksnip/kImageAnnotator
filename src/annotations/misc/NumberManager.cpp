@@ -21,6 +21,11 @@
 
 namespace kImageAnnotator {
 
+NumberManager::NumberManager()
+{
+	mFirstNumber = 1;
+}
+
 void kImageAnnotator::NumberManager::addItem(kImageAnnotator::AnnotationNumber *item)
 {
 	Q_ASSERT(item != nullptr);
@@ -37,12 +42,18 @@ void NumberManager::reset()
 
 void NumberManager::updateNumbers()
 {
-	auto number = 1;
+	auto number = mFirstNumber;
 	for (auto item : mItems) {
 		if (item->isVisible()) {
 			item->setNumber(number++);
 		}
 	}
+}
+
+void NumberManager::firstNumberChanged(int number)
+{
+	mFirstNumber = number;
+	updateNumbers();
 }
 
 } // namespace kImageAnnotator

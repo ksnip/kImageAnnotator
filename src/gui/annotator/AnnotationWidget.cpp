@@ -40,16 +40,15 @@ AnnotationWidget::~AnnotationWidget()
 	delete mTextColorPicker;
 	delete mFontSizePicker;
 	delete mFillTypePicker;
+	delete mFirstNumberPicker;
 }
 
 QSize AnnotationWidget::sizeHint() const
 {
-	auto minWidth = mToolLayout->sizeHint().width();
-	auto minHeight = mToolLayout->sizeHint().height();
-	auto sceneWidth = mAnnotationArea->sceneRect().width();
-	auto sceneHeight = mAnnotationArea->sceneRect().height();
-	auto width = minWidth + sceneWidth;
-	auto height = (minHeight > sceneHeight) ? minHeight : sceneHeight;
+	auto minSize = mToolLayout->sizeHint();
+	auto sceneSize = mAnnotationArea->sceneRect().size();
+	auto width = minSize.width() + sceneSize.width();
+	auto height = (minSize.height() > sceneSize.height()) ? minSize.height() : sceneSize.height();
 	auto offset = QSize(100, 100);
 	return QSize(width, height) + offset;
 }
@@ -66,6 +65,8 @@ void AnnotationWidget::initGui()
 	mFontSizePicker = new SizePicker(QIcon(QStringLiteral(":/icons/fontSize")), tr("Font Size"));
 	mFontSizePicker->setRange(10, 40);
 	mFillTypePicker = new FillTypePicker(QIcon(QStringLiteral(":/icons/fillType")), tr("Fill Type"));
+	mFirstNumberPicker = new SizePicker(QIcon(QStringLiteral(":/icons/number")), tr("Starting Number"));
+	mFirstNumberPicker->setRange(1, 100);
 
 	mToolLayout->addWidget(mToolPicker);
 	mToolLayout->addSpacing(20);
@@ -74,6 +75,7 @@ void AnnotationWidget::initGui()
 	mToolLayout->addWidget(mTextColorPicker);
 	mToolLayout->addWidget(mFontSizePicker);
 	mToolLayout->addWidget(mFillTypePicker);
+	mToolLayout->addWidget(mFirstNumberPicker);
 	mToolLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 
 	mMainLayout->addLayout(mToolLayout);
@@ -84,6 +86,7 @@ void AnnotationWidget::initGui()
 	mVisibilitySwitcher.setSizeWidget(mWidthPicker);
 	mVisibilitySwitcher.setFillWidget(mFillTypePicker);
 	mVisibilitySwitcher.setFontSizeWidget(mFontSizePicker);
+	mVisibilitySwitcher.setFontSizeWidget(mFirstNumberPicker);
 
 	setLayout(mMainLayout);
 
@@ -96,6 +99,7 @@ void AnnotationWidget::initGui()
 	connect(mTextColorPicker, &ColorPicker::colorSelected, this, &AnnotationWidget::setToolTextColor);
 	connect(mFontSizePicker, &SizePicker::sizeSelected, this, &AnnotationWidget::setToolFontSize);
 	connect(mFillTypePicker, &FillTypePicker::fillSelected, this, &AnnotationWidget::setToolFillType);
+	connect(mFirstNumberPicker, &SizePicker::sizeSelected, this, &AnnotationWidget::setFirstBadgeNumber);
 	connect(mConfig, &Config::loaded, this, &AnnotationWidget::loadConfig);
 }
 
@@ -137,6 +141,11 @@ void AnnotationWidget::setToolFillType(FillTypes fill)
 void AnnotationWidget::setToolFontSize(int size)
 {
 	mConfig->setToolFontSize(size, mToolPicker->tool());
+}
+
+void AnnotationWidget::setFirstBadgeNumber(int number)
+{
+	mConfig->setFirstBadgeNumber(number);
 }
 
 } // namespace kImageAnnotator

@@ -74,7 +74,10 @@ public slots:
 	int smoothFactor() const;
 	void setSmoothFactor(int factor);
 
+	void setFirstBadgeNumber(int number);
+
 signals:
+	void firstBadgeNumberChanged(int number) const;
 	void toolChanged(ToolTypes tool) const;
 	void loaded();
 
@@ -91,6 +94,7 @@ private:
 	bool mSmoothPathEnabled;
 	bool mSaveToolSelection;
 	int mSmoothFactor;
+	int mFirstBadgeNumber;
 
 	void initToolSettings();
 	void initSelectedTool();

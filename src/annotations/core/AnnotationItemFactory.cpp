@@ -25,6 +25,7 @@ AnnotationItemFactory::AnnotationItemFactory(Config *config)
 {
 	mPropertiesFactory = new AnnotationPropertiesFactory(config);
 	mNumberManager = new NumberManager();
+	connect(config, &Config::firstBadgeNumberChanged, mNumberManager, &NumberManager::firstNumberChanged);
 	reset();
 }
 
