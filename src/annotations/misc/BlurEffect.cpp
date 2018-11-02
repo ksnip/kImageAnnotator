@@ -23,7 +23,7 @@ namespace kImageAnnotator {
 
 BlurEffect::BlurEffect()
 {
-	setBlurRadius(7);
+	setBlurRadius(9);
 	setBlurHints(QGraphicsBlurEffect::PerformanceHint);
 }
 
