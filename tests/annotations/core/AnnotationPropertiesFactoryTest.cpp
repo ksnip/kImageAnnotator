@@ -70,7 +70,7 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesTextColorBa
 
 void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesFillTypeBasedOnConfiguration()
 {
-	const FillTypes fill = FillTypes::NoFill;
+	const FillTypes fill = FillTypes::BorderAndNoFill;
 	const ToolTypes tool = ToolTypes::Rect;
 	auto configInstance = new Config;
 	configInstance->setToolFillType(fill, tool);

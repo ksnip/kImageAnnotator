@@ -64,6 +64,7 @@ private:
 	ShadowEffect *mShadowEffect;
 
 	bool hasFill() const;
+	bool hasBorder() const;
 	void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
 	void addShadowIfRequired();
 };

@@ -100,7 +100,12 @@ void AbstractAnnotationItem::paint(QPainter *painter, const QStyleOptionGraphics
 	shiftPainterForAllOddShapeWidth(painter);
 
 	painter->setRenderHint(QPainter::Antialiasing, true);
-	painter->setPen(mPainterPen);
+	if (hasBorder()) {
+		painter->setPen(mPainterPen);
+	} else {
+		painter->setPen(Qt::NoPen);
+	}
+
 	if (hasFill()) {
 		painter->setBrush(mProperties->color());
 	}
@@ -116,7 +121,12 @@ void AbstractAnnotationItem::shiftPainterForAllOddShapeWidth(QPainter *painter) 
 
 bool AbstractAnnotationItem::hasFill() const
 {
-	return mProperties->fillType() == FillTypes::Fill;
+	return mProperties->fillType() == FillTypes::BorderAndFill;
+}
+
+bool AbstractAnnotationItem::hasBorder() const
+{
+	return mProperties->fillType() == FillTypes::BorderAndFill || mProperties->fillType() == FillTypes::BorderAndNoFill;
 }
 
 void AbstractAnnotationItem::finish()

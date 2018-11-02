@@ -23,8 +23,9 @@ namespace kImageAnnotator {
 
 FillTypePicker::FillTypePicker(const QIcon &icon, const QString &tooltip)
 {
-	mFillList.append(FillTypes::Fill);
-	mFillList.append(FillTypes::NoFill);
+	mFillList.append(FillTypes::BorderAndFill);
+	mFillList.append(FillTypes::BorderAndNoFill);
+	mFillList.append(FillTypes::NoBorderAndNoFill);
 
 	initGui(icon, tooltip);
 
@@ -58,8 +59,9 @@ void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
 
 	mComboBox = new QComboBox(this);
 
-	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndFill")), QString(), mFillList.indexOf(FillTypes::Fill));
-	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndNoFill")), QString(), mFillList.indexOf(FillTypes::NoFill));
+	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndFill")), QString(), mFillList.indexOf(FillTypes::BorderAndFill));
+	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndNoFill")), QString(), mFillList.indexOf(FillTypes::BorderAndNoFill));
+	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_NoBorderAndNoFill")), QString(), mFillList.indexOf(FillTypes::NoBorderAndNoFill));
 	mComboBox->setFixedSize(QSize(55, mComboBox->sizeHint().height()));
 	mComboBox->setIconSize(QSize(25, 25));
 	mComboBox->setToolTip(tooltip);

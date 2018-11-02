@@ -395,7 +395,7 @@ int Config::defaultToolWidth(ToolTypes toolType) const
 		case ToolTypes::Number:
 			return 5;
 		case ToolTypes::Text:
-			return 10;
+			return 2;
 		default:
 			return 3;
 	}
@@ -403,15 +403,14 @@ int Config::defaultToolWidth(ToolTypes toolType) const
 
 FillTypes Config::defaultToolFillType(ToolTypes toolType) const
 {
-
 	switch (toolType) {
 		case ToolTypes::Arrow:
 		case ToolTypes::Rect:
 		case ToolTypes::Number:
 		case ToolTypes::Blur:
-			return FillTypes::Fill;
+			return FillTypes::BorderAndFill;
 		default:
-			return FillTypes::NoFill;
+			return FillTypes::BorderAndNoFill;
 	}
 }
 

@@ -24,7 +24,7 @@ void FillTypePickerTest::TestSelectFill_Should_EmitSignal_When_FillChanged()
 	qRegisterMetaType<FillTypes>("FillTypes");
 	FillTypePicker fillPicker(QIcon(), QStringLiteral("test"));
 	QSignalSpy spy(&fillPicker, &FillTypePicker::fillSelected);
-	auto expectedFill = FillTypes::Fill;
+	auto expectedFill = FillTypes::BorderAndFill;
 
 	fillPicker.setFill(expectedFill);
 

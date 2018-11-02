@@ -64,7 +64,7 @@ void AnnotationWidget::initGui()
 	mTextColorPicker = new ColorPicker(QIcon(QStringLiteral(":/icons/textColor")), tr("Text Color"));
 	mFontSizePicker = new SizePicker(QIcon(QStringLiteral(":/icons/fontSize")), tr("Font Size"));
 	mFontSizePicker->setRange(10, 40);
-	mFillTypePicker = new FillTypePicker(QIcon(QStringLiteral(":/icons/fillType")), tr("Fill Type"));
+	mFillTypePicker = new FillTypePicker(QIcon(QStringLiteral(":/icons/fillType")), tr("BorderAndFill Type"));
 	mFirstNumberPicker = new SizePicker(QIcon(QStringLiteral(":/icons/number")), tr("Starting Number"));
 	mFirstNumberPicker->setRange(1, 100);
 
