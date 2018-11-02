@@ -34,7 +34,7 @@ public:
 	void setCurrentTool(ToolTypes tool);
 	void setOutlineColorWidget(QWidget *widget);
 	void setForegroundColorWidget(QWidget *widget);
-	void setSizeWidget(QWidget *widget);
+	void setWidthWidget(QWidget *widget);
 	void setFillWidget(QWidget *widget);
 	void setFontSizeWidget(QWidget *widget);
 	void setFirstNumberWidget(QWidget *widget);
@@ -51,7 +51,7 @@ private:
 	void updateVisibility();
 	void setColorWidgetEnabled(bool enabled);
 	void setTextColorWidgetEnabled(bool enabled);
-	void setSizeWidgetEnabled(bool enabled);
+	void setWidthWidgetEnabled(bool enabled);
 	void setFillWidgetEnabled(bool enabled);
 	void setFontSizeWidgetEnabled(bool enabled);
 	void setFirstNumberWidgetEnabled(bool enabled);

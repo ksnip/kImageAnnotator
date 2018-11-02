@@ -83,10 +83,10 @@ void AnnotationWidget::initGui()
 
 	mVisibilitySwitcher.setOutlineColorWidget(mColorPicker);
 	mVisibilitySwitcher.setForegroundColorWidget(mTextColorPicker);
-	mVisibilitySwitcher.setSizeWidget(mWidthPicker);
+	mVisibilitySwitcher.setWidthWidget(mWidthPicker);
 	mVisibilitySwitcher.setFillWidget(mFillTypePicker);
 	mVisibilitySwitcher.setFontSizeWidget(mFontSizePicker);
-	mVisibilitySwitcher.setFontSizeWidget(mFirstNumberPicker);
+	mVisibilitySwitcher.setFirstNumberWidget(mFirstNumberPicker);
 
 	setLayout(mMainLayout);
 

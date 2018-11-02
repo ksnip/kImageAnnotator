@@ -54,7 +54,7 @@ void WidgetVisibilitySwitcher::setForegroundColorWidget(QWidget *widget)
 	updateVisibility();
 }
 
-void WidgetVisibilitySwitcher::setSizeWidget(QWidget *widget)
+void WidgetVisibilitySwitcher::setWidthWidget(QWidget *widget)
 {
 	mWidthWidget = widget;
 	updateVisibility();
@@ -84,7 +84,7 @@ void WidgetVisibilitySwitcher::updateVisibility()
 		case ToolTypes::Select:
 			setColorWidgetEnabled(false);
 			setTextColorWidgetEnabled(false);
-			setSizeWidgetEnabled(false);
+			setWidthWidgetEnabled(false);
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
 			setFirstNumberWidgetEnabled(false);
@@ -93,7 +93,7 @@ void WidgetVisibilitySwitcher::updateVisibility()
 		case ToolTypes::Marker:
 			setColorWidgetEnabled(true);
 			setTextColorWidgetEnabled(false);
-			setSizeWidgetEnabled(true);
+			setWidthWidgetEnabled(true);
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
 			setFirstNumberWidgetEnabled(false);
@@ -102,7 +102,7 @@ void WidgetVisibilitySwitcher::updateVisibility()
 		case ToolTypes::Arrow:
 			setColorWidgetEnabled(true);
 			setTextColorWidgetEnabled(false);
-			setSizeWidgetEnabled(true);
+			setWidthWidgetEnabled(true);
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
 			setFirstNumberWidgetEnabled(false);
@@ -111,7 +111,7 @@ void WidgetVisibilitySwitcher::updateVisibility()
 		case ToolTypes::Rect:
 			setColorWidgetEnabled(true);
 			setTextColorWidgetEnabled(false);
-			setSizeWidgetEnabled(true);
+			setWidthWidgetEnabled(true);
 			setFillWidgetEnabled(true);
 			setFontSizeWidgetEnabled(false);
 			setFirstNumberWidgetEnabled(false);
@@ -119,15 +119,15 @@ void WidgetVisibilitySwitcher::updateVisibility()
 		case ToolTypes::Number:
 			setColorWidgetEnabled(true);
 			setTextColorWidgetEnabled(true);
-			setSizeWidgetEnabled(true);
-			setFillWidgetEnabled(false);
+			setWidthWidgetEnabled(true);
+			setFillWidgetEnabled(true);
 			setFontSizeWidgetEnabled(true);
 			setFirstNumberWidgetEnabled(true);
 			break;
 		case ToolTypes::Text:
 			setColorWidgetEnabled(true);
 			setTextColorWidgetEnabled(true);
-			setSizeWidgetEnabled(true);
+			setWidthWidgetEnabled(true);
 			setFillWidgetEnabled(true);
 			setFontSizeWidgetEnabled(true);
 			setFirstNumberWidgetEnabled(false);
@@ -135,7 +135,7 @@ void WidgetVisibilitySwitcher::updateVisibility()
 		case ToolTypes::Blur:
 			setColorWidgetEnabled(false);
 			setTextColorWidgetEnabled(false);
-			setSizeWidgetEnabled(false);
+			setWidthWidgetEnabled(false);
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
 			setFirstNumberWidgetEnabled(false);
@@ -159,7 +159,7 @@ void WidgetVisibilitySwitcher::setTextColorWidgetEnabled(bool enabled)
 	}
 }
 
-void WidgetVisibilitySwitcher::setSizeWidgetEnabled(bool enabled)
+void WidgetVisibilitySwitcher::setWidthWidgetEnabled(bool enabled)
 {
 	if (mWidthWidget) {
 		mWidthWidget->setEnabled(enabled);
