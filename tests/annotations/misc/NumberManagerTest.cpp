@@ -61,4 +61,27 @@ void NumberManagerTest::TestUpdateNumbers_Should_BeTriggered_When_ItemIsHidden()
 	QCOMPARE(item3.number(), 2);
 }
 
+void NumberManagerTest::TestFirstNumberChanged_Should_TriggerUpdateOfAllNumber()
+{
+	auto properties1 = new AnnotationTextProperties(2, Qt::red);
+	auto properties2 = new AnnotationTextProperties(2, Qt::red);
+	auto properties3 = new AnnotationTextProperties(2, Qt::red);
+	AnnotationNumber item1(QPointF(0, 0), properties1);
+	AnnotationNumber item2(QPointF(0, 0), properties2);
+	AnnotationNumber item3(QPointF(0, 0), properties3);
+	NumberManager numberManager;
+	numberManager.addItem(&item1);
+	numberManager.addItem(&item2);
+	numberManager.addItem(&item3);
+	QCOMPARE(item1.number(), 1);
+	QCOMPARE(item2.number(), 2);
+	QCOMPARE(item3.number(), 3);
+
+	numberManager.firstNumberChanged(4);
+
+	QCOMPARE(item1.number(), 4);
+	QCOMPARE(item2.number(), 5);
+	QCOMPARE(item3.number(), 6);
+}
+
 QTEST_MAIN(NumberManagerTest);

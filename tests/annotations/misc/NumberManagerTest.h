@@ -36,6 +36,7 @@ Q_OBJECT
 private    slots:
 	void TestAddItem_Should_TriggerNumberUpdate();
 	void TestUpdateNumbers_Should_BeTriggered_When_ItemIsHidden();
+	void TestFirstNumberChanged_Should_TriggerUpdateOfAllNumber();
 };
 
 #endif // KIMAGEANNOTATOR_NUMBERMANAGERTEST_H
