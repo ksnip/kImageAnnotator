@@ -39,12 +39,28 @@ FillTypePicker::~FillTypePicker()
 	delete mComboBox;
 }
 
-void FillTypePicker::setFill(FillTypes fill)
+void FillTypePicker::setFillType(FillTypes fillType)
 {
-	auto index = mComboBox->findData(mFillList.indexOf(fill));
+	auto index = mComboBox->findData(mFillList.indexOf(fillType));
 	if (index != -1) {
 		mComboBox->setCurrentIndex(index);
-		setFillAndNotify(fill);
+		setFillAndNotify(fillType);
+	}
+}
+
+void FillTypePicker::addNoFillAndNoBorderToList()
+{
+	auto index = mComboBox->findData(mFillList.indexOf(FillTypes::NoBorderAndNoFill));
+	if (index == -1) {
+		mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_NoBorderAndNoFill")), QString(), mFillList.indexOf(FillTypes::NoBorderAndNoFill));
+	}
+}
+
+void FillTypePicker::removeNoFillAndNoBorderToList()
+{
+	auto index = mComboBox->findData(mFillList.indexOf(FillTypes::NoBorderAndNoFill));
+	if (index != -1) {
+		mComboBox->removeItem(index);
 	}
 }
 
@@ -61,7 +77,6 @@ void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
 
 	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndFill")), QString(), mFillList.indexOf(FillTypes::BorderAndFill));
 	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndNoFill")), QString(), mFillList.indexOf(FillTypes::BorderAndNoFill));
-	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_NoBorderAndNoFill")), QString(), mFillList.indexOf(FillTypes::NoBorderAndNoFill));
 	mComboBox->setFixedSize(QSize(55, mComboBox->sizeHint().height()));
 	mComboBox->setIconSize(QSize(25, 25));
 	mComboBox->setToolTip(tooltip);

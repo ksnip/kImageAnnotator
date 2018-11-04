@@ -81,12 +81,12 @@ void AnnotationWidget::initGui()
 	mMainLayout->addLayout(mToolLayout);
 	mMainLayout->addWidget(mView);
 
-	mVisibilitySwitcher.setOutlineColorWidget(mColorPicker);
-	mVisibilitySwitcher.setForegroundColorWidget(mTextColorPicker);
-	mVisibilitySwitcher.setWidthWidget(mWidthPicker);
-	mVisibilitySwitcher.setFillWidget(mFillTypePicker);
-	mVisibilitySwitcher.setFontSizeWidget(mFontSizePicker);
-	mVisibilitySwitcher.setFirstNumberWidget(mFirstNumberPicker);
+	mWidgetConfigurator.setColorWidget(mColorPicker);
+	mWidgetConfigurator.setTextColorWidget(mTextColorPicker);
+	mWidgetConfigurator.setWidthWidget(mWidthPicker);
+	mWidgetConfigurator.setFillTypeWidget(mFillTypePicker);
+	mWidgetConfigurator.setFontSizeWidget(mFontSizePicker);
+	mWidgetConfigurator.setFirstNumberWidget(mFirstNumberPicker);
 
 	setLayout(mMainLayout);
 
@@ -113,9 +113,9 @@ void AnnotationWidget::updateSelection(ToolTypes tool)
 	mColorPicker->setColor(mConfig->toolColor(tool));
 	mTextColorPicker->setColor(mConfig->toolTextColor(tool));
 	mWidthPicker->setSize(mConfig->toolWidth(tool));
-	mFillTypePicker->setFill(mConfig->toolFillType(tool));
+	mFillTypePicker->setFillType(mConfig->toolFillType(tool));
 	mFontSizePicker->setSize(mConfig->toolFontSize(tool));
-	mVisibilitySwitcher.setCurrentTool(tool);
+	mWidgetConfigurator.setCurrentTool(tool);
 }
 
 void AnnotationWidget::setToolColor(const QColor &color)

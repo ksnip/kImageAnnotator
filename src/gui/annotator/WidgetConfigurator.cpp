@@ -17,68 +17,100 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "WidgetVisibilitySwitcher.h"
+#include "WidgetConfigurator.h"
 
 namespace kImageAnnotator {
 
-WidgetVisibilitySwitcher::WidgetVisibilitySwitcher()
+WidgetConfigurator::WidgetConfigurator()
 {
 	mColorWidget = nullptr;
 	mTextColorWidget = nullptr;
 	mWidthWidget = nullptr;
-	mFillWidget = nullptr;
+	mFillTypeWidget = nullptr;
 	mFontSizeWidget = nullptr;
+	mFirstNumberWidget = nullptr;
 
 	mCurrentTool = ToolTypes::Select;
 }
 
-void WidgetVisibilitySwitcher::setCurrentTool(ToolTypes tool)
+void WidgetConfigurator::setCurrentTool(ToolTypes tool)
 {
 	if (mCurrentTool == tool) {
 		return;
 	}
 
 	mCurrentTool = tool;
-	updateVisibility();
+	updateWidgets();
 }
 
-void WidgetVisibilitySwitcher::setOutlineColorWidget(QWidget *widget)
+void WidgetConfigurator::setColorWidget(ColorPicker *widget)
 {
 	mColorWidget = widget;
-	updateVisibility();
+	updateWidgets();
 }
 
-void WidgetVisibilitySwitcher::setForegroundColorWidget(QWidget *widget)
+void WidgetConfigurator::setTextColorWidget(ColorPicker *widget)
 {
 	mTextColorWidget = widget;
-	updateVisibility();
+	updateWidgets();
 }
 
-void WidgetVisibilitySwitcher::setWidthWidget(QWidget *widget)
+void WidgetConfigurator::setWidthWidget(SizePicker *widget)
 {
 	mWidthWidget = widget;
-	updateVisibility();
+	updateWidgets();
 }
 
-void WidgetVisibilitySwitcher::setFillWidget(QWidget *widget)
+void WidgetConfigurator::setFillTypeWidget(FillTypePicker *widget)
 {
-	mFillWidget = widget;
-	updateVisibility();
+	mFillTypeWidget = widget;
+	updateWidgets();
 }
 
-void WidgetVisibilitySwitcher::setFontSizeWidget(QWidget *widget)
+void WidgetConfigurator::setFontSizeWidget(SizePicker *widget)
 {
 	mFontSizeWidget = widget;
-	updateVisibility();
+	updateWidgets();
 }
 
-void WidgetVisibilitySwitcher::setFirstNumberWidget(QWidget *widget)
+void WidgetConfigurator::setFirstNumberWidget(SizePicker *widget)
 {
 	mFirstNumberWidget = widget;
+	updateWidgets();
+}
+
+void WidgetConfigurator::updateWidgets()
+{
+	updateProperties();
 	updateVisibility();
 }
 
-void WidgetVisibilitySwitcher::updateVisibility()
+void WidgetConfigurator::updateProperties()
+{
+	switch (mCurrentTool) {
+		case ToolTypes::Text:
+		case ToolTypes::Number:
+			setNoFillAndNoBorderEnabled(true);
+			break;
+		default:
+			setNoFillAndNoBorderEnabled(false);
+	}
+}
+
+void WidgetConfigurator::setNoFillAndNoBorderEnabled(bool enabled) const
+{
+	if (mFillTypeWidget == nullptr) {
+		return;
+	}
+
+	if (enabled) {
+		mFillTypeWidget->addNoFillAndNoBorderToList();
+	} else {
+		mFillTypeWidget->removeNoFillAndNoBorderToList();
+	}
+}
+
+void WidgetConfigurator::updateVisibility()
 {
 	switch (mCurrentTool) {
 		case ToolTypes::Select:
@@ -141,46 +173,46 @@ void WidgetVisibilitySwitcher::updateVisibility()
 			setFirstNumberWidgetEnabled(false);
 			break;
 		default:
-			qCritical("Unknown tooltype in WidgetVisibilitySwitcher");
+			qCritical("Unknown tooltype in WidgetConfigurator");
 	}
 }
 
-void WidgetVisibilitySwitcher::setColorWidgetEnabled(bool enabled)
+void WidgetConfigurator::setColorWidgetEnabled(bool enabled)
 {
 	if (mColorWidget) {
 		mColorWidget->setEnabled(enabled);
 	}
 }
 
-void WidgetVisibilitySwitcher::setTextColorWidgetEnabled(bool enabled)
+void WidgetConfigurator::setTextColorWidgetEnabled(bool enabled)
 {
 	if (mTextColorWidget) {
 		mTextColorWidget->setEnabled(enabled);
 	}
 }
 
-void WidgetVisibilitySwitcher::setWidthWidgetEnabled(bool enabled)
+void WidgetConfigurator::setWidthWidgetEnabled(bool enabled)
 {
 	if (mWidthWidget) {
 		mWidthWidget->setEnabled(enabled);
 	}
 }
 
-void WidgetVisibilitySwitcher::setFillWidgetEnabled(bool enabled)
+void WidgetConfigurator::setFillWidgetEnabled(bool enabled)
 {
-	if (mFillWidget) {
-		mFillWidget->setEnabled(enabled);
+	if (mFillTypeWidget) {
+		mFillTypeWidget->setEnabled(enabled);
 	}
 }
 
-void WidgetVisibilitySwitcher::setFontSizeWidgetEnabled(bool enabled)
+void WidgetConfigurator::setFontSizeWidgetEnabled(bool enabled)
 {
 	if (mFontSizeWidget) {
 		mFontSizeWidget->setEnabled(enabled);
 	}
 }
 
-void WidgetVisibilitySwitcher::setFirstNumberWidgetEnabled(bool enabled)
+void WidgetConfigurator::setFirstNumberWidgetEnabled(bool enabled)
 {
 	if (mFirstNumberWidget) {
 		mFirstNumberWidget->setEnabled(enabled);

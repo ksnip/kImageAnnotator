@@ -17,37 +17,43 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_WIDGETVISIBILITYSWITCHER_H
-#define KIMAGEANNOTATOR_WIDGETVISIBILITYSWITCHER_H
+#ifndef KIMAGEANNOTATOR_WIDGETCONFIGURATORSWITCHER_H
+#define KIMAGEANNOTATOR_WIDGETCONFIGURATORSWITCHER_H
 
 #include <QWidget>
 
 #include "src/common/enum/ToolTypes.h"
+#include "src/widgets/ColorPicker.h"
+#include "src/widgets/FillTypePicker.h"
+#include "src/widgets/ToolPicker.h"
+#include "src/widgets/SizePicker.h"
 
 namespace kImageAnnotator {
 
-class WidgetVisibilitySwitcher
+class WidgetConfigurator
 {
 public:
-	explicit WidgetVisibilitySwitcher();
-	~WidgetVisibilitySwitcher() = default;
+	explicit WidgetConfigurator();
+	~WidgetConfigurator() = default;
 	void setCurrentTool(ToolTypes tool);
-	void setOutlineColorWidget(QWidget *widget);
-	void setForegroundColorWidget(QWidget *widget);
-	void setWidthWidget(QWidget *widget);
-	void setFillWidget(QWidget *widget);
-	void setFontSizeWidget(QWidget *widget);
-	void setFirstNumberWidget(QWidget *widget);
+	void setColorWidget(ColorPicker *widget);
+	void setTextColorWidget(ColorPicker *widget);
+	void setWidthWidget(SizePicker *widget);
+	void setFillTypeWidget(FillTypePicker *widget);
+	void setFontSizeWidget(SizePicker *widget);
+	void setFirstNumberWidget(SizePicker *widget);
 
 private:
 	ToolTypes mCurrentTool;
-	QWidget *mColorWidget;
-	QWidget *mTextColorWidget;
-	QWidget *mWidthWidget;
-	QWidget *mFillWidget;
-	QWidget *mFontSizeWidget;
-	QWidget *mFirstNumberWidget;
+	ColorPicker *mColorWidget;
+	ColorPicker *mTextColorWidget;
+	SizePicker *mWidthWidget;
+	FillTypePicker *mFillTypeWidget;
+	SizePicker *mFontSizeWidget;
+	SizePicker *mFirstNumberWidget;
 
+	void updateWidgets();
+	void updateProperties();
 	void updateVisibility();
 	void setColorWidgetEnabled(bool enabled);
 	void setTextColorWidgetEnabled(bool enabled);
@@ -55,8 +61,9 @@ private:
 	void setFillWidgetEnabled(bool enabled);
 	void setFontSizeWidgetEnabled(bool enabled);
 	void setFirstNumberWidgetEnabled(bool enabled);
+	void setNoFillAndNoBorderEnabled(bool enabled) const;
 };
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_WIDGETVISIBILITYSWITCHER_H
+#endif // KIMAGEANNOTATOR_WIDGETCONFIGURATORSWITCHER_H

@@ -36,10 +36,12 @@ Q_OBJECT
 public:
 	FillTypePicker(const QIcon &icon, const QString &tooltip);
 	~FillTypePicker();
-	void setFill(FillTypes fill);
+	void setFillType(FillTypes fillType);
+	void addNoFillAndNoBorderToList();
+	void removeNoFillAndNoBorderToList();
 
 signals:
-	void fillSelected(FillTypes fill) const;
+	void fillSelected(FillTypes fillType) const;
 
 private:
 	QHBoxLayout *mLayout;
