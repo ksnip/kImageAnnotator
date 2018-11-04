@@ -17,30 +17,30 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "SizePicker.h"
+#include "NumberPicker.h"
 
 namespace kImageAnnotator {
 
-SizePicker::SizePicker(const QIcon &icon, const QString &tooltip)
+NumberPicker::NumberPicker(const QIcon &icon, const QString &tooltip)
 {
 	initGui(icon, tooltip);
 
-	connect(mSpinBox, &CustomSpinBox::valueChanged, this, &SizePicker::selectionChanged);
+	connect(mSpinBox, &CustomSpinBox::valueChanged, this, &NumberPicker::selectionChanged);
 }
 
-SizePicker::~SizePicker()
+NumberPicker::~NumberPicker()
 {
 	delete mLayout;
 	delete mSpinBox;
 	delete mLabel;
 }
 
-void SizePicker::setSize(int size)
+void NumberPicker::setNumber(int number)
 {
-	mSpinBox->setValue(size);
+	mSpinBox->setValue(number);
 }
 
-void SizePicker::initGui(const QIcon &icon, const QString &tooltip)
+void NumberPicker::initGui(const QIcon &icon, const QString &tooltip)
 {
 	mLayout = new QHBoxLayout(this);
 	mLayout->setContentsMargins(0, 0, 0, 0);
@@ -63,17 +63,17 @@ void SizePicker::initGui(const QIcon &icon, const QString &tooltip)
 	setFixedSize(sizeHint());
 }
 
-void SizePicker::setSizeAndNotify(int size)
+void NumberPicker::setNumberAndNotify(int size)
 {
-	emit sizeSelected(size);
+	emit numberSelected(size);
 }
 
-void SizePicker::selectionChanged()
+void NumberPicker::selectionChanged()
 {
-	setSizeAndNotify(mSpinBox->value());
+	setNumberAndNotify(mSpinBox->value());
 }
 
-void SizePicker::setRange(int min, int max)
+void NumberPicker::setRange(int min, int max)
 {
 	if (min > 0 && max >= min) {
 		mSpinBox->setMinimum(min);

@@ -60,12 +60,12 @@ void AnnotationWidget::initGui()
 	mToolLayout = new QVBoxLayout();
 	mToolPicker = new ToolPicker();
 	mColorPicker = new ColorPicker(QIcon(QStringLiteral(":/icons/color")), tr("Color"));
-	mWidthPicker = new SizePicker(QIcon(QStringLiteral(":/icons/width")), tr("Width"));
+	mWidthPicker = new NumberPicker(QIcon(QStringLiteral(":/icons/width")), tr("Width"));
 	mTextColorPicker = new ColorPicker(QIcon(QStringLiteral(":/icons/textColor")), tr("Text Color"));
-	mFontSizePicker = new SizePicker(QIcon(QStringLiteral(":/icons/fontSize")), tr("Font Size"));
+	mFontSizePicker = new NumberPicker(QIcon(QStringLiteral(":/icons/fontSize")), tr("Font Size"));
 	mFontSizePicker->setRange(10, 40);
 	mFillTypePicker = new FillTypePicker(QIcon(QStringLiteral(":/icons/fillType")), tr("BorderAndFill Type"));
-	mFirstNumberPicker = new SizePicker(QIcon(QStringLiteral(":/icons/number")), tr("Starting Number"));
+	mFirstNumberPicker = new NumberPicker(QIcon(QStringLiteral(":/icons/number")), tr("Starting Number"));
 	mFirstNumberPicker->setRange(1, 100);
 
 	mToolLayout->addWidget(mToolPicker);
@@ -95,11 +95,11 @@ void AnnotationWidget::initGui()
 	connect(mToolPicker, &ToolPicker::toolSelected, mConfig, &Config::setSelectedTool);
 	connect(mToolPicker, &ToolPicker::toolSelected, this, &AnnotationWidget::updateSelection);
 	connect(mColorPicker, &ColorPicker::colorSelected, this, &AnnotationWidget::setToolColor);
-	connect(mWidthPicker, &SizePicker::sizeSelected, this, &AnnotationWidget::setToolWidth);
+	connect(mWidthPicker, &NumberPicker::numberSelected, this, &AnnotationWidget::setToolWidth);
 	connect(mTextColorPicker, &ColorPicker::colorSelected, this, &AnnotationWidget::setToolTextColor);
-	connect(mFontSizePicker, &SizePicker::sizeSelected, this, &AnnotationWidget::setToolFontSize);
+	connect(mFontSizePicker, &NumberPicker::numberSelected, this, &AnnotationWidget::setToolFontSize);
 	connect(mFillTypePicker, &FillTypePicker::fillSelected, this, &AnnotationWidget::setToolFillType);
-	connect(mFirstNumberPicker, &SizePicker::sizeSelected, this, &AnnotationWidget::setFirstBadgeNumber);
+	connect(mFirstNumberPicker, &NumberPicker::numberSelected, this, &AnnotationWidget::setFirstBadgeNumber);
 	connect(mConfig, &Config::loaded, this, &AnnotationWidget::loadConfig);
 }
 
@@ -112,9 +112,9 @@ void AnnotationWidget::updateSelection(ToolTypes tool)
 {
 	mColorPicker->setColor(mConfig->toolColor(tool));
 	mTextColorPicker->setColor(mConfig->toolTextColor(tool));
-	mWidthPicker->setSize(mConfig->toolWidth(tool));
+	mWidthPicker->setNumber(mConfig->toolWidth(tool));
 	mFillTypePicker->setFillType(mConfig->toolFillType(tool));
-	mFontSizePicker->setSize(mConfig->toolFontSize(tool));
+	mFontSizePicker->setNumber(mConfig->toolFontSize(tool));
 	mWidgetConfigurator.setCurrentTool(tool);
 }
 

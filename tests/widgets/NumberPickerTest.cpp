@@ -17,21 +17,19 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SIZEPICKERTEST_H
-#define KIMAGEANNOTATOR_SIZEPICKERTEST_H
+#include "NumberPickerTest.h"
 
-#include <QtTest>
-
-#include "src/widgets/SizePicker.h"
-
-using kImageAnnotator::SizePicker;
-
-class SizePickerTest : public QObject
+void NumberPickerTest::TestSelectNumber_Should_EmitSignal_When_NumberChanged()
 {
-Q_OBJECT
+    NumberPicker sizePicker(QIcon(), QStringLiteral("test"));
+    QSignalSpy spy(&sizePicker, &NumberPicker::numberSelected);
+    auto expectedSize = 8;
 
-private slots:
-    void TestSelectSize_Should_EmitSignal_When_SizeChanged();
-};
+    sizePicker.setNumber(expectedSize);
 
-#endif // KIMAGEANNOTATOR_SIZEPICKERTEST_H
+    QCOMPARE(spy.count(), 1);
+    auto resultSize = qvariant_cast<int>(spy.at(0).at(0));
+    QCOMPARE(resultSize, expectedSize);
+}
+
+QTEST_MAIN(SizePickerTest);

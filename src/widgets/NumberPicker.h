@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SIZEPICKER_H
-#define KIMAGEANNOTATOR_SIZEPICKER_H
+#ifndef KIMAGEANNOTATOR_NUMBERPICKER_H
+#define KIMAGEANNOTATOR_NUMBERPICKER_H
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -29,18 +29,18 @@
 
 namespace kImageAnnotator {
 
-class SizePicker : public QWidget
+class NumberPicker : public QWidget
 {
 Q_OBJECT
 
 public:
-	SizePicker(const QIcon &icon, const QString &tooltip);
-	~SizePicker();
-	void setSize(int size);
+	NumberPicker(const QIcon &icon, const QString &tooltip);
+	~NumberPicker();
+	void setNumber(int number);
 	void setRange(int min, int max);
 
 signals:
-	void sizeSelected(int size) const;
+	void numberSelected(int number) const;
 
 private:
 	QHBoxLayout *mLayout;
@@ -48,7 +48,7 @@ private:
 	QLabel *mLabel;
 
 	void initGui(const QIcon &icon, const QString &tooltip);
-	void setSizeAndNotify(int size);
+	void setNumberAndNotify(int size);
 
 private slots:
 	void selectionChanged();
@@ -56,4 +56,4 @@ private slots:
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_SIZEPICKER_H
+#endif // KIMAGEANNOTATOR_NUMBERPICKER_H

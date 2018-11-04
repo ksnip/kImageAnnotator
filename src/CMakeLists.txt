@@ -69,7 +69,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/common/filter/IgnoreShortcutsFilter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ToolPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ColorPicker.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/SizePicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/NumberPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/FillTypePicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomSpinBox.cpp
 	)

@@ -26,7 +26,7 @@
 #include "src/widgets/ColorPicker.h"
 #include "src/widgets/FillTypePicker.h"
 #include "src/widgets/ToolPicker.h"
-#include "src/widgets/SizePicker.h"
+#include "src/widgets/NumberPicker.h"
 
 namespace kImageAnnotator {
 
@@ -38,19 +38,19 @@ public:
 	void setCurrentTool(ToolTypes tool);
 	void setColorWidget(ColorPicker *widget);
 	void setTextColorWidget(ColorPicker *widget);
-	void setWidthWidget(SizePicker *widget);
+	void setWidthWidget(NumberPicker *widget);
 	void setFillTypeWidget(FillTypePicker *widget);
-	void setFontSizeWidget(SizePicker *widget);
-	void setFirstNumberWidget(SizePicker *widget);
+	void setFontSizeWidget(NumberPicker *widget);
+	void setFirstNumberWidget(NumberPicker *widget);
 
 private:
 	ToolTypes mCurrentTool;
 	ColorPicker *mColorWidget;
 	ColorPicker *mTextColorWidget;
-	SizePicker *mWidthWidget;
+	NumberPicker *mWidthWidget;
 	FillTypePicker *mFillTypeWidget;
-	SizePicker *mFontSizeWidget;
-	SizePicker *mFirstNumberWidget;
+	NumberPicker *mFontSizeWidget;
+	NumberPicker *mFirstNumberWidget;
 
 	void updateWidgets();
 	void updateProperties();

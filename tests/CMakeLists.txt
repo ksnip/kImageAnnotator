@@ -34,7 +34,7 @@ set(UNITTEST_SRC
 	gui/scaler/ScaleSizeHandlerTest.cpp
 	widgets/ToolPickerTest.cpp
 	widgets/ColorPickerTest.cpp
-	widgets/SizePickerTest.cpp
+	widgets/NumberPickerTest.cpp
 	widgets/FillTypePickerTest.cpp
 	widgets/CustomSpinBoxTest.cpp
 	)

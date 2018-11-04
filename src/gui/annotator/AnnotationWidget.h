@@ -28,7 +28,7 @@
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/widgets/ToolPicker.h"
 #include "src/widgets/ColorPicker.h"
-#include "src/widgets/SizePicker.h"
+#include "src/widgets/NumberPicker.h"
 #include "src/widgets/FillTypePicker.h"
 
 namespace kImageAnnotator {
@@ -48,11 +48,11 @@ private:
 	QVBoxLayout *mToolLayout;
 	ToolPicker *mToolPicker;
 	ColorPicker *mColorPicker;
-	SizePicker *mWidthPicker;
+	NumberPicker *mWidthPicker;
 	ColorPicker *mTextColorPicker;
-	SizePicker *mFontSizePicker;
+	NumberPicker *mFontSizePicker;
 	FillTypePicker *mFillTypePicker;
-	SizePicker *mFirstNumberPicker;
+	NumberPicker *mFirstNumberPicker;
 	Config *mConfig;
 	WidgetConfigurator mWidgetConfigurator;
 

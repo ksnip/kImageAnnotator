@@ -55,7 +55,7 @@ void WidgetConfigurator::setTextColorWidget(ColorPicker *widget)
 	updateWidgets();
 }
 
-void WidgetConfigurator::setWidthWidget(SizePicker *widget)
+void WidgetConfigurator::setWidthWidget(NumberPicker *widget)
 {
 	mWidthWidget = widget;
 	updateWidgets();
@@ -67,13 +67,13 @@ void WidgetConfigurator::setFillTypeWidget(FillTypePicker *widget)
 	updateWidgets();
 }
 
-void WidgetConfigurator::setFontSizeWidget(SizePicker *widget)
+void WidgetConfigurator::setFontSizeWidget(NumberPicker *widget)
 {
 	mFontSizeWidget = widget;
 	updateWidgets();
 }
 
-void WidgetConfigurator::setFirstNumberWidget(SizePicker *widget)
+void WidgetConfigurator::setFirstNumberWidget(NumberPicker *widget)
 {
 	mFirstNumberWidget = widget;
 	updateWidgets();
