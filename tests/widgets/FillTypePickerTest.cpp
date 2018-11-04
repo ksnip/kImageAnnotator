@@ -33,4 +33,37 @@ void FillTypePickerTest::TestSelectFill_Should_EmitSignal_When_FillChanged()
 	QCOMPARE(resultFill, expectedFill);
 }
 
+void FillTypePickerTest::TestAddNoBorderAndNoFillToList_Should_AddTypeToList()
+{
+	qRegisterMetaType<FillTypes>("FillTypes");
+	FillTypePicker fillPicker(QIcon(), QStringLiteral("test"));
+	QSignalSpy spy(&fillPicker, &FillTypePicker::fillSelected);
+	auto expectedFill = FillTypes::NoBorderAndNoFill;
+
+	fillPicker.addNoFillAndNoBorderToList();
+	fillPicker.setFillType(expectedFill);
+
+	QCOMPARE(spy.count(), 1);
+	auto resultFill = qvariant_cast<FillTypes>(spy.at(0).at(0));
+	QCOMPARE(resultFill, expectedFill);
+}
+
+void FillTypePickerTest::TestRemoveNoBorderAndNoFillToList_Should_RemoveTypeFromList()
+{
+	qRegisterMetaType<FillTypes>("FillTypes");
+	FillTypePicker fillPicker(QIcon(), QStringLiteral("test"));
+	QSignalSpy spy(&fillPicker, &FillTypePicker::fillSelected);
+	auto expectedFill = FillTypes::NoBorderAndNoFill;
+	fillPicker.addNoFillAndNoBorderToList();
+	fillPicker.setFillType(expectedFill);
+	QCOMPARE(spy.count(), 1);
+	auto resultFill = qvariant_cast<FillTypes>(spy.at(0).at(0));
+	QCOMPARE(resultFill, expectedFill);
+
+	fillPicker.removeNoFillAndNoBorderToList();
+	fillPicker.setFillType(expectedFill);
+
+	QCOMPARE(spy.count(), 1);
+}
+
 QTEST_MAIN(FillTypePickerTest);
