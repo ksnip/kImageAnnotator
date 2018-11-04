@@ -32,4 +32,4 @@ void NumberPickerTest::TestSelectNumber_Should_EmitSignal_When_NumberChanged()
     QCOMPARE(resultSize, expectedSize);
 }
 
-QTEST_MAIN(SizePickerTest);
+QTEST_MAIN(NumberPickerTest);
