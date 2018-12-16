@@ -166,7 +166,7 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 	if (event->button() == Qt::LeftButton) {
 		if (mConfig->selectedTool() == ToolTypes::Select) {
 			mItemModifier->handleMouseRelease(mItems);
-		} else {
+		} else if (mCurrentItem != nullptr) {
 			mCurrentItem->finish();
 			mCurrentItem = nullptr;
 		}

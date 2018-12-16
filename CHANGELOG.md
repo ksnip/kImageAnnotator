@@ -1,6 +1,7 @@
 # Change log
 
 ## Release 0.1.0
+* Fixed: Double-click on annotation area causes SIGSEGV crash. ([#29](https://github.com/DamirPorobic/kImageAnnotator/issues/29))
 
 ## Release 0.0.2
 * New: Added blur annotation tool. ([#20](https://github.com/DamirPorobic/kImageAnnotator/issues/20))
