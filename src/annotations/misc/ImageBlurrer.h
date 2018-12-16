@@ -17,14 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "BlurEffect.h"
+#ifndef KIMAGEANNOTATOR_IMAGEBLURRER_H
+#define KIMAGEANNOTATOR_IMAGEBLURRER_H
+
+#include <QImage>
 
 namespace kImageAnnotator {
 
-BlurEffect::BlurEffect()
+class ImageBlurrer
 {
-	setBlurRadius(15);
-	setBlurHints(QGraphicsBlurEffect::PerformanceHint);
-}
+public:
+	explicit ImageBlurrer() = default;
+	~ImageBlurrer() = default;
+
+	QImage blurred(const QImage &image, int radius, bool alphaOnly);
+
+private:
+	int getAlpha(int radius, const int *tab) const;
+};
 
 } // namespace kImageAnnotator
+
+#endif //KIMAGEANNOTATOR_IMAGEBLURRER_H

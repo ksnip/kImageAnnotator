@@ -1,6 +1,7 @@
 # Change log
 
 ## Release 0.1.0
+* Changed: Blur tool is now preciser and fits the rect. ([#28](https://github.com/DamirPorobic/kImageAnnotator/issues/28))
 * Fixed: Double-click on annotation area causes SIGSEGV crash. ([#29](https://github.com/DamirPorobic/kImageAnnotator/issues/29))
 
 ## Release 0.0.2

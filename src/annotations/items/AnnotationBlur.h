@@ -23,7 +23,7 @@
 #include <QGraphicsScene>
 
 #include "AbstractAnnotationRect.h"
-#include "src/annotations/misc/BlurEffect.h"
+#include "src/annotations/misc/ImageBlurrer.h"
 
 namespace kImageAnnotator {
 
@@ -38,7 +38,9 @@ public:
 protected:
 	void updateShape() override;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
-	void addBlurEffect();
+
+private:
+	ImageBlurrer mItemBlurrer;
 };
 
 } // namespace kImageAnnotator

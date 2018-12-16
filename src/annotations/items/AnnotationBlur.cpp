@@ -23,12 +23,10 @@ namespace kImageAnnotator {
 
 AnnotationBlur::AnnotationBlur(const QPointF &startPosition, AnnotationProperties *properties) : AbstractAnnotationRect(startPosition, properties)
 {
-	addBlurEffect();
 }
 
 AnnotationBlur::AnnotationBlur(const AnnotationBlur &other) : AbstractAnnotationRect(other)
 {
-	addBlurEffect();
 }
 
 ToolTypes AnnotationBlur::toolType() const
@@ -47,21 +45,17 @@ void AnnotationBlur::paint(QPainter *painter, const QStyleOptionGraphicsItem *, 
 {
 	auto parentScene = scene();
 	if (parentScene != nullptr) {
-		QImage image(parentScene->sceneRect().size().toSize(), QImage::Format_ARGB32);
+		QImage image(parentScene->sceneRect().size().toSize(), QImage::Format_ARGB32_Premultiplied);
 		image.fill(Qt::transparent);
 
 		QPainter imagePainter(&image);
 		parentScene->render(&imagePainter);
 
 		auto sceneBehindItem = image.copy(mRect->toRect());
+		auto blurredImage = mItemBlurrer.blurred(sceneBehindItem, 10, false);
 
-		painter->drawImage(*mRect, sceneBehindItem);
+		painter->drawImage(*mRect, blurredImage);
 	}
-}
-
-void AnnotationBlur::addBlurEffect()
-{
-	setGraphicsEffect(new BlurEffect());
 }
 
 } // namespace kImageAnnotator

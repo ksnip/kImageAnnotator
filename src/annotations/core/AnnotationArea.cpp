@@ -77,7 +77,7 @@ QImage AnnotationArea::image()
 
 	mItemModifier->clear();
 
-	QImage image(sceneRect().size().toSize(), QImage::Format_ARGB32);
+	QImage image(sceneRect().size().toSize(), QImage::Format_ARGB32_Premultiplied);
 	image.fill(Qt::transparent);
 
 	QPainter painter(&image);
