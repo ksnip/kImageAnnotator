@@ -28,7 +28,7 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
 
 	auto resultImage = annotationArea.image();
 
-	auto expectedImage = pixmap.toImage().convertToFormat(QImage::Format_ARGB32);
+	auto expectedImage = pixmap.toImage().convertToFormat(QImage::Format_ARGB32_Premultiplied);
 	QCOMPARE(expectedImage, resultImage);
 }
 
