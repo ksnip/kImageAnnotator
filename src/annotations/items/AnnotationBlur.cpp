@@ -23,6 +23,8 @@ namespace kImageAnnotator {
 
 AnnotationBlur::AnnotationBlur(const QPointF &startPosition, AnnotationProperties *properties) : AbstractAnnotationRect(startPosition, properties)
 {
+	// Without empty effect the blur image is not drawn when scene exported
+	setGraphicsEffect(new DummyEffect());
 }
 
 AnnotationBlur::AnnotationBlur(const AnnotationBlur &other) : AbstractAnnotationRect(other)

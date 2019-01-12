@@ -28,9 +28,7 @@ namespace kImageAnnotator {
 
 QImage ImageBlurrer::blurred(const QImage &image, int radius, bool alphaOnly)
 {
-	qDebug("blur");
-	int tab[] = { 14, 10, 8, 6, 5, 5, 4, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2 };
-	int alpha = getAlpha(radius, tab);
+	int alpha = getAlpha(radius);
 
 	auto result = image.convertToFormat(QImage::Format_ARGB32_Premultiplied);
 	auto r1 = image.rect().top();
@@ -108,8 +106,9 @@ QImage ImageBlurrer::blurred(const QImage &image, int radius, bool alphaOnly)
 	return result;
 }
 
-int ImageBlurrer::getAlpha(int radius, const int *tab) const
+int ImageBlurrer::getAlpha(int radius) const
 {
+	int tab[] = { 14, 10, 8, 6, 5, 5, 4, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2 };
 	return (radius < 1) ? 16 : (radius > 17) ? 1 : tab[radius - 1];
 }
 

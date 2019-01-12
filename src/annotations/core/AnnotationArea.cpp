@@ -83,6 +83,7 @@ QImage AnnotationArea::image()
 	QPainter painter(&image);
 	painter.setRenderHint(QPainter::Antialiasing);
 	render(&painter);
+
 	return image;
 }
 

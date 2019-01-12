@@ -54,6 +54,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ScaleCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/PasteCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/ShadowEffect.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/DummyEffect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/ImageBlurrer.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/AnnotationItemClipboard.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/AnnotationContextMenu.cpp

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2019 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,33 +17,24 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONBLUR_H
-#define KIMAGEANNOTATOR_ANNOTATIONBLUR_H
+#ifndef KIMAGEANNOTATOR_DUMMYEFFECT_H
+#define KIMAGEANNOTATOR_DUMMYEFFECT_H
 
-#include <QGraphicsScene>
-
-#include "AbstractAnnotationRect.h"
-#include "src/annotations/misc/ImageBlurrer.h"
-#include "src/annotations/misc/DummyEffect.h"
+#include <QGraphicsEffect>
+#include <QPainter>
 
 namespace kImageAnnotator {
 
-class AnnotationBlur : public AbstractAnnotationRect
+class DummyEffect : public QGraphicsEffect
 {
 public:
-	AnnotationBlur(const QPointF &startPosition, AnnotationProperties *properties);
-	AnnotationBlur(const AnnotationBlur &other);
-	~AnnotationBlur() override = default;
-	ToolTypes toolType() const override;
+	explicit DummyEffect() = default;
+	~DummyEffect() override = default;
 
 protected:
-	void updateShape() override;
-	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
-
-private:
-	ImageBlurrer mItemBlurrer;
+	virtual void draw(QPainter *painter);
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONBLUR_H
+#endif //KIMAGEANNOTATOR_DUMMYEFFECT_H
