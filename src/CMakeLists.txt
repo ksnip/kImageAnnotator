@@ -73,7 +73,6 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/FillTypePicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomSpinBox.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButton.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButtonMenu.cpp
 	)
 
 set(KIMAGEANNOTATOR_SRCS ${KIMAGEANNOTATOR_SRCS} PARENT_SCOPE)

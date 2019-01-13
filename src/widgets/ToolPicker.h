@@ -21,10 +21,12 @@
 #define KIMAGEANNOTATOR_TOOLPICKER_H
 
 #include <QWidget>
-#include <QButtonGroup>
+#include <QActionGroup>
 #include <QToolButton>
 #include <QGridLayout>
+#include <QMenu>
 
+#include "CustomToolButton.h"
 #include "src/common/enum/ToolTypes.h"
 
 namespace kImageAnnotator {
@@ -42,16 +44,18 @@ signals:
 	void toolSelected(ToolTypes newTool);
 
 private:
-	QButtonGroup *mButtonGroup;
+	QActionGroup *mActionGroup;
 	QGridLayout *mLayout;
 	ToolTypes mSelectedToolType;
-	QHash<QAbstractButton *, ToolTypes> mButtonToTool;
+	QHash<QAction *, ToolTypes> mActionToTool;
 
 	void initGui();
-	QToolButton *createButton(const QString &tooltip, const QIcon &icon, Qt::Key shortcut);
+	QAction *createAction(const QString &tooltip, const QIcon &icon, Qt::Key shortcut, ToolTypes toolType);
+	CustomToolButton *createButton(QAction *defaultAction);
+	CustomToolButton *createButton(QMenu *menu);
 
 private slots:
-	void buttonClicked(QAbstractButton *button);
+	void actionTriggered(QAction *action);
 	void setToolAndNotify(ToolTypes newTool);
 };
 

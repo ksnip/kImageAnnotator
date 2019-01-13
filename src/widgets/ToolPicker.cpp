@@ -26,19 +26,17 @@ ToolPicker::ToolPicker()
 	initGui();
 
 	setFocusPolicy(Qt::ClickFocus);
-
-	connect(mButtonGroup, static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonClicked), this, &ToolPicker::buttonClicked);
 }
 
 ToolPicker::~ToolPicker()
 {
-	delete mButtonGroup;
+	delete mActionGroup;
 	delete mLayout;
 }
 
 void ToolPicker::setTool(ToolTypes newTool)
 {
-	auto selectedAction = mButtonToTool.key(newTool);
+	auto selectedAction = mActionToTool.key(newTool);
 	selectedAction->setChecked(true);
 	setToolAndNotify(newTool);
 }
@@ -52,78 +50,87 @@ void ToolPicker::initGui()
 {
 	mLayout = new QGridLayout(this);
 	mLayout->setContentsMargins(0, 0, 0, 0);
-	mButtonGroup = new QButtonGroup(this);
+	mActionGroup = new QActionGroup(this);
+	connect(mActionGroup, &QActionGroup::triggered, this, &ToolPicker::actionTriggered);
 
-	auto button = createButton(tr("Select"), QIcon(QStringLiteral(":/icons/select")), Qt::Key_S);
-	mButtonToTool[button] = ToolTypes::Select;
+	auto action = createAction(tr("Select"), QIcon(QStringLiteral(":/icons/select")), Qt::Key_S, ToolTypes::Select);
+	auto button = createButton(action);
 	mLayout->addWidget(button, 0, 0);
-	mButtonGroup->addButton(button);
 
-	button = createButton(tr("Pen"), QIcon(QStringLiteral(":/icons/pen")), Qt::Key_P);
-	mButtonToTool[button] = ToolTypes::Pen;
+	action = createAction(tr("Pen"), QIcon(QStringLiteral(":/icons/pen")), Qt::Key_P, ToolTypes::Pen);
+	button = createButton(action);
 	mLayout->addWidget(button, 0, 1);
-	mButtonGroup->addButton(button);
 
-	button = createButton(tr("Marker"), QIcon(QStringLiteral(":/icons/marker")), Qt::Key_M);
-	mButtonToTool[button] = ToolTypes::Marker;
+	action = createAction(tr("Marker"), QIcon(QStringLiteral(":/icons/marker")), Qt::Key_M, ToolTypes::Marker);
+	button = createButton(action);
 	mLayout->addWidget(button, 2, 0);
-	mButtonGroup->addButton(button);
 
-	button = createButton(tr("Line"), QIcon(QStringLiteral(":/icons/line")), Qt::Key_L);
-	mButtonToTool[button] = ToolTypes::Line;
+	action = createAction(tr("Line"), QIcon(QStringLiteral(":/icons/line")), Qt::Key_L, ToolTypes::Line);
+	button = createButton(action);
 	mLayout->addWidget(button, 2, 1);
-	mButtonGroup->addButton(button);
 
-	button = createButton(tr("Rectangle"), QIcon(QStringLiteral(":/icons/rect")), Qt::Key_R);
-	mButtonToTool[button] = ToolTypes::Rect;
+	action = createAction(tr("Arrow"), QIcon(QStringLiteral(":/icons/arrow")), Qt::Key_A, ToolTypes::Arrow);
+	button = createButton(action);
 	mLayout->addWidget(button, 3, 0);
-	mButtonGroup->addButton(button);
 
-	button = createButton(tr("Ellipse"), QIcon(QStringLiteral(":/icons/ellipse")), Qt::Key_E);
-	mButtonToTool[button] = ToolTypes::Ellipse;
+	auto menu = new QMenu();
+	action = createAction(tr("Rectangle"), QIcon(QStringLiteral(":/icons/rect")), Qt::Key_R, ToolTypes::Rect);
+	menu->addAction(action);
+	action = createAction(tr("Ellipse"), QIcon(QStringLiteral(":/icons/ellipse")), Qt::Key_E, ToolTypes::Ellipse);
+	menu->addAction(action);
+	button = createButton(menu);
+
+	button->setMenu(menu);
+	button->setActiveAction(menu->actions().first());
 	mLayout->addWidget(button, 3, 1);
-	mButtonGroup->addButton(button);
 
-	button = createButton(tr("Arrow"), QIcon(QStringLiteral(":/icons/arrow")), Qt::Key_A);
-	mButtonToTool[button] = ToolTypes::Arrow;
+	action = createAction(tr("Number"), QIcon(QStringLiteral(":/icons/number")), Qt::Key_N, ToolTypes::Number);
+	button = createButton(action);
 	mLayout->addWidget(button, 4, 0);
-	mButtonGroup->addButton(button);
 
-	button = createButton(tr("Number"), QIcon(QStringLiteral(":/icons/number")), Qt::Key_N);
-	mButtonToTool[button] = ToolTypes::Number;
+	action = createAction(tr("Text"), QIcon(QStringLiteral(":/icons/text")), Qt::Key_T, ToolTypes::Text);
+	button = createButton(action);
 	mLayout->addWidget(button, 4, 1);
-	mButtonGroup->addButton(button);
 
-	button = createButton(tr("Text"), QIcon(QStringLiteral(":/icons/text")), Qt::Key_T);
-	mButtonToTool[button] = ToolTypes::Text;
+	action = createAction(tr("Blur"), QIcon(QStringLiteral(":/icons/blur")), Qt::Key_B, ToolTypes::Blur);
+	button = createButton(action);
 	mLayout->addWidget(button, 5, 0);
-	mButtonGroup->addButton(button);
-
-	button = createButton(tr("Blur"), QIcon(QStringLiteral(":/icons/blur")), Qt::Key_B);
-	mButtonToTool[button] = ToolTypes::Blur;
-	mLayout->addWidget(button, 5, 1);
-	mButtonGroup->addButton(button);
 
 	setLayout(mLayout);
 	setFixedSize(sizeHint());
 }
 
-QToolButton *ToolPicker::createButton(const QString &tooltip, const QIcon &icon, Qt::Key shortcut)
+QAction *ToolPicker::createAction(const QString &tooltip, const QIcon &icon, Qt::Key shortcut, ToolTypes toolType)
 {
-	auto button = new QToolButton(this);
-	button->setCheckable(true);
-	button->setAutoRaise(true);
-	button->setIconSize(QSize(24, 24));
-	button->setIcon(icon);
-	button->setShortcut(shortcut);
-	button->setToolTip(tooltip + QStringLiteral(" (") + shortcut + QStringLiteral(")"));
-	button->setFocusPolicy(Qt::NoFocus);
+	auto action = new QAction(this);
+	action->setCheckable(true);
+	action->setIcon(icon);
+	action->setShortcut(shortcut);
+	action->setToolTip(tooltip + QStringLiteral(" (") + shortcut + QStringLiteral(")"));
+	mActionToTool[action] = toolType;
+	mActionGroup->addAction(action);
+	return action;
+}
+
+CustomToolButton *ToolPicker::createButton(QAction *defaultAction)
+{
+	auto button = new CustomToolButton(this);
+	button->setDefaultAction(defaultAction);
 	return button;
 }
 
-void ToolPicker::buttonClicked(QAbstractButton *button)
+CustomToolButton *ToolPicker::createButton(QMenu *menu)
 {
-	setToolAndNotify(mButtonToTool.value(button));
+	auto button = new CustomToolButton(this);
+	button->setMenu(menu);
+	button->setActiveAction(menu->actions().first());
+	return button;
+}
+
+void ToolPicker::actionTriggered(QAction *action)
+{
+	auto newTool = mActionToTool.value(action);
+	setToolAndNotify(newTool);
 }
 
 void ToolPicker::setToolAndNotify(ToolTypes newTool)

@@ -21,19 +21,22 @@
 
 namespace kImageAnnotator {
 
-CustomToolButton::CustomToolButton(QWidget* parent) : QToolButton(parent)
+CustomToolButton::CustomToolButton(QWidget *parent) : QToolButton(parent)
 {
-	setPopupMode(QToolButton::MenuButtonPopup);
+	setCheckable(true);
+	setAutoRaise(true);
+	setIconSize(QSize(24, 24));
+	setFocusPolicy(Qt::NoFocus);
 	connect(this, &CustomToolButton::triggered, this, &CustomToolButton::setActiveAction);
 }
 
-void CustomToolButton::setButtonText(const QString& text)
+void CustomToolButton::setButtonText(const QString &text)
 {
 	mButtonText = text;
 	refreshText();
 }
 
-void CustomToolButton::setActiveAction(QAction* action)
+void CustomToolButton::setActiveAction(QAction *action)
 {
 	QToolButton::setDefaultAction(action);
 	refreshText();
