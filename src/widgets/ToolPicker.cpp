@@ -65,21 +65,24 @@ void ToolPicker::initGui()
 	button = createButton(action);
 	mLayout->addWidget(button, 2, 0);
 
+	auto menu = new QMenu();
+	action = createAction(tr("Arrow"), QIcon(QStringLiteral(":/icons/arrow")), Qt::Key_A, ToolTypes::Arrow);
+	menu->addAction(action);
 	action = createAction(tr("Line"), QIcon(QStringLiteral(":/icons/line")), Qt::Key_L, ToolTypes::Line);
-	button = createButton(action);
+	menu->addAction(action);
+	button = createButton(menu);
 	mLayout->addWidget(button, 2, 1);
 
-	action = createAction(tr("Arrow"), QIcon(QStringLiteral(":/icons/arrow")), Qt::Key_A, ToolTypes::Arrow);
+	action = createAction(tr("Blur"), QIcon(QStringLiteral(":/icons/blur")), Qt::Key_B, ToolTypes::Blur);
 	button = createButton(action);
 	mLayout->addWidget(button, 3, 0);
 
-	auto menu = new QMenu();
+	menu = new QMenu();
 	action = createAction(tr("Rectangle"), QIcon(QStringLiteral(":/icons/rect")), Qt::Key_R, ToolTypes::Rect);
 	menu->addAction(action);
 	action = createAction(tr("Ellipse"), QIcon(QStringLiteral(":/icons/ellipse")), Qt::Key_E, ToolTypes::Ellipse);
 	menu->addAction(action);
 	button = createButton(menu);
-
 	mLayout->addWidget(button, 3, 1);
 
 	action = createAction(tr("Number"), QIcon(QStringLiteral(":/icons/number")), Qt::Key_N, ToolTypes::Number);
@@ -89,10 +92,6 @@ void ToolPicker::initGui()
 	action = createAction(tr("Text"), QIcon(QStringLiteral(":/icons/text")), Qt::Key_T, ToolTypes::Text);
 	button = createButton(action);
 	mLayout->addWidget(button, 4, 1);
-
-	action = createAction(tr("Blur"), QIcon(QStringLiteral(":/icons/blur")), Qt::Key_B, ToolTypes::Blur);
-	button = createButton(action);
-	mLayout->addWidget(button, 5, 0);
 
 	setLayout(mLayout);
 	setFixedSize(sizeHint());
