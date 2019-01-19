@@ -69,8 +69,11 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 		case ToolTypes::Pen:
 			newItem = new AnnotationPen(initPosition, dynamic_cast<AnnotationPathProperties *>(properties));
 			break;
-		case ToolTypes::Marker:
+		case ToolTypes::MarkerPen:
 			newItem = new AnnotationPen(initPosition, dynamic_cast<AnnotationPathProperties *>(properties));
+			break;
+		case ToolTypes::MarkerRect:
+			newItem = new AnnotationRect(initPosition, properties);
 			break;
 		case ToolTypes::Line:
 			newItem = new AnnotationLine(initPosition, properties);
@@ -109,7 +112,7 @@ AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotatio
 		case ToolTypes::Pen:
 			newItem = new AnnotationPen(*(static_cast<const AnnotationPen *>(item)));
 			break;
-		case ToolTypes::Marker:
+		case ToolTypes::MarkerPen:
 			newItem = new AnnotationPen(*(static_cast<const AnnotationPen *>(item)));
 			break;
 		case ToolTypes::Line:

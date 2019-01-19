@@ -106,7 +106,7 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_CreatePathPropertiesWhen
 
 void AnnotationPropertiesFactoryTest::TestCreate_Should_CreatePathPropertiesWhenItemMarker()
 {
-	const ToolTypes tool = ToolTypes::Marker;
+	const ToolTypes tool = ToolTypes::MarkerPen;
 	AnnotationPropertiesFactory propertiesFactory(new Config);
 	auto properties = propertiesFactory.create(tool);
 

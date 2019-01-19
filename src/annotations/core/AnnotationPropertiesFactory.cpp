@@ -45,7 +45,7 @@ AnnotationProperties *AnnotationPropertiesFactory::createPropertiesObject(ToolTy
 {
 	switch (toolType) {
 		case ToolTypes::Pen:
-		case ToolTypes::Marker:
+		case ToolTypes::MarkerPen:
 			return new AnnotationPathProperties();
 		case ToolTypes::Number:
 		case ToolTypes::Text:
@@ -59,7 +59,7 @@ void AnnotationPropertiesFactory::setColor(AnnotationProperties *properties, Too
 {
 	auto color = mConfig->toolColor(toolType);
 
-	if (toolType == ToolTypes::Marker) {
+	if (toolType == ToolTypes::MarkerPen || toolType == ToolTypes::MarkerRect) {
 		color.setAlpha(120);
 	}
 
@@ -75,7 +75,7 @@ void AnnotationPropertiesFactory::setWidthSize(AnnotationProperties *properties,
 {
 	auto width = mConfig->toolWidth(toolType);
 
-	if (toolType == ToolTypes::Marker) {
+	if (toolType == ToolTypes::MarkerPen) {
 		width *= 3;
 	}
 
@@ -89,7 +89,7 @@ void AnnotationPropertiesFactory::setFill(AnnotationProperties *properties, Tool
 
 void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties *properties, ToolTypes toolType) const
 {
-	if (toolType == ToolTypes::Blur || toolType == ToolTypes::Marker) {
+	if (toolType == ToolTypes::Blur || toolType == ToolTypes::MarkerPen || toolType == ToolTypes::MarkerRect) {
 		properties->setShadowEnabled(false);
 	} else {
 		properties->setShadowEnabled(mConfig->itemShadowEnabled());

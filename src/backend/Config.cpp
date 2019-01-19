@@ -25,7 +25,8 @@ Config::Config()
 {
 	mAllTools = QList<ToolTypes>{
 		ToolTypes::Pen,
-		ToolTypes::Marker,
+		ToolTypes::MarkerPen,
+		ToolTypes::MarkerRect,
 		ToolTypes::Line,
 		ToolTypes::Arrow,
 		ToolTypes::Rect,
@@ -359,7 +360,8 @@ void Config::saveToolFontSize(ToolTypes toolType, int fontSize)
 QColor Config::defaultToolColor(ToolTypes toolType) const
 {
 	switch (toolType) {
-		case ToolTypes::Marker:
+		case ToolTypes::MarkerPen:
+		case ToolTypes::MarkerRect:
 			return { Qt::yellow };
 		case ToolTypes::Line:
 			return { Qt::blue };
@@ -388,7 +390,7 @@ QColor Config::defaultToolTextColor(ToolTypes toolType) const
 int Config::defaultToolWidth(ToolTypes toolType) const
 {
 	switch (toolType) {
-		case ToolTypes::Marker:
+		case ToolTypes::MarkerPen:
 			return 10;
 		case ToolTypes::Arrow:
 			return 6;
@@ -409,6 +411,8 @@ FillTypes Config::defaultToolFillType(ToolTypes toolType) const
 		case ToolTypes::Number:
 		case ToolTypes::Blur:
 			return FillTypes::BorderAndFill;
+		case ToolTypes::MarkerRect:
+			return FillTypes::NoBorderAndFill;
 		default:
 			return FillTypes::BorderAndNoFill;
 	}

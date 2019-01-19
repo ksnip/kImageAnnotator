@@ -3,7 +3,8 @@
     <qresource prefix="/icons">
         <file alias="arrow">arrow.svg</file>
         <file alias="number">number.svg</file>
-        <file alias="marker">marker.svg</file>
+        <file alias="markerPen">markerPen.svg</file>
+        <file alias="markerRect">markerRect.svg</file>
         <file alias="line">line.svg</file>
         <file alias="pen">pen.svg</file>
         <file alias="rect">rect.svg</file>

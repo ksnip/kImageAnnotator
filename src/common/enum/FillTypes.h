@@ -28,7 +28,8 @@ enum class FillTypes
 {
 	BorderAndNoFill,
 	BorderAndFill,
-	NoBorderAndNoFill
+	NoBorderAndNoFill,
+	NoBorderAndFill
 };
 
 } // namespace kImageAnnotator

@@ -122,10 +122,18 @@ void WidgetConfigurator::updateVisibility()
 			setFirstNumberWidgetEnabled(false);
 			break;
 		case ToolTypes::Pen:
-		case ToolTypes::Marker:
+		case ToolTypes::MarkerPen:
 			setColorWidgetEnabled(true);
 			setTextColorWidgetEnabled(false);
 			setWidthWidgetEnabled(true);
+			setFillWidgetEnabled(false);
+			setFontSizeWidgetEnabled(false);
+			setFirstNumberWidgetEnabled(false);
+			break;
+		case ToolTypes::MarkerRect:
+			setColorWidgetEnabled(true);
+			setTextColorWidgetEnabled(false);
+			setWidthWidgetEnabled(false);
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
 			setFirstNumberWidgetEnabled(false);

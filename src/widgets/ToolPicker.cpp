@@ -61,21 +61,33 @@ void ToolPicker::initGui()
 	button = createButton(action);
 	mLayout->addWidget(button, 0, 1);
 
-	action = createAction(tr("Marker"), QIcon(QStringLiteral(":/icons/marker")), Qt::Key_M, ToolTypes::Marker);
+	action = createAction(tr("Number"), QIcon(QStringLiteral(":/icons/number")), Qt::Key_N, ToolTypes::Number);
 	button = createButton(action);
 	mLayout->addWidget(button, 2, 0);
 
 	auto menu = new QMenu();
+	action = createAction(tr("Marker Rectangle"), QIcon(QStringLiteral(":/icons/markerRect")), Qt::Key_J, ToolTypes::MarkerRect);
+	menu->addAction(action);
+	action = createAction(tr("Marker Pen"), QIcon(QStringLiteral(":/icons/markerPen")), Qt::Key_M, ToolTypes::MarkerPen);
+	menu->addAction(action);
+	button = createButton(menu);
+	mLayout->addWidget(button, 2, 1);
+
+	action = createAction(tr("Text"), QIcon(QStringLiteral(":/icons/text")), Qt::Key_T, ToolTypes::Text);
+	button = createButton(action);
+	mLayout->addWidget(button, 3, 0);
+
+	menu = new QMenu();
 	action = createAction(tr("Arrow"), QIcon(QStringLiteral(":/icons/arrow")), Qt::Key_A, ToolTypes::Arrow);
 	menu->addAction(action);
 	action = createAction(tr("Line"), QIcon(QStringLiteral(":/icons/line")), Qt::Key_L, ToolTypes::Line);
 	menu->addAction(action);
 	button = createButton(menu);
-	mLayout->addWidget(button, 2, 1);
+	mLayout->addWidget(button, 3, 1);
 
 	action = createAction(tr("Blur"), QIcon(QStringLiteral(":/icons/blur")), Qt::Key_B, ToolTypes::Blur);
 	button = createButton(action);
-	mLayout->addWidget(button, 3, 0);
+	mLayout->addWidget(button, 4, 0);
 
 	menu = new QMenu();
 	action = createAction(tr("Rectangle"), QIcon(QStringLiteral(":/icons/rect")), Qt::Key_R, ToolTypes::Rect);
@@ -83,14 +95,6 @@ void ToolPicker::initGui()
 	action = createAction(tr("Ellipse"), QIcon(QStringLiteral(":/icons/ellipse")), Qt::Key_E, ToolTypes::Ellipse);
 	menu->addAction(action);
 	button = createButton(menu);
-	mLayout->addWidget(button, 3, 1);
-
-	action = createAction(tr("Number"), QIcon(QStringLiteral(":/icons/number")), Qt::Key_N, ToolTypes::Number);
-	button = createButton(action);
-	mLayout->addWidget(button, 4, 0);
-
-	action = createAction(tr("Text"), QIcon(QStringLiteral(":/icons/text")), Qt::Key_T, ToolTypes::Text);
-	button = createButton(action);
 	mLayout->addWidget(button, 4, 1);
 
 	setLayout(mLayout);
