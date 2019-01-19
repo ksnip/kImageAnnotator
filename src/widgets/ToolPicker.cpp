@@ -80,8 +80,6 @@ void ToolPicker::initGui()
 	menu->addAction(action);
 	button = createButton(menu);
 
-	button->setMenu(menu);
-	button->setActiveAction(menu->actions().first());
 	mLayout->addWidget(button, 3, 1);
 
 	action = createAction(tr("Number"), QIcon(QStringLiteral(":/icons/number")), Qt::Key_N, ToolTypes::Number);
@@ -102,11 +100,12 @@ void ToolPicker::initGui()
 
 QAction *ToolPicker::createAction(const QString &tooltip, const QIcon &icon, Qt::Key shortcut, ToolTypes toolType)
 {
-	auto action = new QAction(this);
+	auto action = new CustomToolButtonAction(this);
 	action->setCheckable(true);
 	action->setIcon(icon);
 	action->setShortcut(shortcut);
 	action->setToolTip(tooltip + QStringLiteral(" (") + shortcut + QStringLiteral(")"));
+	action->updateDefaultWidget();
 	mActionToTool[action] = toolType;
 	mActionGroup->addAction(action);
 	return action;

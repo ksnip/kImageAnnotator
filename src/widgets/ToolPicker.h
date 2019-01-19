@@ -27,6 +27,7 @@
 #include <QMenu>
 
 #include "CustomToolButton.h"
+#include "CustomToolButtonAction.h"
 #include "src/common/enum/ToolTypes.h"
 
 namespace kImageAnnotator {
