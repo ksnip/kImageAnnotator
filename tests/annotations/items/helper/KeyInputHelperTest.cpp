@@ -48,11 +48,11 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitRemoveSignal_When_KeyIsDe
 	QCOMPARE(resultDirection, TextPositions::Next);
 }
 
-void KeyInputHelperTest::TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsReturn()
+void KeyInputHelperTest::TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsReturnAndModifierShift()
 {
 	KeyInputHelper keyInputHelper;
 	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::insert);
-	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::ShiftModifier);
 
 	keyInputHelper.handleKeyPress(&keyEvent);
 
@@ -61,17 +61,39 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_W
 	QCOMPARE(resultText, QStringLiteral("\n"));
 }
 
-void KeyInputHelperTest::TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsEnter()
+void KeyInputHelperTest::TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsEnterAndModifierShift()
 {
 	KeyInputHelper keyInputHelper;
 	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::insert);
-	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Enter, Qt::NoModifier);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Enter, Qt::ShiftModifier);
 
 	keyInputHelper.handleKeyPress(&keyEvent);
 
 	QCOMPARE(spy.count(), 1);
 	auto resultText = qvariant_cast<QString>(spy.at(0).at(0));
 	QCOMPARE(resultText, QStringLiteral("\n"));
+}
+
+void KeyInputHelperTest::TestHandleKeyPress_Should_EmitEscape_When_KeyIsReturnAndNoModifier()
+{
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::escape);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
+
+	keyInputHelper.handleKeyPress(&keyEvent);
+
+	QCOMPARE(spy.count(), 1);
+}
+
+void KeyInputHelperTest::TestHandleKeyPress_Should_EmitEscape_When_KeyIsEnterAndNoModifier()
+{
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::escape);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Enter, Qt::NoModifier);
+
+	keyInputHelper.handleKeyPress(&keyEvent);
+
+	QCOMPARE(spy.count(), 1);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitEscapeSignal_When_KeyIsEscape()

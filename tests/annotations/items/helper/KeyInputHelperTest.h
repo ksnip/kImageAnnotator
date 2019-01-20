@@ -34,8 +34,10 @@ Q_OBJECT
 private slots:
 	void TestHandleKeyPress_Should_EmitRemoveSignal_When_KeyIsBackspace();
 	void TestHandleKeyPress_Should_EmitRemoveSignal_When_KeyIsDelete();
-	void TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsReturn();
-	void TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsEnter();
+	void TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsReturnAndModifierShift();
+	void TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsEnterAndModifierShift();
+	void TestHandleKeyPress_Should_EmitEscape_When_KeyIsReturnAndNoModifier();
+	void TestHandleKeyPress_Should_EmitEscape_When_KeyIsEnterAndNoModifier();
 	void TestHandleKeyPress_Should_EmitEscapeSignal_When_KeyIsEscape();
 	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowLeft();
 	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowRight();
