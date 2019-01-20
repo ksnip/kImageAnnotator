@@ -82,6 +82,8 @@ void ToolPicker::initGui()
 	menu = new QMenu();
 	action = createAction(tr("Arrow"), QIcon(QStringLiteral(":/icons/arrow")), Qt::Key_A, ToolTypes::Arrow);
 	menu->addAction(action);
+	action = createAction(tr("Double Arrow"), QIcon(QStringLiteral(":/icons/doubleArrow")), Qt::Key_D, ToolTypes::DoubleArrow);
+	menu->addAction(action);
 	action = createAction(tr("Line"), QIcon(QStringLiteral(":/icons/line")), Qt::Key_L, ToolTypes::Line);
 	menu->addAction(action);
 	button = createButton(menu);

@@ -2,6 +2,7 @@
 <RCC version="1.0">
     <qresource prefix="/icons">
         <file alias="arrow">arrow.svg</file>
+        <file alias="doubleArrow">doubleArrow.svg</file>
         <file alias="number">number.svg</file>
         <file alias="markerPen">markerPen.svg</file>
         <file alias="markerRect">markerRect.svg</file>

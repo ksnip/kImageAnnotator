@@ -41,7 +41,7 @@ void AnnotationArrow::updateShape()
 	path.lineTo(mLine->p2());
 
 	auto arrow = createArrow();
-	auto finishedArrow = rotateAndPositionArrow(arrow);
+	auto finishedArrow = positionArrowHeadAtEnd(arrow);
 
 	path.addPolygon(finishedArrow);
 	path.closeSubpath();
@@ -60,12 +60,12 @@ QPolygonF AnnotationArrow::createArrow() const
 	QPointF p3(-mArrowHeadLength, -mArrowHeadWidth);
 
 	QPolygonF arrow;
-	arrow << p0 << p1 << p2 << p3;
+	arrow << p0 << p1 << p2 << p3 << p0;
 
 	return arrow;
 }
 
-QPolygonF AnnotationArrow::rotateAndPositionArrow(const QPolygonF &arrow) const
+QPolygonF AnnotationArrow::positionArrowHeadAtEnd(const QPolygonF &arrow) const
 {
 	auto endX = mLine->p2().x();
 	auto endY = mLine->p2().y();

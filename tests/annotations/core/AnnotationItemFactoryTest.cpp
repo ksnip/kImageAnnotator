@@ -47,7 +47,7 @@ void AnnotationItemFactoryTest::TestCreate_Should_ReturnNullPtrForUnknownType()
 {
 	AnnotationItemFactory itemFactory(new Config);
 
-	auto item = itemFactory.create(QPoint(0, 0), (ToolTypes) 12);
+	auto item = itemFactory.create(QPoint(0, 0), (ToolTypes) 13);
 
 	QVERIFY(item == nullptr);
 }

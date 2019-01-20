@@ -141,6 +141,7 @@ void WidgetConfigurator::updateVisibility()
 			break;
 		case ToolTypes::Line:
 		case ToolTypes::Arrow:
+		case ToolTypes::DoubleArrow:
 			setColorWidgetEnabled(true);
 			setTextColorWidgetEnabled(false);
 			setWidthWidgetEnabled(true);

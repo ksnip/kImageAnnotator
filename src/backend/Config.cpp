@@ -30,6 +30,7 @@ Config::Config()
 		ToolTypes::MarkerEllipse,
 		ToolTypes::Line,
 		ToolTypes::Arrow,
+		ToolTypes::DoubleArrow,
 		ToolTypes::Rect,
 		ToolTypes::Ellipse,
 		ToolTypes::Number,
@@ -395,6 +396,7 @@ int Config::defaultToolWidth(ToolTypes toolType) const
 		case ToolTypes::MarkerPen:
 			return 10;
 		case ToolTypes::Arrow:
+		case ToolTypes::DoubleArrow:
 			return 6;
 		case ToolTypes::Number:
 			return 5;
@@ -409,6 +411,7 @@ FillTypes Config::defaultToolFillType(ToolTypes toolType) const
 {
 	switch (toolType) {
 		case ToolTypes::Arrow:
+		case ToolTypes::DoubleArrow:
 		case ToolTypes::Rect:
 		case ToolTypes::Number:
 		case ToolTypes::Blur:

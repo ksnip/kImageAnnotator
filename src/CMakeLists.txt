@@ -37,6 +37,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationPath.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationLine.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationArrow.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationDoubleArrow.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationRect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationEllipse.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationNumber.cpp

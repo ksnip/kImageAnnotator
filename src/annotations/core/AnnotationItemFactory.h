@@ -26,6 +26,7 @@
 #include "src/annotations/items/AnnotationPen.h"
 #include "src/annotations/items/AnnotationLine.h"
 #include "src/annotations/items/AnnotationArrow.h"
+#include "src/annotations/items/AnnotationDoubleArrow.h"
 #include "src/annotations/items/AnnotationRect.h"
 #include "src/annotations/items/AnnotationEllipse.h"
 #include "src/annotations/items/AnnotationNumber.h"

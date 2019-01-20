@@ -33,6 +33,7 @@ enum class ToolTypes
 	MarkerEllipse,
 	Line,
 	Arrow,
+	DoubleArrow,
 	Rect,
 	Ellipse,
 	Number,
