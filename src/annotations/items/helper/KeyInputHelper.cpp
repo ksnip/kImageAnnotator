@@ -23,45 +23,49 @@ namespace kImageAnnotator {
 
 void KeyInputHelper::handleKeyPress(QKeyEvent *event)
 {
-    switch (event->key()) {
-        case Qt::Key_Backspace:
-            emit remove(TextPositions::Previous);
-            break;
-        case Qt::Key_Return:
-        case Qt::Key_Enter:
-            emit insert(QStringLiteral("\n"));
-            break;
-        case Qt::Key_Delete:
-            emit remove(TextPositions::Next);
-            break;
-        case Qt::Key_Escape:
-            emit escape();
-            return;
-        case Qt::Key_Left:
-            emit move(TextPositions::Previous);
-            break;
-        case Qt::Key_Right:
-            emit move(TextPositions::Next);
-            break;
-        case Qt::Key_Up:
-            emit move(TextPositions::Up);
-            break;
-        case Qt::Key_Down:
-            emit move(TextPositions::Down);
-            break;
-        case Qt::Key_Paste:
-            emit paste();
-            break;
-        default:
-            if (event->matches(QKeySequence::Paste)) {
-                emit paste();
-                break;
-            }
-            if (event->text().isEmpty() || event->modifiers() == Qt::ControlModifier) {
-                return;
-            }
-            emit insert(event->text());
-    }
+	switch (event->key()) {
+		case Qt::Key_Backspace:
+			emit remove(TextPositions::Previous);
+			break;
+		case Qt::Key_Return:
+		case Qt::Key_Enter:
+			if (event->modifiers() == Qt::ShiftModifier) {
+				emit insert(QStringLiteral("\n"));
+			} else {
+				emit escape();
+			}
+			break;
+		case Qt::Key_Delete:
+			emit remove(TextPositions::Next);
+			break;
+		case Qt::Key_Escape:
+			emit escape();
+			return;
+		case Qt::Key_Left:
+			emit move(TextPositions::Previous);
+			break;
+		case Qt::Key_Right:
+			emit move(TextPositions::Next);
+			break;
+		case Qt::Key_Up:
+			emit move(TextPositions::Up);
+			break;
+		case Qt::Key_Down:
+			emit move(TextPositions::Down);
+			break;
+		case Qt::Key_Paste:
+			emit paste();
+			break;
+		default:
+			if (event->matches(QKeySequence::Paste)) {
+				emit paste();
+				break;
+			}
+			if (event->text().isEmpty() || event->modifiers() == Qt::ControlModifier) {
+				return;
+			}
+			emit insert(event->text());
+	}
 }
 
 } // namespace kImageAnnotator
