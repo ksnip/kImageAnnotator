@@ -30,6 +30,7 @@ enum class ToolTypes
 	Pen,
 	MarkerPen,
 	MarkerRect,
+	MarkerEllipse,
 	Line,
 	Arrow,
 	Rect,

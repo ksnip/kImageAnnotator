@@ -131,6 +131,7 @@ void WidgetConfigurator::updateVisibility()
 			setFirstNumberWidgetEnabled(false);
 			break;
 		case ToolTypes::MarkerRect:
+		case ToolTypes::MarkerEllipse:
 			setColorWidgetEnabled(true);
 			setTextColorWidgetEnabled(false);
 			setWidthWidgetEnabled(false);

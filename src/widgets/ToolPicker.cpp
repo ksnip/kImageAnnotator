@@ -68,6 +68,8 @@ void ToolPicker::initGui()
 	auto menu = new QMenu();
 	action = createAction(tr("Marker Rectangle"), QIcon(QStringLiteral(":/icons/markerRect")), Qt::Key_J, ToolTypes::MarkerRect);
 	menu->addAction(action);
+	action = createAction(tr("Marker Ellipse"), QIcon(QStringLiteral(":/icons/markerEllipse")), Qt::Key_K, ToolTypes::MarkerEllipse);
+	menu->addAction(action);
 	action = createAction(tr("Marker Pen"), QIcon(QStringLiteral(":/icons/markerPen")), Qt::Key_M, ToolTypes::MarkerPen);
 	menu->addAction(action);
 	button = createButton(menu);

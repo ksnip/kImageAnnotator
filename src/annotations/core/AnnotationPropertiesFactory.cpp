@@ -59,7 +59,7 @@ void AnnotationPropertiesFactory::setColor(AnnotationProperties *properties, Too
 {
 	auto color = mConfig->toolColor(toolType);
 
-	if (toolType == ToolTypes::MarkerPen || toolType == ToolTypes::MarkerRect) {
+	if (isMarkerTool(toolType)) {
 		color.setAlpha(120);
 	}
 
@@ -89,7 +89,7 @@ void AnnotationPropertiesFactory::setFill(AnnotationProperties *properties, Tool
 
 void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties *properties, ToolTypes toolType) const
 {
-	if (toolType == ToolTypes::Blur || toolType == ToolTypes::MarkerPen || toolType == ToolTypes::MarkerRect) {
+	if (toolType == ToolTypes::Blur || isMarkerTool(toolType)) {
 		properties->setShadowEnabled(false);
 	} else {
 		properties->setShadowEnabled(mConfig->itemShadowEnabled());
@@ -111,6 +111,11 @@ void AnnotationPropertiesFactory::setTextProperties(AnnotationProperties *proper
 	if (pathProperties != nullptr) {
 		pathProperties->setFont(mConfig->toolFont(toolType));
 	}
+}
+
+bool AnnotationPropertiesFactory::isMarkerTool(const ToolTypes &toolType) const
+{
+	return toolType == ToolTypes::MarkerPen || toolType == ToolTypes::MarkerRect || toolType == ToolTypes::MarkerEllipse;
 }
 
 } // namespace kImageAnnotator

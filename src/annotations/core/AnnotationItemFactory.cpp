@@ -75,6 +75,9 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 		case ToolTypes::MarkerRect:
 			newItem = new AnnotationRect(initPosition, properties);
 			break;
+		case ToolTypes::MarkerEllipse:
+			newItem = new AnnotationEllipse(initPosition, properties);
+			break;
 		case ToolTypes::Line:
 			newItem = new AnnotationLine(initPosition, properties);
 			break;

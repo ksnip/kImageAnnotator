@@ -46,6 +46,7 @@ private:
 	void setFill(AnnotationProperties *properties, ToolTypes toolType) const;
 	void setPathProperties(AnnotationProperties *properties) const;
 	void setTextProperties(AnnotationProperties *properties, ToolTypes toolType) const;
+	bool isMarkerTool(const ToolTypes &toolType) const;
 };
 
 } // namespace kImageAnnotator

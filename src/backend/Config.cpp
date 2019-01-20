@@ -27,6 +27,7 @@ Config::Config()
 		ToolTypes::Pen,
 		ToolTypes::MarkerPen,
 		ToolTypes::MarkerRect,
+		ToolTypes::MarkerEllipse,
 		ToolTypes::Line,
 		ToolTypes::Arrow,
 		ToolTypes::Rect,
@@ -362,6 +363,7 @@ QColor Config::defaultToolColor(ToolTypes toolType) const
 	switch (toolType) {
 		case ToolTypes::MarkerPen:
 		case ToolTypes::MarkerRect:
+		case ToolTypes::MarkerEllipse:
 			return { Qt::yellow };
 		case ToolTypes::Line:
 			return { Qt::blue };
@@ -412,6 +414,7 @@ FillTypes Config::defaultToolFillType(ToolTypes toolType) const
 		case ToolTypes::Blur:
 			return FillTypes::BorderAndFill;
 		case ToolTypes::MarkerRect:
+		case ToolTypes::MarkerEllipse:
 			return FillTypes::NoBorderAndFill;
 		default:
 			return FillTypes::BorderAndNoFill;
