@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2019 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,35 +17,27 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_KEYINPUTHELPER_H
-#define KIMAGEANNOTATOR_KEYINPUTHELPER_H
+#ifndef KIMAGEANNOTATOR_CAPSLOCKSTATUSCHECKER_H
+#define KIMAGEANNOTATOR_CAPSLOCKSTATUSCHECKER_H
 
-#include <QKeyEvent>
-
-#include "TextPositions.h"
-#include "CapsLockStatusChecker.h"
+#if defined(_WIN32)
+#include <Windows.h>
+#elif defined(_UNIX)
+#include <X11/Xlib.h>
+#endif
 
 namespace kImageAnnotator {
 
-class KeyInputHelper : public QObject
+class CapsLockStatusChecker
 {
-Q_OBJECT
 public:
-    explicit KeyInputHelper() = default;
-    ~KeyInputHelper() override = default;
-    void handleKeyPress(QKeyEvent *event);
-    bool isShiftPressed(const QKeyEvent *event) const;
-    bool isControlPressed(const QKeyEvent *event) const;
-    QString getTextWithCorrectCase(const QKeyEvent *event) const;
+    static bool isCapsLockEnabled();
 
-signals:
-    void remove(TextPositions position) const;
-    void insert(const QString &text) const;
-    void move(TextPositions position) const;
-    void paste() const;
-    void escape() const;
+protected:
+    explicit CapsLockStatusChecker() = default;
+    ~CapsLockStatusChecker() = default;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_KEYINPUTHELPER_H
+#endif //KIMAGEANNOTATOR_CAPSLOCKSTATUSCHECKER_H

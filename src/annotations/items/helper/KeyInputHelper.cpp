@@ -29,7 +29,7 @@ void KeyInputHelper::handleKeyPress(QKeyEvent *event)
 			break;
 		case Qt::Key_Return:
 		case Qt::Key_Enter:
-			if (event->modifiers() == Qt::ShiftModifier) {
+			if (isShiftPressed(event)) {
 				emit insert(QStringLiteral("\n"));
 			} else {
 				emit escape();
@@ -61,11 +61,36 @@ void KeyInputHelper::handleKeyPress(QKeyEvent *event)
 				emit paste();
 				break;
 			}
-			if (event->text().isEmpty() || event->modifiers() == Qt::ControlModifier) {
+			if (event->text().isEmpty() || isControlPressed(event)) {
 				return;
 			}
-			emit insert(event->text());
+
+			emit insert(getTextWithCorrectCase(event));
 	}
+}
+
+QString KeyInputHelper::getTextWithCorrectCase(const QKeyEvent *event) const
+{
+	auto text = event->text();
+	bool capsLockEnabled = CapsLockStatusChecker::isCapsLockEnabled();
+	bool shiftPressed = isShiftPressed(event);
+
+	if(shiftPressed && capsLockEnabled) {
+		return text.toLower();
+	}else if(!shiftPressed && capsLockEnabled) {
+		return text.toUpper();
+	}
+	return text;
+}
+
+bool KeyInputHelper::isControlPressed(const QKeyEvent *event) const
+{
+	return event->modifiers() == Qt::ControlModifier;
+}
+
+bool KeyInputHelper::isShiftPressed(const QKeyEvent *event) const
+{
+	return event->modifiers() == Qt::ShiftModifier;
 }
 
 } // namespace kImageAnnotator
