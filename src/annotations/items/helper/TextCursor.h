@@ -60,4 +60,5 @@ private:
 };
 
 } // namespace kImageAnnotator
+
 #endif //KIMAGEANNOTATOR_TEXTCURSOR_H

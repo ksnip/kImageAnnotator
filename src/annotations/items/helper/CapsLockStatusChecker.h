@@ -22,8 +22,6 @@
 
 #if defined(_WIN32)
 #include <Windows.h>
-#elif defined(_UNIX)
-#include <X11/Xlib.h>
 #endif
 
 namespace kImageAnnotator {
@@ -31,11 +29,11 @@ namespace kImageAnnotator {
 class CapsLockStatusChecker
 {
 public:
-    static bool isCapsLockEnabled();
+	static bool isCapsLockEnabled();
 
 protected:
-    explicit CapsLockStatusChecker() = default;
-    ~CapsLockStatusChecker() = default;
+	explicit CapsLockStatusChecker() = default;
+	~CapsLockStatusChecker() = default;
 };
 
 } // namespace kImageAnnotator

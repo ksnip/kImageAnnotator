@@ -14,6 +14,10 @@ option(BUILD_EXAMPLE "Build Example Application" ON)
 set(QT_MIN_VERSION "5.6.1")
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Test)
 
+if (UNIX)
+	find_package(X11 REQUIRED)
+endif ()
+
 include(GNUInstallDirs)
 include(FeatureSummary)
 
@@ -26,7 +30,7 @@ include_directories("${BASEPATH}")
 add_subdirectory(src)
 
 if (BUILD_EXAMPLE)
-    add_subdirectory(example)
+	add_subdirectory(example)
 endif (BUILD_EXAMPLE)
 
 if (BUILD_TESTS)
@@ -51,7 +55,11 @@ target_include_directories(kImageAnnotator
 						   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 						   )
 
-target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets kColorPicker)
+if (UNIX)
+	target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets kColorPicker X11)
+else ()
+	target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets kColorPicker)
+endif ()
 
 target_compile_definitions(kImageAnnotator PRIVATE KIMAGEANNOTATOR_LIB)
 

@@ -19,23 +19,36 @@
 
 #include "CapsLockStatusChecker.h"
 
+/*
+ * Currently we need to keep the x11 include in the definition
+ * file as x11 and qt::cursor don't work together and we fail
+ * to compile
+ */
+
+#if defined(__linux__)
+
+#include <X11/Xlib.h>
+#include <X11/XKBlib.h>
+
+#endif
+
 namespace kImageAnnotator {
 
 bool CapsLockStatusChecker::isCapsLockEnabled()
 {
 #if defined(_WIN32)
-    return GetKeyState(VK_CAPITAL) == 1;
-#elif defined(_UNIX)
-    auto display = XOpenDisplay((char*)0);
-    auto capsState = false;
-    if (display) {
-        unsigned n;
-        XkbGetIndicatorState(display, XkbUseCoreKbd, &n);
-        capsState = (n & 0x01) == 1;
-    }
-    return capsState;
+	return GetKeyState(VK_CAPITAL) == 1;
+#elif defined(__linux__)
+	auto display = XOpenDisplay(nullptr);
+	auto capsState = false;
+	if (display) {
+		unsigned n;
+		XkbGetIndicatorState(display, XkbUseCoreKbd, &n);
+		capsState = (n & 0x01) == 1;
+	}
+	return capsState;
 #else
-    return false;
+	return false;
 #endif
 }
 

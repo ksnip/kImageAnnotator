@@ -25,8 +25,8 @@
 
 #include "AbstractAnnotationRect.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
-#include "src/annotations/items/helper/KeyInputHelper.h"
 #include "src/annotations/items/helper/TextCursor.h"
+#include "src/annotations/items/helper/KeyInputHelper.h"
 #include "src/common/filter/IgnoreShortcutsFilter.h"
 
 namespace kImageAnnotator {
