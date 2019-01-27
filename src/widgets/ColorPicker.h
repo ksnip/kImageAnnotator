@@ -26,6 +26,8 @@
 
 #include <kColorPicker/KColorPicker.h>
 
+#include "src/common/constants/Constants.h"
+
 using kColorPicker::KColorPicker;
 
 namespace kImageAnnotator {

@@ -52,7 +52,7 @@ void FillTypePicker::addNoFillAndNoBorderToList()
 {
 	auto index = mComboBox->findData(mFillList.indexOf(FillTypes::NoBorderAndNoFill));
 	if (index == -1) {
-		mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_NoBorderAndNoFill")), QString(), mFillList.indexOf(FillTypes::NoBorderAndNoFill));
+		mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_NoBorderAndNoFill")), tr("No Border and No Fill"), mFillList.indexOf(FillTypes::NoBorderAndNoFill));
 	}
 }
 
@@ -75,9 +75,9 @@ void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
 
 	mComboBox = new QComboBox(this);
 
-	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndFill")), QString(), mFillList.indexOf(FillTypes::BorderAndFill));
-	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndNoFill")), QString(), mFillList.indexOf(FillTypes::BorderAndNoFill));
-	mComboBox->setFixedSize(QSize(55, mComboBox->sizeHint().height()));
+	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndFill")), tr("Border and Fill"), mFillList.indexOf(FillTypes::BorderAndFill));
+	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndNoFill")), tr("Border and No Fill"), mFillList.indexOf(FillTypes::BorderAndNoFill));
+	mComboBox->setFixedSize(Constants::SettingsWidgetSize);
 	mComboBox->setIconSize(QSize(25, 25));
 	mComboBox->setToolTip(tooltip);
 	mComboBox->setFocusPolicy(Qt::NoFocus);

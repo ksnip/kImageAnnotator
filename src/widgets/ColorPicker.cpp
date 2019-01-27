@@ -23,48 +23,48 @@ namespace kImageAnnotator {
 
 ColorPicker::ColorPicker(const QIcon &icon, const QString &tooltip)
 {
-    initGui(icon, tooltip);
+	initGui(icon, tooltip);
 
-    connect(mkColorPicker, &KColorPicker::colorChanged, this, &ColorPicker::colorChanged);
+	connect(mkColorPicker, &KColorPicker::colorChanged, this, &ColorPicker::colorChanged);
 }
 
 ColorPicker::~ColorPicker()
 {
-    delete mLayout;
-    delete mLabel;
-    delete mkColorPicker;
+	delete mLayout;
+	delete mLabel;
+	delete mkColorPicker;
 }
 
 void ColorPicker::setColor(const QColor &color)
 {
-    mkColorPicker->setColor(color);
-    emit colorSelected(color);
+	mkColorPicker->setColor(color);
+	emit colorSelected(color);
 }
 
 void ColorPicker::initGui(const QIcon &icon, const QString &tooltip)
 {
-    mLayout = new QHBoxLayout();
-    mLayout->setContentsMargins(0, 0, 0, 0);
+	mLayout = new QHBoxLayout();
+	mLayout->setContentsMargins(0, 0, 0, 0);
 
-    mLabel = new QLabel();
-    mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
-    mLabel->setToolTip(tooltip);
+	mLabel = new QLabel();
+	mLabel->setPixmap(icon.pixmap(QSize(20, 20)));
+	mLabel->setToolTip(tooltip);
 
-    mkColorPicker = new KColorPicker();
-    mkColorPicker->setFixedSize(QSize(55, mkColorPicker->sizeHint().height()));
-    mkColorPicker->setFocusPolicy(Qt::NoFocus);
-    mkColorPicker->setToolTip(tooltip);
+	mkColorPicker = new KColorPicker();
+	mkColorPicker->setFixedSize(Constants::SettingsWidgetSize);
+	mkColorPicker->setFocusPolicy(Qt::NoFocus);
+	mkColorPicker->setToolTip(tooltip);
 
-    mLayout->addWidget(mLabel);
-    mLayout->addWidget(mkColorPicker);
+	mLayout->addWidget(mLabel);
+	mLayout->addWidget(mkColorPicker);
 
-    setLayout(mLayout);
-    setFixedSize(sizeHint());
+	setLayout(mLayout);
+	setFixedSize(sizeHint());
 }
 
 void ColorPicker::colorChanged(const QColor &color)
 {
-    setColor(color);
+	setColor(color);
 }
 
 } // namespace kImageAnnotator

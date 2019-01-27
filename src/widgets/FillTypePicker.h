@@ -25,6 +25,7 @@
 #include <QComboBox>
 #include <QLabel>
 
+#include "src/common/constants/Constants.h"
 #include "src/common/enum/FillTypes.h"
 
 namespace kImageAnnotator {

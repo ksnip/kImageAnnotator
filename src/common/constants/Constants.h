@@ -19,12 +19,18 @@
 
 #ifndef KIMAGEANNOTATOR_ANNOTATIONCONSTANTS_H
 #define KIMAGEANNOTATOR_ANNOTATIONCONSTANTS_H
+
+#include <QSize>
+
 namespace kImageAnnotator {
 
 inline namespace Constants {
+
 const int MinResizeRectSize = 20;
 
 const int ResizeHandleSize = 16;
+
+const QSize SettingsWidgetSize(55, 32);
 
 } // namespace Constants
 

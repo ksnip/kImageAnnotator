@@ -50,7 +50,7 @@ void NumberPicker::initGui(const QIcon &icon, const QString &tooltip)
 	mLabel->setToolTip(tooltip);
 
 	mSpinBox = new CustomSpinBox(this);
-	mSpinBox->setFixedSize(QSize(55, mSpinBox->sizeHint().height()));
+	mSpinBox->setFixedSize(Constants::SettingsWidgetSize);
 	mSpinBox->setMinimum(1);
 	mSpinBox->setMaximum(20);
 	mSpinBox->setFocusPolicy(Qt::NoFocus);
