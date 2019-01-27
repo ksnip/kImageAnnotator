@@ -52,16 +52,14 @@ void FillTypePicker::addNoFillAndNoBorderToList()
 {
 	auto index = mComboBox->findData(mFillList.indexOf(FillTypes::NoBorderAndNoFill));
 	if (index == -1) {
-		mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_NoBorderAndNoFill")), tr("No Border and No Fill"), mFillList.indexOf(FillTypes::NoBorderAndNoFill));
+		insertItem(FillTypes::NoBorderAndNoFill, QStringLiteral(":/icons/fillType_NoBorderAndNoFill"), tr("No Border and No Fill"));
 	}
 }
 
 void FillTypePicker::removeNoFillAndNoBorderToList()
 {
-	auto index = mComboBox->findData(mFillList.indexOf(FillTypes::NoBorderAndNoFill));
-	if (index != -1) {
-		mComboBox->removeItem(index);
-	}
+	auto index = mFillList.indexOf(FillTypes::NoBorderAndNoFill);
+	mComboBox->removeItem(index);
 }
 
 void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
@@ -75,8 +73,8 @@ void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
 
 	mComboBox = new QComboBox(this);
 
-	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndFill")), tr("Border and Fill"), mFillList.indexOf(FillTypes::BorderAndFill));
-	mComboBox->addItem(QIcon(QStringLiteral(":/icons/fillType_borderAndNoFill")), tr("Border and No Fill"), mFillList.indexOf(FillTypes::BorderAndNoFill));
+	insertItem(FillTypes::BorderAndFill, QStringLiteral(":/icons/fillType_borderAndFill"), tr("Border and Fill"));
+	insertItem(FillTypes::BorderAndNoFill, QStringLiteral(":/icons/fillType_borderAndNoFill"), tr("Border and No Fill"));
 	mComboBox->setFixedSize(Constants::SettingsWidgetSize);
 	mComboBox->setIconSize(QSize(25, 25));
 	mComboBox->setToolTip(tooltip);
@@ -89,6 +87,14 @@ void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
 	setFixedSize(sizeHint());
 }
 
+void FillTypePicker::insertItem(FillTypes fillType, const QString &iconResource, const QString &text) const
+{
+	auto index = mFillList.indexOf(fillType);
+	auto icon = QIcon(iconResource);
+	mComboBox->insertItem(index, icon, text, index);
+	mComboBox->setItemData(index, text, Qt::ToolTipRole);
+}
+
 void FillTypePicker::setFillAndNotify(FillTypes fill)
 {
 	emit fillSelected(fill);
@@ -96,7 +102,7 @@ void FillTypePicker::setFillAndNotify(FillTypes fill)
 
 void FillTypePicker::selectionChanged()
 {
-	auto fill = mFillList[mComboBox->currentData().toInt()];
+	auto fill = mFillList[mComboBox->currentIndex()];
 	setFillAndNotify(fill);
 }
 
