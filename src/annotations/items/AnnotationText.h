@@ -41,6 +41,7 @@ public:
 	void finish() override;
 	const AnnotationTextProperties *properties() const override;
 	ToolTypes toolType() const override;
+	QPainterPath shape() const override;
 
 protected:
 	void updateShape() override;
@@ -62,6 +63,7 @@ private slots:
 	void escape();
 	void adjustRect();
 	void connectSlots();
+	QRect getTextRect() const;
 };
 
 } // namespace kImageAnnotator

@@ -78,7 +78,7 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 		textLayout.setCacheEnabled(true);
 
 		textLayout.beginLayout();
-		while (1) {
+		while (true) {
 			auto line = textLayout.createLine();
 			if (!line.isValid()) {
 				break;
@@ -116,6 +116,13 @@ const AnnotationTextProperties *AnnotationText::properties() const
 ToolTypes AnnotationText::toolType() const
 {
 	return ToolTypes::Text;
+}
+
+QPainterPath AnnotationText::shape() const
+{
+	auto path = AbstractAnnotationItem::shape();
+	path.addRect(getTextRect());
+	return path;
 }
 
 void AnnotationText::removeText(TextPositions direction)
@@ -164,10 +171,7 @@ void AnnotationText::escape()
 void AnnotationText::adjustRect()
 {
 	prepareGeometryChange();
-	QFontMetrics fontMetrics(properties()->font());
-	auto margine = properties()->Width();
-	auto newRect = fontMetrics.boundingRect(mRect->toRect().normalized(), Qt::AlignLeft, mText);
-	newRect.adjust(0, 0, margine * 2, margine * 2);
+	auto newRect = getTextRect();
 	if (newRect.width() > mRect->width()) {
 		mRect->setWidth(newRect.width());
 	}
@@ -188,6 +192,15 @@ void AnnotationText::connectSlots()
 	{
 		prepareGeometryChange();
 	});
+}
+
+QRect AnnotationText::getTextRect() const
+{
+	QFontMetrics fontMetrics(properties()->font());
+	auto margine = properties()->Width();
+	auto newRect = fontMetrics.boundingRect(mRect->toRect().normalized(), Qt::AlignLeft, mText);
+	newRect.adjust(0, 0, margine * 2, margine * 2);
+	return newRect;
 }
 
 } // namespace kImageAnnotator
