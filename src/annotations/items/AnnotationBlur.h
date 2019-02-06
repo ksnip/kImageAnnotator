@@ -24,7 +24,6 @@
 
 #include "AbstractAnnotationRect.h"
 #include "src/annotations/misc/ImageBlurrer.h"
-#include "src/annotations/misc/DummyEffect.h"
 
 namespace kImageAnnotator {
 
@@ -37,11 +36,15 @@ public:
 	ToolTypes toolType() const override;
 
 protected:
-	void updateShape() override;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
+	void updateShape() override;
 
 private:
 	ImageBlurrer mItemBlurrer;
+	QImage mBlurredImage;
+	bool mBlurUpdateRequired;
+
+	void updateBlurredImage();
 };
 
 } // namespace kImageAnnotator

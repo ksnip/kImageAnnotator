@@ -23,8 +23,6 @@ namespace kImageAnnotator {
 
 AnnotationBlur::AnnotationBlur(const QPointF &startPosition, AnnotationProperties *properties) : AbstractAnnotationRect(startPosition, properties)
 {
-	// Without empty effect the blur image is not drawn when scene exported
-	setGraphicsEffect(new DummyEffect());
 }
 
 AnnotationBlur::AnnotationBlur(const AnnotationBlur &other) : AbstractAnnotationRect(other)
@@ -36,27 +34,41 @@ ToolTypes AnnotationBlur::toolType() const
 	return ToolTypes::Blur;
 }
 
+void AnnotationBlur::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+{
+	// We need to update the image here, otherwise the scene is not ready
+	// to be painted and we only draw the background
+	if (mBlurUpdateRequired) {
+		updateBlurredImage();
+		mBlurUpdateRequired = false;
+	}
+
+	painter->drawImage(mRect->normalized(), mBlurredImage);
+}
+
 void AnnotationBlur::updateShape()
 {
+	mBlurUpdateRequired = true;
+
 	QPainterPath path;
 	path.addRect(*mRect);
 	setShape(path);
 }
 
-void AnnotationBlur::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+void AnnotationBlur::updateBlurredImage()
 {
 	auto parentScene = scene();
 	if (parentScene != nullptr) {
-		QImage image(parentScene->sceneRect().size().toSize(), QImage::Format_ARGB32_Premultiplied);
+		auto sceneSize = parentScene->sceneRect().size().toSize();
+		QImage image(sceneSize, QImage::Format_ARGB32_Premultiplied);
 		image.fill(Qt::transparent);
 
 		QPainter imagePainter(&image);
 		parentScene->render(&imagePainter);
 
-		auto sceneBehindItem = image.copy(mRect->toRect());
-		auto blurredImage = mItemBlurrer.blurred(sceneBehindItem, 10, false);
-
-		painter->drawImage(*mRect, blurredImage);
+		auto itemRect = mRect->normalized().toRect();
+		auto sceneBehindItem = image.copy(itemRect);
+		mBlurredImage = mItemBlurrer.blurred(sceneBehindItem, 10, false);
 	}
 }
 
