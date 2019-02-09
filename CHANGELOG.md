@@ -3,6 +3,7 @@
 ## Release 0.1.0
 * New: Double Arrow annotation tool. ([#23](https://github.com/DamirPorobic/kImageAnnotator/issues/23))
 * New: Marker Rectangle and Ellipse annotation tool. ([#26](https://github.com/DamirPorobic/kImageAnnotator/issues/26))
+* New: Add icons for dark theme. ([#37](https://github.com/DamirPorobic/kImageAnnotator/issues/37))
 * Changed: Blur tool is now preciser and fits the rect. ([#28](https://github.com/DamirPorobic/kImageAnnotator/issues/28))
 * Changed: Enter finishes text input and shift-enter adds new line in Text Tool. ([#30](https://github.com/DamirPorobic/kImageAnnotator/issues/30))
 * Fixed: Double-click on annotation area causes SIGSEGV crash. ([#29](https://github.com/DamirPorobic/kImageAnnotator/issues/29))

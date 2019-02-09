@@ -1,26 +1,48 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
     <qresource prefix="/icons">
-        <file alias="arrow">arrow.svg</file>
-        <file alias="doubleArrow">doubleArrow.svg</file>
-        <file alias="number">number.svg</file>
-        <file alias="markerPen">markerPen.svg</file>
-        <file alias="markerRect">markerRect.svg</file>
-        <file alias="markerEllipse">markerEllipse.svg</file>
-        <file alias="line">line.svg</file>
-        <file alias="pen">pen.svg</file>
-        <file alias="rect">rect.svg</file>
-        <file alias="select">select.svg</file>
-        <file alias="text">text.svg</file>
-        <file alias="ellipse">ellipse.svg</file>
-        <file alias="blur">blur.svg</file>
-        <file alias="color">color.svg</file>
-        <file alias="width">width.svg</file>
-        <file alias="textColor">textColor.svg</file>
-        <file alias="fontSize">fontSize.svg</file>
-        <file alias="fillType">fillType.svg</file>
-        <file alias="fillType_borderAndFill">fillType_borderAndFill.svg</file>
-        <file alias="fillType_borderAndNoFill">fillType_borderAndNoFill.svg</file>
-        <file alias="fillType_NoBorderAndNoFill">fillType_NoBorderAndNoFill.svg</file>
+        <file>dark/arrow.svg</file>
+        <file>dark/doubleArrow.svg</file>
+        <file>dark/number.svg</file>
+        <file>dark/markerPen.svg</file>
+        <file>dark/markerRect.svg</file>
+        <file>dark/markerEllipse.svg</file>
+        <file>dark/line.svg</file>
+        <file>dark/pen.svg</file>
+        <file>dark/rect.svg</file>
+        <file>dark/select.svg</file>
+        <file>dark/text.svg</file>
+        <file>dark/ellipse.svg</file>
+        <file>dark/blur.svg</file>
+        <file>dark/color.svg</file>
+        <file>dark/width.svg</file>
+        <file>dark/textColor.svg</file>
+        <file>dark/fontSize.svg</file>
+        <file>dark/fillType.svg</file>
+        <file>dark/fillType_borderAndFill.svg</file>
+        <file>dark/fillType_borderAndNoFill.svg</file>
+        <file>dark/fillType_NoBorderAndNoFill.svg</file>
+        
+        <file>light/arrow.svg</file>
+        <file>light/doubleArrow.svg</file>
+        <file>light/number.svg</file>
+        <file>light/markerPen.svg</file>
+        <file>light/markerRect.svg</file>
+        <file>light/markerEllipse.svg</file>
+        <file>light/line.svg</file>
+        <file>light/pen.svg</file>
+        <file>light/rect.svg</file>
+        <file>light/select.svg</file>
+        <file>light/text.svg</file>
+        <file>light/ellipse.svg</file>
+        <file>light/blur.svg</file>
+        <file>light/color.svg</file>
+        <file>light/width.svg</file>
+        <file>light/textColor.svg</file>
+        <file>light/fontSize.svg</file>
+        <file>light/fillType.svg</file>
+        <file>light/fillType_borderAndFill.svg</file>
+        <file>light/fillType_borderAndNoFill.svg</file>
+        <file>light/fillType_NoBorderAndNoFill.svg</file>
     </qresource>
 </RCC>

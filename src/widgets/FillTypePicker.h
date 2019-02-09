@@ -27,6 +27,7 @@
 
 #include "src/common/constants/Constants.h"
 #include "src/common/enum/FillTypes.h"
+#include "src/common/helper/IconLoader.h"
 
 namespace kImageAnnotator {
 
@@ -55,7 +56,7 @@ private:
 
 private slots:
 	void selectionChanged();
-	void insertItem(FillTypes fillType, const QString &iconResource, const QString &text) const;
+	void insertItem(FillTypes fillType, const QString &iconName, const QString &text) const;
 };
 
 } // namespace kImageAnnotator

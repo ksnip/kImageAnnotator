@@ -50,7 +50,7 @@ QSize AnnotationWidget::sizeHint() const
 	auto width = minSize.width() + sceneSize.width();
 	auto height = (minSize.height() > sceneSize.height()) ? minSize.height() : sceneSize.height();
 	auto offset = QSize(100, 100);
-	return QSize(width, height) + offset;
+	return QSize(static_cast<int>(width), static_cast<int>(height)) + offset;
 }
 
 void AnnotationWidget::initGui()
@@ -59,13 +59,13 @@ void AnnotationWidget::initGui()
 	mMainLayout = new QHBoxLayout();
 	mToolLayout = new QVBoxLayout();
 	mToolPicker = new ToolPicker();
-	mColorPicker = new ColorPicker(QIcon(QStringLiteral(":/icons/color")), tr("Color"));
-	mWidthPicker = new NumberPicker(QIcon(QStringLiteral(":/icons/width")), tr("Width"));
-	mTextColorPicker = new ColorPicker(QIcon(QStringLiteral(":/icons/textColor")), tr("Text Color"));
-	mFontSizePicker = new NumberPicker(QIcon(QStringLiteral(":/icons/fontSize")), tr("Font Size"));
+	mColorPicker = new ColorPicker(IconLoader::load(QStringLiteral("color.svg")), tr("Color"));
+	mWidthPicker = new NumberPicker(IconLoader::load(QStringLiteral("width.svg")), tr("Width"));
+	mTextColorPicker = new ColorPicker(IconLoader::load(QStringLiteral("textColor.svg")), tr("Text Color"));
+	mFontSizePicker = new NumberPicker(IconLoader::load(QStringLiteral("fontSize.svg")), tr("Font Size"));
 	mFontSizePicker->setRange(10, 40);
-	mFillTypePicker = new FillTypePicker(QIcon(QStringLiteral(":/icons/fillType")), tr("Border And Fill Visibility"));
-	mFirstNumberPicker = new NumberPicker(QIcon(QStringLiteral(":/icons/number")), tr("Starting Number"));
+	mFillTypePicker = new FillTypePicker(IconLoader::load(QStringLiteral("fillType.svg")), tr("Border And Fill Visibility"));
+	mFirstNumberPicker = new NumberPicker(IconLoader::load(QStringLiteral("number.svg")), tr("Starting Number"));
 	mFirstNumberPicker->setRange(1, 100);
 
 	mToolLayout->addWidget(mToolPicker);

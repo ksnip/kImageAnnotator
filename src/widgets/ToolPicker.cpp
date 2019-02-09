@@ -53,50 +53,50 @@ void ToolPicker::initGui()
 	mActionGroup = new QActionGroup(this);
 	connect(mActionGroup, &QActionGroup::triggered, this, &ToolPicker::actionTriggered);
 
-	auto action = createAction(tr("Select"), QIcon(QStringLiteral(":/icons/select")), Qt::Key_S, ToolTypes::Select);
+	auto action = createAction(tr("Select"), IconLoader::load(QStringLiteral("select.svg")), Qt::Key_S, ToolTypes::Select);
 	auto button = createButton(action);
 	mLayout->addWidget(button, 0, 0);
 
-	action = createAction(tr("Pen"), QIcon(QStringLiteral(":/icons/pen")), Qt::Key_P, ToolTypes::Pen);
+	action = createAction(tr("Pen"), IconLoader::load(QStringLiteral("pen.svg")), Qt::Key_P, ToolTypes::Pen);
 	button = createButton(action);
 	mLayout->addWidget(button, 0, 1);
 
-	action = createAction(tr("Number"), QIcon(QStringLiteral(":/icons/number")), Qt::Key_N, ToolTypes::Number);
+	action = createAction(tr("Number"), IconLoader::load(QStringLiteral("number.svg")), Qt::Key_N, ToolTypes::Number);
 	button = createButton(action);
 	mLayout->addWidget(button, 2, 0);
 
 	auto menu = new QMenu();
-	action = createAction(tr("Marker Rectangle"), QIcon(QStringLiteral(":/icons/markerRect")), Qt::Key_J, ToolTypes::MarkerRect);
+	action = createAction(tr("Marker Rectangle"), IconLoader::load(QStringLiteral("markerRect.svg")), Qt::Key_J, ToolTypes::MarkerRect);
 	menu->addAction(action);
-	action = createAction(tr("Marker Ellipse"), QIcon(QStringLiteral(":/icons/markerEllipse")), Qt::Key_K, ToolTypes::MarkerEllipse);
+	action = createAction(tr("Marker Ellipse"), IconLoader::load(QStringLiteral("markerEllipse.svg")), Qt::Key_K, ToolTypes::MarkerEllipse);
 	menu->addAction(action);
-	action = createAction(tr("Marker Pen"), QIcon(QStringLiteral(":/icons/markerPen")), Qt::Key_M, ToolTypes::MarkerPen);
+	action = createAction(tr("Marker Pen"), IconLoader::load(QStringLiteral("markerPen.svg")), Qt::Key_M, ToolTypes::MarkerPen);
 	menu->addAction(action);
 	button = createButton(menu);
 	mLayout->addWidget(button, 2, 1);
 
-	action = createAction(tr("Text"), QIcon(QStringLiteral(":/icons/text")), Qt::Key_T, ToolTypes::Text);
+	action = createAction(tr("Text"), IconLoader::load(QStringLiteral("text.svg")), Qt::Key_T, ToolTypes::Text);
 	button = createButton(action);
 	mLayout->addWidget(button, 3, 0);
 
 	menu = new QMenu();
-	action = createAction(tr("Arrow"), QIcon(QStringLiteral(":/icons/arrow")), Qt::Key_A, ToolTypes::Arrow);
+	action = createAction(tr("Arrow"), IconLoader::load(QStringLiteral("arrow.svg")), Qt::Key_A, ToolTypes::Arrow);
 	menu->addAction(action);
-	action = createAction(tr("Double Arrow"), QIcon(QStringLiteral(":/icons/doubleArrow")), Qt::Key_D, ToolTypes::DoubleArrow);
+	action = createAction(tr("Double Arrow"), IconLoader::load(QStringLiteral("doubleArrow.svg")), Qt::Key_D, ToolTypes::DoubleArrow);
 	menu->addAction(action);
-	action = createAction(tr("Line"), QIcon(QStringLiteral(":/icons/line")), Qt::Key_L, ToolTypes::Line);
+	action = createAction(tr("Line"), IconLoader::load(QStringLiteral("line.svg")), Qt::Key_L, ToolTypes::Line);
 	menu->addAction(action);
 	button = createButton(menu);
 	mLayout->addWidget(button, 3, 1);
 
-	action = createAction(tr("Blur"), QIcon(QStringLiteral(":/icons/blur")), Qt::Key_B, ToolTypes::Blur);
+	action = createAction(tr("Blur"), IconLoader::load(QStringLiteral("blur.svg")), Qt::Key_B, ToolTypes::Blur);
 	button = createButton(action);
 	mLayout->addWidget(button, 4, 0);
 
 	menu = new QMenu();
-	action = createAction(tr("Rectangle"), QIcon(QStringLiteral(":/icons/rect")), Qt::Key_R, ToolTypes::Rect);
+	action = createAction(tr("Rectangle"), IconLoader::load(QStringLiteral("rect.svg")), Qt::Key_R, ToolTypes::Rect);
 	menu->addAction(action);
-	action = createAction(tr("Ellipse"), QIcon(QStringLiteral(":/icons/ellipse")), Qt::Key_E, ToolTypes::Ellipse);
+	action = createAction(tr("Ellipse"), IconLoader::load(QStringLiteral("ellipse.svg")), Qt::Key_E, ToolTypes::Ellipse);
 	menu->addAction(action);
 	button = createButton(menu);
 	mLayout->addWidget(button, 4, 1);

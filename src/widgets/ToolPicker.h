@@ -29,6 +29,7 @@
 #include "CustomToolButton.h"
 #include "CustomToolButtonAction.h"
 #include "src/common/enum/ToolTypes.h"
+#include "src/common/helper/IconLoader.h"
 
 namespace kImageAnnotator {
 
