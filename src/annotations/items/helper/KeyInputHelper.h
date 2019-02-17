@@ -31,19 +31,22 @@ class KeyInputHelper : public QObject
 {
 Q_OBJECT
 public:
-    explicit KeyInputHelper() = default;
-    ~KeyInputHelper() override = default;
-    void handleKeyPress(QKeyEvent *event);
-    bool isShiftPressed(const QKeyEvent *event) const;
-    bool isControlPressed(const QKeyEvent *event) const;
-    QString getTextWithCorrectCase(const QKeyEvent *event) const;
+	explicit KeyInputHelper() = default;
+	~KeyInputHelper() override = default;
+	void handleKeyPress(QKeyEvent *event);
+	bool isShiftPressed(const QKeyEvent *event) const;
+	bool isControlPressed(const QKeyEvent *event) const;
+	QString getTextWithCorrectCase(const QKeyEvent *event) const;
 
 signals:
-    void remove(TextPositions position) const;
-    void insert(const QString &text) const;
-    void move(TextPositions position) const;
-    void paste() const;
-    void escape() const;
+	void remove(TextPositions position) const;
+	void insert(const QString &text) const;
+	void move(TextPositions position) const;
+	void paste() const;
+	void escape() const;
+
+private:
+	bool isModifierPressed(const QKeyEvent *event, Qt::KeyboardModifier modifier) const;
 };
 
 } // namespace kImageAnnotator
