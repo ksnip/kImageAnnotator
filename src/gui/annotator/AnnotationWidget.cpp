@@ -101,6 +101,7 @@ void AnnotationWidget::initGui()
 	connect(mFillTypePicker, &FillTypePicker::fillSelected, this, &AnnotationWidget::setToolFillType);
 	connect(mFirstNumberPicker, &NumberPicker::numberSelected, this, &AnnotationWidget::setFirstBadgeNumber);
 	connect(mConfig, &Config::loaded, this, &AnnotationWidget::loadConfig);
+	connect(mConfig, &Config::toolChanged, mToolPicker, &ToolPicker::setTool);
 }
 
 void AnnotationWidget::loadConfig()

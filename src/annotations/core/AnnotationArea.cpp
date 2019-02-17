@@ -195,7 +195,11 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 	auto selectedItems = mItemModifier->selectedItems();
 
 	AnnotationContextMenu contextMenu;
-	contextMenu.setOverItem(!selectedItems.isEmpty());
+	auto isMenuOverItem = !selectedItems.isEmpty();
+	if (isMenuOverItem) {
+		mConfig->setSelectedTool(ToolTypes::Select);
+	}
+	contextMenu.setOverItem(isMenuOverItem);
 	contextMenu.setPastEnabled(!mItemCopier->isEmpty());
 	AnnotationItemArranger itemArranger(selectedItems, mItems);
 	connect(&itemArranger, &AnnotationItemArranger::newCommand, mUndoStack, &UndoStack::push);

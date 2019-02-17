@@ -30,8 +30,8 @@ Q_OBJECT
 public:
 	explicit AnnotationContextMenu();
 	~AnnotationContextMenu() = default;
-	void setOverItem(bool overItem);
-	void setPastEnabled(bool pastEnabled);
+	void setOverItem(bool isOverItem);
+	void setPastEnabled(bool enabled);
 	void exec(const QPointF &position);
 
 signals:
@@ -47,6 +47,7 @@ private:
 	QMenu *mArrangeMenu;
 	QAction *mCopyAction;
 	QAction *mPastAction;
+	QAction *mSelectThis;
 	QAction *mDeleteAction;
 };
 
