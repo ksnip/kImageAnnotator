@@ -60,7 +60,7 @@ void AbstractAnnotationPath::setPointAt(const QPointF &point, int handleIndex)
 	auto oppositeIndex = (handleIndex + 4) % 8;
 	auto currentPos = ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex);
 	auto rect = ShapeHelper::setRectPointAtIndex(boundingRect(), handleIndex, point);
-	if (rect.width() >= Constants::MinResizeRectSize && rect.height() >= Constants::MinResizeRectSize) {
+	if (rect.width() >= Constants::MinPathResizeRectSize && rect.height() >= Constants::MinPathResizeRectSize) {
 		prepareGeometryChange();
 		scalePath(rect);
 		mPath->translate(currentPos - ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex));

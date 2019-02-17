@@ -68,6 +68,7 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 
 	QFontMetrics fontMetrics(properties()->font());
 	auto boxHeight = 0;
+	auto textArea = mRect->normalized();
 	QTextDocument document(mText);
 	for (auto block = document.begin(); block != document.end(); block = block.next()) {
 		auto blockPosition = block.position();
@@ -84,9 +85,9 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 				break;
 			}
 
-			line.setLineWidth(mRect->width() - margine * 2);
+			line.setLineWidth(textArea.width() - margine * 2);
 			blockHeight += fontMetrics.leading();
-			line.setPosition(mRect->adjusted(margine, margine, 0, 0).topLeft());
+			line.setPosition(textArea.adjusted(margine, margine, 0, 0).topLeft());
 			blockHeight += line.height();
 		}
 		textLayout.endLayout();

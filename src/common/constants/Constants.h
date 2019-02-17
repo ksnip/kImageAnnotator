@@ -26,7 +26,7 @@ namespace kImageAnnotator {
 
 inline namespace Constants {
 
-const int MinResizeRectSize = 20;
+const int MinPathResizeRectSize = 20;
 
 const int ResizeHandleSize = 16;
 
