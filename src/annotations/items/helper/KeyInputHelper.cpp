@@ -30,7 +30,6 @@ void KeyInputHelper::handleKeyPress(QKeyEvent *event)
 		case Qt::Key_Return:
 		case Qt::Key_Enter:
 			if (isShiftPressed(event)) {
-				qDebug("ding");
 				emit insert(QStringLiteral("\n"));
 			} else {
 				emit escape();
