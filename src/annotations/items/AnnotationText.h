@@ -54,6 +54,14 @@ private:
 	KeyInputHelper mKeyInputHelper;
 	TextCursor mTextCursor;
 	IgnoreShortcutsFilter mIgnoreShortcutsFilter;
+	bool mIsInEditMode;
+	QPen mEditModeOutlinePen;
+
+	void connectSlots();
+	QRect getTextRect() const;
+	void startEditMode();
+	void stopEditMode();
+	void setupEditModeOutlinePen();
 
 private slots:
 	void removeText(TextPositions direction);
@@ -62,8 +70,6 @@ private slots:
 	void pasteText();
 	void escape();
 	void adjustRect();
-	void connectSlots();
-	QRect getTextRect() const;
 };
 
 } // namespace kImageAnnotator

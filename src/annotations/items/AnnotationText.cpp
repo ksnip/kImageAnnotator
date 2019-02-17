@@ -25,6 +25,7 @@ AnnotationText::AnnotationText(const QPointF &startPosition, AnnotationTextPrope
 {
 	setFlag(QGraphicsItem::ItemIsFocusable, true);
 	connectSlots();
+	setupEditModeOutlinePen();
 }
 
 AnnotationText::AnnotationText(const AnnotationText &other) : AbstractAnnotationRect(other)
@@ -33,6 +34,7 @@ AnnotationText::AnnotationText(const AnnotationText &other) : AbstractAnnotation
 
 	setFlag(QGraphicsItem::ItemIsFocusable, true);
 	connectSlots();
+	setupEditModeOutlinePen();
 }
 
 void AnnotationText::updateShape()
@@ -44,8 +46,7 @@ void AnnotationText::updateShape()
 
 void AnnotationText::focusOutEvent(QFocusEvent *event)
 {
-	mTextCursor.stop();
-	mIgnoreShortcutsFilter.remove();
+	stopEditMode();
 	QGraphicsItem::focusOutEvent(event);
 }
 
@@ -60,6 +61,13 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 	// Paint border
 	AbstractAnnotationRect::paint(painter, style, widget);
 
+	auto textArea = mRect->normalized();
+	if (mIsInEditMode) {
+		setupEditModeOutlinePen();
+		painter->setPen(mEditModeOutlinePen);
+		painter->drawRect(textArea);
+	}
+
 	// Paint text
 	painter->setPen(properties()->textColor());
 	auto margine = properties()->Width();
@@ -68,7 +76,7 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 
 	QFontMetrics fontMetrics(properties()->font());
 	auto boxHeight = 0;
-	auto textArea = mRect->normalized();
+
 	QTextDocument document(mText);
 	for (auto block = document.begin(); block != document.end(); block = block.next()) {
 		auto blockPosition = block.position();
@@ -105,8 +113,7 @@ void AnnotationText::finish()
 {
 	adjustRect();
 	setFocus();
-	mTextCursor.start();
-	mIgnoreShortcutsFilter.apply();
+	startEditMode();
 }
 
 const AnnotationTextProperties *AnnotationText::properties() const
@@ -124,6 +131,27 @@ QPainterPath AnnotationText::shape() const
 	auto path = AbstractAnnotationItem::shape();
 	path.addRect(getTextRect());
 	return path;
+}
+
+void AnnotationText::startEditMode()
+{
+	mTextCursor.start();
+	mIgnoreShortcutsFilter.apply();
+	mIsInEditMode = true;
+}
+
+void AnnotationText::stopEditMode()
+{
+	mTextCursor.stop();
+	mIgnoreShortcutsFilter.remove();
+	mIsInEditMode = false;
+}
+
+void AnnotationText::setupEditModeOutlinePen()
+{
+	mEditModeOutlinePen.setColor(Qt::white);
+	mEditModeOutlinePen.setWidthF(0.5);
+	mEditModeOutlinePen.setStyle(Qt::DotLine);
 }
 
 void AnnotationText::removeText(TextPositions direction)
