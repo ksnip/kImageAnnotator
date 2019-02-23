@@ -144,6 +144,7 @@ AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotatio
 			break;
 		case ToolTypes::Number:
 			newItem = new AnnotationNumber(*(static_cast<const AnnotationNumber *>(item)));
+			mNumberManager->addItem(dynamic_cast<AnnotationNumber *>(newItem));
 			break;
 		case ToolTypes::Text:
 			newItem = new AnnotationText(*(static_cast<const AnnotationText *>(item)));

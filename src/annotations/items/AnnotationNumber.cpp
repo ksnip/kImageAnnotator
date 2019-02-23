@@ -29,7 +29,6 @@ AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, AnnotationText
 
 AnnotationNumber::AnnotationNumber(const AnnotationNumber &other) : AbstractAnnotationRect(other)
 {
-	mNumberString = other.mNumberString;
 	updateShape();
 }
 
