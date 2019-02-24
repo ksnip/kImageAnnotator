@@ -42,6 +42,7 @@ public:
 	void setFillTypeWidget(FillTypePicker *widget);
 	void setFontSizeWidget(NumberPicker *widget);
 	void setFirstNumberWidget(NumberPicker *widget);
+	void setBlurRadiusWidget(NumberPicker *widget);
 
 private:
 	ToolTypes mCurrentTool;
@@ -51,6 +52,7 @@ private:
 	FillTypePicker *mFillTypeWidget;
 	NumberPicker *mFontSizeWidget;
 	NumberPicker *mFirstNumberWidget;
+	NumberPicker *mBlurRadiusWidget;
 
 	void updateWidgets();
 	void updateProperties();
@@ -62,6 +64,7 @@ private:
 	void setFontSizeWidgetEnabled(bool enabled);
 	void setFirstNumberWidgetEnabled(bool enabled);
 	void setNoFillAndNoBorderEnabled(bool enabled) const;
+	void setBlurRadiusWidgetEnabled(bool enabled) const;
 };
 
 } // namespace kImageAnnotator

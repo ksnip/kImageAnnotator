@@ -56,4 +56,9 @@ QString ConfigNameHelper::toolFontSize(ToolTypes tool)
 	return annotator() + QStringLiteral("ToolFontSize_") + QString::number(static_cast<int>(tool));
 }
 
+QString ConfigNameHelper::blurRadius()
+{
+	return annotator() + QStringLiteral("BlurRadius");
+}
+
 }

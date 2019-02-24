@@ -41,6 +41,7 @@ AnnotationWidget::~AnnotationWidget()
 	delete mFontSizePicker;
 	delete mFillTypePicker;
 	delete mFirstNumberPicker;
+	delete mBlurRadiusPicker;
 }
 
 QSize AnnotationWidget::sizeHint() const
@@ -67,6 +68,8 @@ void AnnotationWidget::initGui()
 	mFillTypePicker = new FillTypePicker(IconLoader::load(QStringLiteral("fillType.svg")), tr("Border And Fill Visibility"));
 	mFirstNumberPicker = new NumberPicker(IconLoader::load(QStringLiteral("number.svg")), tr("Starting Number"));
 	mFirstNumberPicker->setRange(1, 100);
+	mBlurRadiusPicker = new NumberPicker(IconLoader::load(QStringLiteral("blur.svg")), tr("Blur Radius"));
+	mBlurRadiusPicker->setRange(1, 20);
 
 	mToolLayout->addWidget(mToolPicker);
 	mToolLayout->addSpacing(20);
@@ -76,6 +79,7 @@ void AnnotationWidget::initGui()
 	mToolLayout->addWidget(mFontSizePicker);
 	mToolLayout->addWidget(mFillTypePicker);
 	mToolLayout->addWidget(mFirstNumberPicker);
+	mToolLayout->addWidget(mBlurRadiusPicker);
 	mToolLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 
 	mMainLayout->addLayout(mToolLayout);
@@ -87,6 +91,7 @@ void AnnotationWidget::initGui()
 	mWidgetConfigurator.setFillTypeWidget(mFillTypePicker);
 	mWidgetConfigurator.setFontSizeWidget(mFontSizePicker);
 	mWidgetConfigurator.setFirstNumberWidget(mFirstNumberPicker);
+	mWidgetConfigurator.setBlurRadiusWidget(mBlurRadiusPicker);
 
 	setLayout(mMainLayout);
 
@@ -100,6 +105,7 @@ void AnnotationWidget::initGui()
 	connect(mFontSizePicker, &NumberPicker::numberSelected, this, &AnnotationWidget::setToolFontSize);
 	connect(mFillTypePicker, &FillTypePicker::fillSelected, this, &AnnotationWidget::setToolFillType);
 	connect(mFirstNumberPicker, &NumberPicker::numberSelected, this, &AnnotationWidget::setFirstBadgeNumber);
+	connect(mBlurRadiusPicker, &NumberPicker::numberSelected, this, &AnnotationWidget::setBlurRadius);
 	connect(mConfig, &Config::loaded, this, &AnnotationWidget::loadConfig);
 	connect(mConfig, &Config::toolChanged, mToolPicker, &ToolPicker::setTool);
 }
@@ -116,6 +122,7 @@ void AnnotationWidget::updateSelection(ToolTypes tool)
 	mWidthPicker->setNumber(mConfig->toolWidth(tool));
 	mFillTypePicker->setFillType(mConfig->toolFillType(tool));
 	mFontSizePicker->setNumber(mConfig->toolFontSize(tool));
+	mBlurRadiusPicker->setNumber(mConfig->blurRadius());
 	mWidgetConfigurator.setCurrentTool(tool);
 }
 
@@ -147,6 +154,11 @@ void AnnotationWidget::setToolFontSize(int size)
 void AnnotationWidget::setFirstBadgeNumber(int number)
 {
 	mConfig->setFirstBadgeNumber(number);
+}
+
+void AnnotationWidget::setBlurRadius(int radius)
+{
+	mConfig->setBlurRadius(radius);
 }
 
 } // namespace kImageAnnotator

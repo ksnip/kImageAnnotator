@@ -196,7 +196,22 @@ void Config::setFirstBadgeNumber(int number)
 	}
 }
 
-// Private Methodes
+int Config::blurRadius() const
+{
+	return mBlurRadius;
+}
+
+void Config::setBlurRadius(int radius)
+{
+	if (blurRadius() == radius) {
+		return;
+	}
+
+	mBlurRadius = radius;
+	saveBlurRadius(radius);
+}
+
+// Private Methods
 
 void Config::initToolSettings()
 {
@@ -206,6 +221,7 @@ void Config::initToolSettings()
 	initToolWidths();
 	initToolFillTypes();
 	initToolFonts();
+	initBlurRadius();
 	emit loaded();
 }
 
@@ -246,6 +262,11 @@ void Config::initToolFonts()
 {
 	mToolToFont[ToolTypes::Text] = QFont(QStringLiteral("Times"), loadToolFontSize(ToolTypes::Text), QFont::Bold);
 	mToolToFont[ToolTypes::Number] = QFont(QStringLiteral("Helvetica"), loadToolFontSize(ToolTypes::Number), QFont::Bold);
+}
+
+void Config::initBlurRadius()
+{
+	mBlurRadius = loadBlurRadius();
 }
 
 void Config::initGeneralSettings()
@@ -359,6 +380,23 @@ void Config::saveToolFontSize(ToolTypes toolType, int fontSize)
 	}
 }
 
+int Config::loadBlurRadius()
+{
+	if (mSaveToolSelection) {
+		return mConfig.value(ConfigNameHelper::blurRadius(), defaultBlurRadius()).value<int>();
+	} else {
+		return defaultBlurRadius();
+	}
+}
+
+void Config::saveBlurRadius(int radius)
+{
+	if (mSaveToolSelection) {
+		mConfig.setValue(ConfigNameHelper::blurRadius(), radius);
+		mConfig.sync();
+	}
+}
+
 QColor Config::defaultToolColor(ToolTypes toolType) const
 {
 	switch (toolType) {
@@ -439,6 +477,11 @@ int Config::defaultToolFontSize(ToolTypes toolType) const
 		default:
 			return 10;
 	}
+}
+
+int Config::defaultBlurRadius() const
+{
+	return 7;
 }
 
 } // namespace kImageAnnotator

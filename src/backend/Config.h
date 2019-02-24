@@ -76,6 +76,9 @@ public slots:
 
 	void setFirstBadgeNumber(int number);
 
+	int blurRadius() const;
+	void setBlurRadius(int radius);
+
 signals:
 	void firstBadgeNumberChanged(int number) const;
 	void toolChanged(ToolTypes tool) const;
@@ -95,6 +98,7 @@ private:
 	bool mSaveToolSelection;
 	int mSmoothFactor;
 	int mFirstBadgeNumber;
+	int mBlurRadius;
 
 	void initToolSettings();
 	void initSelectedTool();
@@ -103,6 +107,7 @@ private:
 	void initToolWidths();
 	void initToolFillTypes();
 	void initToolFonts();
+	void initBlurRadius();
 	void initGeneralSettings();
 
 	QColor loadToolColor(ToolTypes toolType);
@@ -117,6 +122,8 @@ private:
 	void saveToolType(ToolTypes toolType);
 	int loadToolFontSize(ToolTypes toolType);
 	void saveToolFontSize(ToolTypes toolType, int fontSize);
+	int loadBlurRadius();
+	void saveBlurRadius(int radius);
 
 	QColor defaultToolColor(ToolTypes toolType) const;
 	QColor defaultToolTextColor(ToolTypes toolType) const;
@@ -124,6 +131,7 @@ private:
 	FillTypes defaultToolFillType(ToolTypes toolType) const;
 	ToolTypes defaultToolType();
 	int defaultToolFontSize(ToolTypes toolType) const;
+	int defaultBlurRadius() const;
 };
 
 } // namespace kImageAnnotator

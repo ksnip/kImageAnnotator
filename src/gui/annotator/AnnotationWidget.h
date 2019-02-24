@@ -53,6 +53,7 @@ private:
 	NumberPicker *mFontSizePicker;
 	FillTypePicker *mFillTypePicker;
 	NumberPicker *mFirstNumberPicker;
+	NumberPicker *mBlurRadiusPicker;
 	Config *mConfig;
 	WidgetConfigurator mWidgetConfigurator;
 
@@ -67,6 +68,7 @@ private slots:
 	void setToolFontSize(int fontSize);
 	void setToolFillType(FillTypes fill);
 	void setFirstBadgeNumber(int fontSize);
+	void setBlurRadius(int radius);
 };
 
 } // namespace kImageAnnotator

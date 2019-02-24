@@ -79,6 +79,12 @@ void WidgetConfigurator::setFirstNumberWidget(NumberPicker *widget)
 	updateWidgets();
 }
 
+void WidgetConfigurator::setBlurRadiusWidget(NumberPicker *widget)
+{
+	mBlurRadiusWidget = widget;
+	updateWidgets();
+}
+
 void WidgetConfigurator::updateWidgets()
 {
 	updateProperties();
@@ -120,6 +126,7 @@ void WidgetConfigurator::updateVisibility()
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
 			setFirstNumberWidgetEnabled(false);
+			setBlurRadiusWidgetEnabled(false);
 			break;
 		case ToolTypes::Pen:
 		case ToolTypes::MarkerPen:
@@ -129,6 +136,7 @@ void WidgetConfigurator::updateVisibility()
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
 			setFirstNumberWidgetEnabled(false);
+			setBlurRadiusWidgetEnabled(false);
 			break;
 		case ToolTypes::MarkerRect:
 		case ToolTypes::MarkerEllipse:
@@ -138,6 +146,7 @@ void WidgetConfigurator::updateVisibility()
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
 			setFirstNumberWidgetEnabled(false);
+			setBlurRadiusWidgetEnabled(false);
 			break;
 		case ToolTypes::Line:
 		case ToolTypes::Arrow:
@@ -148,6 +157,7 @@ void WidgetConfigurator::updateVisibility()
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
 			setFirstNumberWidgetEnabled(false);
+			setBlurRadiusWidgetEnabled(false);
 			break;
 		case ToolTypes::Ellipse:
 		case ToolTypes::Rect:
@@ -157,6 +167,7 @@ void WidgetConfigurator::updateVisibility()
 			setFillWidgetEnabled(true);
 			setFontSizeWidgetEnabled(false);
 			setFirstNumberWidgetEnabled(false);
+			setBlurRadiusWidgetEnabled(false);
 			break;
 		case ToolTypes::Number:
 			setColorWidgetEnabled(true);
@@ -165,6 +176,7 @@ void WidgetConfigurator::updateVisibility()
 			setFillWidgetEnabled(true);
 			setFontSizeWidgetEnabled(true);
 			setFirstNumberWidgetEnabled(true);
+			setBlurRadiusWidgetEnabled(false);
 			break;
 		case ToolTypes::Text:
 			setColorWidgetEnabled(true);
@@ -173,6 +185,7 @@ void WidgetConfigurator::updateVisibility()
 			setFillWidgetEnabled(true);
 			setFontSizeWidgetEnabled(true);
 			setFirstNumberWidgetEnabled(false);
+			setBlurRadiusWidgetEnabled(false);
 			break;
 		case ToolTypes::Blur:
 			setColorWidgetEnabled(false);
@@ -181,6 +194,7 @@ void WidgetConfigurator::updateVisibility()
 			setFillWidgetEnabled(false);
 			setFontSizeWidgetEnabled(false);
 			setFirstNumberWidgetEnabled(false);
+			setBlurRadiusWidgetEnabled(true);
 			break;
 		default:
 			qCritical("Unknown tooltype in WidgetConfigurator");
@@ -226,6 +240,13 @@ void WidgetConfigurator::setFirstNumberWidgetEnabled(bool enabled)
 {
 	if (mFirstNumberWidget) {
 		mFirstNumberWidget->setEnabled(enabled);
+	}
+}
+
+void WidgetConfigurator::setBlurRadiusWidgetEnabled(bool enabled) const
+{
+	if (mBlurRadiusWidget) {
+		mBlurRadiusWidget->setEnabled(enabled);
 	}
 }
 
