@@ -37,6 +37,7 @@ AnnotationProperties *AnnotationPropertiesFactory::create(ToolTypes toolType) co
 	setShadowEnabled(properties, toolType);
 	setPathProperties(properties);
 	setTextProperties(properties, toolType);
+	setBlurProperties(properties);
 
 	return properties;
 }
@@ -50,6 +51,8 @@ AnnotationProperties *AnnotationPropertiesFactory::createPropertiesObject(ToolTy
 		case ToolTypes::Number:
 		case ToolTypes::Text:
 			return new AnnotationTextProperties();
+		case ToolTypes::Blur:
+			return new AnnotationBlurProperties();
 		default:
 			return new AnnotationProperties();
 	}
@@ -116,6 +119,14 @@ void AnnotationPropertiesFactory::setTextProperties(AnnotationProperties *proper
 bool AnnotationPropertiesFactory::isMarkerTool(const ToolTypes &toolType) const
 {
 	return toolType == ToolTypes::MarkerPen || toolType == ToolTypes::MarkerRect || toolType == ToolTypes::MarkerEllipse;
+}
+
+void AnnotationPropertiesFactory::setBlurProperties(AnnotationProperties *properties) const
+{
+	auto pathProperties = dynamic_cast<AnnotationBlurProperties *>(properties);
+	if (pathProperties != nullptr) {
+		pathProperties->setRadius(mConfig->blurRadius());
+	}
 }
 
 } // namespace kImageAnnotator

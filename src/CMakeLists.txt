@@ -18,6 +18,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationPathProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationTextProperties.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationBlurProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/AnnotationItemModifier.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/AnnotationItemResizer.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/AnnotationMultiItemResizer.cpp

@@ -34,6 +34,11 @@ ToolTypes AnnotationBlur::toolType() const
 	return ToolTypes::Blur;
 }
 
+const AnnotationBlurProperties *AnnotationBlur::properties() const
+{
+	return dynamic_cast<const AnnotationBlurProperties *>(AbstractAnnotationItem::properties());
+}
+
 void AnnotationBlur::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
 	// We need to update the image here, otherwise the scene is not ready
@@ -68,7 +73,7 @@ void AnnotationBlur::updateBlurredImage()
 
 		auto itemRect = mRect->normalized().toRect();
 		auto sceneBehindItem = image.copy(itemRect);
-		mBlurredImage = mItemBlurrer.blurred(sceneBehindItem, 10, false);
+		mBlurredImage = mItemBlurrer.blurred(sceneBehindItem, properties()->radius(), false);
 	}
 }
 

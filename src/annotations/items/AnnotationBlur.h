@@ -24,6 +24,7 @@
 
 #include "AbstractAnnotationRect.h"
 #include "src/annotations/misc/ImageBlurrer.h"
+#include "src/annotations/properties/AnnotationBlurProperties.h"
 
 namespace kImageAnnotator {
 
@@ -34,6 +35,7 @@ public:
 	AnnotationBlur(const AnnotationBlur &other);
 	~AnnotationBlur() override = default;
 	ToolTypes toolType() const override;
+	const AnnotationBlurProperties *properties() const override;
 
 protected:
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;

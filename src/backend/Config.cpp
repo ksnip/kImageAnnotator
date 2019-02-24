@@ -481,7 +481,7 @@ int Config::defaultToolFontSize(ToolTypes toolType) const
 
 int Config::defaultBlurRadius() const
 {
-	return 7;
+	return 10;
 }
 
 } // namespace kImageAnnotator

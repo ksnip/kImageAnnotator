@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2019 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,31 +17,28 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONTEXTPROPERTIES_H
-#define KIMAGEANNOTATOR_ANNOTATIONTEXTPROPERTIES_H
-
-#include <QFont>
+#ifndef KIMAGEANNOTATOR_ANNOTATIONBLURPROPERTIES_H
+#define KIMAGEANNOTATOR_ANNOTATIONBLURPROPERTIES_H
 
 #include "AnnotationProperties.h"
 
 namespace kImageAnnotator {
 
-class AnnotationTextProperties : public AnnotationProperties
+class AnnotationBlurProperties : public AnnotationProperties
 {
 public:
-	AnnotationTextProperties() = default;
-	AnnotationTextProperties(const QColor &color, int size);
-	AnnotationTextProperties(const AnnotationTextProperties &other);
-	~AnnotationTextProperties() override = default;
-	AnnotationTextProperties *clone() const override;
+	AnnotationBlurProperties() = default;
+	AnnotationBlurProperties(const AnnotationBlurProperties &other);
+	~AnnotationBlurProperties() override = default;
+	AnnotationBlurProperties *clone() const override;
 
-	QFont font() const;
-	void setFont(const QFont &font);
+	int radius() const;
+	void setRadius(int radius);
 
 private:
-	QFont mFont;
+	int mRadius;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONTEXTPROPERTIES_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONBLURPROPERTIES_H

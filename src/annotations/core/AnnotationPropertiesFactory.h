@@ -23,6 +23,7 @@
 #include "src/annotations/properties/AnnotationProperties.h"
 #include "src/annotations/properties/AnnotationPathProperties.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
+#include "src/annotations/properties/AnnotationBlurProperties.h"
 #include "src/backend/Config.h"
 #include "src/common/enum/ToolTypes.h"
 
@@ -46,6 +47,7 @@ private:
 	void setFill(AnnotationProperties *properties, ToolTypes toolType) const;
 	void setPathProperties(AnnotationProperties *properties) const;
 	void setTextProperties(AnnotationProperties *properties, ToolTypes toolType) const;
+	void setBlurProperties(AnnotationProperties *properties) const;
 	bool isMarkerTool(const ToolTypes &toolType) const;
 };
 
