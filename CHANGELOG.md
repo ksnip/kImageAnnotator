@@ -15,6 +15,7 @@
 * Fixed: Items cannot be resized when drawn from bottom right to top left. ([#38](https://github.com/DamirPorobic/kImageAnnotator/issues/38))
 * Fixed: Right click on annotation items selects item but doesn't switch tool. ([#40](https://github.com/DamirPorobic/kImageAnnotator/issues/40))
 * Fixed: Copy number annotation item doesn't increment number. ([#41](https://github.com/DamirPorobic/kImageAnnotator/issues/41))
+* Fixed: Crash on startup after adding Blur Radius Picker. ([#43](https://github.com/DamirPorobic/kImageAnnotator/issues/43))
 
 ## Release 0.0.2
 * New: Added blur annotation tool. ([#20](https://github.com/DamirPorobic/kImageAnnotator/issues/20))
