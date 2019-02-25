@@ -54,15 +54,15 @@ private:
 	NumberPicker *mFirstNumberWidget;
 	NumberPicker *mBlurRadiusWidget;
 
-	void updateWidgets();
-	void updateProperties();
-	void updateVisibility();
-	void setColorWidgetEnabled(bool enabled);
-	void setTextColorWidgetEnabled(bool enabled);
-	void setWidthWidgetEnabled(bool enabled);
-	void setFillWidgetEnabled(bool enabled);
-	void setFontSizeWidgetEnabled(bool enabled);
-	void setFirstNumberWidgetEnabled(bool enabled);
+	void updateWidgets() const;
+	void updateProperties() const;
+	void updateVisibility() const;
+	void setColorWidgetEnabled(bool enabled) const;
+	void setTextColorWidgetEnabled(bool enabled) const;
+	void setWidthWidgetEnabled(bool enabled) const;
+	void setFillWidgetEnabled(bool enabled) const;
+	void setFontSizeWidgetEnabled(bool enabled) const;
+	void setFirstNumberWidgetEnabled(bool enabled) const;
 	void setNoFillAndNoBorderEnabled(bool enabled) const;
 	void setBlurRadiusWidgetEnabled(bool enabled) const;
 };

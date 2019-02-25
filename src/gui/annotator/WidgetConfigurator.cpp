@@ -29,6 +29,7 @@ WidgetConfigurator::WidgetConfigurator()
 	mFillTypeWidget = nullptr;
 	mFontSizeWidget = nullptr;
 	mFirstNumberWidget = nullptr;
+	mBlurRadiusWidget = nullptr;
 
 	mCurrentTool = ToolTypes::Select;
 }
@@ -85,13 +86,13 @@ void WidgetConfigurator::setBlurRadiusWidget(NumberPicker *widget)
 	updateWidgets();
 }
 
-void WidgetConfigurator::updateWidgets()
+void WidgetConfigurator::updateWidgets() const
 {
 	updateProperties();
 	updateVisibility();
 }
 
-void WidgetConfigurator::updateProperties()
+void WidgetConfigurator::updateProperties() const
 {
 	switch (mCurrentTool) {
 		case ToolTypes::Text:
@@ -103,20 +104,7 @@ void WidgetConfigurator::updateProperties()
 	}
 }
 
-void WidgetConfigurator::setNoFillAndNoBorderEnabled(bool enabled) const
-{
-	if (mFillTypeWidget == nullptr) {
-		return;
-	}
-
-	if (enabled) {
-		mFillTypeWidget->addNoFillAndNoBorderToList();
-	} else {
-		mFillTypeWidget->removeNoFillAndNoBorderToList();
-	}
-}
-
-void WidgetConfigurator::updateVisibility()
+void WidgetConfigurator::updateVisibility() const
 {
 	switch (mCurrentTool) {
 		case ToolTypes::Select:
@@ -201,45 +189,58 @@ void WidgetConfigurator::updateVisibility()
 	}
 }
 
-void WidgetConfigurator::setColorWidgetEnabled(bool enabled)
+void WidgetConfigurator::setColorWidgetEnabled(bool enabled) const
 {
 	if (mColorWidget) {
 		mColorWidget->setEnabled(enabled);
 	}
 }
 
-void WidgetConfigurator::setTextColorWidgetEnabled(bool enabled)
+void WidgetConfigurator::setTextColorWidgetEnabled(bool enabled) const
 {
 	if (mTextColorWidget) {
 		mTextColorWidget->setEnabled(enabled);
 	}
 }
 
-void WidgetConfigurator::setWidthWidgetEnabled(bool enabled)
+void WidgetConfigurator::setWidthWidgetEnabled(bool enabled) const
 {
 	if (mWidthWidget) {
 		mWidthWidget->setEnabled(enabled);
 	}
 }
 
-void WidgetConfigurator::setFillWidgetEnabled(bool enabled)
+void WidgetConfigurator::setFillWidgetEnabled(bool enabled) const
 {
 	if (mFillTypeWidget) {
 		mFillTypeWidget->setEnabled(enabled);
 	}
 }
 
-void WidgetConfigurator::setFontSizeWidgetEnabled(bool enabled)
+void WidgetConfigurator::setFontSizeWidgetEnabled(bool enabled) const
 {
 	if (mFontSizeWidget) {
 		mFontSizeWidget->setEnabled(enabled);
 	}
 }
 
-void WidgetConfigurator::setFirstNumberWidgetEnabled(bool enabled)
+void WidgetConfigurator::setFirstNumberWidgetEnabled(bool enabled) const
 {
 	if (mFirstNumberWidget) {
 		mFirstNumberWidget->setEnabled(enabled);
+	}
+}
+
+void WidgetConfigurator::setNoFillAndNoBorderEnabled(bool enabled) const
+{
+	if (mFillTypeWidget == nullptr) {
+		return;
+	}
+
+	if (enabled) {
+		mFillTypeWidget->addNoFillAndNoBorderToList();
+	} else {
+		mFillTypeWidget->removeNoFillAndNoBorderToList();
 	}
 }
 
