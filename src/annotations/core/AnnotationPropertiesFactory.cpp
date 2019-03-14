@@ -63,7 +63,7 @@ void AnnotationPropertiesFactory::setColor(AnnotationProperties *properties, Too
 	auto color = mConfig->toolColor(toolType);
 
 	if (isMarkerTool(toolType)) {
-		color.setAlpha(100);
+		color.setAlpha(60);
 	}
 
 	properties->setColor(color);
