@@ -61,6 +61,13 @@ int AnnotationNumber::number() const
 	return mNumberString.toInt();
 }
 
+QPainterPath AnnotationNumber::shape() const
+{
+	auto path = AbstractAnnotationItem::shape();
+	path.addRect(*mRect);
+	return path;
+}
+
 void AnnotationNumber::updateRect()
 {
 	prepareGeometryChange();

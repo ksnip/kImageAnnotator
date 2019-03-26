@@ -38,6 +38,7 @@ public:
 	ToolTypes toolType() const override;
 	void setNumber(int number);
 	int number() const;
+	QPainterPath shape() const override;
 
 protected:
 	void updateShape() override;
