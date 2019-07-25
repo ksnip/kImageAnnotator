@@ -32,7 +32,7 @@ AnnotationContextMenu::AnnotationContextMenu()
 	mSelectThis = addAction(tr("Select This"));
 	addSeparator();
 	mCopyAction = addAction(tr("Copy"));
-	mPastAction = addAction(tr("Past"));
+	mPastAction = addAction(tr("Paste"));
 	addSeparator();
 	mDeleteAction = addAction(tr("Delete"), this, &AnnotationContextMenu::erase);
 }
