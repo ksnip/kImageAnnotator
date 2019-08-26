@@ -21,8 +21,9 @@
 
 namespace kImageAnnotator {
 
-CropView::CropView(kImageAnnotator::AnnotationArea *annotationArea, CropSelectionHandler *cropSelectionHandler, KeyHelper *keyHelper) : mKeyHelper(keyHelper),
-                                                                                                                                        mCropSelectionHandler(cropSelectionHandler)
+CropView::CropView(kImageAnnotator::AnnotationArea *annotationArea, CropSelectionHandler *cropSelectionHandler, KeyHelper *keyHelper) :
+    mKeyHelper(keyHelper),
+    mCropSelectionHandler(cropSelectionHandler)
 {
 	setScene(annotationArea);
 }
@@ -59,9 +60,7 @@ void CropView::drawForeground(QPainter *painter, const QRectF &rect)
 	auto selection = mCropSelectionHandler->selection();
 
 	// Draw semi transparent background for not selected area
-	painter->setClipRegion(QRegion(sceneRect().toRect()).subtracted(
-		QRegion(selection.toRect()))
-	);
+	painter->setClipRegion(QRegion(sceneRect().toRect()).subtracted(QRegion(selection.toRect())));
 	painter->setBrush(QColor(0, 0, 0, 150));
 	painter->drawRect(sceneRect());
 

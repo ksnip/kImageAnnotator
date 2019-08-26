@@ -23,13 +23,7 @@ namespace kImageAnnotator {
 
 KeyHelper::KeyHelper()
 {
-    mKeyToIsPressed[Qt::Key_Delete] = false;
-    mKeyToIsPressed[Qt::Key_Escape] = false;
-    mKeyToIsPressed[Qt::Key_Enter] = false;
-    mKeyToIsPressed[Qt::Key_Return] = false;
-    mKeyToIsPressed[Qt::Key_Control] = false;
-    mKeyToIsPressed[Qt::Key_Shift] = false;
-    mKeyToIsPressed[Qt::Key_Z] = false;
+    reset();
 }
 
 void KeyHelper::keyPress(QKeyEvent *keyEvent)
@@ -58,6 +52,17 @@ bool KeyHelper::isControlPressed() const
 bool KeyHelper::isShiftPressed() const
 {
     return mKeyToIsPressed[Qt::Key_Shift];
+}
+
+void KeyHelper::reset()
+{
+    mKeyToIsPressed[Qt::Key_Delete] = false;
+    mKeyToIsPressed[Qt::Key_Escape] = false;
+    mKeyToIsPressed[Qt::Key_Enter] = false;
+    mKeyToIsPressed[Qt::Key_Return] = false;
+    mKeyToIsPressed[Qt::Key_Control] = false;
+    mKeyToIsPressed[Qt::Key_Shift] = false;
+    mKeyToIsPressed[Qt::Key_Z] = false;
 }
 
 void KeyHelper::emitReleaseSignal(Qt::Key key)

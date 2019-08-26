@@ -243,6 +243,7 @@ void AnnotationArea::resetAnnotationArea()
 	mItemCopier->clear();
 	mUndoStack->clear();
 	mItemFactory->reset();
+	mKeyHelper->reset();
 }
 
 void AnnotationArea::removeAllItems()
