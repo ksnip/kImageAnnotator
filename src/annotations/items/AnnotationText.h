@@ -24,6 +24,7 @@
 #include <QtMath>
 
 #include "AbstractAnnotationRect.h"
+#include "interfaces/EditableItem.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 #include "src/annotations/items/helper/TextCursor.h"
 #include "src/annotations/items/helper/KeyInputHelper.h"
@@ -31,7 +32,7 @@
 
 namespace kImageAnnotator {
 
-class AnnotationText : public AbstractAnnotationRect
+class AnnotationText : public AbstractAnnotationRect, public EditableItem
 {
 Q_OBJECT
 public:
@@ -42,6 +43,8 @@ public:
 	const AnnotationTextProperties *properties() const override;
 	ToolTypes toolType() const override;
 	QPainterPath shape() const override;
+	void enableEditing() override ;
+	void disableEditing() override ;
 
 protected:
 	void updateShape() override;
@@ -59,8 +62,6 @@ private:
 
 	void connectSlots();
 	QRect getTextRect() const;
-	void startEditMode();
-	void stopEditMode();
 	void setupEditModeOutlinePen();
 
 private slots:

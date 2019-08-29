@@ -56,11 +56,11 @@ void AnnotationItemSelector::handleSelectionOrShowSelectionRectAt(const QPointF 
 	mShowSelectionRect = true;
 }
 
-void AnnotationItemSelector::handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifing)
+void AnnotationItemSelector::handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifying)
 {
 	prepareGeometryChange();
 
-	if (modifing) {
+	if (modifying) {
 		toggleItemSelectionAt(pos, items);
 	} else {
 		selectItemAt(pos, items);

@@ -36,7 +36,7 @@ public:
 	void handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifing);
 	void extendSelectionRectWhenShown(const QPointF &pos);
 	void finishSelectionRectWhenShown(QList<AbstractAnnotationItem *> *items);
-	void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifing);
+	void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifying);
 	void clearSelection();
 	QList<AbstractAnnotationItem *> selectedItems() const;
 	bool isSelecting() const;

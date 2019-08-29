@@ -94,6 +94,8 @@ private:
 private slots:
     void deleteSelectedItems();
 	void pasteCopiedItems(const QPointF &position);
+    void enableEditing();
+    EditableItem* getSelectedEditableItem() const;
 };
 
 } // namespace kImageAnnotator

@@ -29,9 +29,10 @@ class AnnotationContextMenu : public QMenu
 Q_OBJECT
 public:
 	explicit AnnotationContextMenu();
-	~AnnotationContextMenu() = default;
+	~AnnotationContextMenu() override = default;
 	void setOverItem(bool isOverItem);
 	void setPastEnabled(bool enabled);
+	void setEditVisible(bool enabled);
 	void exec(const QPointF &position);
 
 signals:
@@ -42,13 +43,15 @@ signals:
 	void copy(const QPointF &position) const;
 	void paste(const QPointF &position) const;
 	void erase() const;
+	void edit() const;
 
 private:
 	QMenu *mArrangeMenu;
 	QAction *mCopyAction;
 	QAction *mPastAction;
-	QAction *mSelectThis;
+	QAction *mSelectThisAction;
 	QAction *mDeleteAction;
+	QAction *mEditAction;
 };
 
 } // namespace kImageAnnotator

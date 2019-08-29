@@ -46,7 +46,7 @@ void AnnotationText::updateShape()
 
 void AnnotationText::focusOutEvent(QFocusEvent *event)
 {
-	stopEditMode();
+	disableEditing();
 	QGraphicsItem::focusOutEvent(event);
 }
 
@@ -111,9 +111,7 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 
 void AnnotationText::finish()
 {
-	adjustRect();
-	setFocus();
-	startEditMode();
+	enableEditing();
 }
 
 const AnnotationTextProperties *AnnotationText::properties() const
@@ -131,20 +129,6 @@ QPainterPath AnnotationText::shape() const
 	auto path = AbstractAnnotationItem::shape();
 	path.addRect(getTextRect());
 	return path;
-}
-
-void AnnotationText::startEditMode()
-{
-	mTextCursor.start();
-	mIgnoreShortcutsFilter.apply();
-	mIsInEditMode = true;
-}
-
-void AnnotationText::stopEditMode()
-{
-	mTextCursor.stop();
-	mIgnoreShortcutsFilter.remove();
-	mIsInEditMode = false;
 }
 
 void AnnotationText::setupEditModeOutlinePen()
@@ -226,10 +210,27 @@ void AnnotationText::connectSlots()
 QRect AnnotationText::getTextRect() const
 {
 	QFontMetrics fontMetrics(properties()->font());
-	auto margine = properties()->Width();
+	auto margin = properties()->Width();
 	auto newRect = fontMetrics.boundingRect(mRect->toRect().normalized(), Qt::AlignLeft, mText);
-	newRect.adjust(0, 0, margine * 2, margine * 2);
+	newRect.adjust(0, 0, margin * 2, margin * 2);
 	return newRect;
+}
+
+void AnnotationText::enableEditing()
+{
+    adjustRect();
+    setFocus();
+
+    mTextCursor.start();
+    mIgnoreShortcutsFilter.apply();
+    mIsInEditMode = true;
+}
+
+void AnnotationText::disableEditing()
+{
+    mTextCursor.stop();
+    mIgnoreShortcutsFilter.remove();
+    mIsInEditMode = false;
 }
 
 } // namespace kImageAnnotator

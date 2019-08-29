@@ -29,11 +29,12 @@ AnnotationContextMenu::AnnotationContextMenu()
 	mArrangeMenu->addAction(tr("Send Backward"), this, &AnnotationContextMenu::sendBackward);
 	mArrangeMenu->addAction(tr("Send to Back"), this, &AnnotationContextMenu::sendToBack);
 	addSeparator();
-	mSelectThis = addAction(tr("Select This"));
+	mSelectThisAction = addAction(tr("Select This"));
 	addSeparator();
 	mCopyAction = addAction(tr("Copy"));
 	mPastAction = addAction(tr("Paste"));
 	addSeparator();
+    mEditAction = addAction(tr("Edit"), this, &AnnotationContextMenu::edit);
 	mDeleteAction = addAction(tr("Delete"), this, &AnnotationContextMenu::erase);
 }
 
@@ -42,12 +43,17 @@ void AnnotationContextMenu::setOverItem(bool isOverItem)
 	mArrangeMenu->setEnabled(isOverItem);
 	mCopyAction->setEnabled(isOverItem);
 	mDeleteAction->setEnabled(isOverItem);
-	mSelectThis->setEnabled(isOverItem);
+	mSelectThisAction->setEnabled(isOverItem);
 }
 
 void AnnotationContextMenu::setPastEnabled(bool enabled)
 {
 	mPastAction->setEnabled(enabled);
+}
+
+void AnnotationContextMenu::setEditVisible(bool enabled)
+{
+    mEditAction->setVisible(enabled);
 }
 
 void AnnotationContextMenu::exec(const QPointF &position)

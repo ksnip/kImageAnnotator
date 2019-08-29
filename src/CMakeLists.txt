@@ -48,6 +48,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/KeyInputHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/TextCursor.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/CapsLockStatusChecker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/interfaces/EditableItem.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/AddCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/DeleteCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/MoveCommand.cpp

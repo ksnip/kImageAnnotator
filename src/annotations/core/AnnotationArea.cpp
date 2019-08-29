@@ -201,6 +201,7 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 	}
 	contextMenu.setOverItem(isMenuOverItem);
 	contextMenu.setPastEnabled(!mItemCopier->isEmpty());
+    contextMenu.setEditVisible(getSelectedEditableItem() != nullptr);
 	AnnotationItemArranger itemArranger(selectedItems, mItems);
 	connect(&itemArranger, &AnnotationItemArranger::newCommand, mUndoStack, &UndoStack::push);
 	connect(&contextMenu, &AnnotationContextMenu::bringToFront, &itemArranger, &AnnotationItemArranger::bringToFront);
@@ -210,6 +211,7 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 	connect(&contextMenu, &AnnotationContextMenu::copy, mItemCopier, &AnnotationItemClipboard::copyItems);
 	connect(&contextMenu, &AnnotationContextMenu::paste, this, &AnnotationArea::pasteCopiedItems);
 	connect(&contextMenu, &AnnotationContextMenu::erase, this, &AnnotationArea::deleteSelectedItems);
+	connect(&contextMenu, &AnnotationContextMenu::edit, this, &AnnotationArea::enableEditing);
 
 	contextMenu.exec(event->screenPos());
 }
@@ -264,6 +266,21 @@ void AnnotationArea::pasteCopiedItems(const QPointF &position)
 {
 	auto copiedItems = mItemCopier->copiedItemsWithOffset();
 	mUndoStack->push(new PasteCommand(copiedItems, position, mItemFactory, this));
+}
+
+void AnnotationArea::enableEditing()
+{
+    auto editableItem = getSelectedEditableItem();
+    if(editableItem != nullptr) {
+        mItemModifier->clear();
+        editableItem->enableEditing();
+    }
+}
+
+EditableItem* AnnotationArea::getSelectedEditableItem() const
+{
+    auto selectedItems = mItemModifier->selectedItems();
+    return selectedItems.length() != 1 ? nullptr : dynamic_cast<EditableItem *>(selectedItems[0]);
 }
 
 } // namespace kImageAnnotator
