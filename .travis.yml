@@ -25,7 +25,6 @@ jobs:
         - cmake .. ; make VERBOSE=1
     - stage: test
       script:
-        - git submodule update --init --recursive
         - mkdir build ; cd build
         - cmake .. -DBUILD_TESTS=ON ; make
         - xvfb-run make test CTEST_OUTPUT_ON_FAILURE=1

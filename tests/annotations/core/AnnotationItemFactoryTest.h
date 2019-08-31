@@ -31,6 +31,7 @@ using kImageAnnotator::AnnotationArrow;
 using kImageAnnotator::AnnotationRect;
 using kImageAnnotator::AnnotationNumber;
 using kImageAnnotator::AnnotationEllipse;
+using kImageAnnotator::AnnotationImage;
 using kImageAnnotator::ToolTypes;
 using kImageAnnotator::Config;
 
@@ -43,6 +44,7 @@ private slots:
 	void cleanupTestCase();
 
 	void TestCreate_Should_CreateItemAtProvidedPosition();
+	void TestCreate_Should_CreateImageItemAtProvidedPosition();
 	void TestCreate_Should_ReturnNullPtrForUnknownType();
 	void TestCreate_Should_ReturnAnnotationLine_When_TypeIsLine();
 	void TestCreate_Should_ReturnAnnotationArrow_When_TypeIsArrow();

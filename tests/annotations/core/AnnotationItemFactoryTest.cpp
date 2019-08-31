@@ -38,8 +38,22 @@ void AnnotationItemFactoryTest::TestCreate_Should_CreateItemAtProvidedPosition()
 	AnnotationItemFactory itemFactory(config);
 
 	auto item = itemFactory.create(position, tool);
-	item->addPoint(QPoint(20, 20));
+	item->addPoint(QPoint(20, 20), false);
 
+	QCOMPARE(item->position(), position);
+}
+
+void AnnotationItemFactoryTest::TestCreate_Should_CreateImageItemAtProvidedPosition()
+{
+	QPointF position(10, 10);
+	QPixmap image(200,200);
+	auto config = new Config;
+	config->setToolWidth(0, ToolTypes::Image);
+	AnnotationItemFactory itemFactory(config);
+
+	auto item = itemFactory.create(position, image);
+
+	QVERIFY(dynamic_cast<AnnotationImage*>(item) != nullptr);
 	QCOMPARE(item->position(), position);
 }
 
@@ -110,7 +124,7 @@ void AnnotationItemFactoryTest::TestClone_Should_ReturnNewItemOfSameType()
 	config->setToolWidth(0, tool);
 	AnnotationItemFactory itemFactory(config);
 	auto item = itemFactory.create(position, tool);
-	item->addPoint(QPoint(20, 20));
+	item->addPoint(QPoint(20, 20), false);
 
 	auto clonedItem = itemFactory.clone(item);
 
@@ -126,7 +140,7 @@ void AnnotationItemFactoryTest::TestClone_Should_IncrementZValueForClonedItem()
 	config->setToolWidth(0, tool);
 	AnnotationItemFactory itemFactory(config);
 	auto item = itemFactory.create(position, tool);
-	item->addPoint(QPoint(20, 20));
+	item->addPoint(QPoint(20, 20), false);
 
 	auto clonedItem = itemFactory.clone(item);
 

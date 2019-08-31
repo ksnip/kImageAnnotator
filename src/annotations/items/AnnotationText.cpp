@@ -70,9 +70,9 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 
 	// Paint text
 	painter->setPen(properties()->textColor());
-	auto margine = properties()->Width();
+	auto margin = properties()->Width();
 
-	painter->setClipRect(boundingRect().adjusted(margine, margine, -margine, -margine));
+	painter->setClipRect(boundingRect().adjusted(margin, margin, -margin, -margin));
 
 	QFontMetrics fontMetrics(properties()->font());
 	auto boxHeight = 0;
@@ -93,9 +93,9 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 				break;
 			}
 
-			line.setLineWidth(textArea.width() - margine * 2);
+			line.setLineWidth(textArea.width() - margin * 2);
 			blockHeight += fontMetrics.leading();
-			line.setPosition(textArea.adjusted(margine, margine, 0, 0).topLeft());
+			line.setPosition(textArea.adjusted(margin, margin, 0, 0).topLeft());
 			blockHeight += line.height();
 		}
 		textLayout.endLayout();
