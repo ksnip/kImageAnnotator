@@ -66,6 +66,7 @@ void AnnotationArea::insertImageItem(const QPointF &position, const QPixmap &ima
 {
     auto imageItem = mItemFactory->create(position, image);
     mUndoStack->push(new AddCommand(imageItem, this));
+	setItemDecorationForTool(mConfig->selectedTool());
 }
 
 void AnnotationArea::replaceBackgroundImage(const QPixmap &image)
