@@ -53,6 +53,11 @@ void CoreView::loadImage(const QPixmap &pixmap)
 	mAnnotationArea->loadImage(pixmap);
 }
 
+void CoreView::insertImageItem(const QPointF &position, const QPixmap &pixmap)
+{
+    mAnnotationArea->insertImageItem(position, pixmap);
+}
+
 void CoreView::showAnnotator()
 {
 	setCurrentWidget(mAnnotationWidget);

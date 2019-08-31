@@ -45,6 +45,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationPen.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationText.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationBlur.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationImage.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/KeyInputHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/TextCursor.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/CapsLockStatusChecker.cpp

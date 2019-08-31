@@ -37,11 +37,11 @@ class AbstractAnnotationItem : public QGraphicsWidget
 public:
 	explicit AbstractAnnotationItem(AnnotationProperties *properties);
 	AbstractAnnotationItem(const AbstractAnnotationItem &other);
-	virtual ~AbstractAnnotationItem();
-	virtual QRectF boundingRect() const;
-	virtual QPainterPath shape() const;
+	~AbstractAnnotationItem() override;
+	QRectF boundingRect() const override;
+	QPainterPath shape() const override;
 	virtual bool intersects(const QRectF &rect) const;
-	virtual void addPoint(const QPointF &position, bool modified = false) = 0;
+	virtual void addPoint(const QPointF &position, bool modified) = 0;
 	virtual void setPointAt(const QPointF &point, int index) = 0;
 	virtual QPointF pointAt(int index) const = 0;
 	virtual void setPosition(const QPointF &newPosition) = 0;

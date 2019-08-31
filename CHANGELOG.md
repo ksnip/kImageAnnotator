@@ -7,6 +7,7 @@
 * New: Add config option to setup blur radius. ([#25](https://github.com/DamirPorobic/kImageAnnotator/issues/25))
 * New: Add cmake uninstall target. ([#47](https://github.com/DamirPorobic/kImageAnnotator/issues/47))
 * New: Edit text box content. ([#51](https://github.com/DamirPorobic/kImageAnnotator/issues/51))
+* New: Add image item and interface for adding them externally. ([#45](https://github.com/DamirPorobic/kImageAnnotator/issues/45))
 * Changed: Blur tool is now preciser and fits the rect. ([#28](https://github.com/DamirPorobic/kImageAnnotator/issues/28))
 * Changed: Enter finishes text input and shift-enter adds new line in Text Tool. ([#30](https://github.com/DamirPorobic/kImageAnnotator/issues/30))
 * Changed: Text item draws border around the text when in text edit mode. ([#34](https://github.com/DamirPorobic/kImageAnnotator/issues/34))

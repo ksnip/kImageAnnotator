@@ -44,11 +44,21 @@ void AnnotationItemFactory::reset()
 AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPosition, ToolTypes toolType)
 {
 	auto properties = mPropertiesFactory->create(toolType);
-	auto *newItem = createItem(initPosition, toolType, properties);
+	auto newItem = createItem(initPosition, toolType, properties);
 
 	setZValue(newItem);
 
 	return newItem;
+}
+
+AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPosition, const QPixmap &image)
+{
+    auto properties = mPropertiesFactory->create(ToolTypes::Image);
+    auto newItem = new AnnotationImage(initPosition, image, properties);
+
+    setZValue(newItem);
+
+    return newItem;
 }
 
 AbstractAnnotationItem *AnnotationItemFactory::clone(const AbstractAnnotationItem *item)

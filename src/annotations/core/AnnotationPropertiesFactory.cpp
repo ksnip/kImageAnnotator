@@ -92,7 +92,7 @@ void AnnotationPropertiesFactory::setFill(AnnotationProperties *properties, Tool
 
 void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties *properties, ToolTypes toolType) const
 {
-	if (toolType == ToolTypes::Blur || isMarkerTool(toolType)) {
+	if (toolType == ToolTypes::Blur || isMarkerTool(toolType) || toolType == ToolTypes::Image) {
 		properties->setShadowEnabled(false);
 	} else {
 		properties->setShadowEnabled(mConfig->itemShadowEnabled());

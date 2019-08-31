@@ -17,40 +17,28 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_TOOLTYPES_H
-#define KIMAGEANNOTATOR_TOOLTYPES_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONIMAGE_H
+#define KIMAGEANNOTATOR_ANNOTATIONIMAGE_H
 
-#include <QMetaType>
+#include "AnnotationRect.h"
 
 namespace kImageAnnotator {
 
-enum class ToolTypes
+class AnnotationImage : public AnnotationRect
 {
-	Select,
-	Pen,
-	MarkerPen,
-	MarkerRect,
-	MarkerEllipse,
-	Line,
-	Arrow,
-	DoubleArrow,
-	Rect,
-	Ellipse,
-	Number,
-	Text,
-	Blur,
-	Image
+public:
+    AnnotationImage(const QPointF &startPosition, const QPixmap &image, AnnotationProperties *properties);
+    AnnotationImage(const AnnotationImage &other);
+    ~AnnotationImage() override = default;
+    ToolTypes toolType() const override;
+
+protected:
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
+
+private:
+    QPixmap mImage;
 };
-
-inline uint qHash(const ToolTypes &tool, uint seed)
-{
-	Q_UNUSED(seed)
-
-	return static_cast<uint>(tool);
-}
 
 } // namespace kImageAnnotator
 
-Q_DECLARE_METATYPE(kImageAnnotator::ToolTypes)
-
-#endif // KIMAGEANNOTATOR_TOOLTYPES_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONIMAGE_H

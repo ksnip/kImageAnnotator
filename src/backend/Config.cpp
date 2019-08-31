@@ -35,7 +35,8 @@ Config::Config()
 		ToolTypes::Ellipse,
 		ToolTypes::Number,
 		ToolTypes::Text,
-		ToolTypes::Blur
+		ToolTypes::Blur,
+		ToolTypes::Image
 	};
 	initGeneralSettings();
 	initToolSettings();
@@ -456,6 +457,7 @@ FillTypes Config::defaultToolFillType(ToolTypes toolType) const
 			return FillTypes::BorderAndFill;
 		case ToolTypes::MarkerRect:
 		case ToolTypes::MarkerEllipse:
+		case ToolTypes::Image:
 			return FillTypes::NoBorderAndFill;
 		default:
 			return FillTypes::BorderAndNoFill;

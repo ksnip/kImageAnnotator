@@ -33,7 +33,7 @@ public:
 	AnnotationNumber(const QPointF &centerPosition, AnnotationTextProperties *properties);
 	AnnotationNumber(const AnnotationNumber &other);
 	~AnnotationNumber() override = default;
-	void addPoint(const QPointF &position, bool modified = false) override;
+	void addPoint(const QPointF &position, bool modified) override;
 	const AnnotationTextProperties *properties() const override;
 	ToolTypes toolType() const override;
 	void setNumber(int number);

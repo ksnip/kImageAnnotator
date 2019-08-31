@@ -47,9 +47,10 @@ class AnnotationArea : public QGraphicsScene
 {
     Q_OBJECT
 public:
-	AnnotationArea(Config *config);
+	explicit AnnotationArea(Config *config);
     ~AnnotationArea() override;
-    void loadImage(const QPixmap &image);
+    virtual void loadImage(const QPixmap &image);
+    virtual void insertImageItem(const QPointF &position, const QPixmap &image);
     QImage image();
 	QAction* undoAction();
 	QAction* redoAction();
@@ -66,12 +67,12 @@ signals:
     void imageChanged() const;
 
 protected:
-    virtual void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
-    virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
-    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
-    virtual void keyPressEvent(QKeyEvent *event) override;
-    virtual void keyReleaseEvent(QKeyEvent *event) override;
-    virtual void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
+    void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) override;
 
 private:
     AnnotationItemFactory *mItemFactory;

@@ -32,6 +32,7 @@
 #include "src/annotations/items/AnnotationNumber.h"
 #include "src/annotations/items/AnnotationText.h"
 #include "src/annotations/items/AnnotationBlur.h"
+#include "src/annotations/items/AnnotationImage.h"
 #include "src/annotations/misc/NumberManager.h"
 #include "src/common/enum/ToolTypes.h"
 
@@ -46,6 +47,7 @@ public:
 	void reset();
 
 	AbstractAnnotationItem *create(const QPointF &initPosition, ToolTypes toolType);
+	AbstractAnnotationItem *create(const QPointF &initPosition, const QPixmap &image);
 	AbstractAnnotationItem *clone(const AbstractAnnotationItem *item);
 
 private:

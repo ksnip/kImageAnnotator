@@ -52,5 +52,9 @@ int main(int argc, char **argv)
 	mainWindow.show();
 	mainWindow.setMinimumSize(kImageAnnotator->sizeHint());
 
+	QPixmap imageItem(QSize(100, 100));
+	imageItem.fill(QColor(Qt::yellow));
+	kImageAnnotator->insertImageItem(QPointF(100,100), imageItem);
+
 	return app.exec();
 }

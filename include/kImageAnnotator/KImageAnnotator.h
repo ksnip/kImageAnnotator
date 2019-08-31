@@ -47,6 +47,7 @@ public:
 
 public slots:
 	void loadImage(const QPixmap &pixmap);
+	void insertImageItem(const QPointF &position, const QPixmap &pixmap);
 	void setTextFont(const QFont &font);
 	void setNumberFont(const QFont &font);
 	void setItemShadowEnabled(bool enabled);

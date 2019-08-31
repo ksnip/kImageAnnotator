@@ -45,6 +45,7 @@ signals:
 
 public slots:
 	void loadImage(const QPixmap &pixmap);
+	void insertImageItem(const QPointF &position, const QPixmap &pixmap);
 	void showAnnotator();
 	void showCropper();
 	void showScaler();

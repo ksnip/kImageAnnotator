@@ -62,6 +62,12 @@ void AnnotationArea::loadImage(const QPixmap &image)
 	replaceBackgroundImage(image);
 }
 
+void AnnotationArea::insertImageItem(const QPointF &position, const QPixmap &image)
+{
+    auto imageItem = mItemFactory->create(position, image);
+    mUndoStack->push(new AddCommand(imageItem, this));
+}
+
 void AnnotationArea::replaceBackgroundImage(const QPixmap &image)
 {
 	delete mImage;

@@ -79,6 +79,12 @@ void KImageAnnotator::loadImage(const QPixmap &pixmap)
 	}
 }
 
+void KImageAnnotator::insertImageItem(const QPointF &position, const QPixmap &pixmap)
+{
+    Q_D(KImageAnnotator);
+    d->mCoreView.insertImageItem(position, pixmap);
+}
+
 QSize KImageAnnotator::sizeHint() const
 {
 	Q_D(const KImageAnnotator);
