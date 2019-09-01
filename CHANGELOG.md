@@ -1,13 +1,17 @@
 # Change log
 
+## Release 0.2.0
+* New: Add image item and interface for adding them externally. ([#45](https://github.com/DamirPorobic/kImageAnnotator/issues/45))
+* New: Edit text box content. ([#51](https://github.com/DamirPorobic/kImageAnnotator/issues/51))
+* New: Add cmake uninstall target. ([#47](https://github.com/DamirPorobic/kImageAnnotator/issues/47))
+* Fixed: Ctrl Modifier stuck on second or third screenshot with Ctrl-N. ([#58](https://github.com/DamirPorobic/kImageAnnotator/issues/58))
+* Fixed: Unable to select number annotation when clicking on the number without background. ([#46](https://github.com/DamirPorobic/kImageAnnotator/issues/46))
+
 ## Release 0.1.0
 * New: Double Arrow annotation tool. ([#23](https://github.com/DamirPorobic/kImageAnnotator/issues/23))
 * New: Marker Rectangle and Ellipse annotation tool. ([#26](https://github.com/DamirPorobic/kImageAnnotator/issues/26))
 * New: Add icons for dark theme. ([#37](https://github.com/DamirPorobic/kImageAnnotator/issues/37))
 * New: Add config option to setup blur radius. ([#25](https://github.com/DamirPorobic/kImageAnnotator/issues/25))
-* New: Add cmake uninstall target. ([#47](https://github.com/DamirPorobic/kImageAnnotator/issues/47))
-* New: Edit text box content. ([#51](https://github.com/DamirPorobic/kImageAnnotator/issues/51))
-* New: Add image item and interface for adding them externally. ([#45](https://github.com/DamirPorobic/kImageAnnotator/issues/45))
 * Changed: Blur tool is now preciser and fits the rect. ([#28](https://github.com/DamirPorobic/kImageAnnotator/issues/28))
 * Changed: Enter finishes text input and shift-enter adds new line in Text Tool. ([#30](https://github.com/DamirPorobic/kImageAnnotator/issues/30))
 * Changed: Text item draws border around the text when in text edit mode. ([#34](https://github.com/DamirPorobic/kImageAnnotator/issues/34))
@@ -19,8 +23,6 @@
 * Fixed: Right click on annotation items selects item but doesn't switch tool. ([#40](https://github.com/DamirPorobic/kImageAnnotator/issues/40))
 * Fixed: Copy number annotation item doesn't increment number. ([#41](https://github.com/DamirPorobic/kImageAnnotator/issues/41))
 * Fixed: Crash on startup after adding Blur Radius Picker. ([#43](https://github.com/DamirPorobic/kImageAnnotator/issues/43))
-* Fixed: Unable to select number annotation when clicking on the number without background. ([#46](https://github.com/DamirPorobic/kImageAnnotator/issues/46))
-* Fixed: Ctrl Modifier stuck on second or third screenshot with Ctrl-N. ([#58](https://github.com/DamirPorobic/kImageAnnotator/issues/58))
 
 ## Release 0.0.2
 * New: Added blur annotation tool. ([#20](https://github.com/DamirPorobic/kImageAnnotator/issues/20))
