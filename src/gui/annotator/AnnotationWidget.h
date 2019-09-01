@@ -38,8 +38,8 @@ class AnnotationWidget : public QWidget
 Q_OBJECT
 public:
 	explicit AnnotationWidget(AnnotationArea *annotationArea, Config *config);
-	virtual ~AnnotationWidget();
-	QSize sizeHint() const;
+	~AnnotationWidget() override;
+	QSize sizeHint() const override;
 
 private:
 	AnnotationArea *mAnnotationArea;

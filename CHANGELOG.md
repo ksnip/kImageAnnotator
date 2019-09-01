@@ -6,6 +6,7 @@
 * New: Add cmake uninstall target. ([#47](https://github.com/DamirPorobic/kImageAnnotator/issues/47))
 * Fixed: Ctrl Modifier stuck on second or third screenshot with Ctrl-N. ([#58](https://github.com/DamirPorobic/kImageAnnotator/issues/58))
 * Fixed: Unable to select number annotation when clicking on the number without background. ([#46](https://github.com/DamirPorobic/kImageAnnotator/issues/46))
+* Fixed: Undo/Redo is now disabled during crop and scale operation. ([#56](https://github.com/DamirPorobic/kImageAnnotator/issues/56))
 
 ## Release 0.1.0
 * New: Double Arrow annotation tool. ([#23](https://github.com/DamirPorobic/kImageAnnotator/issues/23))

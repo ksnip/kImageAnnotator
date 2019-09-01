@@ -59,6 +59,7 @@ public:
     virtual void crop(const QRectF& rect);
     virtual void scale(const QSize& size);
     virtual void clearSelection();
+    virtual void setUndoEnabled(bool enabled);
 
 public slots:
     virtual void update();
@@ -84,6 +85,8 @@ private:
     KeyHelper *mKeyHelper;
     UndoStack *mUndoStack;
 	AnnotationItemClipboard *mItemCopier;
+	QAction *mUndoAction;
+	QAction *mRedoAction;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

@@ -21,7 +21,11 @@
 
 namespace kImageAnnotator {
 
-AnnotationArea::AnnotationArea(Config *config) : mImage(nullptr), mCurrentItem(nullptr)
+AnnotationArea::AnnotationArea(Config *config) :
+	mImage(nullptr),
+	mCurrentItem(nullptr),
+	mUndoAction(nullptr),
+	mRedoAction(nullptr)
 {
 	Q_ASSERT(config != nullptr);
 
@@ -96,12 +100,18 @@ QImage AnnotationArea::image()
 
 QAction *AnnotationArea::undoAction()
 {
-	return mUndoStack->createUndoAction(this);
+	if(mUndoAction == nullptr) {
+		mUndoAction = mUndoStack->createUndoAction(this);
+	}
+	return mUndoAction;
 }
 
 QAction *AnnotationArea::redoAction()
 {
-	return mUndoStack->createRedoAction(this);
+	if(mRedoAction == nullptr) {
+		mRedoAction = mUndoStack->createRedoAction(this);
+	}
+	return mRedoAction;
 }
 
 void AnnotationArea::addAnnotationItem(AbstractAnnotationItem *item)
@@ -288,6 +298,17 @@ EditableItem* AnnotationArea::getSelectedEditableItem() const
 {
     auto selectedItems = mItemModifier->selectedItems();
     return selectedItems.length() != 1 ? nullptr : dynamic_cast<EditableItem *>(selectedItems[0]);
+}
+
+void AnnotationArea::setUndoEnabled(bool enabled)
+{
+	if(mUndoAction != nullptr) {
+		mUndoAction->setEnabled(enabled);
+	}
+
+	if(mRedoAction != nullptr) {
+		mRedoAction->setEnabled(enabled);
+	}
 }
 
 } // namespace kImageAnnotator

@@ -60,17 +60,20 @@ void CoreView::insertImageItem(const QPointF &position, const QPixmap &pixmap)
 
 void CoreView::showAnnotator()
 {
+	mAnnotationArea->setUndoEnabled(true);
 	setCurrentWidget(mAnnotationWidget);
 }
 
 void CoreView::showCropper()
 {
+	mAnnotationArea->setUndoEnabled(false);
 	setCurrentWidget(mCropWidget);
 	mCropWidget->activate();
 }
 
 void CoreView::showScaler()
 {
+	mAnnotationArea->setUndoEnabled(false);
 	setCurrentWidget(mScaleWidget);
 	mScaleWidget->activate();
 }
