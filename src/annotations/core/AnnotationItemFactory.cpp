@@ -126,41 +126,44 @@ AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotatio
 
 	switch (item->toolType()) {
 		case ToolTypes::Pen:
-			newItem = new AnnotationPen(*(static_cast<const AnnotationPen *>(item)));
+			newItem = new AnnotationPen(*(dynamic_cast<const AnnotationPen *>(item)));
 			break;
 		case ToolTypes::MarkerPen:
-			newItem = new AnnotationPen(*(static_cast<const AnnotationPen *>(item)));
+			newItem = new AnnotationPen(*(dynamic_cast<const AnnotationPen *>(item)));
 			break;
 		case ToolTypes::MarkerRect:
-			newItem = new AnnotationRect(*(static_cast<const AnnotationRect *>(item)));
+			newItem = new AnnotationRect(*(dynamic_cast<const AnnotationRect *>(item)));
 			break;
 		case ToolTypes::MarkerEllipse:
-			newItem = new AnnotationEllipse(*(static_cast<const AnnotationEllipse *>(item)));
+			newItem = new AnnotationEllipse(*(dynamic_cast<const AnnotationEllipse *>(item)));
 			break;
 		case ToolTypes::Line:
-			newItem = new AnnotationLine(*(static_cast<const AnnotationLine *>(item)));
+			newItem = new AnnotationLine(*(dynamic_cast<const AnnotationLine *>(item)));
 			break;
 		case ToolTypes::Ellipse:
-			newItem = new AnnotationEllipse(*(static_cast<const AnnotationEllipse *>(item)));
+			newItem = new AnnotationEllipse(*(dynamic_cast<const AnnotationEllipse *>(item)));
 			break;
 		case ToolTypes::Rect:
-			newItem = new AnnotationRect(*(static_cast<const AnnotationRect *>(item)));
+			newItem = new AnnotationRect(*(dynamic_cast<const AnnotationRect *>(item)));
 			break;
 		case ToolTypes::Arrow:
-			newItem = new AnnotationArrow(*(static_cast<const AnnotationArrow *>(item)));
+			newItem = new AnnotationArrow(*(dynamic_cast<const AnnotationArrow *>(item)));
 			break;
 		case ToolTypes::DoubleArrow:
-			newItem = new AnnotationDoubleArrow(*(static_cast<const AnnotationArrow *>(item)));
+			newItem = new AnnotationDoubleArrow(*(dynamic_cast<const AnnotationArrow *>(item)));
 			break;
 		case ToolTypes::Number:
-			newItem = new AnnotationNumber(*(static_cast<const AnnotationNumber *>(item)));
+			newItem = new AnnotationNumber(*(dynamic_cast<const AnnotationNumber *>(item)));
 			mNumberManager->addItem(dynamic_cast<AnnotationNumber *>(newItem));
 			break;
 		case ToolTypes::Text:
-			newItem = new AnnotationText(*(static_cast<const AnnotationText *>(item)));
+			newItem = new AnnotationText(*(dynamic_cast<const AnnotationText *>(item)));
 			break;
 		case ToolTypes::Blur:
-			newItem = new AnnotationBlur(*(static_cast<const AnnotationBlur *>(item)));
+			newItem = new AnnotationBlur(*(dynamic_cast<const AnnotationBlur *>(item)));
+			break;
+		case ToolTypes::Image:
+			newItem = new AnnotationImage(*(dynamic_cast<const AnnotationImage *>(item)));
 			break;
 		default:
 			qCritical("Cannot create item for provided tool type.");
