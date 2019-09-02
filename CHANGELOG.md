@@ -8,6 +8,7 @@
 * Fixed: Unable to select number annotation when clicking on the number without background. ([#46](https://github.com/DamirPorobic/kImageAnnotator/issues/46))
 * Fixed: Undo/Redo is now disabled during crop and scale operation. ([#56](https://github.com/DamirPorobic/kImageAnnotator/issues/56))
 * Fixed: Mess with russian letters in text tool when typing in Russian. ([#59](https://github.com/DamirPorobic/kImageAnnotator/issues/59))
+* Fixed: Text tool does not allow me to type accents. ([#57](https://github.com/DamirPorobic/kImageAnnotator/issues/57))
 
 ## Release 0.1.0
 * New: Double Arrow annotation tool. ([#23](https://github.com/DamirPorobic/kImageAnnotator/issues/23))
