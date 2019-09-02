@@ -21,10 +21,7 @@
 #define KIMAGEANNOTATOR_IGNORESHORTCUTSFILTER_H
 
 #include <QCoreApplication>
-#include <QApplication>
-#include <QShortcutEvent>
 #include <QKeyEvent>
-#include <QWidget>
 
 namespace kImageAnnotator {
 
@@ -38,8 +35,6 @@ public:
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
-    bool ignoreShortcut(const QString &shortcutString) const;
-    QKeyEvent *createKeyEvent(const QString &text) const;
 };
 
 } // namespace kImageAnnotator

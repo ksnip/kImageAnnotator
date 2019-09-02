@@ -33,35 +33,12 @@ void IgnoreShortcutsFilter::remove()
 
 bool IgnoreShortcutsFilter::eventFilter(QObject *watched, QEvent *event)
 {
-    if (event->type() == QEvent::Shortcut) {
-        auto shortcutEvent = dynamic_cast<QShortcutEvent *>(event);
-        auto shortcutString = shortcutEvent->key().toString().toLower();
-
-        if (ignoreShortcut(shortcutString)) {
-            return true;
-        }
-
-        if (shortcutString.contains(QStringLiteral("shift"))) {
-            shortcutString = shortcutString.remove(QStringLiteral("shift+")).toUpper();
-        }
-
-        // Create new event and send it to the focused item.
-        auto keyEvent = createKeyEvent(shortcutString);
-        QCoreApplication::postEvent(QApplication::focusWidget(), keyEvent);
-        return true;
+	if(event->type() == QEvent::ShortcutOverride) {
+		event->accept();
+		return true;
     }
 
     return QObject::eventFilter(watched, event);
-}
-
-bool IgnoreShortcutsFilter::ignoreShortcut(const QString &shortcutString) const
-{
-    return shortcutString.contains(QStringLiteral("ctrl")) || shortcutString.contains(QStringLiteral("alt"));
-}
-
-QKeyEvent *IgnoreShortcutsFilter::createKeyEvent(const QString &text) const
-{
-    return new QKeyEvent(QEvent::KeyPress, Qt::Key_unknown, Qt::NoModifier, text);
 }
 
 } // namespace kImageAnnotator

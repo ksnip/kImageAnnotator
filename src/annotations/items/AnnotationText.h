@@ -20,6 +20,7 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONTEXT_H
 #define KIMAGEANNOTATOR_ANNOTATIONTEXT_H
 
+#include <QApplication>
 #include <QClipboard>
 #include <QtMath>
 
