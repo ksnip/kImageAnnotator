@@ -47,7 +47,7 @@ void AnnotationText::updateShape()
 void AnnotationText::focusOutEvent(QFocusEvent *event)
 {
 	disableEditing();
-	QGraphicsItem::focusOutEvent(event);
+	QGraphicsWidget::focusOutEvent(event);
 }
 
 void AnnotationText::keyPressEvent(QKeyEvent *event)

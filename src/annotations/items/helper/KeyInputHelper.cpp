@@ -61,10 +61,9 @@ void KeyInputHelper::handleKeyPress(QKeyEvent *event)
 				emit paste();
 				break;
 			}
-			if (event->text().isEmpty() || isControlPressed(event)) {
+			if (event->text().isEmpty()) {
 				return;
 			}
-
 			emit insert(getTextWithCorrectCase(event));
 	}
 }
@@ -81,11 +80,6 @@ QString KeyInputHelper::getTextWithCorrectCase(const QKeyEvent *event) const
 		return text.toUpper();
 	}
 	return text;
-}
-
-bool KeyInputHelper::isControlPressed(const QKeyEvent *event) const
-{
-	return isModifierPressed(event, Qt::ControlModifier);
 }
 
 bool KeyInputHelper::isShiftPressed(const QKeyEvent *event) const
