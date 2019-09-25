@@ -28,7 +28,7 @@ namespace kImageAnnotator {
 
 QImage ImageBlurrer::blurred(const QImage &image, int radius, bool alphaOnly)
 {
-	int alpha = getAlpha(radius);
+	auto alpha = getAlpha(radius);
 
 	auto result = image.convertToFormat(QImage::Format_ARGB32_Premultiplied);
 	auto r1 = image.rect().top();
@@ -56,7 +56,7 @@ QImage ImageBlurrer::blurred(const QImage &image, int radius, bool alphaOnly)
 		p += bpl;
 		for (auto j = r1; j < r2; j++, p += bpl) {
 			for (auto i = i1; i <= i2; i++) {
-				p[i] = (rgba[i] += ((p[i] << 4) - rgba[i]) * alpha / 16) >> 4;
+				p[i] = (rgba[i] += ((p[i] << 4) - rgba[i]) * alpha / 32) >> 4;
 			}
 		}
 	}
@@ -70,7 +70,7 @@ QImage ImageBlurrer::blurred(const QImage &image, int radius, bool alphaOnly)
 		p += 4;
 		for (auto j = c1; j < c2; j++, p += 4) {
 			for (auto i = i1; i <= i2; i++) {
-				p[i] = (rgba[i] += ((p[i] << 4) - rgba[i]) * alpha / 16) >> 4;
+				p[i] = (rgba[i] += ((p[i] << 4) - rgba[i]) * alpha / 32) >> 4;
 			}
 		}
 	}
@@ -84,7 +84,7 @@ QImage ImageBlurrer::blurred(const QImage &image, int radius, bool alphaOnly)
 		p -= bpl;
 		for (auto j = r1; j < r2; j++, p -= bpl) {
 			for (auto i = i1; i <= i2; i++) {
-				p[i] = (rgba[i] += ((p[i] << 4) - rgba[i]) * alpha / 16) >> 4;
+				p[i] = (rgba[i] += ((p[i] << 4) - rgba[i]) * alpha / 32) >> 4;
 			}
 		}
 	}
@@ -98,7 +98,7 @@ QImage ImageBlurrer::blurred(const QImage &image, int radius, bool alphaOnly)
 		p -= 4;
 		for (auto j = c1; j < c2; j++, p -= 4) {
 			for (auto i = i1; i <= i2; i++) {
-				p[i] = (rgba[i] += ((p[i] << 4) - rgba[i]) * alpha / 16) >> 4;
+				p[i] = (rgba[i] += ((p[i] << 4) - rgba[i]) * alpha / 32) >> 4;
 			}
 		}
 	}
@@ -108,8 +108,7 @@ QImage ImageBlurrer::blurred(const QImage &image, int radius, bool alphaOnly)
 
 int ImageBlurrer::getAlpha(int radius) const
 {
-	int tab[] = { 14, 10, 8, 6, 5, 5, 4, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2 };
-	return (radius < 1) ? 16 : (radius > 17) ? 1 : tab[radius - 1];
+	return abs(radius - 21);
 }
 
 } // namespace kImageAnnotator
