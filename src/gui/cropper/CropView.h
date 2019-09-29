@@ -33,7 +33,7 @@ class CropView : public QGraphicsView
 Q_OBJECT
 public:
 	explicit CropView(AnnotationArea *annotationArea, CropSelectionHandler *cropSelectionHandler, KeyHelper *keyHelper);
-	~CropView() = default;
+	~CropView() override = default;
 
 protected:
 	void keyPressEvent(QKeyEvent *event) override;
@@ -46,6 +46,8 @@ protected:
 private:
 	CropSelectionHandler *mCropSelectionHandler;
 	KeyHelper *mKeyHelper;
+
+	void updateCursor(const QPointF &pos);
 };
 
 } // namespace kImageAnnotator

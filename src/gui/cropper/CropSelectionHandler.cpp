@@ -127,4 +127,10 @@ void CropSelectionHandler::setSelection(const QRectF &rect)
 	update();
 }
 
+bool CropSelectionHandler::selectionContains(const QPointF &pos) const
+{
+	return mSelection.contains(pos);
+}
+
+
 }

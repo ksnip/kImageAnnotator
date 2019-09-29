@@ -40,19 +40,22 @@ void CropView::keyReleaseEvent(QKeyEvent *event)
 
 void CropView::mouseMoveEvent(QMouseEvent *event)
 {
-	mCropSelectionHandler->move(mapToScene(event->pos()));
+	auto pos = mapToScene(event->pos());
+	mCropSelectionHandler->move(pos);
+	updateCursor(pos);
 }
 
 void CropView::mousePressEvent(QMouseEvent *event)
 {
-	mCropSelectionHandler->grab(mapToScene(event->pos()));
+	auto pos = mapToScene(event->pos());
+	mCropSelectionHandler->grab(pos);
+	updateCursor(pos);
 }
 
 void CropView::mouseReleaseEvent(QMouseEvent *event)
 {
-	Q_UNUSED(event)
-
 	mCropSelectionHandler->release();
+	updateCursor(mapToScene(event->pos()));
 }
 
 void CropView::drawForeground(QPainter *painter, const QRectF &rect)
@@ -82,6 +85,17 @@ void CropView::drawForeground(QPainter *painter, const QRectF &rect)
 	}
 
 	QGraphicsView::drawForeground(painter, rect);
+}
+
+void CropView::updateCursor(const QPointF &pos)
+{
+	if(mCropSelectionHandler->isInMotion()) {
+		setCursor(Qt::ClosedHandCursor);
+	} else if(mCropSelectionHandler->selectionContains(pos)) {
+		setCursor(Qt::OpenHandCursor);
+	} else {
+		unsetCursor();
+	}
 }
 
 } // namespace kImageAnnotator

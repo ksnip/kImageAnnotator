@@ -6,6 +6,7 @@
 * New: Add cmake uninstall target. ([#47](https://github.com/DamirPorobic/kImageAnnotator/issues/47))
 * New: Panning image by holding space or mouse middle button and dragging. ([#9](https://github.com/DamirPorobic/kImageAnnotator/issues/9))
 * Changed: Increase blur level so that large text is not visible. ([#62](https://github.com/DamirPorobic/kImageAnnotator/issues/62))
+* Changed: Crop widget updates shows via cursor if something is movable. ([#64](https://github.com/DamirPorobic/kImageAnnotator/issues/64))
 * Fixed: Ctrl Modifier stuck on second or third screenshot with Ctrl-N. ([#58](https://github.com/DamirPorobic/kImageAnnotator/issues/58))
 * Fixed: Unable to select number annotation when clicking on the number without background. ([#46](https://github.com/DamirPorobic/kImageAnnotator/issues/46))
 * Fixed: Undo/Redo is now disabled during crop and scale operation. ([#56](https://github.com/DamirPorobic/kImageAnnotator/issues/56))

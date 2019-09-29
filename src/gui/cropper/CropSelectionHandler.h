@@ -47,6 +47,7 @@ public:
 	void setPositionY(int y);
 	void resetSelection();
 	bool isInMotion() const;
+	bool selectionContains(const QPointF &pos) const;
 
 signals:
 	void selectionChanged(const QRectF &rect) const;
