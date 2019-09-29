@@ -56,7 +56,7 @@ QSize AnnotationWidget::sizeHint() const
 
 void AnnotationWidget::initGui()
 {
-	mView = new QGraphicsView(mAnnotationArea);
+	mView = new AnnotationView(mAnnotationArea);
 	mMainLayout = new QHBoxLayout();
 	mToolLayout = new QVBoxLayout();
 	mToolPicker = new ToolPicker();

@@ -22,9 +22,9 @@
 
 #include <QWidget>
 #include <QHBoxLayout>
-#include <QGraphicsView>
 
 #include "WidgetConfigurator.h"
+#include "AnnotationView.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/widgets/ToolPicker.h"
 #include "src/widgets/ColorPicker.h"
@@ -43,7 +43,7 @@ public:
 
 private:
 	AnnotationArea *mAnnotationArea;
-	QGraphicsView *mView;
+	AnnotationView *mView;
 	QHBoxLayout *mMainLayout;
 	QVBoxLayout *mToolLayout;
 	ToolPicker *mToolPicker;

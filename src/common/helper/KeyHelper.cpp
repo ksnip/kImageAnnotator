@@ -54,6 +54,11 @@ bool KeyHelper::isShiftPressed() const
     return mKeyToIsPressed[Qt::Key_Shift];
 }
 
+bool KeyHelper::isSpacePressed() const
+{
+	return mKeyToIsPressed[Qt::Key_Space];
+}
+
 void KeyHelper::reset()
 {
     mKeyToIsPressed[Qt::Key_Delete] = false;
@@ -62,6 +67,7 @@ void KeyHelper::reset()
     mKeyToIsPressed[Qt::Key_Return] = false;
     mKeyToIsPressed[Qt::Key_Control] = false;
     mKeyToIsPressed[Qt::Key_Shift] = false;
+    mKeyToIsPressed[Qt::Key_Space] = false;
     mKeyToIsPressed[Qt::Key_Z] = false;
 }
 

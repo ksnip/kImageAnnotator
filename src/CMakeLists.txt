@@ -2,6 +2,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/KImageAnnotator.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/CoreView.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationWidget.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationView.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/WidgetConfigurator.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropView.cpp

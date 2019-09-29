@@ -36,6 +36,7 @@ public:
 	void keyRelease(QKeyEvent *keyEvent);
 	bool isControlPressed() const;
 	bool isShiftPressed() const;
+	bool isSpacePressed() const;
 	void reset();
 
 signals:
