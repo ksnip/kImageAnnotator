@@ -23,13 +23,9 @@
 #include <QWidget>
 #include <QHBoxLayout>
 
-#include "WidgetConfigurator.h"
 #include "AnnotationView.h"
+#include "AnnotationSettings.h"
 #include "src/annotations/core/AnnotationArea.h"
-#include "src/widgets/ToolPicker.h"
-#include "src/widgets/ColorPicker.h"
-#include "src/widgets/NumberPicker.h"
-#include "src/widgets/FillTypePicker.h"
 
 namespace kImageAnnotator {
 
@@ -44,31 +40,13 @@ public:
 private:
 	AnnotationArea *mAnnotationArea;
 	AnnotationView *mView;
+	AnnotationSettings *mSettings;
 	QHBoxLayout *mMainLayout;
-	QVBoxLayout *mToolLayout;
-	ToolPicker *mToolPicker;
-	ColorPicker *mColorPicker;
-	NumberPicker *mWidthPicker;
-	ColorPicker *mTextColorPicker;
-	NumberPicker *mFontSizePicker;
-	FillTypePicker *mFillTypePicker;
-	NumberPicker *mFirstNumberPicker;
-	NumberPicker *mBlurRadiusPicker;
 	Config *mConfig;
-	WidgetConfigurator mWidgetConfigurator;
 
 	void initGui();
-	void updateSelection(ToolTypes tool);
 
 private slots:
-	void loadConfig();
-	void setToolColor(const QColor &color);
-	void setToolTextColor(const QColor &color);
-	void setToolWidth(int size);
-	void setToolFontSize(int fontSize);
-	void setToolFillType(FillTypes fill);
-	void setFirstBadgeNumber(int fontSize);
-	void setBlurRadius(int radius);
 	void editItems(const QList<AbstractAnnotationItem *> &items);
 };
 
