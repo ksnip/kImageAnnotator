@@ -69,6 +69,7 @@ private slots:
 	void setToolFillType(FillTypes fill);
 	void setFirstBadgeNumber(int fontSize);
 	void setBlurRadius(int radius);
+	void editItems(const QList<AbstractAnnotationItem *> &items);
 };
 
 } // namespace kImageAnnotator

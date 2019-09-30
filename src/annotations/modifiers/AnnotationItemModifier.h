@@ -50,6 +50,7 @@ public slots:
 
 signals:
 	void newCommand(QUndoCommand *command);
+	void itemsSelected(const QList<AbstractAnnotationItem *> &items) const;
 
 protected:
 	void mousePressEvent(QGraphicsSceneMouseEvent *event) override;

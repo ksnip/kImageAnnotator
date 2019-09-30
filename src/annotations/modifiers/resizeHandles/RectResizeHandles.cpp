@@ -36,7 +36,7 @@ QRectF RectResizeHandles::getRect() const
 
 int RectResizeHandles::getOffset() const
 {
-	return mRectItem->properties()->Width() / 2;
+	return mRectItem->properties()->width() / 2;
 }
 
 QRectF RectResizeHandles::getItemBoundingRect() const

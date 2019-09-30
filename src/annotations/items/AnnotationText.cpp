@@ -70,7 +70,7 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 
 	// Paint text
 	painter->setPen(properties()->textColor());
-	auto margin = properties()->Width();
+	auto margin = properties()->width();
 
 	painter->setClipRect(boundingRect().adjusted(margin, margin, -margin, -margin));
 
@@ -210,7 +210,7 @@ void AnnotationText::connectSlots()
 QRect AnnotationText::getTextRect() const
 {
 	QFontMetrics fontMetrics(properties()->font());
-	auto margin = properties()->Width();
+	auto margin = properties()->width();
 	auto newRect = fontMetrics.boundingRect(mRect->toRect().normalized(), Qt::AlignLeft, mText);
 	newRect.adjust(0, 0, margin * 2, margin * 2);
 	return newRect;

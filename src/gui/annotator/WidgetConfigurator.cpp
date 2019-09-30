@@ -108,6 +108,7 @@ void WidgetConfigurator::updateVisibility() const
 {
 	switch (mCurrentTool) {
 		case ToolTypes::Select:
+		case ToolTypes::Image:
 			setColorWidgetEnabled(false);
 			setTextColorWidgetEnabled(false);
 			setWidthWidgetEnabled(false);

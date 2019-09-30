@@ -149,6 +149,7 @@ void AnnotationItemModifier::handleSelection()
 		clear();
 	} else {
 		mItemResizer->attachTo(selectedItems);
+		emit itemsSelected(selectedItems);
 	}
 }
 

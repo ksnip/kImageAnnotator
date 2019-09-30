@@ -57,7 +57,7 @@ void AnnotationProperties::setTextColor(const QColor &color)
 	mTextColor = qMove(color);
 }
 
-int AnnotationProperties::Width() const
+int AnnotationProperties::width() const
 {
 	return mWidth;
 }

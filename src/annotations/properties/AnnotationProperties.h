@@ -37,7 +37,7 @@ public:
 	void setColor(const QColor &color);
 	QColor textColor() const;
 	void setTextColor(const QColor &color);
-	int Width() const;
+	int width() const;
 	void setWidth(int size);
 	FillTypes fillType() const;
 	void setFillType(FillTypes fillType);

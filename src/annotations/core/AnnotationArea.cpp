@@ -39,6 +39,7 @@ AnnotationArea::AnnotationArea(Config *config) :
 	mItemCopier = new AnnotationItemClipboard(mItemModifier);
 
 	connect(mItemModifier, &AnnotationItemModifier::newCommand, mUndoStack, &UndoStack::push);
+	connect(mItemModifier, &AnnotationItemModifier::itemsSelected, this, &AnnotationArea::itemsSelected);
 	connect(mUndoStack, &UndoStack::indexChanged, this, &AnnotationArea::update);
 	connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
 	connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clear);

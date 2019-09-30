@@ -66,6 +66,7 @@ public slots:
 
 signals:
     void imageChanged() const;
+    void itemsSelected(const QList<AbstractAnnotationItem *> &items) const;
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent* event) override;

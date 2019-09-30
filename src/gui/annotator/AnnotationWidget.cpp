@@ -108,6 +108,7 @@ void AnnotationWidget::initGui()
 	connect(mBlurRadiusPicker, &NumberPicker::numberSelected, this, &AnnotationWidget::setBlurRadius);
 	connect(mConfig, &Config::loaded, this, &AnnotationWidget::loadConfig);
 	connect(mConfig, &Config::toolChanged, mToolPicker, &ToolPicker::setTool);
+	connect(mAnnotationArea, &AnnotationArea::itemsSelected, this, &AnnotationWidget::editItems);
 }
 
 void AnnotationWidget::loadConfig()
@@ -159,6 +160,29 @@ void AnnotationWidget::setFirstBadgeNumber(int number)
 void AnnotationWidget::setBlurRadius(int radius)
 {
 	mConfig->setBlurRadius(radius);
+}
+
+void AnnotationWidget::editItems(const QList<AbstractAnnotationItem *> &items)
+{
+	if(items.count() != 1) {
+		mWidgetConfigurator.setCurrentTool(ToolTypes::Select);
+		return;
+	}
+	auto item = items.first();
+	auto properties = item->properties();
+	mColorPicker->setColor(properties->color());
+	mTextColorPicker->setColor(properties->textColor());
+	mWidthPicker->setNumber(properties->width());
+	mFillTypePicker->setFillType(properties->fillType());
+	auto textProperties = dynamic_cast<const AnnotationTextProperties *>(properties);
+	if(textProperties != nullptr) {
+		mFontSizePicker->setNumber(textProperties->font().pointSize());
+	}
+	auto blurProperties = dynamic_cast<const AnnotationBlurProperties *>(properties);
+	if(blurProperties != nullptr) {
+		mBlurRadiusPicker->setNumber(blurProperties->radius());
+	}
+	mWidgetConfigurator.setCurrentTool(item->toolType());
 }
 
 } // namespace kImageAnnotator
