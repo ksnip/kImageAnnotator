@@ -55,7 +55,6 @@ void Config::setSelectedTool(ToolTypes tool)
 
 	mSelectTool = tool;
 	saveToolType(tool);
-	emit toolChanged(tool);
 }
 
 QColor Config::toolColor(ToolTypes tool) const
@@ -189,14 +188,6 @@ void Config::setSmoothFactor(int factor)
 	mSmoothFactor = factor;
 }
 
-void Config::setFirstBadgeNumber(int number)
-{
-	if (mFirstBadgeNumber != number) {
-		mFirstBadgeNumber = number;
-		emit firstBadgeNumberChanged(number);
-	}
-}
-
 int Config::blurRadius() const
 {
 	return mBlurRadius;
@@ -223,7 +214,6 @@ void Config::initToolSettings()
 	initToolFillTypes();
 	initToolFonts();
 	initBlurRadius();
-	emit loaded();
 }
 
 void Config::initSelectedTool()

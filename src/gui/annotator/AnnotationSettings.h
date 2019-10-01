@@ -31,17 +31,29 @@
 #include "src/annotations/properties/AnnotationTextProperties.h"
 #include "src/annotations/properties/AnnotationBlurProperties.h"
 #include "src/annotations/items/AbstractAnnotationItem.h"
+#include "src/annotations/core/AbstractSettingsProvider.h"
 
 namespace kImageAnnotator {
 
-class AnnotationSettings : public QWidget
+class AnnotationSettings : public QWidget, public AbstractSettingsProvider
 {
 	Q_OBJECT
 public:
 	explicit AnnotationSettings(Config *config);
 	~AnnotationSettings() override;
 	void loadFromItem(AbstractAnnotationItem *item);
-	void setSelect();
+	void activateSelectTool() override;
+	ToolTypes toolType() const override;
+	QColor toolColor() const override;
+	QColor textColor() const override;
+	int toolWidth() const override;
+	int fontSize() const override;
+	FillTypes fillType() const override;
+	int blurRadius() const override;
+
+signals:
+	void toolChanged(ToolTypes toolType) const override;
+	void firstBadgeNumberChanged(int number) const override;
 
 private:
 	QVBoxLayout *mMainLayout;
@@ -61,12 +73,13 @@ private:
 
 private slots:
 	void loadToolTypeFromConfig();
+	void saveToolType(ToolTypes toolType);
 	void saveToolColor(const QColor &color);
 	void saveToolTextColor(const QColor &color);
 	void saveToolWidth(int size);
-	void saveToolFontSize(int fontSize);
+	void saveToolFontSize(int size);
 	void saveToolFillType(FillTypes fill);
-	void saveFirstBadgeNumber(int fontSize);
+	void saveFirstBadgeNumber(int size);
 	void saveBlurRadius(int radius);
 };
 

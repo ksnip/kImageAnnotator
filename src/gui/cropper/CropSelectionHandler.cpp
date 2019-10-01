@@ -132,5 +132,4 @@ bool CropSelectionHandler::selectionContains(const QPointF &pos) const
 	return mSelection.contains(pos);
 }
 
-
 }

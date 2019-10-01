@@ -62,6 +62,11 @@ void FillTypePicker::removeNoFillAndNoBorderToList()
 	mComboBox->removeItem(index);
 }
 
+FillTypes FillTypePicker::fillType() const
+{
+	return mFillList[mComboBox->currentIndex()];
+}
+
 void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
 {
 	mLayout = new QHBoxLayout(this);

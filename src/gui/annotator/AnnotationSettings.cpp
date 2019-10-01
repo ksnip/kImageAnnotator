@@ -59,9 +59,15 @@ void AnnotationSettings::loadFromItem(AbstractAnnotationItem *item)
 	mWidgetConfigurator.setCurrentTool(item->toolType());
 }
 
-void AnnotationSettings::setSelect()
+void AnnotationSettings::activateSelectTool()
 {
+	mToolPicker->setTool(ToolTypes::Select);
 	mWidgetConfigurator.setCurrentTool(ToolTypes::Select);
+}
+
+ToolTypes AnnotationSettings::toolType() const
+{
+	return mToolPicker->tool();
 }
 
 void AnnotationSettings::initGui()
@@ -102,8 +108,7 @@ void AnnotationSettings::initGui()
 
 	setFocusPolicy(Qt::ClickFocus);
 
-	connect(mToolPicker, &ToolPicker::toolSelected, mConfig, &Config::setSelectedTool);
-	connect(mToolPicker, &ToolPicker::toolSelected, this, &AnnotationSettings::loadFromConfig);
+	connect(mToolPicker, &ToolPicker::toolSelected, this, &AnnotationSettings::saveToolType);
 	connect(mColorPicker, &ColorPicker::colorSelected, this, &AnnotationSettings::saveToolColor);
 	connect(mWidthPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::saveToolWidth);
 	connect(mTextColorPicker, &ColorPicker::colorSelected, this, &AnnotationSettings::saveToolTextColor);
@@ -111,11 +116,14 @@ void AnnotationSettings::initGui()
 	connect(mFillTypePicker, &FillTypePicker::fillSelected, this, &AnnotationSettings::saveToolFillType);
 	connect(mFirstNumberPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::saveFirstBadgeNumber);
 	connect(mBlurRadiusPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::saveBlurRadius);
-	connect(mConfig, &Config::loaded, this, &AnnotationSettings::loadToolTypeFromConfig);
-	connect(mConfig, &Config::toolChanged, mToolPicker, &ToolPicker::setTool);
 }
 
-void AnnotationSettings::loadFromConfig(kImageAnnotator::ToolTypes tool)
+void AnnotationSettings::loadToolTypeFromConfig()
+{
+	mToolPicker->setTool(mConfig->selectedTool());
+}
+
+void AnnotationSettings::loadFromConfig(ToolTypes tool)
 {
 	mColorPicker->setColor(mConfig->toolColor(tool));
 	mTextColorPicker->setColor(mConfig->toolTextColor(tool));
@@ -126,9 +134,11 @@ void AnnotationSettings::loadFromConfig(kImageAnnotator::ToolTypes tool)
 	mWidgetConfigurator.setCurrentTool(tool);
 }
 
-void AnnotationSettings::loadToolTypeFromConfig()
+void AnnotationSettings::saveToolType(ToolTypes toolType)
 {
-	mToolPicker->setTool(mConfig->selectedTool());
+	mConfig->setSelectedTool(toolType);
+	loadFromConfig(toolType);
+	emit toolChanged(toolType);
 }
 
 void AnnotationSettings::saveToolColor(const QColor &color)
@@ -153,17 +163,47 @@ void AnnotationSettings::saveToolFillType(FillTypes fill)
 
 void AnnotationSettings::saveToolFontSize(int size)
 {
-	mConfig->setToolFontSize(fontSize, mToolPicker->tool());
+	mConfig->setToolFontSize(size, mToolPicker->tool());
 }
 
 void AnnotationSettings::saveFirstBadgeNumber(int number)
 {
-	mConfig->setFirstBadgeNumber(fontSize);
+	emit firstBadgeNumberChanged(number);
 }
 
 void AnnotationSettings::saveBlurRadius(int radius)
 {
 	mConfig->setBlurRadius(radius);
+}
+
+QColor AnnotationSettings::toolColor() const
+{
+	return mColorPicker->color();
+}
+
+QColor AnnotationSettings::textColor() const
+{
+	return mTextColorPicker->color();
+}
+
+int AnnotationSettings::toolWidth() const
+{
+	return mWidthPicker->number();
+}
+
+FillTypes AnnotationSettings::fillType() const
+{
+	return mFillTypePicker->fillType();
+}
+
+int AnnotationSettings::fontSize() const
+{
+	return mFontSizePicker->number();
+}
+
+int AnnotationSettings::blurRadius() const
+{
+	return mBlurRadiusPicker->number();
 }
 
 } // namespace kImageAnnotator

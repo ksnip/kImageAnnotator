@@ -37,7 +37,6 @@ ScaleWidget::~ScaleWidget()
 
 void ScaleWidget::activate()
 {
-	mAnnotationArea->clearSelection();
 	showDialog();
 }
 

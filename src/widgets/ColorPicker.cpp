@@ -41,6 +41,11 @@ void ColorPicker::setColor(const QColor &color)
 	emit colorSelected(color);
 }
 
+QColor ColorPicker::color() const
+{
+	return mkColorPicker->color();
+}
+
 void ColorPicker::initGui(const QIcon &icon, const QString &tooltip)
 {
 	mLayout = new QHBoxLayout();

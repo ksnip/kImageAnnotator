@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationArea::AnnotationArea(Config *config) :
+AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider) :
 	mImage(nullptr),
 	mCurrentItem(nullptr),
 	mUndoAction(nullptr),
@@ -29,8 +29,9 @@ AnnotationArea::AnnotationArea(Config *config) :
 {
 	Q_ASSERT(config != nullptr);
 
-	mConfig = config;
-	mItemFactory = new AnnotationItemFactory(config);
+	mSettingsProvider = settingsProvider;
+	mPropertiesFactory = new AnnotationPropertiesFactory(config, mSettingsProvider);
+	mItemFactory = new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider);
 	mItems = new QList<AbstractAnnotationItem *>();
 	mKeyHelper = new KeyHelper();
 	mUndoStack = new UndoStack();
@@ -43,7 +44,7 @@ AnnotationArea::AnnotationArea(Config *config) :
 	connect(mUndoStack, &UndoStack::indexChanged, this, &AnnotationArea::update);
 	connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
 	connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clear);
-	connect(mConfig, &Config::toolChanged, this, &AnnotationArea::setItemDecorationForTool);
+	connect(dynamic_cast<QObject*>(mSettingsProvider), SIGNAL(toolChanged(ToolTypes)), this, SLOT(setItemDecorationForTool(ToolTypes)));
 
 	connect(mKeyHelper, &KeyHelper::undoPressed, mUndoStack, &UndoStack::undo);
 	connect(mKeyHelper, &KeyHelper::redoPressed, mUndoStack, &UndoStack::redo);
@@ -51,10 +52,13 @@ AnnotationArea::AnnotationArea(Config *config) :
 
 AnnotationArea::~AnnotationArea()
 {
+	delete mPropertiesFactory;
 	delete mItemFactory;
 	delete mItems;
 	delete mKeyHelper;
 	delete mUndoStack;
+	delete mItemModifier;
+	delete mItemCopier;
 }
 
 void AnnotationArea::loadImage(const QPixmap &image)
@@ -71,7 +75,7 @@ void AnnotationArea::insertImageItem(const QPointF &position, const QPixmap &ima
 {
     auto imageItem = mItemFactory->create(position, image);
     mUndoStack->push(new AddCommand(imageItem, this));
-	setItemDecorationForTool(mConfig->selectedTool());
+	setItemDecorationForTool(mSettingsProvider->toolType());
 }
 
 void AnnotationArea::replaceBackgroundImage(const QPixmap &image)
@@ -156,7 +160,7 @@ void AnnotationArea::update()
 void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
 	if (event->button() == Qt::LeftButton) {
-		if (mConfig->selectedTool() == ToolTypes::Select) {
+		if (mSettingsProvider->toolType() == ToolTypes::Select) {
 			mItemModifier->handleMousePress(event->scenePos(), mItems, mKeyHelper->isControlPressed());
 		} else {
 			mItemModifier->clear();
@@ -183,7 +187,7 @@ void AnnotationArea::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
 	if (event->button() == Qt::LeftButton) {
-		if (mConfig->selectedTool() == ToolTypes::Select) {
+		if (mSettingsProvider->toolType() == ToolTypes::Select) {
 			mItemModifier->handleMouseRelease(mItems);
 		} else if (mCurrentItem != nullptr) {
 			mCurrentItem->finish();
@@ -215,7 +219,7 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 	AnnotationContextMenu contextMenu;
 	auto isMenuOverItem = !selectedItems.isEmpty();
 	if (isMenuOverItem) {
-		mConfig->setSelectedTool(ToolTypes::Select);
+		mSettingsProvider->activateSelectTool();
 	}
 	contextMenu.setOverItem(isMenuOverItem);
 	contextMenu.setPastEnabled(!mItemCopier->isEmpty());
@@ -236,7 +240,7 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 
 void AnnotationArea::addItemAtPosition(const QPointF &position)
 {
-	mCurrentItem = mItemFactory->create(position, mConfig->selectedTool());
+	mCurrentItem = mItemFactory->create(position);
 	mUndoStack->push(new AddCommand(mCurrentItem, this));
 }
 
@@ -245,10 +249,10 @@ void AnnotationArea::addPointToCurrentItem(const QPointF &position)
 	mCurrentItem->addPoint(position, mKeyHelper->isControlPressed());
 }
 
-void AnnotationArea::setItemDecorationForTool(ToolTypes tool)
+void AnnotationArea::setItemDecorationForTool(ToolTypes toolType)
 {
 	for (auto item : *mItems) {
-		if (tool == ToolTypes::Select) {
+		if (toolType == ToolTypes::Select) {
 			item->setCursor(CursorHelper::movableCursor());
 		} else {
 			item->unsetCursor();

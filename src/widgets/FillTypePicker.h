@@ -37,10 +37,11 @@ Q_OBJECT
 
 public:
 	FillTypePicker(const QIcon &icon, const QString &tooltip);
-	~FillTypePicker();
+	~FillTypePicker() override;
 	void setFillType(FillTypes fillType);
 	void addNoFillAndNoBorderToList();
 	void removeNoFillAndNoBorderToList();
+	FillTypes fillType() const;
 
 signals:
 	void fillSelected(FillTypes fillType) const;

@@ -63,9 +63,9 @@ void NumberPicker::initGui(const QIcon &icon, const QString &tooltip)
 	setFixedSize(sizeHint());
 }
 
-void NumberPicker::setNumberAndNotify(int size)
+void NumberPicker::setNumberAndNotify(int number)
 {
-	emit numberSelected(size);
+	emit numberSelected(number);
 }
 
 void NumberPicker::selectionChanged()
@@ -79,6 +79,11 @@ void NumberPicker::setRange(int min, int max)
 		mSpinBox->setMinimum(min);
 		mSpinBox->setMaximum(max);
 	}
+}
+
+int NumberPicker::number() const
+{
+	return mSpinBox->value();
 }
 
 } // namespace kImageAnnotator

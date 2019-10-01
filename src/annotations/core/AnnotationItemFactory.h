@@ -42,17 +42,18 @@ class AnnotationItemFactory : public QObject
 {
 Q_OBJECT
 public:
-	explicit AnnotationItemFactory(Config *config);
+	explicit AnnotationItemFactory(AnnotationPropertiesFactory *propertiesFactory, AbstractSettingsProvider *settingsProvider);
 	~AnnotationItemFactory() override;
 	void reset();
 
-	AbstractAnnotationItem *create(const QPointF &initPosition, ToolTypes toolType);
+	AbstractAnnotationItem *create(const QPointF &initPosition);
 	AbstractAnnotationItem *create(const QPointF &initPosition, const QPixmap &image);
 	AbstractAnnotationItem *clone(const AbstractAnnotationItem *item);
 
 private:
 	int mNextZValue;
 	AnnotationPropertiesFactory *mPropertiesFactory;
+	AbstractSettingsProvider *mSettingsProvider;
 	NumberManager *mNumberManager;
 
 	AbstractAnnotationItem *createItem(const QPointF &initPosition, const ToolTypes &toolType, AnnotationProperties *properties);

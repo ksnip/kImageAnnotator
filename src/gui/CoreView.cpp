@@ -24,68 +24,70 @@ namespace kImageAnnotator {
 CoreView::CoreView(Config *config)
 {
 	mConfig = config;
-	mAnnotationArea = new AnnotationArea(mConfig);
-	mAnnotationWidget = new AnnotationWidget(mAnnotationArea, mConfig);
-	mCropWidget = new CropWidget(mAnnotationArea);
-	mScaleWidget = new ScaleWidget(mAnnotationArea);
+	mAnnotationWidget = new AnnotationWidget(mConfig);
+	mCropWidget = new CropWidget(mAnnotationWidget->annotationArea());
+	mScaleWidget = new ScaleWidget(mAnnotationWidget->annotationArea());
 	addWidget(mAnnotationWidget);
 	addWidget(mCropWidget);
 	addWidget(mScaleWidget);
 
-	connect(mAnnotationArea, &AnnotationArea::imageChanged, this, &CoreView::imageChanged);
+	connect(mAnnotationWidget, &AnnotationWidget::imageChanged, this, &CoreView::imageChanged);
 	connect(mCropWidget, &CropWidget::closing, this, &CoreView::showAnnotator);
 	connect(mScaleWidget, &ScaleWidget::closing, this, &CoreView::showAnnotator);
 }
 
 CoreView::~CoreView()
 {
-	delete mAnnotationArea;
 	delete mAnnotationWidget;
+	delete mCropWidget;
+	delete mScaleWidget;
 }
 
 QImage CoreView::image() const
 {
-	return mAnnotationArea->image();
+	return mAnnotationWidget->image();
 }
 
 void CoreView::loadImage(const QPixmap &pixmap)
 {
-	mAnnotationArea->loadImage(pixmap);
+	mAnnotationWidget->loadImage(pixmap);
 }
 
 void CoreView::insertImageItem(const QPointF &position, const QPixmap &pixmap)
 {
-    mAnnotationArea->insertImageItem(position, pixmap);
+    mAnnotationWidget->insertImageItem(position, pixmap);
 }
 
 void CoreView::showAnnotator()
 {
-	mAnnotationArea->setUndoEnabled(true);
+	mAnnotationWidget->setUndoEnabled(true);
 	setCurrentWidget(mAnnotationWidget);
 }
 
 void CoreView::showCropper()
 {
-	mAnnotationArea->setUndoEnabled(false);
+	mAnnotationWidget->setUndoEnabled(false);
+	mAnnotationWidget->clearSelection();
 	setCurrentWidget(mCropWidget);
 	mCropWidget->activate();
 }
 
 void CoreView::showScaler()
 {
-	mAnnotationArea->setUndoEnabled(false);
+	mAnnotationWidget->setUndoEnabled(false);
+	mAnnotationWidget->clearSelection();
 	setCurrentWidget(mScaleWidget);
 	mScaleWidget->activate();
 }
 
 QAction *CoreView::undoAction()
 {
-	return mAnnotationArea->undoAction();
+	return mAnnotationWidget->undoAction();
 }
 
 QAction *CoreView::redoAction()
 {
-	return mAnnotationArea->redoAction();
+	return mAnnotationWidget->redoAction();
 }
 
 QSize CoreView::sizeHint() const

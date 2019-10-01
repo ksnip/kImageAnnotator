@@ -26,25 +26,29 @@
 #include "src/annotations/properties/AnnotationBlurProperties.h"
 #include "src/backend/Config.h"
 #include "src/common/enum/ToolTypes.h"
+#include "AbstractSettingsProvider.h"
 
 namespace kImageAnnotator {
 
 class AnnotationPropertiesFactory
 {
 public:
-	explicit AnnotationPropertiesFactory(Config *config);
+	explicit AnnotationPropertiesFactory(Config *config,
+	                                     AbstractSettingsProvider *settingsProvider);
 	~AnnotationPropertiesFactory() = default;
 
-	AnnotationProperties *create(ToolTypes toolType) const;
+	AnnotationProperties *create() const;
 
 private:
 	Config *mConfig;
+	AbstractSettingsProvider *mSettingsProvider;
+
 	AnnotationProperties *createPropertiesObject(ToolTypes toolType) const;
 	void setShadowEnabled(AnnotationProperties *properties, ToolTypes toolType) const;
 	void setColor(AnnotationProperties *properties, ToolTypes toolType) const;
-	void setTextColor(AnnotationProperties *properties, ToolTypes toolType) const;
+	void setTextColor(AnnotationProperties *properties) const;
 	void setWidthSize(AnnotationProperties *properties, ToolTypes toolType) const;
-	void setFill(AnnotationProperties *properties, ToolTypes toolType) const;
+	void setFill(AnnotationProperties *properties) const;
 	void setPathProperties(AnnotationProperties *properties) const;
 	void setTextProperties(AnnotationProperties *properties, ToolTypes toolType) const;
 	void setBlurProperties(AnnotationProperties *properties) const;

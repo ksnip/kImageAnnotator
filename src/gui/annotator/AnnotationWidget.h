@@ -33,13 +33,24 @@ class AnnotationWidget : public QWidget
 {
 Q_OBJECT
 public:
-	explicit AnnotationWidget(AnnotationArea *annotationArea, Config *config);
+	explicit AnnotationWidget(Config *config);
 	~AnnotationWidget() override;
 	QSize sizeHint() const override;
+	QImage image () const;
+	void loadImage(const QPixmap &pixmap);
+	void insertImageItem(const QPointF &position, const QPixmap &pixmap);
+	void setUndoEnabled(bool enabled);
+	QAction* undoAction() const;
+	QAction* redoAction() const;
+	void clearSelection();
+	AnnotationArea* annotationArea() const;
+
+signals:
+	void imageChanged() const;
 
 private:
 	AnnotationArea *mAnnotationArea;
-	AnnotationView *mView;
+	AnnotationView *mAnnotationView;
 	AnnotationSettings *mSettings;
 	QHBoxLayout *mMainLayout;
 	Config *mConfig;

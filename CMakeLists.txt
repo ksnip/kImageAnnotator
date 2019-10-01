@@ -21,7 +21,7 @@ endif ()
 include(GNUInstallDirs)
 include(FeatureSummary)
 
-set(KCOLORPICKER_MIN_VERSION "0.0.1")
+set(KCOLORPICKER_MIN_VERSION "0.1.0")
 find_package(kColorPicker ${KCOLORPICKER_MIN_VERSION} REQUIRED)
 
 set(BASEPATH "${CMAKE_CURRENT_SOURCE_DIR}")

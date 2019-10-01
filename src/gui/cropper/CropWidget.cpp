@@ -59,7 +59,6 @@ CropWidget::~CropWidget()
 
 void CropWidget::activate()
 {
-	mAnnotationArea->clearSelection();
 	reset();
 	setFocus();
 }

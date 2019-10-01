@@ -34,7 +34,7 @@ class CoreView : public QStackedWidget
 Q_OBJECT
 public:
 	explicit CoreView(Config *config);
-	~CoreView();
+	~CoreView() override;
 	QImage image() const;
 	QAction *undoAction();
 	QAction *redoAction();
@@ -52,7 +52,6 @@ public slots:
 
 private:
 	Config *mConfig;
-	AnnotationArea *mAnnotationArea;
 	AnnotationWidget *mAnnotationWidget;
 	CropWidget *mCropWidget;
 	ScaleWidget *mScaleWidget;

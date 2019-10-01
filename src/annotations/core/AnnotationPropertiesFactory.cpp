@@ -21,19 +21,21 @@
 
 namespace kImageAnnotator {
 
-AnnotationPropertiesFactory::AnnotationPropertiesFactory(Config *config)
+AnnotationPropertiesFactory::AnnotationPropertiesFactory(Config *config, AbstractSettingsProvider *settingsProvider)
 {
 	mConfig = config;
+	mSettingsProvider = settingsProvider;
 }
 
-AnnotationProperties *AnnotationPropertiesFactory::create(ToolTypes toolType) const
+AnnotationProperties *AnnotationPropertiesFactory::create() const
 {
+	auto toolType = mSettingsProvider->toolType();
 	auto properties = createPropertiesObject(toolType);
 
 	setColor(properties, toolType);
-	setTextColor(properties, toolType);
+	setTextColor(properties);
 	setWidthSize(properties, toolType);
-	setFill(properties, toolType);
+	setFill(properties);
 	setShadowEnabled(properties, toolType);
 	setPathProperties(properties);
 	setTextProperties(properties, toolType);
@@ -60,7 +62,7 @@ AnnotationProperties *AnnotationPropertiesFactory::createPropertiesObject(ToolTy
 
 void AnnotationPropertiesFactory::setColor(AnnotationProperties *properties, ToolTypes toolType) const
 {
-	auto color = mConfig->toolColor(toolType);
+	auto color = mSettingsProvider->toolColor();
 
 	if (isMarkerTool(toolType)) {
 		color.setAlpha(60);
@@ -69,14 +71,14 @@ void AnnotationPropertiesFactory::setColor(AnnotationProperties *properties, Too
 	properties->setColor(color);
 }
 
-void AnnotationPropertiesFactory::setTextColor(AnnotationProperties *properties, ToolTypes toolType) const
+void AnnotationPropertiesFactory::setTextColor(AnnotationProperties *properties) const
 {
-	properties->setTextColor(mConfig->toolTextColor(toolType));
+	properties->setTextColor(mSettingsProvider->textColor());
 }
 
 void AnnotationPropertiesFactory::setWidthSize(AnnotationProperties *properties, ToolTypes toolType) const
 {
-	auto width = mConfig->toolWidth(toolType);
+	auto width = mSettingsProvider->toolWidth();
 
 	if (toolType == ToolTypes::MarkerPen) {
 		width *= 3;
@@ -85,9 +87,9 @@ void AnnotationPropertiesFactory::setWidthSize(AnnotationProperties *properties,
 	properties->setWidth(width);
 }
 
-void AnnotationPropertiesFactory::setFill(AnnotationProperties *properties, ToolTypes toolType) const
+void AnnotationPropertiesFactory::setFill(AnnotationProperties *properties) const
 {
-	properties->setFillType(mConfig->toolFillType(toolType));
+	properties->setFillType(mSettingsProvider->fillType());
 }
 
 void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties *properties, ToolTypes toolType) const
@@ -125,7 +127,7 @@ void AnnotationPropertiesFactory::setBlurProperties(AnnotationProperties *proper
 {
 	auto pathProperties = dynamic_cast<AnnotationBlurProperties *>(properties);
 	if (pathProperties != nullptr) {
-		pathProperties->setRadius(mConfig->blurRadius());
+		pathProperties->setRadius(mSettingsProvider->blurRadius());
 	}
 }
 

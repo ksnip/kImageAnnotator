@@ -74,15 +74,8 @@ public slots:
 	int smoothFactor() const;
 	void setSmoothFactor(int factor);
 
-	void setFirstBadgeNumber(int number);
-
 	int blurRadius() const;
 	void setBlurRadius(int radius);
-
-signals:
-	void firstBadgeNumberChanged(int number) const;
-	void toolChanged(ToolTypes tool) const;
-	void loaded();
 
 private:
 	QSettings mConfig;

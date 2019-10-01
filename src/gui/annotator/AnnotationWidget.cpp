@@ -21,19 +21,19 @@
 
 namespace kImageAnnotator {
 
-AnnotationWidget::AnnotationWidget(AnnotationArea *annotationArea, Config *config)
+AnnotationWidget::AnnotationWidget(Config *config)
 {
 	mConfig = config;
-	mAnnotationArea = annotationArea;
 
 	initGui();
 }
 
 AnnotationWidget::~AnnotationWidget()
 {
-	delete mView;
+	delete mAnnotationView;
 	delete mMainLayout;
 	delete mSettings;
+	delete mAnnotationArea;
 }
 
 QSize AnnotationWidget::sizeHint() const
@@ -48,26 +48,68 @@ QSize AnnotationWidget::sizeHint() const
 
 void AnnotationWidget::initGui()
 {
-	mView = new AnnotationView(mAnnotationArea);
 	mSettings =  new AnnotationSettings(mConfig);
+	mAnnotationArea = new AnnotationArea(mConfig, mSettings);
+	mAnnotationView = new AnnotationView(mAnnotationArea);
 	mMainLayout = new QHBoxLayout();
 	mMainLayout->addWidget(mSettings);
-	mMainLayout->addWidget(mView);
+	mMainLayout->addWidget(mAnnotationView);
 
 	setLayout(mMainLayout);
 	setFocusPolicy(Qt::ClickFocus);
 
+	connect(mAnnotationArea, &AnnotationArea::imageChanged, this, &AnnotationWidget::imageChanged);
 	connect(mAnnotationArea, &AnnotationArea::itemsSelected, this, &AnnotationWidget::editItems);
 }
 
 void AnnotationWidget::editItems(const QList<AbstractAnnotationItem *> &items)
 {
 	if(items.count() != 1) {
-		mSettings->setSelect();
+		mSettings->activateSelectTool();
 		return;
 	}
 	auto item = items.first();
 	mSettings->loadFromItem(item);
+}
+
+QImage AnnotationWidget::image() const
+{
+	return mAnnotationArea->image();
+}
+
+void AnnotationWidget::loadImage(const QPixmap &pixmap)
+{
+	mAnnotationArea->loadImage(pixmap);
+}
+
+void AnnotationWidget::insertImageItem(const QPointF &position, const QPixmap &pixmap)
+{
+	mAnnotationArea->insertImageItem(position, pixmap);
+}
+
+void AnnotationWidget::setUndoEnabled(bool enabled)
+{
+	mAnnotationArea->setUndoEnabled(enabled);
+}
+
+QAction *AnnotationWidget::undoAction() const
+{
+	return mAnnotationArea->undoAction();
+}
+
+QAction *AnnotationWidget::redoAction() const
+{
+	return mAnnotationArea->redoAction();
+}
+
+void AnnotationWidget::clearSelection()
+{
+	mAnnotationArea->clearSelection();
+}
+
+AnnotationArea *AnnotationWidget::annotationArea() const
+{
+	return mAnnotationArea;
 }
 
 } // namespace kImageAnnotator

@@ -17,4 +17,33 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "EditableItem.h"
+#ifndef KIMAGEANNOTATOR_ABSTRACTSETTINGSPROVIDER_H
+#define KIMAGEANNOTATOR_ABSTRACTSETTINGSPROVIDER_H
+
+#include <QColor>
+
+#include "src/common/enum/ToolTypes.h"
+#include "src/common/enum/FillTypes.h"
+
+namespace kImageAnnotator {
+
+class AbstractSettingsProvider
+{
+public:
+	virtual void activateSelectTool() = 0;
+	virtual ToolTypes toolType() const = 0;
+	virtual QColor toolColor() const = 0;
+	virtual QColor textColor() const = 0;
+	virtual int toolWidth() const = 0;
+	virtual int fontSize() const = 0;
+	virtual FillTypes fillType() const = 0;
+	virtual int blurRadius() const = 0;
+
+signals:
+	virtual void toolChanged(ToolTypes toolType) const = 0;
+	virtual void firstBadgeNumberChanged(int number) const = 0;
+};
+
+} // namespace kImageAnnotator
+
+#endif //KIMAGEANNOTATOR_ABSTRACTSETTINGSPROVIDER_H

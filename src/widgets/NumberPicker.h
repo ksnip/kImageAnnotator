@@ -36,9 +36,10 @@ Q_OBJECT
 
 public:
 	NumberPicker(const QIcon &icon, const QString &tooltip);
-	~NumberPicker();
+	~NumberPicker() override;
 	void setNumber(int number);
 	void setRange(int min, int max);
+	int number() const;
 
 signals:
 	void numberSelected(int number) const;
@@ -49,7 +50,7 @@ private:
 	QLabel *mLabel;
 
 	void initGui(const QIcon &icon, const QString &tooltip);
-	void setNumberAndNotify(int size);
+	void setNumberAndNotify(int number);
 
 private slots:
 	void selectionChanged();

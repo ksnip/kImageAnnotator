@@ -26,8 +26,10 @@
 #include <QPainter>
 #include <QMenu>
 #include <QUndoStack>
+#include <src/gui/annotator/AnnotationSettings.h>
 
 #include "AnnotationItemFactory.h"
+#include "AbstractSettingsProvider.h"
 #include "src/annotations/modifiers/AnnotationItemModifier.h"
 #include "src/annotations/modifiers/AnnotationItemArranger.h"
 #include "src/annotations/misc/AnnotationItemClipboard.h"
@@ -47,7 +49,7 @@ class AnnotationArea : public QGraphicsScene
 {
     Q_OBJECT
 public:
-	explicit AnnotationArea(Config *config);
+	explicit AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider);
     ~AnnotationArea() override;
     virtual void loadImage(const QPixmap &image);
     virtual void insertImageItem(const QPointF &position, const QPixmap &image);
@@ -78,10 +80,11 @@ protected:
 
 private:
     AnnotationItemFactory *mItemFactory;
+    AnnotationPropertiesFactory *mPropertiesFactory;
     QGraphicsPixmapItem *mImage;
     AbstractAnnotationItem *mCurrentItem;
     AnnotationItemModifier *mItemModifier;
-    Config *mConfig;
+    AbstractSettingsProvider *mSettingsProvider;
     QList<AbstractAnnotationItem*> *mItems;
     KeyHelper *mKeyHelper;
     UndoStack *mUndoStack;
@@ -91,12 +94,12 @@ private:
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);
-    void setItemDecorationForTool(ToolTypes tool);
 	void resetAnnotationArea();
 	void removeAllItems();
 	void replaceBackgroundImage(const QPixmap &image);
 
 private slots:
+	void setItemDecorationForTool(ToolTypes toolType);
     void deleteSelectedItems();
 	void pasteCopiedItems(const QPointF &position);
     void enableEditing();

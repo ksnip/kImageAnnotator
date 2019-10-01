@@ -39,6 +39,7 @@ public:
 	explicit ColorPicker(const QIcon &icon, const QString &tooltip);
 	~ColorPicker() override;
 	void setColor(const QColor &color);
+	QColor color() const;
 
 signals:
 	void colorSelected(const QColor &color);
