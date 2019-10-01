@@ -56,9 +56,6 @@ private:
 	Config *mConfig;
 
 	void initGui();
-
-private slots:
-	void editItems(const QList<AbstractAnnotationItem *> &items);
 };
 
 } // namespace kImageAnnotator

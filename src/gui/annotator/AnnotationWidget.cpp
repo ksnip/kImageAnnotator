@@ -59,17 +59,6 @@ void AnnotationWidget::initGui()
 	setFocusPolicy(Qt::ClickFocus);
 
 	connect(mAnnotationArea, &AnnotationArea::imageChanged, this, &AnnotationWidget::imageChanged);
-	connect(mAnnotationArea, &AnnotationArea::itemsSelected, this, &AnnotationWidget::editItems);
-}
-
-void AnnotationWidget::editItems(const QList<AbstractAnnotationItem *> &items)
-{
-	if(items.count() != 1) {
-		mSettings->activateSelectTool();
-		return;
-	}
-	auto item = items.first();
-	mSettings->loadFromItem(item);
 }
 
 QImage AnnotationWidget::image() const

@@ -50,6 +50,7 @@ public:
 	virtual void finish();
 	virtual void scale(qreal sx, qreal sy) = 0;
 	virtual ToolTypes toolType() const = 0;
+	virtual void setProperties(AnnotationProperties *properties);
 
 protected:
 	void setShape(QPainterPath &newShape);
@@ -67,6 +68,7 @@ private:
 	bool hasBorder() const;
 	void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
 	void addShadowIfRequired();
+	void updateProperties(AnnotationProperties *properties);
 };
 
 } // namespace kImageAnnotator

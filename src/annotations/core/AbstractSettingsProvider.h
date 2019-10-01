@@ -24,12 +24,14 @@
 
 #include "src/common/enum/ToolTypes.h"
 #include "src/common/enum/FillTypes.h"
+#include "src/annotations/items/AbstractAnnotationItem.h"
 
 namespace kImageAnnotator {
 
 class AbstractSettingsProvider
 {
 public:
+	virtual void editItem(AbstractAnnotationItem *item) = 0;
 	virtual void activateSelectTool() = 0;
 	virtual ToolTypes toolType() const = 0;
 	virtual QColor toolColor() const = 0;
@@ -42,6 +44,7 @@ public:
 signals:
 	virtual void toolChanged(ToolTypes toolType) const = 0;
 	virtual void firstBadgeNumberChanged(int number) const = 0;
+	virtual void itemSettingChanged() const = 0;
 };
 
 } // namespace kImageAnnotator

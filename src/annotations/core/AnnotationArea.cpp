@@ -45,6 +45,7 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 	connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
 	connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clear);
 	connect(dynamic_cast<QObject*>(mSettingsProvider), SIGNAL(toolChanged(ToolTypes)), this, SLOT(setItemDecorationForTool(ToolTypes)));
+	connect(dynamic_cast<QObject*>(mSettingsProvider), SIGNAL(itemSettingChanged()), this, SLOT(updateItemProperties()));
 
 	connect(mKeyHelper, &KeyHelper::undoPressed, mUndoStack, &UndoStack::undo);
 	connect(mKeyHelper, &KeyHelper::redoPressed, mUndoStack, &UndoStack::redo);
@@ -313,6 +314,26 @@ void AnnotationArea::setUndoEnabled(bool enabled)
 
 	if(mRedoAction != nullptr) {
 		mRedoAction->setEnabled(enabled);
+	}
+}
+
+void AnnotationArea::itemsSelected(const QList<AbstractAnnotationItem *> &items) const
+{
+	if(items.count() != 1) {
+		mSettingsProvider->activateSelectTool();
+		return;
+	}
+	auto item = items.first();
+	mSettingsProvider->editItem(item);
+}
+
+void AnnotationArea::updateItemProperties()
+{
+	auto selectedItems = mItemModifier->selectedItems();
+	if(selectedItems.count() == 1) {
+		auto item = selectedItems.first();
+		auto properties = mPropertiesFactory->create(item->toolType());
+		item->setProperties(properties);
 	}
 }
 

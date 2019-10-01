@@ -27,9 +27,8 @@ AnnotationPropertiesFactory::AnnotationPropertiesFactory(Config *config, Abstrac
 	mSettingsProvider = settingsProvider;
 }
 
-AnnotationProperties *AnnotationPropertiesFactory::create() const
+AnnotationProperties *AnnotationPropertiesFactory::create(ToolTypes toolType) const
 {
-	auto toolType = mSettingsProvider->toolType();
 	auto properties = createPropertiesObject(toolType);
 
 	setColor(properties, toolType);

@@ -37,7 +37,7 @@ public:
 	                                     AbstractSettingsProvider *settingsProvider);
 	~AnnotationPropertiesFactory() = default;
 
-	AnnotationProperties *create() const;
+	AnnotationProperties *create(ToolTypes toolType) const;
 
 private:
 	Config *mConfig;

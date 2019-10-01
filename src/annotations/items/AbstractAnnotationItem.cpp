@@ -25,13 +25,11 @@ AbstractAnnotationItem::AbstractAnnotationItem(AnnotationProperties *properties)
 {
 	Q_ASSERT(properties != nullptr);
 
-	mProperties = properties;
-	mShape = new QPainterPath();
-
-	mPainterPen.setColor(mProperties->color());
-	mPainterPen.setWidth(mProperties->width());
+	updateProperties(properties);
 	mPainterPen.setCapStyle(Qt::RoundCap);
 	mPainterPen.setJoinStyle(Qt::RoundJoin);
+
+	mShape = new QPainterPath();
 
 	mStroker = new QPainterPathStroker(mPainterPen);
 
@@ -136,12 +134,28 @@ void AbstractAnnotationItem::finish()
 	// By default, does nothing
 }
 
+void AbstractAnnotationItem::setProperties(AnnotationProperties *properties)
+{
+	Q_ASSERT(properties != nullptr);
+
+	prepareGeometryChange();
+	delete mProperties;
+	updateProperties(properties);
+}
+
 void AbstractAnnotationItem::addShadowIfRequired()
 {
 	if (mProperties->shadowEnabled()) {
 		mShadowEffect = new ShadowEffect();
 		setGraphicsEffect(mShadowEffect);
 	}
+}
+
+void AbstractAnnotationItem::updateProperties(AnnotationProperties *properties)
+{
+	mProperties = properties;
+	mPainterPen.setColor(mProperties->color());
+	mPainterPen.setWidth(mProperties->width());
 }
 
 } // namespace kImageAnnotator

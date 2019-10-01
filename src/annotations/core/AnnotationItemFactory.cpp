@@ -26,7 +26,6 @@ AnnotationItemFactory::AnnotationItemFactory(AnnotationPropertiesFactory *proper
 	mPropertiesFactory = propertiesFactory;
 	mSettingsProvider = settingsProvider;
 	mNumberManager = new NumberManager();
-//	connect(mSettingsProvider, &AbstractSettingsProvider::firstBadgeNumberChanged, mNumberManager, &NumberManager::firstNumberChanged);
 	connect(dynamic_cast<QObject*>(mSettingsProvider), SIGNAL(firstBadgeNumberChanged(int)), mNumberManager, SLOT(firstNumberChanged(int)));
 	reset();
 }
@@ -44,8 +43,9 @@ void AnnotationItemFactory::reset()
 
 AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPosition)
 {
-	auto properties = mPropertiesFactory->create();
-	auto newItem = createItem(initPosition, mSettingsProvider->toolType(), properties);
+	auto toolType = mSettingsProvider->toolType();
+	auto properties = mPropertiesFactory->create(toolType);
+	auto newItem = createItem(initPosition, toolType, properties);
 
 	setZValue(newItem);
 
@@ -54,7 +54,7 @@ AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPositio
 
 AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPosition, const QPixmap &image)
 {
-    auto properties = mPropertiesFactory->create();
+    auto properties = mPropertiesFactory->create(ToolTypes::Image);
     auto newItem = new AnnotationImage(initPosition, image, properties);
 
     setZValue(newItem);

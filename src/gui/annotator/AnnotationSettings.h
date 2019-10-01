@@ -41,7 +41,7 @@ class AnnotationSettings : public QWidget, public AbstractSettingsProvider
 public:
 	explicit AnnotationSettings(Config *config);
 	~AnnotationSettings() override;
-	void loadFromItem(AbstractAnnotationItem *item);
+	void editItem(AbstractAnnotationItem *item) override;
 	void activateSelectTool() override;
 	ToolTypes toolType() const override;
 	QColor toolColor() const override;
@@ -54,6 +54,7 @@ public:
 signals:
 	void toolChanged(ToolTypes toolType) const override;
 	void firstBadgeNumberChanged(int number) const override;
+	void itemSettingChanged() const;
 
 private:
 	QVBoxLayout *mMainLayout;
@@ -67,20 +68,22 @@ private:
 	NumberPicker *mBlurRadiusPicker;
 	Config *mConfig;
 	WidgetConfigurator mWidgetConfigurator;
+	bool mEditExistingItem;
 
 	void initGui();
 	void loadFromConfig(ToolTypes tool);
 
 private slots:
 	void loadToolTypeFromConfig();
-	void saveToolType(ToolTypes toolType);
-	void saveToolColor(const QColor &color);
-	void saveToolTextColor(const QColor &color);
-	void saveToolWidth(int size);
-	void saveToolFontSize(int size);
-	void saveToolFillType(FillTypes fill);
+	void toolTypeChanged(ToolTypes toolType);
+	void toolColorChanged(const QColor &color);
+	void toolTextColorChanged(const QColor &color);
+	void toolWidthChanged(int size);
+	void toolFontSizeChanged(int size);
+	void toolFillTypeChanged(FillTypes fill);
 	void saveFirstBadgeNumber(int size);
-	void saveBlurRadius(int radius);
+	void blurRadiusChanged(int radius);
+	void loadFromItem(const AbstractAnnotationItem *item);
 };
 
 } // namespace kImageAnnotator

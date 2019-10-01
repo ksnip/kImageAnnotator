@@ -68,7 +68,6 @@ public slots:
 
 signals:
     void imageChanged() const;
-    void itemsSelected(const QList<AbstractAnnotationItem *> &items) const;
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
@@ -104,6 +103,8 @@ private slots:
 	void pasteCopiedItems(const QPointF &position);
     void enableEditing();
     EditableItem* getSelectedEditableItem() const;
+	void itemsSelected(const QList<AbstractAnnotationItem *> &items) const;
+	void updateItemProperties();
 };
 
 } // namespace kImageAnnotator
