@@ -148,13 +148,13 @@ void AnnotationSettings::toolTypeChanged(ToolTypes toolType)
 	mEditExistingItem = false;
 	mConfig->setSelectedTool(toolType);
 	loadFromConfig(toolType);
-	emit toolChanged(toolType);
+	toolChanged(toolType);
 }
 
 void AnnotationSettings::toolColorChanged(const QColor &color)
 {
 	if(mEditExistingItem) {
-		emit itemSettingChanged();
+		itemSettingChanged();
 	} else {
 		mConfig->setToolColor(color, mToolPicker->tool());
 	}
@@ -163,7 +163,7 @@ void AnnotationSettings::toolColorChanged(const QColor &color)
 void AnnotationSettings::toolTextColorChanged(const QColor &color)
 {
 	if(mEditExistingItem) {
-		emit itemSettingChanged();
+		itemSettingChanged();
 	} else {
 		mConfig->setToolTextColor(color, mToolPicker->tool());
 	}
@@ -172,7 +172,7 @@ void AnnotationSettings::toolTextColorChanged(const QColor &color)
 void AnnotationSettings::toolWidthChanged(int size)
 {
 	if(mEditExistingItem) {
-		emit itemSettingChanged();
+		itemSettingChanged();
 	} else {
 		mConfig->setToolWidth(size, mToolPicker->tool());
 	}
@@ -181,7 +181,7 @@ void AnnotationSettings::toolWidthChanged(int size)
 void AnnotationSettings::toolFillTypeChanged(FillTypes fill)
 {
 	if(mEditExistingItem) {
-		emit itemSettingChanged();
+		itemSettingChanged();
 	} else {
 		mConfig->setToolFillType(fill, mToolPicker->tool());
 	}
@@ -190,7 +190,7 @@ void AnnotationSettings::toolFillTypeChanged(FillTypes fill)
 void AnnotationSettings::toolFontSizeChanged(int size)
 {
 	if(mEditExistingItem) {
-		emit itemSettingChanged();
+		itemSettingChanged();
 	} else {
 		mConfig->setToolFontSize(size, mToolPicker->tool());
 	}
@@ -198,7 +198,7 @@ void AnnotationSettings::toolFontSizeChanged(int size)
 
 void AnnotationSettings::saveFirstBadgeNumber(int number)
 {
-	emit firstBadgeNumberChanged(number);
+	firstBadgeNumberChanged(number);
 }
 
 void AnnotationSettings::blurRadiusChanged(int radius)

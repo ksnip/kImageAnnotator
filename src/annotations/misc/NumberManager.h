@@ -23,10 +23,11 @@
 #include <QObject>
 
 #include "src/annotations/items/AnnotationNumber.h"
+#include "src/annotations/core/AbstractBadgeNumberChangeListener.h"
 
 namespace kImageAnnotator {
 
-class NumberManager : public QObject
+class NumberManager : public QObject, public AbstractBadgeNumberChangeListener
 {
 Q_OBJECT
 public:
@@ -34,10 +35,10 @@ public:
 	~NumberManager() override = default;
 	void addItem(AnnotationNumber *item);
 	void reset();
+	void firstBadgeNumberChanged(int number) override;
 
 public slots:
 	void updateNumbers();
-	void firstNumberChanged(int number);
 
 private:
 	int mFirstNumber;

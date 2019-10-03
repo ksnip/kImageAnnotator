@@ -44,8 +44,8 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 	connect(mUndoStack, &UndoStack::indexChanged, this, &AnnotationArea::update);
 	connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
 	connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clear);
-	connect(dynamic_cast<QObject*>(mSettingsProvider), SIGNAL(toolChanged(ToolTypes)), this, SLOT(setItemDecorationForTool(ToolTypes)));
-	connect(dynamic_cast<QObject*>(mSettingsProvider), SIGNAL(itemSettingChanged()), this, SLOT(updateItemProperties()));
+	mSettingsProvider->subscribeToItemSettingsChange(this);
+	mSettingsProvider->subscribeToToolChange(this);
 
 	connect(mKeyHelper, &KeyHelper::undoPressed, mUndoStack, &UndoStack::undo);
 	connect(mKeyHelper, &KeyHelper::redoPressed, mUndoStack, &UndoStack::redo);
@@ -76,7 +76,7 @@ void AnnotationArea::insertImageItem(const QPointF &position, const QPixmap &ima
 {
     auto imageItem = mItemFactory->create(position, image);
     mUndoStack->push(new AddCommand(imageItem, this));
-	setItemDecorationForTool(mSettingsProvider->toolType());
+	toolChanged(mSettingsProvider->toolType());
 }
 
 void AnnotationArea::replaceBackgroundImage(const QPixmap &image)
@@ -250,7 +250,7 @@ void AnnotationArea::addPointToCurrentItem(const QPointF &position)
 	mCurrentItem->addPoint(position, mKeyHelper->isControlPressed());
 }
 
-void AnnotationArea::setItemDecorationForTool(ToolTypes toolType)
+void AnnotationArea::toolChanged(ToolTypes toolType)
 {
 	for (auto item : *mItems) {
 		if (toolType == ToolTypes::Select) {
@@ -327,7 +327,7 @@ void AnnotationArea::itemsSelected(const QList<AbstractAnnotationItem *> &items)
 	mSettingsProvider->editItem(item);
 }
 
-void AnnotationArea::updateItemProperties()
+void AnnotationArea::itemSettingsChanged()
 {
 	auto selectedItems = mItemModifier->selectedItems();
 	if(selectedItems.count() == 1) {

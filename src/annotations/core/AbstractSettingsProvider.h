@@ -21,8 +21,11 @@
 #define KIMAGEANNOTATOR_ABSTRACTSETTINGSPROVIDER_H
 
 #include <QColor>
+#include <QList>
 
-#include "src/common/enum/ToolTypes.h"
+#include "AbstractToolChangeListener.h"
+#include "AbstractItemSettingsChangeListener.h"
+#include "AbstractBadgeNumberChangeListener.h"
 #include "src/common/enum/FillTypes.h"
 #include "src/annotations/items/AbstractAnnotationItem.h"
 
@@ -40,11 +43,19 @@ public:
 	virtual int fontSize() const = 0;
 	virtual FillTypes fillType() const = 0;
 	virtual int blurRadius() const = 0;
+	void subscribeToToolChange(AbstractToolChangeListener *listener);
+	void subscribeToItemSettingsChange(AbstractItemSettingsChangeListener *listener);
+	void subscribeToBadgeNumberChange(AbstractBadgeNumberChangeListener *listener);
 
-signals:
-	virtual void toolChanged(ToolTypes toolType) const = 0;
-	virtual void firstBadgeNumberChanged(int number) const = 0;
-	virtual void itemSettingChanged() const = 0;
+protected:
+	virtual void toolChanged(ToolTypes toolType);
+	virtual void firstBadgeNumberChanged(int number);
+	virtual void itemSettingChanged();
+
+private:
+	QList<AbstractToolChangeListener*> mToolChangeListeners;
+	QList<AbstractItemSettingsChangeListener*> mItemSettingsChangeListeners;
+	QList<AbstractBadgeNumberChangeListener*> mBadgeNumberChangeListeners;
 };
 
 } // namespace kImageAnnotator

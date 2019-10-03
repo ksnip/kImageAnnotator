@@ -51,11 +51,6 @@ public:
 	FillTypes fillType() const override;
 	int blurRadius() const override;
 
-signals:
-	void toolChanged(ToolTypes toolType) const override;
-	void firstBadgeNumberChanged(int number) const override;
-	void itemSettingChanged() const;
-
 private:
 	QVBoxLayout *mMainLayout;
 	ToolPicker *mToolPicker;

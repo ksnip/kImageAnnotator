@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2019 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,43 +17,17 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "NumberManager.h"
+#ifndef KIMAGEANNOTATOR_ABSTRACTBADGENUMBERCHANGELISTENER_H
+#define KIMAGEANNOTATOR_ABSTRACTBADGENUMBERCHANGELISTENER_H
 
 namespace kImageAnnotator {
 
-NumberManager::NumberManager()
+class AbstractBadgeNumberChangeListener
 {
-	mFirstNumber = 1;
-}
-
-void kImageAnnotator::NumberManager::addItem(kImageAnnotator::AnnotationNumber *item)
-{
-	Q_ASSERT(item != nullptr);
-
-	connect(item, &AnnotationNumber::visibleChanged, this, &NumberManager::updateNumbers);
-	mItems.append(item);
-	updateNumbers();
-}
-
-void NumberManager::reset()
-{
-	mItems.clear();
-}
-
-void NumberManager::updateNumbers()
-{
-	auto number = mFirstNumber;
-	for (auto item : mItems) {
-		if (item->isVisible()) {
-			item->setNumber(number++);
-		}
-	}
-}
-
-void NumberManager::firstBadgeNumberChanged(int number)
-{
-	mFirstNumber = number;
-	updateNumbers();
-}
+public:
+	virtual void firstBadgeNumberChanged(int number) = 0;
+};
 
 } // namespace kImageAnnotator
+
+#endif //KIMAGEANNOTATOR_ABSTRACTBADGENUMBERCHANGELISTENER_H

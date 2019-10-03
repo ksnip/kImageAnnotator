@@ -26,7 +26,7 @@ AnnotationItemFactory::AnnotationItemFactory(AnnotationPropertiesFactory *proper
 	mPropertiesFactory = propertiesFactory;
 	mSettingsProvider = settingsProvider;
 	mNumberManager = new NumberManager();
-	connect(dynamic_cast<QObject*>(mSettingsProvider), SIGNAL(firstBadgeNumberChanged(int)), mNumberManager, SLOT(firstNumberChanged(int)));
+	mSettingsProvider->subscribeToBadgeNumberChange(mNumberManager);
 	reset();
 }
 

@@ -30,6 +30,8 @@
 
 #include "AnnotationItemFactory.h"
 #include "AbstractSettingsProvider.h"
+#include "AbstractToolChangeListener.h"
+#include "AbstractItemSettingsChangeListener.h"
 #include "src/annotations/modifiers/AnnotationItemModifier.h"
 #include "src/annotations/modifiers/AnnotationItemArranger.h"
 #include "src/annotations/misc/AnnotationItemClipboard.h"
@@ -45,7 +47,7 @@
 
 namespace kImageAnnotator {
 
-class AnnotationArea : public QGraphicsScene
+class AnnotationArea : public QGraphicsScene, public AbstractToolChangeListener, public AbstractItemSettingsChangeListener
 {
     Q_OBJECT
 public:
@@ -62,6 +64,8 @@ public:
     virtual void scale(const QSize& size);
     virtual void clearSelection();
     virtual void setUndoEnabled(bool enabled);
+	virtual void toolChanged(ToolTypes toolType) override;
+	void itemSettingsChanged();
 
 public slots:
     virtual void update();
@@ -98,13 +102,11 @@ private:
 	void replaceBackgroundImage(const QPixmap &image);
 
 private slots:
-	void setItemDecorationForTool(ToolTypes toolType);
     void deleteSelectedItems();
 	void pasteCopiedItems(const QPointF &position);
     void enableEditing();
     EditableItem* getSelectedEditableItem() const;
 	void itemsSelected(const QList<AbstractAnnotationItem *> &items) const;
-	void updateItemProperties();
 };
 
 } // namespace kImageAnnotator
