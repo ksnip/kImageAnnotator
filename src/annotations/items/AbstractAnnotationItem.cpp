@@ -50,7 +50,6 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &oth
 
 AbstractAnnotationItem::~AbstractAnnotationItem()
 {
-	mProperties.clear();
 	delete mShape;
 	delete mStroker;
 }
@@ -110,6 +109,13 @@ void AbstractAnnotationItem::paint(QPainter *painter, const QStyleOptionGraphics
 	painter->drawPath(*mShape);
 }
 
+void AbstractAnnotationItem::updateProperties(const PropertiesPtr &properties)
+{
+	mProperties = properties;
+	mPainterPen.setColor(mProperties->color());
+	mPainterPen.setWidth(mProperties->width());
+}
+
 void AbstractAnnotationItem::shiftPainterForAllOddShapeWidth(QPainter *painter) const
 {
 	if (mPainterPen.width() % 2 != 0) {
@@ -148,13 +154,6 @@ void AbstractAnnotationItem::addShadowIfRequired()
 		mShadowEffect = new ShadowEffect();
 		setGraphicsEffect(mShadowEffect);
 	}
-}
-
-void AbstractAnnotationItem::updateProperties(const PropertiesPtr &properties)
-{
-	mProperties = properties;
-	mPainterPen.setColor(mProperties->color());
-	mPainterPen.setWidth(mProperties->width());
 }
 
 } // namespace kImageAnnotator

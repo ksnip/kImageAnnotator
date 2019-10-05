@@ -31,7 +31,7 @@ class ChangePropertiesCommand  : public QUndoCommand
 {
 public:
 	ChangePropertiesCommand(AbstractAnnotationItem *item, const PropertiesPtr &properties);
-	~ChangePropertiesCommand() override;
+	~ChangePropertiesCommand() override = default;
 	void undo() override;
 	void redo() override;
 

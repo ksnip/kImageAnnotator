@@ -62,6 +62,11 @@ QPainterPath AnnotationNumber::shape() const
 	return path;
 }
 
+TextPropertiesPtr AnnotationNumber::textProperties() const
+{
+	return AbstractAnnotationItem::properties().staticCast<AnnotationTextProperties>();
+}
+
 void AnnotationNumber::updateRect()
 {
 	prepareGeometryChange();
@@ -88,17 +93,18 @@ void AnnotationNumber::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 	painter->drawText(boundingRect(), Qt::AlignCenter, mNumberString);
 }
 
+void AnnotationNumber::updateProperties(const PropertiesPtr &properties)
+{
+	AbstractAnnotationItem::updateProperties(properties);
+	updateRect();
+}
+
 QSizeF AnnotationNumber::getTextRectSize() const
 {
 	QFontMetricsF metrics(textProperties()->font());
 	auto boundingRect = metrics.boundingRect(mNumberString).adjusted(-5, -5, 5, 5);
 	auto largestSite = boundingRect.width() > boundingRect.height() ? boundingRect.width() : boundingRect.height();
 	return { largestSite, largestSite };
-}
-
-TextPropertiesPtr AnnotationNumber::textProperties() const
-{
-	return AbstractAnnotationItem::properties().staticCast<AnnotationTextProperties>();
 }
 
 } // namespace kImageAnnotator

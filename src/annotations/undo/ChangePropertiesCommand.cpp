@@ -28,12 +28,6 @@ ChangePropertiesCommand::ChangePropertiesCommand(AbstractAnnotationItem *item, c
 	mOldProperties = mItem->properties();
 }
 
-ChangePropertiesCommand::~ChangePropertiesCommand()
-{
-	mOldProperties.clear();
-	mNewProperties.clear();
-}
-
 void ChangePropertiesCommand::undo()
 {
 	mItem->setProperties(mOldProperties);

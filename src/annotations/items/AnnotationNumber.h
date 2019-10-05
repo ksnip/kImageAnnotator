@@ -43,6 +43,7 @@ public:
 protected:
 	void updateShape() override;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+	void updateProperties(const PropertiesPtr &properties) override;
 
 private:
 	QString mNumberString;

@@ -111,9 +111,11 @@ void AnnotationPropertiesFactory::setPathProperties(const PropertiesPtr &propert
 
 void AnnotationPropertiesFactory::setTextProperties(const PropertiesPtr &properties, ToolTypes toolType) const
 {
-	auto pathProperties = properties.dynamicCast<AnnotationTextProperties>();
-	if (pathProperties != nullptr) {
-		pathProperties->setFont(mConfig->toolFont(toolType));
+	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
+	if (textProperties != nullptr) {
+		auto font = mConfig->toolFont(toolType);
+		font.setPointSize(mSettingsProvider->fontSize());
+		textProperties->setFont(font);
 	}
 }
 
