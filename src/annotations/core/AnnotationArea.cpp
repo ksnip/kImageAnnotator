@@ -333,7 +333,7 @@ void AnnotationArea::itemSettingsChanged()
 	if(selectedItems.count() == 1) {
 		auto item = selectedItems.first();
 		auto properties = mPropertiesFactory->create(item->toolType());
-		item->setProperties(properties);
+		mUndoStack->push(new ChangePropertiesCommand(item, properties));
 	}
 }
 

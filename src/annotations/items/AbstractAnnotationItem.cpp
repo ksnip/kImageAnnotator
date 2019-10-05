@@ -50,6 +50,7 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &oth
 
 AbstractAnnotationItem::~AbstractAnnotationItem()
 {
+	mProperties.clear();
 	delete mShape;
 	delete mStroker;
 }
