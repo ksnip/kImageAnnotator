@@ -43,7 +43,7 @@ public:
 
 public slots:
 	ToolTypes selectedTool() const;
-	void setSelectedTool(ToolTypes tool);
+	void setSelectedToolType(ToolTypes tool);
 
 	QColor toolColor(ToolTypes tool) const;
 	void setToolColor(const QColor &color, ToolTypes tool);

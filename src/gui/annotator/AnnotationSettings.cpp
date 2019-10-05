@@ -44,7 +44,7 @@ AnnotationSettings::~AnnotationSettings()
 
 void AnnotationSettings::editItem(AbstractAnnotationItem *item)
 {
-	mEditExistingItem = false;
+	activateSelectTool();
 	loadFromItem(item);
 	mEditExistingItem = true;
 }
@@ -146,9 +146,12 @@ void AnnotationSettings::loadFromConfig(ToolTypes tool)
 void AnnotationSettings::toolTypeChanged(ToolTypes toolType)
 {
 	mEditExistingItem = false;
-	mConfig->setSelectedTool(toolType);
-	loadFromConfig(toolType);
-	toolChanged(toolType);
+	mConfig->setSelectedToolType(toolType);
+	if(mEditExistingItem) {
+		toolChanged(toolType);
+	} else {
+		loadFromConfig(toolType);
+	}
 }
 
 void AnnotationSettings::toolColorChanged(const QColor &color)

@@ -47,7 +47,7 @@ ToolTypes Config::selectedTool() const
 	return mSelectTool;
 }
 
-void Config::setSelectedTool(ToolTypes tool)
+void Config::setSelectedToolType(ToolTypes tool)
 {
 	if (selectedTool() == tool) {
 		return;

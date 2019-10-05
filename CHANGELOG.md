@@ -5,7 +5,7 @@
 * New: Edit text box content. ([#51](https://github.com/DamirPorobic/kImageAnnotator/issues/51))
 * New: Add cmake uninstall target. ([#47](https://github.com/DamirPorobic/kImageAnnotator/issues/47))
 * New: Panning image by holding space or mouse middle button and dragging. ([#9](https://github.com/DamirPorobic/kImageAnnotator/issues/9))
-* New: Change annotation element'sconfig after drawing. ([#44](https://github.com/DamirPorobic/kImageAnnotator/issues/44))
+* New: Change annotation element config after drawing. ([#44](https://github.com/DamirPorobic/kImageAnnotator/issues/44))
 * Changed: Increase blur level so that large text is not visible. ([#62](https://github.com/DamirPorobic/kImageAnnotator/issues/62))
 * Changed: Crop widget updates shows via cursor if something is movable. ([#64](https://github.com/DamirPorobic/kImageAnnotator/issues/64))
 * Fixed: Ctrl Modifier stuck on second or third screenshot with Ctrl-N. ([#58](https://github.com/DamirPorobic/kImageAnnotator/issues/58))

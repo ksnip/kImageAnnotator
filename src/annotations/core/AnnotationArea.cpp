@@ -219,9 +219,6 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 
 	AnnotationContextMenu contextMenu;
 	auto isMenuOverItem = !selectedItems.isEmpty();
-	if (isMenuOverItem) {
-		mSettingsProvider->activateSelectTool();
-	}
 	contextMenu.setOverItem(isMenuOverItem);
 	contextMenu.setPastEnabled(!mItemCopier->isEmpty());
     contextMenu.setEditVisible(getSelectedEditableItem() != nullptr);
