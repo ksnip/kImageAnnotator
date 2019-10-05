@@ -31,11 +31,11 @@ namespace kImageAnnotator {
 class AnnotationBlur : public AbstractAnnotationRect
 {
 public:
-	AnnotationBlur(const QPointF &startPosition, AnnotationProperties *properties);
+	AnnotationBlur(const QPointF &startPosition, const BlurPropertiesPtr &properties);
 	AnnotationBlur(const AnnotationBlur &other);
 	~AnnotationBlur() override = default;
 	ToolTypes toolType() const override;
-	const AnnotationBlurProperties *properties() const override;
+	BlurPropertiesPtr blurProperties() const;
 
 protected:
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;

@@ -26,6 +26,9 @@
 
 namespace kImageAnnotator {
 
+class AnnotationTextProperties;
+typedef QSharedPointer<AnnotationTextProperties> TextPropertiesPtr;
+
 class AnnotationTextProperties : public AnnotationProperties
 {
 public:
@@ -33,7 +36,7 @@ public:
 	AnnotationTextProperties(const QColor &color, int size);
 	AnnotationTextProperties(const AnnotationTextProperties &other);
 	~AnnotationTextProperties() override = default;
-	AnnotationTextProperties *clone() const override;
+	PropertiesPtr clone() const override;
 
 	QFont font() const;
 	void setFont(const QFont &font);

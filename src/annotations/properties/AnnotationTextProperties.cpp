@@ -31,9 +31,9 @@ AnnotationTextProperties::AnnotationTextProperties(const AnnotationTextPropertie
 	mFont = other.mFont;
 }
 
-AnnotationTextProperties *AnnotationTextProperties::clone() const
+PropertiesPtr AnnotationTextProperties::clone() const
 {
-	return new AnnotationTextProperties(*this);
+	return PropertiesPtr(new AnnotationTextProperties(*this));
 }
 
 QFont AnnotationTextProperties::font() const

@@ -24,14 +24,16 @@
 
 namespace kImageAnnotator {
 
+class AnnotationBlurProperties;
+typedef QSharedPointer<AnnotationBlurProperties> BlurPropertiesPtr;
+
 class AnnotationBlurProperties : public AnnotationProperties
 {
 public:
 	AnnotationBlurProperties() = default;
 	AnnotationBlurProperties(const AnnotationBlurProperties &other);
 	~AnnotationBlurProperties() override = default;
-	AnnotationBlurProperties *clone() const override;
-
+	PropertiesPtr clone() const override;
 	int radius() const;
 	void setRadius(int radius);
 

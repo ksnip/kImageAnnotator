@@ -33,26 +33,25 @@ namespace kImageAnnotator {
 class AnnotationPropertiesFactory
 {
 public:
-	explicit AnnotationPropertiesFactory(Config *config,
-	                                     AbstractSettingsProvider *settingsProvider);
+	explicit AnnotationPropertiesFactory(Config *config, AbstractSettingsProvider *settingsProvider);
 	~AnnotationPropertiesFactory() = default;
 
-	AnnotationProperties *create(ToolTypes toolType) const;
+	PropertiesPtr create(ToolTypes toolType) const;
 
 private:
 	Config *mConfig;
 	AbstractSettingsProvider *mSettingsProvider;
 
-	AnnotationProperties *createPropertiesObject(ToolTypes toolType) const;
-	void setShadowEnabled(AnnotationProperties *properties, ToolTypes toolType) const;
-	void setColor(AnnotationProperties *properties, ToolTypes toolType) const;
-	void setTextColor(AnnotationProperties *properties) const;
-	void setWidthSize(AnnotationProperties *properties, ToolTypes toolType) const;
-	void setFill(AnnotationProperties *properties) const;
-	void setPathProperties(AnnotationProperties *properties) const;
-	void setTextProperties(AnnotationProperties *properties, ToolTypes toolType) const;
-	void setBlurProperties(AnnotationProperties *properties) const;
-	bool isMarkerTool(const ToolTypes &toolType) const;
+	PropertiesPtr createPropertiesObject(ToolTypes toolType) const;
+	void setShadowEnabled(const PropertiesPtr &properties, ToolTypes toolType) const;
+	void setColor(const PropertiesPtr &properties, ToolTypes toolType) const;
+	void setTextColor(const PropertiesPtr &properties) const;
+	void setWidthSize(const PropertiesPtr &properties, ToolTypes toolType) const;
+	void setFill(const PropertiesPtr &properties) const;
+	void setPathProperties(const PropertiesPtr &properties) const;
+	void setTextProperties(const PropertiesPtr &properties, ToolTypes toolType) const;
+	void setBlurProperties(const PropertiesPtr &properties) const;
+	bool isMarkerTool(ToolTypes toolType) const;
 };
 
 } // namespace kImageAnnotator

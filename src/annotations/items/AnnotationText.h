@@ -37,15 +37,15 @@ class AnnotationText : public AbstractAnnotationRect, public EditableItem
 {
 Q_OBJECT
 public:
-	AnnotationText(const QPointF &startPosition, AnnotationTextProperties *properties);
+	AnnotationText(const QPointF &startPosition, const TextPropertiesPtr &properties);
 	AnnotationText(const AnnotationText &other);
 	~AnnotationText() override = default;
 	void finish() override;
-	const AnnotationTextProperties *properties() const override;
 	ToolTypes toolType() const override;
 	QPainterPath shape() const override;
-	void enableEditing() override ;
-	void disableEditing() override ;
+	void enableEditing() override;
+	void disableEditing() override;
+	TextPropertiesPtr textProperties() const;
 
 protected:
 	void updateShape() override;

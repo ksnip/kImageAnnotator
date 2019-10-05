@@ -24,18 +24,19 @@
 
 namespace kImageAnnotator {
 
+class AnnotationPathProperties;
+typedef QSharedPointer<AnnotationPathProperties> PathPropertiesPtr;
+
 class AnnotationPathProperties : public AnnotationProperties
 {
 public:
 	AnnotationPathProperties() = default;
 	AnnotationPathProperties(const QColor &color, int size);
-	AnnotationPathProperties(const AnnotationPathProperties &other);
+	explicit AnnotationPathProperties(const PathPropertiesPtr &other);
 	~AnnotationPathProperties() override = default;
-	AnnotationPathProperties *clone() const override;
-
+	PropertiesPtr clone() const override;
 	bool smoothPathEnabled() const;
 	void setSmoothPathEnabled(bool enabled);
-
 	int smoothFactor() const;
 	void setSmoothFactor(int factor);
 
@@ -44,6 +45,6 @@ private:
 	int mSmootFactor;
 };
 
-}
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_ANNOTATIONPATHPROPERTIES_H

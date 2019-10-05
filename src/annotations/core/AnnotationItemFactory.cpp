@@ -72,16 +72,16 @@ AbstractAnnotationItem *AnnotationItemFactory::clone(const AbstractAnnotationIte
 	return newItem;
 }
 
-AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPosition, const ToolTypes &toolType, AnnotationProperties *properties)
+AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPosition, const ToolTypes &toolType, const PropertiesPtr &properties)
 {
 	AbstractAnnotationItem *newItem = nullptr;
 
 	switch (toolType) {
 		case ToolTypes::Pen:
-			newItem = new AnnotationPen(initPosition, dynamic_cast<AnnotationPathProperties *>(properties));
+			newItem = new AnnotationPen(initPosition, properties.staticCast<AnnotationPathProperties>());
 			break;
 		case ToolTypes::MarkerPen:
-			newItem = new AnnotationPen(initPosition, dynamic_cast<AnnotationPathProperties *>(properties));
+			newItem = new AnnotationPen(initPosition, properties.staticCast<AnnotationPathProperties>());
 			break;
 		case ToolTypes::MarkerRect:
 			newItem = new AnnotationRect(initPosition, properties);
@@ -105,14 +105,14 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 			newItem = new AnnotationDoubleArrow(initPosition, properties);
 			break;
 		case ToolTypes::Number:
-			newItem = new AnnotationNumber(initPosition, dynamic_cast<AnnotationTextProperties *>(properties));
+			newItem = new AnnotationNumber(initPosition, properties.staticCast<AnnotationTextProperties>());
 			mNumberManager->addItem(dynamic_cast<AnnotationNumber *>(newItem));
 			break;
 		case ToolTypes::Text:
-			newItem = new AnnotationText(initPosition, dynamic_cast<AnnotationTextProperties *>(properties));
+			newItem = new AnnotationText(initPosition, properties.staticCast<AnnotationTextProperties>());
 			break;
 		case ToolTypes::Blur:
-			newItem = new AnnotationBlur(initPosition, properties);
+			newItem = new AnnotationBlur(initPosition, properties.staticCast<AnnotationBlurProperties>());
 			break;
 		default:
 			qCritical("Cannot create item for provided tool type.");

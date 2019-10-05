@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-AbstractAnnotationItem::AbstractAnnotationItem(AnnotationProperties *properties) : mShadowEffect(nullptr)
+AbstractAnnotationItem::AbstractAnnotationItem(const PropertiesPtr &properties) : mShadowEffect(nullptr)
 {
 	Q_ASSERT(properties != nullptr);
 
@@ -50,7 +50,6 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &oth
 
 AbstractAnnotationItem::~AbstractAnnotationItem()
 {
-	delete mProperties;
 	delete mShape;
 	delete mStroker;
 }
@@ -88,7 +87,7 @@ QPointF AbstractAnnotationItem::position()
 	return boundingRect().topLeft();
 }
 
-const AnnotationProperties *AbstractAnnotationItem::properties() const
+PropertiesPtr AbstractAnnotationItem::properties() const
 {
 	return mProperties;
 }
@@ -134,12 +133,11 @@ void AbstractAnnotationItem::finish()
 	// By default, does nothing
 }
 
-void AbstractAnnotationItem::setProperties(AnnotationProperties *properties)
+void AbstractAnnotationItem::setProperties(const PropertiesPtr &properties)
 {
 	Q_ASSERT(properties != nullptr);
 
 	prepareGeometryChange();
-	delete mProperties;
 	updateProperties(properties);
 }
 
@@ -151,7 +149,7 @@ void AbstractAnnotationItem::addShadowIfRequired()
 	}
 }
 
-void AbstractAnnotationItem::updateProperties(AnnotationProperties *properties)
+void AbstractAnnotationItem::updateProperties(const PropertiesPtr &properties)
 {
 	mProperties = properties;
 	mPainterPen.setColor(mProperties->color());

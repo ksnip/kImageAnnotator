@@ -30,16 +30,16 @@ namespace kImageAnnotator {
 class AbstractAnnotationPath : public AbstractAnnotationItem
 {
 public:
-	AbstractAnnotationPath(const QPointF &startPosition, AnnotationPathProperties *properties);
+	AbstractAnnotationPath(const QPointF &startPosition, const PropertiesPtr &properties);
 	AbstractAnnotationPath(const AbstractAnnotationPath &other);
 	~AbstractAnnotationPath() override;
-	void addPoint(const QPointF &position, bool modified = false) override;
+	void addPoint(const QPointF &position, bool modified) override;
 	void setPosition(const QPointF &newPosition) override;
 	void setPointAt(const QPointF &point, int handleIndex) override;
 	QPointF pointAt(int index) const override;
 	void finish() override;
-	const AnnotationPathProperties *properties() const override;
 	void scale(qreal sx, qreal sy) override;
+	PathPropertiesPtr pathProperties() const;
 
 protected:
 	QPainterPath *mPath;

@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationPen::AnnotationPen(const QPointF &startPosition, AnnotationPathProperties *properties) : AbstractAnnotationPath(startPosition, properties)
+AnnotationPen::AnnotationPen(const QPointF &startPosition, const PropertiesPtr &properties) : AbstractAnnotationPath(startPosition, properties)
 {
 
 }

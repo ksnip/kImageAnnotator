@@ -35,7 +35,7 @@ namespace kImageAnnotator {
 class AbstractAnnotationItem : public QGraphicsWidget
 {
 public:
-	explicit AbstractAnnotationItem(AnnotationProperties *properties);
+	explicit AbstractAnnotationItem(const PropertiesPtr &properties);
 	AbstractAnnotationItem(const AbstractAnnotationItem &other);
 	~AbstractAnnotationItem() override;
 	QRectF boundingRect() const override;
@@ -46,11 +46,11 @@ public:
 	virtual QPointF pointAt(int index) const = 0;
 	virtual void setPosition(const QPointF &newPosition) = 0;
 	virtual QPointF position();
-	virtual const AnnotationProperties *properties() const;
+	virtual PropertiesPtr properties() const;
 	virtual void finish();
 	virtual void scale(qreal sx, qreal sy) = 0;
 	virtual ToolTypes toolType() const = 0;
-	virtual void setProperties(AnnotationProperties *properties);
+	virtual void setProperties(const PropertiesPtr &properties);
 
 protected:
 	void setShape(QPainterPath &newShape);
@@ -58,7 +58,7 @@ protected:
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 
 private:
-	AnnotationProperties *mProperties;
+	PropertiesPtr mProperties;
 	QPainterPath *mShape;
 	QPainterPathStroker *mStroker;
 	QPen mPainterPen;
@@ -68,7 +68,7 @@ private:
 	bool hasBorder() const;
 	void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
 	void addShadowIfRequired();
-	void updateProperties(AnnotationProperties *properties);
+	void updateProperties(const PropertiesPtr &properties);
 };
 
 } // namespace kImageAnnotator

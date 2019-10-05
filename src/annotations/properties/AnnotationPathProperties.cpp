@@ -25,15 +25,15 @@ AnnotationPathProperties::AnnotationPathProperties(const QColor &color, int size
 {
 }
 
-AnnotationPathProperties::AnnotationPathProperties(const AnnotationPathProperties &other) : AnnotationProperties(other)
+AnnotationPathProperties::AnnotationPathProperties(const PathPropertiesPtr &other) : AnnotationProperties(other)
 {
-	mSmootPathEnabled = other.mSmootPathEnabled;
-	mSmootFactor = other.mSmootFactor;
+	mSmootPathEnabled = other->mSmootPathEnabled;
+	mSmootFactor = other->mSmootFactor;
 }
 
-AnnotationPathProperties *AnnotationPathProperties::clone() const
+PropertiesPtr AnnotationPathProperties::clone() const
 {
-	return new AnnotationPathProperties(*this);
+	return PropertiesPtr(new AnnotationPathProperties(*this));
 }
 
 bool AnnotationPathProperties::smoothPathEnabled() const

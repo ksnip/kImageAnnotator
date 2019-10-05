@@ -21,17 +21,21 @@
 #define KIMAGEANNOTATOR_ANNOTATIONPROPERTIES_H
 
 #include <QColor>
+#include <QSharedPointer>
 
 #include "src/common/enum/FillTypes.h"
 
 namespace kImageAnnotator {
+
+class AnnotationProperties;
+typedef QSharedPointer<AnnotationProperties> PropertiesPtr;
 
 class AnnotationProperties
 {
 public:
 	AnnotationProperties() = default;
 	AnnotationProperties(const QColor &color, int size);
-	AnnotationProperties(const AnnotationProperties &other);
+	explicit AnnotationProperties(const PropertiesPtr &other);
 	virtual ~AnnotationProperties() = default;
 	QColor color() const;
 	void setColor(const QColor &color);
@@ -43,7 +47,7 @@ public:
 	void setFillType(FillTypes fillType);
 	bool shadowEnabled() const;
 	void setShadowEnabled(bool enabled);
-	virtual AnnotationProperties *clone() const;
+	virtual PropertiesPtr clone() const;
 
 private:
 	QColor mColor;

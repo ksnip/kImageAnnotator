@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationArrow::AnnotationArrow(const QPointF &startPosition, AnnotationProperties *properties) : AbstractAnnotationLine(startPosition, properties)
+AnnotationArrow::AnnotationArrow(const QPointF &startPosition, const PropertiesPtr &properties) : AbstractAnnotationLine(startPosition, properties)
 {
 }
 

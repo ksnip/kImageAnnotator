@@ -28,10 +28,10 @@ namespace kImageAnnotator {
 class AbstractAnnotationLine : public AbstractAnnotationItem
 {
 public:
-	AbstractAnnotationLine(const QPointF &startPosition, AnnotationProperties *properties);
+	AbstractAnnotationLine(const QPointF &startPosition, const PropertiesPtr &properties);
 	AbstractAnnotationLine(const AbstractAnnotationLine &other);
 	~AbstractAnnotationLine() override;
-	void addPoint(const QPointF &position, bool modified = false) override;
+	void addPoint(const QPointF &position, bool modified) override;
 	void setPosition(const QPointF &newPosition) override;
 	QLineF line() const;
 	void setPointAt(const QPointF &point, int index) override;

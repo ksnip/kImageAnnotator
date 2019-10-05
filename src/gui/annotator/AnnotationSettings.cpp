@@ -56,11 +56,11 @@ void AnnotationSettings::loadFromItem(const AbstractAnnotationItem *item)
 	mTextColorPicker->setColor(properties->textColor());
 	mWidthPicker->setNumber(properties->width());
 	mFillTypePicker->setFillType(properties->fillType());
-	auto textProperties = dynamic_cast<const AnnotationTextProperties *>(properties);
+	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
 	if(textProperties != nullptr) {
 		mFontSizePicker->setNumber(textProperties->font().pointSize());
 	}
-	auto blurProperties = dynamic_cast<const AnnotationBlurProperties *>(properties);
+	auto blurProperties = properties.dynamicCast<AnnotationBlurProperties>();
 	if(blurProperties != nullptr) {
 		mBlurRadiusPicker->setNumber(blurProperties->radius());
 	}

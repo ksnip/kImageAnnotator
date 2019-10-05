@@ -22,7 +22,7 @@
 
 namespace kImageAnnotator {
 
-AbstractAnnotationPath::AbstractAnnotationPath(const QPointF &startPosition, AnnotationPathProperties *properties) : AbstractAnnotationItem(properties)
+AbstractAnnotationPath::AbstractAnnotationPath(const QPointF &startPosition, const PropertiesPtr &properties) : AbstractAnnotationItem(properties)
 {
 	mPath = new QPainterPath();
 	mPath->moveTo(startPosition);
@@ -75,17 +75,12 @@ QPointF AbstractAnnotationPath::pointAt(int index) const
 
 void AbstractAnnotationPath::finish()
 {
-	if (properties()->smoothPathEnabled()) {
+	if (pathProperties()->smoothPathEnabled()) {
 		prepareGeometryChange();
-		auto smoothPath = ShapeHelper::smoothOut(*mPath, properties()->smoothFactor());
+		auto smoothPath = ShapeHelper::smoothOut(*mPath, pathProperties()->smoothFactor());
 		mPath->swap(smoothPath);
 		updateShape();
 	}
-}
-
-const AnnotationPathProperties *AbstractAnnotationPath::properties() const
-{
-	return dynamic_cast<const AnnotationPathProperties *>(AbstractAnnotationItem::properties());
 }
 
 void AbstractAnnotationPath::scale(qreal sx, qreal sy)
@@ -101,6 +96,11 @@ void AbstractAnnotationPath::scale(qreal sx, qreal sy)
 void AbstractAnnotationPath::scalePath(const QRectF &rect)
 {
 	scale(rect.width() / boundingRect().width(), rect.height() / boundingRect().height());
+}
+
+PathPropertiesPtr AbstractAnnotationPath::pathProperties() const
+{
+	return AbstractAnnotationItem::properties().staticCast<AnnotationPathProperties>();
 }
 
 } // namespace kImageAnnotator

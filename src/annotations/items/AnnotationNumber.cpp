@@ -21,8 +21,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, AnnotationTextProperties *properties)
-	: AbstractAnnotationRect(centerPosition, properties)
+AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, const TextPropertiesPtr &properties)	: AbstractAnnotationRect(centerPosition, properties)
 {
 	mRect->moveCenter(centerPosition);
 }
@@ -38,11 +37,6 @@ void AnnotationNumber::addPoint(const QPointF &position, bool modified)
 	Q_UNUSED(modified);
 
 	// Nothing to do here
-}
-
-const AnnotationTextProperties *AnnotationNumber::properties() const
-{
-	return dynamic_cast<const AnnotationTextProperties *>(AbstractAnnotationItem::properties());
 }
 
 ToolTypes AnnotationNumber::toolType() const
@@ -89,17 +83,22 @@ void AnnotationNumber::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 {
 	AbstractAnnotationRect::paint(painter, option, widget);
 
-	painter->setFont(properties()->font());
+	painter->setFont(textProperties()->font());
 	painter->setPen(properties()->textColor());
 	painter->drawText(boundingRect(), Qt::AlignCenter, mNumberString);
 }
 
 QSizeF AnnotationNumber::getTextRectSize() const
 {
-	QFontMetricsF metrics(properties()->font());
+	QFontMetricsF metrics(textProperties()->font());
 	auto boundingRect = metrics.boundingRect(mNumberString).adjusted(-5, -5, 5, 5);
 	auto largestSite = boundingRect.width() > boundingRect.height() ? boundingRect.width() : boundingRect.height();
 	return { largestSite, largestSite };
+}
+
+TextPropertiesPtr AnnotationNumber::textProperties() const
+{
+	return AbstractAnnotationItem::properties().staticCast<AnnotationTextProperties>();
 }
 
 } // namespace kImageAnnotator

@@ -27,7 +27,7 @@ namespace kImageAnnotator {
 class AnnotationPen : public AbstractAnnotationPath
 {
 public:
-	AnnotationPen(const QPointF &startPosition, AnnotationPathProperties *properties);
+	AnnotationPen(const QPointF &startPosition, const PropertiesPtr &properties);
 	AnnotationPen(const AnnotationPen &other);
 	~AnnotationPen() override = default;
 	ToolTypes toolType() const override;

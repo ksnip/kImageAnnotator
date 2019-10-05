@@ -26,9 +26,9 @@ AnnotationBlurProperties::AnnotationBlurProperties(const AnnotationBlurPropertie
 	mRadius = other.mRadius;
 }
 
-AnnotationBlurProperties *AnnotationBlurProperties::clone() const
+PropertiesPtr AnnotationBlurProperties::clone() const
 {
-	return new AnnotationBlurProperties(*this);
+	return PropertiesPtr(new AnnotationBlurProperties(*this));
 }
 
 int AnnotationBlurProperties::radius() const

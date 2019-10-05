@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationText::AnnotationText(const QPointF &startPosition, AnnotationTextProperties *properties) : AbstractAnnotationRect(startPosition, properties)
+AnnotationText::AnnotationText(const QPointF &startPosition, const TextPropertiesPtr &properties) : AbstractAnnotationRect(startPosition, properties)
 {
 	setFlag(QGraphicsItem::ItemIsFocusable, true);
 	connectSlots();
@@ -74,7 +74,7 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 
 	painter->setClipRect(boundingRect().adjusted(margin, margin, -margin, -margin));
 
-	QFontMetrics fontMetrics(properties()->font());
+	QFontMetrics fontMetrics(textProperties()->font());
 	auto boxHeight = 0;
 
 	QTextDocument document(mText);
@@ -82,7 +82,7 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 		auto blockPosition = block.position();
 		auto blockLength = block.length();
 		QTextLayout textLayout(block);
-		textLayout.setFont(properties()->font());
+		textLayout.setFont(textProperties()->font());
 		auto blockHeight = 0;
 		textLayout.setCacheEnabled(true);
 
@@ -112,11 +112,6 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 void AnnotationText::finish()
 {
 	enableEditing();
-}
-
-const AnnotationTextProperties *AnnotationText::properties() const
-{
-	return dynamic_cast<const AnnotationTextProperties *>(AbstractAnnotationItem::properties());
 }
 
 ToolTypes AnnotationText::toolType() const
@@ -209,7 +204,7 @@ void AnnotationText::connectSlots()
 
 QRect AnnotationText::getTextRect() const
 {
-	QFontMetrics fontMetrics(properties()->font());
+	QFontMetrics fontMetrics(textProperties()->font());
 	auto margin = properties()->width();
 	auto newRect = fontMetrics.boundingRect(mRect->toRect().normalized(), Qt::AlignLeft, mText);
 	newRect.adjust(0, 0, margin * 2, margin * 2);
@@ -231,6 +226,11 @@ void AnnotationText::disableEditing()
     mTextCursor.stop();
     mIgnoreShortcutsFilter.remove();
     mIsInEditMode = false;
+}
+
+TextPropertiesPtr AnnotationText::textProperties() const
+{
+	return AbstractAnnotationItem::properties().staticCast<AnnotationTextProperties>();
 }
 
 } // namespace kImageAnnotator

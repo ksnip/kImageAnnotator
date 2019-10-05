@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationDoubleArrow::AnnotationDoubleArrow(const QPointF &startPosition, AnnotationProperties *properties) : AnnotationArrow(startPosition, properties)
+AnnotationDoubleArrow::AnnotationDoubleArrow(const QPointF &startPosition, const PropertiesPtr &properties) : AnnotationArrow(startPosition, properties)
 {
 
 }

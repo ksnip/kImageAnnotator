@@ -27,7 +27,7 @@ namespace kImageAnnotator {
 class AnnotationImage : public AnnotationRect
 {
 public:
-    AnnotationImage(const QPointF &startPosition, const QPixmap &image, AnnotationProperties *properties);
+    AnnotationImage(const QPointF &startPosition, const QPixmap &image, const PropertiesPtr &properties);
     AnnotationImage(const AnnotationImage &other);
     ~AnnotationImage() override = default;
     ToolTypes toolType() const override;

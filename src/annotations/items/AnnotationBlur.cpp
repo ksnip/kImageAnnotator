@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationBlur::AnnotationBlur(const QPointF &startPosition, AnnotationProperties *properties) : AbstractAnnotationRect(startPosition, properties)
+AnnotationBlur::AnnotationBlur(const QPointF &startPosition, const BlurPropertiesPtr &properties) : AbstractAnnotationRect(startPosition, properties)
 {
 }
 
@@ -32,11 +32,6 @@ AnnotationBlur::AnnotationBlur(const AnnotationBlur &other) : AbstractAnnotation
 ToolTypes AnnotationBlur::toolType() const
 {
 	return ToolTypes::Blur;
-}
-
-const AnnotationBlurProperties *AnnotationBlur::properties() const
-{
-	return dynamic_cast<const AnnotationBlurProperties *>(AbstractAnnotationItem::properties());
 }
 
 void AnnotationBlur::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
@@ -73,8 +68,13 @@ void AnnotationBlur::updateBlurredImage()
 
 		auto itemRect = mRect->normalized().toRect();
 		auto sceneBehindItem = image.copy(itemRect);
-		mBlurredImage = mItemBlurrer.blurred(sceneBehindItem, properties()->radius(), false);
+		mBlurredImage = mItemBlurrer.blurred(sceneBehindItem, blurProperties()->radius(), false);
 	}
+}
+
+BlurPropertiesPtr AnnotationBlur::blurProperties() const
+{
+	return AbstractAnnotationItem::properties().staticCast<AnnotationBlurProperties>();
 }
 
 } // namespace kImageAnnotator

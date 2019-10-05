@@ -27,7 +27,7 @@ AnnotationPropertiesFactory::AnnotationPropertiesFactory(Config *config, Abstrac
 	mSettingsProvider = settingsProvider;
 }
 
-AnnotationProperties *AnnotationPropertiesFactory::create(ToolTypes toolType) const
+PropertiesPtr AnnotationPropertiesFactory::create(ToolTypes toolType) const
 {
 	auto properties = createPropertiesObject(toolType);
 
@@ -43,23 +43,23 @@ AnnotationProperties *AnnotationPropertiesFactory::create(ToolTypes toolType) co
 	return properties;
 }
 
-AnnotationProperties *AnnotationPropertiesFactory::createPropertiesObject(ToolTypes toolType) const
+PropertiesPtr AnnotationPropertiesFactory::createPropertiesObject(ToolTypes toolType) const
 {
 	switch (toolType) {
 		case ToolTypes::Pen:
 		case ToolTypes::MarkerPen:
-			return new AnnotationPathProperties();
+			return PropertiesPtr(new AnnotationPathProperties());
 		case ToolTypes::Number:
 		case ToolTypes::Text:
-			return new AnnotationTextProperties();
+			return PropertiesPtr(new AnnotationTextProperties());
 		case ToolTypes::Blur:
-			return new AnnotationBlurProperties();
+			return PropertiesPtr(new AnnotationBlurProperties());
 		default:
-			return new AnnotationProperties();
+			return PropertiesPtr(new AnnotationProperties());
 	}
 }
 
-void AnnotationPropertiesFactory::setColor(AnnotationProperties *properties, ToolTypes toolType) const
+void AnnotationPropertiesFactory::setColor(const PropertiesPtr &properties, ToolTypes toolType) const
 {
 	auto color = mSettingsProvider->toolColor();
 
@@ -70,12 +70,12 @@ void AnnotationPropertiesFactory::setColor(AnnotationProperties *properties, Too
 	properties->setColor(color);
 }
 
-void AnnotationPropertiesFactory::setTextColor(AnnotationProperties *properties) const
+void AnnotationPropertiesFactory::setTextColor(const PropertiesPtr &properties) const
 {
 	properties->setTextColor(mSettingsProvider->textColor());
 }
 
-void AnnotationPropertiesFactory::setWidthSize(AnnotationProperties *properties, ToolTypes toolType) const
+void AnnotationPropertiesFactory::setWidthSize(const PropertiesPtr &properties, ToolTypes toolType) const
 {
 	auto width = mSettingsProvider->toolWidth();
 
@@ -86,12 +86,12 @@ void AnnotationPropertiesFactory::setWidthSize(AnnotationProperties *properties,
 	properties->setWidth(width);
 }
 
-void AnnotationPropertiesFactory::setFill(AnnotationProperties *properties) const
+void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties) const
 {
 	properties->setFillType(mSettingsProvider->fillType());
 }
 
-void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties *properties, ToolTypes toolType) const
+void AnnotationPropertiesFactory::setShadowEnabled(const PropertiesPtr &properties, ToolTypes toolType) const
 {
 	if (toolType == ToolTypes::Blur || isMarkerTool(toolType) || toolType == ToolTypes::Image) {
 		properties->setShadowEnabled(false);
@@ -100,31 +100,31 @@ void AnnotationPropertiesFactory::setShadowEnabled(AnnotationProperties *propert
 	}
 }
 
-void AnnotationPropertiesFactory::setPathProperties(AnnotationProperties *properties) const
+void AnnotationPropertiesFactory::setPathProperties(const PropertiesPtr &properties) const
 {
-	auto pathProperties = dynamic_cast<AnnotationPathProperties *>(properties);
+	auto pathProperties = properties.dynamicCast<AnnotationPathProperties>();
 	if (pathProperties != nullptr) {
 		pathProperties->setSmoothPathEnabled(mConfig->smoothPathEnabled());
 		pathProperties->setSmoothFactor(mConfig->smoothFactor());
 	}
 }
 
-void AnnotationPropertiesFactory::setTextProperties(AnnotationProperties *properties, ToolTypes toolType) const
+void AnnotationPropertiesFactory::setTextProperties(const PropertiesPtr &properties, ToolTypes toolType) const
 {
-	auto pathProperties = dynamic_cast<AnnotationTextProperties *>(properties);
+	auto pathProperties = properties.dynamicCast<AnnotationTextProperties>();
 	if (pathProperties != nullptr) {
 		pathProperties->setFont(mConfig->toolFont(toolType));
 	}
 }
 
-bool AnnotationPropertiesFactory::isMarkerTool(const ToolTypes &toolType) const
+bool AnnotationPropertiesFactory::isMarkerTool(ToolTypes toolType) const
 {
 	return toolType == ToolTypes::MarkerPen || toolType == ToolTypes::MarkerRect || toolType == ToolTypes::MarkerEllipse;
 }
 
-void AnnotationPropertiesFactory::setBlurProperties(AnnotationProperties *properties) const
+void AnnotationPropertiesFactory::setBlurProperties(const PropertiesPtr &properties) const
 {
-	auto pathProperties = dynamic_cast<AnnotationBlurProperties *>(properties);
+	auto pathProperties = properties.dynamicCast<AnnotationBlurProperties>();;
 	if (pathProperties != nullptr) {
 		pathProperties->setRadius(mSettingsProvider->blurRadius());
 	}

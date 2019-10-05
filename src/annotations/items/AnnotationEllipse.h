@@ -27,7 +27,7 @@ namespace kImageAnnotator {
 class AnnotationEllipse : public AbstractAnnotationRect
 {
 public:
-	AnnotationEllipse(const QPointF &startPosition, AnnotationProperties *properties);
+	AnnotationEllipse(const QPointF &startPosition, const PropertiesPtr &properties);
 	AnnotationEllipse(const AnnotationEllipse &other);
 	~AnnotationEllipse() override = default;
 	ToolTypes toolType() const override;

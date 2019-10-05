@@ -27,7 +27,7 @@ namespace kImageAnnotator {
 class AnnotationArrow : public AbstractAnnotationLine
 {
 public:
-	AnnotationArrow(const QPointF &startPosition, AnnotationProperties *properties);
+	AnnotationArrow(const QPointF &startPosition, const PropertiesPtr &properties);
 	AnnotationArrow(const AnnotationArrow &other);
 	~AnnotationArrow() override = default;
 	ToolTypes toolType() const override;

@@ -27,7 +27,7 @@ namespace kImageAnnotator {
 class AnnotationDoubleArrow : public AnnotationArrow
 {
 public:
-	AnnotationDoubleArrow(const QPointF &startPosition, AnnotationProperties *properties);
+	AnnotationDoubleArrow(const QPointF &startPosition, const PropertiesPtr &properties);
 	explicit AnnotationDoubleArrow(const AnnotationArrow &other);
 	~AnnotationDoubleArrow() override = default;
 	ToolTypes toolType() const override;
