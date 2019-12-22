@@ -34,7 +34,7 @@ PropertiesPtr AnnotationPropertiesFactory::create(ToolTypes toolType) const
 	setColor(properties, toolType);
 	setTextColor(properties);
 	setWidthSize(properties, toolType);
-	setFill(properties);
+	setFill(properties, toolType);
 	setShadowEnabled(properties, toolType);
 	setPathProperties(properties);
 	setTextProperties(properties, toolType);
@@ -86,9 +86,15 @@ void AnnotationPropertiesFactory::setWidthSize(const PropertiesPtr &properties, 
 	properties->setWidth(width);
 }
 
-void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties) const
+void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, ToolTypes toolType) const
 {
-	properties->setFillType(mSettingsProvider->fillType());
+	if(toolType == ToolTypes::MarkerPen) {
+		properties->setFillType(FillTypes::BorderAndNoFill);
+	} else if (isMarkerTool(toolType)) {
+		properties->setFillType(FillTypes::NoBorderAndFill);
+	} else {
+		properties->setFillType(mSettingsProvider->fillType());
+	}
 }
 
 void AnnotationPropertiesFactory::setShadowEnabled(const PropertiesPtr &properties, ToolTypes toolType) const

@@ -47,7 +47,7 @@ private:
 	void setColor(const PropertiesPtr &properties, ToolTypes toolType) const;
 	void setTextColor(const PropertiesPtr &properties) const;
 	void setWidthSize(const PropertiesPtr &properties, ToolTypes toolType) const;
-	void setFill(const PropertiesPtr &properties) const;
+	void setFill(const PropertiesPtr &properties, ToolTypes toolType) const;
 	void setPathProperties(const PropertiesPtr &properties) const;
 	void setTextProperties(const PropertiesPtr &properties, ToolTypes toolType) const;
 	void setBlurProperties(const PropertiesPtr &properties) const;
