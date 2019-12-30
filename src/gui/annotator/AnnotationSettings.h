@@ -50,6 +50,7 @@ public:
 	int fontSize() const override;
 	FillTypes fillType() const override;
 	int blurRadius() const override;
+	void reloadConfig();
 
 private:
 	QVBoxLayout *mMainLayout;

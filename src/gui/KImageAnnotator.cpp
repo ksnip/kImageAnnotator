@@ -123,6 +123,7 @@ void KImageAnnotator::setSaveToolSelection(bool enabled)
 {
 	Q_D(KImageAnnotator);
 	d->mConfig.setSaveToolSelection(enabled);
+	d->mCoreView.reloadConfig();
 }
 
 void KImageAnnotator::setSmoothFactor(int factor)

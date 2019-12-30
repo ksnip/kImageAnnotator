@@ -44,6 +44,7 @@ public:
 	QAction* redoAction() const;
 	void clearSelection();
 	AnnotationArea* annotationArea() const;
+	void reloadConfig();
 
 signals:
 	void imageChanged() const;

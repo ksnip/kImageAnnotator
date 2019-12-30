@@ -39,6 +39,7 @@ public:
 	QAction *undoAction();
 	QAction *redoAction();
 	QSize sizeHint() const;
+	void reloadConfig();
 
 signals:
 	void imageChanged() const;

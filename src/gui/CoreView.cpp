@@ -95,4 +95,9 @@ QSize CoreView::sizeHint() const
 	return mAnnotationWidget->sizeHint();
 }
 
+void CoreView::reloadConfig()
+{
+	mAnnotationWidget->reloadConfig();
+}
+
 } // namespace kImageAnnotator

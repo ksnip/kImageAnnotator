@@ -101,4 +101,9 @@ AnnotationArea *AnnotationWidget::annotationArea() const
 	return mAnnotationArea;
 }
 
+void AnnotationWidget::reloadConfig()
+{
+	mSettings->reloadConfig();
+}
+
 } // namespace kImageAnnotator

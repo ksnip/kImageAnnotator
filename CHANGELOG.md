@@ -14,6 +14,7 @@
 * Fixed: Mess with russian letters in text tool when typing in Russian. ([#59](https://github.com/DamirPorobic/kImageAnnotator/issues/59))
 * Fixed: Text tool does not allow me to type accents. ([#57](https://github.com/DamirPorobic/kImageAnnotator/issues/57))
 * Fixed: Highlighter rect and ellipse have only border but no fill. ([#65](https://github.com/DamirPorobic/kImageAnnotator/issues/65))
+* Fixed: Saved tool selection not loaded on startup. ([#67](https://github.com/DamirPorobic/kImageAnnotator/issues/67))
 
 ## Release 0.1.0
 * New: Double Arrow annotation tool. ([#23](https://github.com/DamirPorobic/kImageAnnotator/issues/23))

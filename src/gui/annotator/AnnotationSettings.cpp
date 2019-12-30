@@ -243,4 +243,9 @@ int AnnotationSettings::blurRadius() const
 	return mBlurRadiusPicker->number();
 }
 
+void AnnotationSettings::reloadConfig()
+{
+	loadToolTypeFromConfig();
+}
+
 } // namespace kImageAnnotator
