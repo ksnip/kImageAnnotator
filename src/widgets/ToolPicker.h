@@ -50,6 +50,7 @@ private:
 	QGridLayout *mLayout;
 	ToolTypes mSelectedToolType;
 	QHash<QAction *, ToolTypes> mActionToTool;
+	QHash<QAction *, CustomToolButton *> mActionToButton;
 
 	void initGui();
 	QAction *createAction(const QString &tooltip, const QIcon &icon, Qt::Key shortcut, ToolTypes toolType);

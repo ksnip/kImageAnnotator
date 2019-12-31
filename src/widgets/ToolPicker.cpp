@@ -36,8 +36,10 @@ ToolPicker::~ToolPicker()
 
 void ToolPicker::setTool(ToolTypes newTool)
 {
-	auto selectedAction = mActionToTool.key(newTool);
-	selectedAction->setChecked(true);
+	auto action = mActionToTool.key(newTool);
+	auto button = mActionToButton[action];
+	button->setDefaultAction(action);
+	action->setChecked(true);
 	setToolAndNotify(newTool);
 }
 
@@ -122,6 +124,7 @@ CustomToolButton *ToolPicker::createButton(QAction *defaultAction)
 {
 	auto button = new CustomToolButton(this);
 	button->setDefaultAction(defaultAction);
+	mActionToButton[defaultAction] = button;
 	return button;
 }
 
@@ -130,6 +133,9 @@ CustomToolButton *ToolPicker::createButton(QMenu *menu)
 	auto button = new CustomToolButton(this);
 	button->setMenu(menu);
 	button->setActiveAction(menu->actions().first());
+	for(auto action : menu->actions()) {
+		mActionToButton[action] = button;
+	}
 	return button;
 }
 

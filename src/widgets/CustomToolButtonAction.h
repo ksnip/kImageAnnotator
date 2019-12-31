@@ -31,7 +31,7 @@ class CustomToolButtonAction : public QWidgetAction
 {
 public:
 	explicit CustomToolButtonAction(QObject *parent);
-	~CustomToolButtonAction();
+	~CustomToolButtonAction() override;
 	void updateDefaultWidget();
 
 private:
