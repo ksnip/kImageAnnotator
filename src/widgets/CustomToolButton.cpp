@@ -27,7 +27,7 @@ CustomToolButton::CustomToolButton(QWidget *parent) : QToolButton(parent)
 	setAutoRaise(true);
 	setIconSize(QSize(24, 24));
 	setFocusPolicy(Qt::NoFocus);
-	setPopupMode(QToolButton::InstantPopup);
+	setPopupMode(QToolButton::DelayedPopup);
 	connect(this, &CustomToolButton::triggered, this, &CustomToolButton::setActiveAction);
 }
 

@@ -8,6 +8,7 @@
 * New: Change annotation element config after drawing. ([#44](https://github.com/DamirPorobic/kImageAnnotator/issues/44))
 * Changed: Increase blur level so that large text is not visible. ([#62](https://github.com/DamirPorobic/kImageAnnotator/issues/62))
 * Changed: Crop widget updates shows via cursor if something is movable. ([#64](https://github.com/DamirPorobic/kImageAnnotator/issues/64))
+* Changed: Multi-tool buttons select current (last) tool on single click. ([#66](https://github.com/DamirPorobic/kImageAnnotator/issues/66))
 * Fixed: Ctrl Modifier stuck on second or third screenshot with Ctrl-N. ([#58](https://github.com/DamirPorobic/kImageAnnotator/issues/58))
 * Fixed: Unable to select number annotation when clicking on the number without background. ([#46](https://github.com/DamirPorobic/kImageAnnotator/issues/46))
 * Fixed: Undo/Redo is now disabled during crop and scale operation. ([#56](https://github.com/DamirPorobic/kImageAnnotator/issues/56))
