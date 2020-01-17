@@ -1,4 +1,4 @@
-# kImageAnnotator [![Build Status](https://travis-ci.org/DamirPorobic/kImageAnnotator.svg?branch=master)](https://travis-ci.org/DamirPorobic/kImageAnnotator)
+# kImageAnnotator [![Build Status](https://travis-ci.org/damirporobic/kImageAnnotator.svg?branch=master)](https://travis-ci.org/damirporobic/kImageAnnotator)
 Tool for annotating images
 
 Version 0.2.0
@@ -8,13 +8,13 @@ Version 0.2.0
 
 ### Dependencies
 
-kImageAnnotator depends on [kColoPicker](https://github.com/DamirPorobic/kColorPicker) which needs
+kImageAnnotator depends on [kColoPicker](https://github.com/ksnip/kColorPicker) which needs
 to be installed before building kImageAnnotator. Install instructions can be found on the github page.
 
 ### Building from source
 
 1. Get latest release from GitHub by cloning the repo:  
-    `$ git clone https://github.com/DamirPorobic/kImageAnnotator`
+    `$ git clone https://github.com/ksnip/kImageAnnotator`
 2. Change to repo directory:  
     `$ cd kImageAnnotator`  
 3. Make new build directory and enter it:  
