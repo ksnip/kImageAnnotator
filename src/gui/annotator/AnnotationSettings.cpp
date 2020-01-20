@@ -147,11 +147,10 @@ void AnnotationSettings::toolTypeChanged(ToolTypes toolType)
 {
 	mEditExistingItem = false;
 	mConfig->setSelectedToolType(toolType);
-	if(mEditExistingItem) {
-		toolChanged(toolType);
-	} else {
+	if(!mEditExistingItem) {
 		loadFromConfig(toolType);
 	}
+	toolChanged(toolType);
 }
 
 void AnnotationSettings::toolColorChanged(const QColor &color)

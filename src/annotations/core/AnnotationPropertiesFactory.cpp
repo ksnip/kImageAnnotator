@@ -92,6 +92,8 @@ void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, ToolT
 		properties->setFillType(FillTypes::BorderAndNoFill);
 	} else if (isMarkerTool(toolType)) {
 		properties->setFillType(FillTypes::NoBorderAndFill);
+	} else if(toolType == ToolTypes::Image) {
+		properties->setFillType(FillTypes::BorderAndFill);
 	} else {
 		properties->setFillType(mSettingsProvider->fillType());
 	}
