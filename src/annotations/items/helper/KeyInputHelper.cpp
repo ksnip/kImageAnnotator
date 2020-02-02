@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-void KeyInputHelper::handleKeyPress(QKeyEvent *event)
+void KeyInputHelper::handleKeyPress(const QKeyEvent *event)
 {
 	switch (event->key()) {
 		case Qt::Key_Backspace:

@@ -18,6 +18,7 @@
 * Fixed: Saved tool selection not loaded on startup. ([#67](https://github.com/ksnip/kImageAnnotator/issues/67))
 * Fixed: On startup does not highlight tool, when this tool not the first item in the list. ([#63](https://github.com/ksnip/kImageAnnotator/issues/63))
 * Fixed: Cursor image cannot be grabbed for moving. ([#69](https://github.com/ksnip/kImageAnnotator/issues/69))
+* Fixed: Accents still not work in text tool on Linux. ([#61](https://github.com/ksnip/kImageAnnotator/issues/61))
 
 ## Release 0.1.0
 * New: Double Arrow annotation tool. ([#23](https://github.com/ksnip/kImageAnnotator/issues/23))

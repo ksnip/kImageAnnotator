@@ -33,7 +33,7 @@ Q_OBJECT
 public:
 	explicit KeyInputHelper() = default;
 	~KeyInputHelper() override = default;
-	void handleKeyPress(QKeyEvent *event);
+	void handleKeyPress(const QKeyEvent *event);
 	bool isShiftPressed(const QKeyEvent *event) const;
 	bool isControlPressed(const QKeyEvent *event) const;
 	QString getTextWithCorrectCase(const QKeyEvent *event) const;

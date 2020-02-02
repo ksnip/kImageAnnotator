@@ -24,6 +24,7 @@ namespace kImageAnnotator {
 AnnotationText::AnnotationText(const QPointF &startPosition, const TextPropertiesPtr &properties) : AbstractAnnotationRect(startPosition, properties)
 {
 	setFlag(QGraphicsItem::ItemIsFocusable, true);
+	setFlag(QGraphicsItem::ItemAcceptsInputMethod, true);
 	connectSlots();
 	setupEditModeOutlinePen();
 }
@@ -53,6 +54,12 @@ void AnnotationText::focusOutEvent(QFocusEvent *event)
 void AnnotationText::keyPressEvent(QKeyEvent *event)
 {
 	mKeyInputHelper.handleKeyPress(event);
+	adjustRect();
+}
+
+void AnnotationText::inputMethodEvent(QInputMethodEvent *event)
+{
+	insertText(event->commitString());
 	adjustRect();
 }
 

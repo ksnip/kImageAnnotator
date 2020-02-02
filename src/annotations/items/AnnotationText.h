@@ -51,6 +51,7 @@ protected:
 	void updateShape() override;
 	void focusOutEvent(QFocusEvent *event) override;
 	void keyPressEvent(QKeyEvent *event) override;
+	void inputMethodEvent(QInputMethodEvent *event) override;
 	void paint(QPainter *, const QStyleOptionGraphicsItem *, QWidget *) override;
 
 private:
