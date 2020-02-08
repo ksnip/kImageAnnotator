@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,26 +17,28 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONITEMMOVERTEST_H
-#define KIMAGEANNOTATOR_ANNOTATIONITEMMOVERTEST_H
+#ifndef KIMAGEANNOTATOR_MOCKSETTINGSPROVIDER_H
+#define KIMAGEANNOTATOR_MOCKSETTINGSPROVIDER_H
 
-#include <QtTest>
-#include <QUndoStack>
+#include "src/annotations/core/AbstractSettingsProvider.h"
 
-#include "src/annotations/modifiers/AnnotationItemMover.h"
-#include "src/annotations/items/AnnotationLine.h"
-
-using kImageAnnotator::AnnotationItemMover;
-using kImageAnnotator::AnnotationProperties;
-using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AbstractSettingsProvider;
 using kImageAnnotator::AbstractAnnotationItem;
-using kImageAnnotator::PropertiesPtr;
+using kImageAnnotator::ToolTypes;
+using kImageAnnotator::FillTypes;
 
-class AnnotationItemMoverTest : public QObject
+class MockSettingsProvider : public AbstractSettingsProvider
 {
-Q_OBJECT
-private slots:
-	void TestMoveItems_Should_MoveItemsToNewPosition();
+public:
+	void editItem(AbstractAnnotationItem *item) override;
+	void activateSelectTool() override;
+	ToolTypes toolType() const override;
+	QColor toolColor() const override;
+	QColor textColor() const override;
+	int toolWidth() const override;
+	int fontSize() const override;
+	FillTypes fillType() const override;
+	int blurRadius() const override;
 };
 
-#endif // KIMAGEANNOTATOR_ANNOTATIONITEMMOVERTEST_H
+#endif //KIMAGEANNOTATOR_MOCKSETTINGSPROVIDER_H

@@ -22,7 +22,7 @@
 
 void AnnotationItemClipboardTest::TestCopyItems_Should_StoreSelectedItems()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	AnnotationRect rect(QPointF(0, 0), properties);
 	rect.addPoint(QPointF(50, 50));
 	QPointF position(50, 50);
@@ -40,7 +40,7 @@ void AnnotationItemClipboardTest::TestCopyItems_Should_StoreSelectedItems()
 
 void AnnotationItemClipboardTest::TestCopyItems_Should_SetCorrectOffset()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	AnnotationRect rect(QPointF(0, 0), properties);
 	rect.addPoint(QPointF(50, 50));
 	QPointF position(50, 50);

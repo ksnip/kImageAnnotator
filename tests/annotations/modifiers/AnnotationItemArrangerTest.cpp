@@ -21,10 +21,10 @@
 
 void AnnotationItemArrangerTest::TestBringToFront_Should_BringAllSelectedItemsToFront()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
-	auto properties3 = new AnnotationProperties(Qt::red, 1);
-	auto properties4 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties3 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties4 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	AnnotationLine item1(QPointF(0, 0), properties1);
 	AnnotationLine item2(QPointF(0, 0), properties2);
 	AnnotationLine item3(QPointF(0, 0), properties3);
@@ -55,10 +55,10 @@ void AnnotationItemArrangerTest::TestBringToFront_Should_BringAllSelectedItemsTo
 
 void AnnotationItemArrangerTest::TestBringForward_Should_MoveAllSelectedItemsOnePositionUp()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
-	auto properties3 = new AnnotationProperties(Qt::red, 1);
-	auto properties4 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties3 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties4 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	AnnotationLine item1(QPointF(0, 0), properties1);
 	AnnotationLine item2(QPointF(0, 0), properties2);
 	AnnotationLine item3(QPointF(0, 0), properties3);
@@ -89,10 +89,10 @@ void AnnotationItemArrangerTest::TestBringForward_Should_MoveAllSelectedItemsOne
 
 void AnnotationItemArrangerTest::TestSendBackward_Should_MoveAllSelectedItemsOnePositionBack()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
-	auto properties3 = new AnnotationProperties(Qt::red, 1);
-	auto properties4 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties3 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties4 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	AnnotationLine item1(QPointF(0, 0), properties1);
 	AnnotationLine item2(QPointF(0, 0), properties2);
 	AnnotationLine item3(QPointF(0, 0), properties3);
@@ -123,10 +123,10 @@ void AnnotationItemArrangerTest::TestSendBackward_Should_MoveAllSelectedItemsOne
 
 void AnnotationItemArrangerTest::TestSendToBack_Should_SendAllSelectedItemToBack()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
-	auto properties3 = new AnnotationProperties(Qt::red, 1);
-	auto properties4 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties3 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties4 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	AnnotationLine item1(QPointF(0, 0), properties1);
 	AnnotationLine item2(QPointF(0, 0), properties2);
 	AnnotationLine item3(QPointF(0, 0), properties3);
@@ -157,10 +157,10 @@ void AnnotationItemArrangerTest::TestSendToBack_Should_SendAllSelectedItemToBack
 
 void AnnotationItemArrangerTest::TestAnnotationItemArranger_Should_SortAllItemsByZValue_When_PositionHaveBeenSwapped()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
-	auto properties3 = new AnnotationProperties(Qt::red, 1);
-	auto properties4 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties3 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties4 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	AnnotationLine item1(QPointF(0, 0), properties1);
 	AnnotationLine item2(QPointF(0, 0), properties2);
 	AnnotationLine item3(QPointF(0, 0), properties3);
@@ -191,10 +191,10 @@ void AnnotationItemArrangerTest::TestAnnotationItemArranger_Should_SortAllItemsB
 
 void AnnotationItemArrangerTest::TestAnnotationItemArranger_Should_NotSwapAnyPosition_When_NoItemsHaveBeenSelected()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
-	auto properties3 = new AnnotationProperties(Qt::red, 1);
-	auto properties4 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties3 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties4 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	AnnotationLine item1(QPointF(0, 0), properties1);
 	AnnotationLine item2(QPointF(0, 0), properties2);
 	AnnotationLine item3(QPointF(0, 0), properties3);

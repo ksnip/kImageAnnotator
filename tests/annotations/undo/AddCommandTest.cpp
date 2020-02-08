@@ -21,11 +21,12 @@
 
 void AddCommandTest::TestRedo_Should_ApplyOperation()
 {
-	AnnotationArea annotationArea(new Config);
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto settingsProvider = MockSettingsProvider();
+	AnnotationArea annotationArea(new Config, &settingsProvider);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	auto item = new AnnotationLine(line.p1(), properties);
-	item->addPoint(line.p2());
+	item->addPoint(line.p2(), false);
 	AddCommand addCommand(item, &annotationArea);
 	QCOMPARE(annotationArea.items().contains(item), false);
 
@@ -36,11 +37,12 @@ void AddCommandTest::TestRedo_Should_ApplyOperation()
 
 void AddCommandTest::TestUndo_Should_UndoOperation()
 {
-	AnnotationArea annotationArea(new Config);
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto settingsProvider = MockSettingsProvider();
+	AnnotationArea annotationArea(new Config, &settingsProvider);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	auto item = new AnnotationLine(line.p1(), properties);
-	item->addPoint(line.p2());
+	item->addPoint(line.p2(), false);
 	AddCommand addCommand(item, &annotationArea);
 	addCommand.redo();
 	QCOMPARE(annotationArea.items().contains(item), true);

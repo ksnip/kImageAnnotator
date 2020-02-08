@@ -29,6 +29,7 @@ using kImageAnnotator::AnnotationItemModifier;
 using kImageAnnotator::AbstractAnnotationItem;
 using kImageAnnotator::AnnotationRect;
 using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::PropertiesPtr;
 
 class AnnotationItemClipboardTest : public QObject
 {

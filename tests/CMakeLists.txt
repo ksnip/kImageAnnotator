@@ -37,6 +37,7 @@ set(UNITTEST_SRC
 	widgets/NumberPickerTest.cpp
 	widgets/FillTypePickerTest.cpp
 	widgets/CustomSpinBoxTest.cpp
+	mocks/MockSettingsProvider.cpp
 	)
 
 add_library(KIMAGEANNOTATOR_STATIC STATIC ${KIMAGEANNOTATOR_SRCS})

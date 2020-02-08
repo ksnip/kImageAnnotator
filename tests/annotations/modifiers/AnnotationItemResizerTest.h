@@ -29,6 +29,7 @@
 using kImageAnnotator::AnnotationItemResizer;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::PropertiesPtr;
 
 class AnnotationItemResizerTest : public QObject
 {
@@ -40,7 +41,6 @@ private slots:
 	void TestGrabHandle_Should_MoveResizeHandle_When_HandleGrabbed();
 	void TestReleaseHandle_Should_ReleaseHandle();
 	void TestIsItemVisible_Should_ReturnFalse_When_ItemIsHidden();
-	void TestIsItemVisible_Should_ReturnTrue_When_ItemIsNotHidden();
 };
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONITEMRESIZERTEST_H

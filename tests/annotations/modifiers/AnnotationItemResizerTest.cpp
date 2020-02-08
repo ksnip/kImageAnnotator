@@ -21,11 +21,11 @@
 
 void AnnotationItemResizerTest::TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
-	lineItem.addPoint(p2);
+	lineItem.addPoint(p2, false);
 	AnnotationItemResizer itemResizer(&lineItem);
 
 	itemResizer.grabHandle(p1 + QPointF(2, 2));
@@ -36,11 +36,11 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_GrabHandle_When_ProvidedPo
 
 void AnnotationItemResizerTest::TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
-	lineItem.addPoint(p2);
+	lineItem.addPoint(p2, false);
 	AnnotationItemResizer itemResizer(&lineItem);
 
 	itemResizer.grabHandle(QPointF(0, 0));
@@ -51,12 +51,12 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_NotGrabHandle_When_Provide
 
 void AnnotationItemResizerTest::TestGrabHandle_Should_MoveResizeHandle_When_HandleGrabbed()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	QPointF p3(30, 30);
 	AnnotationLine lineItem(p1, properties);
-	lineItem.addPoint(p2);
+	lineItem.addPoint(p2, false);
 	AnnotationItemResizer itemResizer(&lineItem);
 	QUndoStack undoStack;
 	connect(&itemResizer, &AnnotationItemResizer::newCommand, &undoStack, &QUndoStack::push);
@@ -69,11 +69,11 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_MoveResizeHandle_When_Hand
 
 void AnnotationItemResizerTest::TestReleaseHandle_Should_ReleaseHandle()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
-	lineItem.addPoint(p2);
+	lineItem.addPoint(p2, false);
 	AnnotationItemResizer itemResizer(&lineItem);
 	itemResizer.grabHandle(p1);
 	QCOMPARE(itemResizer.isResizing(), true);
@@ -85,22 +85,17 @@ void AnnotationItemResizerTest::TestReleaseHandle_Should_ReleaseHandle()
 
 void AnnotationItemResizerTest::TestIsItemVisible_Should_ReturnFalse_When_ItemIsHidden()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
-	lineItem.addPoint(p2);
+	lineItem.addPoint(p2, false);
 	AnnotationItemResizer itemResizer(&lineItem);
 	lineItem.hide();
 
 	auto result = itemResizer.isItemVisible();
 
 	QCOMPARE(result, false);
-}
-
-void AnnotationItemResizerTest::TestIsItemVisible_Should_ReturnTrue_When_ItemIsNotHidden()
-{
-
 }
 
 QTEST_MAIN(AnnotationItemResizerTest);

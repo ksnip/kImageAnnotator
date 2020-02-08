@@ -22,11 +22,12 @@
 
 void DeleteCommandTest::TestRedo_Should_ApplyOperation()
 {
-	AnnotationArea annotationArea(new Config);
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto settingsProvider = MockSettingsProvider();
+	AnnotationArea annotationArea(new Config, &settingsProvider);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	AnnotationLine item(line.p1(), properties);
-	item.addPoint(line.p2());
+	item.addPoint(line.p2(), false);
 	annotationArea.addAnnotationItem(&item);
 	QCOMPARE(annotationArea.items().contains(&item), true);
 	QList<AbstractAnnotationItem *> items = { &item };
@@ -39,11 +40,12 @@ void DeleteCommandTest::TestRedo_Should_ApplyOperation()
 
 void DeleteCommandTest::TestUndo_Should_UndoOperation()
 {
-	AnnotationArea annotationArea(new Config);
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto settingsProvider = MockSettingsProvider();
+	AnnotationArea annotationArea(new Config, &settingsProvider);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	AnnotationLine item(line.p1(), properties);
-	item.addPoint(line.p2());
+	item.addPoint(line.p2(), false);
 	annotationArea.addAnnotationItem(&item);
 	QList<AbstractAnnotationItem *> items = { &item };
 	DeleteCommand deleteCommand(items, &annotationArea);

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,26 +17,49 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONITEMMOVERTEST_H
-#define KIMAGEANNOTATOR_ANNOTATIONITEMMOVERTEST_H
+#include "MockSettingsProvider.h"
 
-#include <QtTest>
-#include <QUndoStack>
-
-#include "src/annotations/modifiers/AnnotationItemMover.h"
-#include "src/annotations/items/AnnotationLine.h"
-
-using kImageAnnotator::AnnotationItemMover;
-using kImageAnnotator::AnnotationProperties;
-using kImageAnnotator::AnnotationLine;
-using kImageAnnotator::AbstractAnnotationItem;
-using kImageAnnotator::PropertiesPtr;
-
-class AnnotationItemMoverTest : public QObject
+void MockSettingsProvider::editItem(AbstractAnnotationItem *item)
 {
-Q_OBJECT
-private slots:
-	void TestMoveItems_Should_MoveItemsToNewPosition();
-};
 
-#endif // KIMAGEANNOTATOR_ANNOTATIONITEMMOVERTEST_H
+}
+
+void MockSettingsProvider::activateSelectTool()
+{
+
+}
+
+ToolTypes MockSettingsProvider::toolType() const
+{
+	return ToolTypes::Blur;
+}
+
+QColor MockSettingsProvider::toolColor() const
+{
+	return {};
+}
+
+QColor MockSettingsProvider::textColor() const
+{
+	return {};
+}
+
+int MockSettingsProvider::toolWidth() const
+{
+	return 0;
+}
+
+int MockSettingsProvider::fontSize() const
+{
+	return 0;
+}
+
+FillTypes MockSettingsProvider::fillType() const
+{
+	return FillTypes::BorderAndFill;
+}
+
+int MockSettingsProvider::blurRadius() const
+{
+	return 0;
+}

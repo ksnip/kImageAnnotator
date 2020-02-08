@@ -25,6 +25,7 @@
 #include "src/annotations/undo/DeleteCommand.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/annotations/items/AnnotationLine.h"
+#include "tests/mocks/MockSettingsProvider.h"
 
 using kImageAnnotator::DeleteCommand;
 using kImageAnnotator::AnnotationArea;
@@ -32,6 +33,7 @@ using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AbstractAnnotationItem;
 using kImageAnnotator::Config;
+using kImageAnnotator::PropertiesPtr;
 
 class DeleteCommandTest : public QObject
 {

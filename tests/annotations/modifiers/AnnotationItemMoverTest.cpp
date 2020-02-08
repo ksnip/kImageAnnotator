@@ -21,8 +21,8 @@
 
 void AnnotationItemMoverTest::TestMoveItems_Should_MoveItemsToNewPosition()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	QPointF p3(15, 15);
@@ -31,8 +31,8 @@ void AnnotationItemMoverTest::TestMoveItems_Should_MoveItemsToNewPosition()
 	QPointF newPos(QPointF(50, 50));
 	AnnotationLine line1(p1, properties1);
 	AnnotationLine line2(p3, properties2);
-	line1.addPoint(p2);
-	line2.addPoint(p4);
+	line1.addPoint(p2, false);
+	line2.addPoint(p4, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
