@@ -24,8 +24,8 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
 	QPixmap pixmap(QSize(400, 400));
 	pixmap.fill(QColor(QStringLiteral("Green")));
 	auto config = new Config;
-	AnnotationSettings annotationSettings(config);
-	AnnotationArea annotationArea(config, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	AnnotationArea annotationArea(config, settingsProvider);
 	annotationArea.loadImage(pixmap);
 
 	auto resultImage = annotationArea.image();
@@ -37,8 +37,8 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
 void AnnotationAreaTest::TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet()
 {
 	auto config = new Config;
-	AnnotationSettings annotationSettings(config);
-	AnnotationArea annotationArea(config, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	AnnotationArea annotationArea(config, settingsProvider);
 
 	auto resultImage = annotationArea.image();
 
@@ -53,8 +53,8 @@ void AnnotationAreaTest::TestAddAnnotationItem_Should_AddAnnotationItemToScene()
 	auto lineItem = new AnnotationLine(p1, properties);
 	lineItem->addPoint(p2, false);
 	auto config = new Config;
-	AnnotationSettings annotationSettings(config);
-	AnnotationArea annotationArea(config, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	AnnotationArea annotationArea(config, settingsProvider);
 
 	annotationArea.addAnnotationItem(lineItem);
 
@@ -69,8 +69,8 @@ void AnnotationAreaTest::TestRemoveAnnotationItem_Should_RemoveAnnotationItemFro
 	auto lineItem = new AnnotationLine(p1, properties);
 	lineItem->addPoint(p2, false);
 	auto config = new Config;
-	AnnotationSettings annotationSettings(config);
-	AnnotationArea annotationArea(config, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	AnnotationArea annotationArea(config, settingsProvider);
 	annotationArea.addAnnotationItem(lineItem);
 	QCOMPARE(annotationArea.items().contains(lineItem), true);
 

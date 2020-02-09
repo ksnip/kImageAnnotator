@@ -25,7 +25,7 @@ void PasteCommandTest::TestRedo_Should_AddPastedItemsToAnnotationAreaAtGivenPosi
 	auto offset = QPointF(10, 10);
 	auto position = QPointF(50, 50);
 	auto config = new Config;
-	auto settingsProvider = new AnnotationSettings(config);
+	auto settingsProvider = new MockSettingsProvider();
 	auto propertiesFactory = new AnnotationPropertiesFactory(config, settingsProvider);
 	AnnotationArea annotationArea(config, settingsProvider);
 	AnnotationItemFactory itemFactory(propertiesFactory, settingsProvider);
@@ -50,7 +50,7 @@ void PasteCommandTest::TestUndo_Should_RemovePastedItemsFromAnnotationArea()
 	auto offset = QPointF(10, 10);
 	auto position = QPointF(50, 50);
 	auto config = new Config;
-	auto settingsProvider = new AnnotationSettings(config);
+	auto settingsProvider = new MockSettingsProvider();
 	auto propertiesFactory = new AnnotationPropertiesFactory(config, settingsProvider);
 	AnnotationArea annotationArea(config, settingsProvider);
 	AnnotationItemFactory itemFactory(propertiesFactory, settingsProvider);

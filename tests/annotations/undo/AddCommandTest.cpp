@@ -22,7 +22,7 @@
 void AddCommandTest::TestRedo_Should_ApplyOperation()
 {
 	auto config = new Config;
-	auto settingsProvider = new AnnotationSettings(config);
+	auto settingsProvider = new MockSettingsProvider();
 	AnnotationArea annotationArea(config, settingsProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
@@ -39,7 +39,7 @@ void AddCommandTest::TestRedo_Should_ApplyOperation()
 void AddCommandTest::TestUndo_Should_UndoOperation()
 {
 	auto config = new Config;
-	auto settingsProvider = new AnnotationSettings(config);
+	auto settingsProvider = new MockSettingsProvider();
 	AnnotationArea annotationArea(config, settingsProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);

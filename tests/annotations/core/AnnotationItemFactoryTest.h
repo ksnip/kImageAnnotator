@@ -23,7 +23,7 @@
 #include <QtTest>
 
 #include "src/annotations/core/AnnotationItemFactory.h"
-#include "src/gui/annotator/AnnotationSettings.h"
+#include "tests/mocks/MockSettingsProvider.h"
 
 using kImageAnnotator::AnnotationItemFactory;
 using kImageAnnotator::AnnotationLine;
@@ -36,7 +36,6 @@ using kImageAnnotator::AnnotationImage;
 using kImageAnnotator::ToolTypes;
 using kImageAnnotator::Config;
 using kImageAnnotator::AnnotationPropertiesFactory;
-using kImageAnnotator::AnnotationSettings;
 
 class AnnotationItemFactoryTest : public QObject
 {

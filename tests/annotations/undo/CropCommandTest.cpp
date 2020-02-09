@@ -23,8 +23,8 @@
 void CropCommandTest::TestRedo_Should_CropImageAndScene()
 {
 	auto config = new Config;
-	AnnotationSettings annotationSettings(config);
-	AnnotationArea annotationArea(config, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	AnnotationArea annotationArea(config, settingsProvider);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -39,8 +39,8 @@ void CropCommandTest::TestRedo_Should_CropImageAndScene()
 void CropCommandTest::TestRedo_Should_MoveItemToNewPosition()
 {
 	auto config = new Config;
-	AnnotationSettings annotationSettings(config);
-	AnnotationArea annotationArea(config, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	AnnotationArea annotationArea(config, settingsProvider);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -60,8 +60,8 @@ void CropCommandTest::TestRedo_Should_MoveItemToNewPosition()
 void CropCommandTest::TestUndo_Should_RestoreOriginalImageAndSceneSize()
 {
 	auto config = new Config;
-	AnnotationSettings annotationSettings(config);
-	AnnotationArea annotationArea(config, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	AnnotationArea annotationArea(config, settingsProvider);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -77,8 +77,8 @@ void CropCommandTest::TestUndo_Should_RestoreOriginalImageAndSceneSize()
 void CropCommandTest::TestUndo_Should_MoveItemBackToPreviousPosition()
 {
 	auto config = new Config;
-	AnnotationSettings annotationSettings(config);
-	AnnotationArea annotationArea(config, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	AnnotationArea annotationArea(config, settingsProvider);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);

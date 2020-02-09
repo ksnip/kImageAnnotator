@@ -25,14 +25,13 @@
 #include "src/annotations/undo/AddCommand.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/annotations/items/AnnotationLine.h"
-#include "src/gui/annotator/AnnotationSettings.h"
+#include "tests/mocks/MockSettingsProvider.h"
 
 using kImageAnnotator::CropCommand;
 using kImageAnnotator::AnnotationArea;
 using kImageAnnotator::AnnotationRect;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::Config;
-using kImageAnnotator::AnnotationSettings;
 using kImageAnnotator::PropertiesPtr;
 
 class CropCommandTest : public QObject

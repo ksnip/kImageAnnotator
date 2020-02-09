@@ -23,7 +23,7 @@
 #include <QtTest>
 
 #include "src/annotations/core/AnnotationPropertiesFactory.h"
-#include "src/gui/annotator/AnnotationSettings.h"
+#include "tests/mocks/MockSettingsProvider.h"
 
 using kImageAnnotator::AnnotationPropertiesFactory;
 using kImageAnnotator::AnnotationProperties;
@@ -32,7 +32,6 @@ using kImageAnnotator::AnnotationPathProperties;
 using kImageAnnotator::ToolTypes;
 using kImageAnnotator::FillTypes;
 using kImageAnnotator::Config;
-using kImageAnnotator::AnnotationSettings;
 
 class AnnotationPropertiesFactoryTest : public QObject
 {
@@ -50,7 +49,7 @@ private slots:
 	void TestCreate_Should_CreatePathPropertiesWhenItemMarker();
 	void TestCreate_Should_CreateTextPropertiesWhenItemNumber();
 	void TestCreate_Should_CreateTextPropertiesWhenItemText();
-	void TestCreate_Should_SetSmootPathBasedOnConfiguration();
+	void TestCreate_Should_SetSmoothPathBasedOnConfiguration();
 	void TestCreate_Should_SetToolFontAndFontSizeBasedOnConfiguration();
 };
 

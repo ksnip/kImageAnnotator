@@ -32,12 +32,13 @@ void AnnotationItemFactoryTest::cleanupTestCase()
 void AnnotationItemFactoryTest::TestCreate_Should_CreateItemAtProvidedPosition()
 {
 	QPointF position(10, 10);
-	ToolTypes tool = ToolTypes::Line;
+	auto toolType = ToolTypes::Line;
 	auto config = new Config;
-	config->setToolWidth(0, tool);
-	AnnotationSettings annotationSettings(config);
-	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
-	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setToolType(toolType);
+	settingsProvider->setToolWidth(0);
+	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationItemFactory itemFactory(&propertiesFactory, settingsProvider);
 
 	auto item = itemFactory.create(position);
 	item->addPoint(QPoint(20, 20), false);
@@ -50,10 +51,10 @@ void AnnotationItemFactoryTest::TestCreate_Should_CreateImageItemAtProvidedPosit
 	QPointF position(10, 10);
 	QPixmap image(200,200);
 	auto config = new Config;
-	config->setToolWidth(0, ToolTypes::Image);
-	AnnotationSettings annotationSettings(config);
-	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
-	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setToolType(ToolTypes::Image);
+	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationItemFactory itemFactory(&propertiesFactory, settingsProvider);
 
 	auto item = itemFactory.create(position, image);
 
@@ -64,10 +65,10 @@ void AnnotationItemFactoryTest::TestCreate_Should_CreateImageItemAtProvidedPosit
 void AnnotationItemFactoryTest::TestCreate_Should_ReturnNullPtrForUnknownType()
 {
 	auto config = new Config;
-	config->setToolWidth(0, (ToolTypes) 13);
-	AnnotationSettings annotationSettings(config);
-	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
-	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setToolType((ToolTypes) 13);
+	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationItemFactory itemFactory(&propertiesFactory, settingsProvider);
 
 	auto item = itemFactory.create(QPoint(0, 0));
 
@@ -77,10 +78,10 @@ void AnnotationItemFactoryTest::TestCreate_Should_ReturnNullPtrForUnknownType()
 void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationLine_When_TypeIsLine()
 {
 	auto config = new Config;
-	config->setToolWidth(0, ToolTypes::Line);
-	AnnotationSettings annotationSettings(config);
-	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
-	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setToolType(ToolTypes::Line);
+	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationItemFactory itemFactory(&propertiesFactory, settingsProvider);
 
 	auto item = itemFactory.create(QPoint(0, 0));
 
@@ -91,10 +92,10 @@ void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationLine_When_Type
 void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationArrow_When_TypeIsArrow()
 {
 	auto config = new Config;
-	config->setToolWidth(0, ToolTypes::Arrow);
-	AnnotationSettings annotationSettings(config);
-	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
-	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setToolType(ToolTypes::Arrow);
+	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationItemFactory itemFactory(&propertiesFactory, settingsProvider);
 
 	auto item = itemFactory.create(QPoint(0, 0));
 
@@ -105,10 +106,10 @@ void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationArrow_When_Typ
 void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationRect_When_TypeIsRect()
 {
 	auto config = new Config;
-	config->setToolWidth(0, ToolTypes::Rect);
-	AnnotationSettings annotationSettings(config);
-	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
-	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setToolType(ToolTypes::Rect);
+	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationItemFactory itemFactory(&propertiesFactory, settingsProvider);
 
 	auto item = itemFactory.create(QPoint(0, 0));
 
@@ -119,10 +120,10 @@ void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationRect_When_Type
 void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationEllipse_When_TypeIsEllipse()
 {
 	auto config = new Config;
-	config->setToolWidth(0, ToolTypes::Ellipse);
-	AnnotationSettings annotationSettings(config);
-	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
-	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setToolType(ToolTypes::Ellipse);
+	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationItemFactory itemFactory(&propertiesFactory, settingsProvider);
 
 	auto item = itemFactory.create(QPoint(0, 0));
 
@@ -133,10 +134,10 @@ void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationEllipse_When_T
 void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationNumber_When_TypeIsNumber()
 {
 	auto config = new Config;
-	config->setToolWidth(0, ToolTypes::Number);
-	AnnotationSettings annotationSettings(config);
-	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
-	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setToolType(ToolTypes::Number);
+	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationItemFactory itemFactory(&propertiesFactory, settingsProvider);
 
 	auto item = itemFactory.create(QPoint(0, 0));
 
@@ -147,12 +148,12 @@ void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationNumber_When_Ty
 void AnnotationItemFactoryTest::TestClone_Should_ReturnNewItemOfSameType()
 {
 	QPointF position(10, 10);
-	ToolTypes tool = ToolTypes::Line;
+	auto tool = ToolTypes::Line;
 	auto config = new Config;
-	config->setToolWidth(0, tool);
-	AnnotationSettings annotationSettings(config);
-	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
-	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setToolType(tool);
+	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationItemFactory itemFactory(&propertiesFactory, settingsProvider);
 	auto item = itemFactory.create(position);
 	item->addPoint(QPoint(20, 20), false);
 
@@ -165,12 +166,12 @@ void AnnotationItemFactoryTest::TestClone_Should_ReturnNewItemOfSameType()
 void AnnotationItemFactoryTest::TestClone_Should_IncrementZValueForClonedItem()
 {
 	QPointF position(10, 10);
-	ToolTypes tool = ToolTypes::Line;
+	auto tool = ToolTypes::Line;
 	auto config = new Config;
-	config->setToolWidth(0, tool);
-	AnnotationSettings annotationSettings(config);
-	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
-	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
+	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setToolType(tool);
+	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationItemFactory itemFactory(&propertiesFactory, settingsProvider);
 	auto item = itemFactory.create(position);
 	item->addPoint(QPoint(20, 20), false);
 

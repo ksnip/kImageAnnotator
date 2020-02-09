@@ -25,8 +25,8 @@
 #include "src/annotations/undo/PasteCommand.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/annotations/items/AnnotationLine.h"
-#include "src/gui/annotator/AnnotationSettings.h"
 #include "src/annotations/core/AnnotationPropertiesFactory.h"
+#include "tests/mocks/MockSettingsProvider.h"
 
 using kImageAnnotator::PasteCommand;
 using kImageAnnotator::AnnotationArea;
@@ -35,7 +35,6 @@ using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::Config;
 using kImageAnnotator::AnnotationItemFactory;
-using kImageAnnotator::AnnotationSettings;
 using kImageAnnotator::PropertiesPtr;
 using kImageAnnotator::AnnotationPropertiesFactory;
 

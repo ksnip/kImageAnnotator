@@ -39,13 +39,17 @@ set(UNITTEST_SRC
 	widgets/CustomSpinBoxTest.cpp
 	)
 
+set(TESTUTILS_SRC
+	mocks/MockSettingsProvider.cpp
+	)
+
 add_library(KIMAGEANNOTATOR_STATIC STATIC ${KIMAGEANNOTATOR_SRCS})
 
 target_link_libraries(KIMAGEANNOTATOR_STATIC Qt5::Widgets kImageAnnotator)
 
 foreach (UnitTest ${UNITTEST_SRC})
 	get_filename_component(UnitTestName ${UnitTest} NAME_WE)
-	add_executable(${UnitTestName} ${UnitTest})
+	add_executable(${UnitTestName} ${UnitTest} ${TESTUTILS_SRC})
 	target_link_libraries(${UnitTestName} KIMAGEANNOTATOR_STATIC Qt5::Test)
 	add_test(${UnitTestName} ${UnitTestName})
 endforeach (UnitTest)

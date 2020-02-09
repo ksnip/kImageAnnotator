@@ -23,12 +23,11 @@
 #include <QtTest>
 
 #include "src/gui/cropper/CropSelectionHandler.h"
-#include "src/gui/annotator/AnnotationSettings.h"
+#include "tests/mocks/MockSettingsProvider.h"
 
 using kImageAnnotator::CropSelectionHandler;
 using kImageAnnotator::AnnotationArea;
 using kImageAnnotator::Config;
-using kImageAnnotator::AnnotationSettings;
 
 class CropSelectionHandlerTest : public QObject
 {
