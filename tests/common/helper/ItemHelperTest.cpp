@@ -23,8 +23,8 @@
 void ItemHelperTest::TestZValueGreaterThen_Should_ReturnTrue_When_OtherItemHasLowerZValue()
 {
 	QPointF pos(10, 10);
-	AnnotationLine item1(pos, new AnnotationProperties(Qt::red, 1));
-	AnnotationLine item2(pos, new AnnotationProperties(Qt::red, 1));
+	AnnotationLine item1(pos, PropertiesPtr(new AnnotationProperties(Qt::red, 1)));
+	AnnotationLine item2(pos, PropertiesPtr(new AnnotationProperties(Qt::red, 1)));
 	item1.setZValue(100);
 	item2.setZValue(50);
 
@@ -36,8 +36,8 @@ void ItemHelperTest::TestZValueGreaterThen_Should_ReturnTrue_When_OtherItemHasLo
 void ItemHelperTest::TestZValueGreaterThen_Should_ReturnFalse_When_OtherItemHasHigherZValue()
 {
 	QPointF pos(10, 10);
-	AnnotationLine item1(pos, new AnnotationProperties(Qt::red, 1));
-	AnnotationLine item2(pos, new AnnotationProperties(Qt::red, 1));
+	AnnotationLine item1(pos, PropertiesPtr(new AnnotationProperties(Qt::red, 1)));
+	AnnotationLine item2(pos, PropertiesPtr(new AnnotationProperties(Qt::red, 1)));
 	item1.setZValue(50);
 	item2.setZValue(100);
 
@@ -49,8 +49,8 @@ void ItemHelperTest::TestZValueGreaterThen_Should_ReturnFalse_When_OtherItemHasH
 void ItemHelperTest::TestZValueGreaterThen_Should_ReturnFalse_When_OtherItemHasEqualZValue()
 {
 	QPointF pos(10, 10);
-	AnnotationLine item1(pos, new AnnotationProperties(Qt::red, 1));
-	AnnotationLine item2(pos, new AnnotationProperties(Qt::red, 1));
+	AnnotationLine item1(pos, PropertiesPtr(new AnnotationProperties(Qt::red, 1)));
+	AnnotationLine item2(pos, PropertiesPtr(new AnnotationProperties(Qt::red, 1)));
 	item1.setZValue(100);
 	item2.setZValue(100);
 
@@ -62,11 +62,11 @@ void ItemHelperTest::TestZValueGreaterThen_Should_ReturnFalse_When_OtherItemHasE
 void ItemHelperTest::TestSortItemsByZValueDesc_Should_SortItemsByZValueInDescendingOrder()
 {
 	QPointF pos(10, 10);
-	AnnotationLine item1(pos, new AnnotationProperties(Qt::red, 1));
-	AnnotationLine item2(pos, new AnnotationProperties(Qt::red, 1));
-	AnnotationLine item3(pos, new AnnotationProperties(Qt::red, 1));
-	AnnotationLine item4(pos, new AnnotationProperties(Qt::red, 1));
-	AnnotationLine item5(pos, new AnnotationProperties(Qt::red, 1));
+	AnnotationLine item1(pos, PropertiesPtr(new AnnotationProperties(Qt::red, 1)));
+	AnnotationLine item2(pos, PropertiesPtr(new AnnotationProperties(Qt::red, 1)));
+	AnnotationLine item3(pos, PropertiesPtr(new AnnotationProperties(Qt::red, 1)));
+	AnnotationLine item4(pos, PropertiesPtr(new AnnotationProperties(Qt::red, 1)));
+	AnnotationLine item5(pos, PropertiesPtr(new AnnotationProperties(Qt::red, 1)));
 	item1.setZValue(100);
 	item2.setZValue(80);
 	item3.setZValue(2);

@@ -22,8 +22,8 @@
 
 void ArrangeCommandTest::TestRedo_Should_SwapItemPosition()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF pos(10, 10);
 	AnnotationLine item1(pos, properties1);
 	AnnotationLine item2(pos, properties2);
@@ -44,9 +44,9 @@ void ArrangeCommandTest::TestRedo_Should_SwapItemPosition()
 
 void ArrangeCommandTest::TestRedo_Should_SortItemByZValue()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
-	auto properties3 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties3= PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF pos(10, 10);
 	AnnotationLine item1(pos, properties1);
 	AnnotationLine item2(pos, properties2);
@@ -73,8 +73,8 @@ void ArrangeCommandTest::TestRedo_Should_SortItemByZValue()
 
 void ArrangeCommandTest::TestUndo_Should_SwapItemPositionBack()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF pos(10, 10);
 	AnnotationLine item1(pos, properties1);
 	AnnotationLine item2(pos, properties2);
@@ -96,9 +96,9 @@ void ArrangeCommandTest::TestUndo_Should_SwapItemPositionBack()
 
 void ArrangeCommandTest::TestUndo_Should_SortItemByZValue()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
-	auto properties3 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties3 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF pos(10, 10);
 	AnnotationLine item1(pos, properties1);
 	AnnotationLine item2(pos, properties2);

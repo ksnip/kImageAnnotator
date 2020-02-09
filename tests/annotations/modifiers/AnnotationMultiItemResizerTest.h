@@ -30,6 +30,7 @@ using kImageAnnotator::AnnotationMultiItemResizer;
 using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::AbstractAnnotationItem;
+using kImageAnnotator::PropertiesPtr;
 
 class AnnotationMultiItemResizerTest : public QObject
 {

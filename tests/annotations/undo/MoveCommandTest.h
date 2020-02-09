@@ -29,6 +29,7 @@ using kImageAnnotator::MoveCommand;
 using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::AbstractAnnotationItem;
+using kImageAnnotator::PropertiesPtr;
 
 class MoveCommandTest : public QObject
 {

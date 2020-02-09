@@ -22,9 +22,9 @@
 
 void NumberManagerTest::TestAddItem_Should_TriggerNumberUpdate()
 {
-	auto properties1 = new AnnotationTextProperties(2, Qt::red);
-	auto properties2 = new AnnotationTextProperties(2, Qt::red);
-	auto properties3 = new AnnotationTextProperties(2, Qt::red);
+	auto properties1 = TextPropertiesPtr(new AnnotationTextProperties(2, Qt::red));
+	auto properties2 = TextPropertiesPtr(new AnnotationTextProperties(2, Qt::red));
+	auto properties3 = TextPropertiesPtr(new AnnotationTextProperties(2, Qt::red));
 	AnnotationNumber item1(QPointF(0, 0), properties1);
 	AnnotationNumber item2(QPointF(0, 0), properties2);
 	AnnotationNumber item3(QPointF(0, 0), properties3);
@@ -41,9 +41,9 @@ void NumberManagerTest::TestAddItem_Should_TriggerNumberUpdate()
 
 void NumberManagerTest::TestUpdateNumbers_Should_BeTriggered_When_ItemIsHidden()
 {
-	auto properties1 = new AnnotationTextProperties(2, Qt::red);
-	auto properties2 = new AnnotationTextProperties(2, Qt::red);
-	auto properties3 = new AnnotationTextProperties(2, Qt::red);
+	auto properties1 = TextPropertiesPtr(new AnnotationTextProperties(2, Qt::red));
+	auto properties2 = TextPropertiesPtr(new AnnotationTextProperties(2, Qt::red));
+	auto properties3 = TextPropertiesPtr(new AnnotationTextProperties(2, Qt::red));
 	AnnotationNumber item1(QPointF(0, 0), properties1);
 	AnnotationNumber item2(QPointF(0, 0), properties2);
 	AnnotationNumber item3(QPointF(0, 0), properties3);
@@ -63,9 +63,9 @@ void NumberManagerTest::TestUpdateNumbers_Should_BeTriggered_When_ItemIsHidden()
 
 void NumberManagerTest::TestFirstNumberChanged_Should_TriggerUpdateOfAllNumber()
 {
-	auto properties1 = new AnnotationTextProperties(2, Qt::red);
-	auto properties2 = new AnnotationTextProperties(2, Qt::red);
-	auto properties3 = new AnnotationTextProperties(2, Qt::red);
+	auto properties1 = TextPropertiesPtr(new AnnotationTextProperties(2, Qt::red));
+	auto properties2 = TextPropertiesPtr(new AnnotationTextProperties(2, Qt::red));
+	auto properties3 = TextPropertiesPtr(new AnnotationTextProperties(2, Qt::red));
 	AnnotationNumber item1(QPointF(0, 0), properties1);
 	AnnotationNumber item2(QPointF(0, 0), properties2);
 	AnnotationNumber item3(QPointF(0, 0), properties3);
@@ -77,7 +77,7 @@ void NumberManagerTest::TestFirstNumberChanged_Should_TriggerUpdateOfAllNumber()
 	QCOMPARE(item2.number(), 2);
 	QCOMPARE(item3.number(), 3);
 
-	numberManager.firstNumberChanged(4);
+	numberManager.firstBadgeNumberChanged(4);
 
 	QCOMPARE(item1.number(), 4);
 	QCOMPARE(item2.number(), 5);

@@ -26,6 +26,7 @@
 using kImageAnnotator::NumberManager;
 using kImageAnnotator::AnnotationNumber;
 using kImageAnnotator::AnnotationTextProperties;
+using kImageAnnotator::TextPropertiesPtr;
 
 #include "src/annotations/misc/NumberManager.h"
 

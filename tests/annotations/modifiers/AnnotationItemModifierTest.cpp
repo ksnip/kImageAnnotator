@@ -21,12 +21,12 @@
 
 void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_MoveResizerHandle_When_ClickedOnResizerHandle()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	QPointF p3(30, 30);
 	AnnotationLine line(p1, properties);
-	line.addPoint(p2);
+	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
 	AnnotationItemModifier modifer;
@@ -44,13 +44,13 @@ void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_MoveResi
 
 void AnnotationItemModifierTest::TestHandleMousePressMove_Should_NotMoveResizerHandle_When_NotClickedOnResizerHandle()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	QPointF p3(30, 30);
 	QPointF p4(40, 40);
 	AnnotationLine line(p1, properties);
-	line.addPoint(p2);
+	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
 	AnnotationItemModifier modifer;
@@ -66,16 +66,16 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_NotMoveResizerH
 
 void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_SelectMultipleItems_When_ClickedNotOnItem()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	QPointF p3(15, 15);
 	QPointF p4(20, 20);
 	AnnotationLine line1(p1, properties1);
 	AnnotationLine line2(p3, properties2);
-	line1.addPoint(p2);
-	line2.addPoint(p4);
+	line1.addPoint(p2, false);
+	line2.addPoint(p4, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
@@ -93,13 +93,13 @@ void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_SelectMu
 
 void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveClickedItem_When_ClickedOnItemAndMoved()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	QPointF clickPos(15, 15);
 	QPointF movePos(30, 30);
 	AnnotationLine line(p1, properties);
-	line.addPoint(p2);
+	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
 	AnnotationItemModifier modifer;
@@ -114,8 +114,8 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveClickedItem
 
 void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveSelectedItems_When_ClickedOnOfSelectedItemsAndMoved()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
 	QPointF p2(30, 30);
 	QPointF p3(45, 45);
@@ -124,8 +124,8 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveSelectedIte
 	QPointF movePos(80, 80);
 	AnnotationLine line1(p1, properties1);
 	AnnotationLine line2(p3, properties2);
-	line1.addPoint(p2);
-	line2.addPoint(p4);
+	line1.addPoint(p2, false);
+	line2.addPoint(p4, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);

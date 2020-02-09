@@ -21,10 +21,10 @@
 
 void AnnotationMultiItemResizerTest::TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line1(10, 10, 20, 20);
 	AnnotationLine item1(line1.p1(), properties);
-	item1.addPoint(line1.p2());
+	item1.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1 };
 	AnnotationMultiItemResizer itemResizer;
 	itemResizer.attachTo(items);
@@ -36,10 +36,10 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_GrabHandle_When_Provi
 
 void AnnotationMultiItemResizerTest::TestGrabHandle_Should_NotGrabHandle_When_ProvidedPointIsNotAtHandlePosition()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line1(10, 10, 20, 20);
 	AnnotationLine item1(line1.p1(), properties);
-	item1.addPoint(line1.p2());
+	item1.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1 };
 	AnnotationMultiItemResizer itemResizer;
 	itemResizer.attachTo(items);
@@ -51,11 +51,11 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_NotGrabHandle_When_Pr
 
 void AnnotationMultiItemResizerTest::TestGrabHandle_Should_MoveResizeHandle_When_HandleGrabbed()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line1(10, 10, 20, 20);
 	QPointF newPoint(30, 30);
 	AnnotationLine item1(line1.p1(), properties);
-	item1.addPoint(line1.p2());
+	item1.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1 };
 	AnnotationMultiItemResizer itemResizer;
 	QUndoStack undoStack;
@@ -70,14 +70,14 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_MoveResizeHandle_When
 
 void AnnotationMultiItemResizerTest::TestGrabHandle_Should_OnlyMoveOneResizeHandle_When_MultipleItemsInList()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 1);
-	auto properties2 = new AnnotationProperties(Qt::red, 1);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line1(10, 10, 20, 20);
 	QPointF newPoint(30, 30);
 	AnnotationLine item1(line1.p1(), properties1);
 	AnnotationLine item2(line1.p1(), properties2);
-	item1.addPoint(line1.p2());
-	item2.addPoint(line1.p2());
+	item1.addPoint(line1.p2(), false);
+	item2.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1, &item2 };
 	AnnotationMultiItemResizer itemResizer;
 	QUndoStack undoStack;
@@ -95,10 +95,10 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_OnlyMoveOneResizeHand
 
 void AnnotationMultiItemResizerTest::TestReleaseHandle_Should_ReleaseHandle()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line1(10, 10, 20, 20);
 	AnnotationLine item1(line1.p1(), properties);
-	item1.addPoint(line1.p2());
+	item1.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1 };
 	AnnotationMultiItemResizer itemResizer;
 	itemResizer.attachTo(items);
@@ -123,10 +123,10 @@ void AnnotationMultiItemResizerTest::TestHasItemsAttached_Should_ReturnFalse_Whe
 
 void AnnotationMultiItemResizerTest::TestHasItemsAttached_Should_ReturnTrue_When_ItemsInList()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line1(10, 10, 20, 20);
 	AnnotationLine item1(line1.p1(), properties);
-	item1.addPoint(line1.p2());
+	item1.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1 };
 	AnnotationMultiItemResizer itemResizer;
 	itemResizer.attachTo(items);
@@ -138,10 +138,10 @@ void AnnotationMultiItemResizerTest::TestHasItemsAttached_Should_ReturnTrue_When
 
 void AnnotationMultiItemResizerTest::TestUpdate_Should_HideResizers_When_ItemsOfResizersNotVisible()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line1(10, 10, 20, 20);
 	AnnotationLine item1(line1.p1(), properties);
-	item1.addPoint(line1.p2());
+	item1.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1 };
 	AnnotationMultiItemResizer itemResizer;
 	itemResizer.attachTo(items);

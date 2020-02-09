@@ -31,6 +31,7 @@ using kImageAnnotator::CursorHelper;
 using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::ResizeHandle;
+using kImageAnnotator::PropertiesPtr;
 
 class LineResizeHandlesTest : public QObject
 {

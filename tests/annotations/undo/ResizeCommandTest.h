@@ -29,6 +29,7 @@ using kImageAnnotator::ResizeCommand;
 using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::AbstractAnnotationItem;
+using kImageAnnotator::PropertiesPtr;
 
 class ResizeCommandTest : public QObject
 {

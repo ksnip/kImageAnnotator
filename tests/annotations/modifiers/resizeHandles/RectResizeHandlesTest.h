@@ -33,6 +33,7 @@ using kImageAnnotator::AbstractAnnotationItem;
 using kImageAnnotator::CursorHelper;
 using kImageAnnotator::ShapeHelper;
 using kImageAnnotator::ResizeHandle;
+using kImageAnnotator::PropertiesPtr;
 
 class RectResizeHandlesTest : public QObject
 {

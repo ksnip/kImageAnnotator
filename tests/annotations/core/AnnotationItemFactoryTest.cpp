@@ -35,9 +35,11 @@ void AnnotationItemFactoryTest::TestCreate_Should_CreateItemAtProvidedPosition()
 	ToolTypes tool = ToolTypes::Line;
 	auto config = new Config;
 	config->setToolWidth(0, tool);
-	AnnotationItemFactory itemFactory(config);
+	AnnotationSettings annotationSettings(config);
+	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
+	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
 
-	auto item = itemFactory.create(position, tool);
+	auto item = itemFactory.create(position);
 	item->addPoint(QPoint(20, 20), false);
 
 	QCOMPARE(item->position(), position);
@@ -49,7 +51,9 @@ void AnnotationItemFactoryTest::TestCreate_Should_CreateImageItemAtProvidedPosit
 	QPixmap image(200,200);
 	auto config = new Config;
 	config->setToolWidth(0, ToolTypes::Image);
-	AnnotationItemFactory itemFactory(config);
+	AnnotationSettings annotationSettings(config);
+	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
+	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
 
 	auto item = itemFactory.create(position, image);
 
@@ -59,18 +63,26 @@ void AnnotationItemFactoryTest::TestCreate_Should_CreateImageItemAtProvidedPosit
 
 void AnnotationItemFactoryTest::TestCreate_Should_ReturnNullPtrForUnknownType()
 {
-	AnnotationItemFactory itemFactory(new Config);
+	auto config = new Config;
+	config->setToolWidth(0, (ToolTypes) 13);
+	AnnotationSettings annotationSettings(config);
+	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
+	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
 
-	auto item = itemFactory.create(QPoint(0, 0), (ToolTypes) 13);
+	auto item = itemFactory.create(QPoint(0, 0));
 
 	QVERIFY(item == nullptr);
 }
 
 void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationLine_When_TypeIsLine()
 {
-	AnnotationItemFactory itemFactory(new Config);
+	auto config = new Config;
+	config->setToolWidth(0, ToolTypes::Line);
+	AnnotationSettings annotationSettings(config);
+	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
+	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
 
-	auto item = itemFactory.create(QPoint(0, 0), ToolTypes::Line);
+	auto item = itemFactory.create(QPoint(0, 0));
 
 	auto result = dynamic_cast<AnnotationLine *>(item);
 	QVERIFY(result != nullptr);
@@ -78,9 +90,13 @@ void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationLine_When_Type
 
 void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationArrow_When_TypeIsArrow()
 {
-	AnnotationItemFactory itemFactory(new Config);
+	auto config = new Config;
+	config->setToolWidth(0, ToolTypes::Arrow);
+	AnnotationSettings annotationSettings(config);
+	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
+	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
 
-	auto item = itemFactory.create(QPoint(0, 0), ToolTypes::Arrow);
+	auto item = itemFactory.create(QPoint(0, 0));
 
 	auto result = dynamic_cast<AnnotationArrow *>(item);
 	QVERIFY(result != nullptr);
@@ -88,9 +104,13 @@ void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationArrow_When_Typ
 
 void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationRect_When_TypeIsRect()
 {
-	AnnotationItemFactory itemFactory(new Config);
+	auto config = new Config;
+	config->setToolWidth(0, ToolTypes::Rect);
+	AnnotationSettings annotationSettings(config);
+	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
+	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
 
-	auto item = itemFactory.create(QPoint(0, 0), ToolTypes::Rect);
+	auto item = itemFactory.create(QPoint(0, 0));
 
 	auto result = dynamic_cast<AnnotationRect *>(item);
 	QVERIFY(result != nullptr);
@@ -98,9 +118,13 @@ void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationRect_When_Type
 
 void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationEllipse_When_TypeIsEllipse()
 {
-	AnnotationItemFactory itemFactory(new Config);
+	auto config = new Config;
+	config->setToolWidth(0, ToolTypes::Ellipse);
+	AnnotationSettings annotationSettings(config);
+	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
+	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
 
-	auto item = itemFactory.create(QPoint(0, 0), ToolTypes::Ellipse);
+	auto item = itemFactory.create(QPoint(0, 0));
 
 	auto result = dynamic_cast<AnnotationEllipse *>(item);
 	QVERIFY(result != nullptr);
@@ -108,9 +132,13 @@ void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationEllipse_When_T
 
 void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationNumber_When_TypeIsNumber()
 {
-	AnnotationItemFactory itemFactory(new Config);
+	auto config = new Config;
+	config->setToolWidth(0, ToolTypes::Number);
+	AnnotationSettings annotationSettings(config);
+	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
+	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
 
-	auto item = itemFactory.create(QPoint(0, 0), ToolTypes::Number);
+	auto item = itemFactory.create(QPoint(0, 0));
 
 	auto result = dynamic_cast<AnnotationNumber *>(item);
 	QVERIFY(result != nullptr);
@@ -122,8 +150,10 @@ void AnnotationItemFactoryTest::TestClone_Should_ReturnNewItemOfSameType()
 	ToolTypes tool = ToolTypes::Line;
 	auto config = new Config;
 	config->setToolWidth(0, tool);
-	AnnotationItemFactory itemFactory(config);
-	auto item = itemFactory.create(position, tool);
+	AnnotationSettings annotationSettings(config);
+	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
+	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
+	auto item = itemFactory.create(position);
 	item->addPoint(QPoint(20, 20), false);
 
 	auto clonedItem = itemFactory.clone(item);
@@ -138,8 +168,10 @@ void AnnotationItemFactoryTest::TestClone_Should_IncrementZValueForClonedItem()
 	ToolTypes tool = ToolTypes::Line;
 	auto config = new Config;
 	config->setToolWidth(0, tool);
-	AnnotationItemFactory itemFactory(config);
-	auto item = itemFactory.create(position, tool);
+	AnnotationSettings annotationSettings(config);
+	AnnotationPropertiesFactory propertiesFactory(config, &annotationSettings);
+	AnnotationItemFactory itemFactory(&propertiesFactory, &annotationSettings);
+	auto item = itemFactory.create(position);
 	item->addPoint(QPoint(20, 20), false);
 
 	auto clonedItem = itemFactory.clone(item);

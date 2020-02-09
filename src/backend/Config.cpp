@@ -266,7 +266,6 @@ void Config::initGeneralSettings()
 	mSmoothPathEnabled = true;
 	mItemShadowEnabled = true;
 	mSmoothFactor = 7;
-	mFirstBadgeNumber = 1;
 }
 
 QColor Config::loadToolColor(ToolTypes toolType)

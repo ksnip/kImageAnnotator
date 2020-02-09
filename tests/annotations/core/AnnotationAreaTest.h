@@ -24,11 +24,14 @@
 
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/annotations/items/AnnotationLine.h"
+#include "src/gui/annotator/AnnotationSettings.h"
 
 using kImageAnnotator::AnnotationArea;
 using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::Config;
+using kImageAnnotator::AnnotationSettings;
+using kImageAnnotator::PropertiesPtr;
 
 class AnnotationAreaTest : public QObject
 {

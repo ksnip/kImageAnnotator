@@ -21,7 +21,7 @@
 
 void RectResizeHandlesTest::TestInitHandles_Should_PositionEightHandles_When_RectItemProvided()
 {
-	auto properties = new AnnotationProperties(Qt::red, 4);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 4));
 	QRectF rect(QPointF(10, 15), QPointF(20, 25));
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
@@ -41,7 +41,7 @@ void RectResizeHandlesTest::TestInitHandles_Should_PositionEightHandles_When_Rec
 
 void RectResizeHandlesTest::TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_HandleIsAtProvidedPosition()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QRectF rect(QPointF(10, 15), QPointF(80, 95));
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
@@ -69,7 +69,7 @@ void RectResizeHandlesTest::TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_
 
 void RectResizeHandlesTest::TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_HandleIsNotAtProvidedPosition()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QRectF rect(QPointF(10, 15), QPointF(20, 25));
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
@@ -83,7 +83,7 @@ void RectResizeHandlesTest::TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_Ha
 
 void RectResizeHandlesTest::TestHandle_Should_ReturnRectAtIndex_When_HandleAtIndexExists()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QRectF rect(QPointF(10, 15), QPointF(20, 25));
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
@@ -97,7 +97,7 @@ void RectResizeHandlesTest::TestHandle_Should_ReturnRectAtIndex_When_HandleAtInd
 
 void RectResizeHandlesTest::TestHandle_Should_NotReturnRect_When_HandleAtIndexDoesntExists()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QRectF rect(QPointF(10, 15), QPointF(20, 25));
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
@@ -110,7 +110,7 @@ void RectResizeHandlesTest::TestHandle_Should_NotReturnRect_When_HandleAtIndexDo
 
 void RectResizeHandlesTest::TestGetCursorForHandle_Should_NotReturnDefaultCursor_When_ProvidedPositionOnHandle()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QRectF rect(QPointF(10, 15), QPointF(20, 25));
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
@@ -123,7 +123,7 @@ void RectResizeHandlesTest::TestGetCursorForHandle_Should_NotReturnDefaultCursor
 
 void RectResizeHandlesTest::TestGetCursorForHandle_Should_ReturnDefaultCursor_When_ProvidedPositionNotOnHandle()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QRectF rect(QPointF(10, 15), QPointF(20, 25));
 	QPointF otherPos(90, 90);
 	AnnotationRect rectItem(rect.topLeft(), properties);
@@ -137,7 +137,7 @@ void RectResizeHandlesTest::TestGetCursorForHandle_Should_ReturnDefaultCursor_Wh
 
 void RectResizeHandlesTest::TestUpdate_Should_MoveHandlesToNewPosition()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QRectF rect(QPointF(10, 15), QPointF(80, 95));
 	QRectF newRect(QPointF(60, 75), QPointF(120, 125));
 	AnnotationRect rectItem(rect.topLeft(), properties);

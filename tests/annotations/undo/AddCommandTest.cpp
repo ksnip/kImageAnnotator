@@ -21,8 +21,9 @@
 
 void AddCommandTest::TestRedo_Should_ApplyOperation()
 {
-	auto settingsProvider = MockSettingsProvider();
-	AnnotationArea annotationArea(new Config, &settingsProvider);
+	auto config = new Config;
+	auto settingsProvider = new AnnotationSettings(config);
+	AnnotationArea annotationArea(config, settingsProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	auto item = new AnnotationLine(line.p1(), properties);
@@ -37,8 +38,9 @@ void AddCommandTest::TestRedo_Should_ApplyOperation()
 
 void AddCommandTest::TestUndo_Should_UndoOperation()
 {
-	auto settingsProvider = MockSettingsProvider();
-	AnnotationArea annotationArea(new Config, &settingsProvider);
+	auto config = new Config;
+	auto settingsProvider = new AnnotationSettings(config);
+	AnnotationArea annotationArea(config, settingsProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	auto item = new AnnotationLine(line.p1(), properties);

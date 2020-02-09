@@ -23,12 +23,15 @@
 #include <QtTest>
 
 #include "src/annotations/undo/ScaleCommand.h"
+#include "src/gui/annotator/AnnotationSettings.h"
 
 using kImageAnnotator::ScaleCommand;
 using kImageAnnotator::AnnotationArea;
 using kImageAnnotator::Config;
 using kImageAnnotator::AnnotationRect;
 using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::AnnotationSettings;
+using kImageAnnotator::PropertiesPtr;
 
 class ScaleCommandTest : public QObject
 {

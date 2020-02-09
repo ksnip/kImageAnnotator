@@ -29,6 +29,7 @@ using kImageAnnotator::ArrangeCommand;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AbstractAnnotationItem;
+using kImageAnnotator::PropertiesPtr;
 
 class ArrangeCommandTest : public QObject
 {

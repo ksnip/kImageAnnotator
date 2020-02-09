@@ -38,7 +38,6 @@ private slots:
 	void initTestCase();
 	void cleanupTestCase();
 
-	void TestSetSelectedTool_Should_EmitSignal_When_ToolChanged();
 	void TestSetSelectedTool_Should_NotSaveSelection_When_SaveToolSelectionDisabled();
 	void TestSetSelectedTool_Should_SaveSelection_When_SaveToolSelectionEnabled();
 };

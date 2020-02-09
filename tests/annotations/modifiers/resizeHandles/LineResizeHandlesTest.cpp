@@ -21,11 +21,11 @@
 
 void LineResizeHandlesTest::TestInitHandles_Should_PositionTwoHandles()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
-	lineItem.addPoint(p2);
+	lineItem.addPoint(p2, false);
 
 	LineResizeHandles lineResizeHandles(&lineItem);
 
@@ -36,11 +36,11 @@ void LineResizeHandlesTest::TestInitHandles_Should_PositionTwoHandles()
 
 void LineResizeHandlesTest::TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_HandleIsAtProvidedPosition()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
-	lineItem.addPoint(p2);
+	lineItem.addPoint(p2, false);
 	LineResizeHandles lineResizeHandles(&lineItem);
 
 	auto resultP1 = lineResizeHandles.indexOfHandleAt(p1 + QPointF(2, 2));
@@ -53,11 +53,11 @@ void LineResizeHandlesTest::TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_
 
 void LineResizeHandlesTest::TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_HandleIsNotAtProvidedPosition()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
-	lineItem.addPoint(p2);
+	lineItem.addPoint(p2, false);
 	LineResizeHandles lineResizeHandles(&lineItem);
 
 	auto resultP1 = lineResizeHandles.indexOfHandleAt(QPointF(50, 50));
@@ -68,11 +68,11 @@ void LineResizeHandlesTest::TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_Ha
 
 void LineResizeHandlesTest::TestHandle_Should_ReturnRectAtIndex_When_HandleAtIndexExists()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
-	lineItem.addPoint(p2);
+	lineItem.addPoint(p2, false);
 	LineResizeHandles lineResizeHandles(&lineItem);
 
 	auto result = lineResizeHandles.handle(1);
@@ -83,11 +83,11 @@ void LineResizeHandlesTest::TestHandle_Should_ReturnRectAtIndex_When_HandleAtInd
 
 void LineResizeHandlesTest::TestHandle_Should_NotReturnRect_When_HandleAtIndexDoesntExists()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
-	lineItem.addPoint(p2);
+	lineItem.addPoint(p2, false);
 	LineResizeHandles lineResizeHandles(&lineItem);
 
 	auto result = lineResizeHandles.handle(3);
@@ -97,11 +97,11 @@ void LineResizeHandlesTest::TestHandle_Should_NotReturnRect_When_HandleAtIndexDo
 
 void LineResizeHandlesTest::TestGetCursorForHandle_Should_NotReturnDefaultCursor_When_ProvidedPositionOnHandle()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
-	lineItem.addPoint(p2);
+	lineItem.addPoint(p2, false);
 	LineResizeHandles lineResizeHandles(&lineItem);
 
 	auto result = lineResizeHandles.cursorForPos(p1);
@@ -111,12 +111,12 @@ void LineResizeHandlesTest::TestGetCursorForHandle_Should_NotReturnDefaultCursor
 
 void LineResizeHandlesTest::TestGetCursorForHandle_Should_ReturnDefaultCursor_When_ProvidedPositionNotOnHandle()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	QPointF p3(50, 50);
 	AnnotationLine lineItem(p1, properties);
-	lineItem.addPoint(p2);
+	lineItem.addPoint(p2, false);
 	LineResizeHandles lineResizeHandles(&lineItem);
 
 	auto result = lineResizeHandles.cursorForPos(p3);
@@ -126,13 +126,13 @@ void LineResizeHandlesTest::TestGetCursorForHandle_Should_ReturnDefaultCursor_Wh
 
 void LineResizeHandlesTest::TestUpdate_Should_SetMoveHandlesToNewPositions()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	QPointF p3(50, 50);
 	QPointF p4(60, 60);
 	AnnotationLine lineItem(p1, properties);
-	lineItem.addPoint(p2);
+	lineItem.addPoint(p2, false);
 	LineResizeHandles lineResizeHandles(&lineItem);
 	QCOMPARE(lineResizeHandles.handles()[0].center(), p1);
 	QCOMPARE(lineResizeHandles.handles()[1].center(), p2);

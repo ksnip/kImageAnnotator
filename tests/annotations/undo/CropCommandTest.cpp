@@ -22,7 +22,9 @@
 
 void CropCommandTest::TestRedo_Should_CropImageAndScene()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -36,11 +38,13 @@ void CropCommandTest::TestRedo_Should_CropImageAndScene()
 
 void CropCommandTest::TestRedo_Should_MoveItemToNewPosition()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QRectF rect(150, 150, 300, 300);
 	auto item = new AnnotationRect(rect.topLeft(), properties);
 	item->addPoint(rect.bottomRight());
@@ -55,7 +59,9 @@ void CropCommandTest::TestRedo_Should_MoveItemToNewPosition()
 
 void CropCommandTest::TestUndo_Should_RestoreOriginalImageAndSceneSize()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -70,11 +76,13 @@ void CropCommandTest::TestUndo_Should_RestoreOriginalImageAndSceneSize()
 
 void CropCommandTest::TestUndo_Should_MoveItemBackToPreviousPosition()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QRectF rect(150, 150, 300, 300);
 	auto item = new AnnotationRect(rect.topLeft(), properties);
 	item->addPoint(rect.bottomRight());

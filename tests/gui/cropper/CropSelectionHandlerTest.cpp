@@ -22,7 +22,9 @@
 
 void CropSelectionHandlerTest::TestSetWidth_Should_EmitSelectionChangedSignal()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	CropSelectionHandler selectionHandler(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
 
@@ -33,7 +35,9 @@ void CropSelectionHandlerTest::TestSetWidth_Should_EmitSelectionChangedSignal()
 
 void CropSelectionHandlerTest::TestSetHeight_Should_EmitSelectionChangedSignal()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	CropSelectionHandler selectionHandler(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
 
@@ -44,7 +48,9 @@ void CropSelectionHandlerTest::TestSetHeight_Should_EmitSelectionChangedSignal()
 
 void CropSelectionHandlerTest::TestSetPositionX_Should_EmitSelectionChangedSignal()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	CropSelectionHandler selectionHandler(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
 
@@ -55,7 +61,9 @@ void CropSelectionHandlerTest::TestSetPositionX_Should_EmitSelectionChangedSigna
 
 void CropSelectionHandlerTest::TestSetPositionY_Should_EmitSelectionChangedSignal()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	CropSelectionHandler selectionHandler(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
 
@@ -66,7 +74,9 @@ void CropSelectionHandlerTest::TestSetPositionY_Should_EmitSelectionChangedSigna
 
 void CropSelectionHandlerTest::TestResetSelection_Should_SetSelectionToSceneRect()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	annotationArea.setSceneRect(sceneRect);
 	CropSelectionHandler selectionHandler(&annotationArea);
@@ -80,7 +90,9 @@ void CropSelectionHandlerTest::TestResetSelection_Should_SetSelectionToSceneRect
 
 void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnSelection()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(150, 150);
 	annotationArea.setSceneRect(sceneRect);
@@ -94,7 +106,9 @@ void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnSel
 
 void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnHandle()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(2, 2);
 	annotationArea.setSceneRect(sceneRect);
@@ -108,7 +122,9 @@ void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnHan
 
 void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnFalse_WhenClickedOutsideSelectionAndHandle()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(400, 400);
 	annotationArea.setSceneRect(sceneRect);
@@ -123,7 +139,9 @@ void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnFalse_WhenClickedOuts
 
 void CropSelectionHandlerTest::TestSelectionHandles_Should_ReturnEightItems()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	CropSelectionHandler selectionHandler(&annotationArea);
 
 	auto handles = selectionHandler.selectionHandles();

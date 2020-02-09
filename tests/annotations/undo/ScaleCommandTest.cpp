@@ -26,7 +26,9 @@ void ScaleCommandTest::TestRedo_Should_ScaleImageToNewSize()
 	auto newSize = QSize(250, 250);
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	ScaleCommand scaleCommand(&image, newSize, &annotationArea);
 
 	scaleCommand.redo();
@@ -40,7 +42,9 @@ void ScaleCommandTest::TestUndo_Should_ScaleImageBackToOldSize()
 	auto newSize = QSize(250, 250);
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	ScaleCommand scaleCommand(&image, newSize, &annotationArea);
 	scaleCommand.redo();
 	QCOMPARE(image.boundingRect().size().toSize(), newSize);
@@ -56,8 +60,10 @@ void ScaleCommandTest::TestRedo_Should_ScaleItemsBySameFactorAsImage()
 	auto newSize = QSize(250, 250);
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
-	AnnotationArea annotationArea(new Config);
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto rectItem = new AnnotationRect(QPointF(0, 0), properties);
 	rectItem->addPoint(QPointF(50, 50));
 	annotationArea.addAnnotationItem(rectItem);
@@ -74,8 +80,10 @@ void ScaleCommandTest::TestUndo_Should_ScaleItemsBackToOriginalSize()
 	auto newSize = QSize(250, 250);
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
-	AnnotationArea annotationArea(new Config);
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto rectItem = new AnnotationRect(QPointF(0, 0), properties);
 	rectItem->addPoint(QPointF(50, 50));
 	annotationArea.addAnnotationItem(rectItem);

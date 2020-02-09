@@ -30,6 +30,7 @@ using kImageAnnotator::AnnotationItemModifier;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AbstractAnnotationItem;
+using kImageAnnotator::PropertiesPtr;
 
 class AnnotationItemModifierTest : public QObject
 {

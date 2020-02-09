@@ -29,6 +29,7 @@ using kImageAnnotator::ItemHelper;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AbstractAnnotationItem;
+using kImageAnnotator::PropertiesPtr;
 
 class ItemHelperTest : public QObject
 {

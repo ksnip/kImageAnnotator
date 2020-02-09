@@ -23,7 +23,9 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
 {
 	QPixmap pixmap(QSize(400, 400));
 	pixmap.fill(QColor(QStringLiteral("Green")));
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	annotationArea.loadImage(pixmap);
 
 	auto resultImage = annotationArea.image();
@@ -34,7 +36,9 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
 
 void AnnotationAreaTest::TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet()
 {
-	AnnotationArea annotationArea(new Config);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 
 	auto resultImage = annotationArea.image();
 
@@ -43,12 +47,14 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportEmptyImage_When_NoImageS
 
 void AnnotationAreaTest::TestAddAnnotationItem_Should_AddAnnotationItemToScene()
 {
-	auto properties = new AnnotationProperties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
 	auto lineItem = new AnnotationLine(p1, properties);
-	lineItem->addPoint(p2);
-	AnnotationArea annotationArea(new Config);
+	lineItem->addPoint(p2, false);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 
 	annotationArea.addAnnotationItem(lineItem);
 
@@ -57,12 +63,14 @@ void AnnotationAreaTest::TestAddAnnotationItem_Should_AddAnnotationItemToScene()
 
 void AnnotationAreaTest::TestRemoveAnnotationItem_Should_RemoveAnnotationItemFromScene()
 {
-	AnnotationProperties properties(Qt::red, 2);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
 	QPointF p2(20, 20);
-	auto lineItem = new AnnotationLine(p1, &properties);
-	lineItem->addPoint(p2);
-	AnnotationArea annotationArea(new Config);
+	auto lineItem = new AnnotationLine(p1, properties);
+	lineItem->addPoint(p2, false);
+	auto config = new Config;
+	AnnotationSettings annotationSettings(config);
+	AnnotationArea annotationArea(config, &annotationSettings);
 	annotationArea.addAnnotationItem(lineItem);
 	QCOMPARE(annotationArea.items().contains(lineItem), true);
 

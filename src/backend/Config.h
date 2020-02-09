@@ -90,7 +90,6 @@ private:
 	bool mSmoothPathEnabled;
 	bool mSaveToolSelection;
 	int mSmoothFactor;
-	int mFirstBadgeNumber;
 	int mBlurRadius;
 
 	void initToolSettings();

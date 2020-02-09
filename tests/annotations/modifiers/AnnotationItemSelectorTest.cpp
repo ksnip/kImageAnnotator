@@ -21,11 +21,11 @@
 
 void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_SelectItem_When_ItemUnderProvidedPosition()
 {
-	auto properties = new AnnotationProperties(Qt::red, 3);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	AnnotationLine line(p1, properties);
-	line.addPoint(p2);
+	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
 	AnnotationItemSelector selector;
@@ -39,11 +39,11 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_SelectItem_Whe
 
 void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_NotSelectItem_When_ItemNotUnderProvidedPosition()
 {
-	auto properties = new AnnotationProperties(Qt::red, 3);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	AnnotationLine line(p1, properties);
-	line.addPoint(p2);
+	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
 	AnnotationItemSelector selector;
@@ -57,16 +57,16 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_NotSelectItem_
 
 void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_UnselectAllItems_When_ProvidedPositionNotOverAnyItem()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 3);
-	auto properties2 = new AnnotationProperties(Qt::red, 3);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	QPointF p3(15, 15);
 	QPointF p4(20, 20);
 	AnnotationLine line1(p1, properties1);
 	AnnotationLine line2(p3, properties2);
-	line1.addPoint(p2);
-	line2.addPoint(p4);
+	line1.addPoint(p2, false);
+	line2.addPoint(p4, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
@@ -84,16 +84,16 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_UnselectAllIte
 
 void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_NotUnselectAnyItem_When_ProvidedPositionIsOverSelectedItem()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 3);
-	auto properties2 = new AnnotationProperties(Qt::red, 3);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	QPointF p3(15, 15);
 	QPointF p4(20, 20);
 	AnnotationLine line1(p1, properties1);
 	AnnotationLine line2(p3, properties2);
-	line1.addPoint(p2);
-	line2.addPoint(p4);
+	line1.addPoint(p2, false);
+	line2.addPoint(p4, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
@@ -111,16 +111,16 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_NotUnselectAny
 
 void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_UnselectItemsNotUnderPosition_When_ProvidedPositionIsOverNotSelectedItem()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 3);
-	auto properties2 = new AnnotationProperties(Qt::red, 3);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
 	QPointF p1(10, 10);
 	QPointF p2(12, 12);
 	QPointF p3(15, 15);
 	QPointF p4(20, 20);
 	AnnotationLine line1(p1, properties1);
 	AnnotationLine line2(p3, properties2);
-	line1.addPoint(p2);
-	line2.addPoint(p4);
+	line1.addPoint(p2, false);
+	line2.addPoint(p4, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
@@ -142,11 +142,11 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_UnselectItemsN
 
 void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_NotShowRect_When_InitialPositionNotOnItem()
 {
-	auto properties = new AnnotationProperties(Qt::red, 3);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	AnnotationLine line(p1, properties);
-	line.addPoint(p2);
+	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
 	AnnotationItemSelector selector;
@@ -159,11 +159,11 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_NotShowRect_Wh
 
 void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_ShowRect_When_InitialPositionOnItem()
 {
-	auto properties = new AnnotationProperties(Qt::red, 3);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	AnnotationLine line(p1, properties);
-	line.addPoint(p2);
+	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
 	AnnotationItemSelector selector;
@@ -176,11 +176,11 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_ShowRect_When_
 
 void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_UnselectItem_When_WhenCtrlPressedAndItemUnderProvidedPositionWasSelected()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	AnnotationLine line(p1, properties);
-	line.addPoint(p2);
+	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
 	AnnotationItemSelector selector;
@@ -195,11 +195,11 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_UnselectItem_W
 
 void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_SelectItem_When_WhenCtrlPressedAndItemUnderProvidedPositionWasNotSelected()
 {
-	auto properties = new AnnotationProperties(Qt::red, 1);
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	AnnotationLine line(p1, properties);
-	line.addPoint(p2);
+	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
 	AnnotationItemSelector selector;
@@ -214,16 +214,16 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_SelectItem_Whe
 
 void AnnotationItemSelectorTest::TestFinishSelectionRectWhenShown_Should_SelectItems_When_ItemsWithinSelectionRect()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 3);
-	auto properties2 = new AnnotationProperties(Qt::red, 3);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	QPointF p3(15, 15);
 	QPointF p4(20, 20);
 	AnnotationLine line1(p1, properties1);
 	AnnotationLine line2(p3, properties2);
-	line1.addPoint(p2);
-	line2.addPoint(p4);
+	line1.addPoint(p2, false);
+	line2.addPoint(p4, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
@@ -241,16 +241,16 @@ void AnnotationItemSelectorTest::TestFinishSelectionRectWhenShown_Should_SelectI
 
 void AnnotationItemSelectorTest::TestFinishSelectionRectWhenShown_Should_SelectOnlyItemWithinSelectionRect()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 3);
-	auto properties2 = new AnnotationProperties(Qt::red, 3);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	QPointF p3(25, 25);
 	QPointF p4(30, 30);
 	AnnotationLine line1(p1, properties1);
 	AnnotationLine line2(p3, properties2);
-	line1.addPoint(p2);
-	line2.addPoint(p4);
+	line1.addPoint(p2, false);
+	line2.addPoint(p4, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
@@ -268,16 +268,16 @@ void AnnotationItemSelectorTest::TestFinishSelectionRectWhenShown_Should_SelectO
 
 void AnnotationItemSelectorTest::TestClearSelection_Should_UnselectAllSelectedItems()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 3);
-	auto properties2 = new AnnotationProperties(Qt::red, 3);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	QPointF p3(15, 15);
 	QPointF p4(20, 20);
 	AnnotationLine line1(p1, properties1);
 	AnnotationLine line2(p3, properties2);
-	line1.addPoint(p2);
-	line2.addPoint(p4);
+	line1.addPoint(p2, false);
+	line2.addPoint(p4, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
@@ -297,16 +297,16 @@ void AnnotationItemSelectorTest::TestClearSelection_Should_UnselectAllSelectedIt
 
 void AnnotationItemSelectorTest::TestBoundRect_Should_ReturnRectCoveringSelectedItems_When_ItemsSelected()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 3);
-	auto properties2 = new AnnotationProperties(Qt::red, 3);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	QPointF p3(25, 25);
 	QPointF p4(30, 30);
 	AnnotationLine line1(p1, properties1);
 	AnnotationLine line2(p3, properties2);
-	line1.addPoint(p2);
-	line2.addPoint(p4);
+	line1.addPoint(p2, false);
+	line2.addPoint(p4, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
@@ -326,8 +326,8 @@ void AnnotationItemSelectorTest::TestBoundRect_Should_ReturnRectCoveringSelected
 
 void AnnotationItemSelectorTest::TestRefresh_Should_UpdateBoundingRect_When_CalledAfterItemsHaveBeenMoved()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 3);
-	auto properties2 = new AnnotationProperties(Qt::red, 3);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	QPointF p3(25, 25);
@@ -335,8 +335,8 @@ void AnnotationItemSelectorTest::TestRefresh_Should_UpdateBoundingRect_When_Call
 	QPointF p5(50, 50);
 	AnnotationLine line1(p1, properties1);
 	AnnotationLine line2(p3, properties2);
-	line1.addPoint(p2);
-	line2.addPoint(p4);
+	line1.addPoint(p2, false);
+	line2.addPoint(p4, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
@@ -359,16 +359,16 @@ void AnnotationItemSelectorTest::TestRefresh_Should_UpdateBoundingRect_When_Call
 
 void AnnotationItemSelectorTest::TestUpdate_Should_UnselectItemsThatAreNotVisible()
 {
-	auto properties1 = new AnnotationProperties(Qt::red, 3);
-	auto properties2 = new AnnotationProperties(Qt::red, 3);
+	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
+	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 3));
 	QPointF p1(10, 10);
 	QPointF p2(10, 20);
 	QPointF p3(25, 25);
 	QPointF p4(30, 30);
 	AnnotationLine line1(p1, properties1);
 	AnnotationLine line2(p3, properties2);
-	line1.addPoint(p2);
-	line2.addPoint(p4);
+	line1.addPoint(p2, false);
+	line2.addPoint(p4, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);

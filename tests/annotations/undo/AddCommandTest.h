@@ -25,7 +25,7 @@
 #include "src/annotations/undo/AddCommand.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/annotations/items/AnnotationLine.h"
-#include "tests/mocks/MockSettingsProvider.h"
+#include "src/gui/annotator/AnnotationSettings.h"
 
 using kImageAnnotator::AddCommand;
 using kImageAnnotator::AnnotationArea;
@@ -33,6 +33,7 @@ using kImageAnnotator::AnnotationLine;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::Config;
 using kImageAnnotator::PropertiesPtr;
+using kImageAnnotator::AnnotationSettings;
 
 class AddCommandTest : public QObject
 {
