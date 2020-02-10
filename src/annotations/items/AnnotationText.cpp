@@ -226,6 +226,7 @@ void AnnotationText::enableEditing()
     mTextCursor.start();
     mIgnoreShortcutsFilter.apply();
     mIsInEditMode = true;
+    prepareGeometryChange();
 }
 
 void AnnotationText::disableEditing()
@@ -233,6 +234,7 @@ void AnnotationText::disableEditing()
     mTextCursor.stop();
     mIgnoreShortcutsFilter.remove();
     mIsInEditMode = false;
+	prepareGeometryChange();
 }
 
 TextPropertiesPtr AnnotationText::textProperties() const

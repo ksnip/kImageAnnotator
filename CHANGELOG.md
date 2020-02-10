@@ -1,5 +1,8 @@
 # Change log
 
+## Release 0.2.1
+* Fixed: Edit border around text box doesn't disappear when done with editing. ([#71](https://github.com/ksnip/kImageAnnotator/issues/71))
+
 ## Release 0.2.0
 * New: Add image item and interface for adding them externally. ([#45](https://github.com/ksnip/kImageAnnotator/issues/45))
 * New: Edit text box content. ([#51](https://github.com/ksnip/kImageAnnotator/issues/51))
