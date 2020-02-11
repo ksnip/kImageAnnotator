@@ -68,9 +68,10 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 	// Paint border
 	AbstractAnnotationRect::paint(painter, style, widget);
 
-	auto textArea = mRect->normalized();
-	if (mIsInEditMode) {
+	auto textArea = mRect->toRect();
+	if (mIsInEditMode && textArea.isValid()) {
 		setupEditModeOutlinePen();
+		painter->setBrush(Qt::NoBrush);
 		painter->setPen(mEditModeOutlinePen);
 		painter->drawRect(textArea);
 	}

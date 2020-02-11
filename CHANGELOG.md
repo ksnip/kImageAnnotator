@@ -2,6 +2,8 @@
 
 ## Release 0.2.1
 * Fixed: Edit border around text box doesn't disappear when done with editing. ([#71](https://github.com/ksnip/kImageAnnotator/issues/71))
+* Fixed: Edit border not shown under Windows when NoFillNoBorder selected for Text Tool. ([#72](https://github.com/ksnip/kImageAnnotator/issues/72))
+* Fixed: When adding text with background under Windows a filled rect is show in top left corner. ([#73](https://github.com/ksnip/kImageAnnotator/issues/73))
 
 ## Release 0.2.0
 * New: Add image item and interface for adding them externally. ([#45](https://github.com/ksnip/kImageAnnotator/issues/45))
