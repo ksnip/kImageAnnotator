@@ -25,6 +25,7 @@ AbstractAnnotationRect::AbstractAnnotationRect(const QPointF &startPosition, con
 {
 	mRect = new QRectF();
 	mRect->setTopLeft(startPosition);
+	mRect->setBottomRight(startPosition);
 }
 
 AbstractAnnotationRect::AbstractAnnotationRect(const AbstractAnnotationRect &other) : AbstractAnnotationItem(other)

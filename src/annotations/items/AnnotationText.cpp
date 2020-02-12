@@ -137,7 +137,7 @@ QPainterPath AnnotationText::shape() const
 void AnnotationText::setupEditModeOutlinePen()
 {
 	mEditModeOutlinePen.setColor(Qt::white);
-	mEditModeOutlinePen.setWidthF(0.5);
+	mEditModeOutlinePen.setWidthF(1);
 	mEditModeOutlinePen.setStyle(Qt::DotLine);
 }
 
@@ -187,13 +187,16 @@ void AnnotationText::escape()
 void AnnotationText::adjustRect()
 {
 	prepareGeometryChange();
-	auto newRect = getTextRect();
-	if (newRect.width() > mRect->width()) {
-		mRect->setWidth(newRect.width());
+	auto newRect = getTextRect().normalized();
+	auto currentRect = mRect->normalized();
+	if (newRect.width() > currentRect.width()) {
+		currentRect.setWidth(newRect.width());
 	}
-	if (newRect.height() > mRect->height()) {
-		mRect->setHeight(newRect.height());
+	if (newRect.height() > currentRect.height()) {
+		currentRect.setHeight(newRect.height());
 	}
+	mRect->setRect(currentRect.x(), currentRect.y(), currentRect.width(), currentRect.height());
+
 	updateShape();
 }
 
@@ -204,10 +207,7 @@ void AnnotationText::connectSlots()
 	connect(&mKeyInputHelper, &KeyInputHelper::remove, this, &AnnotationText::removeText);
 	connect(&mKeyInputHelper, &KeyInputHelper::paste, this, &AnnotationText::pasteText);
 	connect(&mKeyInputHelper, &KeyInputHelper::escape, this, &AnnotationText::escape);
-	connect(&mTextCursor, &TextCursor::tick, [this]()
-	{
-		prepareGeometryChange();
-	});
+	connect(&mTextCursor, &TextCursor::tick, [this]() { prepareGeometryChange(); });
 }
 
 QRect AnnotationText::getTextRect() const
