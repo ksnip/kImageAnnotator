@@ -5,6 +5,7 @@
 * Fixed: Edit border not shown under Windows when NoFillNoBorder selected for Text Tool. ([#72](https://github.com/ksnip/kImageAnnotator/issues/72))
 * Fixed: When adding text with background under Windows a filled rect is show in top left corner. ([#73](https://github.com/ksnip/kImageAnnotator/issues/73))
 * Fixed: Drawing text tool rect from right to left and bottom top create no rect. ([#76](https://github.com/ksnip/kImageAnnotator/issues/76))
+* Fixed: Text Tool FillType selection not saved. ([#75](https://github.com/ksnip/kImageAnnotator/issues/75))
 
 ## Release 0.2.0
 * New: Add image item and interface for adding them externally. ([#45](https://github.com/ksnip/kImageAnnotator/issues/45))

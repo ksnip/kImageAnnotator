@@ -52,6 +52,7 @@ void AnnotationSettings::editItem(AbstractAnnotationItem *item)
 void AnnotationSettings::loadFromItem(const AbstractAnnotationItem *item)
 {
 	auto properties = item->properties();
+	mWidgetConfigurator.setCurrentTool(item->toolType());
 	mColorPicker->setColor(properties->color());
 	mTextColorPicker->setColor(properties->textColor());
 	mWidthPicker->setNumber(properties->width());
@@ -64,14 +65,13 @@ void AnnotationSettings::loadFromItem(const AbstractAnnotationItem *item)
 	if(blurProperties != nullptr) {
 		mBlurRadiusPicker->setNumber(blurProperties->radius());
 	}
-	mWidgetConfigurator.setCurrentTool(item->toolType());
 }
 
 void AnnotationSettings::activateSelectTool()
 {
 	mEditExistingItem = false;
-	mToolPicker->setTool(ToolTypes::Select);
 	mWidgetConfigurator.setCurrentTool(ToolTypes::Select);
+	mToolPicker->setTool(ToolTypes::Select);
 }
 
 ToolTypes AnnotationSettings::toolType() const
@@ -134,13 +134,13 @@ void AnnotationSettings::loadToolTypeFromConfig()
 
 void AnnotationSettings::loadFromConfig(ToolTypes tool)
 {
+	mWidgetConfigurator.setCurrentTool(tool);
 	mColorPicker->setColor(mConfig->toolColor(tool));
 	mTextColorPicker->setColor(mConfig->toolTextColor(tool));
 	mWidthPicker->setNumber(mConfig->toolWidth(tool));
 	mFillTypePicker->setFillType(mConfig->toolFillType(tool));
 	mFontSizePicker->setNumber(mConfig->toolFontSize(tool));
 	mBlurRadiusPicker->setNumber(mConfig->blurRadius());
-	mWidgetConfigurator.setCurrentTool(tool);
 }
 
 void AnnotationSettings::toolTypeChanged(ToolTypes toolType)
