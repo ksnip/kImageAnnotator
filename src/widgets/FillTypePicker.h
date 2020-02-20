@@ -28,6 +28,7 @@
 #include "src/common/constants/Constants.h"
 #include "src/common/enum/FillTypes.h"
 #include "src/common/helper/IconLoader.h"
+#include "src/common/helper/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 

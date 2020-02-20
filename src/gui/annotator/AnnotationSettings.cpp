@@ -40,6 +40,7 @@ AnnotationSettings::~AnnotationSettings()
 	delete mFillTypePicker;
 	delete mFirstNumberPicker;
 	delete mBlurRadiusPicker;
+	delete mToolLayout;
 }
 
 void AnnotationSettings::editItem(AbstractAnnotationItem *item)
@@ -82,6 +83,7 @@ ToolTypes AnnotationSettings::toolType() const
 void AnnotationSettings::initGui()
 {
 	mMainLayout = new QVBoxLayout();
+	mToolLayout = new QHBoxLayout();
 	mToolPicker = new ToolPicker();
 	mColorPicker = new ColorPicker(IconLoader::load(QStringLiteral("color.svg")), tr("Color"));
 	mWidthPicker = new NumberPicker(IconLoader::load(QStringLiteral("width.svg")), tr("Width"));
@@ -94,7 +96,8 @@ void AnnotationSettings::initGui()
 	mBlurRadiusPicker = new NumberPicker(IconLoader::load(QStringLiteral("blur.svg")), tr("Blur Radius"));
 	mBlurRadiusPicker->setRange(1, 20);
 
-	mMainLayout->addWidget(mToolPicker);
+	mToolLayout->addWidget(mToolPicker);
+	mMainLayout->addLayout(mToolLayout);
 	mMainLayout->addSpacing(20);
 	mMainLayout->addWidget(mColorPicker);
 	mMainLayout->addWidget(mWidthPicker);

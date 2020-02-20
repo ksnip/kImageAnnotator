@@ -25,7 +25,7 @@ CustomToolButton::CustomToolButton(QWidget *parent) : QToolButton(parent)
 {
 	setCheckable(true);
 	setAutoRaise(true);
-	setIconSize(QSize(24, 24));
+	setIconSize(ScaledSizeProvider::getScaledSize(QSize(24, 24)));
 	setFocusPolicy(Qt::NoFocus);
 	setPopupMode(QToolButton::DelayedPopup);
 	connect(this, &CustomToolButton::triggered, this, &CustomToolButton::setActiveAction);

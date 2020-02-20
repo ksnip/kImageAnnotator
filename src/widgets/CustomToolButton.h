@@ -23,6 +23,8 @@
 #include <QToolButton>
 #include <QAction>
 
+#include "src/common/helper/ScaledSizeProvider.h"
+
 namespace kImageAnnotator {
 
 class CustomToolButton : public QToolButton

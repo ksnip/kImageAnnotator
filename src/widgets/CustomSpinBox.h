@@ -29,7 +29,7 @@ class CustomSpinBox : public QSpinBox
 Q_OBJECT
 public:
 	explicit CustomSpinBox(QWidget *parent = nullptr);
-	~CustomSpinBox() = default;
+	~CustomSpinBox() override = default;
 	void setValueSilent(int value);
 
 signals:

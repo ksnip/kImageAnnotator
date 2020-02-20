@@ -27,6 +27,7 @@
 
 #include "CustomSpinBox.h"
 #include "src/common/constants/Constants.h"
+#include "src/common/helper/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 

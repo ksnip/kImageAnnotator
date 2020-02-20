@@ -54,6 +54,7 @@ public:
 
 private:
 	QVBoxLayout *mMainLayout;
+	QHBoxLayout *mToolLayout;
 	ToolPicker *mToolPicker;
 	ColorPicker *mColorPicker;
 	NumberPicker *mWidthPicker;

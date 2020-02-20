@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,34 +17,27 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CUSTOMTOOLBUTTONMENU_H
-#define KIMAGEANNOTATOR_CUSTOMTOOLBUTTONMENU_H
+#ifndef KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
+#define KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
 
-#include <QWidgetAction>
-#include <QLabel>
-#include <QHBoxLayout>
-#include <QWidget>
-
-#include "src/common/helper/ScaledSizeProvider.h"
+#include <QGuiApplication>
+#include <QCoreApplication>
+#include <QApplication>
+#include <QDesktopWidget>
 
 namespace kImageAnnotator {
 
-class CustomToolButtonAction : public QWidgetAction
+class ScaledSizeProvider
 {
 public:
-	explicit CustomToolButtonAction(QObject *parent);
-	~CustomToolButtonAction() override;
-	void updateDefaultWidget();
+	static QSize getScaledSize(const QSize &size);
 
 private:
-	QLabel *mImage;
-	QLabel *mText;
-	QHBoxLayout *mLayout;
-	QWidget *mMenuItem;
-
-	void initDefaultWidget();
+	static qreal getXScaleFactor();
+	static qreal getYScaleFactor();
+	static qreal getReferenceDpiValue();
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_CUSTOMTOOLBUTTONMENU_H
+#endif //KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H

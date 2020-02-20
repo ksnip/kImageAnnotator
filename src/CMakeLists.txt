@@ -67,6 +67,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/AnnotationContextMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/NumberManager.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/backend/Config.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/ScaledSizeProvider.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/CursorHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/KeyHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/MathHelper.cpp
