@@ -23,7 +23,7 @@
 #include <QToolButton>
 #include <QAction>
 
-#include "src/common/helper/ScaledSizeProvider.h"
+#include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 

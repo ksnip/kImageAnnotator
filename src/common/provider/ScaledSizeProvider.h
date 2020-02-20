@@ -20,8 +20,6 @@
 #ifndef KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
 #define KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
 
-#include <QGuiApplication>
-#include <QCoreApplication>
 #include <QApplication>
 #include <QDesktopWidget>
 

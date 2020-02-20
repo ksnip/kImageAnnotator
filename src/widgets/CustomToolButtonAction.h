@@ -25,7 +25,7 @@
 #include <QHBoxLayout>
 #include <QWidget>
 
-#include "src/common/helper/ScaledSizeProvider.h"
+#include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 
