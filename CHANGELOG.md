@@ -7,6 +7,7 @@
 * Fixed: Drawing text tool rect from right to left and bottom top create no rect. ([#76](https://github.com/ksnip/kImageAnnotator/issues/76))
 * Fixed: Text Tool FillType selection not saved. ([#75](https://github.com/ksnip/kImageAnnotator/issues/75))
 * Fixed: Icons not scaled with HiDPI. ([#77](https://github.com/ksnip/kImageAnnotator/issues/77))
+* Fixed: Text Cursor not show on Linux. ([#70](https://github.com/ksnip/kImageAnnotator/issues/70))
 
 ## Release 0.2.0
 * New: Add image item and interface for adding them externally. ([#45](https://github.com/ksnip/kImageAnnotator/issues/45))

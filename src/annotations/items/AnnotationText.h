@@ -73,6 +73,7 @@ private slots:
 	void pasteText();
 	void escape();
 	void adjustRect();
+	bool isCursorInBlock(int blockPosition, int blockLength) const;
 };
 
 } // namespace kImageAnnotator

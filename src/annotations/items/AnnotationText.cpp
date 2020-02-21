@@ -76,6 +76,10 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 		painter->drawRect(textArea);
 	}
 
+	// Workaround for issue #70 -> Cursor not drawn with with Qt 5.9
+	painter->setBrush(QColor(255,255,255,10));
+	painter->drawRect(*mRect);
+
 	// Paint text
 	painter->setPen(properties()->textColor());
 	auto margin = properties()->width();
@@ -90,6 +94,7 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 		auto blockPosition = block.position();
 		auto blockLength = block.length();
 		QTextLayout textLayout(block);
+		textLayout.setCacheEnabled(true);
 		textLayout.setFont(textProperties()->font());
 		auto blockHeight = 0;
 		textLayout.setCacheEnabled(true);
@@ -110,11 +115,16 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 
 		textLayout.draw(painter, QPoint(0, boxHeight));
 
-		if (mTextCursor.isVisible() && (mTextCursor.position() >= blockPosition && mTextCursor.position() < blockPosition + blockLength)) {
-			textLayout.drawCursor(painter, QPointF(0, boxHeight), mTextCursor.position() - blockPosition, 1);
+		if (mTextCursor.isVisible() && isCursorInBlock(blockPosition, blockLength)) {
+			textLayout.drawCursor(painter, QPointF(1, boxHeight), mTextCursor.position() - blockPosition, 2);
 		}
 		boxHeight += blockHeight;
 	}
+}
+
+bool AnnotationText::isCursorInBlock(int blockPosition, int blockLength) const
+{
+	return mTextCursor.position() >= blockPosition && mTextCursor.position() < blockPosition + blockLength;
 }
 
 void AnnotationText::finish()
