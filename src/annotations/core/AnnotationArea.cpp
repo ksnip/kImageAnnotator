@@ -82,11 +82,8 @@ void AnnotationArea::insertImageItem(const QPointF &position, const QPixmap &ima
 void AnnotationArea::replaceBackgroundImage(const QPixmap &image)
 {
 	delete mImage;    
-	mImage = addPixmap(image);   
-    QRect rect(image.rect());
-    rect.setWidth(rect.width() / image.devicePixelRatio());
-    rect.setHeight(rect.height() / image.devicePixelRatio());
-    setSceneRect(rect);
+    mImage = addPixmap(image);
+    setSceneRect(ScaledSizeProvider::getUnscaledRect(image.rect(), image.devicePixelRatio()));
 }
 
 QImage AnnotationArea::image()

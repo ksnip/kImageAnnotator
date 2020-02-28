@@ -30,7 +30,12 @@ class ScaledSizeProvider
 public:
 	static QSize getScaledSize(const QSize &size);
 	static int getScaledWidth(int width);
-
+    static QRect getScaledRect(const QRect &rect);
+    static QRect getScaledRect(const QRect &rect, qreal scaleFactor);
+    static QRect getScaledRect(const QRect &rect, qreal xScaleFactor, qreal yScaleFactor);
+    static QRect getUnscaledRect(const QRect &rect);
+    static QRect getUnscaledRect(const QRect &rect, qreal scaleFactor);
+    static QRect getUnscaledRect(const QRect &rect, qreal xScaleFactor, qreal yScaleFactor);
 private:
 	static qreal getXScaleFactor();
 	static qreal getYScaleFactor();

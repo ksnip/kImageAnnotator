@@ -26,6 +26,30 @@ QSize ScaledSizeProvider::getScaledSize(const QSize &size)
 	return { static_cast<int>(size.width() * getXScaleFactor()), static_cast<int>(size.height() * getYScaleFactor()) };
 }
 
+QRect ScaledSizeProvider::getScaledRect(const QRect &rect) {
+    return getScaledRect(rect, getXScaleFactor(), getYScaleFactor());
+}
+
+QRect ScaledSizeProvider::getScaledRect(const QRect &rect, qreal scaleFactor) {
+    return getScaledRect(rect, scaleFactor, scaleFactor);
+}
+
+QRect ScaledSizeProvider::getScaledRect(const QRect &rect, qreal xScaleFactor, qreal yScaleFactor) {
+    return QRect(rect.left() * xScaleFactor, rect.top() * yScaleFactor, rect.width() * xScaleFactor, rect.height() * yScaleFactor);
+}
+
+QRect ScaledSizeProvider::getUnscaledRect(const QRect &rect) {
+   return getUnscaledRect(rect, getXScaleFactor(), getYScaleFactor());
+}
+
+QRect ScaledSizeProvider::getUnscaledRect(const QRect &rect, qreal scaleFactor) {
+   return getUnscaledRect(rect, scaleFactor, scaleFactor);
+}
+
+QRect ScaledSizeProvider::getUnscaledRect(const QRect &rect, qreal xScaleFactor, qreal yScaleFactor) {
+    return QRect(rect.left() / xScaleFactor, rect.top() / yScaleFactor, rect.width() / xScaleFactor, rect.height() / yScaleFactor);
+}
+
 qreal ScaledSizeProvider::getXScaleFactor()
 {
 	auto desktopWidget = QApplication::desktop();

@@ -25,9 +25,8 @@ CropCommand::CropCommand(QGraphicsPixmapItem *image, const QRectF &cropRect, Ann
 {
 	mAnnotationArea = annotationArea;
 	mImageItem = image;
-	mOriginalImage = QPixmap(image->pixmap());
-    qreal ratio = image->pixmap().devicePixelRatio();
-    QRect rect(cropRect.left() * ratio, cropRect.top() * ratio, cropRect.width() * ratio, cropRect.height() * ratio);
+	mOriginalImage = QPixmap(image->pixmap());    
+    QRect rect = ScaledSizeProvider::getScaledRect(cropRect.toRect(), image->pixmap().devicePixelRatio());
     mCroppedImage = QPixmap(image->pixmap().copy(rect));
     mNewItemOffset = rect.topLeft();
 }
