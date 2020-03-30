@@ -8,7 +8,7 @@ Version 0.2.1
 
 ### Dependencies
 
-kImageAnnotator depends on [kColoPicker](https://github.com/ksnip/kColorPicker) which needs
+kImageAnnotator depends on [kColorPicker](https://github.com/ksnip/kColorPicker) which needs
 to be installed before building kImageAnnotator. Install instructions can be found on the github page.
 
 ### Building from source
