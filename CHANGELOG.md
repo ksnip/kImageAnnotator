@@ -1,5 +1,7 @@
 # Change log
 
+## Release 0.2.2
+
 ## Release 0.2.1
 * Fixed: Edit border around text box doesn't disappear when done with editing. ([#71](https://github.com/ksnip/kImageAnnotator/issues/71))
 * Fixed: Edit border not shown under Windows when NoFillNoBorder selected for Text Tool. ([#72](https://github.com/ksnip/kImageAnnotator/issues/72))
