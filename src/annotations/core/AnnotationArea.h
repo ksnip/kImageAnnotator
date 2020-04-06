@@ -80,6 +80,7 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;
+    void dragMoveEvent(QGraphicsSceneDragDropEvent *event) override;
     void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) override;
 
 private:
@@ -106,7 +107,7 @@ private slots:
     void deleteSelectedItems();
 	void pasteCopiedItems(const QPointF &position);
     void enableEditing();
-    EditableItem* getSelectedEditableItem() const;
+    EditableItem* selectedEditableItem() const;
 	void itemsSelected(const QList<AbstractAnnotationItem *> &items) const;
 };
 

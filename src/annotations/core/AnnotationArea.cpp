@@ -221,7 +221,7 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 	auto isMenuOverItem = !selectedItems.isEmpty();
 	contextMenu.setOverItem(isMenuOverItem);
 	contextMenu.setPastEnabled(!mItemCopier->isEmpty());
-    contextMenu.setEditVisible(getSelectedEditableItem() != nullptr);
+    contextMenu.setEditVisible(selectedEditableItem() != nullptr);
 	AnnotationItemArranger itemArranger(selectedItems, mItems);
 	connect(&itemArranger, &AnnotationItemArranger::newCommand, mUndoStack, &UndoStack::push);
 	connect(&contextMenu, &AnnotationContextMenu::bringToFront, &itemArranger, &AnnotationItemArranger::bringToFront);
@@ -290,14 +290,14 @@ void AnnotationArea::pasteCopiedItems(const QPointF &position)
 
 void AnnotationArea::enableEditing()
 {
-    auto editableItem = getSelectedEditableItem();
+    auto editableItem = selectedEditableItem();
     if(editableItem != nullptr) {
         mItemModifier->clear();
         editableItem->enableEditing();
     }
 }
 
-EditableItem* AnnotationArea::getSelectedEditableItem() const
+EditableItem* AnnotationArea::selectedEditableItem() const
 {
     auto selectedItems = mItemModifier->selectedItems();
     return selectedItems.length() != 1 ? nullptr : dynamic_cast<EditableItem *>(selectedItems[0]);
@@ -332,6 +332,13 @@ void AnnotationArea::itemSettingsChanged()
 		auto properties = mPropertiesFactory->create(item->toolType());
 		mUndoStack->push(new ChangePropertiesCommand(item, properties));
 	}
+}
+
+void AnnotationArea::dragMoveEvent(QGraphicsSceneDragDropEvent *event)
+{
+	Q_UNUSED(event)
+
+	// Overriding default dragMoveEvent in order to accept drops without items under them
 }
 
 } // namespace kImageAnnotator
