@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,39 +17,33 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SCALEWIDGET_H
-#define KIMAGEANNOTATOR_SCALEWIDGET_H
+#ifndef ANNOTATIONTAB_H
+#define ANNOTATIONTAB_H
 
 #include <QWidget>
-#include <QGraphicsView>
-#include <QVBoxLayout>
+#include <QHBoxLayout>
 
-#include "ScaleDialog.h"
+#include "AnnotationView.h"
+#include "AnnotationSettings.h"
 #include "src/annotations/core/AnnotationArea.h"
 
 namespace kImageAnnotator {
 
-class ScaleWidget : public QWidget
+class AnnotationTabContent : public QWidget
 {
-Q_OBJECT
+	Q_OBJECT
 public:
-	explicit ScaleWidget();
-	~ScaleWidget() override;
-	void activate(AnnotationArea *annotationArea);
+	AnnotationTabContent(const QPixmap &pixmap, Config *config, AbstractSettingsProvider *settingsProvider);
+	~AnnotationTabContent() override;
 
-signals:
-	void closing() const;
+	AnnotationArea* annotationArea() const;
 
 private:
 	AnnotationArea *mAnnotationArea;
-	QGraphicsView *mView;
-	QVBoxLayout *mMainLayout;
-
-	void initGui();
-	void showDialog();
-	void scale(const QSize &newSize);
+	AnnotationView *mAnnotationView;
+	QHBoxLayout *mMainLayout;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_SCALEWIDGET_H
+#endif //ANNOTATIONTAB_H

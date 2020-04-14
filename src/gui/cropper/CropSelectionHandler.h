@@ -34,8 +34,9 @@ class CropSelectionHandler : public QObject
 {
 Q_OBJECT
 public:
-	explicit CropSelectionHandler(AnnotationArea *annotationArea);
+	explicit CropSelectionHandler();
 	~CropSelectionHandler() override = default;
+	void init(AnnotationArea *annotationArea);
 	QRectF selection() const;
 	QVector<QRectF> selectionHandles() const;
 	void grab(const QPointF &position);

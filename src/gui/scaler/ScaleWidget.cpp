@@ -21,11 +21,10 @@
 
 namespace kImageAnnotator {
 
-kImageAnnotator::ScaleWidget::ScaleWidget(kImageAnnotator::AnnotationArea *annotationArea)
+kImageAnnotator::ScaleWidget::ScaleWidget():
+	mAnnotationArea(nullptr),
+	mView(new QGraphicsView)
 {
-	mAnnotationArea = annotationArea;
-
-	mView = new QGraphicsView(annotationArea);
 	initGui();
 }
 
@@ -35,8 +34,12 @@ ScaleWidget::~ScaleWidget()
 	delete mView;
 }
 
-void ScaleWidget::activate()
+void ScaleWidget::activate(AnnotationArea *annotationArea)
 {
+	Q_ASSERT(annotationArea != nullptr);
+
+	mAnnotationArea = annotationArea;
+	mView->setScene(annotationArea);
 	showDialog();
 }
 

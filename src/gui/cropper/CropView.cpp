@@ -21,10 +21,16 @@
 
 namespace kImageAnnotator {
 
-CropView::CropView(kImageAnnotator::AnnotationArea *annotationArea, CropSelectionHandler *cropSelectionHandler, KeyHelper *keyHelper) :
+CropView::CropView(CropSelectionHandler *cropSelectionHandler, KeyHelper *keyHelper) :
     mKeyHelper(keyHelper),
     mCropSelectionHandler(cropSelectionHandler)
 {
+}
+
+void CropView::init(AnnotationArea *annotationArea)
+{
+	Q_ASSERT(annotationArea != nullptr);
+
 	setScene(annotationArea);
 }
 

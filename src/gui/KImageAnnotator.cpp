@@ -79,6 +79,24 @@ void KImageAnnotator::loadImage(const QPixmap &pixmap)
 	}
 }
 
+int KImageAnnotator::addImage(const QPixmap &pixmap, const QString &title, const QString &toolTip)
+{
+	Q_D(KImageAnnotator);
+	auto newTabIndex = d->mCoreView.addImage(pixmap, title, toolTip);
+
+	if (isHidden()) {
+		show();
+	}
+
+	return newTabIndex;
+}
+
+void KImageAnnotator::updateTabInfo(int index, const QString &title, const QString &toolTip)
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.updateTabInfo(index, title, toolTip);
+}
+
 void KImageAnnotator::insertImageItem(const QPointF &position, const QPixmap &pixmap)
 {
     Q_D(KImageAnnotator);
@@ -132,6 +150,18 @@ void KImageAnnotator::setSmoothFactor(int factor)
 	d->mConfig.setSmoothFactor(factor);
 }
 
+void KImageAnnotator::setTabBarAutoHide(bool enabled)
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.setTabBarAutoHide(enabled);
+}
+
+void KImageAnnotator::removeTab(int index)
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.removeTab(index);
+}
+
 void KImageAnnotator::showAnnotator()
 {
 	Q_D(KImageAnnotator);
@@ -163,6 +193,9 @@ KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator)
 	kImageAnnotator->hide();
 
 	kImageAnnotator->connect(&mCoreView, &CoreView::imageChanged, kImageAnnotator, &KImageAnnotator::imageChanged);
+	kImageAnnotator->connect(&mCoreView, &CoreView::currentTabChanged, kImageAnnotator, &KImageAnnotator::currentTabChanged);
+	kImageAnnotator->connect(&mCoreView, &CoreView::tabCloseRequested, kImageAnnotator, &KImageAnnotator::tabCloseRequested);
+	kImageAnnotator->connect(&mCoreView, &CoreView::tabMoved, kImageAnnotator, &KImageAnnotator::tabMoved);
 }
 
 } // namespace kImageAnnotator

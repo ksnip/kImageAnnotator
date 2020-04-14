@@ -21,17 +21,20 @@
 
 namespace kImageAnnotator {
 
-CoreView::CoreView(Config *config)
+CoreView::CoreView(Config *config) :
+	mConfig(config),
+	mAnnotationWidget(new AnnotationWidget(mConfig)),
+	mCropWidget(new CropWidget),
+	mScaleWidget(new ScaleWidget)
 {
-	mConfig = config;
-	mAnnotationWidget = new AnnotationWidget(mConfig);
-	mCropWidget = new CropWidget(mAnnotationWidget->annotationArea());
-	mScaleWidget = new ScaleWidget(mAnnotationWidget->annotationArea());
 	addWidget(mAnnotationWidget);
 	addWidget(mCropWidget);
 	addWidget(mScaleWidget);
 
 	connect(mAnnotationWidget, &AnnotationWidget::imageChanged, this, &CoreView::imageChanged);
+	connect(mAnnotationWidget, &AnnotationWidget::currentTabChanged, this, &CoreView::currentTabChanged);
+	connect(mAnnotationWidget, &AnnotationWidget::tabCloseRequested, this, &CoreView::tabCloseRequested);
+	connect(mAnnotationWidget, &AnnotationWidget::tabMoved, this, &CoreView::tabMoved);
 	connect(mCropWidget, &CropWidget::closing, this, &CoreView::showAnnotator);
 	connect(mScaleWidget, &ScaleWidget::closing, this, &CoreView::showAnnotator);
 }
@@ -53,9 +56,24 @@ void CoreView::loadImage(const QPixmap &pixmap)
 	mAnnotationWidget->loadImage(pixmap);
 }
 
+int CoreView::addImage(const QPixmap &pixmap, const QString &title, const QString &toolTip)
+{
+	return mAnnotationWidget->addImage(pixmap, title, toolTip);
+}
+
+void CoreView::updateTabInfo(int index, const QString &title, const QString &toolTip)
+{
+	mAnnotationWidget->updateTabInfo(index, title, toolTip);
+}
+
 void CoreView::insertImageItem(const QPointF &position, const QPixmap &pixmap)
 {
     mAnnotationWidget->insertImageItem(position, pixmap);
+}
+
+void CoreView::removeTab(int index)
+{
+	mAnnotationWidget->removeTab(index);
 }
 
 void CoreView::showAnnotator()
@@ -69,7 +87,7 @@ void CoreView::showCropper()
 	mAnnotationWidget->setUndoEnabled(false);
 	mAnnotationWidget->clearSelection();
 	setCurrentWidget(mCropWidget);
-	mCropWidget->activate();
+	mCropWidget->activate(mAnnotationWidget->annotationArea());
 }
 
 void CoreView::showScaler()
@@ -77,7 +95,12 @@ void CoreView::showScaler()
 	mAnnotationWidget->setUndoEnabled(false);
 	mAnnotationWidget->clearSelection();
 	setCurrentWidget(mScaleWidget);
-	mScaleWidget->activate();
+	mScaleWidget->activate(mAnnotationWidget->annotationArea());
+}
+
+void CoreView::setTabBarAutoHide(bool enabled)
+{
+	mAnnotationWidget->setTabBarAutoHide(enabled);
 }
 
 QAction *CoreView::undoAction()

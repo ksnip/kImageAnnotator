@@ -21,25 +21,23 @@
 
 namespace kImageAnnotator {
 
-AnnotationWidget::AnnotationWidget(Config *config)
+AnnotationWidget::AnnotationWidget(Config *config) :
+	mSettings(new AnnotationSettings(config)),
+	mAnnotationTabWidget(new AnnotationTabWidget(config, mSettings))
 {
-	mConfig = config;
-
 	initGui();
 }
 
 AnnotationWidget::~AnnotationWidget()
 {
-	delete mAnnotationView;
 	delete mMainLayout;
 	delete mSettings;
-	delete mAnnotationArea;
 }
 
 QSize AnnotationWidget::sizeHint() const
 {
 	auto minSize = mSettings->sizeHint();
-	auto sceneSize = mAnnotationArea->sceneRect().size();
+	auto sceneSize = mAnnotationTabWidget->sizeHint();
 	auto width = minSize.width() + sceneSize.width();
 	auto height = (minSize.height() > sceneSize.height()) ? minSize.height() : sceneSize.height();
 	auto offset = QSize(100, 100);
@@ -48,62 +46,97 @@ QSize AnnotationWidget::sizeHint() const
 
 void AnnotationWidget::initGui()
 {
-	mSettings =  new AnnotationSettings(mConfig);
-	mAnnotationArea = new AnnotationArea(mConfig, mSettings);
-	mAnnotationView = new AnnotationView(mAnnotationArea);
 	mMainLayout = new QHBoxLayout();
 	mMainLayout->addWidget(mSettings);
-	mMainLayout->addWidget(mAnnotationView);
+	mMainLayout->addWidget(mAnnotationTabWidget);
 
 	setLayout(mMainLayout);
 	setFocusPolicy(Qt::ClickFocus);
 
-	connect(mAnnotationArea, &AnnotationArea::imageChanged, this, &AnnotationWidget::imageChanged);
+	connect(mAnnotationTabWidget, &AnnotationTabWidget::imageChanged, this, &AnnotationWidget::imageChanged);
+	connect(mAnnotationTabWidget, &AnnotationTabWidget::currentChanged, this, &AnnotationWidget::currentTabChanged);
+	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabCloseRequested, this, &AnnotationWidget::tabCloseRequested);
+	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabMoved, this, &AnnotationWidget::tabMoved);
 }
 
 QImage AnnotationWidget::image() const
 {
-	return mAnnotationArea->image();
+	auto currentAnnotationArea = annotationArea();
+	return currentAnnotationArea != nullptr ? currentAnnotationArea->image() : QImage();
 }
 
 void AnnotationWidget::loadImage(const QPixmap &pixmap)
 {
-	mAnnotationArea->loadImage(pixmap);
+	auto currentAnnotationArea = annotationArea();
+	if(currentAnnotationArea == nullptr) {
+		addImage(pixmap, QString(), QString());
+	} else {
+		currentAnnotationArea->loadImage(pixmap);
+	}
+}
+
+int AnnotationWidget::addImage(const QPixmap &pixmap, const QString &title, const QString &toolTip)
+{
+	return mAnnotationTabWidget->addImage(pixmap, title, toolTip);
+}
+
+void AnnotationWidget::updateTabInfo(int index, const QString &title, const QString &toolTip)
+{
+	mAnnotationTabWidget->updateTabInfo(index, title, toolTip);
 }
 
 void AnnotationWidget::insertImageItem(const QPointF &position, const QPixmap &pixmap)
 {
-	mAnnotationArea->insertImageItem(position, pixmap);
+	auto currentAnnotationArea = annotationArea();
+	if(currentAnnotationArea != nullptr) {
+		currentAnnotationArea->insertImageItem(position, pixmap);
+	}
+}
+
+void AnnotationWidget::removeTab(int index)
+{
+	mAnnotationTabWidget->removeTab(index);
 }
 
 void AnnotationWidget::setUndoEnabled(bool enabled)
 {
-	mAnnotationArea->setUndoEnabled(enabled);
+	auto currentAnnotationArea = annotationArea();
+	if(currentAnnotationArea != nullptr) {
+		annotationArea()->setUndoEnabled(enabled);
+	}
 }
 
 QAction *AnnotationWidget::undoAction() const
 {
-	return mAnnotationArea->undoAction();
+	return mAnnotationTabWidget->undoAction();
 }
 
 QAction *AnnotationWidget::redoAction() const
 {
-	return mAnnotationArea->redoAction();
+	return mAnnotationTabWidget->redoAction();
 }
 
 void AnnotationWidget::clearSelection()
 {
-	mAnnotationArea->clearSelection();
+	auto currentAnnotationArea = annotationArea();
+	if(currentAnnotationArea != nullptr) {
+		annotationArea()->clearSelection();
+	}
 }
 
 AnnotationArea *AnnotationWidget::annotationArea() const
 {
-	return mAnnotationArea;
+	return mAnnotationTabWidget->currentAnnotationArea();
 }
 
 void AnnotationWidget::reloadConfig()
 {
 	mSettings->reloadConfig();
+}
+
+void AnnotationWidget::setTabBarAutoHide(bool enabled)
+{
+	mAnnotationTabWidget->setTabBarAutoHide(enabled);
 }
 
 } // namespace kImageAnnotator

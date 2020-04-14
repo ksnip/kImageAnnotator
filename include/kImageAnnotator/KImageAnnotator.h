@@ -36,7 +36,7 @@ Q_OBJECT
 
 public:
 	explicit KImageAnnotator();
-	~KImageAnnotator();
+	~KImageAnnotator() override;
 	QImage image() const;
 	QAction *undoAction();
 	QAction *redoAction();
@@ -47,6 +47,8 @@ public:
 
 public slots:
 	void loadImage(const QPixmap &pixmap);
+	int addImage(const QPixmap &pixmap, const QString &title, const QString &toolTip);
+	void updateTabInfo(int index, const QString &title, const QString &toolTip);
 	void insertImageItem(const QPointF &position, const QPixmap &pixmap);
 	void setTextFont(const QFont &font);
 	void setNumberFont(const QFont &font);
@@ -54,9 +56,14 @@ public slots:
 	void setSmoothPathEnabled(bool enabled);
 	void setSaveToolSelection(bool enabled);
 	void setSmoothFactor(int factor);
+	void setTabBarAutoHide(bool enabled);
+	void removeTab(int index);
 
 signals:
 	void imageChanged() const;
+	void currentTabChanged(int index) const;
+	void tabCloseRequested(int index) const;
+	void tabMoved(int fromIndex, int toIndex);
 
 private:
 	QScopedPointer<KImageAnnotatorPrivate> const d_ptr;

@@ -20,11 +20,9 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONWIDGET_H
 #define KIMAGEANNOTATOR_ANNOTATIONWIDGET_H
 
-#include <QWidget>
 #include <QHBoxLayout>
 
-#include "AnnotationView.h"
-#include "AnnotationSettings.h"
+#include "AnnotationTabWidget.h"
 #include "src/annotations/core/AnnotationArea.h"
 
 namespace kImageAnnotator {
@@ -38,23 +36,28 @@ public:
 	QSize sizeHint() const override;
 	QImage image () const;
 	void loadImage(const QPixmap &pixmap);
+	int addImage(const QPixmap &pixmap, const QString &title, const QString &toolTip);
+	void updateTabInfo(int index, const QString &title, const QString &toolTip);
 	void insertImageItem(const QPointF &position, const QPixmap &pixmap);
+	void removeTab(int index);
 	void setUndoEnabled(bool enabled);
 	QAction* undoAction() const;
 	QAction* redoAction() const;
 	void clearSelection();
 	AnnotationArea* annotationArea() const;
 	void reloadConfig();
+	void setTabBarAutoHide(bool enabled);
 
 signals:
 	void imageChanged() const;
+	void currentTabChanged(int index) const;
+	void tabCloseRequested(int index) const;
+	void tabMoved(int fromIndex, int toIndex);
 
 private:
-	AnnotationArea *mAnnotationArea;
-	AnnotationView *mAnnotationView;
 	AnnotationSettings *mSettings;
+	AnnotationTabWidget *mAnnotationTabWidget;
 	QHBoxLayout *mMainLayout;
-	Config *mConfig;
 
 	void initGui();
 };
