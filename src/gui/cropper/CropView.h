@@ -32,8 +32,9 @@ class CropView : public QGraphicsView
 {
 Q_OBJECT
 public:
-	explicit CropView(AnnotationArea *annotationArea, CropSelectionHandler *cropSelectionHandler, KeyHelper *keyHelper);
+	explicit CropView(CropSelectionHandler *cropSelectionHandler, KeyHelper *keyHelper);
 	~CropView() override = default;
+	void init(AnnotationArea *annotationArea);
 
 protected:
 	void keyPressEvent(QKeyEvent *event) override;

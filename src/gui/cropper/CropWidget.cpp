@@ -21,11 +21,11 @@
 
 namespace kImageAnnotator {
 
-CropWidget::CropWidget(kImageAnnotator::AnnotationArea *annotationArea) :
-	mAnnotationArea(annotationArea),
+CropWidget::CropWidget() :
+	mAnnotationArea(nullptr),
     mKeyHelper(new KeyHelper()),
-    mCropSelectionHandler(new CropSelectionHandler(annotationArea)),
-    mCropView(new CropView(annotationArea, mCropSelectionHandler, mKeyHelper))
+    mCropSelectionHandler(new CropSelectionHandler()),
+    mCropView(new CropView(mCropSelectionHandler, mKeyHelper))
 {
 	initCropSelectionHandler();
 	initKeyHelper();
@@ -58,8 +58,13 @@ CropWidget::~CropWidget()
 	delete mHeightLineEdit;
 }
 
-void CropWidget::activate()
+void CropWidget::activate(AnnotationArea *annotationArea)
 {
+	Q_ASSERT(annotationArea != nullptr);
+
+	mAnnotationArea = annotationArea;
+	mCropSelectionHandler->init(annotationArea);
+	mCropView->init(annotationArea);
 	reset();
 	setFocus();
 }
@@ -131,6 +136,8 @@ void CropWidget::keyReleaseEvent(QKeyEvent *event)
 
 void CropWidget::crop()
 {
+	Q_ASSERT(mAnnotationArea != nullptr);
+
 	mAnnotationArea->crop(mCropSelectionHandler->selection());
 	emit closing();
 }

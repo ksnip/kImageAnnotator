@@ -1,6 +1,7 @@
 # Change log
 
-## Release 0.2.2
+## Release 0.3.0
+* New: Tabs for images. ([#48](https://github.com/ksnip/kImageAnnotator/issues/48))
 
 ## Release 0.2.1
 * Fixed: Edit border around text box doesn't disappear when done with editing. ([#71](https://github.com/ksnip/kImageAnnotator/issues/71))

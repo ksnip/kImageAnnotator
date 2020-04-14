@@ -43,13 +43,20 @@ public:
 
 signals:
 	void imageChanged() const;
+	void currentTabChanged(int index) const;
+	void tabCloseRequested(int index) const;
+	void tabMoved(int fromIndex, int toIndex);
 
 public slots:
 	void loadImage(const QPixmap &pixmap);
+	int addImage(const QPixmap &pixmap, const QString &title, const QString &toolTip);
+	void updateTabInfo(int index, const QString &title, const QString &toolTip);
 	void insertImageItem(const QPointF &position, const QPixmap &pixmap);
+	void removeTab(int index);
 	void showAnnotator();
 	void showCropper();
 	void showScaler();
+	void setTabBarAutoHide(bool enabled);
 
 private:
 	Config *mConfig;

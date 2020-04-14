@@ -21,8 +21,13 @@
 
 namespace kImageAnnotator {
 
-CropSelectionHandler::CropSelectionHandler(AnnotationArea *annotationArea) : mAnnotationArea(annotationArea)
+CropSelectionHandler::CropSelectionHandler() : mAnnotationArea(nullptr)
 {
+}
+
+void CropSelectionHandler::init(AnnotationArea *annotationArea)
+{
+	mAnnotationArea = annotationArea;
 	resetSelection();
 }
 
@@ -76,6 +81,8 @@ void CropSelectionHandler::release()
 
 void CropSelectionHandler::resetSelection()
 {
+	Q_ASSERT(mAnnotationArea != nullptr);
+
 	mMaxSelection = mAnnotationArea->sceneRect();
 	setSelection(mAnnotationArea->sceneRect());
 }
@@ -111,6 +118,8 @@ void CropSelectionHandler::setPositionY(int y)
 
 void CropSelectionHandler::update()
 {
+	Q_ASSERT(mAnnotationArea != nullptr);
+
 	mCropHandles.updateHandles(mSelection);
 	mAnnotationArea->update();
 	notifyAboutChange();

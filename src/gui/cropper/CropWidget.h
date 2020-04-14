@@ -39,9 +39,9 @@ class CropWidget : public QWidget
 {
 Q_OBJECT
 public:
-	explicit CropWidget(AnnotationArea *annotationArea);
-	~CropWidget();
-	void activate();
+	explicit CropWidget();
+	~CropWidget() override;
+	void activate(AnnotationArea *annotationArea);
 
 signals:
 	void closing() const;

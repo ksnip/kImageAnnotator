@@ -1,7 +1,7 @@
 # kImageAnnotator [![Build Status](https://travis-ci.org/ksnip/kImageAnnotator.svg?branch=master)](https://travis-ci.org/ksnip/kImageAnnotator)
 Tool for annotating images
 
-Version 0.2.2 - Work in Progress
+Version 0.3.0 - Work in Progress
 
 
 ![kImageAnnotator](https://imgur.com/HguleRO.png "kImageAnnotator")
