@@ -45,7 +45,7 @@ public:
 	void showCropper();
 	void showScaler();
 
-public slots:
+public Q_SLOTS:
 	void loadImage(const QPixmap &pixmap);
 	int addImage(const QPixmap &pixmap, const QString &title, const QString &toolTip);
 	void updateTabInfo(int index, const QString &title, const QString &toolTip);
@@ -59,7 +59,7 @@ public slots:
 	void setTabBarAutoHide(bool enabled);
 	void removeTab(int index);
 
-signals:
+Q_SIGNALS:
 	void imageChanged() const;
 	void currentTabChanged(int index) const;
 	void tabCloseRequested(int index) const;
