@@ -38,6 +38,7 @@ public:
 	QAction* undoAction() const;
 	QAction* redoAction() const;
 	void updateTabInfo(int index, const QString &title, const QString &toolTip);
+	void setUndoRedoEnabled(bool enabled);
 
 signals:
 	void imageChanged() const;

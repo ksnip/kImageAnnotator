@@ -22,20 +22,20 @@
 namespace kImageAnnotator {
 
 AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider) :
+	mUndoStack(new UndoStack),
 	mImage(nullptr),
 	mCurrentItem(nullptr),
 	mUndoAction(nullptr),
-	mRedoAction(nullptr)
+	mRedoAction(nullptr),
+	mKeyHelper(new KeyHelper),
+	mSettingsProvider(settingsProvider),
+	mItemModifier(new AnnotationItemModifier)
 {
 	Q_ASSERT(config != nullptr);
 
-	mSettingsProvider = settingsProvider;
 	mPropertiesFactory = new AnnotationPropertiesFactory(config, mSettingsProvider);
 	mItemFactory = new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider);
 	mItems = new QList<AbstractAnnotationItem *>();
-	mKeyHelper = new KeyHelper();
-	mUndoStack = new UndoStack();
-	mItemModifier = new AnnotationItemModifier();
 	addItem(mItemModifier);
 	mItemCopier = new AnnotationItemClipboard(mItemModifier);
 
@@ -301,17 +301,6 @@ EditableItem* AnnotationArea::selectedEditableItem() const
 {
     auto selectedItems = mItemModifier->selectedItems();
     return selectedItems.length() != 1 ? nullptr : dynamic_cast<EditableItem *>(selectedItems[0]);
-}
-
-void AnnotationArea::setUndoEnabled(bool enabled)
-{
-	if(mUndoAction != nullptr) {
-		mUndoAction->setEnabled(enabled);
-	}
-
-	if(mRedoAction != nullptr) {
-		mRedoAction->setEnabled(enabled);
-	}
 }
 
 void AnnotationArea::itemsSelected(const QList<AbstractAnnotationItem *> &items) const
