@@ -23,7 +23,8 @@ namespace kImageAnnotator {
 
 AnnotationWidget::AnnotationWidget(Config *config) :
 	mSettings(new AnnotationSettings(config)),
-	mAnnotationTabWidget(new AnnotationTabWidget(config, mSettings))
+	mAnnotationTabWidget(new AnnotationTabWidget(config, mSettings)),
+	mMainLayout(new QHBoxLayout(this))
 {
 	initGui();
 }
@@ -46,7 +47,6 @@ QSize AnnotationWidget::sizeHint() const
 
 void AnnotationWidget::initGui()
 {
-	mMainLayout = new QHBoxLayout();
 	mMainLayout->addWidget(mSettings);
 	mMainLayout->addWidget(mAnnotationTabWidget);
 
@@ -100,10 +100,7 @@ void AnnotationWidget::removeTab(int index)
 
 void AnnotationWidget::setUndoEnabled(bool enabled)
 {
-	auto currentAnnotationArea = annotationArea();
-	if(currentAnnotationArea != nullptr) {
-		annotationArea()->setUndoEnabled(enabled);
-	}
+	mAnnotationTabWidget->setUndoRedoEnabled(enabled);
 }
 
 QAction *AnnotationWidget::undoAction() const

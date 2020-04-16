@@ -64,7 +64,6 @@ public:
     virtual void crop(const QRectF& rect);
     virtual void scale(const QSize& size);
     virtual void clearSelection();
-    virtual void setUndoEnabled(bool enabled);
 	virtual void toolChanged(ToolTypes toolType) override;
 	void itemSettingsChanged();
 

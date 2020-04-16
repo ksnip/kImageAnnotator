@@ -65,6 +65,12 @@ void AnnotationTabWidget::updateTabInfo(int index, const QString &title, const Q
 	setTabToolTip(index, toolTip);
 }
 
+void AnnotationTabWidget::setUndoRedoEnabled(bool enabled)
+{
+	mUndoAction->setEnabled(enabled);
+	mRedoAction->setEnabled(enabled);
+}
+
 void AnnotationTabWidget::tabInserted(int index)
 {
 	updateCurrentWidget(index);
@@ -82,7 +88,7 @@ void AnnotationTabWidget::undoTriggered()
 {
 	auto annotationArea = currentAnnotationArea();
 	if(annotationArea != nullptr) {
-		currentAnnotationArea()->undoAction()->trigger();
+		annotationArea->undoAction()->trigger();
 	}
 }
 
@@ -90,7 +96,7 @@ void AnnotationTabWidget::redoTriggered()
 {
 	auto annotationArea = currentAnnotationArea();
 	if(annotationArea != nullptr) {
-		currentAnnotationArea()->redoAction()->trigger();
+		annotationArea->redoAction()->trigger();
 	}
 }
 
