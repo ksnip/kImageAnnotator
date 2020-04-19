@@ -11,6 +11,14 @@ set(CMAKE_AUTORCC ON)
 option(BUILD_TESTS "Build Unit Tests" OFF)
 option(BUILD_EXAMPLE "Build Example Application" ON)
 
+if (WIN32)
+	set(KIMAGEANNOTATOR_LANG_INSTAL_DIR "translations")
+elseif (APPLE)
+	set(KIMAGEANNOTATOR_LANG_INSTAL_DIR "../Resources")
+elseif (UNIX)
+	set(KIMAGEANNOTATOR_LANG_INSTAL_DIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/kImageAnnotator/translations")
+endif ()
+
 set(QT_MIN_VERSION "5.6.1")
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Test)
 
@@ -28,6 +36,7 @@ set(BASEPATH "${CMAKE_CURRENT_SOURCE_DIR}")
 include_directories("${BASEPATH}")
 
 add_subdirectory(src)
+add_subdirectory(translations)
 
 if (BUILD_EXAMPLE)
 	add_subdirectory(example)
