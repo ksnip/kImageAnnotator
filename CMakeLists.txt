@@ -67,7 +67,7 @@ target_include_directories(kImageAnnotator
 target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets PRIVATE kColorPicker::kColorPicker)
 
 if (UNIX)
-	target_link_libraries(kImageAnnotator PRIVATE X11::X11)
+	target_link_libraries(kImageAnnotator PRIVATE X11)
 endif ()
 
 target_compile_definitions(kImageAnnotator PRIVATE KIMAGEANNOTATOR_LIB)
