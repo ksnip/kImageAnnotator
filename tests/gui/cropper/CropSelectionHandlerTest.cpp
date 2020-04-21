@@ -25,7 +25,8 @@ void CropSelectionHandlerTest::TestSetWidth_Should_EmitSelectionChangedSignal()
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	AnnotationArea annotationArea(config, settingsProvider);
-	CropSelectionHandler selectionHandler(&annotationArea);
+	CropSelectionHandler selectionHandler;
+	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
 
 	selectionHandler.setWidth(30);
@@ -38,7 +39,8 @@ void CropSelectionHandlerTest::TestSetHeight_Should_EmitSelectionChangedSignal()
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	AnnotationArea annotationArea(config, settingsProvider);
-	CropSelectionHandler selectionHandler(&annotationArea);
+	CropSelectionHandler selectionHandler;
+	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
 
 	selectionHandler.setHeight(30);
@@ -51,7 +53,8 @@ void CropSelectionHandlerTest::TestSetPositionX_Should_EmitSelectionChangedSigna
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	AnnotationArea annotationArea(config, settingsProvider);
-	CropSelectionHandler selectionHandler(&annotationArea);
+	CropSelectionHandler selectionHandler;
+	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
 
 	selectionHandler.setPositionY(30);
@@ -64,7 +67,8 @@ void CropSelectionHandlerTest::TestSetPositionY_Should_EmitSelectionChangedSigna
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	AnnotationArea annotationArea(config, settingsProvider);
-	CropSelectionHandler selectionHandler(&annotationArea);
+	CropSelectionHandler selectionHandler;
+	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
 
 	selectionHandler.setPositionX(30);
@@ -79,7 +83,8 @@ void CropSelectionHandlerTest::TestResetSelection_Should_SetSelectionToSceneRect
 	AnnotationArea annotationArea(config, settingsProvider);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	annotationArea.setSceneRect(sceneRect);
-	CropSelectionHandler selectionHandler(&annotationArea);
+	CropSelectionHandler selectionHandler;
+	selectionHandler.init(&annotationArea);
 	selectionHandler.setWidth(400);
 	QVERIFY(selectionHandler.selection() != sceneRect);
 
@@ -96,7 +101,8 @@ void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnSel
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(150, 150);
 	annotationArea.setSceneRect(sceneRect);
-	CropSelectionHandler selectionHandler(&annotationArea);
+	CropSelectionHandler selectionHandler;
+	selectionHandler.init(&annotationArea);
 	selectionHandler.grab(position);
 
 	auto isInMotion = selectionHandler.isInMotion();
@@ -112,7 +118,8 @@ void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnHan
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(2, 2);
 	annotationArea.setSceneRect(sceneRect);
-	CropSelectionHandler selectionHandler(&annotationArea);
+	CropSelectionHandler selectionHandler;
+	selectionHandler.init(&annotationArea);
 	selectionHandler.grab(position);
 
 	auto isInMotion = selectionHandler.isInMotion();
@@ -128,7 +135,8 @@ void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnFalse_WhenClickedOuts
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(400, 400);
 	annotationArea.setSceneRect(sceneRect);
-	CropSelectionHandler selectionHandler(&annotationArea);
+	CropSelectionHandler selectionHandler;
+	selectionHandler.init(&annotationArea);
 	selectionHandler.setWidth(200);
 	selectionHandler.grab(position);
 
@@ -142,7 +150,8 @@ void CropSelectionHandlerTest::TestSelectionHandles_Should_ReturnEightItems()
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	AnnotationArea annotationArea(config, settingsProvider);
-	CropSelectionHandler selectionHandler(&annotationArea);
+	CropSelectionHandler selectionHandler;
+	selectionHandler.init(&annotationArea);
 
 	auto handles = selectionHandler.selectionHandles();
 
