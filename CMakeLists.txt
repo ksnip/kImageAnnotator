@@ -17,7 +17,6 @@ elseif (APPLE)
 	set(KIMAGEANNOTATOR_LANG_INSTAL_DIR "../Resources")
 elseif (UNIX)
 	set(KIMAGEANNOTATOR_LANG_INSTAL_DIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/kImageAnnotator/translations")
-	set(TEST123 "//kImageAnnotator/translations")
 	string(REGEX REPLACE "//" "/" KIMAGEANNOTATOR_LANG_INSTAL_DIR "${KIMAGEANNOTATOR_LANG_INSTAL_DIR}")
 endif ()
 
