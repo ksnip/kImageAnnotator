@@ -94,12 +94,16 @@ QImage AnnotationArea::image()
 
 	mItemModifier->clear();
 
+	setSceneRect({}); // Unset scene rect to cover all items
+
 	QImage image(sceneRect().size().toSize(), QImage::Format_ARGB32_Premultiplied);
-	image.fill(Qt::transparent);
+	image.fill(Qt::white);
 
 	QPainter painter(&image);
 	painter.setRenderHint(QPainter::Antialiasing);
 	render(&painter);
+
+	setSceneRect(mImage->boundingRect()); // Reset scene rect
 
 	return image;
 }
