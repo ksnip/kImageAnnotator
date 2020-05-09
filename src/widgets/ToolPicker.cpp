@@ -123,7 +123,7 @@ QAction *ToolPicker::createAction(const QString &tooltip, const QIcon &icon, Qt:
 CustomToolButton *ToolPicker::createButton(QAction *defaultAction)
 {
 	auto button = new CustomToolButton(this);
-	button->setDefaultAction(defaultAction);
+	button->setAction(defaultAction);
 	mActionToButton[defaultAction] = button;
 	return button;
 }
@@ -132,7 +132,6 @@ CustomToolButton *ToolPicker::createButton(QMenu *menu)
 {
 	auto button = new CustomToolButton(this);
 	button->setMenu(menu);
-	button->setActiveAction(menu->actions().first());
 	for(auto action : menu->actions()) {
 		mActionToButton[action] = button;
 	}

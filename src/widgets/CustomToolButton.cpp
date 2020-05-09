@@ -27,7 +27,6 @@ CustomToolButton::CustomToolButton(QWidget *parent) : QToolButton(parent)
 	setAutoRaise(true);
 	setIconSize(ScaledSizeProvider::getScaledSize(QSize(24, 24)));
 	setFocusPolicy(Qt::NoFocus);
-	setPopupMode(QToolButton::DelayedPopup);
 	connect(this, &CustomToolButton::triggered, this, &CustomToolButton::setActiveAction);
 }
 
@@ -53,6 +52,19 @@ void CustomToolButton::trigger()
 void CustomToolButton::refreshText()
 {
 	QToolButton::setText(mButtonText);
+}
+
+void CustomToolButton::setMenu(QMenu *menu)
+{
+	setPopupMode(QToolButton::MenuButtonPopup);
+	QToolButton::setMenu(menu);
+	setActiveAction(menu->actions().first());
+}
+
+void CustomToolButton::setAction(QAction *action)
+{
+	setPopupMode(QToolButton::DelayedPopup);
+	setDefaultAction(action);
 }
 
 } // namespace kImageAnnotator
