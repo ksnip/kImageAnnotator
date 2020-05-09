@@ -22,6 +22,7 @@
 
 #include <QToolButton>
 #include <QAction>
+#include <QMenu>
 
 #include "src/common/provider/ScaledSizeProvider.h"
 
@@ -33,6 +34,8 @@ Q_OBJECT
 public:
 	explicit CustomToolButton(QWidget *parent = nullptr);
 	void setButtonText(const QString &text);
+	void setMenu(QMenu *menu);
+	void setAction(QAction *action);
 
 public slots:
 	void setActiveAction(QAction *action);
