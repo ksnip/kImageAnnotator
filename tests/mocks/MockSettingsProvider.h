@@ -47,6 +47,7 @@ public:
 	int blurRadius() const override;
 	void setBlurRadius(int blurRadius);
 	QString sticker() const override;
+	void setSticker(const QString &stickerPath);
 
 private:
 	ToolTypes mToolType;
@@ -56,6 +57,7 @@ private:
 	int mFontSize;
 	FillTypes mFillType;
 	int mBlurRadius;
+	QString mStickerPath;
 };
 
 #endif //KIMAGEANNOTATOR_MOCKSETTINGSPROVIDER_H

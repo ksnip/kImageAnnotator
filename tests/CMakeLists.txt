@@ -37,6 +37,7 @@ set(UNITTEST_SRC
 	widgets/NumberPickerTest.cpp
 	widgets/FillTypePickerTest.cpp
 	widgets/CustomSpinBoxTest.cpp
+	widgets/StickerPickerTest.cpp
 	)
 
 set(TESTUTILS_SRC
@@ -45,7 +46,7 @@ set(TESTUTILS_SRC
 
 add_library(KIMAGEANNOTATOR_STATIC STATIC ${KIMAGEANNOTATOR_SRCS})
 
-target_link_libraries(KIMAGEANNOTATOR_STATIC Qt5::Widgets kImageAnnotator)
+target_link_libraries(KIMAGEANNOTATOR_STATIC Qt5::Widgets Qt5::Svg kImageAnnotator)
 
 foreach (UnitTest ${UNITTEST_SRC})
 	get_filename_component(UnitTestName ${UnitTest} NAME_WE)

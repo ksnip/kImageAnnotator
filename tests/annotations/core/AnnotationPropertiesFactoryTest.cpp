@@ -195,4 +195,19 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetToolFontAndFontSizeBa
 	QCOMPARE(textProperties->font(), font);
 }
 
+void AnnotationPropertiesFactoryTest::TestCreate_Should_StickerPathBasedOnSettings()
+{
+	const ToolTypes tool = ToolTypes::Sticker;
+	auto path = QStringLiteral("/my/path/to/sticker");
+	auto config = new Config;
+	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setSticker(path);
+	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+
+	auto properties = propertiesFactory.create(tool);
+
+	auto stickerProperties = properties.dynamicCast<AnnotationStickerProperties>();
+	QCOMPARE(stickerProperties->path(), path);
+}
+
 QTEST_MAIN(AnnotationPropertiesFactoryTest);
