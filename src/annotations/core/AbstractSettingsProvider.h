@@ -43,6 +43,7 @@ public:
 	virtual int fontSize() const = 0;
 	virtual FillTypes fillType() const = 0;
 	virtual int blurRadius() const = 0;
+	virtual QString sticker() const = 0;
 	void subscribeToToolChange(AbstractToolChangeListener *listener);
 	void subscribeToItemSettingsChange(AbstractItemSettingsChangeListener *listener);
 	void subscribeToBadgeNumberChange(AbstractBadgeNumberChangeListener *listener);

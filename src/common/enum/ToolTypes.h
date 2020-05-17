@@ -39,7 +39,8 @@ enum class ToolTypes
 	Number,
 	Text,
 	Blur,
-	Image
+	Image,
+	Sticker
 };
 
 inline uint qHash(const ToolTypes &tool, uint seed)

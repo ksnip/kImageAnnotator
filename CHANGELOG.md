@@ -4,6 +4,7 @@
 * New: Tabs for images. ([#48](https://github.com/ksnip/kImageAnnotator/issues/48))
 * New: Add option to translate UI. ([#54](https://github.com/ksnip/kImageAnnotator/issues/54))
 * New: Saved image expand to include annotations out of border. ([#90](https://github.com/ksnip/kImageAnnotator/issues/90))
+* New: Add support for stickers. ([#74](https://github.com/ksnip/kImageAnnotator/issues/74))
 * Changed: Make dropdown buttons show popup on click. ([#89](https://github.com/ksnip/kImageAnnotator/issues/89))
 
 ## Release 0.2.1

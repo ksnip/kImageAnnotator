@@ -11,6 +11,7 @@
         <file>dark/pen.svg</file>
         <file>dark/rect.svg</file>
         <file>dark/select.svg</file>
+        <file>dark/sticker.svg</file>
         <file>dark/text.svg</file>
         <file>dark/ellipse.svg</file>
         <file>dark/blur.svg</file>
@@ -33,6 +34,7 @@
         <file>light/pen.svg</file>
         <file>light/rect.svg</file>
         <file>light/select.svg</file>
+        <file>light/sticker.svg</file>
         <file>light/text.svg</file>
         <file>light/ellipse.svg</file>
         <file>light/blur.svg</file>
@@ -44,5 +46,20 @@
         <file>light/fillType_borderAndFill.svg</file>
         <file>light/fillType_borderAndNoFill.svg</file>
         <file>light/fillType_NoBorderAndNoFill.svg</file>
+    </qresource>
+
+    <qresource prefix="/stickers">
+        <file>stickers/face_blowing_a_kiss.svg</file>
+        <file>stickers/face_savoring_food.svg</file>
+        <file>stickers/grinning_face_with_big_eyes.svg</file>
+        <file>stickers/grinning_face_with_smiling_eyes.svg</file>
+        <file>stickers/grinning_face_with_sweat.svg</file>
+        <file>stickers/grinning_squinting_face.svg</file>
+        <file>stickers/hushed_face.svg</file>
+        <file>stickers/nerd_face.svg</file>
+        <file>stickers/neutral_face.svg</file>
+        <file>stickers/smiling_face_with_heart_eyes.svg</file>
+        <file>stickers/smiling_face_with_hearts.svg</file>
+        <file>stickers/thinking_face.svg</file>
     </qresource>
 </RCC>

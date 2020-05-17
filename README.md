@@ -40,3 +40,7 @@ static library is build. For windows we currenlty only support building as stati
 
 2. Link the library with your application  
     `target_link_libraries(myApp kImageAnnotator)`  
+    
+
+### Acknowledgement
+Stickers designed by [OpenMoji](https://openmoji.org/) – the open-source emoji and icon project.

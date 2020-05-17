@@ -98,3 +98,8 @@ void MockSettingsProvider::setBlurRadius(int blurRadius)
 {
 	mBlurRadius = blurRadius;
 }
+
+QString MockSettingsProvider::sticker() const
+{
+	return QString();
+}

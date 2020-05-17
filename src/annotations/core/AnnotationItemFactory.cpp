@@ -114,6 +114,9 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 		case ToolTypes::Blur:
 			newItem = new AnnotationBlur(initPosition, properties.staticCast<AnnotationBlurProperties>());
 			break;
+		case ToolTypes::Sticker:
+			newItem = new AnnotationSticker(initPosition, properties.staticCast<AnnotationStickerProperties>());
+			break;
 		default:
 			qCritical("Cannot create item for provided tool type.");
 	}
@@ -165,6 +168,9 @@ AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotatio
 			break;
 		case ToolTypes::Image:
 			newItem = new AnnotationImage(*(dynamic_cast<const AnnotationImage *>(item)));
+			break;
+		case ToolTypes::Sticker:
+			newItem = new AnnotationSticker(*(dynamic_cast<const AnnotationSticker *>(item)));
 			break;
 		default:
 			qCritical("Cannot create item for provided tool type.");

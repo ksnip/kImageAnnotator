@@ -103,6 +103,10 @@ void ToolPicker::initGui()
 	button = createButton(menu);
 	mLayout->addWidget(button, 4, 1);
 
+	action = createAction(tr("Sticker"), IconLoader::load(QStringLiteral("sticker.svg")), Qt::Key_I, ToolTypes::Sticker);
+	button = createButton(action);
+	mLayout->addWidget(button, 5, 0);
+
 	setLayout(mLayout);
 	setFixedSize(sizeHint());
 }
