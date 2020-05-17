@@ -101,5 +101,10 @@ void MockSettingsProvider::setBlurRadius(int blurRadius)
 
 QString MockSettingsProvider::sticker() const
 {
-	return QString();
+	return mStickerPath;
+}
+
+void MockSettingsProvider::setSticker(const QString &stickerPath)
+{
+	mStickerPath =  stickerPath;
 }

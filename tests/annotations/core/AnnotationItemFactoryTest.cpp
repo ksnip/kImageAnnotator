@@ -145,6 +145,20 @@ void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationNumber_When_Ty
 	QVERIFY(result != nullptr);
 }
 
+void AnnotationItemFactoryTest::TestCreate_Should_ReturnAnnotationSticker_When_TypeIsSticker()
+{
+	auto config = new Config;
+	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setToolType(ToolTypes::Sticker);
+	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationItemFactory itemFactory(&propertiesFactory, settingsProvider);
+
+	auto item = itemFactory.create(QPoint(0, 0));
+
+	auto result = dynamic_cast<AnnotationSticker *>(item);
+	QVERIFY(result != nullptr);
+}
+
 void AnnotationItemFactoryTest::TestClone_Should_ReturnNewItemOfSameType()
 {
 	QPointF position(10, 10);

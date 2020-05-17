@@ -29,6 +29,7 @@ using kImageAnnotator::AnnotationPropertiesFactory;
 using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::AnnotationTextProperties;
 using kImageAnnotator::AnnotationPathProperties;
+using kImageAnnotator::AnnotationStickerProperties;
 using kImageAnnotator::ToolTypes;
 using kImageAnnotator::FillTypes;
 using kImageAnnotator::Config;
@@ -51,6 +52,7 @@ private slots:
 	void TestCreate_Should_CreateTextPropertiesWhenItemText();
 	void TestCreate_Should_SetSmoothPathBasedOnConfiguration();
 	void TestCreate_Should_SetToolFontAndFontSizeBasedOnConfiguration();
+	void TestCreate_Should_StickerPathBasedOnSettings();
 };
 
 #endif // ANNOTATIONPROPERTIESFACTORYTEST_H

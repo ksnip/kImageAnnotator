@@ -91,7 +91,7 @@ void StickerPicker::addDefaultStickers()
 
 QString StickerPicker::getResourcePath(const QString &name) const
 {
-	return QStringLiteral(":/stickers/stickers/") + name + QStringLiteral(".svg");
+	return QStringLiteral(":/stickers/") + name + QStringLiteral(".svg");
 }
 
 void StickerPicker::insertItem(const QString &path)
