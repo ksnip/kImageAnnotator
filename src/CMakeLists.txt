@@ -24,6 +24,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationPathProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationTextProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationBlurProperties.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationStickerProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/AnnotationItemModifier.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/AnnotationItemResizer.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/AnnotationMultiItemResizer.cpp
@@ -51,6 +52,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationText.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationBlur.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationImage.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationSticker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/KeyInputHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/TextCursor.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/CapsLockStatusChecker.cpp
@@ -85,6 +87,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomSpinBox.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButton.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButtonAction.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/StickerPicker.cpp
 	)
 
 set(KIMAGEANNOTATOR_SRCS ${KIMAGEANNOTATOR_SRCS} PARENT_SCOPE)

@@ -35,7 +35,6 @@ namespace kImageAnnotator {
 class FillTypePicker : public QWidget
 {
 Q_OBJECT
-
 public:
 	FillTypePicker(const QIcon &icon, const QString &tooltip);
 	~FillTypePicker() override;

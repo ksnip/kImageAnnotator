@@ -24,6 +24,7 @@
 #include "src/annotations/properties/AnnotationPathProperties.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 #include "src/annotations/properties/AnnotationBlurProperties.h"
+#include "src/annotations/properties/AnnotationStickerProperties.h"
 #include "src/backend/Config.h"
 #include "src/common/enum/ToolTypes.h"
 #include "AbstractSettingsProvider.h"
@@ -52,6 +53,7 @@ private:
 	void setTextProperties(const PropertiesPtr &properties, ToolTypes toolType) const;
 	void setBlurProperties(const PropertiesPtr &properties) const;
 	bool isMarkerTool(ToolTypes toolType) const;
+	void setStickerProperties(const PropertiesPtr &properties) const;
 };
 
 } // namespace kImageAnnotator

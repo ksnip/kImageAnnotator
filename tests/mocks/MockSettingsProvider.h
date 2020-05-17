@@ -46,6 +46,7 @@ public:
 	void setFillType(FillTypes fillType);
 	int blurRadius() const override;
 	void setBlurRadius(int blurRadius);
+	QString sticker() const override;
 
 private:
 	ToolTypes mToolType;

@@ -27,6 +27,7 @@
 #include "src/widgets/ColorPicker.h"
 #include "src/widgets/NumberPicker.h"
 #include "src/widgets/FillTypePicker.h"
+#include "src/widgets/StickerPicker.h"
 #include "src/backend/Config.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 #include "src/annotations/properties/AnnotationBlurProperties.h"
@@ -50,6 +51,7 @@ public:
 	int fontSize() const override;
 	FillTypes fillType() const override;
 	int blurRadius() const override;
+	QString sticker() const override;
 	void reloadConfig();
 
 private:
@@ -63,6 +65,7 @@ private:
 	FillTypePicker *mFillTypePicker;
 	NumberPicker *mFirstNumberPicker;
 	NumberPicker *mBlurRadiusPicker;
+	StickerPicker *mStickerPicker;
 	Config *mConfig;
 	WidgetConfigurator mWidgetConfigurator;
 	bool mEditExistingItem;
@@ -80,6 +83,7 @@ private slots:
 	void toolFillTypeChanged(FillTypes fill);
 	void saveFirstBadgeNumber(int size);
 	void blurRadiusChanged(int radius);
+	void stickerChanged(const QString &sticker);
 	void loadFromItem(const AbstractAnnotationItem *item);
 };
 

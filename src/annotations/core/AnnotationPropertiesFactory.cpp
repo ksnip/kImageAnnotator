@@ -39,6 +39,7 @@ PropertiesPtr AnnotationPropertiesFactory::create(ToolTypes toolType) const
 	setPathProperties(properties);
 	setTextProperties(properties, toolType);
 	setBlurProperties(properties);
+	setStickerProperties(properties);
 
 	return properties;
 }
@@ -54,6 +55,8 @@ PropertiesPtr AnnotationPropertiesFactory::createPropertiesObject(ToolTypes tool
 			return PropertiesPtr(new AnnotationTextProperties());
 		case ToolTypes::Blur:
 			return PropertiesPtr(new AnnotationBlurProperties());
+		case ToolTypes ::Sticker:
+			return PropertiesPtr(new AnnotationStickerProperties());
 		default:
 			return PropertiesPtr(new AnnotationProperties());
 	}
@@ -88,11 +91,13 @@ void AnnotationPropertiesFactory::setWidthSize(const PropertiesPtr &properties, 
 
 void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, ToolTypes toolType) const
 {
-	if(toolType == ToolTypes::MarkerPen) {
+	if (toolType == ToolTypes::MarkerPen) {
 		properties->setFillType(FillTypes::BorderAndNoFill);
 	} else if (isMarkerTool(toolType)) {
 		properties->setFillType(FillTypes::NoBorderAndFill);
-	} else if(toolType == ToolTypes::Image) {
+	} else if (toolType == ToolTypes::Image) {
+		properties->setFillType(FillTypes::BorderAndFill);
+	} else if (toolType == ToolTypes::Sticker) {
 		properties->setFillType(FillTypes::BorderAndFill);
 	} else {
 		properties->setFillType(mSettingsProvider->fillType());
@@ -134,9 +139,17 @@ bool AnnotationPropertiesFactory::isMarkerTool(ToolTypes toolType) const
 
 void AnnotationPropertiesFactory::setBlurProperties(const PropertiesPtr &properties) const
 {
-	auto pathProperties = properties.dynamicCast<AnnotationBlurProperties>();;
-	if (pathProperties != nullptr) {
-		pathProperties->setRadius(mSettingsProvider->blurRadius());
+	auto blurProperties = properties.dynamicCast<AnnotationBlurProperties>();
+	if (blurProperties != nullptr) {
+		blurProperties->setRadius(mSettingsProvider->blurRadius());
+	}
+}
+
+void AnnotationPropertiesFactory::setStickerProperties(const PropertiesPtr &properties) const
+{
+	auto stickerProperties = properties.dynamicCast<AnnotationStickerProperties>();
+	if (stickerProperties != nullptr) {
+		stickerProperties->setPath(mSettingsProvider->sticker());
 	}
 }
 

@@ -40,6 +40,7 @@ AnnotationSettings::~AnnotationSettings()
 	delete mFillTypePicker;
 	delete mFirstNumberPicker;
 	delete mBlurRadiusPicker;
+	delete mStickerPicker;
 	delete mToolLayout;
 }
 
@@ -95,6 +96,7 @@ void AnnotationSettings::initGui()
 	mFirstNumberPicker->setRange(1, 100);
 	mBlurRadiusPicker = new NumberPicker(IconLoader::load(QStringLiteral("blur.svg")), tr("Blur Radius"));
 	mBlurRadiusPicker->setRange(1, 20);
+	mStickerPicker = new StickerPicker(IconLoader::load(QStringLiteral("sticker.svg")), tr("Sticker"));
 
 	mToolLayout->addWidget(mToolPicker);
 	mMainLayout->addLayout(mToolLayout);
@@ -106,6 +108,7 @@ void AnnotationSettings::initGui()
 	mMainLayout->addWidget(mFillTypePicker);
 	mMainLayout->addWidget(mFirstNumberPicker);
 	mMainLayout->addWidget(mBlurRadiusPicker);
+	mMainLayout->addWidget(mStickerPicker);
 	mMainLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 
 	mWidgetConfigurator.setColorWidget(mColorPicker);
@@ -115,6 +118,7 @@ void AnnotationSettings::initGui()
 	mWidgetConfigurator.setFontSizeWidget(mFontSizePicker);
 	mWidgetConfigurator.setFirstNumberWidget(mFirstNumberPicker);
 	mWidgetConfigurator.setBlurRadiusWidget(mBlurRadiusPicker);
+	mWidgetConfigurator.setStickerWidget(mStickerPicker);
 
 	setLayout(mMainLayout);
 
@@ -128,6 +132,7 @@ void AnnotationSettings::initGui()
 	connect(mFillTypePicker, &FillTypePicker::fillSelected, this, &AnnotationSettings::toolFillTypeChanged);
 	connect(mFirstNumberPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::saveFirstBadgeNumber);
 	connect(mBlurRadiusPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::blurRadiusChanged);
+	connect(mStickerPicker, &StickerPicker::stickerSelected, this, &AnnotationSettings::stickerChanged);
 }
 
 void AnnotationSettings::loadToolTypeFromConfig()
@@ -215,6 +220,13 @@ void AnnotationSettings::blurRadiusChanged(int radius)
 	}
 }
 
+void AnnotationSettings::stickerChanged(const QString &sticker)
+{
+	if(mEditExistingItem) {
+		emit itemSettingChanged();
+	}
+}
+
 QColor AnnotationSettings::toolColor() const
 {
 	return mColorPicker->color();
@@ -243,6 +255,11 @@ int AnnotationSettings::fontSize() const
 int AnnotationSettings::blurRadius() const
 {
 	return mBlurRadiusPicker->number();
+}
+
+QString AnnotationSettings::sticker() const
+{
+	return mStickerPicker->sticker();
 }
 
 void AnnotationSettings::reloadConfig()

@@ -21,7 +21,7 @@ elseif (UNIX)
 endif ()
 
 set(QT_MIN_VERSION "5.6.1")
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Test)
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Svg Test)
 
 if (UNIX)
 	find_package(X11 REQUIRED)
@@ -65,7 +65,7 @@ target_include_directories(kImageAnnotator
 						   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 						   )
 
-target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets PRIVATE kColorPicker::kColorPicker)
+target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets Qt5::Svg PRIVATE kColorPicker::kColorPicker)
 
 if (UNIX)
 	target_link_libraries(kImageAnnotator PRIVATE X11)

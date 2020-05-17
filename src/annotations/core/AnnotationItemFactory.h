@@ -33,6 +33,7 @@
 #include "src/annotations/items/AnnotationText.h"
 #include "src/annotations/items/AnnotationBlur.h"
 #include "src/annotations/items/AnnotationImage.h"
+#include "src/annotations/items/AnnotationSticker.h"
 #include "src/annotations/misc/NumberManager.h"
 #include "src/common/enum/ToolTypes.h"
 

@@ -27,6 +27,7 @@
 #include "src/widgets/FillTypePicker.h"
 #include "src/widgets/ToolPicker.h"
 #include "src/widgets/NumberPicker.h"
+#include "src/widgets/StickerPicker.h"
 
 namespace kImageAnnotator {
 
@@ -43,6 +44,7 @@ public:
 	void setFontSizeWidget(NumberPicker *widget);
 	void setFirstNumberWidget(NumberPicker *widget);
 	void setBlurRadiusWidget(NumberPicker *widget);
+	void setStickerWidget(StickerPicker *widget);
 
 private:
 	ToolTypes mCurrentTool;
@@ -53,6 +55,7 @@ private:
 	NumberPicker *mFontSizeWidget;
 	NumberPicker *mFirstNumberWidget;
 	NumberPicker *mBlurRadiusWidget;
+	StickerPicker *mStickerWidget;
 
 	void updateWidgets() const;
 	void updateProperties() const;
@@ -65,6 +68,7 @@ private:
 	void setFirstNumberWidgetEnabled(bool enabled) const;
 	void setNoFillAndNoBorderEnabled(bool enabled) const;
 	void setBlurRadiusWidgetEnabled(bool enabled) const;
+	void setStickerWidgetEnabled(bool enabled) const;
 };
 
 } // namespace kImageAnnotator
