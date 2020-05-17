@@ -54,6 +54,7 @@ private:
 private slots:
 	void selectionChanged();
 	QString getResourcePath(const QString &name) const;
+	void addDefaultStickers();
 };
 
 } // namespace kImageAnnotator

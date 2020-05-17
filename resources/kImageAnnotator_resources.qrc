@@ -1,0 +1,70 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/icons/dark">
+        <file alias="arrow.svg" >icons/dark/arrow.svg</file>
+        <file alias="doubleArrow.svg" >icons/dark/doubleArrow.svg</file>
+        <file alias="number.svg" >icons/dark/number.svg</file>
+        <file alias="markerPen.svg" >icons/dark/markerPen.svg</file>
+        <file alias="markerRect.svg" >icons/dark/markerRect.svg</file>
+        <file alias="markerEllipse.svg" >icons/dark/markerEllipse.svg</file>
+        <file alias="line.svg" >icons/dark/line.svg</file>
+        <file alias="pen.svg" >icons/dark/pen.svg</file>
+        <file alias="rect.svg" >icons/dark/rect.svg</file>
+        <file alias="select.svg" >icons/dark/select.svg</file>
+        <file alias="sticker.svg" >icons/dark/sticker.svg</file>
+        <file alias="text.svg" >icons/dark/text.svg</file>
+        <file alias="ellipse.svg" >icons/dark/ellipse.svg</file>
+        <file alias="blur.svg" >icons/dark/blur.svg</file>
+        <file alias="color.svg" >icons/dark/color.svg</file>
+        <file alias="width.svg" >icons/dark/width.svg</file>
+        <file alias="textColor.svg" >icons/dark/textColor.svg</file>
+        <file alias="fontSize.svg" >icons/dark/fontSize.svg</file>
+        <file alias="fillType.svg" >icons/dark/fillType.svg</file>
+        <file alias="fillType_borderAndFill.svg" >icons/dark/fillType_borderAndFill.svg</file>
+        <file alias="fillType_borderAndNoFill.svg" >icons/dark/fillType_borderAndNoFill.svg</file>
+        <file alias="fillType_NoBorderAndNoFill.svg" >icons/dark/fillType_NoBorderAndNoFill.svg</file>
+    </qresource>
+
+    <qresource prefix="/icons/light">
+        <file alias="arrow.svg" >icons/light/arrow.svg</file>
+        <file alias="doubleArrow.svg" >icons/light/doubleArrow.svg</file>
+        <file alias="number.svg" >icons/light/number.svg</file>
+        <file alias="markerPen.svg" >icons/light/markerPen.svg</file>
+        <file alias="markerRect.svg" >icons/light/markerRect.svg</file>
+        <file alias="markerEllipse.svg" >icons/light/markerEllipse.svg</file>
+        <file alias="line.svg" >icons/light/line.svg</file>
+        <file alias="pen.svg" >icons/light/pen.svg</file>
+        <file alias="rect.svg" >icons/light/rect.svg</file>
+        <file alias="select.svg" >icons/light/select.svg</file>
+        <file alias="sticker.svg" >icons/light/sticker.svg</file>
+        <file alias="text.svg" >icons/light/text.svg</file>
+        <file alias="ellipse.svg" >icons/light/ellipse.svg</file>
+        <file alias="blur.svg" >icons/light/blur.svg</file>
+        <file alias="color.svg" >icons/light/color.svg</file>
+        <file alias="width.svg" >icons/light/width.svg</file>
+        <file alias="textColor.svg" >icons/light/textColor.svg</file>
+        <file alias="fontSize.svg" >icons/light/fontSize.svg</file>
+        <file alias="fillType.svg" >icons/light/fillType.svg</file>
+        <file alias="fillType_borderAndFill.svg" >icons/light/fillType_borderAndFill.svg</file>
+        <file alias="fillType_borderAndNoFill.svg" >icons/light/fillType_borderAndNoFill.svg</file>
+        <file alias="fillType_NoBorderAndNoFill.svg" >icons/light/fillType_NoBorderAndNoFill.svg</file>
+    </qresource>
+
+    <qresource prefix="/stickers">
+        <file>stickers/face_blowing_a_kiss.svg</file>
+        <file>stickers/face_savoring_food.svg</file>
+        <file>stickers/grinning_face_with_big_eyes.svg</file>
+        <file>stickers/grinning_face_with_smiling_eyes.svg</file>
+        <file>stickers/grinning_face_with_sweat.svg</file>
+        <file>stickers/grinning_squinting_face.svg</file>
+        <file>stickers/hushed_face.svg</file>
+        <file>stickers/nerd_face.svg</file>
+        <file>stickers/neutral_face.svg</file>
+        <file>stickers/smiling_face_with_heart_eyes.svg</file>
+        <file>stickers/smiling_face_with_hearts.svg</file>
+        <file>stickers/confused_face.svg</file>
+        <file>stickers/face_with_symbols_on_mouth.svg</file>
+        <file>stickers/pouting_face.svg</file>
+        <file>stickers/smiling_face_with_sunglasses.svg</file>
+    </qresource>
+</RCC>
