@@ -56,18 +56,7 @@ void StickerPicker::init(const QIcon &icon, const QString &tooltip)
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::getScaledSize(QSize(20, 20))));
 	mLabel->setToolTip(tooltip);
 
-	insertItem(getResourcePath(QStringLiteral("face_blowing_a_kiss")));
-	insertItem(getResourcePath(QStringLiteral("face_savoring_food")));
-	insertItem(getResourcePath(QStringLiteral("grinning_face_with_big_eyes")));
-	insertItem(getResourcePath(QStringLiteral("grinning_face_with_smiling_eyes")));
-	insertItem(getResourcePath(QStringLiteral("grinning_face_with_sweat")));
-	insertItem(getResourcePath(QStringLiteral("grinning_squinting_face")));
-	insertItem(getResourcePath(QStringLiteral("hushed_face")));
-	insertItem(getResourcePath(QStringLiteral("nerd_face")));
-	insertItem(getResourcePath(QStringLiteral("neutral_face")));
-	insertItem(getResourcePath(QStringLiteral("smiling_face_with_heart_eyes")));
-	insertItem(getResourcePath(QStringLiteral("smiling_face_with_hearts")));
-	insertItem(getResourcePath(QStringLiteral("thinking_face")));
+	addDefaultStickers();
 
 	mComboBox->setFixedSize(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetSize));
 	mComboBox->setIconSize(ScaledSizeProvider::getScaledSize(QSize(30, 30)));
@@ -79,6 +68,25 @@ void StickerPicker::init(const QIcon &icon, const QString &tooltip)
 
 	setLayout(mLayout);
 	setFixedSize(sizeHint());
+}
+
+void StickerPicker::addDefaultStickers()
+{
+	insertItem(getResourcePath(QStringLiteral("face_blowing_a_kiss")));
+	insertItem(getResourcePath(QStringLiteral("face_savoring_food")));
+	insertItem(getResourcePath(QStringLiteral("grinning_face_with_big_eyes")));
+	insertItem(getResourcePath(QStringLiteral("grinning_face_with_smiling_eyes")));
+	insertItem(getResourcePath(QStringLiteral("grinning_face_with_sweat")));
+	insertItem(getResourcePath(QStringLiteral("grinning_squinting_face")));
+	insertItem(getResourcePath(QStringLiteral("hushed_face")));
+	insertItem(getResourcePath(QStringLiteral("nerd_face")));
+	insertItem(getResourcePath(QStringLiteral("neutral_face")));
+	insertItem(getResourcePath(QStringLiteral("smiling_face_with_heart_eyes")));
+	insertItem(getResourcePath(QStringLiteral("smiling_face_with_hearts")));
+	insertItem(getResourcePath(QStringLiteral("confused_face")));
+	insertItem(getResourcePath(QStringLiteral("face_with_symbols_on_mouth")));
+	insertItem(getResourcePath(QStringLiteral("pouting_face")));
+	insertItem(getResourcePath(QStringLiteral("smiling_face_with_sunglasses")));
 }
 
 QString StickerPicker::getResourcePath(const QString &name) const

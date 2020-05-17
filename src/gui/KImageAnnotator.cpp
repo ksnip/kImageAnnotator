@@ -26,7 +26,7 @@
 
 inline void initResource()
 {
-	Q_INIT_RESOURCE(kImageAnnotator_icons);
+	Q_INIT_RESOURCE(kImageAnnotator_resources);
 }
 
 namespace kImageAnnotator {
