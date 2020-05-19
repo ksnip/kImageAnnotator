@@ -60,7 +60,6 @@ private:
 private slots:
 	void undoTriggered();
 	void redoTriggered();
-	void updateTabsClosable();
 	void updateCurrentWidget(int index);
 	void showTabContextMenu(const QPoint &pos);
 	void closeOtherTabsRequested(int index);

@@ -28,8 +28,6 @@ AnnotationTabContextMenu::AnnotationTabContextMenu(QWidget *parent)
 	  mCloseAllTabs(new QAction(this))
 {
 	mCloseTab->setText(tr("Close"));
-	mCloseTab->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F4));
-
 	mClosedOtherTabs->setText(tr("Close Other"));
 	mCloseAllTabs->setText(tr("Close All"));
 
