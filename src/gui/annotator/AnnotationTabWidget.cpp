@@ -23,17 +23,24 @@ namespace kImageAnnotator {
 
 AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvider *settingsProvider) :
 	mConfig(config),
+	mTabBar(tabBar()),
 	mSettingsProvider(settingsProvider),
 	mRedoAction(new QAction(this)),
-	mUndoAction(new QAction(this))
+	mUndoAction(new QAction(this)),
+	mTabContextMenu(new AnnotationTabContextMenu(this))
 {
 	setTabBarAutoHide(true);
 	setMovable(true);
 	setTabsClosable(false);
+	mTabBar->setContextMenuPolicy(Qt::CustomContextMenu);
 
 	connect(mUndoAction, &QAction::triggered, this, &AnnotationTabWidget::undoTriggered);
 	connect(mRedoAction, &QAction::triggered, this, &AnnotationTabWidget::redoTriggered);
-	connect(tabBar(), &QTabBar::tabMoved, this, &AnnotationTabWidget::tabMoved);
+	connect(mTabBar, &QTabBar::tabMoved, this, &AnnotationTabWidget::tabMoved);
+	connect(mTabBar, &QTabBar::customContextMenuRequested, this, &AnnotationTabWidget::showTabContextMenu);
+	connect(mTabContextMenu, &AnnotationTabContextMenu::closeTab, this, &AnnotationTabWidget::tabCloseRequested);
+	connect(mTabContextMenu, &AnnotationTabContextMenu::closeOtherTabs, this, &AnnotationTabWidget::closeOtherTabsRequested);
+	connect(mTabContextMenu, &AnnotationTabContextMenu::closeAllTabs, this, &AnnotationTabWidget::closeAllTabsRequested);
 }
 
 int AnnotationTabWidget::addImage(const QPixmap &image, const QString &title, const QString &toolTip)
@@ -108,6 +115,30 @@ void AnnotationTabWidget::updateTabsClosable()
 void AnnotationTabWidget::updateCurrentWidget(int index)
 {
 	setCurrentIndex(index);
+}
+
+void AnnotationTabWidget::showTabContextMenu(const QPoint &pos)
+{
+	if (!pos.isNull()) {
+		int tabIndex = mTabBar->tabAt(pos);
+		mTabContextMenu->show(tabIndex, mTabBar->mapToGlobal(pos));
+	}
+}
+
+void AnnotationTabWidget::closeOtherTabsRequested(int index)
+{
+	for(auto i = 0; i < mTabBar->count(); i++) {
+		if(i != index) {
+			tabCloseRequested(i);
+		}
+	}
+}
+
+void AnnotationTabWidget::closeAllTabsRequested()
+{
+	for(auto i = 0; i < mTabBar->count(); i++) {
+		tabCloseRequested(i);
+	}
 }
 
 } // namespace kImageAnnotator

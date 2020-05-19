@@ -24,6 +24,7 @@
 #include <QPixmap>
 
 #include "AnnotationTabContent.h"
+#include "AnnotationTabContextMenu.h"
 
 namespace kImageAnnotator {
 
@@ -50,15 +51,20 @@ protected:
 
 private:
 	Config *mConfig;
+	QTabBar *mTabBar;
 	AbstractSettingsProvider *mSettingsProvider;
 	QAction *mUndoAction;
 	QAction *mRedoAction;
+	AnnotationTabContextMenu *mTabContextMenu;
 
 private slots:
 	void undoTriggered();
 	void redoTriggered();
 	void updateTabsClosable();
 	void updateCurrentWidget(int index);
+	void showTabContextMenu(const QPoint &pos);
+	void closeOtherTabsRequested(int index);
+	void closeAllTabsRequested();
 };
 
 } // namespace kImageAnnotator
