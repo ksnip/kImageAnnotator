@@ -31,7 +31,7 @@ AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvide
 {
 	setTabBarAutoHide(true);
 	setMovable(true);
-	setTabsClosable(false);
+	setTabsClosable(true);
 	mTabBar->setContextMenuPolicy(Qt::CustomContextMenu);
 
 	connect(mUndoAction, &QAction::triggered, this, &AnnotationTabWidget::undoTriggered);
@@ -81,13 +81,11 @@ void AnnotationTabWidget::setUndoRedoEnabled(bool enabled)
 void AnnotationTabWidget::tabInserted(int index)
 {
 	updateCurrentWidget(index);
-	updateTabsClosable();
 	QTabWidget::tabInserted(index);
 }
 
 void AnnotationTabWidget::tabRemoved(int index)
 {
-	updateTabsClosable();
 	QTabWidget::tabRemoved(index);
 }
 
@@ -107,11 +105,6 @@ void AnnotationTabWidget::redoTriggered()
 	}
 }
 
-void AnnotationTabWidget::updateTabsClosable()
-{
-	setTabsClosable(count() > 1);
-}
-
 void AnnotationTabWidget::updateCurrentWidget(int index)
 {
 	setCurrentIndex(index);
@@ -127,8 +120,11 @@ void AnnotationTabWidget::showTabContextMenu(const QPoint &pos)
 
 void AnnotationTabWidget::closeOtherTabsRequested(int index)
 {
-	for(auto i = 0; i < mTabBar->count(); i++) {
-		if(i != index) {
+	auto selectedWidget = widget(index);
+	auto tabCount = mTabBar->count();
+	for(auto i = tabCount - 1; i >= 0; i--) {
+		auto currentWidget = widget(i);
+		if(currentWidget != selectedWidget) {
 			tabCloseRequested(i);
 		}
 	}
@@ -136,7 +132,8 @@ void AnnotationTabWidget::closeOtherTabsRequested(int index)
 
 void AnnotationTabWidget::closeAllTabsRequested()
 {
-	for(auto i = 0; i < mTabBar->count(); i++) {
+	auto tabCount = mTabBar->count();
+	for(auto i = tabCount - 1; i >= 0; i--) {
 		tabCloseRequested(i);
 	}
 }
