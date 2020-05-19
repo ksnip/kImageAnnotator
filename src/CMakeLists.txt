@@ -7,6 +7,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationSettings.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationTabContent.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationTabWidget.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationTabContextMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropView.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropSelectionHandler.cpp
