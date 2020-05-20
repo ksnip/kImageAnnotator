@@ -3,7 +3,7 @@
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,37 +17,33 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONTABCONTEXTMENU_H
-#define KIMAGEANNOTATOR_ANNOTATIONTABCONTEXTMENU_H
+#ifndef ANNOTATIONTAB_H
+#define ANNOTATIONTAB_H
 
-#include <QMenu>
+#include <QWidget>
+#include <QHBoxLayout>
+
+#include "src/gui/annotator/AnnotationView.h"
+#include "src/gui/annotator/AnnotationSettings.h"
+#include "src/annotations/core/AnnotationArea.h"
 
 namespace kImageAnnotator {
 
-class AnnotationTabContextMenu : public QMenu
+class AnnotationTabContent : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit AnnotationTabContextMenu(QWidget *parent);
-	~AnnotationTabContextMenu() override;
-	void show(int tabIndex, const QPoint &pos);
+	AnnotationTabContent(const QPixmap &pixmap, Config *config, AbstractSettingsProvider *settingsProvider);
+	~AnnotationTabContent() override;
 
-signals:
-	void closeTab(int index) const;
-	void closeOtherTabs(int index) const;
-	void closeAllTabs() const;
+	AnnotationArea* annotationArea() const;
 
 private:
-	int mTabIndex;
-	QAction *mCloseTab;
-	QAction *mClosedOtherTabs;
-	QAction *mCloseAllTabs;
-
-	void closeTabTriggered() const;
-	void closeOtherTabsTriggered() const;
-	void closeAllTabsTriggered() const;
+	AnnotationArea *mAnnotationArea;
+	AnnotationView *mAnnotationView;
+	QHBoxLayout *mMainLayout;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONTABCONTEXTMENU_H
+#endif //ANNOTATIONTAB_H

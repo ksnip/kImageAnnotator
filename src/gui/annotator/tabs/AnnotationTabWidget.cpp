@@ -27,7 +27,8 @@ AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvide
 	mSettingsProvider(settingsProvider),
 	mRedoAction(new QAction(this)),
 	mUndoAction(new QAction(this)),
-	mTabContextMenu(new AnnotationTabContextMenu(this))
+	mTabContextMenu(new AnnotationTabContextMenu(this)),
+	mTabCloser(new AnnotationTabCloser(this))
 {
 	setTabBarAutoHide(true);
 	setMovable(true);
@@ -38,9 +39,12 @@ AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvide
 	connect(mRedoAction, &QAction::triggered, this, &AnnotationTabWidget::redoTriggered);
 	connect(mTabBar, &QTabBar::tabMoved, this, &AnnotationTabWidget::tabMoved);
 	connect(mTabBar, &QTabBar::customContextMenuRequested, this, &AnnotationTabWidget::showTabContextMenu);
-	connect(mTabContextMenu, &AnnotationTabContextMenu::closeTab, this, &AnnotationTabWidget::tabCloseRequested);
-	connect(mTabContextMenu, &AnnotationTabContextMenu::closeOtherTabs, this, &AnnotationTabWidget::closeOtherTabsRequested);
-	connect(mTabContextMenu, &AnnotationTabContextMenu::closeAllTabs, this, &AnnotationTabWidget::closeAllTabsRequested);
+
+	connect(mTabContextMenu, &AnnotationTabContextMenu::closeTab, mTabCloser, &AnnotationTabCloser::closeTabTriggered);
+	connect(mTabContextMenu, &AnnotationTabContextMenu::closeOtherTabs, mTabCloser, &AnnotationTabCloser::closeOtherTabsTriggered);
+	connect(mTabContextMenu, &AnnotationTabContextMenu::closeAllTabs, mTabCloser, &AnnotationTabCloser::closeAllTabsTriggered);
+	connect(mTabContextMenu, &AnnotationTabContextMenu::closeAllTabsToLeft, mTabCloser, &AnnotationTabCloser::closeAllTabsToLeftTriggered);
+	connect(mTabContextMenu, &AnnotationTabContextMenu::closeAllTabsToRight, mTabCloser, &AnnotationTabCloser::closeAllTabsToRightTriggered);
 }
 
 int AnnotationTabWidget::addImage(const QPixmap &image, const QString &title, const QString &toolTip)
@@ -115,26 +119,6 @@ void AnnotationTabWidget::showTabContextMenu(const QPoint &pos)
 	if (!pos.isNull()) {
 		int tabIndex = mTabBar->tabAt(pos);
 		mTabContextMenu->show(tabIndex, mTabBar->mapToGlobal(pos));
-	}
-}
-
-void AnnotationTabWidget::closeOtherTabsRequested(int index)
-{
-	auto selectedWidget = widget(index);
-	auto tabCount = mTabBar->count();
-	for(auto i = tabCount - 1; i >= 0; i--) {
-		auto currentWidget = widget(i);
-		if(currentWidget != selectedWidget) {
-			tabCloseRequested(i);
-		}
-	}
-}
-
-void AnnotationTabWidget::closeAllTabsRequested()
-{
-	auto tabCount = mTabBar->count();
-	for(auto i = tabCount - 1; i >= 0; i--) {
-		tabCloseRequested(i);
 	}
 }
 

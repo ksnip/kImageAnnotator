@@ -3,7 +3,7 @@
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,33 +17,36 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef ANNOTATIONTAB_H
-#define ANNOTATIONTAB_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONTABCLOSER_H
+#define KIMAGEANNOTATOR_ANNOTATIONTABCLOSER_H
 
-#include <QWidget>
-#include <QHBoxLayout>
+#include <QTabWidget>
 
-#include "AnnotationView.h"
-#include "AnnotationSettings.h"
-#include "src/annotations/core/AnnotationArea.h"
+#include <QtWidgets/QTabWidget>
 
 namespace kImageAnnotator {
 
-class AnnotationTabContent : public QWidget
+class AnnotationTabCloser : public QObject
 {
 	Q_OBJECT
 public:
-	AnnotationTabContent(const QPixmap &pixmap, Config *config, AbstractSettingsProvider *settingsProvider);
-	~AnnotationTabContent() override;
+	explicit AnnotationTabCloser(QTabWidget *tabWidget);
+	~AnnotationTabCloser() override = default;
 
-	AnnotationArea* annotationArea() const;
+public slots:
+	void closeTabTriggered(int index);
+	void closeOtherTabsTriggered(int index);
+	void closeAllTabsTriggered();
+	void closeAllTabsToLeftTriggered(int index);
+	void closeAllTabsToRightTriggered(int index);
+
 
 private:
-	AnnotationArea *mAnnotationArea;
-	AnnotationView *mAnnotationView;
-	QHBoxLayout *mMainLayout;
+	QTabWidget *mTabWidget;
+
+	int getValidIndex(int index) const;
 };
 
 } // namespace kImageAnnotator
 
-#endif //ANNOTATIONTAB_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONTABCLOSER_H

@@ -25,19 +25,32 @@ AnnotationTabContextMenu::AnnotationTabContextMenu(QWidget *parent)
 	: QMenu(parent),
 	  mCloseTab(new QAction(this)),
 	  mClosedOtherTabs(new QAction(this)),
-	  mCloseAllTabs(new QAction(this))
+	  mCloseAllTabs(new QAction(this)),
+	  mCloseAllTabsToLeft(new QAction(this)),
+	  mCloseAllTabsToRight(new QAction(this)),
+	  mTabIndex(-1)
 {
 	mCloseTab->setText(tr("Close"));
 	mClosedOtherTabs->setText(tr("Close Other"));
 	mCloseAllTabs->setText(tr("Close All"));
+	mCloseAllTabsToLeft->setText(tr("Close All to the Left"));
+	mCloseAllTabsToRight->setText(tr("Close All to the Right"));
+
+	mCloseTab->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_W));
+	mCloseTab->setShortcutContext(Qt::ApplicationShortcut);
+	parent->addAction(mCloseTab);
 
 	connect(mCloseTab, &QAction::triggered, this, &AnnotationTabContextMenu::closeTabTriggered);
 	connect(mClosedOtherTabs, &QAction::triggered, this, &AnnotationTabContextMenu::closeOtherTabsTriggered);
 	connect(mCloseAllTabs, &QAction::triggered, this, &AnnotationTabContextMenu::closeAllTabsTriggered);
+	connect(mCloseAllTabsToLeft, &QAction::triggered, this, &AnnotationTabContextMenu::closeAllTabsToLeftTriggered);
+	connect(mCloseAllTabsToRight, &QAction::triggered, this, &AnnotationTabContextMenu::closeAllTabsToRightTriggered);
 
 	addAction(mCloseTab);
 	addAction(mClosedOtherTabs);
 	addAction(mCloseAllTabs);
+	addAction(mCloseAllTabsToLeft);
+	addAction(mCloseAllTabsToRight);
 }
 
 AnnotationTabContextMenu::~AnnotationTabContextMenu()
@@ -51,6 +64,7 @@ void AnnotationTabContextMenu::show(int tabIndex, const QPoint &pos)
 {
 	mTabIndex = tabIndex;
 	exec(pos);
+	mTabIndex = -1;
 }
 
 void AnnotationTabContextMenu::closeTabTriggered() const
@@ -66,6 +80,16 @@ void AnnotationTabContextMenu::closeOtherTabsTriggered() const
 void AnnotationTabContextMenu::closeAllTabsTriggered() const
 {
 	emit closeAllTabs();
+}
+
+void AnnotationTabContextMenu::closeAllTabsToLeftTriggered() const
+{
+	emit closeAllTabsToLeft(mTabIndex);
+}
+
+void AnnotationTabContextMenu::closeAllTabsToRightTriggered() const
+{
+	emit closeAllTabsToRight(mTabIndex);
 }
 
 } // namespace kImageAnnotator
