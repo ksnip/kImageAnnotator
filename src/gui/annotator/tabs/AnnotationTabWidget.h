@@ -25,6 +25,7 @@
 
 #include "AnnotationTabContent.h"
 #include "AnnotationTabContextMenu.h"
+#include "AnnotationTabCloser.h"
 
 namespace kImageAnnotator {
 
@@ -56,14 +57,13 @@ private:
 	QAction *mUndoAction;
 	QAction *mRedoAction;
 	AnnotationTabContextMenu *mTabContextMenu;
+	AnnotationTabCloser *mTabCloser;
 
 private slots:
 	void undoTriggered();
 	void redoTriggered();
 	void updateCurrentWidget(int index);
 	void showTabContextMenu(const QPoint &pos);
-	void closeOtherTabsRequested(int index);
-	void closeAllTabsRequested();
 };
 
 } // namespace kImageAnnotator
