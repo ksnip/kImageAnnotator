@@ -30,7 +30,6 @@ using kImageAnnotator::Constants::ResizeHandleSize;
 class CropHandlesTest : public QObject
 {
 Q_OBJECT
-
 private slots:
 	void TestIsHandleGrabbed_Should_ReturnTrue_When_ClickedOnHandle();
 	void TestIsHandleGrabbed_Should_ReturnFalse_When_ClickedOutsideHandle();

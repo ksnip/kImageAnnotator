@@ -69,7 +69,7 @@ void AnnotationTabCloser::closeAllTabsToRightTriggered(int index)
 
 int AnnotationTabCloser::getValidIndex(int index) const
 {
-	return index == -1 ? mTabWidget->currentIndex() : index;
+	return index >= 0 && index < mTabWidget->count() ? index : mTabWidget->currentIndex();
 }
 
 } // namespace kImageAnnotator
