@@ -32,6 +32,7 @@ set(UNITTEST_SRC
 	gui/cropper/CropSelectionHandlerTest.cpp
 	gui/cropper/CropHandlesTest.cpp
 	gui/scaler/ScaleSizeHandlerTest.cpp
+	gui/annotator/tabs/AnnotationTabCloserTest.cpp
 	widgets/ToolPickerTest.cpp
 	widgets/ColorPickerTest.cpp
 	widgets/NumberPickerTest.cpp
