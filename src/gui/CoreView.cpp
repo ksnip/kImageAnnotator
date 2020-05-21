@@ -51,14 +51,19 @@ QImage CoreView::image() const
 	return mAnnotationWidget->image();
 }
 
+QImage CoreView::imageAt(int index) const
+{
+	return mAnnotationWidget->imageAt(index);
+}
+
 void CoreView::loadImage(const QPixmap &pixmap)
 {
 	mAnnotationWidget->loadImage(pixmap);
 }
 
-int CoreView::addImage(const QPixmap &pixmap, const QString &title, const QString &toolTip)
+int CoreView::addTab(const QPixmap &pixmap, const QString &title, const QString &toolTip)
 {
-	return mAnnotationWidget->addImage(pixmap, title, toolTip);
+	return mAnnotationWidget->addTab(pixmap, title, toolTip);
 }
 
 void CoreView::updateTabInfo(int index, const QString &title, const QString &toolTip)

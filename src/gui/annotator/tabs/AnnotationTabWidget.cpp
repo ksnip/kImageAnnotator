@@ -47,7 +47,7 @@ AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvide
 	connect(mTabContextMenu, &AnnotationTabContextMenu::closeAllTabsToRight, mTabCloser, &AnnotationTabCloser::closeAllTabsToRightTriggered);
 }
 
-int AnnotationTabWidget::addImage(const QPixmap &image, const QString &title, const QString &toolTip)
+int AnnotationTabWidget::addTab(const QPixmap &image, const QString &title, const QString &toolTip)
 {
 	auto content = new AnnotationTabContent(image, mConfig, mSettingsProvider);
 	connect(content->annotationArea(), &AnnotationArea::imageChanged, this, &AnnotationTabWidget::imageChanged);
@@ -58,6 +58,11 @@ int AnnotationTabWidget::addImage(const QPixmap &image, const QString &title, co
 AnnotationArea* AnnotationTabWidget::currentAnnotationArea() const
 {
 	return currentWidget() != nullptr ? dynamic_cast<AnnotationTabContent*>(currentWidget())->annotationArea() : nullptr;
+}
+
+AnnotationArea *AnnotationTabWidget::annotationAreaAt(int index) const
+{
+	return widget(index) != nullptr ? dynamic_cast<AnnotationTabContent*>(widget(index))->annotationArea() : nullptr;
 }
 
 QAction *AnnotationTabWidget::undoAction() const
