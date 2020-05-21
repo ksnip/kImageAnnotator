@@ -35,8 +35,9 @@ class AnnotationTabWidget : public QTabWidget
 public:
 	AnnotationTabWidget(Config *config, AbstractSettingsProvider *settingsProvider);
 	~AnnotationTabWidget() override = default;
-	int addImage(const QPixmap &image, const QString &title, const QString &toolTip);
+	int addTab(const QPixmap &image, const QString &title, const QString &toolTip);
 	AnnotationArea* currentAnnotationArea() const;
+	AnnotationArea *annotationAreaAt(int index) const;
 	QAction* undoAction() const;
 	QAction* redoAction() const;
 	void updateTabInfo(int index, const QString &title, const QString &toolTip);

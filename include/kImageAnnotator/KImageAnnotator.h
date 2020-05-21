@@ -38,6 +38,7 @@ public:
 	explicit KImageAnnotator();
 	~KImageAnnotator() override;
 	QImage image() const;
+	QImage imageAt(int index) const;
 	QAction *undoAction();
 	QAction *redoAction();
 	QSize sizeHint() const;
@@ -47,7 +48,7 @@ public:
 
 public Q_SLOTS:
 	void loadImage(const QPixmap &pixmap);
-	int addImage(const QPixmap &pixmap, const QString &title, const QString &toolTip);
+	int addTab(const QPixmap &pixmap, const QString &title, const QString &toolTip);
 	void updateTabInfo(int index, const QString &title, const QString &toolTip);
 	void insertImageItem(const QPointF &position, const QPixmap &pixmap);
 	void setTextFont(const QFont &font);

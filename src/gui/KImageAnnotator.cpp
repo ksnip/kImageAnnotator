@@ -57,6 +57,12 @@ QImage KImageAnnotator::image() const
 	return d->mCoreView.image();
 }
 
+QImage KImageAnnotator::imageAt(int index) const
+{
+	Q_D(const KImageAnnotator);
+	return d->mCoreView.imageAt(index);
+}
+
 QAction *KImageAnnotator::undoAction()
 {
 	Q_D(KImageAnnotator);
@@ -79,10 +85,10 @@ void KImageAnnotator::loadImage(const QPixmap &pixmap)
 	}
 }
 
-int KImageAnnotator::addImage(const QPixmap &pixmap, const QString &title, const QString &toolTip)
+int KImageAnnotator::addTab(const QPixmap &pixmap, const QString &title, const QString &toolTip)
 {
 	Q_D(KImageAnnotator);
-	auto newTabIndex = d->mCoreView.addImage(pixmap, title, toolTip);
+	auto newTabIndex = d->mCoreView.addTab(pixmap, title, toolTip);
 
 	if (isHidden()) {
 		show();

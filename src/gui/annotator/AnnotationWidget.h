@@ -34,9 +34,10 @@ public:
 	explicit AnnotationWidget(Config *config);
 	~AnnotationWidget() override;
 	QSize sizeHint() const override;
-	QImage image () const;
+	QImage image() const;
+	QImage imageAt(int index) const;
 	void loadImage(const QPixmap &pixmap);
-	int addImage(const QPixmap &pixmap, const QString &title, const QString &toolTip);
+	int addTab(const QPixmap &pixmap, const QString &title, const QString &toolTip);
 	void updateTabInfo(int index, const QString &title, const QString &toolTip);
 	void insertImageItem(const QPointF &position, const QPixmap &pixmap);
 	void removeTab(int index);
@@ -45,6 +46,7 @@ public:
 	QAction* redoAction() const;
 	void clearSelection();
 	AnnotationArea* annotationArea() const;
+	AnnotationArea *annotationAreaAt(int index) const;
 	void reloadConfig();
 	void setTabBarAutoHide(bool enabled);
 
