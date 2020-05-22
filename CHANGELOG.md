@@ -7,6 +7,7 @@
 * New: Add support for stickers. ([#74](https://github.com/ksnip/kImageAnnotator/issues/74))
 * New: Add tab context menu for close all tabs and close other tabs. ([#93](https://github.com/ksnip/kImageAnnotator/issues/93))
 * Changed: Make dropdown buttons show popup on click. ([#89](https://github.com/ksnip/kImageAnnotator/issues/89))
+* Fixed: Using select tool marks image as changed. ([#97](https://github.com/ksnip/kImageAnnotator/issues/97))
 
 ## Release 0.2.1
 * Fixed: Edit border around text box doesn't disappear when done with editing. ([#71](https://github.com/ksnip/kImageAnnotator/issues/71))

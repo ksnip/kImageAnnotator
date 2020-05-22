@@ -31,8 +31,8 @@ AnnotationItemModifier::AnnotationItemModifier()
 	setZValue(1000);
 	setAcceptHoverEvents(true);
 
-	connect(mItemMover, &AnnotationItemMover::newCommand, this, &AnnotationItemModifier::newCommand);
-	connect(mItemResizer, &AnnotationMultiItemResizer::newCommand, this, &AnnotationItemModifier::newCommand);
+	connect(mItemMover, &AnnotationItemMover::newCommand, this, &AnnotationItemModifier::itemChanged);
+	connect(mItemResizer, &AnnotationMultiItemResizer::newCommand, this, &AnnotationItemModifier::itemChanged);
 }
 
 AnnotationItemModifier::~AnnotationItemModifier()
@@ -160,6 +160,12 @@ void AnnotationItemModifier::updateCursor(Qt::CursorShape cursor)
 	} else {
 		setCursor(cursor);
 	}
+}
+
+void AnnotationItemModifier::itemChanged(QUndoCommand *command)
+{
+	emit itemModified();
+	emit newCommand(command);
 }
 
 } // namespace kImageAnnotator

@@ -85,7 +85,7 @@ protected:
 private:
     AnnotationItemFactory *mItemFactory;
     AnnotationPropertiesFactory *mPropertiesFactory;
-    QGraphicsPixmapItem *mImage;
+    QSharedPointer<QGraphicsPixmapItem> mImage;
     AbstractAnnotationItem *mCurrentItem;
     AnnotationItemModifier *mItemModifier;
     AbstractSettingsProvider *mSettingsProvider;

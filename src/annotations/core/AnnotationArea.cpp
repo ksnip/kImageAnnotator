@@ -41,6 +41,7 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 
 	connect(mItemModifier, &AnnotationItemModifier::newCommand, mUndoStack, &UndoStack::push);
 	connect(mItemModifier, &AnnotationItemModifier::itemsSelected, this, &AnnotationArea::itemsSelected);
+	connect(mItemModifier, &AnnotationItemModifier::itemModified, this, &AnnotationArea::imageChanged);
 	connect(mUndoStack, &UndoStack::indexChanged, this, &AnnotationArea::update);
 	connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
 	connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clear);
@@ -81,8 +82,7 @@ void AnnotationArea::insertImageItem(const QPointF &position, const QPixmap &ima
 
 void AnnotationArea::replaceBackgroundImage(const QPixmap &image)
 {
-	delete mImage;
-	mImage = addPixmap(image);
+	mImage = QSharedPointer<QGraphicsPixmapItem>(addPixmap(image));
 	setSceneRect(image.rect());
 }
 
@@ -140,13 +140,13 @@ void AnnotationArea::removeAnnotationItem(AbstractAnnotationItem *item)
 
 void AnnotationArea::crop(const QRectF &rect)
 {
-	mUndoStack->push(new CropCommand(mImage, rect, this));
+	mUndoStack->push(new CropCommand(mImage.data(), rect, this));
 	emit imageChanged();
 }
 
 void AnnotationArea::scale(const QSize &size)
 {
-	mUndoStack->push(new ScaleCommand(mImage, size, this));
+	mUndoStack->push(new ScaleCommand(mImage.data(), size, this));
 	emit imageChanged();
 }
 
@@ -200,7 +200,6 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 		}
 	}
 
-	emit imageChanged();
 	QGraphicsScene::mouseReleaseEvent(event);
 }
 
