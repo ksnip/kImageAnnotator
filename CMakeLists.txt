@@ -21,7 +21,7 @@ elseif (UNIX)
 endif ()
 
 set(QT_MIN_VERSION "5.6.1")
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Svg Test)
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Svg)
 
 if (UNIX)
 	find_package(X11 REQUIRED)
@@ -44,6 +44,7 @@ if (BUILD_EXAMPLE)
 endif (BUILD_EXAMPLE)
 
 if (BUILD_TESTS)
+	find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Test)
 	enable_testing()
 	add_subdirectory(tests)
 endif (BUILD_TESTS)
