@@ -30,7 +30,7 @@ const int MinPathResizeRectSize = 20;
 
 const int ResizeHandleSize = 16;
 
-const QSize SettingsWidgetSize(55, 32);
+const QSize SettingsWidgetSize(54, 32);
 
 } // namespace Constants
 

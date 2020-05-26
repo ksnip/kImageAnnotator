@@ -49,6 +49,7 @@ void AnnotationWidget::initGui()
 {
 	mMainLayout->addWidget(mSettings);
 	mMainLayout->addWidget(mAnnotationTabWidget);
+	mMainLayout->setContentsMargins(0,0,0,0);
 
 	setLayout(mMainLayout);
 	setFocusPolicy(Qt::ClickFocus);

@@ -21,11 +21,10 @@
 
 namespace kImageAnnotator {
 
-AnnotationSettings::AnnotationSettings(Config *config)
+AnnotationSettings::AnnotationSettings(Config *config) :
+	mConfig(config),
+	mEditExistingItem(false)
 {
-	mConfig = config;
-	mEditExistingItem = false;
-
 	initGui();
 	loadToolTypeFromConfig();
 }
@@ -110,6 +109,7 @@ void AnnotationSettings::initGui()
 	mMainLayout->addWidget(mBlurRadiusPicker);
 	mMainLayout->addWidget(mStickerPicker);
 	mMainLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
+	mMainLayout->setContentsMargins(0, 0, 0, 0);
 
 	mWidgetConfigurator.setColorWidget(mColorPicker);
 	mWidgetConfigurator.setTextColorWidget(mTextColorPicker);
