@@ -59,6 +59,7 @@ public Q_SLOTS:
 	void setSmoothFactor(int factor);
 	void setTabBarAutoHide(bool enabled);
 	void removeTab(int index);
+	void setStickers(const QStringList &stickerPaths, bool keepDefault);
 
 Q_SIGNALS:
 	void imageChanged() const;

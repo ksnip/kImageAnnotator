@@ -38,7 +38,7 @@ namespace kImageAnnotator {
 
 class AnnotationSettings : public QWidget, public AbstractSettingsProvider
 {
-	Q_OBJECT
+Q_OBJECT
 public:
 	explicit AnnotationSettings(Config *config);
 	~AnnotationSettings() override;
@@ -53,6 +53,7 @@ public:
 	int blurRadius() const override;
 	QString sticker() const override;
 	void reloadConfig();
+	void setStickers(const QStringList &stickerPaths, bool keepDefault);
 
 private:
 	QVBoxLayout *mMainLayout;

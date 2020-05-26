@@ -147,4 +147,9 @@ void AnnotationWidget::setTabBarAutoHide(bool enabled)
 	mAnnotationTabWidget->setTabBarAutoHide(enabled);
 }
 
+void AnnotationWidget::setStickers(const QStringList &stickerPaths, bool keepDefault)
+{
+	mSettings->setStickers(stickerPaths, keepDefault);
+}
+
 } // namespace kImageAnnotator

@@ -267,4 +267,9 @@ void AnnotationSettings::reloadConfig()
 	loadToolTypeFromConfig();
 }
 
+void AnnotationSettings::setStickers(const QStringList &stickerPaths, bool keepDefault)
+{
+	mStickerPicker->setStickers(stickerPaths, keepDefault);
+}
+
 } // namespace kImageAnnotator

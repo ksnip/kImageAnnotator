@@ -128,4 +128,9 @@ void CoreView::reloadConfig()
 	mAnnotationWidget->reloadConfig();
 }
 
+void CoreView::setStickers(const QStringList &stickerPaths, bool keepDefault)
+{
+	mAnnotationWidget->setStickers(stickerPaths, keepDefault);
+}
+
 } // namespace kImageAnnotator

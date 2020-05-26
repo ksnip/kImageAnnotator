@@ -186,6 +186,12 @@ void KImageAnnotator::showScaler()
 	d->mCoreView.showScaler();
 }
 
+void KImageAnnotator::setStickers(const QStringList &stickerPaths, bool keepDefault)
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.setStickers(stickerPaths, keepDefault);
+}
+
 // KImageAnnotatorPrivate
 
 KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator) : q_ptr(kImageAnnotator), mCoreView(&mConfig)
