@@ -40,7 +40,8 @@ StickerPicker::~StickerPicker()
 
 void StickerPicker::setSticker(const QString &name)
 {
-	mComboBox->setCurrentText(name);
+	auto index = mComboBox->findData(name, Qt::UserRole);
+	mComboBox->setCurrentIndex(index);
 	selectionChanged();
 }
 
