@@ -27,6 +27,7 @@
 
 #include "src/common/constants/Constants.h"
 #include "src/common/helper/IconLoader.h"
+#include "src/common/helper/PathHelper.h"
 #include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
@@ -39,6 +40,8 @@ public:
 	~StickerPicker() override;
 	void setSticker(const QString &name);
 	QString sticker() const;
+	void setStickers(const QStringList &stickerPaths, bool keepDefault);
+
 
 signals:
 	void stickerSelected(const QString &sticker) const;
@@ -49,7 +52,7 @@ private:
 	QComboBox *mComboBox;
 
 	void init(const QIcon &icon, const QString &tooltip);
-	void insertItem(const QString &path);
+	void addItem(const QString &path);
 
 private slots:
 	void selectionChanged();

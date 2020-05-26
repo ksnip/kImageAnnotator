@@ -72,21 +72,26 @@ void StickerPicker::init(const QIcon &icon, const QString &tooltip)
 
 void StickerPicker::addDefaultStickers()
 {
-	insertItem(getResourcePath(QStringLiteral("face_blowing_a_kiss")));
-	insertItem(getResourcePath(QStringLiteral("face_savoring_food")));
-	insertItem(getResourcePath(QStringLiteral("grinning_face_with_big_eyes")));
-	insertItem(getResourcePath(QStringLiteral("grinning_face_with_smiling_eyes")));
-	insertItem(getResourcePath(QStringLiteral("grinning_face_with_sweat")));
-	insertItem(getResourcePath(QStringLiteral("grinning_squinting_face")));
-	insertItem(getResourcePath(QStringLiteral("hushed_face")));
-	insertItem(getResourcePath(QStringLiteral("nerd_face")));
-	insertItem(getResourcePath(QStringLiteral("neutral_face")));
-	insertItem(getResourcePath(QStringLiteral("smiling_face_with_heart_eyes")));
-	insertItem(getResourcePath(QStringLiteral("smiling_face_with_hearts")));
-	insertItem(getResourcePath(QStringLiteral("confused_face")));
-	insertItem(getResourcePath(QStringLiteral("face_with_symbols_on_mouth")));
-	insertItem(getResourcePath(QStringLiteral("pouting_face")));
-	insertItem(getResourcePath(QStringLiteral("smiling_face_with_sunglasses")));
+	QStringList defaultStickers{ QStringLiteral("face_blowing_a_kiss"),
+	                             QStringLiteral("face_savoring_food"),
+	                             QStringLiteral("grinning_face_with_big_eyes"),
+	                             QStringLiteral("grinning_face_with_smiling_eyes"),
+	                             QStringLiteral("grinning_face_with_sweat"),
+	                             QStringLiteral("grinning_squinting_face"),
+	                             QStringLiteral("hushed_face"),
+	                             QStringLiteral("nerd_face"),
+	                             QStringLiteral("neutral_face"),
+	                             QStringLiteral("smiling_face_with_heart_eyes"),
+	                             QStringLiteral("smiling_face_with_hearts"),
+	                             QStringLiteral("confused_face"),
+	                             QStringLiteral("face_with_symbols_on_mouth"),
+	                             QStringLiteral("pouting_face"),
+	                             QStringLiteral("smiling_face_with_sunglasses")
+	};
+
+	for(const auto& sticker : defaultStickers) {
+		addItem(getResourcePath(sticker));
+	}
 }
 
 QString StickerPicker::getResourcePath(const QString &name) const
@@ -94,15 +99,30 @@ QString StickerPicker::getResourcePath(const QString &name) const
 	return QStringLiteral(":/stickers/") + name + QStringLiteral(".svg");
 }
 
-void StickerPicker::insertItem(const QString &path)
+void StickerPicker::addItem(const QString &path)
 {
 	auto icon = QIcon(path);
-	mComboBox->addItem(icon, path, path);
+	auto filename = PathHelper::extractFilename(path);
+	filename = PathHelper::prettyFilename(filename);
+	mComboBox->addItem(icon, filename, path);
 }
 
 void StickerPicker::selectionChanged()
 {
 	emit stickerSelected(sticker());
+}
+
+void StickerPicker::setStickers(const QStringList &stickerPaths, bool keepDefault)
+{
+	mComboBox->clear();
+
+	if(keepDefault) {
+		addDefaultStickers();
+	}
+
+	for(const auto& stickerPath : stickerPaths) {
+		addItem(stickerPath);
+	}
 }
 
 } // namespace kImageAnnotator

@@ -49,6 +49,7 @@ public:
 	AnnotationArea *annotationAreaAt(int index) const;
 	void reloadConfig();
 	void setTabBarAutoHide(bool enabled);
+	void setStickers(const QStringList &stickerPaths, bool keepDefault);
 
 signals:
 	void imageChanged() const;

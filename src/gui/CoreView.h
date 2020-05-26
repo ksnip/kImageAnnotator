@@ -58,6 +58,7 @@ public slots:
 	void showCropper();
 	void showScaler();
 	void setTabBarAutoHide(bool enabled);
+	void setStickers(const QStringList &stickerPaths, bool keepDefault);
 
 private:
 	Config *mConfig;

@@ -81,6 +81,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/ShapeHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/ConfigNameHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/IconLoader.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/PathHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/filter/IgnoreShortcutsFilter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ToolPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ColorPicker.cpp
