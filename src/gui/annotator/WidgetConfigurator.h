@@ -60,15 +60,15 @@ private:
 	void updateWidgets() const;
 	void updateProperties() const;
 	void updateVisibility() const;
-	void setColorWidgetEnabled(bool enabled) const;
-	void setTextColorWidgetEnabled(bool enabled) const;
-	void setWidthWidgetEnabled(bool enabled) const;
-	void setFillWidgetEnabled(bool enabled) const;
-	void setFontSizeWidgetEnabled(bool enabled) const;
-	void setFirstNumberWidgetEnabled(bool enabled) const;
-	void setNoFillAndNoBorderEnabled(bool enabled) const;
-	void setBlurRadiusWidgetEnabled(bool enabled) const;
-	void setStickerWidgetEnabled(bool enabled) const;
+	void setColorWidgetVisible(bool enabled) const;
+	void setTextColorWidgetVisible(bool enabled) const;
+	void setWidthWidgetVisible(bool enabled) const;
+	void setFillWidgetVisible(bool enabled) const;
+	void setFontSizeWidgetVisible(bool enabled) const;
+	void setFirstNumberWidgetVisible(bool enabled) const;
+	void setNoFillAndNoBorderVisible(bool enabled) const;
+	void setBlurRadiusWidgetVisible(bool enabled) const;
+	void setStickerWidgetVisible(bool enabled) const;
 };
 
 } // namespace kImageAnnotator

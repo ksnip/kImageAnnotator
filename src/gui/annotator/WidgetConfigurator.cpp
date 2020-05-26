@@ -103,10 +103,10 @@ void WidgetConfigurator::updateProperties() const
 	switch (mCurrentTool) {
 		case ToolTypes::Text:
 		case ToolTypes::Number:
-			setNoFillAndNoBorderEnabled(true);
+			setNoFillAndNoBorderVisible(true);
 			break;
 		default:
-			setNoFillAndNoBorderEnabled(false);
+			setNoFillAndNoBorderVisible(false);
 	}
 }
 
@@ -115,171 +115,169 @@ void WidgetConfigurator::updateVisibility() const
 	switch (mCurrentTool) {
 		case ToolTypes::Select:
 		case ToolTypes::Image:
-			setColorWidgetEnabled(false);
-			setTextColorWidgetEnabled(false);
-			setWidthWidgetEnabled(false);
-			setFillWidgetEnabled(false);
-			setFontSizeWidgetEnabled(false);
-			setFirstNumberWidgetEnabled(false);
-			setBlurRadiusWidgetEnabled(false);
-			setStickerWidgetEnabled(false);
+			setColorWidgetVisible(false);
+			setTextColorWidgetVisible(false);
+			setWidthWidgetVisible(false);
+			setFillWidgetVisible(false);
+			setFontSizeWidgetVisible(false);
+			setFirstNumberWidgetVisible(false);
+			setBlurRadiusWidgetVisible(false);
+			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Pen:
 		case ToolTypes::MarkerPen:
-			setColorWidgetEnabled(true);
-			setTextColorWidgetEnabled(false);
-			setWidthWidgetEnabled(true);
-			setFillWidgetEnabled(false);
-			setFontSizeWidgetEnabled(false);
-			setFirstNumberWidgetEnabled(false);
-			setBlurRadiusWidgetEnabled(false);
-			setStickerWidgetEnabled(false);
+			setColorWidgetVisible(true);
+			setTextColorWidgetVisible(false);
+			setWidthWidgetVisible(true);
+			setFillWidgetVisible(false);
+			setFontSizeWidgetVisible(false);
+			setFirstNumberWidgetVisible(false);
+			setBlurRadiusWidgetVisible(false);
+			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::MarkerRect:
 		case ToolTypes::MarkerEllipse:
-			setColorWidgetEnabled(true);
-			setTextColorWidgetEnabled(false);
-			setWidthWidgetEnabled(false);
-			setFillWidgetEnabled(false);
-			setFontSizeWidgetEnabled(false);
-			setFirstNumberWidgetEnabled(false);
-			setBlurRadiusWidgetEnabled(false);
-			setStickerWidgetEnabled(false);
+			setColorWidgetVisible(true);
+			setTextColorWidgetVisible(false);
+			setWidthWidgetVisible(false);
+			setFillWidgetVisible(false);
+			setFontSizeWidgetVisible(false);
+			setFirstNumberWidgetVisible(false);
+			setBlurRadiusWidgetVisible(false);
+			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Line:
 		case ToolTypes::Arrow:
 		case ToolTypes::DoubleArrow:
-			setColorWidgetEnabled(true);
-			setTextColorWidgetEnabled(false);
-			setWidthWidgetEnabled(true);
-			setFillWidgetEnabled(false);
-			setFontSizeWidgetEnabled(false);
-			setFirstNumberWidgetEnabled(false);
-			setBlurRadiusWidgetEnabled(false);
-			setStickerWidgetEnabled(false);
+			setColorWidgetVisible(true);
+			setTextColorWidgetVisible(false);
+			setWidthWidgetVisible(true);
+			setFillWidgetVisible(false);
+			setFontSizeWidgetVisible(false);
+			setFirstNumberWidgetVisible(false);
+			setBlurRadiusWidgetVisible(false);
+			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Ellipse:
 		case ToolTypes::Rect:
-			setColorWidgetEnabled(true);
-			setTextColorWidgetEnabled(false);
-			setWidthWidgetEnabled(true);
-			setFillWidgetEnabled(true);
-			setFontSizeWidgetEnabled(false);
-			setFirstNumberWidgetEnabled(false);
-			setBlurRadiusWidgetEnabled(false);
-			setStickerWidgetEnabled(false);
+			setColorWidgetVisible(true);
+			setTextColorWidgetVisible(false);
+			setWidthWidgetVisible(true);
+			setFillWidgetVisible(true);
+			setFontSizeWidgetVisible(false);
+			setFirstNumberWidgetVisible(false);
+			setBlurRadiusWidgetVisible(false);
+			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Number:
-			setColorWidgetEnabled(true);
-			setTextColorWidgetEnabled(true);
-			setWidthWidgetEnabled(true);
-			setFillWidgetEnabled(true);
-			setFontSizeWidgetEnabled(true);
-			setFirstNumberWidgetEnabled(true);
-			setBlurRadiusWidgetEnabled(false);
-			setStickerWidgetEnabled(false);
+			setColorWidgetVisible(true);
+			setTextColorWidgetVisible(true);
+			setWidthWidgetVisible(true);
+			setFillWidgetVisible(true);
+			setFontSizeWidgetVisible(true);
+			setFirstNumberWidgetVisible(true);
+			setBlurRadiusWidgetVisible(false);
+			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Text:
-			setColorWidgetEnabled(true);
-			setTextColorWidgetEnabled(true);
-			setWidthWidgetEnabled(true);
-			setFillWidgetEnabled(true);
-			setFontSizeWidgetEnabled(true);
-			setFirstNumberWidgetEnabled(false);
-			setBlurRadiusWidgetEnabled(false);
-			setStickerWidgetEnabled(false);
+			setColorWidgetVisible(true);
+			setTextColorWidgetVisible(true);
+			setWidthWidgetVisible(true);
+			setFillWidgetVisible(true);
+			setFontSizeWidgetVisible(true);
+			setFirstNumberWidgetVisible(false);
+			setBlurRadiusWidgetVisible(false);
+			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Blur:
-			setColorWidgetEnabled(false);
-			setTextColorWidgetEnabled(false);
-			setWidthWidgetEnabled(false);
-			setFillWidgetEnabled(false);
-			setFontSizeWidgetEnabled(false);
-			setFirstNumberWidgetEnabled(false);
-			setBlurRadiusWidgetEnabled(true);
-			setStickerWidgetEnabled(false);
+			setColorWidgetVisible(false);
+			setTextColorWidgetVisible(false);
+			setWidthWidgetVisible(false);
+			setFillWidgetVisible(false);
+			setFontSizeWidgetVisible(false);
+			setFirstNumberWidgetVisible(false);
+			setBlurRadiusWidgetVisible(true);
+			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Sticker:
-			setColorWidgetEnabled(false);
-			setTextColorWidgetEnabled(false);
-			setWidthWidgetEnabled(false);
-			setFillWidgetEnabled(false);
-			setFontSizeWidgetEnabled(false);
-			setFirstNumberWidgetEnabled(false);
-			setBlurRadiusWidgetEnabled(false);
-			setStickerWidgetEnabled(true);
+			setColorWidgetVisible(false);
+			setTextColorWidgetVisible(false);
+			setWidthWidgetVisible(false);
+			setFillWidgetVisible(false);
+			setFontSizeWidgetVisible(false);
+			setFirstNumberWidgetVisible(false);
+			setBlurRadiusWidgetVisible(false);
+			setStickerWidgetVisible(true);
 			break;
 		default:
 			qCritical("Unknown tooltype in WidgetConfigurator");
 	}
 }
 
-void WidgetConfigurator::setColorWidgetEnabled(bool enabled) const
+void WidgetConfigurator::setColorWidgetVisible(bool enabled) const
 {
 	if (mColorWidget) {
-		mColorWidget->setEnabled(enabled);
+		mColorWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setTextColorWidgetEnabled(bool enabled) const
+void WidgetConfigurator::setTextColorWidgetVisible(bool enabled) const
 {
 	if (mTextColorWidget) {
-		mTextColorWidget->setEnabled(enabled);
+		mTextColorWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setWidthWidgetEnabled(bool enabled) const
+void WidgetConfigurator::setWidthWidgetVisible(bool enabled) const
 {
 	if (mWidthWidget) {
-		mWidthWidget->setEnabled(enabled);
+		mWidthWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setFillWidgetEnabled(bool enabled) const
+void WidgetConfigurator::setFillWidgetVisible(bool enabled) const
 {
 	if (mFillTypeWidget) {
-		mFillTypeWidget->setEnabled(enabled);
+		mFillTypeWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setFontSizeWidgetEnabled(bool enabled) const
+void WidgetConfigurator::setFontSizeWidgetVisible(bool enabled) const
 {
 	if (mFontSizeWidget) {
-		mFontSizeWidget->setEnabled(enabled);
+		mFontSizeWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setFirstNumberWidgetEnabled(bool enabled) const
+void WidgetConfigurator::setFirstNumberWidgetVisible(bool enabled) const
 {
 	if (mFirstNumberWidget) {
-		mFirstNumberWidget->setEnabled(enabled);
+		mFirstNumberWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setNoFillAndNoBorderEnabled(bool enabled) const
+void WidgetConfigurator::setNoFillAndNoBorderVisible(bool enabled) const
 {
-	if (mFillTypeWidget == nullptr) {
-		return;
-	}
-
-	if (enabled) {
-		mFillTypeWidget->addNoFillAndNoBorderToList();
-	} else {
-		mFillTypeWidget->removeNoFillAndNoBorderToList();
+	if (mFillTypeWidget) {
+		if (enabled) {
+			mFillTypeWidget->addNoFillAndNoBorderToList();
+		} else {
+			mFillTypeWidget->removeNoFillAndNoBorderToList();
+		}
 	}
 }
 
-void WidgetConfigurator::setBlurRadiusWidgetEnabled(bool enabled) const
+void WidgetConfigurator::setBlurRadiusWidgetVisible(bool enabled) const
 {
 	if (mBlurRadiusWidget) {
-		mBlurRadiusWidget->setEnabled(enabled);
+		mBlurRadiusWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setStickerWidgetEnabled(bool enabled) const
+void WidgetConfigurator::setStickerWidgetVisible(bool enabled) const
 {
 	if (mStickerWidget) {
-		mStickerWidget->setEnabled(enabled);
+		mStickerWidget->setVisible(enabled);
 	}
 }
 
