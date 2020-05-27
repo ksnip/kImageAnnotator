@@ -38,10 +38,15 @@ ToolTypes AnnotationDoubleArrow::toolType() const
 
 void AnnotationDoubleArrow::updateShape()
 {
-	QPainterPath path(mLine->p1());
-	path.lineTo(mLine->p2());
+	QLineF shaft(mLine->p2(), mLine->p1());
+	shaft.setLength(shaft.length() - 5);
+	shaft.setPoints(shaft.p2(), shaft.p1());
+	shaft.setLength(shaft.length() - 5);
 
-	auto arrow = createArrow();
+	QPainterPath path(shaft.p1());
+	path.lineTo(shaft.p2());
+
+	auto arrow = createArrowHead(properties()->width() / 2);
 	auto startArrowHead = positionArrowHeadAtStart(arrow);
 	auto endArrowHead = positionArrowHeadAtEnd(arrow);
 
