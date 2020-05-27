@@ -37,10 +37,13 @@ ToolTypes AnnotationArrow::toolType() const
 
 void AnnotationArrow::updateShape()
 {
-	QPainterPath path(mLine->p1());
-	path.lineTo(mLine->p2());
+	QLineF shaft(*mLine);
+	shaft.setLength(shaft.length() - 5);
 
-	auto arrow = createArrow();
+	QPainterPath path(shaft.p1());
+	path.lineTo(shaft.p2());
+
+	auto arrow = createArrowHead(properties()->width() / 2);
 	auto finishedArrow = positionArrowHeadAtEnd(arrow);
 
 	path.addPolygon(finishedArrow);
@@ -48,11 +51,11 @@ void AnnotationArrow::updateShape()
 	setShape(path);
 }
 
-QPolygonF AnnotationArrow::createArrow() const
+QPolygonF AnnotationArrow::createArrowHead(int scaleFactor) const
 {
-	int mArrowHeadLength = 20;
-	int mArrowHeadWidth = 10;
-	int mArrowHeadMid = 17;
+	int mArrowHeadLength = 15 + scaleFactor;
+	int mArrowHeadWidth = 5 + scaleFactor;
+	int mArrowHeadMid = 13 + scaleFactor;
 
 	QPointF p0(0, 0);
 	QPointF p1(-mArrowHeadLength, mArrowHeadWidth);

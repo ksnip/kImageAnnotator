@@ -34,7 +34,7 @@ public:
 
 protected:
 	void updateShape() override;
-	QPolygonF createArrow() const;
+	QPolygonF createArrowHead(int scaleFactor) const;
 	QPolygonF positionArrowHeadAtEnd(const QPolygonF &arrow) const;
 };
 
