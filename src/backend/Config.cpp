@@ -34,6 +34,7 @@ Config::Config()
 		ToolTypes::Rect,
 		ToolTypes::Ellipse,
 		ToolTypes::Number,
+		ToolTypes::NumberPointer,
 		ToolTypes::Text,
 		ToolTypes::Blur,
 		ToolTypes::Image
@@ -253,6 +254,7 @@ void Config::initToolFonts()
 {
 	mToolToFont[ToolTypes::Text] = QFont(QStringLiteral("Times"), loadToolFontSize(ToolTypes::Text), QFont::Bold);
 	mToolToFont[ToolTypes::Number] = QFont(QStringLiteral("Helvetica"), loadToolFontSize(ToolTypes::Number), QFont::Bold);
+	mToolToFont[ToolTypes::NumberPointer] = QFont(QStringLiteral("Helvetica"), loadToolFontSize(ToolTypes::NumberPointer), QFont::Bold);
 }
 
 void Config::initBlurRadius()
@@ -412,6 +414,7 @@ QColor Config::defaultToolTextColor(ToolTypes toolType) const
 	switch (toolType) {
 		case ToolTypes::Text:
 		case ToolTypes::Number:
+		case ToolTypes::NumberPointer:
 			return { Qt::white };
 		default:
 			return { Qt::blue };
@@ -442,6 +445,7 @@ FillTypes Config::defaultToolFillType(ToolTypes toolType) const
 		case ToolTypes::DoubleArrow:
 		case ToolTypes::Rect:
 		case ToolTypes::Number:
+		case ToolTypes::NumberPointer:
 		case ToolTypes::Blur:
 			return FillTypes::BorderAndFill;
 		case ToolTypes::MarkerRect:
@@ -464,6 +468,7 @@ int Config::defaultToolFontSize(ToolTypes toolType) const
 		case ToolTypes::Text:
 			return 15;
 		case ToolTypes::Number:
+		case ToolTypes::NumberPointer:
 			return 20;
 		default:
 			return 10;

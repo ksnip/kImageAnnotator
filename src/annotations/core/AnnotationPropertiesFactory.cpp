@@ -51,6 +51,7 @@ PropertiesPtr AnnotationPropertiesFactory::createPropertiesObject(ToolTypes tool
 		case ToolTypes::MarkerPen:
 			return PropertiesPtr(new AnnotationPathProperties());
 		case ToolTypes::Number:
+		case ToolTypes::NumberPointer:
 		case ToolTypes::Text:
 			return PropertiesPtr(new AnnotationTextProperties());
 		case ToolTypes::Blur:
@@ -80,27 +81,33 @@ void AnnotationPropertiesFactory::setTextColor(const PropertiesPtr &properties) 
 
 void AnnotationPropertiesFactory::setWidthSize(const PropertiesPtr &properties, ToolTypes toolType) const
 {
-	auto width = mSettingsProvider->toolWidth();
-
-	if (toolType == ToolTypes::MarkerPen) {
-		width *= 3;
+	switch (toolType) {
+		case ToolTypes::NumberPointer:
+			properties->setWidth(1);
+			break;
+		case ToolTypes::MarkerPen:
+			properties->setWidth(mSettingsProvider->toolWidth() * 3);
+			break;
+		default:
+			properties->setWidth(mSettingsProvider->toolWidth());
 	}
-
-	properties->setWidth(width);
 }
 
 void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, ToolTypes toolType) const
 {
-	if (toolType == ToolTypes::MarkerPen) {
-		properties->setFillType(FillTypes::BorderAndNoFill);
-	} else if (isMarkerTool(toolType)) {
-		properties->setFillType(FillTypes::NoBorderAndFill);
-	} else if (toolType == ToolTypes::Image) {
-		properties->setFillType(FillTypes::BorderAndFill);
-	} else if (toolType == ToolTypes::Sticker) {
-		properties->setFillType(FillTypes::BorderAndFill);
-	} else {
-		properties->setFillType(mSettingsProvider->fillType());
+	switch (toolType) {
+		case ToolTypes::MarkerPen:
+		case ToolTypes::MarkerRect:
+		case ToolTypes::MarkerEllipse:
+			properties->setFillType(FillTypes::BorderAndNoFill);
+			break;
+		case ToolTypes::Image:
+		case ToolTypes::Sticker:
+		case ToolTypes::NumberPointer:
+			properties->setFillType(FillTypes::BorderAndFill);
+			break;
+		default:
+			properties->setFillType(mSettingsProvider->fillType());
 	}
 }
 

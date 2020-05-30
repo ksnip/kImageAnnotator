@@ -1,9 +1,9 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,42 +17,29 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_TOOLTYPES_H
-#define KIMAGEANNOTATOR_TOOLTYPES_H
-
-#include <QMetaType>
+#include "BaseAnnotationNumber.h"
 
 namespace kImageAnnotator {
 
-enum class ToolTypes
+void BaseAnnotationNumber::setNumber(int number)
 {
-	Select,
-	Pen,
-	MarkerPen,
-	MarkerRect,
-	MarkerEllipse,
-	Line,
-	Arrow,
-	DoubleArrow,
-	Rect,
-	Ellipse,
-	Number,
-	NumberPointer,
-	Text,
-	Blur,
-	Image,
-	Sticker
-};
+	mNumberString = QString::number(number);
+	updateRect();
+}
 
-inline uint qHash(const ToolTypes &tool, uint seed)
+int BaseAnnotationNumber::number() const
 {
-	Q_UNUSED(seed)
+	return mNumberString.toInt();
+}
 
-	return static_cast<uint>(tool);
+QString BaseAnnotationNumber::numberString() const
+{
+	return mNumberString;
+}
+
+void BaseAnnotationNumber::updateRect(QRectF *rect, const QFont &font) const
+{
+	mNumberRectHelper.updateRect(rect, mNumberString, font);
 }
 
 } // namespace kImageAnnotator
-
-Q_DECLARE_METATYPE(kImageAnnotator::ToolTypes)
-
-#endif // KIMAGEANNOTATOR_TOOLTYPES_H

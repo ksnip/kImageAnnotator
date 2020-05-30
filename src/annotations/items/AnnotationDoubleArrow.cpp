@@ -43,26 +43,16 @@ void AnnotationDoubleArrow::updateShape()
 	shaft.setPoints(shaft.p2(), shaft.p1());
 	shaft.setLength(shaft.length() - 5);
 
+	auto arrow = ShapeHelper::createArrowHead(properties()->width() / 2);
+	auto startArrowHead = ShapeHelper::translate(arrow, mLine->p2(), -mLine->angle());
+	auto endArrowHead = ShapeHelper::translate(arrow, mLine->p1(), -mLine->angle() + 180);
+
 	QPainterPath path(shaft.p1());
 	path.lineTo(shaft.p2());
-
-	auto arrow = createArrowHead(properties()->width() / 2);
-	auto startArrowHead = positionArrowHeadAtStart(arrow);
-	auto endArrowHead = positionArrowHeadAtEnd(arrow);
-
 	path.addPolygon(startArrowHead);
 	path.addPolygon(endArrowHead);
 	path.closeSubpath();
 	setShape(path);
-}
-
-QPolygonF AnnotationDoubleArrow::positionArrowHeadAtStart(const QPolygonF &arrow) const
-{
-	auto startX = mLine->p1().x();
-	auto startY = mLine->p1().y();
-	auto angle = -mLine->angle() + 180;
-
-	return QTransform().translate(startX, startY).rotate(angle).map(arrow);
 }
 
 } // namespace kImageAnnotator

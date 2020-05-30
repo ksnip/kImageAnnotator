@@ -20,7 +20,8 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONARROW_H
 #define KIMAGEANNOTATOR_ANNOTATIONARROW_H
 
-#include "AbstractAnnotationLine.h"
+#include "src/annotations/items/AbstractAnnotationLine.h"
+#include "src/annotations/items/helper/ShapeHelper.h"
 
 namespace kImageAnnotator {
 
@@ -34,8 +35,6 @@ public:
 
 protected:
 	void updateShape() override;
-	QPolygonF createArrowHead(int scaleFactor) const;
-	QPolygonF positionArrowHeadAtEnd(const QPolygonF &arrow) const;
 };
 
 } // namespace kImageAnnotator

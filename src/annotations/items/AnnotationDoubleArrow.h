@@ -34,7 +34,6 @@ public:
 
 protected:
 	void updateShape() override;
-	QPolygonF positionArrowHeadAtStart(const QPolygonF &arrow) const;
 };
 
 } // namespace kImageAnnotator

@@ -21,16 +21,26 @@
 
 namespace kImageAnnotator {
 
-NumberManager::NumberManager()
+NumberManager::NumberManager() :
+	mFirstNumber(1)
 {
-	mFirstNumber = 1;
 }
 
-void kImageAnnotator::NumberManager::addItem(kImageAnnotator::AnnotationNumber *item)
+void kImageAnnotator::NumberManager::addItem(AnnotationNumber *item)
+{
+	addItemInner(item);
+}
+
+void kImageAnnotator::NumberManager::addItem(AnnotationNumberPointer *item)
+{
+	addItemInner(item);
+}
+
+void NumberManager::addItemInner(AbstractAnnotationItem *item)
 {
 	Q_ASSERT(item != nullptr);
 
-	connect(item, &AnnotationNumber::visibleChanged, this, &NumberManager::updateNumbers);
+	connect(item, &AbstractAnnotationItem::visibleChanged, this, &NumberManager::updateNumbers);
 	mItems.append(item);
 	updateNumbers();
 }
@@ -45,7 +55,8 @@ void NumberManager::updateNumbers()
 	auto number = mFirstNumber;
 	for (auto item : mItems) {
 		if (item->isVisible()) {
-			item->setNumber(number++);
+			auto numberItem = dynamic_cast<BaseAnnotationNumber *>(item);
+			numberItem->setNumber(number++);
 		}
 	}
 }

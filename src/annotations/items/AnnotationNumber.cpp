@@ -26,7 +26,7 @@ AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, const TextProp
 	mRect->moveCenter(centerPosition);
 }
 
-AnnotationNumber::AnnotationNumber(const AnnotationNumber &other) : AbstractAnnotationRect(other)
+AnnotationNumber::AnnotationNumber(const AnnotationNumber &other) : AbstractAnnotationRect(other), BaseAnnotationNumber(other)
 {
 	updateShape();
 }
@@ -44,17 +44,6 @@ ToolTypes AnnotationNumber::toolType() const
 	return ToolTypes::Number;
 }
 
-void AnnotationNumber::setNumber(int number)
-{
-	mNumberString = QString::number(number);
-	updateRect();
-}
-
-int AnnotationNumber::number() const
-{
-	return mNumberString.toInt();
-}
-
 QPainterPath AnnotationNumber::shape() const
 {
 	auto path = AbstractAnnotationItem::shape();
@@ -65,16 +54,6 @@ QPainterPath AnnotationNumber::shape() const
 TextPropertiesPtr AnnotationNumber::textProperties() const
 {
 	return AbstractAnnotationItem::properties().staticCast<AnnotationTextProperties>();
-}
-
-void AnnotationNumber::updateRect()
-{
-	prepareGeometryChange();
-	auto center = mRect->center();
-	auto size = getTextRectSize();
-	mRect->setSize(size);
-	mRect->moveCenter(center);
-	updateShape();
 }
 
 void AnnotationNumber::updateShape()
@@ -90,7 +69,7 @@ void AnnotationNumber::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 
 	painter->setFont(textProperties()->font());
 	painter->setPen(properties()->textColor());
-	painter->drawText(boundingRect(), Qt::AlignCenter, mNumberString);
+	painter->drawText(boundingRect(), Qt::AlignCenter, numberString());
 }
 
 void AnnotationNumber::updateProperties(const PropertiesPtr &properties)
@@ -99,12 +78,11 @@ void AnnotationNumber::updateProperties(const PropertiesPtr &properties)
 	updateRect();
 }
 
-QSizeF AnnotationNumber::getTextRectSize() const
+void AnnotationNumber::updateRect()
 {
-	QFontMetricsF metrics(textProperties()->font());
-	auto boundingRect = metrics.boundingRect(mNumberString).adjusted(-5, -5, 5, 5);
-	auto largestSite = boundingRect.width() > boundingRect.height() ? boundingRect.width() : boundingRect.height();
-	return { largestSite, largestSite };
+	prepareGeometryChange();
+	BaseAnnotationNumber::updateRect(mRect, textProperties()->font());
+	updateShape();
 }
 
 } // namespace kImageAnnotator

@@ -179,6 +179,16 @@ void WidgetConfigurator::updateVisibility() const
 			setBlurRadiusWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
+		case ToolTypes::NumberPointer:
+			setColorWidgetVisible(true);
+			setTextColorWidgetVisible(true);
+			setWidthWidgetVisible(false);
+			setFillWidgetVisible(false);
+			setFontSizeWidgetVisible(true);
+			setFirstNumberWidgetVisible(true);
+			setBlurRadiusWidgetVisible(false);
+			setStickerWidgetVisible(false);
+			break;
 		case ToolTypes::Text:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(true);
