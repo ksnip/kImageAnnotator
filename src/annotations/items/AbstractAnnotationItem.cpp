@@ -30,13 +30,12 @@ AbstractAnnotationItem::AbstractAnnotationItem(const PropertiesPtr &properties) 
 	mPainterPen.setJoinStyle(Qt::RoundJoin);
 
 	mShape = new QPainterPath();
-
 	mStroker = new QPainterPathStroker(mPainterPen);
 
 	addShadowIfRequired();
 }
 
-AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &other)
+AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &other) : mShadowEffect(nullptr)
 {
 	mProperties = other.mProperties->clone();
 	mShape = new QPainterPath(*other.mShape);

@@ -1,9 +1,9 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,42 +17,24 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_TOOLTYPES_H
-#define KIMAGEANNOTATOR_TOOLTYPES_H
-
-#include <QMetaType>
+#include "NumberRectHelper.h"
 
 namespace kImageAnnotator {
 
-enum class ToolTypes
+void NumberRectHelper::updateRect(QRectF *rect, const QString &text, const QFont &font) const
 {
-	Select,
-	Pen,
-	MarkerPen,
-	MarkerRect,
-	MarkerEllipse,
-	Line,
-	Arrow,
-	DoubleArrow,
-	Rect,
-	Ellipse,
-	Number,
-	NumberPointer,
-	Text,
-	Blur,
-	Image,
-	Sticker
-};
+	auto center = rect->center();
+	auto size = getTextRectSize(text, font);
+	rect->setSize(size);
+	rect->moveCenter(center);
+}
 
-inline uint qHash(const ToolTypes &tool, uint seed)
+QSizeF NumberRectHelper::getTextRectSize(const QString &text, const QFont &font) const
 {
-	Q_UNUSED(seed)
-
-	return static_cast<uint>(tool);
+	QFontMetricsF metrics(font);
+	auto boundingRect = metrics.boundingRect(text).adjusted(-5, -5, 5, 5);
+	auto largestSite = boundingRect.width() > boundingRect.height() ? boundingRect.width() : boundingRect.height();
+	return { largestSite, largestSite };
 }
 
 } // namespace kImageAnnotator
-
-Q_DECLARE_METATYPE(kImageAnnotator::ToolTypes)
-
-#endif // KIMAGEANNOTATOR_TOOLTYPES_H

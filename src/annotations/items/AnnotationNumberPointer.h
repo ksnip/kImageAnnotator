@@ -1,9 +1,9 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,26 +17,27 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONNUMBER_H
-#define KIMAGEANNOTATOR_ANNOTATIONNUMBER_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONNUMBERPOINTER_H
+#define KIMAGEANNOTATOR_ANNOTATIONNUMBERPOINTER_H
 
-#include "src/annotations/items/AbstractAnnotationRect.h"
+#include "src/annotations/items/AbstractAnnotationLine.h"
 #include "src/annotations/items/BaseAnnotationNumber.h"
+#include "src/annotations/items/helper/ShapeHelper.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 
 namespace kImageAnnotator {
 
-class AnnotationNumber : public AbstractAnnotationRect, public BaseAnnotationNumber
+class AnnotationNumberPointer : public AbstractAnnotationLine, public BaseAnnotationNumber
 {
 Q_OBJECT
 public:
-	AnnotationNumber(const QPointF &centerPosition, const TextPropertiesPtr& properties);
-	AnnotationNumber(const AnnotationNumber &other);
-	~AnnotationNumber() override = default;
-	void addPoint(const QPointF &position, bool modified) override;
+	AnnotationNumberPointer(const QPointF &startPosition, const TextPropertiesPtr& properties);
+	AnnotationNumberPointer(const AnnotationNumberPointer &other);
+	~AnnotationNumberPointer() override;
 	ToolTypes toolType() const override;
 	QPainterPath shape() const override;
 	TextPropertiesPtr textProperties() const;
+	void finish() override;
 
 protected:
 	void updateShape() override;
@@ -44,9 +45,11 @@ protected:
 	void updateProperties(const PropertiesPtr &properties) override;
 
 private:
+	QRectF *mRect;
+
 	void updateRect() override;
 };
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_ANNOTATIONNUMBER_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONNUMBERPOINTER_H

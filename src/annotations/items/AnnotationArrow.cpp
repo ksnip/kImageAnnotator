@@ -40,41 +40,14 @@ void AnnotationArrow::updateShape()
 	QLineF shaft(*mLine);
 	shaft.setLength(shaft.length() - 5);
 
+	auto arrow = ShapeHelper::createArrowHead(properties()->width() / 2);
+	arrow = ShapeHelper::translate(arrow, mLine->p2(), -mLine->angle());
+
 	QPainterPath path(shaft.p1());
 	path.lineTo(shaft.p2());
-
-	auto arrow = createArrowHead(properties()->width() / 2);
-	auto finishedArrow = positionArrowHeadAtEnd(arrow);
-
-	path.addPolygon(finishedArrow);
+	path.addPolygon(arrow);
 	path.closeSubpath();
 	setShape(path);
-}
-
-QPolygonF AnnotationArrow::createArrowHead(int scaleFactor) const
-{
-	int mArrowHeadLength = 15 + scaleFactor;
-	int mArrowHeadWidth = 5 + scaleFactor;
-	int mArrowHeadMid = 13 + scaleFactor;
-
-	QPointF p0(0, 0);
-	QPointF p1(-mArrowHeadLength, mArrowHeadWidth);
-	QPointF p2(-mArrowHeadMid, 0);
-	QPointF p3(-mArrowHeadLength, -mArrowHeadWidth);
-
-	QPolygonF arrow;
-	arrow << p0 << p1 << p2 << p3 << p0;
-
-	return arrow;
-}
-
-QPolygonF AnnotationArrow::positionArrowHeadAtEnd(const QPolygonF &arrow) const
-{
-	auto endX = mLine->p2().x();
-	auto endY = mLine->p2().y();
-	auto angle = -mLine->angle();
-
-	return QTransform().translate(endX, endY).rotate(angle).map(arrow);
 }
 
 } // namespace kImageAnnotator

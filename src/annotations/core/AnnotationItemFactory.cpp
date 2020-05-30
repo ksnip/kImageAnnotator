@@ -108,6 +108,10 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 			newItem = new AnnotationNumber(initPosition, properties.staticCast<AnnotationTextProperties>());
 			mNumberManager->addItem(dynamic_cast<AnnotationNumber *>(newItem));
 			break;
+		case ToolTypes::NumberPointer:
+			newItem = new AnnotationNumberPointer(initPosition, properties.staticCast<AnnotationTextProperties>());
+			mNumberManager->addItem(dynamic_cast<AnnotationNumberPointer *>(newItem));
+			break;
 		case ToolTypes::Text:
 			newItem = new AnnotationText(initPosition, properties.staticCast<AnnotationTextProperties>());
 			break;
@@ -126,6 +130,7 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotationItem *item)
 {
 	Q_ASSERT(item != nullptr);
+
 	AbstractAnnotationItem *newItem = nullptr;
 
 	switch (item->toolType()) {
@@ -159,6 +164,10 @@ AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotatio
 		case ToolTypes::Number:
 			newItem = new AnnotationNumber(*(dynamic_cast<const AnnotationNumber *>(item)));
 			mNumberManager->addItem(dynamic_cast<AnnotationNumber *>(newItem));
+			break;
+		case ToolTypes::NumberPointer:
+			newItem = new AnnotationNumberPointer(*(dynamic_cast<const AnnotationNumberPointer *>(item)));
+			mNumberManager->addItem(dynamic_cast<AnnotationNumberPointer *>(newItem));
 			break;
 		case ToolTypes::Text:
 			newItem = new AnnotationText(*(dynamic_cast<const AnnotationText *>(item)));
