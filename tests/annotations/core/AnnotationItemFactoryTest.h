@@ -34,6 +34,7 @@ using kImageAnnotator::AnnotationNumber;
 using kImageAnnotator::AnnotationEllipse;
 using kImageAnnotator::AnnotationImage;
 using kImageAnnotator::AnnotationSticker;
+using kImageAnnotator::AnnotationNumberPointer;
 using kImageAnnotator::ToolTypes;
 using kImageAnnotator::Config;
 using kImageAnnotator::AnnotationPropertiesFactory;
@@ -55,6 +56,7 @@ private slots:
 	void TestCreate_Should_ReturnAnnotationEllipse_When_TypeIsEllipse();
 	void TestCreate_Should_ReturnAnnotationNumber_When_TypeIsNumber();
 	void TestCreate_Should_ReturnAnnotationSticker_When_TypeIsSticker();
+	void TestCreate_Should_ReturnAnnotationNumberPointer_When_TypeIsNumberPointer();
 	void TestClone_Should_ReturnNewItemOfSameType();
 	void TestClone_Should_IncrementZValueForClonedItem();
 

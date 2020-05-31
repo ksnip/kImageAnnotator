@@ -144,6 +144,20 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhen
 	QVERIFY(textProperties != nullptr);
 }
 
+void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhenItemNumberPointer()
+{
+	const ToolTypes tool = ToolTypes::NumberPointer;
+	auto config = new Config;
+	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setToolType(tool);
+	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	auto properties = propertiesFactory.create(tool);
+
+	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
+
+	QVERIFY(textProperties != nullptr);
+}
+
 void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhenItemText()
 {
 	const ToolTypes tool = ToolTypes::Text;

@@ -49,6 +49,7 @@ private slots:
 	void TestCreate_Should_CreatePathPropertiesWhenItemPen();
 	void TestCreate_Should_CreatePathPropertiesWhenItemMarker();
 	void TestCreate_Should_CreateTextPropertiesWhenItemNumber();
+	void TestCreate_Should_CreateTextPropertiesWhenItemNumberPointer();
 	void TestCreate_Should_CreateTextPropertiesWhenItemText();
 	void TestCreate_Should_SetSmoothPathBasedOnConfiguration();
 	void TestCreate_Should_SetToolFontAndFontSizeBasedOnConfiguration();
