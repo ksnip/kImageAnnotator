@@ -21,94 +21,100 @@
 
 namespace kImageAnnotator {
 
-FillTypePicker::FillTypePicker(const QIcon &icon, const QString &tooltip)
+FillTypePicker::FillTypePicker(const QIcon &icon, const QString &tooltip) :
+	mToolButton(new QToolButton(this)),
+	mLayout(new QHBoxLayout(this)),
+	mLabel(new QLabel(this)),
+	mMenu(new QMenu(this))
 {
-	mFillList.append(FillTypes::BorderAndFill);
-	mFillList.append(FillTypes::BorderAndNoFill);
-	mFillList.append(FillTypes::NoBorderAndNoFill);
-
 	initGui(icon, tooltip);
-
-	connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &FillTypePicker::selectionChanged);
 }
 
 FillTypePicker::~FillTypePicker()
 {
 	delete mLayout;
 	delete mLabel;
-	delete mComboBox;
+	delete mToolButton;
+	delete mMenu;
 }
 
 void FillTypePicker::setFillType(FillTypes fillType)
 {
-	auto index = mComboBox->findData(mFillList.indexOf(fillType));
-	if (index != -1) {
-		mComboBox->setCurrentIndex(index);
-		setFillAndNotify(fillType);
-	}
+	setFillAndNotify(fillType);
 }
 
 void FillTypePicker::addNoFillAndNoBorderToList()
 {
-	auto index = mComboBox->findData(mFillList.indexOf(FillTypes::NoBorderAndNoFill));
-	if (index == -1) {
-		insertItem(FillTypes::NoBorderAndNoFill, QStringLiteral("fillType_NoBorderAndNoFill.svg"), tr("No Border and No Fill"));
+	auto action = mActionToFillType.key(FillTypes::NoBorderAndNoFill);
+	if(action != nullptr) {
+		mMenu->addAction(action);
+	} else {
+		insertItem(FillTypes::NoBorderAndNoFill, QStringLiteral("fillType_noBorderAndNoFill.svg"), tr("No Border and No Fill"));
 	}
 }
 
 void FillTypePicker::removeNoFillAndNoBorderToList()
 {
-	auto index = mFillList.indexOf(FillTypes::NoBorderAndNoFill);
-	mComboBox->removeItem(index);
+	auto action = mActionToFillType.key(FillTypes::NoBorderAndNoFill);
+	if(action != nullptr) {
+		mMenu->removeAction(action);
+	}
 }
 
 FillTypes FillTypePicker::fillType() const
 {
-	return mFillList[mComboBox->currentIndex()];
+	return mActionToFillType.value(mToolButton->defaultAction());
 }
 
 void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
 {
-	mLayout = new QHBoxLayout(this);
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
-	mLabel = new QLabel();
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::getScaledSize(QSize(20, 20))));
 	mLabel->setToolTip(tooltip);
 
-	mComboBox = new QComboBox(this);
-
 	insertItem(FillTypes::BorderAndFill, QStringLiteral("fillType_borderAndFill.svg"), tr("Border and Fill"));
 	insertItem(FillTypes::BorderAndNoFill, QStringLiteral("fillType_borderAndNoFill.svg"), tr("Border and No Fill"));
-	mComboBox->setFixedSize(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetSize));
-	mComboBox->setIconSize(ScaledSizeProvider::getScaledSize(QSize(25, 25)));
-	mComboBox->setToolTip(tooltip);
-	mComboBox->setFocusPolicy(Qt::NoFocus);
+	mToolButton->setMenu(mMenu);
+	mToolButton->setPopupMode(QToolButton::InstantPopup);
+	mToolButton->setFixedSize(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetSize));
+	mToolButton->setIconSize(ScaledSizeProvider::getScaledSize(QSize(25, 25)));
+	mToolButton->setToolTip(tooltip);
+	mToolButton->setFocusPolicy(Qt::NoFocus);
+	mToolButton->setDefaultAction(mActionToFillType.keys().first());
 
 	mLayout->addWidget(mLabel);
-	mLayout->addWidget(mComboBox);
+	mLayout->addWidget(mToolButton);
 
 	setLayout(mLayout);
 	setFixedSize(sizeHint());
 }
 
-void FillTypePicker::insertItem(FillTypes fillType, const QString &iconName, const QString &text) const
+void FillTypePicker::insertItem(FillTypes fillType, const QString &iconName, const QString &text)
 {
-	auto index = mFillList.indexOf(fillType);
-	auto icon = IconLoader::load(iconName);
-	mComboBox->insertItem(index, icon, text, index);
-	mComboBox->setItemData(index, text, Qt::ToolTipRole);
+	auto action = new QAction(IconLoader::load(iconName), text);
+	action->setToolTip(text);
+	connect(action, &QAction::triggered, this, &FillTypePicker::selectionChanged);
+	mMenu->addAction(action);
+	mActionToFillType[action] = fillType;
 }
 
 void FillTypePicker::setFillAndNotify(FillTypes fill)
 {
-	emit fillSelected(fill);
+	auto action = mActionToFillType.key(fill);
+	if(action != nullptr && mMenu->actions().contains(action)) {
+		mToolButton->setDefaultAction(action);
+		emit fillSelected(fill);
+	}
 }
 
 void FillTypePicker::selectionChanged()
 {
-	auto fill = mFillList[mComboBox->currentIndex()];
-	setFillAndNotify(fill);
+	auto action = dynamic_cast<QAction*>(sender());
+	if(action != nullptr) {
+		auto fillType = mActionToFillType.value(action);
+		setFillAndNotify(fillType);
+	}
 }
 
 } // namespace kImageAnnotator

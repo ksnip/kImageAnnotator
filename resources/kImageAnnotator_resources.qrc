@@ -23,7 +23,7 @@
         <file alias="fillType.svg" >icons/dark/fillType.svg</file>
         <file alias="fillType_borderAndFill.svg" >icons/dark/fillType_borderAndFill.svg</file>
         <file alias="fillType_borderAndNoFill.svg" >icons/dark/fillType_borderAndNoFill.svg</file>
-        <file alias="fillType_NoBorderAndNoFill.svg" >icons/dark/fillType_NoBorderAndNoFill.svg</file>
+        <file alias="fillType_noBorderAndNoFill.svg" >icons/dark/fillType_noBorderAndNoFill.svg</file>
     </qresource>
 
     <qresource prefix="/icons/light">
@@ -49,7 +49,7 @@
         <file alias="fillType.svg" >icons/light/fillType.svg</file>
         <file alias="fillType_borderAndFill.svg" >icons/light/fillType_borderAndFill.svg</file>
         <file alias="fillType_borderAndNoFill.svg" >icons/light/fillType_borderAndNoFill.svg</file>
-        <file alias="fillType_NoBorderAndNoFill.svg" >icons/light/fillType_NoBorderAndNoFill.svg</file>
+        <file alias="fillType_noBorderAndNoFill.svg" >icons/light/fillType_noBorderAndNoFill.svg</file>
     </qresource>
 
     <qresource prefix="/stickers">
