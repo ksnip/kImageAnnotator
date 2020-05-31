@@ -22,8 +22,10 @@
 
 #include <QWidget>
 #include <QHBoxLayout>
-#include <QComboBox>
 #include <QLabel>
+#include <QToolButton>
+#include <QMenu>
+#include <QAction>
 
 #include "src/common/constants/Constants.h"
 #include "src/common/enum/FillTypes.h"
@@ -49,15 +51,16 @@ signals:
 private:
 	QHBoxLayout *mLayout;
 	QLabel *mLabel;
-	QComboBox *mComboBox;
-	QList<FillTypes> mFillList;
+	QToolButton *mToolButton;
+	QMenu *mMenu;
+	QHash<QAction*, FillTypes> mActionToFillType;
 
 	void initGui(const QIcon &icon, const QString &tooltip);
 	void setFillAndNotify(FillTypes fill);
 
 private slots:
 	void selectionChanged();
-	void insertItem(FillTypes fillType, const QString &iconName, const QString &text) const;
+	void insertItem(FillTypes fillType, const QString &iconName, const QString &text);
 };
 
 } // namespace kImageAnnotator
