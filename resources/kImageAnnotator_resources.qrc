@@ -68,5 +68,7 @@
         <file alias="face_with_symbols_on_mouth.svg" >stickers/face_with_symbols_on_mouth.svg</file>
         <file alias="pouting_face.svg" >stickers/pouting_face.svg</file>
         <file alias="smiling_face_with_sunglasses.svg" >stickers/smiling_face_with_sunglasses.svg</file>
+        <file alias="check_mark.svg" >stickers/check_mark.svg</file>
+        <file alias="cross_mark.svg" >stickers/cross_mark.svg</file>
     </qresource>
 </RCC>

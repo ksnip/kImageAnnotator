@@ -87,7 +87,9 @@ void StickerPicker::addDefaultStickers()
 	                             QStringLiteral("confused_face"),
 	                             QStringLiteral("face_with_symbols_on_mouth"),
 	                             QStringLiteral("pouting_face"),
-	                             QStringLiteral("smiling_face_with_sunglasses")
+	                             QStringLiteral("smiling_face_with_sunglasses"),
+	                             QStringLiteral("check_mark"),
+	                             QStringLiteral("cross_mark")
 	};
 
 	for(const auto& sticker : defaultStickers) {
