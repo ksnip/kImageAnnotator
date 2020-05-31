@@ -76,8 +76,8 @@ void AnnotationNumberPointer::updateShape()
 	mRect->moveCenter(mLine->p1());
 	BaseAnnotationNumber::updateRect(mRect, textProperties()->font());
 
-	auto pointer = ShapeHelper::createPointer(mRect->width() * 0.7, mLine->length());
-	auto finishedPointer = ShapeHelper::translate(pointer, mLine->p2(), -mLine->angle());
+	auto pointer = AnnotationShapeCreator::createPointer(mRect->width() * 0.7, mLine->length());
+	auto finishedPointer = AnnotationShapeCreator::translate(pointer, mLine->p2(), -mLine->angle());
 
 	QPainterPath path(mLine->p1());
 	path.setFillRule(Qt::WindingFill);

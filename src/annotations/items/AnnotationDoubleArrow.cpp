@@ -43,9 +43,9 @@ void AnnotationDoubleArrow::updateShape()
 	shaft.setPoints(shaft.p2(), shaft.p1());
 	shaft.setLength(shaft.length() - 5);
 
-	auto arrow = ShapeHelper::createArrowHead(properties()->width() / 2);
-	auto startArrowHead = ShapeHelper::translate(arrow, mLine->p2(), -mLine->angle());
-	auto endArrowHead = ShapeHelper::translate(arrow, mLine->p1(), -mLine->angle() + 180);
+	auto arrow = AnnotationShapeCreator::createArrowHead(properties()->width() / 2);
+	auto startArrowHead = AnnotationShapeCreator::translate(arrow, mLine->p2(), -mLine->angle());
+	auto endArrowHead = AnnotationShapeCreator::translate(arrow, mLine->p1(), -mLine->angle() + 180);
 
 	QPainterPath path(shaft.p1());
 	path.lineTo(shaft.p2());

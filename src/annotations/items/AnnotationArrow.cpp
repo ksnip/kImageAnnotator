@@ -40,8 +40,8 @@ void AnnotationArrow::updateShape()
 	QLineF shaft(*mLine);
 	shaft.setLength(shaft.length() - 5);
 
-	auto arrow = ShapeHelper::createArrowHead(properties()->width() / 2);
-	arrow = ShapeHelper::translate(arrow, mLine->p2(), -mLine->angle());
+	auto arrow = AnnotationShapeCreator::createArrowHead(properties()->width() / 2);
+	arrow = AnnotationShapeCreator::translate(arrow, mLine->p2(), -mLine->angle());
 
 	QPainterPath path(shaft.p1());
 	path.lineTo(shaft.p2());

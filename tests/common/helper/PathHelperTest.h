@@ -17,28 +17,26 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_NUMBERRECTHELPER_H
-#define KIMAGEANNOTATOR_NUMBERRECTHELPER_H
+#ifndef KIMAGEANNOTATOR_PATHHELPERTEST_H
+#define KIMAGEANNOTATOR_PATHHELPERTEST_H
 
-#include <QString>
-#include <QSizeF>
-#include <QRectF>
-#include <QFont>
-#include <QFontMetricsF>
+#include <QtTest>
 
-namespace kImageAnnotator {
+#include "src/common/helper/PathHelper.h"
 
-class NumberRectHelper
+using kImageAnnotator::PathHelper;
+
+class PathHelperTest : public QObject
 {
-public:
-	NumberRectHelper() = default;
-	~NumberRectHelper() = default;
-	void updateRect(QRectF *rect, const QString &text, const QFont &font) const;
-
-protected:
-	QSizeF getTextRectSize(const QString &text, const QFont &font) const;
+Q_OBJECT
+private slots:
+	void TestExtractFilename_Should_ReturnOnlyFilename_When_FilenameHasFormat();
+	void TestExtractFilename_Should_ReturnOnlyFilename_When_FilenameHasNoFormat();
+	void TestExtractFilename_Should_ReturnOnlyFilename_When_FilenameWithoutPathWasProvided();
+	void TestExtractFilenameWithFormat_Should_ReturnOnlyFilename_When_FilenameHasFormat();
+	void TestExtractFilenameWithFormat_Should_ReturnOnlyFilename_When_FilenameWithoutPathWasProvided();
+	void TestPrettyFilename_Should_ReplaceUnderscoresWithSpacesAndCapitalizeFirstLetters();
 };
 
-} // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_NUMBERRECTHELPER_H
+#endif //KIMAGEANNOTATOR_PATHHELPERTEST_H
