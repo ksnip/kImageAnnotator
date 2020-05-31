@@ -22,7 +22,7 @@
 
 #include "src/annotations/items/AbstractAnnotationLine.h"
 #include "src/annotations/items/BaseAnnotationNumber.h"
-#include "src/annotations/items/helper/ShapeHelper.h"
+#include "src/annotations/items/helper/AnnotationShapeCreator.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 
 namespace kImageAnnotator {

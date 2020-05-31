@@ -17,11 +17,11 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "ShapeHelper.h"
+#include "AnnotationShapeCreator.h"
 
 namespace kImageAnnotator {
 
-QPolygonF ShapeHelper::createPointer(qreal width, qreal length)
+QPolygonF AnnotationShapeCreator::createPointer(qreal width, qreal length)
 {
 	QPointF p0(0, 0);
 	QPointF p1(-length, width / 2);
@@ -31,7 +31,7 @@ QPolygonF ShapeHelper::createPointer(qreal width, qreal length)
 	return pointer << p0 << p1 << p2 << p0;
 }
 
-QPolygonF ShapeHelper::createArrowHead(int scaleFactor)
+QPolygonF AnnotationShapeCreator::createArrowHead(int scaleFactor)
 {
 	auto arrowHeadLength = 15 + scaleFactor;
 	auto arrowHeadWidth = 5 + scaleFactor;
@@ -46,7 +46,7 @@ QPolygonF ShapeHelper::createArrowHead(int scaleFactor)
 	return arrow << p0 << p1 << p2 << p3 << p0;
 }
 
-QPolygonF ShapeHelper::translate(const QPolygonF &shape, const QPointF &pos, qreal angle)
+QPolygonF AnnotationShapeCreator::translate(const QPolygonF &shape, const QPointF &pos, qreal angle)
 {
 	return QTransform().translate(pos.x(), pos.y()).rotate(angle).map(shape);
 }

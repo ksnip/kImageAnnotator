@@ -27,6 +27,7 @@ set(UNITTEST_SRC
 	common/helper/MathHelperTest.cpp
 	common/helper/ItemHelperTest.cpp
 	common/helper/ShapeHelperTest.cpp
+	common/helper/PathHelperTest.cpp
 	gui/cropper/CropSelectionRestrictorTest.cpp
 	gui/cropper/CropSelectionMoveHelperTest.cpp
 	gui/cropper/CropSelectionHandlerTest.cpp

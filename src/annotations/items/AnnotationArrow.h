@@ -21,7 +21,7 @@
 #define KIMAGEANNOTATOR_ANNOTATIONARROW_H
 
 #include "src/annotations/items/AbstractAnnotationLine.h"
-#include "src/annotations/items/helper/ShapeHelper.h"
+#include "src/annotations/items/helper/AnnotationShapeCreator.h"
 
 namespace kImageAnnotator {
 

@@ -68,3 +68,6 @@ perf.data*
 # clion
 *.idea
 *.idea/
+
+# misc
+.directory

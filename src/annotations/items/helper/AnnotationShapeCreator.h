@@ -17,15 +17,15 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SHAPEHELPER_H
-#define KIMAGEANNOTATOR_SHAPEHELPER_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONSHAPECREATOR_H
+#define KIMAGEANNOTATOR_ANNOTATIONSHAPECREATOR_H
 
 #include <QPolygonF>
 #include <QTransform>
 
 namespace kImageAnnotator {
 
-class ShapeHelper
+class AnnotationShapeCreator
 {
 public:
 	static QPolygonF createPointer(qreal width, qreal length);
@@ -35,4 +35,4 @@ public:
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_SHAPEHELPER_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONSHAPECREATOR_H
