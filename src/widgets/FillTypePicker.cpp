@@ -36,6 +36,7 @@ FillTypePicker::~FillTypePicker()
 	delete mLabel;
 	delete mToolButton;
 	delete mMenu;
+	qDeleteAll(mActionToFillType.keys());
 }
 
 void FillTypePicker::setFillType(FillTypes fillType)
@@ -92,7 +93,7 @@ void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
 
 void FillTypePicker::insertItem(FillTypes fillType, const QString &iconName, const QString &text)
 {
-	auto action = new QAction(IconLoader::load(iconName), text);
+	auto action = new QAction(IconLoader::load(iconName), text, this);
 	action->setToolTip(text);
 	connect(action, &QAction::triggered, this, &FillTypePicker::selectionChanged);
 	mMenu->addAction(action);
