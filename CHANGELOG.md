@@ -11,6 +11,7 @@
 * Changed: Hide unavailable setting widgets. ([#101](https://github.com/ksnip/kImageAnnotator/issues/101))
 * Changed: Make arrow size decrease with stroke size. ([#84](https://github.com/ksnip/kImageAnnotator/issues/84))
 * Fixed: Using select tool marks image as changed. ([#97](https://github.com/ksnip/kImageAnnotator/issues/97))
+* Fixed: Emoticon selector shows a half of current emoticon. ([#104](https://github.com/ksnip/kImageAnnotator/issues/104))
 
 ## Release 0.2.1
 * Fixed: Edit border around text box doesn't disappear when done with editing. ([#71](https://github.com/ksnip/kImageAnnotator/issues/71))
