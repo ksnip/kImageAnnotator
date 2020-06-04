@@ -105,4 +105,16 @@ void kImageAnnotator::GridMenu::buttonClicked()
 	emit selectionChanged();
 }
 
+void GridMenu::clear()
+{
+	auto buttons = mButtonGroup->buttons();
+	for(auto button : buttons) {
+		mButtonGroup->removeButton(button);
+		mLayout->removeWidget(button);
+	}
+	qDeleteAll(buttons);
+	QMenu::clear();
+	emit selectionChanged();
+}
+
 } // namespace kImageAnnotator
