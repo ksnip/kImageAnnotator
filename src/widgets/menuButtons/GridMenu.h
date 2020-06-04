@@ -41,6 +41,7 @@ public:
 	QIcon currentIcon() const;
 	QVariant currentData() const;
 	QString currentToolTip() const;
+	void clear();
 
 signals:
 	void selectionChanged();
