@@ -95,6 +95,9 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButton.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButtonAction.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/StickerPicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/GridMenu.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/GridMenuButton.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/GridMenuToolButton.cpp
 	)
 
 set(KIMAGEANNOTATOR_SRCS ${KIMAGEANNOTATOR_SRCS} PARENT_SCOPE)

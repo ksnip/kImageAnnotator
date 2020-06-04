@@ -22,9 +22,9 @@
 
 #include <QWidget>
 #include <QHBoxLayout>
-#include <QComboBox>
 #include <QLabel>
 
+#include "src/widgets/menuButtons/GridMenuToolButton.h"
 #include "src/common/constants/Constants.h"
 #include "src/common/helper/IconLoader.h"
 #include "src/common/helper/PathHelper.h"
@@ -49,7 +49,7 @@ signals:
 private:
 	QHBoxLayout *mLayout;
 	QLabel *mLabel;
-	QComboBox *mComboBox;
+	GridMenuToolButton *mToolButton;
 
 	void init(const QIcon &icon, const QString &tooltip);
 	void addItem(const QString &path);

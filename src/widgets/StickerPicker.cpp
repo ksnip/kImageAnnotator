@@ -24,30 +24,27 @@ namespace kImageAnnotator {
 StickerPicker::StickerPicker(const QIcon &icon, const QString &tooltip) :
 	mLayout(new QHBoxLayout(this)),
 	mLabel(new QLabel(this)),
-	mComboBox(new QComboBox(this))
+	mToolButton(new GridMenuToolButton(this))
 {
 	init(icon, tooltip);
 
-	connect(mComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &StickerPicker::selectionChanged);
 }
 
 StickerPicker::~StickerPicker()
 {
 	delete mLayout;
 	delete mLabel;
-	delete mComboBox;
+	delete mToolButton;
 }
 
 void StickerPicker::setSticker(const QString &name)
 {
-	auto index = mComboBox->findData(name, Qt::UserRole);
-	mComboBox->setCurrentIndex(index);
-	selectionChanged();
+	mToolButton->setCurrentData(name);
 }
 
 QString StickerPicker::sticker() const
 {
-	return mComboBox->currentData(Qt::UserRole).toString();
+	return mToolButton->currentData().toString();
 }
 
 void StickerPicker::init(const QIcon &icon, const QString &tooltip)
@@ -57,15 +54,18 @@ void StickerPicker::init(const QIcon &icon, const QString &tooltip)
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::getScaledSize(QSize(20, 20))));
 	mLabel->setToolTip(tooltip);
 
+	mToolButton->setFixedSize(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetSize));
+	mToolButton->setIconSize(ScaledSizeProvider::getScaledSize(QSize(30, 30)));
+	mToolButton->setToolTip(tooltip);
+	mToolButton->setFocusPolicy(Qt::NoFocus);
+	mToolButton->setPopupMode(QToolButton::InstantPopup);
+
+	connect(mToolButton, &GridMenuToolButton::selectionChanged, this, &StickerPicker::selectionChanged);
+
 	addDefaultStickers();
 
-	mComboBox->setFixedSize(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetSize));
-	mComboBox->setIconSize(ScaledSizeProvider::getScaledSize(QSize(30, 30)));
-	mComboBox->setToolTip(tooltip);
-	mComboBox->setFocusPolicy(Qt::NoFocus);
-
 	mLayout->addWidget(mLabel);
-	mLayout->addWidget(mComboBox);
+	mLayout->addWidget(mToolButton);
 
 	setLayout(mLayout);
 	setFixedSize(sizeHint());
@@ -107,7 +107,7 @@ void StickerPicker::addItem(const QString &path)
 	auto icon = QIcon(path);
 	auto filename = PathHelper::extractFilename(path);
 	filename = PathHelper::prettyFilename(filename);
-	mComboBox->addItem(icon, filename, path);
+	mToolButton->addItem(icon, filename, path);
 }
 
 void StickerPicker::selectionChanged()
@@ -117,7 +117,7 @@ void StickerPicker::selectionChanged()
 
 void StickerPicker::setStickers(const QStringList &stickerPaths, bool keepDefault)
 {
-	mComboBox->clear();
+	mToolButton->clear();
 
 	if(keepDefault) {
 		addDefaultStickers();
