@@ -76,6 +76,7 @@ void kImageAnnotator::GridMenu::setCurrentData(const QVariant &data)
 		auto gridMenuButton = dynamic_cast<GridMenuButton *>(button);
 		if(gridMenuButton != nullptr && gridMenuButton->data() == data) {
 			gridMenuButton->setChecked(true);
+			emit selectionChanged();
 			return;
 		}
 	}
