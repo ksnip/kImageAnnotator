@@ -25,6 +25,8 @@
 #include <QPaintEvent>
 #include <QMouseEvent>
 
+#include "src/common/constants/Constants.h"
+
 namespace kImageAnnotator {
 
 class ListMenuItem : public QWidget
@@ -61,7 +63,6 @@ private:
 	int mMargin;
 	int mSpacer;
 	QSize mSize;
-	QColor mHoverColor;
 };
 
 } // namespace kImageAnnotator

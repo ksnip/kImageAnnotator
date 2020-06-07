@@ -19,8 +19,6 @@
 
 #include "GridMenuButton.h"
 
-#include <utility>
-
 namespace kImageAnnotator {
 
 GridMenuButton::GridMenuButton(const QIcon &icon, const QString &toolTip, QVariant data) :
@@ -44,20 +42,23 @@ void GridMenuButton::paintEvent(QPaintEvent *event)
 	QPainter painter(this);
 	QStyleOption styleOption;
 	styleOption.initFrom(this);
-	auto buttonRect = event->rect();
-
-	painter.drawPixmap(buttonRect.topLeft() + QPointF(2, 2), icon().pixmap(iconSize()));
-
-	if(isChecked()) {
-		auto selectionRect = getSelectionRect(buttonRect);
-		painter.drawRect(selectionRect);
-	}
+	auto buttonRect = event->rect().adjusted(0, 0, -1, -1);
 
 	if(styleOption.state & QStyle::State_MouseOver)
 	{
-		auto hoverRect = getHoverRect(buttonRect);
-		painter.setPen(QColor(QStringLiteral("#add8e6")));
-		painter.drawRect(hoverRect);
+		auto defaultPen = painter.pen();
+		auto defaultBrush = painter.brush();
+		painter.setPen(Constants::HoverColor);
+		painter.setBrush(Constants::HoverColor);
+		painter.drawRect(buttonRect);
+		painter.setPen(defaultPen);
+		painter.setBrush(defaultBrush);
+	}
+
+	painter.drawPixmap(buttonRect.topLeft() + QPointF(2, 2), icon().pixmap(iconSize()));
+
+	if(isChecked()) {;
+		painter.drawRect(buttonRect);
 	}
 }
 

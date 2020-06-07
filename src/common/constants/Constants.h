@@ -21,6 +21,7 @@
 #define KIMAGEANNOTATOR_ANNOTATIONCONSTANTS_H
 
 #include <QSize>
+#include <QColor>
 
 namespace kImageAnnotator {
 
@@ -31,6 +32,8 @@ const int MinPathResizeRectSize = 20;
 const int ResizeHandleSize = 16;
 
 const QSize SettingsWidgetSize(54, 32);
+
+const QColor HoverColor(QStringLiteral("#add8e6"));
 
 } // namespace Constants
 
