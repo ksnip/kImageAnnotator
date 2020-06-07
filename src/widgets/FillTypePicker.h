@@ -27,6 +27,7 @@
 #include <QMenu>
 #include <QAction>
 
+#include "src/widgets/menuButtons/ListMenuToolButton.h"
 #include "src/common/constants/Constants.h"
 #include "src/common/enum/FillTypes.h"
 #include "src/common/helper/IconLoader.h"
@@ -51,16 +52,13 @@ signals:
 private:
 	QHBoxLayout *mLayout;
 	QLabel *mLabel;
-	QToolButton *mToolButton;
-	QMenu *mMenu;
-	QHash<QAction*, FillTypes> mActionToFillType;
+	ListMenuToolButton *mToolButton;
 
 	void initGui(const QIcon &icon, const QString &tooltip);
-	void setFillAndNotify(FillTypes fill);
 
 private slots:
-	void selectionChanged();
 	void insertItem(FillTypes fillType, const QString &iconName, const QString &text);
+	void selectionChanged();
 };
 
 } // namespace kImageAnnotator

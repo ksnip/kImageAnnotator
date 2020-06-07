@@ -98,6 +98,10 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/GridMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/GridMenuButton.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/GridMenuToolButton.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListMenuToolButton.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListMenu.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListMenuItem.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListItemGroup.cpp
 	)
 
 set(KIMAGEANNOTATOR_SRCS ${KIMAGEANNOTATOR_SRCS} PARENT_SCOPE)
