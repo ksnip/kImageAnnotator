@@ -29,8 +29,7 @@ ListMenuItem::ListMenuItem(const QIcon &icon, const QString &text, const QVarian
 	mData(data),
 	mIsChecked(false),
 	mSpacer(6),
-	mMargin(5),
-	mHoverColor()
+	mMargin(5)
 {
 	setMouseTracking(true);
 	mIconSize = QSize(28, 28);
@@ -38,7 +37,6 @@ ListMenuItem::ListMenuItem(const QIcon &icon, const QString &text, const QVarian
 	mIconOffset = QPoint(mMargin, mMargin);
 	mTextOffset = QPoint(mIconSize.width() + mIconOffset.x() + mSpacer, (mIconSize.height() - mTextSize.height()) / 2 + mIconOffset.y());
 	mSize = QSize(mIconSize.width() + mTextSize.width() + mMargin * 2 + mSpacer, mIconSize.height() + mMargin * 2);
-	mHoverColor = QColor(QStringLiteral("#add8e6"));
 }
 
 QVariant ListMenuItem::data() const
@@ -84,8 +82,8 @@ void ListMenuItem::paintEvent(QPaintEvent *event)
 	{
 		auto defaultBrush = painter.brush();
 		auto defaultPen = painter.pen();
-		painter.setBrush(mHoverColor);
-		painter.setPen(mHoverColor);
+		painter.setBrush(Constants::HoverColor);
+		painter.setPen(Constants::HoverColor);
 		painter.drawRect(rect);
 		painter.setBrush(defaultBrush);
 		painter.setPen(defaultPen);
