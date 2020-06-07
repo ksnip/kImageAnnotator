@@ -27,7 +27,6 @@ StickerPicker::StickerPicker(const QIcon &icon, const QString &tooltip) :
 	mToolButton(new GridMenuToolButton(this))
 {
 	init(icon, tooltip);
-
 }
 
 StickerPicker::~StickerPicker()
@@ -56,7 +55,6 @@ void StickerPicker::init(const QIcon &icon, const QString &tooltip)
 
 	mToolButton->setFixedSize(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetSize));
 	mToolButton->setIconSize(ScaledSizeProvider::getScaledSize(QSize(30, 30)));
-	mToolButton->setToolTip(tooltip);
 	mToolButton->setFocusPolicy(Qt::NoFocus);
 	mToolButton->setPopupMode(QToolButton::InstantPopup);
 
