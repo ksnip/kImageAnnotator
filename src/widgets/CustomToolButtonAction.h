@@ -26,6 +26,7 @@
 #include <QWidget>
 
 #include "src/common/provider/ScaledSizeProvider.h"
+#include "src/common/constants/Constants.h"
 
 namespace kImageAnnotator {
 

@@ -27,7 +27,7 @@ GridMenuButton::GridMenuButton(const QIcon &icon, const QString &toolTip, QVaria
 	setIcon(icon);
 	setToolTip(toolTip);
 
-	setIconSize(ScaledSizeProvider::getScaledSize(QSize(32,32)));
+	setIconSize(ScaledSizeProvider::getScaledSize(QSize(32, 32)));
 	setCheckable(true);
 	setFixedSize(iconSize() + ScaledSizeProvider::getScaledSize(QSize(4,4)));
 }

@@ -46,7 +46,7 @@ void NumberPicker::initGui(const QIcon &icon, const QString &tooltip)
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
 	mLabel = new QLabel();
-	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::getScaledSize(QSize(20, 20))));
+	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetIconSize)));
 	mLabel->setToolTip(tooltip);
 
 	mSpinBox = new CustomSpinBox(this);
