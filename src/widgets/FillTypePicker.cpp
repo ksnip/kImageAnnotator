@@ -39,7 +39,6 @@ FillTypePicker::~FillTypePicker()
 void FillTypePicker::setFillType(FillTypes fillType)
 {
 	mToolButton->setCurrentData(static_cast<int>(fillType));
-	emit fillSelected(fillType);
 }
 
 void FillTypePicker::addNoFillAndNoBorderToList()
