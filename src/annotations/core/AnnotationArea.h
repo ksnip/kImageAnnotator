@@ -83,12 +83,12 @@ protected:
     void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) override;
 
 private:
-    AnnotationItemFactory *mItemFactory;
-    AnnotationPropertiesFactory *mPropertiesFactory;
+	AbstractSettingsProvider *mSettingsProvider;
+	AnnotationPropertiesFactory *mPropertiesFactory;
+	AnnotationItemFactory *mItemFactory;
     QSharedPointer<QGraphicsPixmapItem> mImage;
     AbstractAnnotationItem *mCurrentItem;
     AnnotationItemModifier *mItemModifier;
-    AbstractSettingsProvider *mSettingsProvider;
     QList<AbstractAnnotationItem*> *mItems;
     KeyHelper *mKeyHelper;
     UndoStack *mUndoStack;

@@ -29,15 +29,15 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 	mRedoAction(nullptr),
 	mKeyHelper(new KeyHelper),
 	mSettingsProvider(settingsProvider),
-	mItemModifier(new AnnotationItemModifier)
+	mItemModifier(new AnnotationItemModifier),
+	mPropertiesFactory(new AnnotationPropertiesFactory(config, mSettingsProvider)),
+	mItemFactory(new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider)),
+	mItems(new QList<AbstractAnnotationItem *>()),
+	mItemCopier(new AnnotationItemClipboard(mItemModifier))
 {
-	Q_ASSERT(config != nullptr);
+	Q_ASSERT(mSettingsProvider != nullptr);
 
-	mPropertiesFactory = new AnnotationPropertiesFactory(config, mSettingsProvider);
-	mItemFactory = new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider);
-	mItems = new QList<AbstractAnnotationItem *>();
 	addItem(mItemModifier);
-	mItemCopier = new AnnotationItemClipboard(mItemModifier);
 
 	connect(mItemModifier, &AnnotationItemModifier::newCommand, mUndoStack, &UndoStack::push);
 	connect(mItemModifier, &AnnotationItemModifier::itemsSelected, this, &AnnotationArea::itemsSelected);

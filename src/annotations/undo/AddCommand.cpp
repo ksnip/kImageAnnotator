@@ -29,10 +29,7 @@ AddCommand::AddCommand(AbstractAnnotationItem *item, AnnotationArea *annotationA
 
 AddCommand::~AddCommand()
 {
-    // Bug #10 crash when undoing an item and trying to add a new item
-    // the item should not be deleted before the undoStack was cleared.
-
-    // delete mItem;
+     delete mItem;
 }
 
 void AddCommand::undo()

@@ -21,11 +21,13 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemFactory::AnnotationItemFactory(AnnotationPropertiesFactory *propertiesFactory, AbstractSettingsProvider *settingsProvider)
+AnnotationItemFactory::AnnotationItemFactory(AnnotationPropertiesFactory *propertiesFactory, AbstractSettingsProvider *settingsProvider) :
+	mPropertiesFactory(propertiesFactory),
+	mSettingsProvider(settingsProvider),
+	mNumberManager(new NumberManager)
 {
-	mPropertiesFactory = propertiesFactory;
-	mSettingsProvider = settingsProvider;
-	mNumberManager = new NumberManager();
+	Q_ASSERT(mSettingsProvider != nullptr);
+
 	mSettingsProvider->subscribeToBadgeNumberChange(mNumberManager);
 	reset();
 }

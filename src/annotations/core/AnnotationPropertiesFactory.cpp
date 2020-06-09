@@ -21,10 +21,12 @@
 
 namespace kImageAnnotator {
 
-AnnotationPropertiesFactory::AnnotationPropertiesFactory(Config *config, AbstractSettingsProvider *settingsProvider)
+AnnotationPropertiesFactory::AnnotationPropertiesFactory(Config *config, AbstractSettingsProvider *settingsProvider) :
+	mConfig(config),
+	mSettingsProvider(settingsProvider)
 {
-	mConfig = config;
-	mSettingsProvider = settingsProvider;
+	Q_ASSERT(mConfig != nullptr);
+	Q_ASSERT(mSettingsProvider != nullptr);
 }
 
 PropertiesPtr AnnotationPropertiesFactory::create(ToolTypes toolType) const
