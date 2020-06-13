@@ -51,6 +51,7 @@ public slots:
 signals:
 	void newCommand(QUndoCommand *command);
 	void itemsSelected(const QList<AbstractAnnotationItem *> &items) const;
+	void itemModified() const;
 
 protected:
 	void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
@@ -63,6 +64,9 @@ private:
 
 	void handleSelection();
 	void updateCursor(Qt::CursorShape cursor);
+
+private slots:
+	void itemChanged(QUndoCommand *command);
 };
 
 } // namespace kImageAnnotator

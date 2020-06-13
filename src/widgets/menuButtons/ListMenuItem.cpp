@@ -32,8 +32,9 @@ ListMenuItem::ListMenuItem(const QIcon &icon, const QString &text, const QVarian
 	mMargin(5)
 {
 	setMouseTracking(true);
-	mIconSize = QSize(28, 28);
-	mTextSize = fontMetrics().size(Qt::TextSingleLine | Qt::TextShowMnemonic, mText);
+
+	mIconSize = ScaledSizeProvider::getScaledSize(Constants::MenuItemIconSize);
+	mTextSize = fontMetrics().size(Qt::TextSingleLine | Qt::TextShowMnemonic, mText) + ScaledSizeProvider::getScaledSize(QSize(15,0));
 	mIconOffset = QPoint(mMargin, mMargin);
 	mTextOffset = QPoint(mIconSize.width() + mIconOffset.x() + mSpacer, (mIconSize.height() - mTextSize.height()) / 2 + mIconOffset.y());
 	mSize = QSize(mIconSize.width() + mTextSize.width() + mMargin * 2 + mSpacer, mIconSize.height() + mMargin * 2);
@@ -90,7 +91,7 @@ void ListMenuItem::paintEvent(QPaintEvent *event)
 	}
 
 	painter.drawPixmap(rect.topLeft() + mIconOffset, mIcon.pixmap(mIconSize));
-	painter.drawText(QRect(rect.topLeft() + mTextOffset, mTextSize), Qt::AlignCenter, mText);
+	painter.drawText(QRect(rect.topLeft() + mTextOffset, mTextSize), Qt::AlignLeft | Qt::AlignVCenter, mText);
 
 	if(mIsChecked) {
 		painter.drawRect(rect);

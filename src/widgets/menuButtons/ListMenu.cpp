@@ -59,6 +59,7 @@ void ListMenu::setCurrentData(const QVariant &data)
 	for(auto item : mListItemGroup->items()) {
 		if(item->data() == data){
 			item->setIsChecked(true);
+			return;
 		}
 	}
 }
@@ -80,9 +81,10 @@ void ListMenu::setDataVisible(const QVariant &data, bool isVisible)
 	for(auto item : mListItemGroup->items()) {
 		if(item->data() == data){
 			item->setVisible(isVisible);
+			setMinimumSize(mLayout->minimumSize());
+			return;
 		}
 	}
-	setMinimumSize(mLayout->minimumSize());
 }
 
 } // namespace kImageAnnotator

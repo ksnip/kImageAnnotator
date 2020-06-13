@@ -29,18 +29,19 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 	mRedoAction(nullptr),
 	mKeyHelper(new KeyHelper),
 	mSettingsProvider(settingsProvider),
-	mItemModifier(new AnnotationItemModifier)
+	mItemModifier(new AnnotationItemModifier),
+	mPropertiesFactory(new AnnotationPropertiesFactory(config, mSettingsProvider)),
+	mItemFactory(new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider)),
+	mItems(new QList<AbstractAnnotationItem *>()),
+	mItemCopier(new AnnotationItemClipboard(mItemModifier))
 {
-	Q_ASSERT(config != nullptr);
+	Q_ASSERT(mSettingsProvider != nullptr);
 
-	mPropertiesFactory = new AnnotationPropertiesFactory(config, mSettingsProvider);
-	mItemFactory = new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider);
-	mItems = new QList<AbstractAnnotationItem *>();
 	addItem(mItemModifier);
-	mItemCopier = new AnnotationItemClipboard(mItemModifier);
 
 	connect(mItemModifier, &AnnotationItemModifier::newCommand, mUndoStack, &UndoStack::push);
 	connect(mItemModifier, &AnnotationItemModifier::itemsSelected, this, &AnnotationArea::itemsSelected);
+	connect(mItemModifier, &AnnotationItemModifier::itemModified, this, &AnnotationArea::imageChanged);
 	connect(mUndoStack, &UndoStack::indexChanged, this, &AnnotationArea::update);
 	connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
 	connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clear);
@@ -81,9 +82,8 @@ void AnnotationArea::insertImageItem(const QPointF &position, const QPixmap &ima
 
 void AnnotationArea::replaceBackgroundImage(const QPixmap &image)
 {
-	delete mImage;    
-    mImage = addPixmap(image);
-    setSceneRect(ScaledSizeProvider::getUnscaledRect(image.rect(), image.devicePixelRatio()));
+	mImage = QSharedPointer<QGraphicsPixmapItem>(addPixmap(image));
+	setSceneRect(image.rect());
 }
 
 QImage AnnotationArea::image()
@@ -140,13 +140,13 @@ void AnnotationArea::removeAnnotationItem(AbstractAnnotationItem *item)
 
 void AnnotationArea::crop(const QRectF &rect)
 {
-	mUndoStack->push(new CropCommand(mImage, rect, this));
+	mUndoStack->push(new CropCommand(mImage.data(), rect, this));
 	emit imageChanged();
 }
 
 void AnnotationArea::scale(const QSize &size)
 {
-	mUndoStack->push(new ScaleCommand(mImage, size, this));
+	mUndoStack->push(new ScaleCommand(mImage.data(), size, this));
 	emit imageChanged();
 }
 
@@ -200,7 +200,6 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 		}
 	}
 
-	emit imageChanged();
 	QGraphicsScene::mouseReleaseEvent(event);
 }
 
