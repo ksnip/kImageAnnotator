@@ -60,15 +60,15 @@ void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
-	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetIconSize)));
+	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
 	mLabel->setToolTip(tooltip);
 
 	insertItem(FillTypes::BorderAndFill, QStringLiteral("fillType_borderAndFill.svg"), tr("Border and Fill"));
 	insertItem(FillTypes::BorderAndNoFill, QStringLiteral("fillType_borderAndNoFill.svg"), tr("Border and No Fill"));
 	insertItem(FillTypes::NoBorderAndNoFill, QStringLiteral("fillType_noBorderAndNoFill.svg"), tr("No Border and No Fill"));
 
-	mToolButton->setFixedSize(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetSize));
-	mToolButton->setIconSize(ScaledSizeProvider::getScaledSize(Constants::ToolButtonIconSize));
+	mToolButton->setFixedSize(Constants::SettingsWidgetSize);
+	mToolButton->setIconSize(Constants::ToolButtonIconSize);
 	mToolButton->setFocusPolicy(Qt::NoFocus);
 	connect(mToolButton, &ListMenuToolButton::selectionChanged, this, &FillTypePicker::selectionChanged);
 

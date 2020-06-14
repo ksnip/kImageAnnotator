@@ -25,9 +25,10 @@ CropCommand::CropCommand(QGraphicsPixmapItem *image, const QRectF &cropRect, Ann
 {
 	mAnnotationArea = annotationArea;
 	mImageItem = image;
-	mOriginalImage = QPixmap(image->pixmap());
-	mCroppedImage = QPixmap(image->pixmap().copy(cropRect.toRect()));
-	mNewItemOffset = cropRect.topLeft();
+	mOriginalImage = QPixmap(image->pixmap()); 
+    auto rect = DevicePixelRatioScaler::scale(cropRect);
+    mCroppedImage = QPixmap(image->pixmap().copy(rect.toRect()));
+    mNewItemOffset = rect.topLeft();
 }
 
 void CropCommand::undo()

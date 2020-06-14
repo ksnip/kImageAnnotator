@@ -52,11 +52,11 @@ void ColorPicker::initGui(const QIcon &icon, const QString &tooltip)
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
 	mLabel = new QLabel();
-	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetIconSize)));
+	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
 	mLabel->setToolTip(tooltip);
 
 	mkColorPicker = new KColorPicker();
-	mkColorPicker->setFixedSize(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetSize));
+	mkColorPicker->setFixedSize(Constants::SettingsWidgetSize);
 	mkColorPicker->setFocusPolicy(Qt::NoFocus);
 	mkColorPicker->setToolTip(tooltip);
 

@@ -29,9 +29,7 @@ GridMenu::GridMenu(QWidget *parent) :
 	setLayout(mLayout);
 
 	mLayout->setSpacing(0);
-
-	auto margin = ScaledSizeProvider::getScaledWidth(4);
-	mLayout->setContentsMargins(margin, margin, margin, margin);
+	mLayout->setContentsMargins(4, 4, 4, 4);
 }
 
 GridMenu::~GridMenu()

@@ -17,26 +17,20 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
-#define KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
-
-#include <QApplication>
-#include <QDesktopWidget>
+#include "DevicePixelRatioScaler.h"
 
 namespace kImageAnnotator {
 
-class ScaledSizeProvider
+QRectF DevicePixelRatioScaler::scale(const QRectF &rect)
 {
-public:
-	static QSize getScaledSize(const QSize &size);
-	static int getScaledWidth(int width);
+	auto factor = scaleFactor();
+	return {rect.left() * factor, rect.top() * factor, rect.width() * factor, rect.height() * factor};
+}
 
-private:
-	static qreal getXScaleFactor();
-	static qreal getYScaleFactor();
-	static qreal getReferenceDpiValue();
-};
+qreal DevicePixelRatioScaler::scaleFactor()
+{
+	auto desktopWidget = QApplication::desktop();
+	return desktopWidget->devicePixelRatioF();
+}
 
 } // namespace kImageAnnotator
-
-#endif //KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H

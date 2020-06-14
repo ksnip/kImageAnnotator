@@ -26,7 +26,7 @@
 #include <QToolButton>
 
 #include "GridMenuButton.h"
-#include "src/common/provider/ScaledSizeProvider.h"
+#include "src/common/provider/DevicePixelRatioScaler.h"
 
 namespace kImageAnnotator {
 

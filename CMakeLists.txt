@@ -20,7 +20,7 @@ elseif (UNIX)
 	string(REGEX REPLACE "//" "/" KIMAGEANNOTATOR_LANG_INSTAL_DIR "${KIMAGEANNOTATOR_LANG_INSTAL_DIR}")
 endif ()
 
-set(QT_MIN_VERSION "5.6.1")
+set(QT_MIN_VERSION "5.9.4")
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Svg)
 
 if (UNIX)
@@ -30,7 +30,7 @@ endif ()
 include(GNUInstallDirs)
 include(FeatureSummary)
 
-set(KCOLORPICKER_MIN_VERSION "0.1.2")
+set(KCOLORPICKER_MIN_VERSION "0.1.4")
 find_package(kColorPicker ${KCOLORPICKER_MIN_VERSION} REQUIRED)
 
 set(BASEPATH "${CMAKE_CURRENT_SOURCE_DIR}")

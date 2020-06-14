@@ -39,6 +39,7 @@
 #include "src/common/enum/ToolTypes.h"
 #include "src/common/helper/CursorHelper.h"
 #include "src/common/helper/KeyHelper.h"
+#include "src/common/provider/DevicePixelRatioScaler.h"
 #include "src/annotations/undo/UndoStack.h"
 #include "src/annotations/undo/CropCommand.h"
 #include "src/annotations/undo/ScaleCommand.h"

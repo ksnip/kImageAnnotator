@@ -27,9 +27,9 @@ GridMenuButton::GridMenuButton(const QIcon &icon, const QString &toolTip, QVaria
 	setIcon(icon);
 	setToolTip(toolTip);
 
-	setIconSize(ScaledSizeProvider::getScaledSize(QSize(32, 32)));
+	setIconSize(QSize(32, 32));
 	setCheckable(true);
-	setFixedSize(iconSize() + ScaledSizeProvider::getScaledSize(QSize(4,4)));
+	setFixedSize(iconSize() + QSize(4,4));
 }
 
 QVariant kImageAnnotator::GridMenuButton::data() const
@@ -44,6 +44,8 @@ void GridMenuButton::paintEvent(QPaintEvent *event)
 	styleOption.initFrom(this);
 	auto buttonRect = event->rect().adjusted(0, 0, -1, -1);
 
+	qDebug("Pen w %s", qPrintable(QString::number(painter.pen().widthF())));
+
 	if(styleOption.state & QStyle::State_MouseOver)
 	{
 		auto defaultPen = painter.pen();
@@ -57,21 +59,9 @@ void GridMenuButton::paintEvent(QPaintEvent *event)
 
 	painter.drawPixmap(buttonRect.topLeft() + QPointF(2, 2), icon().pixmap(iconSize()));
 
-	if(isChecked()) {;
+	if(isChecked()) {
 		painter.drawRect(buttonRect);
 	}
-}
-
-QRect GridMenuButton::getHoverRect(const QRect &buttonRect) const
-{
-	auto topLeft = buttonRect.topLeft();
-	return { topLeft.x() + 1, topLeft.y() + 1, iconSize().width() + 1, iconSize().height() + 1 };
-}
-
-QRect GridMenuButton::getSelectionRect(const QRect &buttonRect) const
-{
-	auto topLeft = buttonRect.topLeft();
-	return { topLeft.x(), topLeft.y(), iconSize().width() + 3, iconSize().height() + 3 };
 }
 
 } // namespace kImageAnnotator
