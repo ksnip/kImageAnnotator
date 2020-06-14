@@ -50,11 +50,11 @@ void StickerPicker::init(const QIcon &icon, const QString &tooltip)
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
-	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetIconSize)));
+	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
 	mLabel->setToolTip(tooltip);
 
-	mToolButton->setFixedSize(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetSize));
-	mToolButton->setIconSize(ScaledSizeProvider::getScaledSize(Constants::ToolButtonIconSize));
+	mToolButton->setFixedSize(Constants::SettingsWidgetSize);
+	mToolButton->setIconSize(Constants::ToolButtonIconSize);
 	mToolButton->setFocusPolicy(Qt::NoFocus);
 	mToolButton->setPopupMode(QToolButton::InstantPopup);
 

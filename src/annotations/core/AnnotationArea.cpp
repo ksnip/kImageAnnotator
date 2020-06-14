@@ -83,7 +83,7 @@ void AnnotationArea::insertImageItem(const QPointF &position, const QPixmap &ima
 void AnnotationArea::replaceBackgroundImage(const QPixmap &image)
 {
 	mImage = QSharedPointer<QGraphicsPixmapItem>(addPixmap(image));
-	setSceneRect(image.rect());
+	setSceneRect(mImage->boundingRect());
 }
 
 QImage AnnotationArea::image()
@@ -96,8 +96,10 @@ QImage AnnotationArea::image()
 
 	setSceneRect({}); // Unset scene rect to cover all items
 
-	QImage image(sceneRect().size().toSize(), QImage::Format_ARGB32_Premultiplied);
+	auto scaleFactor = DevicePixelRatioScaler::scaleFactor();
+	QImage image(sceneRect().size().toSize() * scaleFactor, QImage::Format_ARGB32_Premultiplied);
 	image.fill(Qt::white);
+	image.setDevicePixelRatio(scaleFactor);
 
 	QPainter painter(&image);
 	painter.setRenderHint(QPainter::Antialiasing);

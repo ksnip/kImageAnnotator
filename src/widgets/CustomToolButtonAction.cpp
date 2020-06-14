@@ -37,7 +37,7 @@ CustomToolButtonAction::~CustomToolButtonAction()
 void CustomToolButtonAction::updateDefaultWidget()
 {
 	mText->setText(toolTip());
-	mImage->setPixmap(icon().pixmap(ScaledSizeProvider::getScaledSize(Constants::MenuItemIconSize)));
+	mImage->setPixmap(icon().pixmap(Constants::MenuItemIconSize));
 	mMenuItem->setToolTip(toolTip());
 
 	setDefaultWidget(mMenuItem);

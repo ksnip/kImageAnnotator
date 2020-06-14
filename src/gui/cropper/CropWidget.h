@@ -31,7 +31,6 @@
 #include "CropSelectionHandler.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/common/helper/KeyHelper.h"
-#include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 

@@ -17,31 +17,21 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
-#define KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
+#ifndef KIMAGEANNOTATOR_DEVICEPIXELRATIOSCALER_H
+#define KIMAGEANNOTATOR_DEVICEPIXELRATIOSCALER_H
 
 #include <QApplication>
 #include <QDesktopWidget>
 
 namespace kImageAnnotator {
 
-class ScaledSizeProvider
+class DevicePixelRatioScaler
 {
 public:
-	static QSize getScaledSize(const QSize &size);
-	static int getScaledWidth(int width);
-    static QRect getScaledRect(const QRect &rect);
-    static QRect getScaledRect(const QRect &rect, qreal scaleFactor);
-    static QRect getScaledRect(const QRect &rect, qreal xScaleFactor, qreal yScaleFactor);
-    static QRect getUnscaledRect(const QRect &rect);
-    static QRect getUnscaledRect(const QRect &rect, qreal scaleFactor);
-    static QRect getUnscaledRect(const QRect &rect, qreal xScaleFactor, qreal yScaleFactor);
-private:
-	static qreal getXScaleFactor();
-	static qreal getYScaleFactor();
-	static qreal getReferenceDpiValue();
+    static QRectF scale(const QRectF &rect);
+	static qreal scaleFactor();
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
+#endif //KIMAGEANNOTATOR_DEVICEPIXELRATIOSCALER_H

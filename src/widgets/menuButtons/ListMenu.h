@@ -25,7 +25,7 @@
 
 #include "src/widgets/menuButtons/ListMenuItem.h"
 #include "src/widgets/menuButtons/ListItemGroup.h"
-#include "src/common/provider/ScaledSizeProvider.h"
+#include "src/common/provider/DevicePixelRatioScaler.h"
 
 
 namespace kImageAnnotator {

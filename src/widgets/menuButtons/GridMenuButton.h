@@ -26,7 +26,6 @@
 #include <QPainter>
 #include <QPaintEvent>
 
-#include "src/common/provider/ScaledSizeProvider.h"
 #include "src/common/constants/Constants.h"
 
 namespace kImageAnnotator {
@@ -44,9 +43,6 @@ protected slots:
 
 private:
 	QVariant mData;
-
-	QRect getSelectionRect(const QRect &buttonRect) const;
-	QRect getHoverRect(const QRect &buttonRect) const;
 };
 
 } // namespace kImageAnnotator

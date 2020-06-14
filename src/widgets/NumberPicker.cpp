@@ -46,11 +46,11 @@ void NumberPicker::initGui(const QIcon &icon, const QString &tooltip)
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
 	mLabel = new QLabel();
-	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetIconSize)));
+	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
 	mLabel->setToolTip(tooltip);
 
 	mSpinBox = new CustomSpinBox(this);
-	mSpinBox->setFixedSize(ScaledSizeProvider::getScaledSize(Constants::SettingsWidgetSize));
+	mSpinBox->setFixedSize(Constants::SettingsWidgetSize);
 	mSpinBox->setMinimum(1);
 	mSpinBox->setMaximum(20);
 	mSpinBox->setFocusPolicy(Qt::NoFocus);

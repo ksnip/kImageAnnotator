@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,33 +17,20 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CUSTOMTOOLBUTTON_H
-#define KIMAGEANNOTATOR_CUSTOMTOOLBUTTON_H
-
-#include <QToolButton>
-#include <QAction>
-#include <QMenu>
+#include "DevicePixelRatioScaler.h"
 
 namespace kImageAnnotator {
 
-class CustomToolButton : public QToolButton
+QRectF DevicePixelRatioScaler::scale(const QRectF &rect)
 {
-Q_OBJECT
-public:
-	explicit CustomToolButton(QWidget *parent = nullptr);
-	void setButtonText(const QString &text);
-	void setMenu(QMenu *menu);
-	void setAction(QAction *action);
+	auto factor = scaleFactor();
+	return {rect.left() * factor, rect.top() * factor, rect.width() * factor, rect.height() * factor};
+}
 
-public slots:
-	void setActiveAction(QAction *action);
-	void trigger();
-	void refreshText();
-
-private:
-	QString mButtonText;
-};
+qreal DevicePixelRatioScaler::scaleFactor()
+{
+	auto desktopWidget = QApplication::desktop();
+	return desktopWidget->devicePixelRatioF();
+}
 
 } // namespace kImageAnnotator
-
-#endif //KIMAGEANNOTATOR_CUSTOMTOOLBUTTON_H
