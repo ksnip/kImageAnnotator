@@ -28,7 +28,7 @@ void ScaleCommandTest::TestRedo_Should_ScaleImageToNewSize()
 	QGraphicsPixmapItem image(pixmap);
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	ScaleCommand scaleCommand(&image, newSize, &annotationArea);
 
 	scaleCommand.redo();
@@ -44,7 +44,7 @@ void ScaleCommandTest::TestUndo_Should_ScaleImageBackToOldSize()
 	QGraphicsPixmapItem image(pixmap);
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	ScaleCommand scaleCommand(&image, newSize, &annotationArea);
 	scaleCommand.redo();
 	QCOMPARE(image.boundingRect().size().toSize(), newSize);
@@ -62,7 +62,7 @@ void ScaleCommandTest::TestRedo_Should_ScaleItemsBySameFactorAsImage()
 	QGraphicsPixmapItem image(pixmap);
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto rectItem = new AnnotationRect(QPointF(0, 0), properties);
 	rectItem->addPoint(QPointF(50, 50));
@@ -82,7 +82,7 @@ void ScaleCommandTest::TestUndo_Should_ScaleItemsBackToOriginalSize()
 	QGraphicsPixmapItem image(pixmap);
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto rectItem = new AnnotationRect(QPointF(0, 0), properties);
 	rectItem->addPoint(QPointF(50, 50));

@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider) :
+AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider, IDevicePixelRatioScaler *devicePixelRatioScaler) :
 	mUndoStack(new UndoStack),
 	mImage(nullptr),
 	mCurrentItem(nullptr),
@@ -33,7 +33,8 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 	mPropertiesFactory(new AnnotationPropertiesFactory(config, mSettingsProvider)),
 	mItemFactory(new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider)),
 	mItems(new QList<AbstractAnnotationItem *>()),
-	mItemCopier(new AnnotationItemClipboard(mItemModifier))
+	mItemCopier(new AnnotationItemClipboard(mItemModifier)),
+	mDevicePixelRatioScaler(devicePixelRatioScaler)
 {
 	Q_ASSERT(mSettingsProvider != nullptr);
 
@@ -96,7 +97,7 @@ QImage AnnotationArea::image()
 
 	setSceneRect({}); // Unset scene rect to cover all items
 
-	auto scaleFactor = DevicePixelRatioScaler::scaleFactor();
+	auto scaleFactor = mDevicePixelRatioScaler->scaleFactor();
 	QImage image(sceneRect().size().toSize() * scaleFactor, QImage::Format_ARGB32_Premultiplied);
 	image.fill(Qt::white);
 	image.setDevicePixelRatio(scaleFactor);
@@ -142,7 +143,8 @@ void AnnotationArea::removeAnnotationItem(AbstractAnnotationItem *item)
 
 void AnnotationArea::crop(const QRectF &rect)
 {
-	mUndoStack->push(new CropCommand(mImage.data(), rect, this));
+	auto scaledRect = mDevicePixelRatioScaler->scale(rect);
+	mUndoStack->push(new CropCommand(mImage.data(), scaledRect, this));
 	emit imageChanged();
 }
 

@@ -44,6 +44,7 @@ set(UNITTEST_SRC
 
 set(TESTUTILS_SRC
 	mocks/MockSettingsProvider.cpp
+	mocks/MockDevicePixelRatioScaler.cpp
 	)
 
 add_library(KIMAGEANNOTATOR_STATIC STATIC ${KIMAGEANNOTATOR_SRCS})

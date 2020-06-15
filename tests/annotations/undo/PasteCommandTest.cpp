@@ -27,7 +27,7 @@ void PasteCommandTest::TestRedo_Should_AddPastedItemsToAnnotationAreaAtGivenPosi
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	auto propertiesFactory = new AnnotationPropertiesFactory(config, settingsProvider);
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	AnnotationItemFactory itemFactory(propertiesFactory, settingsProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
@@ -52,7 +52,7 @@ void PasteCommandTest::TestUndo_Should_RemovePastedItemsFromAnnotationArea()
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	auto propertiesFactory = new AnnotationPropertiesFactory(config, settingsProvider);
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	AnnotationItemFactory itemFactory(propertiesFactory, settingsProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);

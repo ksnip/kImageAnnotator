@@ -39,7 +39,7 @@
 #include "src/common/enum/ToolTypes.h"
 #include "src/common/helper/CursorHelper.h"
 #include "src/common/helper/KeyHelper.h"
-#include "src/common/provider/DevicePixelRatioScaler.h"
+#include "src/common/provider/IDevicePixelRatioScaler.h"
 #include "src/annotations/undo/UndoStack.h"
 #include "src/annotations/undo/CropCommand.h"
 #include "src/annotations/undo/ScaleCommand.h"
@@ -53,7 +53,7 @@ class AnnotationArea : public QGraphicsScene, public AbstractToolChangeListener,
 {
     Q_OBJECT
 public:
-	explicit AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider);
+	explicit AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider, IDevicePixelRatioScaler *devicePixelRatioScaler);
     ~AnnotationArea() override;
     virtual void loadImage(const QPixmap &image);
     virtual void insertImageItem(const QPointF &position, const QPixmap &image);
@@ -96,6 +96,7 @@ private:
 	AnnotationItemClipboard *mItemCopier;
 	QAction *mUndoAction;
 	QAction *mRedoAction;
+	IDevicePixelRatioScaler *mDevicePixelRatioScaler;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

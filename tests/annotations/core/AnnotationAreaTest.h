@@ -25,6 +25,7 @@
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/annotations/items/AnnotationLine.h"
 #include "tests/mocks/MockSettingsProvider.h"
+#include "tests/mocks/MockDevicePixelRatioScaler.h"
 
 using kImageAnnotator::AnnotationArea;
 using kImageAnnotator::AnnotationLine;
@@ -39,6 +40,7 @@ Q_OBJECT
 private slots:
 	void TestExportAsImage_Should_ExportImage_When_ImageSet();
 	void TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet();
+	void TestExportAsImage_Should_ExportScaledImage_When_ScalingEnabled();
 	void TestAddAnnotationItem_Should_AddAnnotationItemToScene();
 	void TestRemoveAnnotationItem_Should_RemoveAnnotationItemFromScene();
 };

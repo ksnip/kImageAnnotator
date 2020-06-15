@@ -27,6 +27,7 @@
 #include "src/annotations/items/AnnotationLine.h"
 #include "src/annotations/core/AnnotationPropertiesFactory.h"
 #include "tests/mocks/MockSettingsProvider.h"
+#include "tests/mocks/MockDevicePixelRatioScaler.h"
 
 using kImageAnnotator::PasteCommand;
 using kImageAnnotator::AnnotationArea;

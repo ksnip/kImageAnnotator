@@ -25,7 +25,7 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
 	pixmap.fill(QColor(QStringLiteral("Green")));
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	annotationArea.loadImage(pixmap);
 
 	auto resultImage = annotationArea.image();
@@ -38,11 +38,29 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportEmptyImage_When_NoImageS
 {
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 
 	auto resultImage = annotationArea.image();
 
 	QCOMPARE(QImage(), resultImage);
+}
+
+void AnnotationAreaTest::TestExportAsImage_Should_ExportScaledImage_When_ScalingEnabled()
+{
+	auto scaleFactor = 1.5;
+	QPixmap pixmap(QSize(400, 400));
+	pixmap.fill(QColor(QStringLiteral("Green")));
+	auto config = new Config;
+	auto settingsProvider = new MockSettingsProvider();
+	auto devicePixelRatioScaler = new MockDevicePixelRatioScaler;
+	devicePixelRatioScaler->setScaleFactor(scaleFactor);
+	AnnotationArea annotationArea(config, settingsProvider, devicePixelRatioScaler);
+	annotationArea.loadImage(pixmap);
+
+	auto resultImage = annotationArea.image();
+
+	auto expectedImage = pixmap.scaled(pixmap.size() * scaleFactor).toImage().convertToFormat(QImage::Format_ARGB32_Premultiplied);
+	QCOMPARE(resultImage, expectedImage);
 }
 
 void AnnotationAreaTest::TestAddAnnotationItem_Should_AddAnnotationItemToScene()
@@ -54,7 +72,7 @@ void AnnotationAreaTest::TestAddAnnotationItem_Should_AddAnnotationItemToScene()
 	lineItem->addPoint(p2, false);
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 
 	annotationArea.addAnnotationItem(lineItem);
 
@@ -70,7 +88,7 @@ void AnnotationAreaTest::TestRemoveAnnotationItem_Should_RemoveAnnotationItemFro
 	lineItem->addPoint(p2, false);
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	annotationArea.addAnnotationItem(lineItem);
 	QCOMPARE(annotationArea.items().contains(lineItem), true);
 

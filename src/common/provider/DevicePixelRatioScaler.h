@@ -23,13 +23,18 @@
 #include <QApplication>
 #include <QDesktopWidget>
 
+#include "IDevicePixelRatioScaler.h"
+
 namespace kImageAnnotator {
 
-class DevicePixelRatioScaler
+class DevicePixelRatioScaler : public IDevicePixelRatioScaler
 {
 public:
-    static QRectF scale(const QRectF &rect);
-	static qreal scaleFactor();
+	DevicePixelRatioScaler() = default;
+	~DevicePixelRatioScaler() = default;
+
+    QRectF scale(const QRectF &rect) const override;
+	qreal scaleFactor() const override;
 };
 
 } // namespace kImageAnnotator

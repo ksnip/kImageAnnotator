@@ -24,6 +24,7 @@
 
 #include "src/annotations/undo/ScaleCommand.h"
 #include "tests/mocks/MockSettingsProvider.h"
+#include "tests/mocks/MockDevicePixelRatioScaler.h"
 
 using kImageAnnotator::ScaleCommand;
 using kImageAnnotator::AnnotationArea;

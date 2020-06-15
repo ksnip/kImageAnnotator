@@ -30,7 +30,7 @@ class CropCommand : public QUndoCommand
 {
 public:
 	CropCommand(QGraphicsPixmapItem *image, const QRectF &cropRect, AnnotationArea *annotationArea);
-	~CropCommand() = default;
+	~CropCommand() override = default;
 	void undo() override;
 	void redo() override;
 

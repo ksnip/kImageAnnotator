@@ -24,7 +24,7 @@ void CropSelectionHandlerTest::TestSetWidth_Should_EmitSelectionChangedSignal()
 {
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	CropSelectionHandler selectionHandler;
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
@@ -38,7 +38,7 @@ void CropSelectionHandlerTest::TestSetHeight_Should_EmitSelectionChangedSignal()
 {
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	CropSelectionHandler selectionHandler;
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
@@ -52,7 +52,7 @@ void CropSelectionHandlerTest::TestSetPositionX_Should_EmitSelectionChangedSigna
 {
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	CropSelectionHandler selectionHandler;
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
@@ -66,7 +66,7 @@ void CropSelectionHandlerTest::TestSetPositionY_Should_EmitSelectionChangedSigna
 {
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	CropSelectionHandler selectionHandler;
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
@@ -80,7 +80,7 @@ void CropSelectionHandlerTest::TestResetSelection_Should_SetSelectionToSceneRect
 {
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	annotationArea.setSceneRect(sceneRect);
 	CropSelectionHandler selectionHandler;
@@ -97,7 +97,7 @@ void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnSel
 {
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(150, 150);
 	annotationArea.setSceneRect(sceneRect);
@@ -114,7 +114,7 @@ void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnHan
 {
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(2, 2);
 	annotationArea.setSceneRect(sceneRect);
@@ -131,7 +131,7 @@ void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnFalse_WhenClickedOuts
 {
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(400, 400);
 	annotationArea.setSceneRect(sceneRect);
@@ -149,7 +149,7 @@ void CropSelectionHandlerTest::TestSelectionHandles_Should_ReturnEightItems()
 {
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	CropSelectionHandler selectionHandler;
 	selectionHandler.init(&annotationArea);
 

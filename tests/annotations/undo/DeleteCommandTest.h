@@ -26,6 +26,7 @@
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/annotations/items/AnnotationLine.h"
 #include "tests/mocks/MockSettingsProvider.h"
+#include "tests/mocks/MockDevicePixelRatioScaler.h"
 
 using kImageAnnotator::DeleteCommand;
 using kImageAnnotator::AnnotationArea;

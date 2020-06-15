@@ -24,7 +24,7 @@ void DeleteCommandTest::TestRedo_Should_ApplyOperation()
 {
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	AnnotationLine item(line.p1(), properties);
@@ -43,7 +43,7 @@ void DeleteCommandTest::TestUndo_Should_UndoOperation()
 {
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider);
+	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	AnnotationLine item(line.p1(), properties);

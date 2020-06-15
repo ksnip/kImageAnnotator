@@ -17,20 +17,18 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "DevicePixelRatioScaler.h"
+#ifndef KIMAGEANNOTATOR_IDEVICEPIXELRATIOSCALER_H
+#define KIMAGEANNOTATOR_IDEVICEPIXELRATIOSCALER_H
 
 namespace kImageAnnotator {
 
-QRectF DevicePixelRatioScaler::scale(const QRectF &rect) const
+class IDevicePixelRatioScaler
 {
-	auto factor = scaleFactor();
-	return {rect.left() * factor, rect.top() * factor, rect.width() * factor, rect.height() * factor};
-}
-
-qreal DevicePixelRatioScaler::scaleFactor() const
-{
-	auto desktopWidget = QApplication::desktop();
-	return desktopWidget->devicePixelRatioF();
-}
+public:
+	virtual QRectF scale(const QRectF &rect) const = 0;
+	virtual qreal scaleFactor() const = 0;
+};
 
 } // namespace kImageAnnotator
+
+#endif //KIMAGEANNOTATOR_IDEVICEPIXELRATIOSCALER_H
