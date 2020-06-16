@@ -14,6 +14,7 @@
 * Fixed: Emoticon selector shows a half of current emoticon. ([#104](https://github.com/ksnip/kImageAnnotator/issues/104))
 * Fixed: FillPicker text or icon sometimes not visible. ([#105](https://github.com/ksnip/kImageAnnotator/issues/105))
 * Fixed: Wrong image scaling on hdpi screen. ([#81](https://github.com/ksnip/kImageAnnotator/issues/81))
+* Fixed: Copy area size differs from last capture. ([#107](https://github.com/ksnip/kImageAnnotator/issues/107))
 
 ## Release 0.2.1
 * Fixed: Edit border around text box doesn't disappear when done with editing. ([#71](https://github.com/ksnip/kImageAnnotator/issues/71))

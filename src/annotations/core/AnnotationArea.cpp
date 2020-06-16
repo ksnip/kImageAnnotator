@@ -95,7 +95,7 @@ QImage AnnotationArea::image()
 
 	mItemModifier->clear();
 
-	setSceneRect({}); // Unset scene rect to cover all items
+	setSceneRect(itemsBoundingRect()); // Cover all items
 
 	auto scaleFactor = mDevicePixelRatioScaler->scaleFactor();
 	QImage image(sceneRect().size().toSize() * scaleFactor, QImage::Format_ARGB32_Premultiplied);
