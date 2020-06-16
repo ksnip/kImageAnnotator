@@ -1,4 +1,4 @@
-# kImageAnnotator [![Build Status](https://travis-ci.org/ksnip/kImageAnnotator.svg?branch=master)](https://travis-ci.org/ksnip/kImageAnnotator)
+# kImageAnnotator [![Build Status][travis-badge]][travis-url] [![Translation status][weblate-badge]][weblate-url]
 Tool for annotating images
 
 Version 0.3.0 - Work in Progress
@@ -40,7 +40,20 @@ static library is build. For windows we currenlty only support building as stati
 
 2. Link the library with your application  
     `target_link_libraries(myApp kImageAnnotator)`  
-    
+
+
+### Translations
+We are always looking for help with translations, contributors are welcome!  
+For translations we use [Weblate](https://hosted.weblate.org/projects/kimageannotator/kimageannotator/)!  
+[![Translation status](https://hosted.weblate.org/widgets/kimageannotator/-/kimageannotator/multi-green.svg)](https://hosted.weblate.org/engage/kimageannotator/?utm_source=widget)
+
 
 ### Acknowledgement
 Stickers designed by [OpenMoji](https://openmoji.org/) – the open-source emoji and icon project.
+
+
+[travis-badge]:        https://img.shields.io/travis/ksnip/kimageannotator.svg?label=travis&logo=travis
+[travis-url]:          https://travis-ci.org/ksnip/kimageannotator
+
+[weblate-badge]:       https://hosted.weblate.org/widgets/kimageannotator/-/kimageannotator/svg-badge.svg
+[weblate-url]:         https://hosted.weblate.org/engage/kimageannotator/?utm_source=widget
