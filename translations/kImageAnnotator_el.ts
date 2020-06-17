@@ -9,19 +9,19 @@
     </message>
     <message>
         <source>Bring to Front</source>
-        <translation>Στην επιφάνεια</translation>
+        <translation>Μετακίνηση στο προσκήνιο</translation>
     </message>
     <message>
         <source>Bring Forward</source>
-        <translation>Εμπροσθιοδρόμηση</translation>
+        <translation>Μετακίνηση προς τα εμπρός</translation>
     </message>
     <message>
         <source>Send Backward</source>
-        <translation>Στο παρασκήνιο</translation>
+        <translation>Μετακίνηση προς τα πίσω</translation>
     </message>
     <message>
         <source>Send to Back</source>
-        <translation>Οπισθοδρόμηση</translation>
+        <translation>Μετακίνηση στο παρασκήνιο</translation>
     </message>
     <message>
         <source>Select This</source>
