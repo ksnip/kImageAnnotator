@@ -20,7 +20,7 @@ elseif (UNIX)
 	string(REGEX REPLACE "//" "/" KIMAGEANNOTATOR_LANG_INSTAL_DIR "${KIMAGEANNOTATOR_LANG_INSTAL_DIR}")
 endif ()
 
-set(QT_MIN_VERSION "5.9.4")
+set(QT_MIN_VERSION "5.6.2")
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Svg)
 
 if (UNIX)
