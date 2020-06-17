@@ -77,7 +77,7 @@ void NumberManagerTest::TestFirstNumberChanged_Should_TriggerUpdateOfAllNumber()
 	QCOMPARE(item2.number(), 2);
 	QCOMPARE(item3.number(), 3);
 
-	numberManager.firstBadgeNumberChanged(4);
+	numberManager.setFirstNumber(4);
 
 	QCOMPARE(item1.number(), 4);
 	QCOMPARE(item2.number(), 5);

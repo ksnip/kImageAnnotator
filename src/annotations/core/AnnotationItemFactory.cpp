@@ -28,9 +28,9 @@ AnnotationItemFactory::AnnotationItemFactory(AnnotationPropertiesFactory *proper
 {
 	Q_ASSERT(mSettingsProvider != nullptr);
 
-	mSettingsProvider->subscribeToBadgeNumberChange(mNumberManager);
 	reset();
 }
+
 
 AnnotationItemFactory::~AnnotationItemFactory()
 {
@@ -41,6 +41,16 @@ void AnnotationItemFactory::reset()
 {
 	mNextZValue = 1;
 	mNumberManager->reset();
+}
+
+void AnnotationItemFactory::setFirstBadgeNumber(int number)
+{
+	mNumberManager->setFirstNumber(number);
+}
+
+int AnnotationItemFactory::firstBadgeNumber() const
+{
+	return mNumberManager->firstNumber();
 }
 
 AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPosition)

@@ -47,7 +47,8 @@ public:
 	explicit AnnotationItemFactory(AnnotationPropertiesFactory *propertiesFactory, AbstractSettingsProvider *settingsProvider);
 	~AnnotationItemFactory() override;
 	void reset();
-
+	void setFirstBadgeNumber(int number);
+	int firstBadgeNumber() const;
 	AbstractAnnotationItem *create(const QPointF &initPosition);
 	AbstractAnnotationItem *create(const QPointF &initPosition, const QPixmap &image);
 	AbstractAnnotationItem *clone(const AbstractAnnotationItem *item);

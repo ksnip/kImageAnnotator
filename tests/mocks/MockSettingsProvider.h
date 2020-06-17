@@ -48,6 +48,7 @@ public:
 	void setBlurRadius(int blurRadius);
 	QString sticker() const override;
 	void setSticker(const QString &stickerPath);
+	void updateFirstBadgeNumber(int number) override;
 
 private:
 	ToolTypes mToolType;

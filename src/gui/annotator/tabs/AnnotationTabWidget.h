@@ -65,6 +65,7 @@ private slots:
 	void redoTriggered();
 	void updateCurrentWidget(int index);
 	void showTabContextMenu(const QPoint &pos);
+	void updateSettingsListener();
 };
 
 } // namespace kImageAnnotator

@@ -108,3 +108,8 @@ void MockSettingsProvider::setSticker(const QString &stickerPath)
 {
 	mStickerPath =  stickerPath;
 }
+
+void MockSettingsProvider::updateFirstBadgeNumber(int number)
+{
+
+}

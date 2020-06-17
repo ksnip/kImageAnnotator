@@ -52,6 +52,7 @@ public:
 	FillTypes fillType() const override;
 	int blurRadius() const override;
 	QString sticker() const override;
+	void updateFirstBadgeNumber(int number) override;
 	void reloadConfig();
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
 

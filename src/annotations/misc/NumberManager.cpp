@@ -61,10 +61,15 @@ void NumberManager::updateNumbers()
 	}
 }
 
-void NumberManager::firstBadgeNumberChanged(int number)
+void NumberManager::setFirstNumber(int number)
 {
 	mFirstNumber = number;
 	updateNumbers();
+}
+
+int NumberManager::firstNumber() const
+{
+	return mFirstNumber;
 }
 
 } // namespace kImageAnnotator

@@ -17,17 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ABSTRACTBADGENUMBERCHANGELISTENER_H
-#define KIMAGEANNOTATOR_ABSTRACTBADGENUMBERCHANGELISTENER_H
+#ifndef KIMAGEANNOTATOR_ISETTINGSLISTENER_H
+#define KIMAGEANNOTATOR_ISETTINGSLISTENER_H
+
+#include "src/common/enum/ToolTypes.h"
 
 namespace kImageAnnotator {
 
-class AbstractBadgeNumberChangeListener
+class ISettingsListener
 {
 public:
+	virtual void toolChanged(ToolTypes toolType) = 0;
+	virtual void itemSettingsChanged() = 0;
 	virtual void firstBadgeNumberChanged(int number) = 0;
+	virtual int firstBadgeNumber() const = 0;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ABSTRACTBADGENUMBERCHANGELISTENER_H
+#endif //KIMAGEANNOTATOR_ISETTINGSLISTENER_H

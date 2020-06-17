@@ -23,9 +23,7 @@
 #include <QColor>
 #include <QList>
 
-#include "AbstractToolChangeListener.h"
-#include "AbstractItemSettingsChangeListener.h"
-#include "AbstractBadgeNumberChangeListener.h"
+#include "ISettingsListener.h"
 #include "src/common/enum/FillTypes.h"
 #include "src/annotations/items/AbstractAnnotationItem.h"
 
@@ -34,6 +32,8 @@ namespace kImageAnnotator {
 class AbstractSettingsProvider
 {
 public:
+	AbstractSettingsProvider();
+	~AbstractSettingsProvider() = default;
 	virtual void editItem(AbstractAnnotationItem *item) = 0;
 	virtual void activateSelectTool() = 0;
 	virtual ToolTypes toolType() const = 0;
@@ -44,9 +44,8 @@ public:
 	virtual FillTypes fillType() const = 0;
 	virtual int blurRadius() const = 0;
 	virtual QString sticker() const = 0;
-	void subscribeToToolChange(AbstractToolChangeListener *listener);
-	void subscribeToItemSettingsChange(AbstractItemSettingsChangeListener *listener);
-	void subscribeToBadgeNumberChange(AbstractBadgeNumberChangeListener *listener);
+	virtual void updateFirstBadgeNumber(int number) = 0;
+	void setActiveListener(ISettingsListener *settingsListener);
 
 protected:
 	virtual void toolChanged(ToolTypes toolType);
@@ -54,9 +53,7 @@ protected:
 	virtual void itemSettingChanged();
 
 private:
-	QList<AbstractToolChangeListener*> mToolChangeListeners;
-	QList<AbstractItemSettingsChangeListener*> mItemSettingsChangeListeners;
-	QList<AbstractBadgeNumberChangeListener*> mBadgeNumberChangeListeners;
+	ISettingsListener *mSettingsListener;
 };
 
 } // namespace kImageAnnotator

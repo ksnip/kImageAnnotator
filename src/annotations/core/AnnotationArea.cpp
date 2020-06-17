@@ -46,8 +46,6 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 	connect(mUndoStack, &UndoStack::indexChanged, this, &AnnotationArea::update);
 	connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
 	connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clear);
-	mSettingsProvider->subscribeToItemSettingsChange(this);
-	mSettingsProvider->subscribeToToolChange(this);
 
 	connect(mKeyHelper, &KeyHelper::undoPressed, mUndoStack, &UndoStack::undo);
 	connect(mKeyHelper, &KeyHelper::redoPressed, mUndoStack, &UndoStack::redo);
@@ -158,6 +156,26 @@ void AnnotationArea::clearSelection()
 {
 	mItemModifier->clear();
 	QGraphicsScene::clearSelection();
+}
+
+void AnnotationArea::itemSettingsChanged()
+{
+	auto selectedItems = mItemModifier->selectedItems();
+	if(selectedItems.count() == 1) {
+		auto item = selectedItems.first();
+		auto properties = mPropertiesFactory->create(item->toolType());
+		mUndoStack->push(new ChangePropertiesCommand(item, properties));
+	}
+}
+
+void AnnotationArea::firstBadgeNumberChanged(int number)
+{
+	mItemFactory->setFirstBadgeNumber(number);
+}
+
+int AnnotationArea::firstBadgeNumber() const
+{
+	return mItemFactory->firstBadgeNumber();
 }
 
 void AnnotationArea::update()
@@ -318,16 +336,6 @@ void AnnotationArea::itemsSelected(const QList<AbstractAnnotationItem *> &items)
 	}
 	auto item = items.first();
 	mSettingsProvider->editItem(item);
-}
-
-void AnnotationArea::itemSettingsChanged()
-{
-	auto selectedItems = mItemModifier->selectedItems();
-	if(selectedItems.count() == 1) {
-		auto item = selectedItems.first();
-		auto properties = mPropertiesFactory->create(item->toolType());
-		mUndoStack->push(new ChangePropertiesCommand(item, properties));
-	}
 }
 
 void AnnotationArea::dragMoveEvent(QGraphicsSceneDragDropEvent *event)

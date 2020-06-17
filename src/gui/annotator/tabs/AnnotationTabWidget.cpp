@@ -39,6 +39,7 @@ AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvide
 	connect(mRedoAction, &QAction::triggered, this, &AnnotationTabWidget::redoTriggered);
 	connect(mTabBar, &QTabBar::tabMoved, this, &AnnotationTabWidget::tabMoved);
 	connect(mTabBar, &QTabBar::customContextMenuRequested, this, &AnnotationTabWidget::showTabContextMenu);
+	connect(mTabBar, &QTabBar::currentChanged, this, &AnnotationTabWidget::updateSettingsListener);
 
 	connect(mTabContextMenu, &AnnotationTabContextMenu::closeTab, mTabCloser, &AnnotationTabCloser::closeTabTriggered);
 	connect(mTabContextMenu, &AnnotationTabContextMenu::closeOtherTabs, mTabCloser, &AnnotationTabCloser::closeOtherTabsTriggered);
@@ -125,6 +126,11 @@ void AnnotationTabWidget::showTabContextMenu(const QPoint &pos)
 		int tabIndex = mTabBar->tabAt(pos);
 		mTabContextMenu->show(tabIndex, mTabBar->mapToGlobal(pos));
 	}
+}
+
+void AnnotationTabWidget::updateSettingsListener()
+{
+	mSettingsProvider->setActiveListener(currentAnnotationArea());
 }
 
 } // namespace kImageAnnotator

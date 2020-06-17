@@ -21,39 +21,38 @@
 
 namespace kImageAnnotator {
 
-void AbstractSettingsProvider::subscribeToToolChange(AbstractToolChangeListener *listener)
+AbstractSettingsProvider::AbstractSettingsProvider() :
+	mSettingsListener(nullptr)
 {
-	mToolChangeListeners.append(listener);
-}
 
-void AbstractSettingsProvider::subscribeToItemSettingsChange(AbstractItemSettingsChangeListener *listener)
-{
-	mItemSettingsChangeListeners.append(listener);
-}
-
-void AbstractSettingsProvider::subscribeToBadgeNumberChange(AbstractBadgeNumberChangeListener *listener)
-{
-	mBadgeNumberChangeListeners.append(listener);
 }
 
 void AbstractSettingsProvider::toolChanged(ToolTypes toolType)
 {
-	for(auto listener : mToolChangeListeners) {
-		listener->toolChanged(toolType);
+	if(mSettingsListener != nullptr) {
+		mSettingsListener->toolChanged(toolType);
 	}
 }
 
 void AbstractSettingsProvider::firstBadgeNumberChanged(int number)
 {
-	for(auto listener : mBadgeNumberChangeListeners) {
-		listener->firstBadgeNumberChanged(number);
+	if(mSettingsListener != nullptr) {
+		mSettingsListener->firstBadgeNumberChanged(number);
 	}
 }
 
 void AbstractSettingsProvider::itemSettingChanged()
 {
-	for(auto listener : mItemSettingsChangeListeners) {
-		listener->itemSettingsChanged();
+	if(mSettingsListener != nullptr) {
+		mSettingsListener->itemSettingsChanged();
+	}
+}
+
+void AbstractSettingsProvider::setActiveListener(ISettingsListener *settingsListener)
+{
+	mSettingsListener = settingsListener;
+	if(mSettingsListener != nullptr) {
+		updateFirstBadgeNumber(mSettingsListener->firstBadgeNumber());
 	}
 }
 

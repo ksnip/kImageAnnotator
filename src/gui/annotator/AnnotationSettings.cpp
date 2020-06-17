@@ -262,6 +262,11 @@ QString AnnotationSettings::sticker() const
 	return mStickerPicker->sticker();
 }
 
+void AnnotationSettings::updateFirstBadgeNumber(int number)
+{
+	mFirstNumberPicker->setNumber(number);
+}
+
 void AnnotationSettings::reloadConfig()
 {
 	loadToolTypeFromConfig();

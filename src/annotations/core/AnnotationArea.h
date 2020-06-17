@@ -30,8 +30,7 @@
 
 #include "AnnotationItemFactory.h"
 #include "AbstractSettingsProvider.h"
-#include "AbstractToolChangeListener.h"
-#include "AbstractItemSettingsChangeListener.h"
+#include "ISettingsListener.h"
 #include "src/annotations/modifiers/AnnotationItemModifier.h"
 #include "src/annotations/modifiers/AnnotationItemArranger.h"
 #include "src/annotations/misc/AnnotationItemClipboard.h"
@@ -49,7 +48,7 @@
 
 namespace kImageAnnotator {
 
-class AnnotationArea : public QGraphicsScene, public AbstractToolChangeListener, public AbstractItemSettingsChangeListener
+class AnnotationArea : public QGraphicsScene, public ISettingsListener
 {
     Q_OBJECT
 public:
@@ -67,6 +66,8 @@ public:
     virtual void clearSelection();
 	virtual void toolChanged(ToolTypes toolType) override;
 	void itemSettingsChanged();
+	void firstBadgeNumberChanged(int number) override;
+	int firstBadgeNumber() const override;
 
 public slots:
     virtual void update();
