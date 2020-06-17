@@ -4,6 +4,7 @@ set(KIMAGEANNOTATOR_LANG_TS
 	kImageAnnotator_cs.ts
 	kImageAnnotator_da.ts
 	kImageAnnotator_de.ts
+	kImageAnnotator_el.ts
 	kImageAnnotator_es.ts
 	kImageAnnotator_eu.ts
 	kImageAnnotator_fr.ts
