@@ -2,6 +2,7 @@ language: cpp
 compiler: gcc
 sudo: required
 dist: xenial
+services: xvfb
 
 before_install:
   - sudo add-apt-repository ppa:beineri/opt-qt594-xenial -y
@@ -16,8 +17,6 @@ install:
   - cmake ..
   - make && sudo make install
   - cd ../..
-  - export DISPLAY=':99.0'
-  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
 
 jobs:
   include:
@@ -29,4 +28,4 @@ jobs:
       script:
         - mkdir build ; cd build
         - cmake .. -DBUILD_TESTS=ON ; make
-        - xvfb-run make test CTEST_OUTPUT_ON_FAILURE=1
+        - xvfb-run --server-args="-screen 0 1024x768x24" make test CTEST_OUTPUT_ON_FAILURE=1
