@@ -1,5 +1,8 @@
 # Change log
 
+## Release 0.3.1
+* Fixed: Crashes after undoing a number annotation. ([#106](https://github.com/ksnip/kImageAnnotator/issues/114))
+
 ## Release 0.3.0
 * New: Tabs for images. ([#48](https://github.com/ksnip/kImageAnnotator/issues/48))
 * New: Add option to translate UI. ([#54](https://github.com/ksnip/kImageAnnotator/issues/54))

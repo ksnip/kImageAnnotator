@@ -29,7 +29,6 @@ AddCommand::AddCommand(AbstractAnnotationItem *item, AnnotationArea *annotationA
 
 AddCommand::~AddCommand()
 {
-     delete mItem;
 }
 
 void AddCommand::undo()
