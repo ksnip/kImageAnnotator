@@ -28,4 +28,4 @@ jobs:
       script:
         - mkdir build ; cd build
         - cmake .. -DBUILD_TESTS=ON ; make
-        - xvfb-run make test CTEST_OUTPUT_ON_FAILURE=1
+        - xvfb-run --server-args="-screen 0 1024x768x24" make test
