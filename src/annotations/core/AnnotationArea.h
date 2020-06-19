@@ -39,6 +39,7 @@
 #include "src/common/helper/CursorHelper.h"
 #include "src/common/helper/KeyHelper.h"
 #include "src/common/provider/IDevicePixelRatioScaler.h"
+#include "src/common/filter/KeyEventListener.h"
 #include "src/annotations/undo/UndoStack.h"
 #include "src/annotations/undo/CropCommand.h"
 #include "src/annotations/undo/ScaleCommand.h"
@@ -79,8 +80,6 @@ protected:
     void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
-    void keyPressEvent(QKeyEvent *event) override;
-    void keyReleaseEvent(QKeyEvent *event) override;
     void dragMoveEvent(QGraphicsSceneDragDropEvent *event) override;
     void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) override;
 
@@ -98,6 +97,7 @@ private:
 	QAction *mUndoAction;
 	QAction *mRedoAction;
 	IDevicePixelRatioScaler *mDevicePixelRatioScaler;
+	KeyEventListener mKeyListener;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

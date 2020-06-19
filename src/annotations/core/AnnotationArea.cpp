@@ -49,6 +49,9 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 
 	connect(mKeyHelper, &KeyHelper::undoPressed, mUndoStack, &UndoStack::undo);
 	connect(mKeyHelper, &KeyHelper::redoPressed, mUndoStack, &UndoStack::redo);
+
+	connect(&mKeyListener, &KeyEventListener::keyPressed, mKeyHelper, &KeyHelper::keyPress);
+	connect(&mKeyListener, &KeyEventListener::keyReleased, mKeyHelper, &KeyHelper::keyRelease);
 }
 
 AnnotationArea::~AnnotationArea()
@@ -223,18 +226,6 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 	}
 
 	QGraphicsScene::mouseReleaseEvent(event);
-}
-
-void AnnotationArea::keyPressEvent(QKeyEvent *event)
-{
-	mKeyHelper->keyPress(event);
-	QGraphicsScene::keyPressEvent(event);
-}
-
-void AnnotationArea::keyReleaseEvent(QKeyEvent *event)
-{
-	mKeyHelper->keyRelease(event);
-	QGraphicsScene::keyReleaseEvent(event);
 }
 
 void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)

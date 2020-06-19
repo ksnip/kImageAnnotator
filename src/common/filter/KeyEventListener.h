@@ -1,9 +1,9 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,27 +17,30 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_IGNORESHORTCUTSFILTER_H
-#define KIMAGEANNOTATOR_IGNORESHORTCUTSFILTER_H
+#ifndef KIMAGEANNOTATOR_KEYEVENTLISTENER_H
+#define KIMAGEANNOTATOR_KEYEVENTLISTENER_H
 
-#include <QCoreApplication>
+#include <QObject>
 #include <QKeyEvent>
+#include <QCoreApplication>
 
 namespace kImageAnnotator {
 
-class IgnoreShortcutsFilter : public QObject
+class KeyEventListener : public QObject
 {
 	Q_OBJECT
 public:
-    explicit IgnoreShortcutsFilter() = default;
-    ~IgnoreShortcutsFilter() override = default;
-    void apply();
-    void remove();
+	explicit KeyEventListener();
+	~KeyEventListener() override;
+
+signals:
+	void keyPressed(QKeyEvent *event);
+	void keyReleased(QKeyEvent *event);
 
 protected:
-    bool eventFilter(QObject *watched, QEvent *event) override;
+	bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_IGNORESHORTCUTSFILTER_H
+#endif //KIMAGEANNOTATOR_KEYEVENTLISTENER_H

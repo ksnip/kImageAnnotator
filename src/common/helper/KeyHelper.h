@@ -31,9 +31,6 @@ Q_OBJECT
 public:
 	explicit KeyHelper();
 	~KeyHelper() override = default;
-
-	void keyPress(QKeyEvent *keyEvent);
-	void keyRelease(QKeyEvent *keyEvent);
 	bool isControlPressed() const;
 	bool isShiftPressed() const;
 	bool isSpacePressed() const;
@@ -46,6 +43,10 @@ signals:
 	void redoPressed() const;
 	void enterReleased() const;
 	void returnReleased() const;
+
+public slots:
+	void keyPress(QKeyEvent *keyEvent);
+	void keyRelease(QKeyEvent *keyEvent);
 
 private:
 	QHash<Qt::Key, bool> mKeyToIsPressed;
