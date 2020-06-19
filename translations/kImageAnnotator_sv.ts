@@ -74,6 +74,33 @@
         <source>Blur Radius</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Sticker</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::AnnotationTabContextMenu</name>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Other</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close All to the Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close All to the Right</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>kImageAnnotator::CropWidget</name>
@@ -204,6 +231,14 @@
     </message>
     <message>
         <source>Ellipse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Number Pointer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sticker</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
