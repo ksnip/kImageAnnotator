@@ -11,6 +11,8 @@ set(CMAKE_AUTORCC ON)
 option(BUILD_TESTS "Build Unit Tests" OFF)
 option(BUILD_EXAMPLE "Build Example Application" ON)
 
+include(GNUInstallDirs)
+
 if (WIN32)
 	set(KIMAGEANNOTATOR_LANG_INSTAL_DIR "translations")
 elseif (APPLE)
@@ -27,7 +29,6 @@ if (UNIX)
 	find_package(X11 REQUIRED)
 endif ()
 
-include(GNUInstallDirs)
 include(FeatureSummary)
 
 set(KCOLORPICKER_MIN_VERSION "0.1.4")
