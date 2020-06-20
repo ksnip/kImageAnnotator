@@ -5,7 +5,7 @@
     <name>kImageAnnotator::AnnotationContextMenu</name>
     <message>
         <source>Arrange</source>
-        <translation type="unfinished"></translation>
+        <translation>Anordnen</translation>
     </message>
     <message>
         <source>Bring to Front</source>
@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>Select This</source>
-        <translation type="unfinished"></translation>
+        <translation>Dieses auswählen</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -37,30 +37,30 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändern</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Löschen</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationSettings</name>
     <message>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbe</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Breite</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Textfarbe</translation>
     </message>
     <message>
         <source>Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Schriftgröße</translation>
     </message>
     <message>
         <source>Border And Fill Visibility</source>
@@ -76,14 +76,14 @@
     </message>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufkleber</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationTabContextMenu</name>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Schließen</translation>
     </message>
     <message>
         <source>Close Other</source>
@@ -91,7 +91,7 @@
     </message>
     <message>
         <source>Close All</source>
-        <translation type="unfinished"></translation>
+        <translation>Alles schließen</translation>
     </message>
     <message>
         <source>Close All to the Left</source>
@@ -110,23 +110,23 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <source>X:</source>
-        <translation type="unfinished"></translation>
+        <translation>X:</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation type="unfinished"></translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <source>W:</source>
-        <translation type="unfinished"></translation>
+        <translation>B:</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation type="unfinished"></translation>
+        <translation>H:</translation>
     </message>
 </context>
 <context>
@@ -156,42 +156,42 @@
     </message>
     <message>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Breite:</translation>
     </message>
     <message>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Höhe:</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <source>Pixel</source>
-        <translation type="unfinished"></translation>
+        <translation>Pixel</translation>
     </message>
     <message>
         <source>Percent</source>
-        <translation type="unfinished"></translation>
+        <translation>Prozentzahl</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ToolPicker</name>
     <message>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Auswählen</translation>
     </message>
     <message>
         <source>Pen</source>
-        <translation type="unfinished"></translation>
+        <translation>Stift</translation>
     </message>
     <message>
         <source>Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Nummer</translation>
     </message>
     <message>
         <source>Marker Rectangle</source>
@@ -207,39 +207,39 @@
     </message>
     <message>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Text</translation>
     </message>
     <message>
         <source>Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Pfeil</translation>
     </message>
     <message>
         <source>Double Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Doppelpfeil</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Strich</translation>
     </message>
     <message>
         <source>Blur</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschwommenheit</translation>
     </message>
     <message>
         <source>Rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechteck</translation>
     </message>
     <message>
         <source>Ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>Ellipse</translation>
     </message>
     <message>
         <source>Number Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahlzeiger</translation>
     </message>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufkleber</translation>
     </message>
 </context>
 </TS>
