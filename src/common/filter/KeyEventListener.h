@@ -23,6 +23,7 @@
 #include <QObject>
 #include <QKeyEvent>
 #include <QCoreApplication>
+#include <QList>
 
 namespace kImageAnnotator {
 
@@ -39,6 +40,11 @@ signals:
 
 protected:
 	bool eventFilter(QObject *watched, QEvent *event) override;
+
+private:
+	QList<int> mPressedKeyCodes;
+	void handleKeyPressed(QEvent *event);
+	void handleKeyReleased(QEvent *event);
 };
 
 } // namespace kImageAnnotator

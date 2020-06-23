@@ -34,16 +34,32 @@ KeyEventListener::~KeyEventListener()
 bool KeyEventListener::eventFilter(QObject *watched, QEvent *event)
 {
 	if (event->type() == QEvent::KeyPress) {
-		auto keyEvent = dynamic_cast<QKeyEvent *>(event);
-		emit keyPressed(keyEvent);
-	}
-
-	if (event->type() == QEvent::KeyRelease) {
-		auto keyEvent = dynamic_cast<QKeyEvent *>(event);
-		emit keyReleased(keyEvent);
+		handleKeyPressed(event);
+	} else if (event->type() == QEvent::KeyRelease) {
+		handleKeyReleased(event);
 	}
 
 	return QObject::eventFilter(watched, event);
+}
+
+void KeyEventListener::handleKeyReleased(QEvent *event)
+{
+	auto keyEvent = dynamic_cast<QKeyEvent *>(event);
+
+	if(mPressedKeyCodes.contains(keyEvent->key())) {
+		mPressedKeyCodes.removeAll(keyEvent->key());
+		emit keyReleased(keyEvent);
+	}
+}
+
+void KeyEventListener::handleKeyPressed(QEvent *event)
+{
+	auto keyEvent = dynamic_cast<QKeyEvent *>(event);
+
+	if(!mPressedKeyCodes.contains(keyEvent->key())) {
+		mPressedKeyCodes.append(keyEvent->key());
+		emit keyPressed(keyEvent);
+	}
 }
 
 } // namespace kImageAnnotator
