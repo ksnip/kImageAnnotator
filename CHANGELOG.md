@@ -4,7 +4,7 @@
 * Fixed: Crashes after undoing a number annotation. ([#106](https://github.com/ksnip/kImageAnnotator/issues/114))
 * Fixed: Text overlapping when resizing text box. ([#53](https://github.com/ksnip/kImageAnnotator/issues/53))
 * Fixed: Snap lines to degrees not working when CTRL pressed before clicking annotation area. ([#113](https://github.com/ksnip/kImageAnnotator/issues/113))
-* Fixed: The "Border and Fill" submenu is cutting the translated word. ([#117](https://github.com/ksnip/kImageAnnotator/issues/117))
+* Fixed: "Border and Fill" submenu cutting off text under windows. ([#117](https://github.com/ksnip/kImageAnnotator/issues/117))
 * Fixed: Undo removes several or all items. ([#121](https://github.com/ksnip/kImageAnnotator/issues/121))
 
 ## Release 0.3.0

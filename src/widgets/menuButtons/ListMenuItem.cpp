@@ -34,7 +34,8 @@ ListMenuItem::ListMenuItem(const QIcon &icon, const QString &text, const QVarian
 	setMouseTracking(true);
 
 	mIconSize = Constants::MenuItemIconSize;
-	mTextSize = QSize(fontMetrics().width(mText), fontMetrics().height());
+	auto offsetForTextWidth = 1.13; // Width not correct calculated on windows #117
+	mTextSize = QSize(fontMetrics().width(mText) * offsetForTextWidth, fontMetrics().height());
 	mIconOffset = QPoint(mMargin, mMargin);
 	mTextOffset = QPoint(mIconSize.width() + mIconOffset.x() + mSpacer, (mIconSize.height() - mTextSize.height()) / 2 + mIconOffset.y());
 	mSize = QSize(mIconSize.width() + mTextSize.width() + mMargin * 2 + mSpacer, mIconSize.height() + mMargin * 2);
