@@ -29,42 +29,42 @@
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>复制</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>粘贴</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>删除</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationSettings</name>
     <message>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>颜色</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>宽度</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation type="unfinished"></translation>
+        <translation>文本颜色</translation>
     </message>
     <message>
         <source>Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation>字体大小</translation>
     </message>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>边框和填充可见性</translation>
     </message>
     <message>
         <source>Starting Number</source>
@@ -83,15 +83,15 @@
     <name>kImageAnnotator::AnnotationTabContextMenu</name>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <source>Close Other</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭其它</translation>
     </message>
     <message>
         <source>Close All</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭全部</translation>
     </message>
     <message>
         <source>Close All to the Left</source>
@@ -106,11 +106,11 @@
     <name>kImageAnnotator::CropWidget</name>
     <message>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>裁切</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>X:</source>
@@ -133,50 +133,50 @@
     <name>kImageAnnotator::FillTypePicker</name>
     <message>
         <source>No Border and No Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>无边框且无填充</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>有边框且有填充</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>有边框且无填充</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ScaleDialog</name>
     <message>
         <source>Scale Image</source>
-        <translation type="unfinished"></translation>
+        <translation>缩放图像</translation>
     </message>
     <message>
         <source>Keep Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>保持长宽比</translation>
     </message>
     <message>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>宽度：</translation>
     </message>
     <message>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>高度：</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>确定</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>Pixel</source>
-        <translation type="unfinished"></translation>
+        <translation>像素</translation>
     </message>
     <message>
         <source>Percent</source>
-        <translation type="unfinished"></translation>
+        <translation>百分比</translation>
     </message>
 </context>
 <context>
@@ -207,15 +207,15 @@
     </message>
     <message>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>文本</translation>
     </message>
     <message>
         <source>Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>箭头</translation>
     </message>
     <message>
         <source>Double Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>双箭头</translation>
     </message>
     <message>
         <source>Line</source>
