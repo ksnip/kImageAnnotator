@@ -6,6 +6,7 @@
 * Fixed: Snap lines to degrees not working when CTRL pressed before clicking annotation area. ([#113](https://github.com/ksnip/kImageAnnotator/issues/113))
 * Fixed: "Border and Fill" submenu cutting off text under windows. ([#117](https://github.com/ksnip/kImageAnnotator/issues/117))
 * Fixed: Undo removes several or all items. ([#121](https://github.com/ksnip/kImageAnnotator/issues/121))
+* Fixed: Marker Rect and Ellipse draw only border but no fill. ([#126](https://github.com/ksnip/kImageAnnotator/issues/126))
 
 ## Release 0.3.0
 * New: Tabs for images. ([#48](https://github.com/ksnip/kImageAnnotator/issues/48))

@@ -99,9 +99,11 @@ void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, ToolT
 {
 	switch (toolType) {
 		case ToolTypes::MarkerPen:
+			properties->setFillType(FillTypes::BorderAndNoFill);
+			break;
 		case ToolTypes::MarkerRect:
 		case ToolTypes::MarkerEllipse:
-			properties->setFillType(FillTypes::BorderAndNoFill);
+			properties->setFillType(FillTypes::NoBorderAndFill);
 			break;
 		case ToolTypes::Image:
 		case ToolTypes::Sticker:
