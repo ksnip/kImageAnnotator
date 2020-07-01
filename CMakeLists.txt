@@ -67,10 +67,10 @@ target_include_directories(kImageAnnotator
 						   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 						   )
 
-target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets Qt5::Svg PRIVATE kColorPicker::kColorPicker)
+target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets Qt5::Svg kColorPicker::kColorPicker)
 
 if (UNIX)
-	target_link_libraries(kImageAnnotator PRIVATE X11)
+	target_link_libraries(kImageAnnotator PUBLIC X11)
 endif ()
 
 target_compile_definitions(kImageAnnotator PRIVATE KIMAGEANNOTATOR_LIB)
