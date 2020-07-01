@@ -1,7 +1,7 @@
 # kImageAnnotator [![Build Status][travis-badge]][travis-url] [![Translation status][weblate-badge]][weblate-url]
 Tool for annotating images
 
-Version 0.3.1
+Version 0.3.2 - Work in Progress
 
 ![kImageAnnotator](https://i.imgur.com/27kGPO0.png "kImageAnnotator")
 
