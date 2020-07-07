@@ -1,7 +1,7 @@
 # Change log
 
 ## Release 0.3.2
-* Fixed: Tests fails to build with shared library. ([#128](https://github.com/ksnip/kImageAnnotator/issues/128))
+* Fixed: Tests fail to build with shared library. ([#128](https://github.com/ksnip/kImageAnnotator/issues/128))
 
 ## Release 0.3.1
 * Fixed: Crashes after undoing a number annotation. ([#114](https://github.com/ksnip/kImageAnnotator/issues/114))
