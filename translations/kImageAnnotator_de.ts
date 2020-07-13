@@ -9,19 +9,19 @@
     </message>
     <message>
         <source>Bring to Front</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach vorne bringen</translation>
     </message>
     <message>
         <source>Bring Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach vorne bringen</translation>
     </message>
     <message>
         <source>Send Backward</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach hinten schicken</translation>
     </message>
     <message>
         <source>Send to Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach hinten schicken</translation>
     </message>
     <message>
         <source>Select This</source>
@@ -64,15 +64,15 @@
     </message>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Sichtbarkeit von Rahmen und Füllungen</translation>
     </message>
     <message>
         <source>Starting Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Anfangsnummer</translation>
     </message>
     <message>
         <source>Blur Radius</source>
-        <translation type="unfinished"></translation>
+        <translation>Unschärferadius</translation>
     </message>
     <message>
         <source>Sticker</source>
@@ -87,7 +87,7 @@
     </message>
     <message>
         <source>Close Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Andere schließen</translation>
     </message>
     <message>
         <source>Close All</source>
@@ -95,18 +95,18 @@
     </message>
     <message>
         <source>Close All to the Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle nach links schließen</translation>
     </message>
     <message>
         <source>Close All to the Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle nach rechts schließen</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::CropWidget</name>
     <message>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausschneiden</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -133,26 +133,26 @@
     <name>kImageAnnotator::FillTypePicker</name>
     <message>
         <source>No Border and No Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Rahmen und keine Füllung</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Rahmen und Füllung</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Rahmen und keine Füllung</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ScaleDialog</name>
     <message>
         <source>Scale Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Bild skalieren</translation>
     </message>
     <message>
         <source>Keep Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Seitenverhältnis beibehalten</translation>
     </message>
     <message>
         <source>Width:</source>
@@ -195,15 +195,15 @@
     </message>
     <message>
         <source>Marker Rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>Markierungsrechteck</translation>
     </message>
     <message>
         <source>Marker Ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>Markierungsellipse</translation>
     </message>
     <message>
         <source>Marker Pen</source>
-        <translation type="unfinished"></translation>
+        <translation>Markierungsstift</translation>
     </message>
     <message>
         <source>Text</source>
