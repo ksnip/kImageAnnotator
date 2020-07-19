@@ -25,7 +25,7 @@ endif ()
 set(QT_MIN_VERSION "5.9.4")
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Svg)
 
-if (UNIX)
+if (UNIX AND NOT APPLE)
 	find_package(X11 REQUIRED)
 endif ()
 
@@ -69,7 +69,7 @@ target_include_directories(kImageAnnotator
 
 target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets Qt5::Svg kColorPicker::kColorPicker)
 
-if (UNIX)
+if (UNIX AND NOT APPLE)
 	target_link_libraries(kImageAnnotator PUBLIC X11)
 endif ()
 
