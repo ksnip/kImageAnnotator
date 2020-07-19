@@ -60,6 +60,7 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportScaledImage_When_Scaling
 	auto resultImage = annotationArea.image();
 
 	auto expectedImage = pixmap.scaled(pixmap.size() * scaleFactor).toImage().convertToFormat(QImage::Format_ARGB32_Premultiplied);
+	expectedImage.setDevicePixelRatio(scaleFactor);
 	QCOMPARE(resultImage, expectedImage);
 }
 
