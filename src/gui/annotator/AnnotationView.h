@@ -42,6 +42,7 @@ protected:
 	void mouseMoveEvent(QMouseEvent *event) override;
 	void mousePressEvent(QMouseEvent *event) override;
 	void mouseReleaseEvent(QMouseEvent *event) override;
+	void wheelEvent(QWheelEvent *event) override;
 
 private:
 	bool mDragging;
@@ -53,6 +54,8 @@ private:
 	void enableDragging(const QPoint &pos);
 	void disableDragging();
 	void setDragCursorEnabled(bool enabled) const;
+	void zoom(double factor);
+	void zoom(double factor, const QPoint &viewPoint);
 };
 
 } // namespace kImageAnnotator
