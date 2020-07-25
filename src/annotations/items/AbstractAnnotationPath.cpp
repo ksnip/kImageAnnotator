@@ -26,7 +26,7 @@ AbstractAnnotationPath::AbstractAnnotationPath(const QPointF &startPosition, con
 {
 	mPath = new QPainterPath();
 	mPath->moveTo(startPosition);
-	mPath->lineTo(startPosition + QPointF(1, 1));
+	mPath->lineTo(startPosition);
 }
 
 AbstractAnnotationPath::AbstractAnnotationPath(const AbstractAnnotationPath &other) : AbstractAnnotationItem(other)
