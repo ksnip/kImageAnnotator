@@ -77,7 +77,7 @@ void AnnotationView::wheelEvent(QWheelEvent *event)
 	const double zoomInFactor = 1.1;
 	const double zoomOutFactor = 1.0 / zoomInFactor;
 	const double factor = (event->angleDelta().y() < 0.0) ? zoomInFactor : zoomOutFactor;
-	zoom(factor, event->position().toPoint());
+	zoom(factor, event->pos());
 	event->accept(); // supress scrolling
 }
 
