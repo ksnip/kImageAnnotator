@@ -1,5 +1,7 @@
 # Change log
 
+## Release 0.4.0
+
 ## Release 0.3.2
 * Fixed: Tests fail to build with shared library. ([#128](https://github.com/ksnip/kImageAnnotator/issues/128))
 
