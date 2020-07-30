@@ -29,6 +29,8 @@
 
 namespace kImageAnnotator {
 
+class AnnotationViewCamera;
+
 class AnnotationView : public QGraphicsView
 {
 	Q_OBJECT
@@ -45,6 +47,7 @@ protected:
 	void wheelEvent(QWheelEvent *event) override;
 
 private:
+	AnnotationViewCamera *mCamera;
 	bool mDragging;
 	QPoint mLastPosition;
 	KeyHelper mKeyHelper;
@@ -54,8 +57,6 @@ private:
 	void enableDragging(const QPoint &pos);
 	void disableDragging();
 	void setDragCursorEnabled(bool enabled) const;
-	void zoom(double factor);
-	void zoom(double factor, const QPoint &viewPoint);
 };
 
 } // namespace kImageAnnotator

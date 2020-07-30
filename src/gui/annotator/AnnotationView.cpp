@@ -19,9 +19,11 @@
 
 #include "AnnotationView.h"
 
+#include "src/gui/annotator/AnnotationViewCamera.h"
+
 namespace kImageAnnotator {
 
-AnnotationView::AnnotationView(QGraphicsScene *scene) : QGraphicsView(scene)
+AnnotationView::AnnotationView(QGraphicsScene *scene) : QGraphicsView(scene), mCamera(new AnnotationViewCamera(this))
 {
 	setTransformationAnchor(QGraphicsView::NoAnchor);
 	disableDragging();
@@ -74,11 +76,7 @@ void AnnotationView::mouseReleaseEvent(QMouseEvent *event)
 
 void AnnotationView::wheelEvent(QWheelEvent *event)
 {
-	const double zoomInFactor = 1.1;
-	const double zoomOutFactor = 1.0 / zoomInFactor;
-	const double factor = (event->angleDelta().y() < 0.0) ? zoomInFactor : zoomOutFactor;
-	zoom(factor, event->pos());
-	event->accept(); // supress scrolling
+	mCamera->wheelZoom(event);
 }
 
 void AnnotationView::scrollTo(const QPoint &pos)
@@ -111,23 +109,6 @@ void AnnotationView::disableDragging()
 void AnnotationView::setDragCursorEnabled(bool enabled) const
 {
 	enabled ? QGuiApplication::setOverrideCursor(Qt::SizeAllCursor) : QGuiApplication::restoreOverrideCursor();
-}
-
-void AnnotationView::zoom(double factor)
-{
-	const double minScale = 1.0;
-	const double maxScale = 8.0;
-	const double currentScale = transform().m11();
-	const double scaleFactor = qBound(minScale, factor * currentScale, maxScale) / currentScale;
-	scale(scaleFactor, scaleFactor);
-}
-
-void AnnotationView::zoom(double factor, const QPoint &viewPoint)
-{
-	const QPointF scenePoint = mapToScene(viewPoint);
-	zoom(factor);
-	const QPointF delta = mapToScene(viewPoint) - scenePoint;
-	translate(delta.x(), delta.y());
 }
 
 } // namespace kImageAnnotator
