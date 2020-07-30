@@ -56,8 +56,8 @@ AbstractAnnotationItem::~AbstractAnnotationItem()
 QRectF AbstractAnnotationItem::boundingRect() const
 {
 	auto width = 0;
-	if (!mShape->isEmpty()) {
-		width = mProperties->width() / 2;
+	if (mShape->elementCount() > 0) {
+		width = mProperties->width() * 0.5;
 	}
 	return mShape->boundingRect().adjusted(-width, -width, width, width);
 }
@@ -93,9 +93,38 @@ PropertiesPtr AbstractAnnotationItem::properties() const
 
 void AbstractAnnotationItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-	shiftPainterForAllOddShapeWidth(painter);
+	if (mShape->elementCount() == 0) {
+		return;
+	}
 
 	painter->setRenderHint(QPainter::Antialiasing, true);
+	shiftPainterForAllOddShapeWidth(painter);
+
+	if (mShape->elementCount() == 1 && hasBorder()) {
+		drawPoint(painter);
+	}
+	else {
+		drawPath(painter);
+	}
+}
+
+void AbstractAnnotationItem::drawPoint(QPainter *painter) const
+{
+	painter->setPen(Qt::NoPen);
+	painter->setBrush(mPainterPen.color());
+	const auto element = mShape->elementAt(0);
+	const auto width = mPainterPen.widthF();
+	const auto x = element.x - 0.5 * width;
+	const auto y = element.y - 0.5 * width;
+	if (mPainterPen.capStyle() == Qt::RoundCap) {
+		painter->drawEllipse(x, y, width, width);
+	} else {
+		painter->drawRect(x, y, width, width);
+	}
+}
+
+void AbstractAnnotationItem::drawPath(QPainter *painter) const
+{
 	if (hasBorder()) {
 		painter->setPen(mPainterPen);
 	} else {
