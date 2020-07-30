@@ -69,6 +69,8 @@ private:
 	bool hasBorder() const;
 	void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
 	void addShadowIfRequired();
+	void drawPath(QPainter *painter) const;
+	void drawPoint(QPainter *painter) const;
 };
 
 } // namespace kImageAnnotator
