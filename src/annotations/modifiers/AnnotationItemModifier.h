@@ -43,6 +43,7 @@ public:
 	void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
 	QList<AbstractAnnotationItem *> selectedItems() const;
 	QRectF boundingRect() const override;
+	void applyZoomValue(double value);
 
 public slots:
 	void clear();

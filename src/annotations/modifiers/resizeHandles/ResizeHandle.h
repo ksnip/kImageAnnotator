@@ -27,15 +27,18 @@ namespace kImageAnnotator {
 class ResizeHandle : public QRectF
 {
 public:
-	ResizeHandle();
-	explicit ResizeHandle(int size);
+	explicit ResizeHandle(double zoomValue = 1.0);
 	~ResizeHandle() = default;
+
 	QPointF anchor() const;
 	void setAnchor(const QPointF &pos);
-	QPointF offset() const;
-	void setOffset(const QPointF &offset);
+
+	void applyZoomValue(double value);
+	double handleSize() const;
 
 private:
+	static double mDefaultHandleSize;
+
 	QPointF mOffset;
 };
 

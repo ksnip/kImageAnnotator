@@ -21,13 +21,10 @@
 
 namespace kImageAnnotator {
 
-ResizeHandle::ResizeHandle()
-    : QRectF(0, 0, 0, 0)
-{
-}
+double ResizeHandle::mDefaultHandleSize = 10.0;
 
-ResizeHandle::ResizeHandle(int size)
-    : QRectF(0, 0, size, size)
+ResizeHandle::ResizeHandle(double zoomValue)
+    : QRectF(0, 0, mDefaultHandleSize / zoomValue, mDefaultHandleSize / zoomValue)
 {
 }
 
@@ -41,14 +38,15 @@ void ResizeHandle::setAnchor(const QPointF &pos)
     mOffset = pos - center();
 }
 
-QPointF ResizeHandle::offset() const
+void ResizeHandle::applyZoomValue(double value)
 {
-    return mOffset;
+    const auto offset = 0.5 * (handleSize() - mDefaultHandleSize / value);
+    adjust(offset, offset, -offset, -offset);
 }
 
-void ResizeHandle::setOffset(const QPointF &offset)
+double ResizeHandle::handleSize() const
 {
-    mOffset = offset;
+    return width();
 }
 
 } // namespace kImageAnnotator

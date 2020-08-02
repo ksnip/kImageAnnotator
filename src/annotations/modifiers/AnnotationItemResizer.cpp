@@ -21,11 +21,12 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemResizer::AnnotationItemResizer(AbstractAnnotationItem *item)
+AnnotationItemResizer::AnnotationItemResizer(AbstractAnnotationItem *item, double zoomValue)
 {
     mAnnotationItem = item;
     mCurrentHandle = -1;
-    mResizeHandles = ResizeHandlesFactory::createResizeHandles(item);
+    mZoomValue = zoomValue;
+    mResizeHandles = ResizeHandlesFactory::createResizeHandles(item, zoomValue);
     prepareGeometryChange();
 }
 
@@ -87,16 +88,19 @@ Qt::CursorShape AnnotationItemResizer::cursorForCurrentHandle()
     return mResizeHandles->cursorForHandle(mCurrentHandle);
 }
 
-void AnnotationItemResizer::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void AnnotationItemResizer::applyZoomValue(double value)
 {
-    Q_UNUSED(option)
-    Q_UNUSED(widget)
+    mResizeHandles->applyZoomValue(value);
+    mZoomValue = value;
+}
 
-    painter->setPen(Qt::white);
+void AnnotationItemResizer::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+{
+    painter->setPen(QPen(Qt::white, 1.0 / mZoomValue));
     painter->setBrush(Qt::gray);
-    auto points = mResizeHandles->handles();
-    for (auto point : points) {
-        painter->drawRect(point);
+    auto handles = mResizeHandles->handles();
+    for (auto &handle : handles) {
+        painter->drawRect(handle);
     }
 }
 

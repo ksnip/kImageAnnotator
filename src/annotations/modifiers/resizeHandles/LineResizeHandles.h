@@ -29,7 +29,7 @@ namespace kImageAnnotator {
 class LineResizeHandles : public AbstractItemResizeHandles
 {
 public:
-    LineResizeHandles(AbstractAnnotationLine *lineItem);
+    LineResizeHandles(AbstractAnnotationLine *lineItem, double zoomValue);
     ~LineResizeHandles() = default;
     virtual void update() override;
 

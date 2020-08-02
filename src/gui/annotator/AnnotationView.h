@@ -29,13 +29,14 @@
 
 namespace kImageAnnotator {
 
+class AnnotationArea;
 class AnnotationViewCamera;
 
 class AnnotationView : public QGraphicsView
 {
 	Q_OBJECT
 public:
-	explicit AnnotationView(QGraphicsScene *scene);
+	explicit AnnotationView(AnnotationArea *area);
 	~AnnotationView() override = default;
 
 protected:

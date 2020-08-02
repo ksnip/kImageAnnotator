@@ -72,6 +72,7 @@ public:
 
 public slots:
     virtual void update();
+    void applyZoomValue(double value);
 
 signals:
     void imageChanged() const;

@@ -42,6 +42,7 @@ public:
 	bool isSelecting() const;
 	void refresh();
 	void update();
+	void applyZoomValue(double value);
 
 protected:
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) override;

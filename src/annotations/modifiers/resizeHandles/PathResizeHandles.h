@@ -28,12 +28,12 @@ namespace kImageAnnotator {
 class PathResizeHandles : public AbstractRectResizeHandles
 {
 public:
-    explicit PathResizeHandles(AbstractAnnotationPath *pathItem);
+    PathResizeHandles(AbstractAnnotationPath *pathItem, double zoomValue);
     ~PathResizeHandles() override = default;
 
 protected:
     QRectF getRect() const override;
-    int getOffset() const override;
+    double getOffset() const override;
     QRectF getItemBoundingRect() const override;
 
 private:

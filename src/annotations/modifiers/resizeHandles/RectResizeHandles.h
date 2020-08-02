@@ -28,12 +28,12 @@ namespace kImageAnnotator {
 class RectResizeHandles : public AbstractRectResizeHandles
 {
 public:
-    explicit RectResizeHandles(AbstractAnnotationRect *rectItem);
+    RectResizeHandles(AbstractAnnotationRect *rectItem, double zoomValue);
     ~RectResizeHandles() override = default;
 
 protected:
     QRectF getRect() const override;
-    int getOffset() const override;
+    double getOffset() const override;
     QRectF getItemBoundingRect() const override;
 
 private:

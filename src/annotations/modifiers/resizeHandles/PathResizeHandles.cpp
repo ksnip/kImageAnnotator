@@ -21,10 +21,10 @@
 
 namespace kImageAnnotator {
 
-PathResizeHandles::PathResizeHandles(AbstractAnnotationPath *pathItem)
+PathResizeHandles::PathResizeHandles(AbstractAnnotationPath *pathItem, double zoomValue)
 {
     mPathItem = pathItem;
-    initHandles(8);
+    initHandles(8, zoomValue);
     initCursors();
     update();
 }
@@ -34,9 +34,9 @@ QRectF PathResizeHandles::getRect() const
     return getItemBoundingRect();
 }
 
-int PathResizeHandles::getOffset() const
+double PathResizeHandles::getOffset() const
 {
-    return 0;
+    return 0.0;
 }
 
 QRectF PathResizeHandles::getItemBoundingRect() const

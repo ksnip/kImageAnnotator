@@ -41,6 +41,9 @@ public:
 	void zoomToPoint(double factor, const QPoint &viewPoint);
 	void wheelZoom(QWheelEvent *event);
 
+signals:
+	void zoomValueChanged(double value);
+
 private:
 	QGraphicsView *mView;
 };

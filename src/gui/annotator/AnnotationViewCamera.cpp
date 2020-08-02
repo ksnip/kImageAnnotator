@@ -37,8 +37,10 @@ void AnnotationViewCamera::zoom(double factor)
 	const auto minScale = 1.0;
 	const auto maxScale = 8.0;
 	const auto scaleFactor = qBound(minScale, factor * zoomValue(), maxScale) / zoomValue();
-	if (!qFuzzyCompare(scaleFactor, 1.0))
+	if (!qFuzzyCompare(scaleFactor, 1.0)) {
 		mView->scale(scaleFactor, scaleFactor);
+		emit zoomValueChanged(zoomValue());
+	}
 }
 
 void AnnotationViewCamera::zoomToPoint(double factor, const QPoint &viewPoint)

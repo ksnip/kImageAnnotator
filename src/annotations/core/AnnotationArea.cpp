@@ -187,6 +187,12 @@ void AnnotationArea::update()
 	QGraphicsScene::update();
 }
 
+void AnnotationArea::applyZoomValue(double value)
+{
+	mItemModifier->applyZoomValue(value);
+	QGraphicsScene::update();
+}
+
 void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
 	if (event->button() == Qt::LeftButton) {

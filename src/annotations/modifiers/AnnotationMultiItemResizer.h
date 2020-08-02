@@ -47,6 +47,7 @@ public:
     Qt::CursorShape cursorForCurrentHandle();
     void hideCurrentResizer();
     void showCurrentResizer();
+    void applyZoomValue(double value);
 
 signals:
     void newCommand(ResizeCommand *resize) const;
@@ -54,6 +55,7 @@ signals:
 private:
     QHash<AbstractAnnotationItem *, AnnotationItemResizer *> mItemToResizer;
     AnnotationItemResizer *mCurrentResizer;
+    double mZoomValue;
 
     AnnotationItemResizer *getResizerForItem(AbstractAnnotationItem *item);
     void showResizer(AnnotationItemResizer *resizer);

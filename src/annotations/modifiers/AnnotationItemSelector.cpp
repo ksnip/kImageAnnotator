@@ -123,13 +123,18 @@ void AnnotationItemSelector::update()
 	}
 }
 
+void AnnotationItemSelector::applyZoomValue(double value)
+{
+	mSelectionPen.setWidthF(1.0 / value);
+}
+
 void AnnotationItemSelector::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 	Q_UNUSED(option)
 	Q_UNUSED(widget)
 
 	if (mShowSelectionRect) {
-		painter->setPen(Qt::darkBlue);
+		painter->setPen(QPen(Qt::darkBlue, mSelectionPen.widthF()));
 		painter->setBrush(QColor(0, 0, 255, 60));
 		painter->drawRect(mSelectionRect);
 	}

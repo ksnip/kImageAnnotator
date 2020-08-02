@@ -21,45 +21,45 @@
 
 namespace kImageAnnotator {
 
-AbstractItemResizeHandles *ResizeHandlesFactory::createResizeHandles(AbstractAnnotationItem *item)
+AbstractItemResizeHandles *ResizeHandlesFactory::createResizeHandles(AbstractAnnotationItem *item, double zoomValue)
 {
-    auto resizeHandles = GetLineResizeHandles(item);
+    auto resizeHandles = GetLineResizeHandles(item, zoomValue);
     if (resizeHandles != nullptr) {
         return resizeHandles;
     }
 
-    resizeHandles = GetRectResizeHandles(item);
+    resizeHandles = GetRectResizeHandles(item, zoomValue);
     if (resizeHandles != nullptr) {
         return resizeHandles;
     }
 
-    resizeHandles = GetPathResizeHandles(item);
+    resizeHandles = GetPathResizeHandles(item, zoomValue);
     return resizeHandles;
 }
 
-AbstractItemResizeHandles *ResizeHandlesFactory::GetLineResizeHandles(AbstractAnnotationItem *item)
+AbstractItemResizeHandles *ResizeHandlesFactory::GetLineResizeHandles(AbstractAnnotationItem *item, double zoomValue)
 {
     auto lineItem = dynamic_cast<AbstractAnnotationLine *>(item);
     if (lineItem != nullptr) {
-        return new LineResizeHandles(lineItem);
+        return new LineResizeHandles(lineItem, zoomValue);
     }
     return nullptr;
 }
 
-AbstractItemResizeHandles *ResizeHandlesFactory::GetRectResizeHandles(AbstractAnnotationItem *item)
+AbstractItemResizeHandles *ResizeHandlesFactory::GetRectResizeHandles(AbstractAnnotationItem *item, double zoomValue)
 {
     auto rectItem = dynamic_cast<AbstractAnnotationRect *>(item);
     if (rectItem != nullptr) {
-        return new RectResizeHandles(rectItem);
+        return new RectResizeHandles(rectItem, zoomValue);
     }
     return nullptr;
 }
 
-AbstractItemResizeHandles *ResizeHandlesFactory::GetPathResizeHandles(AbstractAnnotationItem *item)
+AbstractItemResizeHandles *ResizeHandlesFactory::GetPathResizeHandles(AbstractAnnotationItem *item, double zoomValue)
 {
     auto pathItem = dynamic_cast<AbstractAnnotationPath *>(item);
     if (pathItem != nullptr) {
-        return new PathResizeHandles(pathItem);
+        return new PathResizeHandles(pathItem, zoomValue);
     }
     return nullptr;
 }

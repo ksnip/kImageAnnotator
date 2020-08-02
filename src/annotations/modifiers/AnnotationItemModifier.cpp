@@ -112,6 +112,12 @@ QRectF AnnotationItemModifier::boundingRect() const
 	return mItemSelector->boundingRect();
 }
 
+void AnnotationItemModifier::applyZoomValue(double value)
+{
+	mItemSelector->applyZoomValue(value);
+	mItemResizer->applyZoomValue(value);
+}
+
 void AnnotationItemModifier::clear()
 {
 	mItemSelector->clearSelection();

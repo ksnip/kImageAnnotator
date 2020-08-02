@@ -23,7 +23,6 @@ namespace kImageAnnotator {
 
 AbstractItemResizeHandles::AbstractItemResizeHandles()
 {
-    mHandleSize = 10;
 }
 
 int AbstractItemResizeHandles::indexOfHandleAt(const QPointF &pos) const
@@ -75,17 +74,24 @@ Qt::CursorShape AbstractItemResizeHandles::cursorForHandle(int index) const
     return mCursors[index];
 }
 
-void AbstractItemResizeHandles::initHandles(int count)
+void AbstractItemResizeHandles::initHandles(int count, double zoomValue)
 {
     mHandles.clear();
     for (auto i = 0; i < count; i++) {
-        mHandles.append(ResizeHandle(mHandleSize));
+        mHandles.append(ResizeHandle(zoomValue));
     }
 }
 
-int AbstractItemResizeHandles::handleSize() const
+double AbstractItemResizeHandles::handleSize() const
 {
-    return mHandleSize;
+    return mHandles.empty() ? 0.0 : mHandles.first().handleSize();
+}
+
+void AbstractItemResizeHandles::applyZoomValue(double value)
+{
+    for (auto &handle : mHandles) {
+        handle.applyZoomValue(value);
+    }
 }
 
 } // namespace kImageAnnotator
