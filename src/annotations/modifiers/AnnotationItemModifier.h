@@ -35,7 +35,7 @@ class AnnotationItemModifier : public QObject, public QGraphicsItemGroup
 {
 Q_OBJECT
 public:
-	explicit AnnotationItemModifier();
+	explicit AnnotationItemModifier(AbstractCamera *camera);
 	~AnnotationItemModifier() override;
 	void handleMousePress(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
 	void handleMouseMove(const QPointF &pos);
@@ -43,7 +43,6 @@ public:
 	void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
 	QList<AbstractAnnotationItem *> selectedItems() const;
 	QRectF boundingRect() const override;
-	void applyZoomValue(double value);
 
 public slots:
 	void clear();

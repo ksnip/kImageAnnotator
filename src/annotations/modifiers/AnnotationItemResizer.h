@@ -27,12 +27,14 @@
 
 namespace kImageAnnotator {
 
+class AbstractCamera;
+
 class AnnotationItemResizer : public QGraphicsWidget
 {
 Q_OBJECT
 public:
-    AnnotationItemResizer(AbstractAnnotationItem *item, double zoomValue);
-    ~AnnotationItemResizer();
+    AnnotationItemResizer(AbstractAnnotationItem *item, AbstractCamera *camera);
+    ~AnnotationItemResizer() override;
     virtual QRectF boundingRect() const override;
     void grabHandle(const QPointF &pos);
     void moveHandle(const QPointF &pos);
@@ -42,7 +44,6 @@ public:
     bool isItemVisible() const;
     Qt::CursorShape cursorForPos(const QPointF &pos);
     Qt::CursorShape cursorForCurrentHandle();
-    void applyZoomValue(double value);
 
 signals:
     void newCommand(ResizeCommand *resize) const;
@@ -53,9 +54,11 @@ protected:
 private:
     AbstractItemResizeHandles *mResizeHandles;
     AbstractAnnotationItem *mAnnotationItem;
+    AbstractCamera *mCamera;
     int mCurrentHandle;
     QPointF mClickOffset;
-    double mZoomValue;
+
+    void applyZoomValue(double value);
 };
 
 } // namespace kImageAnnotator

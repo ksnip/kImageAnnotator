@@ -24,7 +24,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationViewCamera::AnnotationViewCamera(QGraphicsView *view) : QObject(view), mView(view)
+AnnotationViewCamera::AnnotationViewCamera(QGraphicsView *view) : AbstractCamera(view), mView(view)
 {}
 
 double AnnotationViewCamera::zoomValue() const

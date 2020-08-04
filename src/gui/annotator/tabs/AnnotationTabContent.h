@@ -40,8 +40,8 @@ public:
 	AnnotationArea* annotationArea() const;
 
 private:
-	AnnotationArea *mAnnotationArea;
 	AnnotationView *mAnnotationView;
+	AnnotationArea *mAnnotationArea;
 	QHBoxLayout *mMainLayout;
 };
 

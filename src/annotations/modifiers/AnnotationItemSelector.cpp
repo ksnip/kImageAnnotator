@@ -19,15 +19,20 @@
 
 #include "AnnotationItemSelector.h"
 
+#include "src/annotations/core/AbstractCamera.h"
+
 namespace kImageAnnotator {
 
-AnnotationItemSelector::AnnotationItemSelector()
+AnnotationItemSelector::AnnotationItemSelector(AbstractCamera *camera)
 {
 	mSelectedItems = new QList<AbstractAnnotationItem *>();
 	mShowSelectionRect = false;
 
 	mSelectionPen.setStyle(Qt::DashLine);
 	mSelectionPen.setColor(Qt::gray);
+
+	applyZoomValue(camera->zoomValue());
+	connect(camera, &AbstractCamera::zoomValueChanged, this, &AnnotationItemSelector::applyZoomValue);
 }
 
 AnnotationItemSelector::~AnnotationItemSelector()
@@ -121,11 +126,6 @@ void AnnotationItemSelector::update()
 			unselectItem(item);
 		}
 	}
-}
-
-void AnnotationItemSelector::applyZoomValue(double value)
-{
-	mSelectionPen.setWidthF(1.0 / value);
 }
 
 void AnnotationItemSelector::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -227,6 +227,11 @@ AbstractAnnotationItem *AnnotationItemSelector::findItemAt(const QPointF &positi
 		}
 	}
 	return nullptr;
+}
+
+void AnnotationItemSelector::applyZoomValue(double value)
+{
+	mSelectionPen.setWidthF(1.0 / value);
 }
 
 } // namespace kImageAnnotator

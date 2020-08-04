@@ -27,10 +27,12 @@
 
 namespace kImageAnnotator {
 
+class AbstractCamera;
+
 class AnnotationItemSelector : public QGraphicsWidget
 {
 public:
-	explicit AnnotationItemSelector();
+	explicit AnnotationItemSelector(AbstractCamera *camera);
 	~AnnotationItemSelector() override;
 	QRectF boundingRect() const override;
 	void handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifing);
@@ -42,7 +44,6 @@ public:
 	bool isSelecting() const;
 	void refresh();
 	void update();
-	void applyZoomValue(double value);
 
 protected:
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) override;
@@ -63,6 +64,7 @@ private:
 	void unselectItem(AbstractAnnotationItem *item);
 	AbstractAnnotationItem *findItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
 	bool isLineItem(AbstractAnnotationItem *item) const;
+	void applyZoomValue(double value);
 };
 
 } // namespace kImageAnnotator

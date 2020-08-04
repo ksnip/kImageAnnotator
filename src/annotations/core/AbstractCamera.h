@@ -17,35 +17,28 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONVIEWCAMERA_H
-#define KIMAGEANNOTATOR_ANNOTATIONVIEWCAMERA_H
+#ifndef KIMAGEANNOTATOR_ABSTRACTCAMERA_H
+#define KIMAGEANNOTATOR_ABSTRACTCAMERA_H
 
-#include "src/annotations/core/AbstractCamera.h"
-
-class QGraphicsView;
-class QPoint;
-class QWheelEvent;
+#include <QObject>
 
 namespace kImageAnnotator {
 
-class AnnotationViewCamera : public AbstractCamera
+class AbstractCamera : public QObject
 {
 	Q_OBJECT
 
 public:
-	explicit AnnotationViewCamera(QGraphicsView *view);
-	~AnnotationViewCamera() override = default;
+	explicit AbstractCamera(QObject *parent = nullptr) : QObject(parent)
+	{}
+	virtual ~AbstractCamera() = default;
 
-	double zoomValue() const override;
+	virtual double zoomValue() const = 0;
 
-	void zoom(double factor);
-	void zoomToPoint(double factor, const QPoint &viewPoint);
-	void wheelZoom(QWheelEvent *event);
-
-private:
-	QGraphicsView *mView;
+signals:
+	void zoomValueChanged(double value);
 };
 
 }
 
-#endif // KIMAGEANNOTATOR_ANNOTATIONVIEWCAMERA_H
+#endif // KIMAGEANNOTATOR_ABSTRACTCAMERA_H

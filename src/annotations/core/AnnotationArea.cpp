@@ -19,9 +19,11 @@
 
 #include "AnnotationArea.h"
 
+#include "src/annotations/core/AbstractCamera.h"
+
 namespace kImageAnnotator {
 
-AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider, IDevicePixelRatioScaler *devicePixelRatioScaler) :
+AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider, IDevicePixelRatioScaler *devicePixelRatioScaler, AbstractCamera *camera) :
 	mUndoStack(new UndoStack),
 	mImage(nullptr),
 	mCurrentItem(nullptr),
@@ -29,7 +31,7 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 	mRedoAction(nullptr),
 	mKeyHelper(new KeyHelper),
 	mSettingsProvider(settingsProvider),
-	mItemModifier(new AnnotationItemModifier),
+	mItemModifier(new AnnotationItemModifier(camera)),
 	mPropertiesFactory(new AnnotationPropertiesFactory(config, mSettingsProvider)),
 	mItemFactory(new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider)),
 	mItems(new QList<AbstractAnnotationItem *>()),
@@ -184,12 +186,6 @@ int AnnotationArea::firstBadgeNumber() const
 void AnnotationArea::update()
 {
 	mItemModifier->updateSelection();
-	QGraphicsScene::update();
-}
-
-void AnnotationArea::applyZoomValue(double value)
-{
-	mItemModifier->applyZoomValue(value);
 	QGraphicsScene::update();
 }
 

@@ -24,11 +24,15 @@
 
 namespace kImageAnnotator {
 
-AnnotationView::AnnotationView(AnnotationArea *area) : QGraphicsView(area), mCamera(new AnnotationViewCamera(this))
+AnnotationView::AnnotationView(QWidget *parent) : QGraphicsView(parent), mCamera(new AnnotationViewCamera(this))
 {
 	setTransformationAnchor(QGraphicsView::NoAnchor);
 	disableDragging();
-	connect(mCamera, &AnnotationViewCamera::zoomValueChanged, area, &AnnotationArea::applyZoomValue);
+}
+
+AnnotationViewCamera *AnnotationView::camera() const
+{
+	return mCamera;
 }
 
 void AnnotationView::keyPressEvent(QKeyEvent *event)

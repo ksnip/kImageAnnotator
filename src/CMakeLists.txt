@@ -19,6 +19,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleDialog.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleSizeHandler.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AbstractCamera.h
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AnnotationArea.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AnnotationItemFactory.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AnnotationPropertiesFactory.cpp

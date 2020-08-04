@@ -21,10 +21,10 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemModifier::AnnotationItemModifier()
+AnnotationItemModifier::AnnotationItemModifier(AbstractCamera *camera)
 {
-	mItemSelector = new AnnotationItemSelector();
-	mItemResizer = new AnnotationMultiItemResizer();
+	mItemSelector = new AnnotationItemSelector(camera);
+	mItemResizer = new AnnotationMultiItemResizer(camera);
 	mItemMover = new AnnotationItemMover();
 	addToGroup(mItemSelector);
 	addToGroup(mItemResizer);
@@ -110,12 +110,6 @@ QRectF AnnotationItemModifier::boundingRect() const
 		return mItemResizer->boundingRect();
 	}
 	return mItemSelector->boundingRect();
-}
-
-void AnnotationItemModifier::applyZoomValue(double value)
-{
-	mItemSelector->applyZoomValue(value);
-	mItemResizer->applyZoomValue(value);
 }
 
 void AnnotationItemModifier::clear()

@@ -49,11 +49,13 @@
 
 namespace kImageAnnotator {
 
+class AbstractCamera;
+
 class AnnotationArea : public QGraphicsScene, public ISettingsListener
 {
     Q_OBJECT
 public:
-	explicit AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider, IDevicePixelRatioScaler *devicePixelRatioScaler);
+    explicit AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider, IDevicePixelRatioScaler *devicePixelRatioScaler, AbstractCamera *camera);
     ~AnnotationArea() override;
     virtual void loadImage(const QPixmap &image);
     virtual void insertImageItem(const QPointF &position, const QPixmap &image);
@@ -72,7 +74,6 @@ public:
 
 public slots:
     virtual void update();
-    void applyZoomValue(double value);
 
 signals:
     void imageChanged() const;
