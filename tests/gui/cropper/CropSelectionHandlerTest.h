@@ -22,14 +22,6 @@
 
 #include <QtTest>
 
-#include "src/gui/cropper/CropSelectionHandler.h"
-#include "tests/mocks/MockSettingsProvider.h"
-#include "tests/mocks/MockDevicePixelRatioScaler.h"
-
-using kImageAnnotator::CropSelectionHandler;
-using kImageAnnotator::AnnotationArea;
-using kImageAnnotator::Config;
-
 class CropSelectionHandlerTest : public QObject
 {
 Q_OBJECT

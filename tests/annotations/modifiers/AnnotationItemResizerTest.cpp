@@ -19,6 +19,8 @@
 
 #include "AnnotationItemResizerTest.h"
 
+#include "tests/mocks/MockCamera.h"
+
 void AnnotationItemResizerTest::TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition()
 {
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
@@ -26,7 +28,8 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_GrabHandle_When_ProvidedPo
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
 	lineItem.addPoint(p2, false);
-	AnnotationItemResizer itemResizer(&lineItem);
+	MockCamera camera;
+	AnnotationItemResizer itemResizer(&lineItem, &camera);
 
 	itemResizer.grabHandle(p1 + QPointF(2, 2));
 
@@ -41,7 +44,8 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_NotGrabHandle_When_Provide
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
 	lineItem.addPoint(p2, false);
-	AnnotationItemResizer itemResizer(&lineItem);
+	MockCamera camera;
+	AnnotationItemResizer itemResizer(&lineItem, &camera);
 
 	itemResizer.grabHandle(QPointF(0, 0));
 
@@ -57,7 +61,8 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_MoveResizeHandle_When_Hand
 	QPointF p3(30, 30);
 	AnnotationLine lineItem(p1, properties);
 	lineItem.addPoint(p2, false);
-	AnnotationItemResizer itemResizer(&lineItem);
+	MockCamera camera;
+	AnnotationItemResizer itemResizer(&lineItem, &camera);
 	QUndoStack undoStack;
 	connect(&itemResizer, &AnnotationItemResizer::newCommand, &undoStack, &QUndoStack::push);
 
@@ -74,7 +79,8 @@ void AnnotationItemResizerTest::TestReleaseHandle_Should_ReleaseHandle()
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
 	lineItem.addPoint(p2, false);
-	AnnotationItemResizer itemResizer(&lineItem);
+	MockCamera camera;
+	AnnotationItemResizer itemResizer(&lineItem, &camera);
 	itemResizer.grabHandle(p1);
 	QCOMPARE(itemResizer.isResizing(), true);
 
@@ -90,7 +96,8 @@ void AnnotationItemResizerTest::TestIsItemVisible_Should_ReturnFalse_When_ItemIs
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
 	lineItem.addPoint(p2, false);
-	AnnotationItemResizer itemResizer(&lineItem);
+	MockCamera camera;
+	AnnotationItemResizer itemResizer(&lineItem, &camera);
 	lineItem.hide();
 
 	auto result = itemResizer.isItemVisible();

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,21 +17,26 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONAREATEST_H
-#define KIMAGEANNOTATOR_ANNOTATIONAREATEST_H
+#ifndef KIMAGEANNOTATOR_MOCKCAMERA_H
+#define KIMAGEANNOTATOR_MOCKCAMERA_H
 
-#include <QtTest>
+#include "src/annotations/core/AbstractCamera.h"
 
-class AnnotationAreaTest : public QObject
+using kImageAnnotator::AbstractCamera;
+
+class MockCamera : public AbstractCamera
 {
-Q_OBJECT
+	Q_OBJECT
 
-private slots:
-	void TestExportAsImage_Should_ExportImage_When_ImageSet();
-	void TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet();
-	void TestExportAsImage_Should_ExportScaledImage_When_ScalingEnabled();
-	void TestAddAnnotationItem_Should_AddAnnotationItemToScene();
-	void TestRemoveAnnotationItem_Should_RemoveAnnotationItemFromScene();
+public:
+	explicit MockCamera(QObject *parent = nullptr);
+
+	double zoomValue() const override;
+
+	void setZoomValue(double value);
+
+private:
+	double mZoomValue;
 };
 
-#endif // KIMAGEANNOTATOR_ANNOTATIONAREATEST_H
+#endif // KIMAGEANNOTATOR_MOCKCAMERA_H

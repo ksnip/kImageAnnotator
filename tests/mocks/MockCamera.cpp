@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,21 +17,21 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONAREATEST_H
-#define KIMAGEANNOTATOR_ANNOTATIONAREATEST_H
+#include "MockCamera.h"
 
-#include <QtTest>
-
-class AnnotationAreaTest : public QObject
+MockCamera::MockCamera(QObject *parent) : AbstractCamera(parent), mZoomValue(1.0)
 {
-Q_OBJECT
+}
 
-private slots:
-	void TestExportAsImage_Should_ExportImage_When_ImageSet();
-	void TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet();
-	void TestExportAsImage_Should_ExportScaledImage_When_ScalingEnabled();
-	void TestAddAnnotationItem_Should_AddAnnotationItemToScene();
-	void TestRemoveAnnotationItem_Should_RemoveAnnotationItemFromScene();
-};
+double MockCamera::zoomValue() const
+{
+	return mZoomValue;
+}
 
-#endif // KIMAGEANNOTATOR_ANNOTATIONAREATEST_H
+void MockCamera::setZoomValue(double value)
+{
+	if (value == mZoomValue)
+		return;
+	mZoomValue = value;
+	emit zoomValueChanged(value);
+}

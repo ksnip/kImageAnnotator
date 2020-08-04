@@ -17,14 +17,14 @@
  * Boston, MA 02110-1301, USA.
  */
 
-
 #include "DeleteCommandTest.h"
+
+#include "tests/mocks/MockDefaultParameters.h"
 
 void DeleteCommandTest::TestRedo_Should_ApplyOperation()
 {
-	auto config = new Config;
-	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
+	MockAnnotationAreaParameters p;
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	AnnotationLine item(line.p1(), properties);
@@ -41,9 +41,8 @@ void DeleteCommandTest::TestRedo_Should_ApplyOperation()
 
 void DeleteCommandTest::TestUndo_Should_UndoOperation()
 {
-	auto config = new Config;
-	auto settingsProvider = new MockSettingsProvider();
-	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
+	MockAnnotationAreaParameters p;
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	AnnotationLine item(line.p1(), properties);

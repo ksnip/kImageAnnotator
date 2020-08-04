@@ -22,25 +22,6 @@
 
 #include <QtTest>
 
-#include "src/annotations/undo/PasteCommand.h"
-#include "src/annotations/core/AnnotationArea.h"
-#include "src/annotations/items/AnnotationLine.h"
-#include "src/annotations/core/AnnotationPropertiesFactory.h"
-#include "tests/mocks/MockSettingsProvider.h"
-#include "tests/mocks/MockDevicePixelRatioScaler.h"
-
-using kImageAnnotator::PasteCommand;
-using kImageAnnotator::AnnotationArea;
-using kImageAnnotator::AbstractAnnotationItem;
-using kImageAnnotator::AnnotationLine;
-using kImageAnnotator::AnnotationProperties;
-using kImageAnnotator::Config;
-using kImageAnnotator::AnnotationItemFactory;
-using kImageAnnotator::PropertiesPtr;
-using kImageAnnotator::AnnotationPropertiesFactory;
-
-using kImageAnnotator::PasteCommand;
-
 class PasteCommandTest : public QObject
 {
 Q_OBJECT

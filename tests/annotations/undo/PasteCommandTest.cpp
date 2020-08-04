@@ -17,18 +17,32 @@
  * Boston, MA 02110-1301, USA.
  */
 
-
 #include "PasteCommandTest.h"
+
+#include "src/annotations/undo/PasteCommand.h"
+#include "src/annotations/core/AnnotationArea.h"
+#include "src/annotations/items/AnnotationLine.h"
+#include "src/annotations/core/AnnotationPropertiesFactory.h"
+#include "tests/mocks/MockDefaultParameters.h"
+
+using kImageAnnotator::PasteCommand;
+using kImageAnnotator::AnnotationArea;
+using kImageAnnotator::AbstractAnnotationItem;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::Config;
+using kImageAnnotator::AnnotationItemFactory;
+using kImageAnnotator::PropertiesPtr;
+using kImageAnnotator::AnnotationPropertiesFactory;
 
 void PasteCommandTest::TestRedo_Should_AddPastedItemsToAnnotationAreaAtGivenPosition()
 {
 	auto offset = QPointF(10, 10);
 	auto position = QPointF(50, 50);
-	auto config = new Config;
-	auto settingsProvider = new MockSettingsProvider();
-	auto propertiesFactory = new AnnotationPropertiesFactory(config, settingsProvider);
-	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
-	AnnotationItemFactory itemFactory(propertiesFactory, settingsProvider);
+	MockAnnotationAreaParameters p;
+	AnnotationPropertiesFactory propertiesFactory(&p.config, &p.provider);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationItemFactory itemFactory(&propertiesFactory, &p.provider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	auto item = new AnnotationLine(line.p1(), properties);
@@ -49,11 +63,10 @@ void PasteCommandTest::TestUndo_Should_RemovePastedItemsFromAnnotationArea()
 {
 	auto offset = QPointF(10, 10);
 	auto position = QPointF(50, 50);
-	auto config = new Config;
-	auto settingsProvider = new MockSettingsProvider();
-	auto propertiesFactory = new AnnotationPropertiesFactory(config, settingsProvider);
-	AnnotationArea annotationArea(config, settingsProvider, new MockDevicePixelRatioScaler);
-	AnnotationItemFactory itemFactory(propertiesFactory, settingsProvider);
+	MockAnnotationAreaParameters p;
+	AnnotationPropertiesFactory propertiesFactory(&p.config, &p.provider);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationItemFactory itemFactory(&propertiesFactory, &p.provider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	auto item = new AnnotationLine(line.p1(), properties);

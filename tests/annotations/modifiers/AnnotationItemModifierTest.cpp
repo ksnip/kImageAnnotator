@@ -19,6 +19,8 @@
 
 #include "AnnotationItemModifierTest.h"
 
+#include "tests/mocks/MockCamera.h"
+
 void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_MoveResizerHandle_When_ClickedOnResizerHandle()
 {
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
@@ -29,7 +31,8 @@ void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_MoveResi
 	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
-	AnnotationItemModifier modifer;
+	MockCamera camera;
+	AnnotationItemModifier modifer(&camera);
 	QUndoStack undoStack;
 	connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
 	modifer.handleMousePress(p1, &items, false);
@@ -53,7 +56,8 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_NotMoveResizerH
 	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
-	AnnotationItemModifier modifer;
+	MockCamera camera;
+	AnnotationItemModifier modifer(&camera);
 	modifer.handleMousePress(p1, &items, false);
 	modifer.handleMouseRelease(&items);
 
@@ -79,7 +83,8 @@ void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_SelectMu
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
-	AnnotationItemModifier modifer;
+	MockCamera camera;
+	AnnotationItemModifier modifer(&camera);
 
 	modifer.handleMousePress(p1 + QPointF(-5, -5), &items, false);
 	modifer.handleMouseMove(p4 + QPointF(5, 5));
@@ -102,7 +107,8 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveClickedItem
 	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
-	AnnotationItemModifier modifer;
+	MockCamera camera;
+	AnnotationItemModifier modifer(&camera);
 	QUndoStack undoStack;
 	connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
 
@@ -129,7 +135,8 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveSelectedIte
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
-	AnnotationItemModifier modifer;
+	MockCamera camera;
+	AnnotationItemModifier modifer(&camera);
 	QUndoStack undoStack;
 	connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
 	modifer.handleMousePress(p1 + QPointF(-5, -5), &items, false);
