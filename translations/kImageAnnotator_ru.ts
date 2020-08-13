@@ -76,30 +76,30 @@
     </message>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>Стикер</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationTabContextMenu</name>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть</translation>
     </message>
     <message>
         <source>Close Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть остальные</translation>
     </message>
     <message>
         <source>Close All</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть все</translation>
     </message>
     <message>
         <source>Close All to the Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть все слева</translation>
     </message>
     <message>
         <source>Close All to the Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрыть все справа</translation>
     </message>
 </context>
 <context>
@@ -235,11 +235,11 @@
     </message>
     <message>
         <source>Number Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Числовой указатель</translation>
     </message>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>Стикер</translation>
     </message>
 </context>
 </TS>
