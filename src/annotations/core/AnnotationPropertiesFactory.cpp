@@ -40,7 +40,7 @@ PropertiesPtr AnnotationPropertiesFactory::create(ToolTypes toolType) const
 	setShadowEnabled(properties, toolType);
 	setPathProperties(properties);
 	setTextProperties(properties, toolType);
-	setBlurProperties(properties);
+	setObfuscateProperties(properties);
 	setStickerProperties(properties);
 
 	return properties;
@@ -57,7 +57,8 @@ PropertiesPtr AnnotationPropertiesFactory::createPropertiesObject(ToolTypes tool
 		case ToolTypes::Text:
 			return PropertiesPtr(new AnnotationTextProperties());
 		case ToolTypes::Blur:
-			return PropertiesPtr(new AnnotationBlurProperties());
+		case ToolTypes::Pixelate:
+			return PropertiesPtr(new AnnotationObfuscateProperties());
 		case ToolTypes ::Sticker:
 			return PropertiesPtr(new AnnotationStickerProperties());
 		default:
@@ -117,7 +118,7 @@ void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, ToolT
 
 void AnnotationPropertiesFactory::setShadowEnabled(const PropertiesPtr &properties, ToolTypes toolType) const
 {
-	if (toolType == ToolTypes::Blur || isMarkerTool(toolType) || toolType == ToolTypes::Image) {
+	if (isObfuscateTool(toolType) || isMarkerTool(toolType) || toolType == ToolTypes::Image) {
 		properties->setShadowEnabled(false);
 	} else {
 		properties->setShadowEnabled(mConfig->itemShadowEnabled());
@@ -143,16 +144,11 @@ void AnnotationPropertiesFactory::setTextProperties(const PropertiesPtr &propert
 	}
 }
 
-bool AnnotationPropertiesFactory::isMarkerTool(ToolTypes toolType) const
+void AnnotationPropertiesFactory::setObfuscateProperties(const PropertiesPtr &properties) const
 {
-	return toolType == ToolTypes::MarkerPen || toolType == ToolTypes::MarkerRect || toolType == ToolTypes::MarkerEllipse;
-}
-
-void AnnotationPropertiesFactory::setBlurProperties(const PropertiesPtr &properties) const
-{
-	auto blurProperties = properties.dynamicCast<AnnotationBlurProperties>();
-	if (blurProperties != nullptr) {
-		blurProperties->setRadius(mSettingsProvider->blurRadius());
+	auto obfuscateProperties = properties.dynamicCast<AnnotationObfuscateProperties>();
+	if (obfuscateProperties != nullptr) {
+		obfuscateProperties->setFactor(mSettingsProvider->obfuscationFactor());
 	}
 }
 
@@ -162,6 +158,16 @@ void AnnotationPropertiesFactory::setStickerProperties(const PropertiesPtr &prop
 	if (stickerProperties != nullptr) {
 		stickerProperties->setPath(mSettingsProvider->sticker());
 	}
+}
+
+bool AnnotationPropertiesFactory::isMarkerTool(ToolTypes toolType) const
+{
+	return toolType == ToolTypes::MarkerPen || toolType == ToolTypes::MarkerRect || toolType == ToolTypes::MarkerEllipse;
+}
+
+bool AnnotationPropertiesFactory::isObfuscateTool(const ToolTypes &toolType) const
+{
+	return toolType == ToolTypes::Blur || toolType == ToolTypes::Pixelate;
 }
 
 } // namespace kImageAnnotator

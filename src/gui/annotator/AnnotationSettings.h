@@ -30,7 +30,7 @@
 #include "src/widgets/StickerPicker.h"
 #include "src/backend/Config.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
-#include "src/annotations/properties/AnnotationBlurProperties.h"
+#include "src/annotations/properties/AnnotationObfuscateProperties.h"
 #include "src/annotations/items/AbstractAnnotationItem.h"
 #include "src/annotations/core/AbstractSettingsProvider.h"
 
@@ -50,7 +50,7 @@ public:
 	int toolWidth() const override;
 	int fontSize() const override;
 	FillTypes fillType() const override;
-	int blurRadius() const override;
+	int obfuscationFactor() const override;
 	QString sticker() const override;
 	void updateFirstBadgeNumber(int number) override;
 	void reloadConfig();
@@ -66,7 +66,7 @@ private:
 	NumberPicker *mFontSizePicker;
 	FillTypePicker *mFillTypePicker;
 	NumberPicker *mFirstNumberPicker;
-	NumberPicker *mBlurRadiusPicker;
+	NumberPicker *mObfuscateFactorPicker;
 	StickerPicker *mStickerPicker;
 	Config *mConfig;
 	WidgetConfigurator mWidgetConfigurator;
@@ -84,7 +84,7 @@ private slots:
 	void toolFontSizeChanged(int size);
 	void toolFillTypeChanged(FillTypes fill);
 	void saveFirstBadgeNumber(int size);
-	void blurRadiusChanged(int radius);
+	void obfuscateFactorChanged(int factor);
 	void stickerChanged(const QString &sticker);
 	void loadFromItem(const AbstractAnnotationItem *item);
 };

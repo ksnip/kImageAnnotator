@@ -44,7 +44,7 @@ public:
 	void setFontSize(int fontSize);
 	FillTypes fillType() const override;
 	void setFillType(FillTypes fillType);
-	int blurRadius() const override;
+	int obfuscationFactor() const override;
 	void setBlurRadius(int blurRadius);
 	QString sticker() const override;
 	void setSticker(const QString &stickerPath);

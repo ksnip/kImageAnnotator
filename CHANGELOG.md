@@ -1,6 +1,7 @@
 # Change log
 
 ## Release 0.4.0
+* New: Add Pixelate image area tool. ([#140](https://github.com/ksnip/kImageAnnotator/issues/140))
 * Changed: Draw point when clicking and releasing without moving cursor. ([#136](https://github.com/ksnip/kImageAnnotator/issues/136))
 
 ## Release 0.3.2

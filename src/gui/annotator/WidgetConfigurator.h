@@ -43,7 +43,7 @@ public:
 	void setFillTypeWidget(FillTypePicker *widget);
 	void setFontSizeWidget(NumberPicker *widget);
 	void setFirstNumberWidget(NumberPicker *widget);
-	void setBlurRadiusWidget(NumberPicker *widget);
+	void setObfuscateFactorWidget(NumberPicker *widget);
 	void setStickerWidget(StickerPicker *widget);
 
 private:
@@ -54,7 +54,7 @@ private:
 	FillTypePicker *mFillTypeWidget;
 	NumberPicker *mFontSizeWidget;
 	NumberPicker *mFirstNumberWidget;
-	NumberPicker *mBlurRadiusWidget;
+	NumberPicker *mObfuscateFactorWidget;
 	StickerPicker *mStickerWidget;
 
 	void updateWidgets() const;
@@ -67,7 +67,7 @@ private:
 	void setFontSizeWidgetVisible(bool enabled) const;
 	void setFirstNumberWidgetVisible(bool enabled) const;
 	void setNoFillAndNoBorderVisible(bool enabled) const;
-	void setBlurRadiusWidgetVisible(bool enabled) const;
+	void setObfuscateFactorWidgetVisible(bool enabled) const;
 	void setStickerWidgetVisible(bool enabled) const;
 };
 

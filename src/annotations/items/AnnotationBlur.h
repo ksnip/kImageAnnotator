@@ -20,33 +20,24 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONBLUR_H
 #define KIMAGEANNOTATOR_ANNOTATIONBLUR_H
 
-#include <QGraphicsScene>
-
-#include "AbstractAnnotationRect.h"
+#include "AbstractAnnotationObfuscate.h"
 #include "src/annotations/misc/ImageBlurrer.h"
-#include "src/annotations/properties/AnnotationBlurProperties.h"
 
 namespace kImageAnnotator {
 
-class AnnotationBlur : public AbstractAnnotationRect
+class AnnotationBlur : public AbstractAnnotationObfuscate
 {
 public:
-	AnnotationBlur(const QPointF &startPosition, const BlurPropertiesPtr &properties);
+	AnnotationBlur(const QPointF &startPosition, const ObfuscatePropertiesPtr &properties);
 	AnnotationBlur(const AnnotationBlur &other);
 	~AnnotationBlur() override = default;
 	ToolTypes toolType() const override;
-	BlurPropertiesPtr blurProperties() const;
 
 protected:
-	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
-	void updateShape() override;
+	QImage obfuscateBackground(const QImage &sceneBehindItem) const override;
 
 private:
 	ImageBlurrer mItemBlurrer;
-	QImage mBlurredImage;
-	bool mBlurUpdateRequired;
-
-	void updateBlurredImage();
 };
 
 } // namespace kImageAnnotator

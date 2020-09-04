@@ -95,8 +95,12 @@ void ToolPicker::initGui()
 	button = createButton(menu);
 	mLayout->addWidget(button, 2, 1);
 
+	menu = new QMenu();
 	action = createAction(tr("Blur"), IconLoader::load(QStringLiteral("blur.svg")), Qt::Key_B, ToolTypes::Blur);
-	button = createButton(action);
+	menu->addAction(action);
+	action = createAction(tr("Pixelate"), IconLoader::load(QStringLiteral("pixelate.svg")), Qt::Key_X, ToolTypes::Pixelate);
+	menu->addAction(action);
+	button = createButton(menu);
 	mLayout->addWidget(button, 3, 0);
 
 	menu = new QMenu();

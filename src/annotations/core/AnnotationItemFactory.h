@@ -24,6 +24,7 @@
 
 #include "AnnotationPropertiesFactory.h"
 #include "src/annotations/items/AnnotationPen.h"
+#include "src/annotations/items/AnnotationPixelate.h"
 #include "src/annotations/items/AnnotationLine.h"
 #include "src/annotations/items/AnnotationArrow.h"
 #include "src/annotations/items/AnnotationDoubleArrow.h"

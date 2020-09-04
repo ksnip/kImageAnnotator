@@ -26,7 +26,7 @@
 
 namespace kImageAnnotator {
 
-QImage ImageBlurrer::blurred(const QImage &image, int radius, bool alphaOnly)
+QImage ImageBlurrer::blurred(const QImage &image, int radius, bool alphaOnly) const
 {
 	auto alpha = getAlpha(radius);
 	auto result = image.convertToFormat(QImage::Format_ARGB32_Premultiplied);

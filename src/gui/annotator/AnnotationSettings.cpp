@@ -38,7 +38,7 @@ AnnotationSettings::~AnnotationSettings()
 	delete mFontSizePicker;
 	delete mFillTypePicker;
 	delete mFirstNumberPicker;
-	delete mBlurRadiusPicker;
+	delete mObfuscateFactorPicker;
 	delete mStickerPicker;
 	delete mToolLayout;
 }
@@ -62,9 +62,9 @@ void AnnotationSettings::loadFromItem(const AbstractAnnotationItem *item)
 	if(textProperties != nullptr) {
 		mFontSizePicker->setNumber(textProperties->font().pointSize());
 	}
-	auto blurProperties = properties.dynamicCast<AnnotationBlurProperties>();
-	if(blurProperties != nullptr) {
-		mBlurRadiusPicker->setNumber(blurProperties->radius());
+	auto obfuscateProperties = properties.dynamicCast<AnnotationObfuscateProperties>();
+	if(obfuscateProperties != nullptr) {
+		mObfuscateFactorPicker->setNumber(obfuscateProperties->factor());
 	}
 }
 
@@ -93,8 +93,8 @@ void AnnotationSettings::initGui()
 	mFillTypePicker = new FillTypePicker(IconLoader::load(QStringLiteral("fillType.svg")), tr("Border And Fill Visibility"));
 	mFirstNumberPicker = new NumberPicker(IconLoader::load(QStringLiteral("number.svg")), tr("Starting Number"));
 	mFirstNumberPicker->setRange(1, 100);
-	mBlurRadiusPicker = new NumberPicker(IconLoader::load(QStringLiteral("blur.svg")), tr("Blur Radius"));
-	mBlurRadiusPicker->setRange(1, 20);
+	mObfuscateFactorPicker = new NumberPicker(IconLoader::load(QStringLiteral("obfuscateFactor.svg")), tr("Obfuscation Factor"));
+	mObfuscateFactorPicker->setRange(1, 20);
 	mStickerPicker = new StickerPicker(IconLoader::load(QStringLiteral("sticker.svg")), tr("Sticker"));
 
 	mToolLayout->addWidget(mToolPicker);
@@ -106,7 +106,7 @@ void AnnotationSettings::initGui()
 	mMainLayout->addWidget(mFontSizePicker);
 	mMainLayout->addWidget(mFillTypePicker);
 	mMainLayout->addWidget(mFirstNumberPicker);
-	mMainLayout->addWidget(mBlurRadiusPicker);
+	mMainLayout->addWidget(mObfuscateFactorPicker);
 	mMainLayout->addWidget(mStickerPicker);
 	mMainLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 	mMainLayout->setContentsMargins(0, 0, 0, 0);
@@ -117,7 +117,7 @@ void AnnotationSettings::initGui()
 	mWidgetConfigurator.setFillTypeWidget(mFillTypePicker);
 	mWidgetConfigurator.setFontSizeWidget(mFontSizePicker);
 	mWidgetConfigurator.setFirstNumberWidget(mFirstNumberPicker);
-	mWidgetConfigurator.setBlurRadiusWidget(mBlurRadiusPicker);
+	mWidgetConfigurator.setObfuscateFactorWidget(mObfuscateFactorPicker);
 	mWidgetConfigurator.setStickerWidget(mStickerPicker);
 
 	setLayout(mMainLayout);
@@ -131,7 +131,7 @@ void AnnotationSettings::initGui()
 	connect(mFontSizePicker, &NumberPicker::numberSelected, this, &AnnotationSettings::toolFontSizeChanged);
 	connect(mFillTypePicker, &FillTypePicker::fillSelected, this, &AnnotationSettings::toolFillTypeChanged);
 	connect(mFirstNumberPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::saveFirstBadgeNumber);
-	connect(mBlurRadiusPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::blurRadiusChanged);
+	connect(mObfuscateFactorPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::obfuscateFactorChanged);
 	connect(mStickerPicker, &StickerPicker::stickerSelected, this, &AnnotationSettings::stickerChanged);
 }
 
@@ -148,7 +148,7 @@ void AnnotationSettings::loadFromConfig(ToolTypes tool)
 	mWidthPicker->setNumber(mConfig->toolWidth(tool));
 	mFillTypePicker->setFillType(mConfig->toolFillType(tool));
 	mFontSizePicker->setNumber(mConfig->toolFontSize(tool));
-	mBlurRadiusPicker->setNumber(mConfig->blurRadius());
+	mObfuscateFactorPicker->setNumber(mConfig->obfuscationFactor(tool));
 }
 
 void AnnotationSettings::toolTypeChanged(ToolTypes toolType)
@@ -211,12 +211,12 @@ void AnnotationSettings::saveFirstBadgeNumber(int number)
 	firstBadgeNumberChanged(number);
 }
 
-void AnnotationSettings::blurRadiusChanged(int radius)
+void AnnotationSettings::obfuscateFactorChanged(int factor)
 {
 	if(mEditExistingItem) {
 		emit itemSettingChanged();
 	} else {
-		mConfig->setBlurRadius(radius);
+		mConfig->setObfuscationFactor(factor, mToolPicker->tool());
 	}
 }
 
@@ -252,9 +252,9 @@ int AnnotationSettings::fontSize() const
 	return mFontSizePicker->number();
 }
 
-int AnnotationSettings::blurRadius() const
+int AnnotationSettings::obfuscationFactor() const
 {
-	return mBlurRadiusPicker->number();
+	return mObfuscateFactorPicker->number();
 }
 
 QString AnnotationSettings::sticker() const

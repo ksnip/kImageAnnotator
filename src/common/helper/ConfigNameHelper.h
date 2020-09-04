@@ -36,7 +36,7 @@ public:
 	static QString toolTextColor(ToolTypes tool);
 	static QString toolFillType(ToolTypes tool);
 	static QString toolFontSize(ToolTypes tool);
-	static QString blurRadius();
+	static QString obfuscateFactor(ToolTypes tool);
 };
 
 }
