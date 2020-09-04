@@ -214,7 +214,7 @@ void AnnotationSettings::saveFirstBadgeNumber(int number)
 void AnnotationSettings::obfuscateFactorChanged(int factor)
 {
 	if(mEditExistingItem) {
-		emit itemSettingChanged();
+		itemSettingChanged();
 	} else {
 		mConfig->setObfuscationFactor(factor, mToolPicker->tool());
 	}
@@ -223,7 +223,7 @@ void AnnotationSettings::obfuscateFactorChanged(int factor)
 void AnnotationSettings::stickerChanged(const QString &sticker)
 {
 	if(mEditExistingItem) {
-		emit itemSettingChanged();
+		itemSettingChanged();
 	}
 }
 

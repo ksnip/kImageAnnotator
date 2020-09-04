@@ -37,6 +37,12 @@ ObfuscatePropertiesPtr AbstractAnnotationObfuscate::obfuscateProperties() const
 	return AbstractAnnotationItem::properties().staticCast<AnnotationObfuscateProperties>();
 }
 
+void AbstractAnnotationObfuscate::setProperties(const PropertiesPtr &properties)
+{
+	AbstractAnnotationItem::setProperties(properties);
+	updateShape();
+}
+
 void AbstractAnnotationObfuscate::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
 	// We need to update the image here, otherwise the scene is not ready
