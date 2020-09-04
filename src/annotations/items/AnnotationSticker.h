@@ -36,7 +36,7 @@ public:
 	void addPoint(const QPointF &position, bool modified) override;
 	ToolTypes toolType() const override;
 	StickerPropertiesPtr stickerProperties() const;
-	void setProperties(const PropertiesPtr &properties) override ;
+	void setProperties(const PropertiesPtr &properties) override;
 
 protected:
 	void updateShape() override;

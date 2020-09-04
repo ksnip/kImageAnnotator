@@ -34,6 +34,7 @@ public:
 	AbstractAnnotationObfuscate(const AbstractAnnotationObfuscate &other);
 	~AbstractAnnotationObfuscate() override = default;
 	ObfuscatePropertiesPtr obfuscateProperties() const;
+	void setProperties(const PropertiesPtr &properties) override;
 
 protected:
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
