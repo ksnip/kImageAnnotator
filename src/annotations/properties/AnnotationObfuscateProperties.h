@@ -17,30 +17,30 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONBLURPROPERTIES_H
-#define KIMAGEANNOTATOR_ANNOTATIONBLURPROPERTIES_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONOBFUSCATEPROPERTIES_H
+#define KIMAGEANNOTATOR_ANNOTATIONOBFUSCATEPROPERTIES_H
 
 #include "AnnotationProperties.h"
 
 namespace kImageAnnotator {
 
-class AnnotationBlurProperties;
-typedef QSharedPointer<AnnotationBlurProperties> BlurPropertiesPtr;
+class AnnotationObfuscateProperties;
+typedef QSharedPointer<AnnotationObfuscateProperties> ObfuscatePropertiesPtr;
 
-class AnnotationBlurProperties : public AnnotationProperties
+class AnnotationObfuscateProperties : public AnnotationProperties
 {
 public:
-	AnnotationBlurProperties() = default;
-	AnnotationBlurProperties(const AnnotationBlurProperties &other);
-	~AnnotationBlurProperties() override = default;
+	AnnotationObfuscateProperties() = default;
+	AnnotationObfuscateProperties(const AnnotationObfuscateProperties &other);
+	~AnnotationObfuscateProperties() override = default;
 	PropertiesPtr clone() const override;
-	int radius() const;
-	void setRadius(int radius);
+	int factor() const;
+	void setFactor(int factor);
 
 private:
-	int mRadius;
+	int mFactor;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONBLURPROPERTIES_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONOBFUSCATEPROPERTIES_H

@@ -42,7 +42,7 @@ public:
 	virtual int toolWidth() const = 0;
 	virtual int fontSize() const = 0;
 	virtual FillTypes fillType() const = 0;
-	virtual int blurRadius() const = 0;
+	virtual int obfuscationFactor() const = 0;
 	virtual QString sticker() const = 0;
 	virtual void updateFirstBadgeNumber(int number) = 0;
 	void setActiveListener(ISettingsListener *settingsListener);

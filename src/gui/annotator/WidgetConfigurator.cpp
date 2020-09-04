@@ -28,7 +28,7 @@ WidgetConfigurator::WidgetConfigurator() :
 	mFillTypeWidget(nullptr),
 	mFontSizeWidget(nullptr),
 	mFirstNumberWidget(nullptr),
-	mBlurRadiusWidget(nullptr),
+	mObfuscateFactorWidget(nullptr),
 	mStickerWidget(nullptr)
 {
 	mCurrentTool = ToolTypes::Select;
@@ -80,9 +80,9 @@ void WidgetConfigurator::setFirstNumberWidget(NumberPicker *widget)
 	updateWidgets();
 }
 
-void WidgetConfigurator::setBlurRadiusWidget(NumberPicker *widget)
+void WidgetConfigurator::setObfuscateFactorWidget(NumberPicker *widget)
 {
-	mBlurRadiusWidget = widget;
+	mObfuscateFactorWidget = widget;
 	updateWidgets();
 }
 
@@ -121,7 +121,7 @@ void WidgetConfigurator::updateVisibility() const
 			setFillWidgetVisible(false);
 			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
-			setBlurRadiusWidgetVisible(false);
+			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Pen:
@@ -132,7 +132,7 @@ void WidgetConfigurator::updateVisibility() const
 			setFillWidgetVisible(false);
 			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
-			setBlurRadiusWidgetVisible(false);
+			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::MarkerRect:
@@ -143,7 +143,7 @@ void WidgetConfigurator::updateVisibility() const
 			setFillWidgetVisible(false);
 			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
-			setBlurRadiusWidgetVisible(false);
+			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Line:
@@ -155,7 +155,7 @@ void WidgetConfigurator::updateVisibility() const
 			setFillWidgetVisible(false);
 			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
-			setBlurRadiusWidgetVisible(false);
+			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Ellipse:
@@ -166,7 +166,7 @@ void WidgetConfigurator::updateVisibility() const
 			setFillWidgetVisible(true);
 			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
-			setBlurRadiusWidgetVisible(false);
+			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Number:
@@ -176,7 +176,7 @@ void WidgetConfigurator::updateVisibility() const
 			setFillWidgetVisible(true);
 			setFontSizeWidgetVisible(true);
 			setFirstNumberWidgetVisible(true);
-			setBlurRadiusWidgetVisible(false);
+			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::NumberPointer:
@@ -186,7 +186,7 @@ void WidgetConfigurator::updateVisibility() const
 			setFillWidgetVisible(false);
 			setFontSizeWidgetVisible(true);
 			setFirstNumberWidgetVisible(true);
-			setBlurRadiusWidgetVisible(false);
+			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Text:
@@ -196,17 +196,18 @@ void WidgetConfigurator::updateVisibility() const
 			setFillWidgetVisible(true);
 			setFontSizeWidgetVisible(true);
 			setFirstNumberWidgetVisible(false);
-			setBlurRadiusWidgetVisible(false);
+			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Blur:
+		case ToolTypes::Pixelate:
 			setColorWidgetVisible(false);
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(false);
 			setFillWidgetVisible(false);
 			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
-			setBlurRadiusWidgetVisible(true);
+			setObfuscateFactorWidgetVisible(true);
 			setStickerWidgetVisible(false);
 			break;
 		case ToolTypes::Sticker:
@@ -216,7 +217,7 @@ void WidgetConfigurator::updateVisibility() const
 			setFillWidgetVisible(false);
 			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
-			setBlurRadiusWidgetVisible(false);
+			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(true);
 			break;
 		default:
@@ -277,10 +278,10 @@ void WidgetConfigurator::setNoFillAndNoBorderVisible(bool enabled) const
 	}
 }
 
-void WidgetConfigurator::setBlurRadiusWidgetVisible(bool enabled) const
+void WidgetConfigurator::setObfuscateFactorWidgetVisible(bool enabled) const
 {
-	if (mBlurRadiusWidget) {
-		mBlurRadiusWidget->setVisible(enabled);
+	if (mObfuscateFactorWidget) {
+		mObfuscateFactorWidget->setVisible(enabled);
 	}
 }
 

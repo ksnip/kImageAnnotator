@@ -30,7 +30,7 @@ public:
 	explicit ImageBlurrer() = default;
 	~ImageBlurrer() = default;
 
-	QImage blurred(const QImage &image, int radius, bool alphaOnly);
+	QImage blurred(const QImage &image, int radius, bool alphaOnly) const;
 
 private:
 	int getAlpha(int radius) const;

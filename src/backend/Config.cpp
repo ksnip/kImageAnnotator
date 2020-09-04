@@ -37,6 +37,7 @@ Config::Config()
 		ToolTypes::NumberPointer,
 		ToolTypes::Text,
 		ToolTypes::Blur,
+		ToolTypes::Pixelate,
 		ToolTypes::Image
 	};
 	initGeneralSettings();
@@ -189,19 +190,19 @@ void Config::setSmoothFactor(int factor)
 	mSmoothFactor = factor;
 }
 
-int Config::blurRadius() const
+int Config::obfuscationFactor(ToolTypes toolType) const
 {
-	return mBlurRadius;
+	return mToolToObfuscationFactor[toolType];
 }
 
-void Config::setBlurRadius(int radius)
+void Config::setObfuscationFactor(int factor, ToolTypes toolType)
 {
-	if (blurRadius() == radius) {
+	if (obfuscationFactor(toolType) == factor) {
 		return;
 	}
 
-	mBlurRadius = radius;
-	saveBlurRadius(radius);
+	mToolToObfuscationFactor[toolType] = factor;
+	saveObfuscateFactor(toolType, factor);
 }
 
 // Private Methods
@@ -214,7 +215,7 @@ void Config::initToolSettings()
 	initToolWidths();
 	initToolFillTypes();
 	initToolFonts();
-	initBlurRadius();
+	initObfuscateFactor();
 }
 
 void Config::initSelectedTool()
@@ -257,9 +258,11 @@ void Config::initToolFonts()
 	mToolToFont[ToolTypes::NumberPointer] = QFont(QStringLiteral("Helvetica"), loadToolFontSize(ToolTypes::NumberPointer), QFont::Bold);
 }
 
-void Config::initBlurRadius()
+void Config::initObfuscateFactor()
 {
-	mBlurRadius = loadBlurRadius();
+	for (auto toolType : mAllTools) {
+		mToolToObfuscationFactor[toolType] = loadObfuscateFactor(toolType);
+	}
 }
 
 void Config::initGeneralSettings()
@@ -372,19 +375,19 @@ void Config::saveToolFontSize(ToolTypes toolType, int fontSize)
 	}
 }
 
-int Config::loadBlurRadius()
+int Config::loadObfuscateFactor(ToolTypes toolType)
 {
 	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::blurRadius(), defaultBlurRadius()).value<int>();
+		return mConfig.value(ConfigNameHelper::obfuscateFactor(toolType), defaultObfuscateFactor()).value<int>();
 	} else {
-		return defaultBlurRadius();
+		return defaultObfuscateFactor();
 	}
 }
 
-void Config::saveBlurRadius(int radius)
+void Config::saveObfuscateFactor(ToolTypes toolType, int radius)
 {
 	if (mSaveToolSelection) {
-		mConfig.setValue(ConfigNameHelper::blurRadius(), radius);
+		mConfig.setValue(ConfigNameHelper::obfuscateFactor(toolType), radius);
 		mConfig.sync();
 	}
 }
@@ -403,6 +406,7 @@ QColor Config::defaultToolColor(ToolTypes toolType) const
 		case ToolTypes::Text:
 			return { Qt::black };
 		case ToolTypes::Blur:
+		case ToolTypes::Pixelate:
 			return { Qt::white };
 		default:
 			return { Qt::red };
@@ -447,6 +451,7 @@ FillTypes Config::defaultToolFillType(ToolTypes toolType) const
 		case ToolTypes::Number:
 		case ToolTypes::NumberPointer:
 		case ToolTypes::Blur:
+		case ToolTypes::Pixelate:
 			return FillTypes::BorderAndFill;
 		case ToolTypes::MarkerRect:
 		case ToolTypes::MarkerEllipse:
@@ -475,7 +480,7 @@ int Config::defaultToolFontSize(ToolTypes toolType) const
 	}
 }
 
-int Config::defaultBlurRadius() const
+int Config::defaultObfuscateFactor() const
 {
 	return 10;
 }

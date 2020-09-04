@@ -1,9 +1,9 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,43 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_TOOLTYPES_H
-#define KIMAGEANNOTATOR_TOOLTYPES_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONPIXELATE_H
+#define KIMAGEANNOTATOR_ANNOTATIONPIXELATE_H
 
-#include <QMetaType>
+#include "AbstractAnnotationObfuscate.h"
 
 namespace kImageAnnotator {
 
-enum class ToolTypes
+class AnnotationPixelate : public AbstractAnnotationObfuscate
 {
-	Select,
-	Pen,
-	MarkerPen,
-	MarkerRect,
-	MarkerEllipse,
-	Line,
-	Arrow,
-	DoubleArrow,
-	Rect,
-	Ellipse,
-	Number,
-	NumberPointer,
-	Text,
-	Blur,
-	Image,
-	Sticker,
-	Pixelate
+public:
+	AnnotationPixelate(const QPointF &startPosition, const ObfuscatePropertiesPtr &properties);
+	AnnotationPixelate(const AnnotationPixelate &other);
+	~AnnotationPixelate() override = default;
+	ToolTypes toolType() const override;
+
+protected:
+	QImage obfuscateBackground(const QImage &sceneBehindItem) const override;
 };
-
-inline uint qHash(const ToolTypes &tool, uint seed)
-{
-	Q_UNUSED(seed)
-
-	return static_cast<uint>(tool);
-}
 
 } // namespace kImageAnnotator
 
-Q_DECLARE_METATYPE(kImageAnnotator::ToolTypes)
-
-#endif // KIMAGEANNOTATOR_TOOLTYPES_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONPIXELATE_H

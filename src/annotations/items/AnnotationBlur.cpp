@@ -21,11 +21,11 @@
 
 namespace kImageAnnotator {
 
-AnnotationBlur::AnnotationBlur(const QPointF &startPosition, const BlurPropertiesPtr &properties) : AbstractAnnotationRect(startPosition, properties)
+AnnotationBlur::AnnotationBlur(const QPointF &startPosition, const ObfuscatePropertiesPtr &properties) : AbstractAnnotationObfuscate(startPosition, properties)
 {
 }
 
-AnnotationBlur::AnnotationBlur(const AnnotationBlur &other) : AbstractAnnotationRect(other)
+AnnotationBlur::AnnotationBlur(const AnnotationBlur &other) : AbstractAnnotationObfuscate(other)
 {
 }
 
@@ -34,47 +34,9 @@ ToolTypes AnnotationBlur::toolType() const
 	return ToolTypes::Blur;
 }
 
-void AnnotationBlur::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+QImage AnnotationBlur::obfuscateBackground(const QImage &sceneBehindItem) const
 {
-	// We need to update the image here, otherwise the scene is not ready
-	// to be painted and we only draw the background
-	if (mBlurUpdateRequired) {
-		updateBlurredImage();
-		mBlurUpdateRequired = false;
-	}
-
-	painter->drawImage(mRect->normalized(), mBlurredImage);
-}
-
-void AnnotationBlur::updateShape()
-{
-	mBlurUpdateRequired = true;
-
-	QPainterPath path;
-	path.addRect(*mRect);
-	setShape(path);
-}
-
-void AnnotationBlur::updateBlurredImage()
-{
-	auto parentScene = scene();
-	if (parentScene != nullptr) {
-		auto sceneSize = parentScene->sceneRect().size().toSize();
-		QImage image(sceneSize, QImage::Format_ARGB32_Premultiplied);
-		image.fill(Qt::transparent);
-
-		QPainter imagePainter(&image);
-		parentScene->render(&imagePainter);
-
-		auto itemRect = mRect->normalized().toRect();
-		auto sceneBehindItem = image.copy(itemRect);
-		mBlurredImage = mItemBlurrer.blurred(sceneBehindItem, blurProperties()->radius(), false);
-	}
-}
-
-BlurPropertiesPtr AnnotationBlur::blurProperties() const
-{
-	return AbstractAnnotationItem::properties().staticCast<AnnotationBlurProperties>();
+	return mItemBlurrer.blurred(sceneBehindItem, obfuscateProperties()->factor(), false);
 }
 
 } // namespace kImageAnnotator

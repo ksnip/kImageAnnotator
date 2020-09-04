@@ -24,7 +24,8 @@ namespace kImageAnnotator {
 AnnotationItemFactory::AnnotationItemFactory(AnnotationPropertiesFactory *propertiesFactory, AbstractSettingsProvider *settingsProvider) :
 	mPropertiesFactory(propertiesFactory),
 	mSettingsProvider(settingsProvider),
-	mNumberManager(new NumberManager)
+	mNumberManager(new NumberManager),
+	mNextZValue(1)
 {
 	Q_ASSERT(mSettingsProvider != nullptr);
 
@@ -128,7 +129,10 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 			newItem = new AnnotationText(initPosition, properties.staticCast<AnnotationTextProperties>());
 			break;
 		case ToolTypes::Blur:
-			newItem = new AnnotationBlur(initPosition, properties.staticCast<AnnotationBlurProperties>());
+			newItem = new AnnotationBlur(initPosition, properties.staticCast<AnnotationObfuscateProperties>());
+			break;
+		case ToolTypes::Pixelate:
+			newItem = new AnnotationPixelate(initPosition, properties.staticCast<AnnotationObfuscateProperties>());
 			break;
 		case ToolTypes::Sticker:
 			newItem = new AnnotationSticker(initPosition, properties.staticCast<AnnotationStickerProperties>());
@@ -186,6 +190,9 @@ AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotatio
 			break;
 		case ToolTypes::Blur:
 			newItem = new AnnotationBlur(*(dynamic_cast<const AnnotationBlur *>(item)));
+			break;
+		case ToolTypes::Pixelate:
+			newItem = new AnnotationPixelate(*(dynamic_cast<const AnnotationPixelate *>(item)));
 			break;
 		case ToolTypes::Image:
 			newItem = new AnnotationImage(*(dynamic_cast<const AnnotationImage *>(item)));

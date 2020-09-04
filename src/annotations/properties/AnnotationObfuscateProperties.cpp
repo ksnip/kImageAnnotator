@@ -17,28 +17,30 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationBlurProperties.h"
+#include "AnnotationObfuscateProperties.h"
 
 namespace kImageAnnotator {
 
-AnnotationBlurProperties::AnnotationBlurProperties(const AnnotationBlurProperties &other) : AnnotationProperties(other)
+AnnotationObfuscateProperties::AnnotationObfuscateProperties(const AnnotationObfuscateProperties &other) :
+	AnnotationProperties(other),
+	mFactor(1)
 {
-	mRadius = other.mRadius;
+	mFactor = other.mFactor;
 }
 
-PropertiesPtr AnnotationBlurProperties::clone() const
+PropertiesPtr AnnotationObfuscateProperties::clone() const
 {
-	return PropertiesPtr(new AnnotationBlurProperties(*this));
+	return PropertiesPtr(new AnnotationObfuscateProperties(*this));
 }
 
-int AnnotationBlurProperties::radius() const
+int AnnotationObfuscateProperties::factor() const
 {
-	return mRadius;
+	return mFactor;
 }
 
-void AnnotationBlurProperties::setRadius(int radius)
+void AnnotationObfuscateProperties::setFactor(int factor)
 {
-	mRadius = radius;
+	mFactor = factor;
 }
 
 } // namespace kImageAnnotator

@@ -74,8 +74,8 @@ public slots:
 	int smoothFactor() const;
 	void setSmoothFactor(int factor);
 
-	int blurRadius() const;
-	void setBlurRadius(int radius);
+	int obfuscationFactor(ToolTypes toolType) const;
+	void setObfuscationFactor(int factor, ToolTypes toolType);
 
 private:
 	QSettings mConfig;
@@ -86,11 +86,11 @@ private:
 	QHash<ToolTypes, int> mToolToWidth;
 	QHash<ToolTypes, FillTypes> mToolToFillType;
 	QHash<ToolTypes, QFont> mToolToFont;
+	QHash<ToolTypes, int> mToolToObfuscationFactor;
 	bool mItemShadowEnabled;
 	bool mSmoothPathEnabled;
 	bool mSaveToolSelection;
 	int mSmoothFactor;
-	int mBlurRadius;
 
 	void initToolSettings();
 	void initSelectedTool();
@@ -99,7 +99,7 @@ private:
 	void initToolWidths();
 	void initToolFillTypes();
 	void initToolFonts();
-	void initBlurRadius();
+	void initObfuscateFactor();
 	void initGeneralSettings();
 
 	QColor loadToolColor(ToolTypes toolType);
@@ -114,8 +114,8 @@ private:
 	void saveToolType(ToolTypes toolType);
 	int loadToolFontSize(ToolTypes toolType);
 	void saveToolFontSize(ToolTypes toolType, int fontSize);
-	int loadBlurRadius();
-	void saveBlurRadius(int radius);
+	int loadObfuscateFactor(ToolTypes toolType);
+	void saveObfuscateFactor(ToolTypes toolType, int radius);
 
 	QColor defaultToolColor(ToolTypes toolType) const;
 	QColor defaultToolTextColor(ToolTypes toolType) const;
@@ -123,7 +123,7 @@ private:
 	FillTypes defaultToolFillType(ToolTypes toolType) const;
 	ToolTypes defaultToolType();
 	int defaultToolFontSize(ToolTypes toolType) const;
-	int defaultBlurRadius() const;
+	int defaultObfuscateFactor() const;
 };
 
 } // namespace kImageAnnotator

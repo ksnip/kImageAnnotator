@@ -59,7 +59,7 @@ FillTypes MockSettingsProvider::fillType() const
 	return mFillType;
 }
 
-int MockSettingsProvider::blurRadius() const
+int MockSettingsProvider::obfuscationFactor() const
 {
 	return mBlurRadius;
 }

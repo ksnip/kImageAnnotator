@@ -25,7 +25,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationPathProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationTextProperties.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationBlurProperties.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationObfuscateProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationStickerProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/AnnotationItemModifier.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/AnnotationItemResizer.cpp
@@ -42,6 +42,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/resizeHandles/ResizeHandlesFactory.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationItem.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationLine.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationObfuscate.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationRect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationPath.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationLine.cpp
@@ -52,6 +53,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationNumber.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationNumberPointer.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationPen.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationPixelate.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationText.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationBlur.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationImage.cpp
