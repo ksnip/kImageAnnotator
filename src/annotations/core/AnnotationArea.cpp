@@ -19,8 +19,6 @@
 
 #include "AnnotationArea.h"
 
-#include "src/annotations/core/AbstractCamera.h"
-
 namespace kImageAnnotator {
 
 AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider, IDevicePixelRatioScaler *devicePixelRatioScaler, AbstractCamera *camera) :

@@ -26,7 +26,6 @@
 #include <QPainter>
 #include <QMenu>
 #include <QUndoStack>
-#include <src/gui/annotator/AnnotationSettings.h>
 
 #include "AnnotationItemFactory.h"
 #include "AbstractSettingsProvider.h"
@@ -34,6 +33,7 @@
 #include "src/annotations/modifiers/AnnotationItemModifier.h"
 #include "src/annotations/modifiers/AnnotationItemArranger.h"
 #include "src/annotations/misc/AnnotationItemClipboard.h"
+#include "src/annotations/misc/AnnotationContextMenu.h"
 #include "src/backend/Config.h"
 #include "src/common/enum/ToolTypes.h"
 #include "src/common/helper/CursorHelper.h"
@@ -45,11 +45,9 @@
 #include "src/annotations/undo/ScaleCommand.h"
 #include "src/annotations/undo/PasteCommand.h"
 #include "src/annotations/undo/ChangePropertiesCommand.h"
-#include "src/annotations/misc/AnnotationContextMenu.h"
+#include "src/annotations/core/AbstractCamera.h"
 
 namespace kImageAnnotator {
-
-class AbstractCamera;
 
 class AnnotationArea : public QGraphicsScene, public ISettingsListener
 {

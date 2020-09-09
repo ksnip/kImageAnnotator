@@ -27,18 +27,15 @@ namespace kImageAnnotator {
 class AbstractCamera : public QObject
 {
 	Q_OBJECT
-
 public:
-	explicit AbstractCamera(QObject *parent = nullptr) : QObject(parent)
-	{}
-	virtual ~AbstractCamera() = default;
-
+	explicit AbstractCamera(QObject *parent = nullptr);
+	~AbstractCamera() override = default;
 	virtual double zoomValue() const = 0;
 
 signals:
 	void zoomValueChanged(double value);
 };
 
-}
+}  // namespace kImageAnnotator
 
 #endif // KIMAGEANNOTATOR_ABSTRACTCAMERA_H

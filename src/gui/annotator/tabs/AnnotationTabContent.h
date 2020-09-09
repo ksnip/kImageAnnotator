@@ -27,6 +27,7 @@
 #include "src/gui/annotator/AnnotationSettings.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/common/provider/DevicePixelRatioScaler.h"
+#include "src/gui/annotator/AnnotationViewCamera.h"
 
 namespace kImageAnnotator {
 

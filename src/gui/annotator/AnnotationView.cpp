@@ -19,9 +19,6 @@
 
 #include "AnnotationView.h"
 
-#include "src/annotations/core/AnnotationArea.h"
-#include "src/gui/annotator/AnnotationViewCamera.h"
-
 namespace kImageAnnotator {
 
 AnnotationView::AnnotationView(QWidget *parent) : QGraphicsView(parent), mCamera(new AnnotationViewCamera(this))

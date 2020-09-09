@@ -26,10 +26,10 @@
 #include <QGuiApplication>
 
 #include "src/common/helper/KeyHelper.h"
+#include "src/annotations/core/AnnotationArea.h"
+#include "src/gui/annotator/AnnotationViewCamera.h"
 
 namespace kImageAnnotator {
-
-class AnnotationViewCamera;
 
 class AnnotationView : public QGraphicsView
 {

@@ -17,31 +17,14 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationTabContent.h"
+#include "AbstractCamera.h"
 
 namespace kImageAnnotator {
 
-AnnotationTabContent::AnnotationTabContent(const QPixmap &pixmap, Config *config, AbstractSettingsProvider *settingsProvider) :
-	mAnnotationView(new AnnotationView(this)),
-	mAnnotationArea(new AnnotationArea(config, settingsProvider, new DevicePixelRatioScaler, mAnnotationView->camera())),
-	mMainLayout(new QHBoxLayout(this))
+kImageAnnotator::AbstractCamera::AbstractCamera(QObject *parent)
+	: QObject(parent)
 {
-	mAnnotationView->setScene(mAnnotationArea);
-	mAnnotationArea->loadImage(pixmap);
-	mMainLayout->addWidget(mAnnotationView);
-	setLayout(mMainLayout);
+
 }
 
-AnnotationTabContent::~AnnotationTabContent()
-{
-	delete mMainLayout;
-	delete mAnnotationArea;
-	delete mAnnotationView;
-}
-
-AnnotationArea* AnnotationTabContent::annotationArea() const
-{
-	return mAnnotationArea;
-}
-
-} // namespace kImageAnnotator
+}  // namespace kImageAnnotator

@@ -19,8 +19,6 @@
 
 #include "AnnotationItemResizer.h"
 
-#include "src/annotations/core/AbstractCamera.h"
-
 namespace kImageAnnotator {
 
 AnnotationItemResizer::AnnotationItemResizer(AbstractAnnotationItem *item, AbstractCamera *camera)

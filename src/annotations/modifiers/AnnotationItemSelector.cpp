@@ -19,8 +19,6 @@
 
 #include "AnnotationItemSelector.h"
 
-#include "src/annotations/core/AbstractCamera.h"
-
 namespace kImageAnnotator {
 
 AnnotationItemSelector::AnnotationItemSelector(AbstractCamera *camera)

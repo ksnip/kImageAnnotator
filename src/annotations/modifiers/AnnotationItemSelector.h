@@ -24,10 +24,9 @@
 
 #include "src/annotations/items/AbstractAnnotationItem.h"
 #include "src/annotations/items/AbstractAnnotationLine.h"
+#include "src/annotations/core/AbstractCamera.h"
 
 namespace kImageAnnotator {
-
-class AbstractCamera;
 
 class AnnotationItemSelector : public QGraphicsWidget
 {
@@ -46,7 +45,7 @@ public:
 	void update();
 
 protected:
-	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) override;
+	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
 	QRectF mSelectionRect;

@@ -24,10 +24,9 @@
 
 #include "resizeHandles/ResizeHandlesFactory.h"
 #include "src/annotations/undo/ResizeCommand.h"
+#include "src/annotations/core/AbstractCamera.h"
 
 namespace kImageAnnotator {
-
-class AbstractCamera;
 
 class AnnotationItemResizer : public QGraphicsWidget
 {
@@ -49,7 +48,7 @@ signals:
     void newCommand(ResizeCommand *resize) const;
 
 protected:
-    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) override;
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
     AbstractItemResizeHandles *mResizeHandles;
