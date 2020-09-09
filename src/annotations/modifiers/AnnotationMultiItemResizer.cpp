@@ -21,9 +21,9 @@
 
 namespace kImageAnnotator {
 
-AnnotationMultiItemResizer::AnnotationMultiItemResizer(AbstractCamera *camera)
+AnnotationMultiItemResizer::AnnotationMultiItemResizer(ZoomValueProvider *zoomValueProvider)
 {
-    mCamera = camera;
+	mZoomValueProvider = zoomValueProvider;
     mCurrentResizer = nullptr;
 }
 
@@ -36,7 +36,7 @@ QRectF AnnotationMultiItemResizer::boundingRect() const
     return rect;
 }
 
-void AnnotationMultiItemResizer::attachTo(QList<AbstractAnnotationItem *> items)
+void AnnotationMultiItemResizer::attachTo(const QList<AbstractAnnotationItem *>& items)
 {
     detach();
     for (auto item : items) {
@@ -154,7 +154,7 @@ void AnnotationMultiItemResizer::showCurrentResizer()
 AnnotationItemResizer *AnnotationMultiItemResizer::getResizerForItem(AbstractAnnotationItem *item)
 {
     if (!mItemToResizer.contains(item)) {
-        mItemToResizer[item] = new AnnotationItemResizer(item, mCamera);
+        mItemToResizer[item] = new AnnotationItemResizer(item, mZoomValueProvider);
         connect(mItemToResizer[item], &AnnotationItemResizer::newCommand, this, &AnnotationMultiItemResizer::newCommand);
     }
 

@@ -19,7 +19,7 @@
 
 #include "AnnotationItemSelectorTest.h"
 
-#include "tests/mocks/MockCamera.h"
+#include "tests/mocks/MockZoomValueProvider.h"
 
 void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_SelectItem_When_ItemUnderProvidedPosition()
 {
@@ -30,8 +30,8 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_SelectItem_Whe
 	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 
 	selector.handleSelectionOrShowSelectionRectAt(p1 + QPointF(0, 5), &items, false);
 
@@ -49,8 +49,8 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_NotSelectItem_
 	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 
 	selector.handleSelectionOrShowSelectionRectAt(p1 + QPointF(0, -5), &items, false);
 
@@ -74,8 +74,8 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_UnselectAllIte
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 	selector.handleSelectionOrShowSelectionRectAt(p1 + QPointF(-5, -5), &items, false);
 	selector.extendSelectionRectWhenShown(p4 + QPointF(5, 5));
 	selector.finishSelectionRectWhenShown(&items);
@@ -102,8 +102,8 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_NotUnselectAny
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 	selector.handleSelectionOrShowSelectionRectAt(p1 + QPointF(-5, -5), &items, false);
 	selector.extendSelectionRectWhenShown(p4 + QPointF(5, 5));
 	selector.finishSelectionRectWhenShown(&items);
@@ -130,8 +130,8 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_UnselectItemsN
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 	selector.handleSelectionOrShowSelectionRectAt(p1 + QPointF(-5, -5), &items, false);
 	selector.extendSelectionRectWhenShown(p2 + QPointF(1, 1));
 	selector.finishSelectionRectWhenShown(&items);
@@ -156,8 +156,8 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_NotShowRect_Wh
 	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 
 	selector.handleSelectionOrShowSelectionRectAt(QPointF(2, 2), &items, false);
 
@@ -174,8 +174,8 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_ShowRect_When_
 	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 
 	selector.handleSelectionOrShowSelectionRectAt(p1 + QPointF(0, 5), &items, false);
 
@@ -192,8 +192,8 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_UnselectItem_W
 	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 	selector.handleSelectionOrShowSelectionRectAt(p1, &items, false);
 	QCOMPARE(selector.selectedItems().first(), &line);
 
@@ -212,8 +212,8 @@ void AnnotationItemSelectorTest::TestHandleSelectionRectAt_Should_SelectItem_Whe
 	line.addPoint(p2, false);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 	QCOMPARE(selector.selectedItems().count(), 0);
 
 	selector.handleSelectionOrShowSelectionRectAt(p1, &items, true);
@@ -238,8 +238,8 @@ void AnnotationItemSelectorTest::TestFinishSelectionRectWhenShown_Should_SelectI
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 
 	selector.handleSelectionOrShowSelectionRectAt(p1 + QPointF(-5, -5), &items, false);
 	selector.extendSelectionRectWhenShown(p4 + QPointF(5, 5));
@@ -266,8 +266,8 @@ void AnnotationItemSelectorTest::TestFinishSelectionRectWhenShown_Should_SelectO
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 
 	selector.handleSelectionOrShowSelectionRectAt(p1 + QPointF(-5, -5), &items, false);
 	selector.extendSelectionRectWhenShown(p2 + QPointF(5, 5));
@@ -294,8 +294,8 @@ void AnnotationItemSelectorTest::TestClearSelection_Should_UnselectAllSelectedIt
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 	selector.handleSelectionOrShowSelectionRectAt(p1 + QPointF(-5, -5), &items, false);
 	selector.extendSelectionRectWhenShown(p4 + QPointF(5, 5));
 	selector.finishSelectionRectWhenShown(&items);
@@ -324,8 +324,8 @@ void AnnotationItemSelectorTest::TestBoundRect_Should_ReturnRectCoveringSelected
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 	selector.handleSelectionOrShowSelectionRectAt(p1 + QPointF(-5, -5), &items, false);
 	selector.extendSelectionRectWhenShown(p4);
 	selector.finishSelectionRectWhenShown(&items);
@@ -355,8 +355,8 @@ void AnnotationItemSelectorTest::TestRefresh_Should_UpdateBoundingRect_When_Call
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 	selector.handleSelectionOrShowSelectionRectAt(p1 + QPointF(-5, -5), &items, false);
 	selector.extendSelectionRectWhenShown(p4);
 	selector.finishSelectionRectWhenShown(&items);
@@ -388,8 +388,8 @@ void AnnotationItemSelectorTest::TestUpdate_Should_UnselectItemsThatAreNotVisibl
 	QList<AbstractAnnotationItem *> items;
 	items.append(&line1);
 	items.append(&line2);
-	MockCamera camera;
-	AnnotationItemSelector selector(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemSelector selector(&zoomValueProvider);
 	selector.handleSelectionOrShowSelectionRectAt(QPointF(0, 0), &items, false);
 	selector.extendSelectionRectWhenShown(p4);
 	selector.finishSelectionRectWhenShown(&items);

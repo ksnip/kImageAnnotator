@@ -19,24 +19,12 @@
 
 #include "AnnotationAreaTest.h"
 
-#include "src/annotations/core/AnnotationArea.h"
-#include "src/annotations/items/AnnotationLine.h"
-#include "src/annotations/modifiers/resizeHandles/ResizeHandle.h"
-#include "tests/mocks/MockDefaultParameters.h"
-
-using kImageAnnotator::AnnotationArea;
-using kImageAnnotator::AnnotationLine;
-using kImageAnnotator::AnnotationProperties;
-using kImageAnnotator::Config;
-using kImageAnnotator::PropertiesPtr;
-using kImageAnnotator::ResizeHandle;
-
 void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
 {
 	QPixmap pixmap(QSize(400, 400));
 	pixmap.fill(QColor(QStringLiteral("Green")));
-	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	MockAnnotationAreaParameters parameters;
+	AnnotationArea annotationArea(&parameters.config, &parameters.provider, &parameters.scaler, &parameters.zoomValueProvider);
 	annotationArea.loadImage(pixmap);
 
 	auto resultImage = annotationArea.image();
@@ -48,7 +36,7 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
 void AnnotationAreaTest::TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 
 	auto resultImage = annotationArea.image();
 
@@ -62,7 +50,7 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportScaledImage_When_Scaling
 	pixmap.fill(QColor(QStringLiteral("Green")));
 	MockAnnotationAreaParameters p;
 	p.scaler.setScaleFactor(scaleFactor);
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	annotationArea.loadImage(pixmap);
 
 	auto resultImage = annotationArea.image();
@@ -80,7 +68,7 @@ void AnnotationAreaTest::TestAddAnnotationItem_Should_AddAnnotationItemToScene()
 	auto lineItem = new AnnotationLine(p1, properties);
 	lineItem->addPoint(p2, false);
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 
 	annotationArea.addAnnotationItem(lineItem);
 
@@ -95,7 +83,7 @@ void AnnotationAreaTest::TestRemoveAnnotationItem_Should_RemoveAnnotationItemFro
 	auto lineItem = new AnnotationLine(p1, properties);
 	lineItem->addPoint(p2, false);
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	annotationArea.addAnnotationItem(lineItem);
 	QCOMPARE(annotationArea.items().contains(lineItem), true);
 

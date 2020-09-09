@@ -29,7 +29,7 @@ using kImageAnnotator::CropSelectionHandler;
 void CropSelectionHandlerTest::TestSetWidth_Should_EmitSelectionChangedSignal()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	CropSelectionHandler selectionHandler;
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
@@ -42,7 +42,7 @@ void CropSelectionHandlerTest::TestSetWidth_Should_EmitSelectionChangedSignal()
 void CropSelectionHandlerTest::TestSetHeight_Should_EmitSelectionChangedSignal()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	CropSelectionHandler selectionHandler;
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
@@ -55,7 +55,7 @@ void CropSelectionHandlerTest::TestSetHeight_Should_EmitSelectionChangedSignal()
 void CropSelectionHandlerTest::TestSetPositionX_Should_EmitSelectionChangedSignal()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	CropSelectionHandler selectionHandler;
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
@@ -68,7 +68,7 @@ void CropSelectionHandlerTest::TestSetPositionX_Should_EmitSelectionChangedSigna
 void CropSelectionHandlerTest::TestSetPositionY_Should_EmitSelectionChangedSignal()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	CropSelectionHandler selectionHandler;
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &CropSelectionHandler::selectionChanged);
@@ -81,7 +81,7 @@ void CropSelectionHandlerTest::TestSetPositionY_Should_EmitSelectionChangedSigna
 void CropSelectionHandlerTest::TestResetSelection_Should_SetSelectionToSceneRect()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	annotationArea.setSceneRect(sceneRect);
 	CropSelectionHandler selectionHandler;
@@ -97,7 +97,7 @@ void CropSelectionHandlerTest::TestResetSelection_Should_SetSelectionToSceneRect
 void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnSelection()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(150, 150);
 	annotationArea.setSceneRect(sceneRect);
@@ -113,7 +113,7 @@ void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnSel
 void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnHandle()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(2, 2);
 	annotationArea.setSceneRect(sceneRect);
@@ -129,7 +129,7 @@ void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnHan
 void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnFalse_WhenClickedOutsideSelectionAndHandle()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(400, 400);
 	annotationArea.setSceneRect(sceneRect);
@@ -146,7 +146,7 @@ void CropSelectionHandlerTest::TestIsInMotion_Should_ReturnFalse_WhenClickedOuts
 void CropSelectionHandlerTest::TestSelectionHandles_Should_ReturnEightItems()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	CropSelectionHandler selectionHandler;
 	selectionHandler.init(&annotationArea);
 

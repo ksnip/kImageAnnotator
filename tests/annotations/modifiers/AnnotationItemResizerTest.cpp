@@ -19,7 +19,7 @@
 
 #include "AnnotationItemResizerTest.h"
 
-#include "tests/mocks/MockCamera.h"
+#include "tests/mocks/MockZoomValueProvider.h"
 
 void AnnotationItemResizerTest::TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition()
 {
@@ -28,8 +28,8 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_GrabHandle_When_ProvidedPo
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
 	lineItem.addPoint(p2, false);
-	MockCamera camera;
-	AnnotationItemResizer itemResizer(&lineItem, &camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemResizer itemResizer(&lineItem, &zoomValueProvider);
 
 	itemResizer.grabHandle(p1 + QPointF(2, 2));
 
@@ -44,8 +44,8 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_NotGrabHandle_When_Provide
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
 	lineItem.addPoint(p2, false);
-	MockCamera camera;
-	AnnotationItemResizer itemResizer(&lineItem, &camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemResizer itemResizer(&lineItem, &zoomValueProvider);
 
 	itemResizer.grabHandle(QPointF(0, 0));
 
@@ -61,8 +61,8 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_MoveResizeHandle_When_Hand
 	QPointF p3(30, 30);
 	AnnotationLine lineItem(p1, properties);
 	lineItem.addPoint(p2, false);
-	MockCamera camera;
-	AnnotationItemResizer itemResizer(&lineItem, &camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemResizer itemResizer(&lineItem, &zoomValueProvider);
 	QUndoStack undoStack;
 	connect(&itemResizer, &AnnotationItemResizer::newCommand, &undoStack, &QUndoStack::push);
 
@@ -79,8 +79,8 @@ void AnnotationItemResizerTest::TestReleaseHandle_Should_ReleaseHandle()
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
 	lineItem.addPoint(p2, false);
-	MockCamera camera;
-	AnnotationItemResizer itemResizer(&lineItem, &camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemResizer itemResizer(&lineItem, &zoomValueProvider);
 	itemResizer.grabHandle(p1);
 	QCOMPARE(itemResizer.isResizing(), true);
 
@@ -96,8 +96,8 @@ void AnnotationItemResizerTest::TestIsItemVisible_Should_ReturnFalse_When_ItemIs
 	QPointF p2(20, 20);
 	AnnotationLine lineItem(p1, properties);
 	lineItem.addPoint(p2, false);
-	MockCamera camera;
-	AnnotationItemResizer itemResizer(&lineItem, &camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemResizer itemResizer(&lineItem, &zoomValueProvider);
 	lineItem.hide();
 
 	auto result = itemResizer.isItemVisible();

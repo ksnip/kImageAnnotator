@@ -20,7 +20,7 @@
 #ifndef KIMAGEANNOTATOR_MOCKDEFAULTPARAMETERS_H
 #define KIMAGEANNOTATOR_MOCKDEFAULTPARAMETERS_H
 
-#include "MockCamera.h"
+#include "MockZoomValueProvider.h"
 #include "MockSettingsProvider.h"
 #include "MockDevicePixelRatioScaler.h"
 
@@ -33,7 +33,7 @@ struct MockAnnotationAreaParameters
     Config config;
     MockSettingsProvider provider;
     MockDevicePixelRatioScaler scaler;
-    MockCamera camera;
+    MockZoomValueProvider zoomValueProvider;
 };
 
 #endif // KIMAGEANNOTATOR_MOCKDEFAULTPARAMETERS_H

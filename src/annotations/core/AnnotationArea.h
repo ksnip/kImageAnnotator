@@ -45,7 +45,7 @@
 #include "src/annotations/undo/ScaleCommand.h"
 #include "src/annotations/undo/PasteCommand.h"
 #include "src/annotations/undo/ChangePropertiesCommand.h"
-#include "src/annotations/core/AbstractCamera.h"
+#include "src/annotations/core/ZoomValueProvider.h"
 
 namespace kImageAnnotator {
 
@@ -53,7 +53,7 @@ class AnnotationArea : public QGraphicsScene, public ISettingsListener
 {
     Q_OBJECT
 public:
-    explicit AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider, IDevicePixelRatioScaler *devicePixelRatioScaler, AbstractCamera *camera);
+    explicit AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider, IDevicePixelRatioScaler *devicePixelRatioScaler, ZoomValueProvider *zoomValueProvider);
     ~AnnotationArea() override;
     virtual void loadImage(const QPixmap &image);
     virtual void insertImageItem(const QPointF &position, const QPixmap &image);

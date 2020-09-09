@@ -22,10 +22,21 @@
 
 #include <QtTest>
 
+#include "src/annotations/core/AnnotationArea.h"
+#include "src/annotations/items/AnnotationLine.h"
+#include "src/annotations/modifiers/resizeHandles/ResizeHandle.h"
+#include "tests/mocks/MockDefaultParameters.h"
+
+using kImageAnnotator::AnnotationArea;
+using kImageAnnotator::AnnotationLine;
+using kImageAnnotator::AnnotationProperties;
+using kImageAnnotator::Config;
+using kImageAnnotator::PropertiesPtr;
+using kImageAnnotator::ResizeHandle;
+
 class AnnotationAreaTest : public QObject
 {
 Q_OBJECT
-
 private slots:
 	void TestExportAsImage_Should_ExportImage_When_ImageSet();
 	void TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet();

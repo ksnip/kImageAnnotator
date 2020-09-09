@@ -43,7 +43,7 @@ set(UNITTEST_SRC
 	)
 
 set(TESTUTILS_SRC
-	mocks/MockCamera.cpp
+        mocks/MockZoomValueProvider.cpp
 	mocks/MockSettingsProvider.cpp
 	mocks/MockDevicePixelRatioScaler.cpp
 	mocks/MockDefaultParameters.h

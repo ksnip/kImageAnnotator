@@ -21,13 +21,13 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemResizer::AnnotationItemResizer(AbstractAnnotationItem *item, AbstractCamera *camera)
+AnnotationItemResizer::AnnotationItemResizer(AbstractAnnotationItem *item, ZoomValueProvider *zoomValueProvider)
 {
     mAnnotationItem = item;
-    mCamera = camera;
+	mZoomValueProvider = zoomValueProvider;
     mCurrentHandle = -1;
-    mResizeHandles = ResizeHandlesFactory::createResizeHandles(item, camera->zoomValue());
-    connect(camera, &AbstractCamera::zoomValueChanged, this, &AnnotationItemResizer::applyZoomValue);
+    mResizeHandles = ResizeHandlesFactory::createResizeHandles(item, zoomValueProvider->zoomValue());
+    connect(zoomValueProvider, &ZoomValueProvider::zoomValueChanged, this, &AnnotationItemResizer::applyZoomValue);
     prepareGeometryChange();
 }
 
@@ -91,7 +91,7 @@ Qt::CursorShape AnnotationItemResizer::cursorForCurrentHandle()
 
 void AnnotationItemResizer::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->setPen(QPen(Qt::white, 1.0 / mCamera->zoomValue()));
+    painter->setPen(QPen(Qt::white, 1.0 / mZoomValueProvider->zoomValue()));
     painter->setBrush(Qt::gray);
     auto handles = mResizeHandles->handles();
     for (auto &handle : handles) {

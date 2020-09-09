@@ -23,7 +23,7 @@ namespace kImageAnnotator {
 
 AnnotationTabContent::AnnotationTabContent(const QPixmap &pixmap, Config *config, AbstractSettingsProvider *settingsProvider) :
 	mAnnotationView(new AnnotationView(this)),
-	mAnnotationArea(new AnnotationArea(config, settingsProvider, new DevicePixelRatioScaler, mAnnotationView->camera())),
+	mAnnotationArea(new AnnotationArea(config, settingsProvider, new DevicePixelRatioScaler, mAnnotationView->zoomValueProvider())),
 	mMainLayout(new QHBoxLayout(this))
 {
 	mAnnotationView->setScene(mAnnotationArea);

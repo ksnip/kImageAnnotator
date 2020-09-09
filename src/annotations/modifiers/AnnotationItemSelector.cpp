@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemSelector::AnnotationItemSelector(AbstractCamera *camera)
+AnnotationItemSelector::AnnotationItemSelector(ZoomValueProvider *zoomValueProvider)
 {
 	mSelectedItems = new QList<AbstractAnnotationItem *>();
 	mShowSelectionRect = false;
@@ -29,8 +29,8 @@ AnnotationItemSelector::AnnotationItemSelector(AbstractCamera *camera)
 	mSelectionPen.setStyle(Qt::DashLine);
 	mSelectionPen.setColor(Qt::gray);
 
-	applyZoomValue(camera->zoomValue());
-	connect(camera, &AbstractCamera::zoomValueChanged, this, &AnnotationItemSelector::applyZoomValue);
+	applyZoomValue(zoomValueProvider->zoomValue());
+	connect(zoomValueProvider, &ZoomValueProvider::zoomValueChanged, this, &AnnotationItemSelector::applyZoomValue);
 }
 
 AnnotationItemSelector::~AnnotationItemSelector()
@@ -47,9 +47,9 @@ QRectF AnnotationItemSelector::boundingRect() const
 	}
 }
 
-void AnnotationItemSelector::handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifing)
+void AnnotationItemSelector::handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isModifing)
 {
-	handleSelectionAt(pos, items, modifing);
+	handleSelectionAt(pos, items, isModifing);
 
 	if (mSelectedItems->count() > 0) {
 		return;

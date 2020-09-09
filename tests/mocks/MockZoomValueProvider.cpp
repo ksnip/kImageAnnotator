@@ -3,7 +3,7 @@
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,35 +17,21 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONVIEWCAMERA_H
-#define KIMAGEANNOTATOR_ANNOTATIONVIEWCAMERA_H
+#include "MockZoomValueProvider.h"
 
-#include "src/annotations/core/AbstractCamera.h"
-
-class QGraphicsView;
-class QPoint;
-class QWheelEvent;
-
-namespace kImageAnnotator {
-
-class AnnotationViewCamera : public AbstractCamera
+MockZoomValueProvider::MockZoomValueProvider(QObject *parent) : ZoomValueProvider(parent), mZoomValue(1.0)
 {
-	Q_OBJECT
-
-public:
-	explicit AnnotationViewCamera(QGraphicsView *view);
-	~AnnotationViewCamera() override = default;
-
-	double zoomValue() const override;
-
-	void zoom(double factor);
-	void zoomToPoint(double factor, const QPoint &viewPoint);
-	void wheelZoom(QWheelEvent *event);
-
-private:
-	QGraphicsView *mView;
-};
-
 }
 
-#endif // KIMAGEANNOTATOR_ANNOTATIONVIEWCAMERA_H
+double MockZoomValueProvider::zoomValue() const
+{
+	return mZoomValue;
+}
+
+void MockZoomValueProvider::setZoomValue(double value)
+{
+	if (value == mZoomValue)
+		return;
+	mZoomValue = value;
+	emit zoomValueChanged(value);
+}

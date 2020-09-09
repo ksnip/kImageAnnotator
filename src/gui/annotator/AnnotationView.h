@@ -27,7 +27,7 @@
 
 #include "src/common/helper/KeyHelper.h"
 #include "src/annotations/core/AnnotationArea.h"
-#include "src/gui/annotator/AnnotationViewCamera.h"
+#include "src/gui/annotator/AnnotationViewZoomer.h"
 
 namespace kImageAnnotator {
 
@@ -38,7 +38,7 @@ public:
 	explicit AnnotationView(QWidget *parent);
 	~AnnotationView() override = default;
 
-	AnnotationViewCamera *camera() const;
+	ZoomValueProvider *zoomValueProvider() const;
 
 protected:
 	void keyPressEvent(QKeyEvent *event) override;
@@ -49,8 +49,8 @@ protected:
 	void wheelEvent(QWheelEvent *event) override;
 
 private:
-	AnnotationViewCamera *mCamera;
-	bool mDragging;
+	AnnotationViewZoomer *mAnnotationViewZoomer;
+	bool mIsDragging;
 	QPoint mLastPosition;
 	KeyHelper mKeyHelper;
 

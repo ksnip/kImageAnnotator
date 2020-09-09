@@ -17,22 +17,19 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationViewCamera.h"
-
-#include <QGraphicsView>
-#include <QWheelEvent>
+#include "AnnotationViewZoomer.h"
 
 namespace kImageAnnotator {
 
-AnnotationViewCamera::AnnotationViewCamera(QGraphicsView *view) : AbstractCamera(view), mView(view)
+AnnotationViewZoomer::AnnotationViewZoomer(QGraphicsView *view) : ZoomValueProvider(view), mView(view)
 {}
 
-double AnnotationViewCamera::zoomValue() const
+double AnnotationViewZoomer::zoomValue() const
 {
 	return mView->transform().m11();
 }
 
-void AnnotationViewCamera::zoom(double factor)
+void AnnotationViewZoomer::zoom(double factor)
 {
 	const auto minScale = 1.0;
 	const auto maxScale = 8.0;
@@ -43,7 +40,7 @@ void AnnotationViewCamera::zoom(double factor)
 	}
 }
 
-void AnnotationViewCamera::zoomToPoint(double factor, const QPoint &viewPoint)
+void AnnotationViewZoomer::zoomToPoint(double factor, const QPoint &viewPoint)
 {
 	const auto scenePoint = mView->mapToScene(viewPoint);
 	zoom(factor);
@@ -51,7 +48,7 @@ void AnnotationViewCamera::zoomToPoint(double factor, const QPoint &viewPoint)
 	mView->translate(delta.x(), delta.y());
 }
 
-void AnnotationViewCamera::wheelZoom(QWheelEvent *event)
+void AnnotationViewZoomer::wheelZoom(QWheelEvent *event)
 {
 	const auto zoomInFactor = 1.1;
 	const auto zoomOutFactor = 1.0 / zoomInFactor;

@@ -19,7 +19,7 @@
 
 #include "AnnotationMultiItemResizerTest.h"
 
-#include "tests/mocks/MockCamera.h"
+#include "tests/mocks/MockZoomValueProvider.h"
 
 void AnnotationMultiItemResizerTest::TestGrabHandle_Should_GrabHandle_When_ProvidedPointIsAtHandlePosition()
 {
@@ -28,8 +28,8 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_GrabHandle_When_Provi
 	AnnotationLine item1(line1.p1(), properties);
 	item1.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1 };
-	MockCamera camera;
-	AnnotationMultiItemResizer itemResizer(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationMultiItemResizer itemResizer(&zoomValueProvider);
 	itemResizer.attachTo(items);
 
 	itemResizer.grabHandle(line1.p1());
@@ -44,8 +44,8 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_NotGrabHandle_When_Pr
 	AnnotationLine item1(line1.p1(), properties);
 	item1.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1 };
-	MockCamera camera;
-	AnnotationMultiItemResizer itemResizer(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationMultiItemResizer itemResizer(&zoomValueProvider);
 	itemResizer.attachTo(items);
 
 	itemResizer.grabHandle(line1.p1() + QPointF(-10, -10));
@@ -61,8 +61,8 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_MoveResizeHandle_When
 	AnnotationLine item1(line1.p1(), properties);
 	item1.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1 };
-	MockCamera camera;
-	AnnotationMultiItemResizer itemResizer(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationMultiItemResizer itemResizer(&zoomValueProvider);
 	QUndoStack undoStack;
 	connect(&itemResizer, &AnnotationMultiItemResizer::newCommand, &undoStack, &QUndoStack::push);
 	itemResizer.attachTo(items);
@@ -84,8 +84,8 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_OnlyMoveOneResizeHand
 	item1.addPoint(line1.p2(), false);
 	item2.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1, &item2 };
-	MockCamera camera;
-	AnnotationMultiItemResizer itemResizer(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationMultiItemResizer itemResizer(&zoomValueProvider);
 	QUndoStack undoStack;
 	connect(&itemResizer, &AnnotationMultiItemResizer::newCommand, &undoStack, &QUndoStack::push);
 	itemResizer.attachTo(items);
@@ -106,8 +106,8 @@ void AnnotationMultiItemResizerTest::TestReleaseHandle_Should_ReleaseHandle()
 	AnnotationLine item1(line1.p1(), properties);
 	item1.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1 };
-	MockCamera camera;
-	AnnotationMultiItemResizer itemResizer(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationMultiItemResizer itemResizer(&zoomValueProvider);
 	itemResizer.attachTo(items);
 	itemResizer.grabHandle(line1.p1());
 	QCOMPARE(itemResizer.isResizing(), true);
@@ -120,8 +120,8 @@ void AnnotationMultiItemResizerTest::TestReleaseHandle_Should_ReleaseHandle()
 void AnnotationMultiItemResizerTest::TestHasItemsAttached_Should_ReturnFalse_When_NoItemsInList()
 {
 	QList<AbstractAnnotationItem *> items;
-	MockCamera camera;
-	AnnotationMultiItemResizer itemResizer(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationMultiItemResizer itemResizer(&zoomValueProvider);
 	itemResizer.attachTo(items);
 
 	auto result = itemResizer.hasItemsAttached();
@@ -136,8 +136,8 @@ void AnnotationMultiItemResizerTest::TestHasItemsAttached_Should_ReturnTrue_When
 	AnnotationLine item1(line1.p1(), properties);
 	item1.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1 };
-	MockCamera camera;
-	AnnotationMultiItemResizer itemResizer(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationMultiItemResizer itemResizer(&zoomValueProvider);
 	itemResizer.attachTo(items);
 
 	auto result = itemResizer.hasItemsAttached();
@@ -152,8 +152,8 @@ void AnnotationMultiItemResizerTest::TestUpdate_Should_HideResizers_When_ItemsOf
 	AnnotationLine item1(line1.p1(), properties);
 	item1.addPoint(line1.p2(), false);
 	QList<AbstractAnnotationItem *> items = { &item1 };
-	MockCamera camera;
-	AnnotationMultiItemResizer itemResizer(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationMultiItemResizer itemResizer(&zoomValueProvider);
 	itemResizer.attachTo(items);
 	QCOMPARE(itemResizer.hasItemsAttached(), true);
 	item1.hide();

@@ -19,7 +19,7 @@
 
 #include "AnnotationItemClipboardTest.h"
 
-#include "tests/mocks/MockCamera.h"
+#include "tests/mocks/MockZoomValueProvider.h"
 
 void AnnotationItemClipboardTest::TestCopyItems_Should_StoreSelectedItems()
 {
@@ -29,8 +29,8 @@ void AnnotationItemClipboardTest::TestCopyItems_Should_StoreSelectedItems()
 	QPointF position(50, 50);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&rect);
-	MockCamera camera;
-	AnnotationItemModifier modifier(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemModifier modifier(&zoomValueProvider);
 	modifier.handleSelectionAt(position, &items, false);
 	AnnotationItemClipboard clipboard(&modifier);
 
@@ -48,8 +48,8 @@ void AnnotationItemClipboardTest::TestCopyItems_Should_SetCorrectOffset()
 	QPointF position(50, 50);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&rect);
-	MockCamera camera;
-	AnnotationItemModifier modifier(&camera);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemModifier modifier(&zoomValueProvider);
 	modifier.handleSelectionAt(position, &items, false);
 	AnnotationItemClipboard clipboard(&modifier);
 

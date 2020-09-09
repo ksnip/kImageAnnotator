@@ -3,7 +3,7 @@
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,26 +17,14 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_MOCKCAMERA_H
-#define KIMAGEANNOTATOR_MOCKCAMERA_H
+#include "ZoomValueProvider.h"
 
-#include "src/annotations/core/AbstractCamera.h"
+namespace kImageAnnotator {
 
-using kImageAnnotator::AbstractCamera;
-
-class MockCamera : public AbstractCamera
+kImageAnnotator::ZoomValueProvider::ZoomValueProvider(QObject *parent)
+	: QObject(parent)
 {
-	Q_OBJECT
 
-public:
-	explicit MockCamera(QObject *parent = nullptr);
+}
 
-	double zoomValue() const override;
-
-	void setZoomValue(double value);
-
-private:
-	double mZoomValue;
-};
-
-#endif // KIMAGEANNOTATOR_MOCKCAMERA_H
+}  // namespace kImageAnnotator

@@ -3,7 +3,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/CoreView.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationView.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationViewCamera.cpp
+		${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationViewZoomer.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/WidgetConfigurator.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationSettings.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/tabs/AnnotationTabContent.cpp
@@ -19,7 +19,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleDialog.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleSizeHandler.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AbstractCamera.cpp
+		${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/ZoomValueProvider.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AnnotationArea.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AnnotationItemFactory.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AnnotationPropertiesFactory.cpp

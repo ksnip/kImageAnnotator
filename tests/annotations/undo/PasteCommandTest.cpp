@@ -41,7 +41,7 @@ void PasteCommandTest::TestRedo_Should_AddPastedItemsToAnnotationAreaAtGivenPosi
 	auto position = QPointF(50, 50);
 	MockAnnotationAreaParameters p;
 	AnnotationPropertiesFactory propertiesFactory(&p.config, &p.provider);
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	AnnotationItemFactory itemFactory(&propertiesFactory, &p.provider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
@@ -65,7 +65,7 @@ void PasteCommandTest::TestUndo_Should_RemovePastedItemsFromAnnotationArea()
 	auto position = QPointF(50, 50);
 	MockAnnotationAreaParameters p;
 	AnnotationPropertiesFactory propertiesFactory(&p.config, &p.provider);
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.camera);
+	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	AnnotationItemFactory itemFactory(&propertiesFactory, &p.provider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
