@@ -1,9 +1,9 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,31 +17,23 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "PathResizeHandles.h"
+#ifndef KIMAGEANNOTATOR_MOCKZOOMVALUEPROVIDER_H
+#define KIMAGEANNOTATOR_MOCKZOOMVALUEPROVIDER_H
 
-namespace kImageAnnotator {
+#include "src/annotations/core/ZoomValueProvider.h"
 
-PathResizeHandles::PathResizeHandles(AbstractAnnotationPath *pathItem, double zoomValue)
+using kImageAnnotator::ZoomValueProvider;
+
+class MockZoomValueProvider : public ZoomValueProvider
 {
-    mPathItem = pathItem;
-    initHandles(8, zoomValue);
-    initCursors();
-    update();
-}
+	Q_OBJECT
+public:
+	explicit MockZoomValueProvider(QObject *parent = nullptr);
+	double zoomValue() const override;
+	void setZoomValue(double value);
 
-QRectF PathResizeHandles::getRect() const
-{
-    return getItemBoundingRect();
-}
+private:
+	double mZoomValue;
+};
 
-double PathResizeHandles::getOffset() const
-{
-    return 0.0;
-}
-
-QRectF PathResizeHandles::getItemBoundingRect() const
-{
-    return mPathItem->boundingRect();
-}
-
-} // namespace kImageAnnotator
+#endif // KIMAGEANNOTATOR_MOCKZOOMVALUEPROVIDER_H

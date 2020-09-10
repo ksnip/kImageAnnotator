@@ -17,8 +17,9 @@
  * Boston, MA 02110-1301, USA.
  */
 
-
 #include "AnnotationItemClipboardTest.h"
+
+#include "tests/mocks/MockZoomValueProvider.h"
 
 void AnnotationItemClipboardTest::TestCopyItems_Should_StoreSelectedItems()
 {
@@ -28,7 +29,8 @@ void AnnotationItemClipboardTest::TestCopyItems_Should_StoreSelectedItems()
 	QPointF position(50, 50);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&rect);
-	AnnotationItemModifier modifier;
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemModifier modifier(&zoomValueProvider);
 	modifier.handleSelectionAt(position, &items, false);
 	AnnotationItemClipboard clipboard(&modifier);
 
@@ -46,7 +48,8 @@ void AnnotationItemClipboardTest::TestCopyItems_Should_SetCorrectOffset()
 	QPointF position(50, 50);
 	QList<AbstractAnnotationItem *> items;
 	items.append(&rect);
-	AnnotationItemModifier modifier;
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemModifier modifier(&zoomValueProvider);
 	modifier.handleSelectionAt(position, &items, false);
 	AnnotationItemClipboard clipboard(&modifier);
 

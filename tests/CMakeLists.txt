@@ -43,8 +43,10 @@ set(UNITTEST_SRC
 	)
 
 set(TESTUTILS_SRC
+        mocks/MockZoomValueProvider.cpp
 	mocks/MockSettingsProvider.cpp
 	mocks/MockDevicePixelRatioScaler.cpp
+	mocks/MockDefaultParameters.h
 	)
 
 add_library(KIMAGEANNOTATOR_STATIC STATIC ${KIMAGEANNOTATOR_SRCS})

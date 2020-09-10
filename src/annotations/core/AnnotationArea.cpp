@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider, IDevicePixelRatioScaler *devicePixelRatioScaler) :
+AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider, IDevicePixelRatioScaler *devicePixelRatioScaler, ZoomValueProvider *zoomValueProvider) :
 	mUndoStack(new UndoStack),
 	mImage(nullptr),
 	mCurrentItem(nullptr),
@@ -29,7 +29,7 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 	mRedoAction(nullptr),
 	mKeyHelper(new KeyHelper),
 	mSettingsProvider(settingsProvider),
-	mItemModifier(new AnnotationItemModifier),
+	mItemModifier(new AnnotationItemModifier(zoomValueProvider)),
 	mPropertiesFactory(new AnnotationPropertiesFactory(config, mSettingsProvider)),
 	mItemFactory(new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider)),
 	mItems(new QList<AbstractAnnotationItem *>()),

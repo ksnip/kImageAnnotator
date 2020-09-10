@@ -24,16 +24,17 @@
 
 #include "src/annotations/items/AbstractAnnotationItem.h"
 #include "src/annotations/items/AbstractAnnotationLine.h"
+#include "src/annotations/core/ZoomValueProvider.h"
 
 namespace kImageAnnotator {
 
 class AnnotationItemSelector : public QGraphicsWidget
 {
 public:
-	explicit AnnotationItemSelector();
+	explicit AnnotationItemSelector(ZoomValueProvider *zoomValueProvider);
 	~AnnotationItemSelector() override;
 	QRectF boundingRect() const override;
-	void handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifing);
+	void handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isModifing);
 	void extendSelectionRectWhenShown(const QPointF &pos);
 	void finishSelectionRectWhenShown(QList<AbstractAnnotationItem *> *items);
 	void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifying);
@@ -44,7 +45,7 @@ public:
 	void update();
 
 protected:
-	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) override;
+	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
 	QRectF mSelectionRect;
@@ -62,6 +63,7 @@ private:
 	void unselectItem(AbstractAnnotationItem *item);
 	AbstractAnnotationItem *findItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
 	bool isLineItem(AbstractAnnotationItem *item) const;
+	void applyZoomValue(double value);
 };
 
 } // namespace kImageAnnotator

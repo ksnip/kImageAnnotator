@@ -35,7 +35,7 @@ class AnnotationItemModifier : public QObject, public QGraphicsItemGroup
 {
 Q_OBJECT
 public:
-	explicit AnnotationItemModifier();
+	explicit AnnotationItemModifier(ZoomValueProvider *zoomValueProvider);
 	~AnnotationItemModifier() override;
 	void handleMousePress(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
 	void handleMouseMove(const QPointF &pos);

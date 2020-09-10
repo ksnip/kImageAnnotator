@@ -24,6 +24,7 @@
 
 #include "resizeHandles/ResizeHandlesFactory.h"
 #include "src/annotations/undo/ResizeCommand.h"
+#include "src/annotations/core/ZoomValueProvider.h"
 
 namespace kImageAnnotator {
 
@@ -31,8 +32,8 @@ class AnnotationItemResizer : public QGraphicsWidget
 {
 Q_OBJECT
 public:
-	explicit AnnotationItemResizer(AbstractAnnotationItem *item);
-    ~AnnotationItemResizer();
+    AnnotationItemResizer(AbstractAnnotationItem *item, ZoomValueProvider *zoomValueProvider);
+    ~AnnotationItemResizer() override;
     virtual QRectF boundingRect() const override;
     void grabHandle(const QPointF &pos);
     void moveHandle(const QPointF &pos);
@@ -47,13 +48,16 @@ signals:
     void newCommand(ResizeCommand *resize) const;
 
 protected:
-    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) override;
+    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
     AbstractItemResizeHandles *mResizeHandles;
     AbstractAnnotationItem *mAnnotationItem;
+    ZoomValueProvider *mZoomValueProvider;
     int mCurrentHandle;
     QPointF mClickOffset;
+
+    void applyZoomValue(double value);
 };
 
 } // namespace kImageAnnotator

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,29 +17,36 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_RECTRESIZEHANDLES_H
-#define KIMAGEANNOTATOR_RECTRESIZEHANDLES_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONVIEWZOOMER_H
+#define KIMAGEANNOTATOR_ANNOTATIONVIEWZOOMER_H
 
-#include "AbstractRectResizeHandles.h"
-#include "src/annotations/items/AbstractAnnotationRect.h"
+#include "src/annotations/core/ZoomValueProvider.h"
+
+#include <QGraphicsView>
+#include <QWheelEvent>
+
+class QPoint;
 
 namespace kImageAnnotator {
 
-class RectResizeHandles : public AbstractRectResizeHandles
+class AnnotationViewZoomer : public ZoomValueProvider
 {
-public:
-    RectResizeHandles(AbstractAnnotationRect *rectItem, double zoomValue);
-    ~RectResizeHandles() override = default;
+	Q_OBJECT
 
-protected:
-    QRectF getRect() const override;
-    double getOffset() const override;
-    QRectF getItemBoundingRect() const override;
+public:
+	explicit AnnotationViewZoomer(QGraphicsView *view);
+	~AnnotationViewZoomer() override = default;
+
+	double zoomValue() const override;
+
+	void zoom(double factor);
+	void zoomToPoint(double factor, const QPoint &viewPoint);
+	void wheelZoom(QWheelEvent *event);
 
 private:
-    AbstractAnnotationRect *mRectItem;
+	QGraphicsView *mView;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_RECTRESIZEHANDLES_H
+#endif // KIMAGEANNOTATOR_ANNOTATIONVIEWZOOMER_H

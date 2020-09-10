@@ -36,7 +36,7 @@ public:
 protected:
     void initCursors() override;
     virtual QRectF getRect() const = 0;
-    virtual int getOffset() const = 0;
+    virtual double getOffset() const = 0;
     virtual QRectF getItemBoundingRect() const = 0;
 
 private:

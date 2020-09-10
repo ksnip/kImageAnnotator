@@ -38,14 +38,14 @@ public:
     virtual QList<ResizeHandle> handles() const;
     virtual Qt::CursorShape cursorForPos(const QPointF &pos) const;
     virtual Qt::CursorShape cursorForHandle(int index) const;
-    int handleSize() const;
+    double handleSize() const;
+    void applyZoomValue(double value);
 
 protected:
-    int mHandleSize;
     QList<ResizeHandle> mHandles;
     QList<Qt::CursorShape> mCursors;
 
-    virtual void initHandles(int count);
+    virtual void initHandles(int count, double zoomValue);
     virtual void initCursors() = 0;
 };
 

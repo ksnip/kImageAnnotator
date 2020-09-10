@@ -29,12 +29,12 @@ namespace kImageAnnotator {
 class ResizeHandlesFactory
 {
 public:
-    static AbstractItemResizeHandles *createResizeHandles(AbstractAnnotationItem *item);
+    static AbstractItemResizeHandles *createResizeHandles(AbstractAnnotationItem *item, double zoomValue);
 
 private:
-    static AbstractItemResizeHandles *GetPathResizeHandles(AbstractAnnotationItem *item);
-    static AbstractItemResizeHandles *GetRectResizeHandles(AbstractAnnotationItem *item);
-    static AbstractItemResizeHandles *GetLineResizeHandles(AbstractAnnotationItem *item);
+    static AbstractItemResizeHandles *GetPathResizeHandles(AbstractAnnotationItem *item, double zoomValue);
+    static AbstractItemResizeHandles *GetRectResizeHandles(AbstractAnnotationItem *item, double zoomValue);
+    static AbstractItemResizeHandles *GetLineResizeHandles(AbstractAnnotationItem *item, double zoomValue);
 };
 
 } // namespace kImageAnnotator

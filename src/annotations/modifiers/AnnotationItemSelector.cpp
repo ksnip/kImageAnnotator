@@ -21,13 +21,16 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemSelector::AnnotationItemSelector()
+AnnotationItemSelector::AnnotationItemSelector(ZoomValueProvider *zoomValueProvider)
 {
 	mSelectedItems = new QList<AbstractAnnotationItem *>();
 	mShowSelectionRect = false;
 
 	mSelectionPen.setStyle(Qt::DashLine);
 	mSelectionPen.setColor(Qt::gray);
+
+	applyZoomValue(zoomValueProvider->zoomValue());
+	connect(zoomValueProvider, &ZoomValueProvider::zoomValueChanged, this, &AnnotationItemSelector::applyZoomValue);
 }
 
 AnnotationItemSelector::~AnnotationItemSelector()
@@ -44,9 +47,9 @@ QRectF AnnotationItemSelector::boundingRect() const
 	}
 }
 
-void AnnotationItemSelector::handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifing)
+void AnnotationItemSelector::handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isModifing)
 {
-	handleSelectionAt(pos, items, modifing);
+	handleSelectionAt(pos, items, isModifing);
 
 	if (mSelectedItems->count() > 0) {
 		return;
@@ -129,7 +132,7 @@ void AnnotationItemSelector::paint(QPainter *painter, const QStyleOptionGraphics
 	Q_UNUSED(widget)
 
 	if (mShowSelectionRect) {
-		painter->setPen(Qt::darkBlue);
+		painter->setPen(QPen(Qt::darkBlue, mSelectionPen.widthF()));
 		painter->setBrush(QColor(0, 0, 255, 60));
 		painter->drawRect(mSelectionRect);
 	}
@@ -222,6 +225,11 @@ AbstractAnnotationItem *AnnotationItemSelector::findItemAt(const QPointF &positi
 		}
 	}
 	return nullptr;
+}
+
+void AnnotationItemSelector::applyZoomValue(double value)
+{
+	mSelectionPen.setWidthF(1.0 / value);
 }
 
 } // namespace kImageAnnotator

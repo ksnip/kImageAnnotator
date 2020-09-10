@@ -21,9 +21,17 @@
 
 namespace kImageAnnotator {
 
-AnnotationView::AnnotationView(QGraphicsScene *scene) : QGraphicsView(scene)
+AnnotationView::AnnotationView(QWidget *parent) :
+	QGraphicsView(parent),
+	mAnnotationViewZoomer(new AnnotationViewZoomer(this))
 {
+	setTransformationAnchor(QGraphicsView::NoAnchor);
 	disableDragging();
+}
+
+ZoomValueProvider *AnnotationView::zoomValueProvider() const
+{
+	return mAnnotationViewZoomer;
 }
 
 void AnnotationView::keyPressEvent(QKeyEvent *event)
@@ -46,7 +54,7 @@ void AnnotationView::keyReleaseEvent(QKeyEvent *event)
 
 void AnnotationView::mouseMoveEvent(QMouseEvent *event)
 {
-	if(mDragging) {
+	if(mIsDragging) {
 		scrollTo(event->pos());
 		return;
 	}
@@ -71,6 +79,11 @@ void AnnotationView::mouseReleaseEvent(QMouseEvent *event)
 	QGraphicsView::mouseReleaseEvent(event);
 }
 
+void AnnotationView::wheelEvent(QWheelEvent *event)
+{
+	mAnnotationViewZoomer->wheelZoom(event);
+}
+
 void AnnotationView::scrollTo(const QPoint &pos)
 {
 	auto delta = pos - mLastPosition;
@@ -86,14 +99,14 @@ void AnnotationView::scrollByDelta(QScrollBar *scrollBar, int delta) const
 
 void AnnotationView::enableDragging(const QPoint &pos)
 {
-	mDragging = true;
+	mIsDragging = true;
 	mLastPosition = pos;
 	setDragCursorEnabled(true);
 }
 
 void AnnotationView::disableDragging()
 {
-	mDragging = false;
+	mIsDragging = false;
 	mLastPosition = {};
 	setDragCursorEnabled(false);
 }

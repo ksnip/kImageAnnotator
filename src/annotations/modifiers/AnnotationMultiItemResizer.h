@@ -27,14 +27,16 @@
 
 namespace kImageAnnotator {
 
+class ZoomValueProvider;
+
 class AnnotationMultiItemResizer : public QObject, public QGraphicsItemGroup
 {
 Q_OBJECT
 public:
-    explicit AnnotationMultiItemResizer();
+    explicit AnnotationMultiItemResizer(ZoomValueProvider *zoomValueProvider);
     ~AnnotationMultiItemResizer() override = default;
     QRectF boundingRect() const override;
-    void attachTo(QList<AbstractAnnotationItem *> items);
+    void attachTo(const QList<AbstractAnnotationItem *>& items);
     void detach();
     void grabHandle(const QPointF &pos);
     void moveHandle(const QPointF &pos);
@@ -52,6 +54,7 @@ signals:
     void newCommand(ResizeCommand *resize) const;
 
 private:
+	ZoomValueProvider *mZoomValueProvider;
     QHash<AbstractAnnotationItem *, AnnotationItemResizer *> mItemToResizer;
     AnnotationItemResizer *mCurrentResizer;
 

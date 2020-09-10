@@ -1,9 +1,9 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,31 +17,23 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "PathResizeHandles.h"
+#ifndef KIMAGEANNOTATOR_MOCKDEFAULTPARAMETERS_H
+#define KIMAGEANNOTATOR_MOCKDEFAULTPARAMETERS_H
 
-namespace kImageAnnotator {
+#include "MockZoomValueProvider.h"
+#include "MockSettingsProvider.h"
+#include "MockDevicePixelRatioScaler.h"
 
-PathResizeHandles::PathResizeHandles(AbstractAnnotationPath *pathItem, double zoomValue)
+#include "src/backend/Config.h"
+
+using kImageAnnotator::Config;
+
+struct MockAnnotationAreaParameters
 {
-    mPathItem = pathItem;
-    initHandles(8, zoomValue);
-    initCursors();
-    update();
-}
+    Config config;
+    MockSettingsProvider provider;
+    MockDevicePixelRatioScaler scaler;
+    MockZoomValueProvider zoomValueProvider;
+};
 
-QRectF PathResizeHandles::getRect() const
-{
-    return getItemBoundingRect();
-}
-
-double PathResizeHandles::getOffset() const
-{
-    return 0.0;
-}
-
-QRectF PathResizeHandles::getItemBoundingRect() const
-{
-    return mPathItem->boundingRect();
-}
-
-} // namespace kImageAnnotator
+#endif // KIMAGEANNOTATOR_MOCKDEFAULTPARAMETERS_H

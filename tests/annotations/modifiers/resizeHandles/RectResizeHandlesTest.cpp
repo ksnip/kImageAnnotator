@@ -26,7 +26,7 @@ void RectResizeHandlesTest::TestInitHandles_Should_PositionEightHandles_When_Rec
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
 
-	RectResizeHandles rectResizeHandles(&rectItem);
+	RectResizeHandles rectResizeHandles(&rectItem, 1.0);
 
 	QCOMPARE(rectResizeHandles.handles().count(), 8);
 	QCOMPARE(rectResizeHandles.handles()[0].anchor(), rect.topLeft());
@@ -45,7 +45,7 @@ void RectResizeHandlesTest::TestIndexOfHandleAt_Should_ReturnIndexOfHandle_When_
 	QRectF rect(QPointF(10, 15), QPointF(80, 95));
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
-	RectResizeHandles rectResizeHandles(&rectItem);
+	RectResizeHandles rectResizeHandles(&rectItem, 1.0);
 
 	auto resultP1 = rectResizeHandles.indexOfHandleAt(rect.topLeft() + QPointF(2, 2));
 	auto resultP2 = rectResizeHandles.indexOfHandleAt(ShapeHelper::rectTop(rect) + QPointF(-2, -2));
@@ -73,7 +73,7 @@ void RectResizeHandlesTest::TestIndexOfHandleAt_Should_NotReturnAnyIndex_When_Ha
 	QRectF rect(QPointF(10, 15), QPointF(20, 25));
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
-	RectResizeHandles rectResizeHandles(&rectItem);
+	RectResizeHandles rectResizeHandles(&rectItem, 1.0);
 
 	auto resultP1 = rectResizeHandles.indexOfHandleAt(QPointF(50, 50));
 
@@ -87,7 +87,7 @@ void RectResizeHandlesTest::TestHandle_Should_ReturnRectAtIndex_When_HandleAtInd
 	QRectF rect(QPointF(10, 15), QPointF(20, 25));
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
-	RectResizeHandles rectResizeHandles(&rectItem);
+	RectResizeHandles rectResizeHandles(&rectItem, 1.0);
 
 	auto result = rectResizeHandles.handle(2);
 
@@ -101,7 +101,7 @@ void RectResizeHandlesTest::TestHandle_Should_NotReturnRect_When_HandleAtIndexDo
 	QRectF rect(QPointF(10, 15), QPointF(20, 25));
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
-	RectResizeHandles rectResizeHandles(&rectItem);
+	RectResizeHandles rectResizeHandles(&rectItem, 1.0);
 
 	auto result = rectResizeHandles.handle(10);
 
@@ -114,7 +114,7 @@ void RectResizeHandlesTest::TestGetCursorForHandle_Should_NotReturnDefaultCursor
 	QRectF rect(QPointF(10, 15), QPointF(20, 25));
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
-	RectResizeHandles rectResizeHandles(&rectItem);
+	RectResizeHandles rectResizeHandles(&rectItem, 1.0);
 
 	auto result = rectResizeHandles.cursorForPos(rect.bottomLeft());
 
@@ -128,7 +128,7 @@ void RectResizeHandlesTest::TestGetCursorForHandle_Should_ReturnDefaultCursor_Wh
 	QPointF otherPos(90, 90);
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
-	RectResizeHandles rectResizeHandles(&rectItem);
+	RectResizeHandles rectResizeHandles(&rectItem, 1.0);
 
 	auto result = rectResizeHandles.cursorForPos(otherPos);
 
@@ -142,7 +142,7 @@ void RectResizeHandlesTest::TestUpdate_Should_MoveHandlesToNewPosition()
 	QRectF newRect(QPointF(60, 75), QPointF(120, 125));
 	AnnotationRect rectItem(rect.topLeft(), properties);
 	rectItem.addPoint(rect.bottomRight());
-	RectResizeHandles rectResizeHandles(&rectItem);
+	RectResizeHandles rectResizeHandles(&rectItem, 1.0);
 	QCOMPARE(rectResizeHandles.handles()[0].anchor(), rect.topLeft());
 	QCOMPARE(rectResizeHandles.handles()[1].anchor(), ShapeHelper::rectTop(rect));
 	QCOMPARE(rectResizeHandles.handles()[2].anchor(), rect.topRight());

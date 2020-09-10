@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,29 +17,14 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_RECTRESIZEHANDLES_H
-#define KIMAGEANNOTATOR_RECTRESIZEHANDLES_H
-
-#include "AbstractRectResizeHandles.h"
-#include "src/annotations/items/AbstractAnnotationRect.h"
+#include "ZoomValueProvider.h"
 
 namespace kImageAnnotator {
 
-class RectResizeHandles : public AbstractRectResizeHandles
+kImageAnnotator::ZoomValueProvider::ZoomValueProvider(QObject *parent)
+	: QObject(parent)
 {
-public:
-    RectResizeHandles(AbstractAnnotationRect *rectItem, double zoomValue);
-    ~RectResizeHandles() override = default;
 
-protected:
-    QRectF getRect() const override;
-    double getOffset() const override;
-    QRectF getItemBoundingRect() const override;
+}
 
-private:
-    AbstractAnnotationRect *mRectItem;
-};
-
-} // namespace kImageAnnotator
-
-#endif //KIMAGEANNOTATOR_RECTRESIZEHANDLES_H
+}  // namespace kImageAnnotator
