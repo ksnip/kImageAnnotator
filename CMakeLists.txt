@@ -70,7 +70,7 @@ target_include_directories(kImageAnnotator
 target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets Qt5::Svg kColorPicker::kColorPicker)
 
 if (UNIX AND NOT APPLE)
-	target_link_libraries(kImageAnnotator PUBLIC X11)
+	target_link_libraries(kImageAnnotator PRIVATE X11)
 endif ()
 
 target_compile_definitions(kImageAnnotator PRIVATE KIMAGEANNOTATOR_LIB)
