@@ -46,6 +46,7 @@ bool CapsLockStatusChecker::isCapsLockEnabled()
 		XkbGetIndicatorState(display, XkbUseCoreKbd, &n);
 		capsState = (n & 0x01) == 1;
 	}
+	XCloseDisplay(display);
 	return capsState;
 #else
 	return false;
