@@ -22,7 +22,7 @@ set(KIMAGEANNOTATOR_LANG_TS
 	kImageAnnotator_sv.ts
 	kImageAnnotator_tr.ts
 	kImageAnnotator_uk.ts
-	kImageAnnotator_zh_Hans.ts)
+    kImageAnnotator_zh_CN.ts)
 
 if (DEFINED UPDATE_TS_FILES)
 	qt5_create_translation(KIMAGEANNOTATOR_LANG_QM ${CMAKE_SOURCE_DIR}/translations ${KIMAGEANNOTATOR_SRCS} ${KIMAGEANNOTATOR_LANG_TS} OPTIONS "-no-obsolete")
