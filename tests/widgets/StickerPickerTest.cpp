@@ -23,7 +23,7 @@ void StickerPickerTest::TestSelectSticker_Should_EmitSignal_When_StickerChanged(
 {
 	StickerPicker stickerPicker(QIcon(), QStringLiteral("test"));
 	QSignalSpy spy(&stickerPicker, &StickerPicker::stickerSelected);
-	auto expectedStickerPath = QStringLiteral(":/stickers/nerd_face.svg");
+	auto expectedStickerPath = QStringLiteral(":/stickers/rage.svg");
 
 	stickerPicker.setSticker(expectedStickerPath);
 

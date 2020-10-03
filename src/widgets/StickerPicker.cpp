@@ -71,23 +71,23 @@ void StickerPicker::init(const QIcon &icon, const QString &tooltip)
 
 void StickerPicker::addDefaultStickers()
 {
-	QStringList defaultStickers{ QStringLiteral("face_blowing_a_kiss"),
-	                             QStringLiteral("face_savoring_food"),
-	                             QStringLiteral("grinning_face_with_big_eyes"),
-	                             QStringLiteral("grinning_face_with_smiling_eyes"),
-	                             QStringLiteral("grinning_face_with_sweat"),
-	                             QStringLiteral("grinning_squinting_face"),
-	                             QStringLiteral("hushed_face"),
-	                             QStringLiteral("nerd_face"),
-	                             QStringLiteral("neutral_face"),
-	                             QStringLiteral("smiling_face_with_heart_eyes"),
-	                             QStringLiteral("smiling_face_with_hearts"),
-	                             QStringLiteral("confused_face"),
-	                             QStringLiteral("face_with_symbols_on_mouth"),
-	                             QStringLiteral("pouting_face"),
-	                             QStringLiteral("smiling_face_with_sunglasses"),
-	                             QStringLiteral("check_mark"),
-	                             QStringLiteral("cross_mark")
+	QStringList defaultStickers{ QStringLiteral("heart_eyes"),
+	                             QStringLiteral("sunglasses"),
+	                             QStringLiteral("stuck_out_tongue"),
+	                             QStringLiteral("stuck_out_tongue_closed_eyes"),
+	                             QStringLiteral("sweat_smile"),
+	                             QStringLiteral("grimacing"),
+	                             QStringLiteral("rage"),
+	                             QStringLiteral("astonished"),
+	                             QStringLiteral("hushed"),
+	                             QStringLiteral("laughing"),
+	                             QStringLiteral("kissing_heart"),
+	                             QStringLiteral("pushpin"),
+	                             QStringLiteral("hearts"),
+	                             QStringLiteral("ballot_box_with_check"),
+	                             QStringLiteral("negative_squared_cross_mark"),
+	                             QStringLiteral("bulb")
+                                                 
 	};
 
 	for(const auto& sticker : defaultStickers) {
