@@ -92,7 +92,7 @@ void AnnotationWidget::updateTabInfo(int index, const QString &title, const QStr
 	mAnnotationTabWidget->updateTabInfo(index, title, toolTip);
 }
 
-void AnnotationWidget::insertImageItem(const QPointF &position, const QPixmap &pixmap)
+void AnnotationWidget::insertImageItem(const QPointF &position, const QPixmap &pixmap) const
 {
 	auto currentAnnotationArea = annotationArea();
 	if(currentAnnotationArea != nullptr) {
@@ -120,7 +120,7 @@ QAction *AnnotationWidget::redoAction() const
 	return mAnnotationTabWidget->redoAction();
 }
 
-void AnnotationWidget::clearSelection()
+void AnnotationWidget::clearSelection() const
 {
 	auto currentAnnotationArea = annotationArea();
 	if(currentAnnotationArea != nullptr) {
@@ -151,6 +151,11 @@ void AnnotationWidget::setTabBarAutoHide(bool enabled)
 void AnnotationWidget::setStickers(const QStringList &stickerPaths, bool keepDefault)
 {
 	mSettings->setStickers(stickerPaths, keepDefault);
+}
+
+void AnnotationWidget::addTabContextMenuActions(const QList<QAction *> &actions)
+{
+	mAnnotationTabWidget->addContextMenuActions(actions);
 }
 
 } // namespace kImageAnnotator

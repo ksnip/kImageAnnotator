@@ -42,6 +42,7 @@ public:
 	QAction* redoAction() const;
 	void updateTabInfo(int index, const QString &title, const QString &toolTip);
 	void setUndoRedoEnabled(bool enabled);
+    void addContextMenuActions(const QList<QAction*> & actions);
 
 signals:
 	void imageChanged() const;
@@ -61,8 +62,8 @@ private:
 	AnnotationTabCloser *mTabCloser;
 
 private slots:
-	void undoTriggered();
-	void redoTriggered();
+	void undoTriggered() const;
+	void redoTriggered() const;
 	void updateCurrentWidget(int index);
 	void showTabContextMenu(const QPoint &pos);
 	void updateSettingsListener();

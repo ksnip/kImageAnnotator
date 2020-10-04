@@ -59,6 +59,7 @@ public slots:
 	void showScaler();
 	void setTabBarAutoHide(bool enabled);
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
+	void addTabContextMenuActions(const QList<QAction*> & actions);
 
 private:
 	Config *mConfig;

@@ -3,6 +3,7 @@
 ## Release 0.4.0
 * New: Add Pixelate image area tool. ([#140](https://github.com/ksnip/kImageAnnotator/issues/140))
 * New: Zoom in and out. ([#123](https://github.com/ksnip/kImageAnnotator/issues/123))
+* New: Add interface for adding custom tab context menu actions. ([#96](https://github.com/ksnip/kImageAnnotator/issues/96))
 * Changed: Draw point when clicking and releasing without moving cursor. ([#136](https://github.com/ksnip/kImageAnnotator/issues/136))
 * Fixed: Blur radius not updated when changing current items settings. ([#142](https://github.com/ksnip/kImageAnnotator/issues/142))
 * Fixed: Text tool opens many unix sockets. ([#144](https://github.com/ksnip/kImageAnnotator/issues/144))

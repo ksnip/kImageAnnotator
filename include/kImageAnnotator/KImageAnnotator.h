@@ -60,6 +60,7 @@ public Q_SLOTS:
 	void setTabBarAutoHide(bool enabled);
 	void removeTab(int index);
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
+	void addTabContextMenuActions(const QList<QAction*> & actions);
 
 Q_SIGNALS:
 	void imageChanged() const;

@@ -39,17 +39,18 @@ public:
 	void loadImage(const QPixmap &pixmap);
 	int addTab(const QPixmap &pixmap, const QString &title, const QString &toolTip);
 	void updateTabInfo(int index, const QString &title, const QString &toolTip);
-	void insertImageItem(const QPointF &position, const QPixmap &pixmap);
+	void insertImageItem(const QPointF &position, const QPixmap &pixmap) const;
 	void removeTab(int index);
 	void setUndoEnabled(bool enabled);
 	QAction* undoAction() const;
 	QAction* redoAction() const;
-	void clearSelection();
+	void clearSelection() const;
 	AnnotationArea* annotationArea() const;
 	AnnotationArea *annotationAreaAt(int index) const;
 	void reloadConfig();
 	void setTabBarAutoHide(bool enabled);
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
+	void addTabContextMenuActions(const QList<QAction*> & actions);
 
 signals:
 	void imageChanged() const;

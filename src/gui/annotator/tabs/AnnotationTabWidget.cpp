@@ -99,7 +99,7 @@ void AnnotationTabWidget::tabRemoved(int index)
 	QTabWidget::tabRemoved(index);
 }
 
-void AnnotationTabWidget::undoTriggered()
+void AnnotationTabWidget::undoTriggered() const
 {
 	auto annotationArea = currentAnnotationArea();
 	if(annotationArea != nullptr) {
@@ -107,7 +107,7 @@ void AnnotationTabWidget::undoTriggered()
 	}
 }
 
-void AnnotationTabWidget::redoTriggered()
+void AnnotationTabWidget::redoTriggered() const
 {
 	auto annotationArea = currentAnnotationArea();
 	if(annotationArea != nullptr) {
@@ -131,6 +131,11 @@ void AnnotationTabWidget::showTabContextMenu(const QPoint &pos)
 void AnnotationTabWidget::updateSettingsListener()
 {
 	mSettingsProvider->setActiveListener(currentAnnotationArea());
+}
+
+void AnnotationTabWidget::addContextMenuActions(const QList<QAction *> &actions)
+{
+	mTabContextMenu->addCustomActions(actions);
 }
 
 } // namespace kImageAnnotator

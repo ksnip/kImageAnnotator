@@ -133,4 +133,9 @@ void CoreView::setStickers(const QStringList &stickerPaths, bool keepDefault)
 	mAnnotationWidget->setStickers(stickerPaths, keepDefault);
 }
 
+void CoreView::addTabContextMenuActions(const QList<QAction *> &actions)
+{
+	mAnnotationWidget->addTabContextMenuActions(actions);
+}
+
 } // namespace kImageAnnotator

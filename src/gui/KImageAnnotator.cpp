@@ -192,6 +192,12 @@ void KImageAnnotator::setStickers(const QStringList &stickerPaths, bool keepDefa
 	d->mCoreView.setStickers(stickerPaths, keepDefault);
 }
 
+void KImageAnnotator::addTabContextMenuActions(const QList<QAction *> &actions)
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.addTabContextMenuActions(actions);
+}
+
 // KImageAnnotatorPrivate
 
 KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator) : q_ptr(kImageAnnotator), mCoreView(&mConfig)
