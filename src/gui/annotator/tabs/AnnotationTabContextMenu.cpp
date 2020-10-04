@@ -58,6 +58,7 @@ AnnotationTabContextMenu::~AnnotationTabContextMenu()
 	delete mCloseTab;
 	delete mClosedOtherTabs;
 	delete mCloseAllTabs;
+	qDeleteAll(mCustomActionMap.keys());
 }
 
 void AnnotationTabContextMenu::show(int tabIndex, const QPoint &pos)
@@ -90,6 +91,37 @@ void AnnotationTabContextMenu::closeAllTabsToLeftTriggered() const
 void AnnotationTabContextMenu::closeAllTabsToRightTriggered() const
 {
 	emit closeAllTabsToRight(mTabIndex);
+}
+
+void AnnotationTabContextMenu::addCustomActions(const QList<QAction *> &customActions)
+{
+    addSeparator();
+    for(auto innerAction : customActions) {
+        auto outerAction = new QAction(this);
+        outerAction->setText(innerAction->text());
+        outerAction->setIcon(innerAction->icon());
+        outerAction->setToolTip(innerAction->toolTip());
+        outerAction->setEnabled(innerAction->isEnabled());
+        mCustomActionMap[outerAction] = innerAction;
+        connect(innerAction, &QAction::changed, this, &AnnotationTabContextMenu::customActionChanged);
+        connect(outerAction, &QAction::triggered, this, &AnnotationTabContextMenu::customActionTriggered);
+        addAction(outerAction);
+    }
+}
+
+void AnnotationTabContextMenu::customActionTriggered()
+{
+    auto outerAction = dynamic_cast<QAction *>(sender());
+    auto innerAction = mCustomActionMap.value(outerAction);
+    innerAction->setData(mTabIndex);
+    innerAction->trigger();
+}
+
+void AnnotationTabContextMenu::customActionChanged()
+{
+    auto innerAction = dynamic_cast<QAction *>(sender());
+    auto outerAction = mCustomActionMap.key(innerAction);
+    outerAction->setEnabled(innerAction->isEnabled());
 }
 
 } // namespace kImageAnnotator

@@ -31,6 +31,7 @@ public:
 	explicit AnnotationTabContextMenu(QWidget *parent);
 	~AnnotationTabContextMenu() override;
 	void show(int tabIndex, const QPoint &pos);
+	void addCustomActions(const QList<QAction*> & customActions);
 
 signals:
 	void closeTab(int index) const;
@@ -46,12 +47,17 @@ private:
 	QAction *mCloseAllTabs;
 	QAction *mCloseAllTabsToLeft;
 	QAction *mCloseAllTabsToRight;
+	QHash<QAction*, QAction*> mCustomActionMap;
 
 	void closeTabTriggered() const;
 	void closeOtherTabsTriggered() const;
 	void closeAllTabsTriggered() const;
 	void closeAllTabsToLeftTriggered() const;
 	void closeAllTabsToRightTriggered() const;
+
+private slots:
+    void customActionTriggered();
+    void customActionChanged();
 };
 
 } // namespace kImageAnnotator

@@ -34,6 +34,7 @@ set(UNITTEST_SRC
 	gui/cropper/CropHandlesTest.cpp
 	gui/scaler/ScaleSizeHandlerTest.cpp
 	gui/annotator/tabs/AnnotationTabCloserTest.cpp
+	gui/annotator/tabs/AnnotationTabContextMenuTest.cpp
 	widgets/ToolPickerTest.cpp
 	widgets/ColorPickerTest.cpp
 	widgets/NumberPickerTest.cpp
@@ -43,7 +44,7 @@ set(UNITTEST_SRC
 	)
 
 set(TESTUTILS_SRC
-        mocks/MockZoomValueProvider.cpp
+    mocks/MockZoomValueProvider.cpp
 	mocks/MockSettingsProvider.cpp
 	mocks/MockDevicePixelRatioScaler.cpp
 	mocks/MockDefaultParameters.h
