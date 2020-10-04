@@ -101,7 +101,6 @@ QImage AnnotationArea::image()
 	auto scaleFactor = mDevicePixelRatioScaler->scaleFactor();
 	QImage image(sceneRect().size().toSize() * scaleFactor, QImage::Format_ARGB32_Premultiplied);
 	image.fill(Qt::white);
-	image.setDevicePixelRatio(scaleFactor);
 
 	QPainter painter(&image);
 	painter.setRenderHint(QPainter::Antialiasing);
@@ -109,6 +108,7 @@ QImage AnnotationArea::image()
 
 	setSceneRect(mImage->boundingRect()); // Reset scene rect
 
+    image.setDevicePixelRatio(scaleFactor);
 	return image;
 }
 
