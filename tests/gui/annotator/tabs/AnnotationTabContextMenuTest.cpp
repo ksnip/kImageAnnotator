@@ -33,7 +33,7 @@ void AnnotationTabContextMenuTest::TestCustomActionTriggered_Should_CallInnerAct
 
     menu.show(tabIndex, {});
 
-    QCOMPARE(customAction.data(), tabIndex);
+    QCOMPARE(customAction.data().toInt(), tabIndex);
     QCOMPARE(spy.count(), 1);
 }
 
