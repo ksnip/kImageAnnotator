@@ -47,6 +47,7 @@ signals:
 	void currentTabChanged(int index) const;
 	void tabCloseRequested(int index) const;
 	void tabMoved(int fromIndex, int toIndex);
+	void tabContextMenuOpened(int index) const;
 
 public slots:
 	void loadImage(const QPixmap &pixmap);

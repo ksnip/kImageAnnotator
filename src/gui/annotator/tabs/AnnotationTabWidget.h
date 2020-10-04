@@ -47,6 +47,7 @@ public:
 signals:
 	void imageChanged() const;
 	void tabMoved(int fromIndex, int toIndex) const;
+	void tabContextMenuOpened(int index) const;
 
 protected:
 	void tabInserted(int index) override;

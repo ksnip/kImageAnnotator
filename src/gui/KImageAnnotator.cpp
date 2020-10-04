@@ -214,6 +214,7 @@ KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator)
 	kImageAnnotator->connect(&mCoreView, &CoreView::currentTabChanged, kImageAnnotator, &KImageAnnotator::currentTabChanged);
 	kImageAnnotator->connect(&mCoreView, &CoreView::tabCloseRequested, kImageAnnotator, &KImageAnnotator::tabCloseRequested);
 	kImageAnnotator->connect(&mCoreView, &CoreView::tabMoved, kImageAnnotator, &KImageAnnotator::tabMoved);
+	kImageAnnotator->connect(&mCoreView, &CoreView::tabContextMenuOpened, kImageAnnotator, &KImageAnnotator::tabContextMenuOpened);
 }
 
 } // namespace kImageAnnotator

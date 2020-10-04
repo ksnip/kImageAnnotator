@@ -35,6 +35,7 @@ CoreView::CoreView(Config *config) :
 	connect(mAnnotationWidget, &AnnotationWidget::currentTabChanged, this, &CoreView::currentTabChanged);
 	connect(mAnnotationWidget, &AnnotationWidget::tabCloseRequested, this, &CoreView::tabCloseRequested);
 	connect(mAnnotationWidget, &AnnotationWidget::tabMoved, this, &CoreView::tabMoved);
+	connect(mAnnotationWidget, &AnnotationWidget::tabContextMenuOpened, this, &CoreView::tabContextMenuOpened);
 	connect(mCropWidget, &CropWidget::closing, this, &CoreView::showAnnotator);
 	connect(mScaleWidget, &ScaleWidget::closing, this, &CoreView::showAnnotator);
 }

@@ -58,6 +58,7 @@ void AnnotationWidget::initGui()
 	connect(mAnnotationTabWidget, &AnnotationTabWidget::currentChanged, this, &AnnotationWidget::currentTabChanged);
 	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabCloseRequested, this, &AnnotationWidget::tabCloseRequested);
 	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabMoved, this, &AnnotationWidget::tabMoved);
+	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabContextMenuOpened, this, &AnnotationWidget::tabContextMenuOpened);
 }
 
 QImage AnnotationWidget::image() const

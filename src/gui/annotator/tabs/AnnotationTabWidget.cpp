@@ -124,6 +124,7 @@ void AnnotationTabWidget::showTabContextMenu(const QPoint &pos)
 {
 	if (!pos.isNull()) {
 		int tabIndex = mTabBar->tabAt(pos);
+		emit tabContextMenuOpened(tabIndex);
 		mTabContextMenu->show(tabIndex, mTabBar->mapToGlobal(pos));
 	}
 }

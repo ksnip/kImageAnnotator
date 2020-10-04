@@ -67,6 +67,7 @@ Q_SIGNALS:
 	void currentTabChanged(int index) const;
 	void tabCloseRequested(int index) const;
 	void tabMoved(int fromIndex, int toIndex);
+	void tabContextMenuOpened(int index) const;
 
 private:
 	QScopedPointer<KImageAnnotatorPrivate> const d_ptr;
