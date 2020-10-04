@@ -41,7 +41,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation>Excluir</translation>
+        <translation>Apagar</translation>
     </message>
 </context>
 <context>
