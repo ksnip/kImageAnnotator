@@ -77,8 +77,10 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 	}
 
 	// Workaround for issue #70 -> Cursor not drawn with with Qt 5.9
-	painter->setBrush(QColor(255,255,255,10));
-	painter->drawRect(*mRect);
+	if (mIsInEditMode) {
+		painter->setBrush(QColor(255,255,255,10));
+		painter->drawRect(*mRect);
+	}
 
 	// Paint text
 	painter->setPen(properties()->textColor());
