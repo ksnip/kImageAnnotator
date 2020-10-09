@@ -97,16 +97,25 @@ void AnnotationTabContextMenu::addCustomActions(const QList<QAction *> &customAc
 {
     addSeparator();
     for(auto innerAction : customActions) {
-        auto outerAction = new QAction(this);
-        outerAction->setText(innerAction->text());
-        outerAction->setIcon(innerAction->icon());
-        outerAction->setToolTip(innerAction->toolTip());
-        outerAction->setEnabled(innerAction->isEnabled());
-        mCustomActionMap[outerAction] = innerAction;
-        connect(innerAction, &QAction::changed, this, &AnnotationTabContextMenu::customActionChanged);
-        connect(outerAction, &QAction::triggered, this, &AnnotationTabContextMenu::customActionTriggered);
-        addAction(outerAction);
+    	if(innerAction->isSeparator()) {
+    		addSeparator();
+    	} else {
+			addCustomAction(innerAction);
+		}
     }
+}
+
+void AnnotationTabContextMenu::addCustomAction(QAction *innerAction)
+{
+	auto outerAction = new QAction(this);
+	outerAction->setText(innerAction->text());
+	outerAction->setIcon(innerAction->icon());
+	outerAction->setToolTip(innerAction->toolTip());
+	outerAction->setEnabled(innerAction->isEnabled());
+	mCustomActionMap[outerAction] = innerAction;
+	connect(innerAction, &QAction::changed, this, &AnnotationTabContextMenu::customActionChanged);
+	connect(outerAction, &QAction::triggered, this, &AnnotationTabContextMenu::customActionTriggered);
+	addAction(outerAction);
 }
 
 void AnnotationTabContextMenu::customActionTriggered()

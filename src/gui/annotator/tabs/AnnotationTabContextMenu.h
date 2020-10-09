@@ -58,6 +58,7 @@ private:
 private slots:
     void customActionTriggered();
     void customActionChanged();
+	void addCustomAction(QAction *innerAction);
 };
 
 } // namespace kImageAnnotator
