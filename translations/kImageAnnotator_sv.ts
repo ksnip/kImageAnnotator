@@ -5,241 +5,241 @@
     <name>kImageAnnotator::AnnotationContextMenu</name>
     <message>
         <source>Arrange</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordna</translation>
     </message>
     <message>
         <source>Bring to Front</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytta längst fram</translation>
     </message>
     <message>
         <source>Bring Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytta framåt</translation>
     </message>
     <message>
         <source>Send Backward</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytta bakåt</translation>
     </message>
     <message>
         <source>Send to Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytta längst bak</translation>
     </message>
     <message>
         <source>Select This</source>
-        <translation type="unfinished"></translation>
+        <translation>Markera detta</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiera</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Klistra in</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Redigera</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationSettings</name>
     <message>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Färg</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Bredd</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Textfärg</translation>
     </message>
     <message>
         <source>Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Teckenstorlek</translation>
     </message>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Kant- och fyllnadssynlighet</translation>
     </message>
     <message>
         <source>Starting Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Startnummer</translation>
     </message>
     <message>
         <source>Blur Radius</source>
-        <translation type="unfinished"></translation>
+        <translation>Radie för oskärpa</translation>
     </message>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>Dekal</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationTabContextMenu</name>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng</translation>
     </message>
     <message>
         <source>Close Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng andra</translation>
     </message>
     <message>
         <source>Close All</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng alla</translation>
     </message>
     <message>
         <source>Close All to the Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng alla till vänster</translation>
     </message>
     <message>
         <source>Close All to the Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng alla till höger</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::CropWidget</name>
     <message>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Beskär</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <source>X:</source>
-        <translation type="unfinished"></translation>
+        <translation>X:</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation type="unfinished"></translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <source>W:</source>
-        <translation type="unfinished"></translation>
+        <translation>B:</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation type="unfinished"></translation>
+        <translation>H:</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::FillTypePicker</name>
     <message>
         <source>No Border and No Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Inga kanter och ingen fyllning</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanter och fyllning</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanter men ingen fyllning</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ScaleDialog</name>
     <message>
         <source>Scale Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Skala bild</translation>
     </message>
     <message>
         <source>Keep Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Bevara proportioner</translation>
     </message>
     <message>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bredd:</translation>
     </message>
     <message>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Höjd:</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <source>Pixel</source>
-        <translation type="unfinished"></translation>
+        <translation>Pixel</translation>
     </message>
     <message>
         <source>Percent</source>
-        <translation type="unfinished"></translation>
+        <translation>Procent</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ToolPicker</name>
     <message>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Markera</translation>
     </message>
     <message>
         <source>Pen</source>
-        <translation type="unfinished"></translation>
+        <translation>Penna</translation>
     </message>
     <message>
         <source>Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Siffra</translation>
     </message>
     <message>
         <source>Marker Rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>Rektangelmarkering</translation>
     </message>
     <message>
         <source>Marker Ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>Ellipsmarkering</translation>
     </message>
     <message>
         <source>Marker Pen</source>
-        <translation type="unfinished"></translation>
+        <translation>Överstrykningspenna</translation>
     </message>
     <message>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Text</translation>
     </message>
     <message>
         <source>Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Pil</translation>
     </message>
     <message>
         <source>Double Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Dubbelpil</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Linje</translation>
     </message>
     <message>
         <source>Blur</source>
-        <translation type="unfinished"></translation>
+        <translation>Oskärpa</translation>
     </message>
     <message>
         <source>Rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>Rektangel</translation>
     </message>
     <message>
         <source>Ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>Ellips</translation>
     </message>
     <message>
         <source>Number Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Nummerpekare</translation>
     </message>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>Dekal</translation>
     </message>
 </context>
 </TS>
