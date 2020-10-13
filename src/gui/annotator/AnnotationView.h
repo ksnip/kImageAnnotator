@@ -37,7 +37,6 @@ class AnnotationView : public QGraphicsView
 public:
 	explicit AnnotationView(QWidget *parent);
 	~AnnotationView() override = default;
-
 	ZoomValueProvider *zoomValueProvider() const;
 
 protected:
@@ -47,6 +46,7 @@ protected:
 	void mousePressEvent(QMouseEvent *event) override;
 	void mouseReleaseEvent(QMouseEvent *event) override;
 	void wheelEvent(QWheelEvent *event) override;
+	void paintEvent(QPaintEvent *event) override;
 
 private:
 	AnnotationViewZoomer *mAnnotationViewZoomer;

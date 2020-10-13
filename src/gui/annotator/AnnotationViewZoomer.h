@@ -45,6 +45,8 @@ public:
 
 private:
 	QGraphicsView *mView;
+	double mMinScale;
+	double mMaxScale;
 };
 
 } // namespace kImageAnnotator

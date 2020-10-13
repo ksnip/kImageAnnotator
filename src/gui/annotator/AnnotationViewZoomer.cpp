@@ -21,8 +21,14 @@
 
 namespace kImageAnnotator {
 
-AnnotationViewZoomer::AnnotationViewZoomer(QGraphicsView *view) : ZoomValueProvider(view), mView(view)
-{}
+AnnotationViewZoomer::AnnotationViewZoomer(QGraphicsView *view) :
+	ZoomValueProvider(view),
+	mView(view),
+	mMinScale(0.1),
+	mMaxScale(8.0)
+{
+
+}
 
 double AnnotationViewZoomer::zoomValue() const
 {
@@ -31,11 +37,12 @@ double AnnotationViewZoomer::zoomValue() const
 
 void AnnotationViewZoomer::zoom(double factor)
 {
-	const auto minScale = 1.0;
-	const auto maxScale = 8.0;
-	const auto scaleFactor = qBound(minScale, factor * zoomValue(), maxScale) / zoomValue();
-	if (!qFuzzyCompare(scaleFactor, 1.0)) {
-		mView->scale(scaleFactor, scaleFactor);
+	auto currentZoomValue = zoomValue();
+	auto newZoomValue = currentZoomValue + factor;
+
+	if(newZoomValue >= mMinScale && newZoomValue <= mMaxScale) {
+		mView->resetMatrix();
+		mView->scale(newZoomValue, newZoomValue);
 		emit zoomValueChanged(zoomValue());
 	}
 }
@@ -50,9 +57,9 @@ void AnnotationViewZoomer::zoomToPoint(double factor, const QPoint &viewPoint)
 
 void AnnotationViewZoomer::wheelZoom(QWheelEvent *event)
 {
-	const auto zoomInFactor = 1.1;
-	const auto zoomOutFactor = 1.0 / zoomInFactor;
-	const auto factor = (event->angleDelta().y() < 0.0) ? zoomOutFactor : zoomInFactor;
+	auto zoomInFactor = 0.1;
+
+	const auto factor = event->angleDelta().y() < 0.0 ? -zoomInFactor : zoomInFactor;
 	zoomToPoint(factor, event->pos());
 	event->accept(); // supress scrolling
 }

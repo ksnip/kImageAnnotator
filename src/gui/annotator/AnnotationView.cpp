@@ -22,11 +22,13 @@
 namespace kImageAnnotator {
 
 AnnotationView::AnnotationView(QWidget *parent) :
+	mIsDragging(false),
 	QGraphicsView(parent),
 	mAnnotationViewZoomer(new AnnotationViewZoomer(this))
 {
 	setTransformationAnchor(QGraphicsView::NoAnchor);
 	disableDragging();
+	setViewportUpdateMode(QGraphicsView::ViewportUpdateMode::FullViewportUpdate);
 }
 
 ZoomValueProvider *AnnotationView::zoomValueProvider() const
@@ -82,6 +84,21 @@ void AnnotationView::mouseReleaseEvent(QMouseEvent *event)
 void AnnotationView::wheelEvent(QWheelEvent *event)
 {
 	mAnnotationViewZoomer->wheelZoom(event);
+}
+
+void AnnotationView::paintEvent(QPaintEvent *event)
+{
+	QGraphicsView::paintEvent(event);
+
+	auto viewPort = viewport();
+	if(viewPort != nullptr){
+		QPainter painter(viewPort);
+		auto rect = viewPort->rect().adjusted(0, 0, -4, -4);
+		auto alignment = Qt::AlignRight | Qt::AlignBottom;
+		auto value = qRound(mAnnotationViewZoomer->zoomValue() * 100);
+		auto text = QString::number(value) + QLatin1Literal("%");
+		painter.drawText(rect, alignment, text);
+	}
 }
 
 void AnnotationView::scrollTo(const QPoint &pos)
