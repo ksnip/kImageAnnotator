@@ -23,33 +23,33 @@ namespace kImageAnnotator {
 
 Config::Config()
 {
-	mAllTools = QList<ToolTypes>{
-		ToolTypes::Pen,
-		ToolTypes::MarkerPen,
-		ToolTypes::MarkerRect,
-		ToolTypes::MarkerEllipse,
-		ToolTypes::Line,
-		ToolTypes::Arrow,
-		ToolTypes::DoubleArrow,
-		ToolTypes::Rect,
-		ToolTypes::Ellipse,
-		ToolTypes::Number,
-		ToolTypes::NumberPointer,
-		ToolTypes::Text,
-		ToolTypes::Blur,
-		ToolTypes::Pixelate,
-		ToolTypes::Image
+	mAllTools = QList<Tools>{
+		Tools::Pen,
+		Tools::MarkerPen,
+		Tools::MarkerRect,
+		Tools::MarkerEllipse,
+		Tools::Line,
+		Tools::Arrow,
+		Tools::DoubleArrow,
+		Tools::Rect,
+		Tools::Ellipse,
+		Tools::Number,
+		Tools::NumberPointer,
+		Tools::Text,
+		Tools::Blur,
+		Tools::Pixelate,
+		Tools::Image
 	};
 	initGeneralSettings();
 	initToolSettings();
 }
 
-ToolTypes Config::selectedTool() const
+Tools Config::selectedTool() const
 {
 	return mSelectTool;
 }
 
-void Config::setSelectedToolType(ToolTypes tool)
+void Config::setSelectedToolType(Tools tool)
 {
 	if (selectedTool() == tool) {
 		return;
@@ -59,12 +59,12 @@ void Config::setSelectedToolType(ToolTypes tool)
 	saveToolType(tool);
 }
 
-QColor Config::toolColor(ToolTypes tool) const
+QColor Config::toolColor(Tools tool) const
 {
 	return mToolToColor[tool];
 }
 
-void Config::setToolColor(const QColor &color, ToolTypes tool)
+void Config::setToolColor(const QColor &color, Tools tool)
 {
 	if (toolColor(tool) == color) {
 		return;
@@ -74,12 +74,12 @@ void Config::setToolColor(const QColor &color, ToolTypes tool)
 	saveToolColor(tool, color);
 }
 
-QColor Config::toolTextColor(ToolTypes tool) const
+QColor Config::toolTextColor(Tools tool) const
 {
 	return mToolToTextColor[tool];
 }
 
-void Config::setToolTextColor(const QColor &color, ToolTypes tool)
+void Config::setToolTextColor(const QColor &color, Tools tool)
 {
 	if (toolTextColor(tool) == color) {
 		return;
@@ -89,12 +89,12 @@ void Config::setToolTextColor(const QColor &color, ToolTypes tool)
 	saveToolTextColor(tool, color);
 }
 
-int Config::toolWidth(ToolTypes tool) const
+int Config::toolWidth(Tools tool) const
 {
 	return mToolToWidth[tool];
 }
 
-void Config::setToolWidth(int size, ToolTypes tool)
+void Config::setToolWidth(int size, Tools tool)
 {
 	if (toolWidth(tool) == size) {
 		return;
@@ -104,12 +104,12 @@ void Config::setToolWidth(int size, ToolTypes tool)
 	saveToolWidth(tool, size);
 }
 
-FillTypes Config::toolFillType(ToolTypes tool) const
+FillModes Config::toolFillType(Tools tool) const
 {
 	return mToolToFillType[tool];
 }
 
-void Config::setToolFillType(FillTypes fillType, ToolTypes tool)
+void Config::setToolFillType(FillModes fillType, Tools tool)
 {
 	if (toolFillType(tool) == fillType) {
 		return;
@@ -119,12 +119,12 @@ void Config::setToolFillType(FillTypes fillType, ToolTypes tool)
 	saveToolFillType(tool, fillType);
 }
 
-QFont Config::toolFont(ToolTypes toolType) const
+QFont Config::toolFont(Tools toolType) const
 {
 	return mToolToFont[toolType];
 }
 
-void Config::setToolFont(const QFont &font, ToolTypes toolType)
+void Config::setToolFont(const QFont &font, Tools toolType)
 {
 	auto tmpFont = font;
 	tmpFont.setPointSize(toolFontSize(toolType));
@@ -135,12 +135,12 @@ void Config::setToolFont(const QFont &font, ToolTypes toolType)
 	mToolToFont[toolType] = tmpFont;
 }
 
-int Config::toolFontSize(ToolTypes toolType) const
+int Config::toolFontSize(Tools toolType) const
 {
 	return mToolToFont[toolType].pointSize();
 }
 
-void Config::setToolFontSize(int fontSize, ToolTypes toolType)
+void Config::setToolFontSize(int fontSize, Tools toolType)
 {
 	if (toolFontSize(toolType) == fontSize) {
 		return;
@@ -190,12 +190,12 @@ void Config::setSmoothFactor(int factor)
 	mSmoothFactor = factor;
 }
 
-int Config::obfuscationFactor(ToolTypes toolType) const
+int Config::obfuscationFactor(Tools toolType) const
 {
 	return mToolToObfuscationFactor[toolType];
 }
 
-void Config::setObfuscationFactor(int factor, ToolTypes toolType)
+void Config::setObfuscationFactor(int factor, Tools toolType)
 {
 	if (obfuscationFactor(toolType) == factor) {
 		return;
@@ -253,9 +253,9 @@ void Config::initToolFillTypes()
 
 void Config::initToolFonts()
 {
-	mToolToFont[ToolTypes::Text] = QFont(QStringLiteral("Times"), loadToolFontSize(ToolTypes::Text), QFont::Bold);
-	mToolToFont[ToolTypes::Number] = QFont(QStringLiteral("Helvetica"), loadToolFontSize(ToolTypes::Number), QFont::Bold);
-	mToolToFont[ToolTypes::NumberPointer] = QFont(QStringLiteral("Helvetica"), loadToolFontSize(ToolTypes::NumberPointer), QFont::Bold);
+	mToolToFont[Tools::Text] = QFont(QStringLiteral("Times"), loadToolFontSize(Tools::Text), QFont::Bold);
+	mToolToFont[Tools::Number] = QFont(QStringLiteral("Helvetica"), loadToolFontSize(Tools::Number), QFont::Bold);
+	mToolToFont[Tools::NumberPointer] = QFont(QStringLiteral("Helvetica"), loadToolFontSize(Tools::NumberPointer), QFont::Bold);
 }
 
 void Config::initObfuscateFactor()
@@ -273,7 +273,7 @@ void Config::initGeneralSettings()
 	mSmoothFactor = 7;
 }
 
-QColor Config::loadToolColor(ToolTypes toolType)
+QColor Config::loadToolColor(Tools toolType)
 {
 	if (mSaveToolSelection) {
 		return mConfig.value(ConfigNameHelper::toolColor(toolType), defaultToolColor(toolType)).value<QColor>();
@@ -282,7 +282,7 @@ QColor Config::loadToolColor(ToolTypes toolType)
 	}
 }
 
-void Config::saveToolColor(ToolTypes toolType, const QColor &color)
+void Config::saveToolColor(Tools toolType, const QColor &color)
 {
 	if (mSaveToolSelection) {
 		mConfig.setValue(ConfigNameHelper::toolColor(toolType), color);
@@ -290,7 +290,7 @@ void Config::saveToolColor(ToolTypes toolType, const QColor &color)
 	}
 }
 
-QColor Config::loadToolTextColor(ToolTypes toolType)
+QColor Config::loadToolTextColor(Tools toolType)
 {
 	if (mSaveToolSelection) {
 		return mConfig.value(ConfigNameHelper::toolTextColor(toolType), defaultToolTextColor(toolType)).value<QColor>();
@@ -299,7 +299,7 @@ QColor Config::loadToolTextColor(ToolTypes toolType)
 	}
 }
 
-void Config::saveToolTextColor(ToolTypes toolType, const QColor &color)
+void Config::saveToolTextColor(Tools toolType, const QColor &color)
 {
 	if (mSaveToolSelection) {
 		mConfig.setValue(ConfigNameHelper::toolTextColor(toolType), color);
@@ -307,7 +307,7 @@ void Config::saveToolTextColor(ToolTypes toolType, const QColor &color)
 	}
 }
 
-int Config::loadToolWidth(ToolTypes toolType)
+int Config::loadToolWidth(Tools toolType)
 {
 	if (mSaveToolSelection) {
 		return mConfig.value(ConfigNameHelper::toolWidth(toolType), defaultToolWidth(toolType)).value<int>();
@@ -316,7 +316,7 @@ int Config::loadToolWidth(ToolTypes toolType)
 	}
 }
 
-void Config::saveToolWidth(ToolTypes toolType, int size)
+void Config::saveToolWidth(Tools toolType, int size)
 {
 	if (mSaveToolSelection) {
 		mConfig.setValue(ConfigNameHelper::toolWidth(toolType), size);
@@ -324,16 +324,16 @@ void Config::saveToolWidth(ToolTypes toolType, int size)
 	}
 }
 
-FillTypes Config::loadToolFillType(ToolTypes toolType)
+FillModes Config::loadToolFillType(Tools toolType)
 {
 	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::toolFillType(toolType), static_cast<int>(defaultToolFillType(toolType))).value<FillTypes>();
+		return mConfig.value(ConfigNameHelper::toolFillType(toolType), static_cast<int>(defaultToolFillType(toolType))).value<FillModes>();
 	} else {
 		return defaultToolFillType(toolType);
 	}
 }
 
-void Config::saveToolFillType(ToolTypes toolType, FillTypes fillType)
+void Config::saveToolFillType(Tools toolType, FillModes fillType)
 {
 	if (mSaveToolSelection) {
 		mConfig.setValue(ConfigNameHelper::toolFillType(toolType), static_cast<int>(fillType));
@@ -341,16 +341,16 @@ void Config::saveToolFillType(ToolTypes toolType, FillTypes fillType)
 	}
 }
 
-ToolTypes Config::loadToolType()
+Tools Config::loadToolType()
 {
 	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::toolType(), static_cast<int>(defaultToolType())).value<ToolTypes>();
+		return mConfig.value(ConfigNameHelper::toolType(), static_cast<int>(defaultToolType())).value<Tools>();
 	} else {
 		return defaultToolType();
 	}
 }
 
-void Config::saveToolType(ToolTypes toolType)
+void Config::saveToolType(Tools toolType)
 {
 	if (mSaveToolSelection) {
 		mConfig.setValue(ConfigNameHelper::toolType(), static_cast<int>(toolType));
@@ -358,7 +358,7 @@ void Config::saveToolType(ToolTypes toolType)
 	}
 }
 
-int Config::loadToolFontSize(ToolTypes toolType)
+int Config::loadToolFontSize(Tools toolType)
 {
 	if (mSaveToolSelection) {
 		return mConfig.value(ConfigNameHelper::toolFontSize(toolType), defaultToolFontSize(toolType)).value<int>();
@@ -367,7 +367,7 @@ int Config::loadToolFontSize(ToolTypes toolType)
 	}
 }
 
-void Config::saveToolFontSize(ToolTypes toolType, int fontSize)
+void Config::saveToolFontSize(Tools toolType, int fontSize)
 {
 	if (mSaveToolSelection) {
 		mConfig.setValue(ConfigNameHelper::toolFontSize(toolType), fontSize);
@@ -375,7 +375,7 @@ void Config::saveToolFontSize(ToolTypes toolType, int fontSize)
 	}
 }
 
-int Config::loadObfuscateFactor(ToolTypes toolType)
+int Config::loadObfuscateFactor(Tools toolType)
 {
 	if (mSaveToolSelection) {
 		return mConfig.value(ConfigNameHelper::obfuscateFactor(toolType), defaultObfuscateFactor()).value<int>();
@@ -384,7 +384,7 @@ int Config::loadObfuscateFactor(ToolTypes toolType)
 	}
 }
 
-void Config::saveObfuscateFactor(ToolTypes toolType, int radius)
+void Config::saveObfuscateFactor(Tools toolType, int radius)
 {
 	if (mSaveToolSelection) {
 		mConfig.setValue(ConfigNameHelper::obfuscateFactor(toolType), radius);
@@ -392,88 +392,88 @@ void Config::saveObfuscateFactor(ToolTypes toolType, int radius)
 	}
 }
 
-QColor Config::defaultToolColor(ToolTypes toolType) const
+QColor Config::defaultToolColor(Tools toolType) const
 {
 	switch (toolType) {
-		case ToolTypes::MarkerPen:
-		case ToolTypes::MarkerRect:
-		case ToolTypes::MarkerEllipse:
+		case Tools::MarkerPen:
+		case Tools::MarkerRect:
+		case Tools::MarkerEllipse:
 			return { Qt::yellow };
-		case ToolTypes::Line:
+		case Tools::Line:
 			return { Qt::blue };
-		case ToolTypes::Rect:
+		case Tools::Rect:
 			return { Qt::gray };
-		case ToolTypes::Text:
+		case Tools::Text:
 			return { Qt::black };
-		case ToolTypes::Blur:
-		case ToolTypes::Pixelate:
+		case Tools::Blur:
+		case Tools::Pixelate:
 			return { Qt::white };
 		default:
 			return { Qt::red };
 	}
 }
 
-QColor Config::defaultToolTextColor(ToolTypes toolType) const
+QColor Config::defaultToolTextColor(Tools toolType) const
 {
 	switch (toolType) {
-		case ToolTypes::Text:
-		case ToolTypes::Number:
-		case ToolTypes::NumberPointer:
+		case Tools::Text:
+		case Tools::Number:
+		case Tools::NumberPointer:
 			return { Qt::white };
 		default:
 			return { Qt::blue };
 	}
 }
 
-int Config::defaultToolWidth(ToolTypes toolType) const
+int Config::defaultToolWidth(Tools toolType) const
 {
 	switch (toolType) {
-		case ToolTypes::MarkerPen:
+		case Tools::MarkerPen:
 			return 10;
-		case ToolTypes::Arrow:
-		case ToolTypes::DoubleArrow:
+		case Tools::Arrow:
+		case Tools::DoubleArrow:
 			return 6;
-		case ToolTypes::Number:
+		case Tools::Number:
 			return 5;
-		case ToolTypes::Text:
+		case Tools::Text:
 			return 2;
 		default:
 			return 3;
 	}
 }
 
-FillTypes Config::defaultToolFillType(ToolTypes toolType) const
+FillModes Config::defaultToolFillType(Tools toolType) const
 {
 	switch (toolType) {
-		case ToolTypes::Arrow:
-		case ToolTypes::DoubleArrow:
-		case ToolTypes::Rect:
-		case ToolTypes::Number:
-		case ToolTypes::NumberPointer:
-		case ToolTypes::Blur:
-		case ToolTypes::Pixelate:
-			return FillTypes::BorderAndFill;
-		case ToolTypes::MarkerRect:
-		case ToolTypes::MarkerEllipse:
-		case ToolTypes::Image:
-			return FillTypes::NoBorderAndFill;
+		case Tools::Arrow:
+		case Tools::DoubleArrow:
+		case Tools::Rect:
+		case Tools::Number:
+		case Tools::NumberPointer:
+		case Tools::Blur:
+		case Tools::Pixelate:
+			return FillModes::BorderAndFill;
+		case Tools::MarkerRect:
+		case Tools::MarkerEllipse:
+		case Tools::Image:
+			return FillModes::NoBorderAndFill;
 		default:
-			return FillTypes::BorderAndNoFill;
+			return FillModes::BorderAndNoFill;
 	}
 }
 
-ToolTypes Config::defaultToolType()
+Tools Config::defaultToolType()
 {
-	return ToolTypes::Pen;
+	return Tools::Pen;
 }
 
-int Config::defaultToolFontSize(ToolTypes toolType) const
+int Config::defaultToolFontSize(Tools toolType) const
 {
 	switch (toolType) {
-		case ToolTypes::Text:
+		case Tools::Text:
 			return 15;
-		case ToolTypes::Number:
-		case ToolTypes::NumberPointer:
+		case Tools::Number:
+		case Tools::NumberPointer:
 			return 20;
 		default:
 			return 10;

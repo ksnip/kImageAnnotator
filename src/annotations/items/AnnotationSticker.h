@@ -34,7 +34,7 @@ public:
 	AnnotationSticker(const AnnotationSticker &other);
 	~AnnotationSticker() override = default;
 	void addPoint(const QPointF &position, bool modified) override;
-	ToolTypes toolType() const override;
+	Tools toolType() const override;
 	StickerPropertiesPtr stickerProperties() const;
 	void setProperties(const PropertiesPtr &properties) override;
 

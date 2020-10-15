@@ -31,9 +31,9 @@ AnnotationDoubleArrow::AnnotationDoubleArrow(const AnnotationArrow &other) : Ann
 
 }
 
-ToolTypes AnnotationDoubleArrow::toolType() const
+Tools AnnotationDoubleArrow::toolType() const
 {
-	return ToolTypes::DoubleArrow;
+	return Tools::DoubleArrow;
 }
 
 void AnnotationDoubleArrow::updateShape()

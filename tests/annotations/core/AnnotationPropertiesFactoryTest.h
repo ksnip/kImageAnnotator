@@ -30,8 +30,8 @@ using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::AnnotationTextProperties;
 using kImageAnnotator::AnnotationPathProperties;
 using kImageAnnotator::AnnotationStickerProperties;
-using kImageAnnotator::ToolTypes;
-using kImageAnnotator::FillTypes;
+using kImageAnnotator::Tools;
+using kImageAnnotator::FillModes;
 using kImageAnnotator::Config;
 
 class AnnotationPropertiesFactoryTest : public QObject

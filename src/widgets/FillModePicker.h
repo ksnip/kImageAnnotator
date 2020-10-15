@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_FILLPICKER_H
-#define KIMAGEANNOTATOR_FILLPICKER_H
+#ifndef KIMAGEANNOTATOR_FILLMODEPICKER_H
+#define KIMAGEANNOTATOR_FILLMODEPICKER_H
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -29,37 +29,37 @@
 
 #include "src/widgets/menuButtons/ListMenuToolButton.h"
 #include "src/common/constants/Constants.h"
-#include "src/common/enum/FillTypes.h"
+#include "src/common/enum/FillModes.h"
 #include "src/common/helper/IconLoader.h"
 
 namespace kImageAnnotator {
 
-class FillTypePicker : public QWidget
+class FillModePicker : public QWidget
 {
 Q_OBJECT
 public:
-	FillTypePicker(const QIcon &icon, const QString &tooltip);
-	~FillTypePicker() override;
-	void setFillType(FillTypes fillType);
+	explicit FillModePicker(QWidget *parent);
+	~FillModePicker() override;
+	void setFillType(FillModes fillType);
 	void addNoFillAndNoBorderToList();
 	void removeNoFillAndNoBorderToList();
-	FillTypes fillType() const;
+	FillModes fillType() const;
 
 signals:
-	void fillSelected(FillTypes fillType) const;
+	void fillSelected(FillModes fillType) const;
 
 private:
 	QHBoxLayout *mLayout;
 	QLabel *mLabel;
 	ListMenuToolButton *mToolButton;
 
-	void initGui(const QIcon &icon, const QString &tooltip);
+	void initGui();
 
 private slots:
-	void insertItem(FillTypes fillType, const QString &iconName, const QString &text);
+	void insertItem(FillModes fillType, const QString &iconName, const QString &text);
 	void selectionChanged();
 };
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_FILLPICKER_H
+#endif // KIMAGEANNOTATOR_FILLMODEPICKER_H

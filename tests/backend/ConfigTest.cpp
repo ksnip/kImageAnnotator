@@ -32,31 +32,31 @@ void ConfigTest::cleanupTestCase()
 
 void ConfigTest::TestSetSelectedTool_Should_NotSaveSelection_When_SaveToolSelectionDisabled()
 {
-	qRegisterMetaType<ToolTypes>("ToolTypes");
-	auto defaultTool = ToolTypes::Pen;
+	qRegisterMetaType<Tools>("ToolTypes");
+	auto defaultTool = Tools::Pen;
 	QSettings settings;
 	settings.remove(ConfigNameHelper::toolType());
 	auto config = new Config;
 	config->setSaveToolSelection(false);
 
-	config->setSelectedToolType(ToolTypes::Ellipse);
+	config->setSelectedToolType(Tools::Ellipse);
 
-	auto saveTool = settings.value(ConfigNameHelper::toolType(), static_cast<int>(defaultTool)).value<ToolTypes>();
+	auto saveTool = settings.value(ConfigNameHelper::toolType(), static_cast<int>(defaultTool)).value<Tools>();
 	QCOMPARE(saveTool, defaultTool);
 }
 
 void ConfigTest::TestSetSelectedTool_Should_SaveSelection_When_SaveToolSelectionEnabled()
 {
-	qRegisterMetaType<ToolTypes>("ToolTypes");
-	auto defaultTool = ToolTypes::Pen;
-	auto selectedTool = ToolTypes::Ellipse;
+	qRegisterMetaType<Tools>("ToolTypes");
+	auto defaultTool = Tools::Pen;
+	auto selectedTool = Tools::Ellipse;
 	QSettings settings;
 	auto config = new Config;
 	config->setSaveToolSelection(true);
 
 	config->setSelectedToolType(selectedTool);
 
-	auto saveTool = settings.value(ConfigNameHelper::toolType(), static_cast<int>(defaultTool)).value<ToolTypes>();
+	auto saveTool = settings.value(ConfigNameHelper::toolType(), static_cast<int>(defaultTool)).value<Tools>();
 	QCOMPARE(saveTool, selectedTool);
 }
 

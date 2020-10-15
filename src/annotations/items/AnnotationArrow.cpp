@@ -30,9 +30,9 @@ AnnotationArrow::AnnotationArrow(const AnnotationArrow &other) : AbstractAnnotat
 
 }
 
-ToolTypes AnnotationArrow::toolType() const
+Tools AnnotationArrow::toolType() const
 {
-	return ToolTypes::Arrow;
+	return Tools::Arrow;
 }
 
 void AnnotationArrow::updateShape()

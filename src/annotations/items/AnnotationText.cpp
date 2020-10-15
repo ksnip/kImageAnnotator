@@ -134,9 +134,9 @@ void AnnotationText::finish()
 	enableEditing();
 }
 
-ToolTypes AnnotationText::toolType() const
+Tools AnnotationText::toolType() const
 {
-	return ToolTypes::Text;
+	return Tools::Text;
 }
 
 QPainterPath AnnotationText::shape() const

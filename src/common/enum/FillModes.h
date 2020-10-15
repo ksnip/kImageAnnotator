@@ -17,14 +17,14 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_FILLTYPES_H
-#define KIMAGEANNOTATOR_FILLTYPES_H
+#ifndef KIMAGEANNOTATOR_FILLMODES_H
+#define KIMAGEANNOTATOR_FILLMODES_H
 
 #include <QMetaType>
 
 namespace kImageAnnotator {
 
-enum class FillTypes
+enum class FillModes
 {
 	BorderAndNoFill,
 	BorderAndFill,
@@ -34,6 +34,6 @@ enum class FillTypes
 
 } // namespace kImageAnnotator
 
-Q_DECLARE_METATYPE(kImageAnnotator::FillTypes);
+Q_DECLARE_METATYPE(kImageAnnotator::FillModes);
 
-#endif // KIMAGEANNOTATOR_FILLTYPES_H
+#endif // KIMAGEANNOTATOR_FILLMODES_H

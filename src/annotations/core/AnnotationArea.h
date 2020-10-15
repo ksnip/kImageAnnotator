@@ -35,7 +35,7 @@
 #include "src/annotations/misc/AnnotationItemClipboard.h"
 #include "src/annotations/misc/AnnotationContextMenu.h"
 #include "src/backend/Config.h"
-#include "src/common/enum/ToolTypes.h"
+#include "src/common/enum/Tools.h"
 #include "src/common/helper/CursorHelper.h"
 #include "src/common/helper/KeyHelper.h"
 #include "src/common/provider/IDevicePixelRatioScaler.h"
@@ -46,6 +46,7 @@
 #include "src/annotations/undo/PasteCommand.h"
 #include "src/annotations/undo/ChangePropertiesCommand.h"
 #include "src/annotations/core/ZoomValueProvider.h"
+#include "src/annotations/core/effects/EffectsFactory.h"
 
 namespace kImageAnnotator {
 
@@ -65,10 +66,11 @@ public:
     virtual void crop(const QRectF& rect);
     virtual void scale(const QSize& size);
     virtual void clearSelection();
-	virtual void toolChanged(ToolTypes toolType) override;
+	virtual void toolChanged(Tools toolType) override;
 	void itemSettingsChanged();
 	void firstBadgeNumberChanged(int number) override;
 	int firstBadgeNumber() const override;
+	void effectChanged(Effects effect) override;
 
 public slots:
     virtual void update();
@@ -98,6 +100,7 @@ private:
 	QAction *mRedoAction;
 	IDevicePixelRatioScaler *mDevicePixelRatioScaler;
 	KeyEventListener mKeyListener;
+	EffectsFactory mEffectsFactory;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

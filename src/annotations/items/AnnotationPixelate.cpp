@@ -32,9 +32,9 @@ AnnotationPixelate::AnnotationPixelate(const AnnotationPixelate &other) : Abstra
 
 }
 
-ToolTypes AnnotationPixelate::toolType() const
+Tools AnnotationPixelate::toolType() const
 {
-	return ToolTypes::Pixelate;
+	return Tools::Pixelate;
 }
 
 QImage AnnotationPixelate::obfuscateBackground(const QImage &sceneBehindItem) const

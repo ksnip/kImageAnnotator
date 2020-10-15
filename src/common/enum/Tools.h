@@ -17,14 +17,14 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_TOOLTYPES_H
-#define KIMAGEANNOTATOR_TOOLTYPES_H
+#ifndef KIMAGEANNOTATOR_TOOLS_H
+#define KIMAGEANNOTATOR_TOOLS_H
 
 #include <QMetaType>
 
 namespace kImageAnnotator {
 
-enum class ToolTypes
+enum class Tools
 {
 	Select,
 	Pen,
@@ -45,7 +45,7 @@ enum class ToolTypes
 	Pixelate
 };
 
-inline uint qHash(const ToolTypes &tool, uint seed)
+inline uint qHash(const Tools &tool, uint seed)
 {
 	Q_UNUSED(seed)
 
@@ -54,6 +54,6 @@ inline uint qHash(const ToolTypes &tool, uint seed)
 
 } // namespace kImageAnnotator
 
-Q_DECLARE_METATYPE(kImageAnnotator::ToolTypes)
+Q_DECLARE_METATYPE(kImageAnnotator::Tools)
 
-#endif // KIMAGEANNOTATOR_TOOLTYPES_H
+#endif // KIMAGEANNOTATOR_TOOLS_H

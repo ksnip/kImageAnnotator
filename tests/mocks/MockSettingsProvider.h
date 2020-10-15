@@ -24,16 +24,16 @@
 
 using kImageAnnotator::AbstractSettingsProvider;
 using kImageAnnotator::AbstractAnnotationItem;
-using kImageAnnotator::ToolTypes;
-using kImageAnnotator::FillTypes;
+using kImageAnnotator::Tools;
+using kImageAnnotator::FillModes;
 
 class MockSettingsProvider : public AbstractSettingsProvider
 {
 public:
 	void editItem(AbstractAnnotationItem *item) override;
 	void activateSelectTool() override;
-	ToolTypes toolType() const override;
-	void setToolType(ToolTypes toolType);
+	Tools toolType() const override;
+	void setToolType(Tools tool);
 	QColor toolColor() const override;
 	void setToolColor(const QColor &toolColor);
 	QColor textColor() const override;
@@ -42,8 +42,8 @@ public:
 	void setToolWidth(int toolWidth);
 	int fontSize() const override;
 	void setFontSize(int fontSize);
-	FillTypes fillType() const override;
-	void setFillType(FillTypes fillType);
+	FillModes fillType() const override;
+	void setFillType(FillModes fillMode);
 	int obfuscationFactor() const override;
 	void setBlurRadius(int blurRadius);
 	QString sticker() const override;
@@ -51,12 +51,12 @@ public:
 	void updateFirstBadgeNumber(int number) override;
 
 private:
-	ToolTypes mToolType;
+	Tools mToolType;
 	QColor mToolColor;
 	QColor mTextColor;
 	int mToolWidth;
 	int mFontSize;
-	FillTypes mFillType;
+	FillModes mFillType;
 	int mBlurRadius;
 	QString mStickerPath;
 };

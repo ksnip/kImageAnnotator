@@ -3,7 +3,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/CoreView.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationView.cpp
-		${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationViewZoomer.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationViewZoomer.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/WidgetConfigurator.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationSettings.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/tabs/AnnotationTabContent.cpp
@@ -19,11 +19,12 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleDialog.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleSizeHandler.cpp
-		${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/ZoomValueProvider.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/ZoomValueProvider.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AnnotationArea.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AnnotationItemFactory.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AnnotationPropertiesFactory.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AbstractSettingsProvider.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/effects/EffectsFactory.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationPathProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationTextProperties.cpp
@@ -95,7 +96,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ToolPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ColorPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/NumberPicker.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/FillTypePicker.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/widgets/FillModePicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomSpinBox.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButton.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButtonAction.cpp
@@ -107,6 +108,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListMenuItem.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListItemGroup.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/EffectPicker.cpp
 	)
 
 set(KIMAGEANNOTATOR_SRCS ${KIMAGEANNOTATOR_SRCS} PARENT_SCOPE)

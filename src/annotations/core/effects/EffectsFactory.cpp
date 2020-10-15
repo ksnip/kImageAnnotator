@@ -17,19 +17,13 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "StickerPickerTest.h"
+#include "EffectsFactory.h"
 
-void StickerPickerTest::TestSelectSticker_Should_EmitSignal_When_StickerChanged()
+QGraphicsEffect *kImageAnnotator::EffectsFactory::create(kImageAnnotator::Effects effect) const
 {
-	StickerPicker stickerPicker(nullptr);
-	QSignalSpy spy(&stickerPicker, &StickerPicker::stickerSelected);
-	auto expectedStickerPath = QLatin1Literal(":/stickers/nerd_face.svg");
-
-	stickerPicker.setSticker(expectedStickerPath);
-
-	QCOMPARE(spy.count(), 1);
-	auto resultSize = qvariant_cast<QString>(spy.at(0).at(0));
-	QCOMPARE(resultSize, expectedStickerPath);
+	if(effect == Effects::DropShadow) {
+		return new QGraphicsDropShadowEffect;
+	} else {
+		return nullptr;
+	}
 }
-
-QTEST_MAIN(StickerPickerTest);

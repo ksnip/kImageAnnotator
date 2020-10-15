@@ -46,9 +46,9 @@ void AnnotationSticker::addPoint(const QPointF &position, bool modified)
 	// Nothing to do here
 }
 
-ToolTypes AnnotationSticker::toolType() const
+Tools AnnotationSticker::toolType() const
 {
-	return ToolTypes::Sticker;
+	return Tools::Sticker;
 }
 
 StickerPropertiesPtr AnnotationSticker::stickerProperties() const

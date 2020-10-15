@@ -38,7 +38,7 @@ set(UNITTEST_SRC
 	widgets/ToolPickerTest.cpp
 	widgets/ColorPickerTest.cpp
 	widgets/NumberPickerTest.cpp
-	widgets/FillTypePickerTest.cpp
+        widgets/FillModePickerTest.cpp
 	widgets/CustomSpinBoxTest.cpp
 	widgets/StickerPickerTest.cpp
 	)

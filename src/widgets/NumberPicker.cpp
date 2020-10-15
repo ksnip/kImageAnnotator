@@ -21,9 +21,13 @@
 
 namespace kImageAnnotator {
 
-NumberPicker::NumberPicker(const QIcon &icon, const QString &tooltip)
+NumberPicker::NumberPicker(QWidget *parent) :
+	QWidget(parent),
+	mLayout(new QHBoxLayout(this)),
+	mLabel(new QLabel()),
+	mSpinBox(new CustomSpinBox(this))
 {
-	initGui(icon, tooltip);
+	initGui();
 
 	connect(mSpinBox, &CustomSpinBox::valueChanged, this, &NumberPicker::selectionChanged);
 }
@@ -40,21 +44,16 @@ void NumberPicker::setNumber(int number)
 	mSpinBox->setValue(number);
 }
 
-void NumberPicker::initGui(const QIcon &icon, const QString &tooltip)
+void NumberPicker::initGui()
 {
-	mLayout = new QHBoxLayout(this);
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
-	mLabel = new QLabel();
-	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
-	mLabel->setToolTip(tooltip);
+	mLabel->setFixedSize(Constants::SettingsWidgetIconSize);
 
-	mSpinBox = new CustomSpinBox(this);
 	mSpinBox->setFixedSize(Constants::SettingsWidgetSize);
 	mSpinBox->setMinimum(1);
 	mSpinBox->setMaximum(20);
 	mSpinBox->setFocusPolicy(Qt::NoFocus);
-	mSpinBox->setToolTip(tooltip);
 
 	mLayout->addWidget(mLabel);
 	mLayout->addWidget(mSpinBox);
@@ -63,7 +62,7 @@ void NumberPicker::initGui(const QIcon &icon, const QString &tooltip)
 	setFixedSize(sizeHint());
 }
 
-void NumberPicker::setNumberAndNotify(int number)
+void NumberPicker::setNumberAndNotify(int number) const
 {
 	emit numberSelected(number);
 }
@@ -84,6 +83,17 @@ void NumberPicker::setRange(int min, int max)
 int NumberPicker::number() const
 {
 	return mSpinBox->value();
+}
+
+void NumberPicker::setToolTip(const QString &toolTip)
+{
+	mLabel->setToolTip(toolTip);
+	mSpinBox->setToolTip(toolTip);
+}
+
+void NumberPicker::setIcon(const QIcon &icon)
+{
+	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
 }
 
 } // namespace kImageAnnotator

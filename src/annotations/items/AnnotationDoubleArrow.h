@@ -30,7 +30,7 @@ public:
 	AnnotationDoubleArrow(const QPointF &startPosition, const PropertiesPtr &properties);
 	explicit AnnotationDoubleArrow(const AnnotationArrow &other);
 	~AnnotationDoubleArrow() override = default;
-	ToolTypes toolType() const override;
+	Tools toolType() const override;
 
 protected:
 	void updateShape() override;

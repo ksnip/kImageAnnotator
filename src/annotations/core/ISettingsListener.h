@@ -20,17 +20,19 @@
 #ifndef KIMAGEANNOTATOR_ISETTINGSLISTENER_H
 #define KIMAGEANNOTATOR_ISETTINGSLISTENER_H
 
-#include "src/common/enum/ToolTypes.h"
+#include "src/common/enum/Tools.h"
+#include "src/common/enum/Effects.h"
 
 namespace kImageAnnotator {
 
 class ISettingsListener
 {
 public:
-	virtual void toolChanged(ToolTypes toolType) = 0;
+	virtual void toolChanged(Tools toolType) = 0;
 	virtual void itemSettingsChanged() = 0;
 	virtual void firstBadgeNumberChanged(int number) = 0;
 	virtual int firstBadgeNumber() const = 0;
+	virtual void effectChanged(Effects effect) = 0;
 };
 
 } // namespace kImageAnnotator

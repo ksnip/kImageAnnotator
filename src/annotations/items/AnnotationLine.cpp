@@ -30,9 +30,9 @@ AnnotationLine::AnnotationLine(const AnnotationLine &other) : AbstractAnnotation
 
 }
 
-ToolTypes AnnotationLine::toolType() const
+Tools AnnotationLine::toolType() const
 {
-	return ToolTypes::Line;
+	return Tools::Line;
 }
 
 void AnnotationLine::updateShape()

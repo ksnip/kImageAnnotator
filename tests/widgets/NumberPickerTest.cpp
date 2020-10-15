@@ -21,7 +21,7 @@
 
 void NumberPickerTest::TestSelectNumber_Should_EmitSignal_When_NumberChanged()
 {
-    NumberPicker sizePicker(QIcon(), QStringLiteral("test"));
+    NumberPicker sizePicker(nullptr);
     QSignalSpy spy(&sizePicker, &NumberPicker::numberSelected);
     auto expectedSize = 8;
 

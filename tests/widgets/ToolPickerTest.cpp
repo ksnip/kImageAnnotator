@@ -21,25 +21,25 @@
 
 void ToolPickerTest::TestSelectTool_Should_EmitSignal_When_ToolChanged()
 {
-	qRegisterMetaType<ToolTypes>("ToolTypes");
-	ToolPicker toolPicker;
+	qRegisterMetaType<Tools>("Tools");
+	ToolPicker toolPicker(nullptr);
 	QSignalSpy spy(&toolPicker, &ToolPicker::toolSelected);
 
-	toolPicker.setTool(ToolTypes::Arrow);
+	toolPicker.setTool(Tools::Arrow);
 
 	QCOMPARE(spy.count(), 1);
-	auto type = qvariant_cast<ToolTypes>(spy.at(0).at(0));
-	QCOMPARE(type, ToolTypes::Arrow);
+	auto type = qvariant_cast<Tools>(spy.at(0).at(0));
+	QCOMPARE(type, Tools::Arrow);
 }
 
 void ToolPickerTest::TestTool_Should_ReturnSelectedTool()
 {
-	ToolPicker toolPicker;
-	toolPicker.setTool(ToolTypes::Arrow);
+	ToolPicker toolPicker(nullptr);
+	toolPicker.setTool(Tools::Arrow);
 
 	auto result = toolPicker.tool();
 
-	QCOMPARE(result, ToolTypes::Arrow);
+	QCOMPARE(result, Tools::Arrow);
 }
 
 QTEST_MAIN(ToolPickerTest);

@@ -67,12 +67,12 @@ void AnnotationProperties::setWidth(int size)
 	mWidth = size;
 }
 
-FillTypes AnnotationProperties::fillType() const
+FillModes AnnotationProperties::fillType() const
 {
 	return mFillType;
 }
 
-void AnnotationProperties::setFillType(FillTypes fillType)
+void AnnotationProperties::setFillType(FillModes fillType)
 {
 	mFillType = fillType;
 }

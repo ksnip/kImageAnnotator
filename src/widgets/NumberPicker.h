@@ -35,11 +35,13 @@ class NumberPicker : public QWidget
 Q_OBJECT
 
 public:
-	NumberPicker(const QIcon &icon, const QString &tooltip);
+	explicit NumberPicker(QWidget *parent);
 	~NumberPicker() override;
 	void setNumber(int number);
 	void setRange(int min, int max);
 	int number() const;
+	void setToolTip(const QString &toolTip);
+	void setIcon(const QIcon &icon);
 
 signals:
 	void numberSelected(int number) const;
@@ -49,8 +51,8 @@ private:
 	CustomSpinBox *mSpinBox;
 	QLabel *mLabel;
 
-	void initGui(const QIcon &icon, const QString &tooltip);
-	void setNumberAndNotify(int number);
+	void initGui();
+	void setNumberAndNotify(int number) const;
 
 private slots:
 	void selectionChanged();

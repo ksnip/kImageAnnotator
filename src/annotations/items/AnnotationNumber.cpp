@@ -39,9 +39,9 @@ void AnnotationNumber::addPoint(const QPointF &position, bool modified)
 	// Nothing to do here
 }
 
-ToolTypes AnnotationNumber::toolType() const
+Tools AnnotationNumber::toolType() const
 {
-	return ToolTypes::Number;
+	return Tools::Number;
 }
 
 QPainterPath AnnotationNumber::shape() const

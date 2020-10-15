@@ -17,19 +17,23 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "StickerPickerTest.h"
+#ifndef KIMAGEANNOTATOR_EFFECTSFACTORY_H
+#define KIMAGEANNOTATOR_EFFECTSFACTORY_H
 
-void StickerPickerTest::TestSelectSticker_Should_EmitSignal_When_StickerChanged()
+#include <QGraphicsEffect>
+
+#include "src/common/enum/Effects.h"
+
+namespace kImageAnnotator {
+
+class EffectsFactory
 {
-	StickerPicker stickerPicker(nullptr);
-	QSignalSpy spy(&stickerPicker, &StickerPicker::stickerSelected);
-	auto expectedStickerPath = QLatin1Literal(":/stickers/nerd_face.svg");
+public:
+	explicit EffectsFactory() = default;
+	~EffectsFactory() = default;
+	QGraphicsEffect* create(Effects effect) const;
+};
 
-	stickerPicker.setSticker(expectedStickerPath);
+} // namespace kImageAnnotator
 
-	QCOMPARE(spy.count(), 1);
-	auto resultSize = qvariant_cast<QString>(spy.at(0).at(0));
-	QCOMPARE(resultSize, expectedStickerPath);
-}
-
-QTEST_MAIN(StickerPickerTest);
+#endif //KIMAGEANNOTATOR_EFFECTSFACTORY_H

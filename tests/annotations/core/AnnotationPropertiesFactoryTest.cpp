@@ -21,18 +21,18 @@
 
 void AnnotationPropertiesFactoryTest::initTestCase()
 {
-	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("/tmp"));
+	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QLatin1Literal("/tmp"));
 }
 
 void AnnotationPropertiesFactoryTest::cleanupTestCase()
 {
-	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("$HOME/.config"));
+	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QLatin1Literal("$HOME/.config"));
 }
 
 void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesSizeBasedOnConfiguration()
 {
 	const int size = 13;
-	const ToolTypes tool = ToolTypes::Line;
+	auto tool = Tools::Line;
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolWidth(size);
@@ -46,7 +46,7 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesSizeBasedOn
 void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesColorBasedOnConfiguration()
 {
 	const QColor color(Qt::darkMagenta);
-	const ToolTypes tool = ToolTypes::Line;
+	auto tool = Tools::Line;
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
@@ -61,7 +61,7 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesColorBasedO
 void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesTextColorBasedOnConfiguration()
 {
 	const QColor textColor(Qt::darkMagenta);
-	const ToolTypes tool = ToolTypes::Number;
+	auto tool = Tools::Number;
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
@@ -75,8 +75,8 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesTextColorBa
 
 void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesFillTypeBasedOnConfiguration()
 {
-	const FillTypes fill = FillTypes::BorderAndNoFill;
-	const ToolTypes tool = ToolTypes::Rect;
+	auto fill = FillModes::BorderAndNoFill;
+	auto tool = Tools::Rect;
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
@@ -90,7 +90,7 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesFillTypeBas
 
 void AnnotationPropertiesFactoryTest::TestCreate_Should_SetShadowEnabledBasedOnConfiguration()
 {
-	const ToolTypes tool = ToolTypes::Pen;
+	auto tool = Tools::Pen;
 	auto config = new Config;
 	auto enabled = true;
 	config->setItemShadowEnabled(enabled);
@@ -104,7 +104,7 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetShadowEnabledBasedOnC
 
 void AnnotationPropertiesFactoryTest::TestCreate_Should_CreatePathPropertiesWhenItemPen()
 {
-	const ToolTypes tool = ToolTypes::Pen;
+	auto tool = Tools::Pen;
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
@@ -118,7 +118,7 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_CreatePathPropertiesWhen
 
 void AnnotationPropertiesFactoryTest::TestCreate_Should_CreatePathPropertiesWhenItemMarker()
 {
-	const ToolTypes tool = ToolTypes::MarkerPen;
+	auto tool = Tools::MarkerPen;
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
@@ -132,7 +132,7 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_CreatePathPropertiesWhen
 
 void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhenItemNumber()
 {
-	const ToolTypes tool = ToolTypes::Number;
+	auto tool = Tools::Number;
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
@@ -146,7 +146,7 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhen
 
 void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhenItemNumberPointer()
 {
-	const ToolTypes tool = ToolTypes::NumberPointer;
+	auto tool = Tools::NumberPointer;
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
@@ -160,7 +160,7 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhen
 
 void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhenItemText()
 {
-	const ToolTypes tool = ToolTypes::Text;
+	auto tool = Tools::Text;
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
@@ -174,7 +174,7 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhen
 
 void AnnotationPropertiesFactoryTest::TestCreate_Should_SetSmoothPathBasedOnConfiguration()
 {
-	const ToolTypes tool = ToolTypes::Pen;
+	auto tool = Tools::Pen;
 	auto config = new Config;
 	auto smoothPathEnabled = true;
 	auto smoothPathFactor = 99;
@@ -194,7 +194,7 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetSmoothPathBasedOnConf
 
 void AnnotationPropertiesFactoryTest::TestCreate_Should_SetToolFontAndFontSizeBasedOnConfiguration()
 {
-	const ToolTypes tool = ToolTypes::Number;
+	auto tool = Tools::Number;
 	auto config = new Config;
 	auto font = QFont("Helvetica [Cronyx]", 8, QFont::StyleItalic);
 	config->setToolFont(font, tool);
@@ -211,8 +211,8 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetToolFontAndFontSizeBa
 
 void AnnotationPropertiesFactoryTest::TestCreate_Should_StickerPathBasedOnSettings()
 {
-	const ToolTypes tool = ToolTypes::Sticker;
-	auto path = QStringLiteral("/my/path/to/sticker");
+	auto tool = Tools::Sticker;
+	auto path = QLatin1Literal("/my/path/to/sticker");
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setSticker(path);

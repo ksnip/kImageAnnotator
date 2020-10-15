@@ -31,9 +31,9 @@ AnnotationPen::AnnotationPen(const AnnotationPen &other) : AbstractAnnotationPat
 
 }
 
-ToolTypes AnnotationPen::toolType() const
+Tools AnnotationPen::toolType() const
 {
-	return ToolTypes::Pen;
+	return Tools::Pen;
 }
 
 void AnnotationPen::updateShape()

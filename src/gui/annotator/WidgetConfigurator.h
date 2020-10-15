@@ -22,9 +22,9 @@
 
 #include <QWidget>
 
-#include "src/common/enum/ToolTypes.h"
+#include "src/common/enum/Tools.h"
 #include "src/widgets/ColorPicker.h"
-#include "src/widgets/FillTypePicker.h"
+#include "src/widgets/FillModePicker.h"
 #include "src/widgets/ToolPicker.h"
 #include "src/widgets/NumberPicker.h"
 #include "src/widgets/StickerPicker.h"
@@ -36,22 +36,22 @@ class WidgetConfigurator
 public:
 	explicit WidgetConfigurator();
 	~WidgetConfigurator() = default;
-	void setCurrentTool(ToolTypes tool);
+	void setCurrentTool(Tools tool);
 	void setColorWidget(ColorPicker *widget);
 	void setTextColorWidget(ColorPicker *widget);
 	void setWidthWidget(NumberPicker *widget);
-	void setFillTypeWidget(FillTypePicker *widget);
+	void setFillTypeWidget(FillModePicker *widget);
 	void setFontSizeWidget(NumberPicker *widget);
 	void setFirstNumberWidget(NumberPicker *widget);
 	void setObfuscateFactorWidget(NumberPicker *widget);
 	void setStickerWidget(StickerPicker *widget);
 
 private:
-	ToolTypes mCurrentTool;
+	Tools mCurrentTool;
 	ColorPicker *mColorWidget;
 	ColorPicker *mTextColorWidget;
 	NumberPicker *mWidthWidget;
-	FillTypePicker *mFillTypeWidget;
+	FillModePicker *mFillTypeWidget;
 	NumberPicker *mFontSizeWidget;
 	NumberPicker *mFirstNumberWidget;
 	NumberPicker *mObfuscateFactorWidget;

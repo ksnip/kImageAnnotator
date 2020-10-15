@@ -30,9 +30,9 @@ AnnotationEllipse::AnnotationEllipse(const AnnotationEllipse &other) : AbstractA
 
 }
 
-ToolTypes AnnotationEllipse::toolType() const
+Tools AnnotationEllipse::toolType() const
 {
-	return ToolTypes::Ellipse;
+	return Tools::Ellipse;
 }
 
 void AnnotationEllipse::updateShape()

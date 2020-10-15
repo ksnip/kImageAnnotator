@@ -154,13 +154,13 @@ void AbstractAnnotationItem::shiftPainterForAllOddShapeWidth(QPainter *painter) 
 bool AbstractAnnotationItem::hasFill() const
 {
 	auto fillType = mProperties->fillType();
-	return fillType == FillTypes::BorderAndFill || fillType == FillTypes::NoBorderAndFill;
+	return fillType == FillModes::BorderAndFill || fillType == FillModes::NoBorderAndFill;
 }
 
 bool AbstractAnnotationItem::hasBorder() const
 {
 	auto fillType = mProperties->fillType();
-	return fillType == FillTypes::BorderAndFill || fillType == FillTypes::BorderAndNoFill;
+	return fillType == FillModes::BorderAndFill || fillType == FillModes::BorderAndNoFill;
 }
 
 void AbstractAnnotationItem::finish()

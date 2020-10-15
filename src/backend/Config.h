@@ -27,8 +27,8 @@
 #include <QFont>
 #include <QSettings>
 
-#include "src/common/enum/ToolTypes.h"
-#include "src/common/enum/FillTypes.h"
+#include "src/common/enum/Tools.h"
+#include "src/common/enum/FillModes.h"
 #include "src/common/helper/ConfigNameHelper.h"
 
 namespace kImageAnnotator {
@@ -42,26 +42,26 @@ public:
 	~Config() override = default;
 
 public slots:
-	ToolTypes selectedTool() const;
-	void setSelectedToolType(ToolTypes tool);
+	Tools selectedTool() const;
+	void setSelectedToolType(Tools tool);
 
-	QColor toolColor(ToolTypes tool) const;
-	void setToolColor(const QColor &color, ToolTypes tool);
+	QColor toolColor(Tools tool) const;
+	void setToolColor(const QColor &color, Tools tool);
 
-	QColor toolTextColor(ToolTypes tool) const;
-	void setToolTextColor(const QColor &color, ToolTypes tool);
+	QColor toolTextColor(Tools tool) const;
+	void setToolTextColor(const QColor &color, Tools tool);
 
-	int toolWidth(ToolTypes tool) const;
-	void setToolWidth(int size, ToolTypes tool);
+	int toolWidth(Tools tool) const;
+	void setToolWidth(int size, Tools tool);
 
-	FillTypes toolFillType(ToolTypes tool) const;
-	void setToolFillType(FillTypes fillType, ToolTypes tool);
+	FillModes toolFillType(Tools tool) const;
+	void setToolFillType(FillModes fillType, Tools tool);
 
-	QFont toolFont(ToolTypes toolType) const;
-	void setToolFont(const QFont &font, ToolTypes toolType);
+	QFont toolFont(Tools toolType) const;
+	void setToolFont(const QFont &font, Tools toolType);
 
-	int toolFontSize(ToolTypes toolType) const;
-	void setToolFontSize(int fontSize, ToolTypes toolType);
+	int toolFontSize(Tools toolType) const;
+	void setToolFontSize(int fontSize, Tools toolType);
 
 	bool itemShadowEnabled() const;
 	void setItemShadowEnabled(bool enabled);
@@ -74,19 +74,19 @@ public slots:
 	int smoothFactor() const;
 	void setSmoothFactor(int factor);
 
-	int obfuscationFactor(ToolTypes toolType) const;
-	void setObfuscationFactor(int factor, ToolTypes toolType);
+	int obfuscationFactor(Tools toolType) const;
+	void setObfuscationFactor(int factor, Tools toolType);
 
 private:
 	QSettings mConfig;
-	QList<ToolTypes> mAllTools;
-	ToolTypes mSelectTool;
-	QHash<ToolTypes, QColor> mToolToColor;
-	QHash<ToolTypes, QColor> mToolToTextColor;
-	QHash<ToolTypes, int> mToolToWidth;
-	QHash<ToolTypes, FillTypes> mToolToFillType;
-	QHash<ToolTypes, QFont> mToolToFont;
-	QHash<ToolTypes, int> mToolToObfuscationFactor;
+	QList<Tools> mAllTools;
+	Tools mSelectTool;
+	QHash<Tools, QColor> mToolToColor;
+	QHash<Tools, QColor> mToolToTextColor;
+	QHash<Tools, int> mToolToWidth;
+	QHash<Tools, FillModes> mToolToFillType;
+	QHash<Tools, QFont> mToolToFont;
+	QHash<Tools, int> mToolToObfuscationFactor;
 	bool mItemShadowEnabled;
 	bool mSmoothPathEnabled;
 	bool mSaveToolSelection;
@@ -102,27 +102,27 @@ private:
 	void initObfuscateFactor();
 	void initGeneralSettings();
 
-	QColor loadToolColor(ToolTypes toolType);
-	void saveToolColor(ToolTypes toolType, const QColor &color);
-	QColor loadToolTextColor(ToolTypes toolType);
-	void saveToolTextColor(ToolTypes toolType, const QColor &color);
-	int loadToolWidth(ToolTypes toolType);
-	void saveToolWidth(ToolTypes toolType, int size);
-	FillTypes loadToolFillType(ToolTypes toolType);
-	void saveToolFillType(ToolTypes toolType, FillTypes fillType);
-	ToolTypes loadToolType();
-	void saveToolType(ToolTypes toolType);
-	int loadToolFontSize(ToolTypes toolType);
-	void saveToolFontSize(ToolTypes toolType, int fontSize);
-	int loadObfuscateFactor(ToolTypes toolType);
-	void saveObfuscateFactor(ToolTypes toolType, int radius);
+	QColor loadToolColor(Tools toolType);
+	void saveToolColor(Tools toolType, const QColor &color);
+	QColor loadToolTextColor(Tools toolType);
+	void saveToolTextColor(Tools toolType, const QColor &color);
+	int loadToolWidth(Tools toolType);
+	void saveToolWidth(Tools toolType, int size);
+	FillModes loadToolFillType(Tools toolType);
+	void saveToolFillType(Tools toolType, FillModes fillType);
+	Tools loadToolType();
+	void saveToolType(Tools toolType);
+	int loadToolFontSize(Tools toolType);
+	void saveToolFontSize(Tools toolType, int fontSize);
+	int loadObfuscateFactor(Tools toolType);
+	void saveObfuscateFactor(Tools toolType, int radius);
 
-	QColor defaultToolColor(ToolTypes toolType) const;
-	QColor defaultToolTextColor(ToolTypes toolType) const;
-	int defaultToolWidth(ToolTypes toolType) const;
-	FillTypes defaultToolFillType(ToolTypes toolType) const;
-	ToolTypes defaultToolType();
-	int defaultToolFontSize(ToolTypes toolType) const;
+	QColor defaultToolColor(Tools toolType) const;
+	QColor defaultToolTextColor(Tools toolType) const;
+	int defaultToolWidth(Tools toolType) const;
+	FillModes defaultToolFillType(Tools toolType) const;
+	Tools defaultToolType();
+	int defaultToolFontSize(Tools toolType) const;
 	int defaultObfuscateFactor() const;
 };
 

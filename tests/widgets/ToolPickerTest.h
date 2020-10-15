@@ -23,10 +23,10 @@
 #include <QtTest>
 
 #include "src/widgets/ToolPicker.h"
-#include "src/common/enum/ToolTypes.h"
+#include "src/common/enum/Tools.h"
 
 using kImageAnnotator::ToolPicker;
-using kImageAnnotator::ToolTypes;
+using kImageAnnotator::Tools;
 
 class ToolPickerTest : public QObject
 {

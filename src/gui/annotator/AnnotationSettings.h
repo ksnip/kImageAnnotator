@@ -26,8 +26,9 @@
 #include "src/widgets/ToolPicker.h"
 #include "src/widgets/ColorPicker.h"
 #include "src/widgets/NumberPicker.h"
-#include "src/widgets/FillTypePicker.h"
+#include "src/widgets/FillModePicker.h"
 #include "src/widgets/StickerPicker.h"
+#include "src/widgets/EffectPicker.h"
 #include "src/backend/Config.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 #include "src/annotations/properties/AnnotationObfuscateProperties.h"
@@ -44,12 +45,12 @@ public:
 	~AnnotationSettings() override;
 	void editItem(AbstractAnnotationItem *item) override;
 	void activateSelectTool() override;
-	ToolTypes toolType() const override;
+	Tools toolType() const override;
 	QColor toolColor() const override;
 	QColor textColor() const override;
 	int toolWidth() const override;
 	int fontSize() const override;
-	FillTypes fillType() const override;
+	FillModes fillType() const override;
 	int obfuscationFactor() const override;
 	QString sticker() const override;
 	void updateFirstBadgeNumber(int number) override;
@@ -64,29 +65,31 @@ private:
 	NumberPicker *mWidthPicker;
 	ColorPicker *mTextColorPicker;
 	NumberPicker *mFontSizePicker;
-	FillTypePicker *mFillTypePicker;
+	FillModePicker *mFillTypePicker;
 	NumberPicker *mFirstNumberPicker;
 	NumberPicker *mObfuscateFactorPicker;
 	StickerPicker *mStickerPicker;
+	EffectPicker *mEffectPicker;
 	Config *mConfig;
 	WidgetConfigurator mWidgetConfigurator;
 	bool mEditExistingItem;
 
 	void initGui();
-	void loadFromConfig(ToolTypes tool);
+	void loadFromConfig(Tools tool);
 
 private slots:
 	void loadToolTypeFromConfig();
-	void toolTypeChanged(ToolTypes toolType);
+	void toolTypeChanged(Tools toolType);
 	void toolColorChanged(const QColor &color);
 	void toolTextColorChanged(const QColor &color);
 	void toolWidthChanged(int size);
 	void toolFontSizeChanged(int size);
-	void toolFillTypeChanged(FillTypes fill);
+	void toolFillTypeChanged(FillModes fill);
 	void saveFirstBadgeNumber(int size);
 	void obfuscateFactorChanged(int factor);
 	void stickerChanged(const QString &sticker);
 	void loadFromItem(const AbstractAnnotationItem *item);
+	void effectChanged(Effects effect) override;
 };
 
 } // namespace kImageAnnotator

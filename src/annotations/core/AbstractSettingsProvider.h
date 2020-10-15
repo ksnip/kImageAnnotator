@@ -24,7 +24,7 @@
 #include <QList>
 
 #include "ISettingsListener.h"
-#include "src/common/enum/FillTypes.h"
+#include "src/common/enum/FillModes.h"
 #include "src/annotations/items/AbstractAnnotationItem.h"
 
 namespace kImageAnnotator {
@@ -36,21 +36,22 @@ public:
 	~AbstractSettingsProvider() = default;
 	virtual void editItem(AbstractAnnotationItem *item) = 0;
 	virtual void activateSelectTool() = 0;
-	virtual ToolTypes toolType() const = 0;
+	virtual Tools toolType() const = 0;
 	virtual QColor toolColor() const = 0;
 	virtual QColor textColor() const = 0;
 	virtual int toolWidth() const = 0;
 	virtual int fontSize() const = 0;
-	virtual FillTypes fillType() const = 0;
+	virtual FillModes fillType() const = 0;
 	virtual int obfuscationFactor() const = 0;
 	virtual QString sticker() const = 0;
 	virtual void updateFirstBadgeNumber(int number) = 0;
 	void setActiveListener(ISettingsListener *settingsListener);
 
 protected:
-	virtual void toolChanged(ToolTypes toolType);
+	virtual void toolChanged(Tools tool);
 	virtual void firstBadgeNumberChanged(int number);
 	virtual void itemSettingChanged();
+	virtual void effectChanged(Effects effect);
 
 private:
 	ISettingsListener *mSettingsListener;

@@ -30,7 +30,7 @@ public:
     AnnotationImage(const QPointF &startPosition, const QPixmap &image, const PropertiesPtr &properties);
     AnnotationImage(const AnnotationImage &other);
     ~AnnotationImage() override = default;
-    ToolTypes toolType() const override;
+    Tools toolType() const override;
 
 protected:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;

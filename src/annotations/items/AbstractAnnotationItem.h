@@ -26,8 +26,8 @@
 #include <QCursor>
 
 #include "src/annotations/properties/AnnotationProperties.h"
-#include "src/common/enum/FillTypes.h"
-#include "src/common/enum/ToolTypes.h"
+#include "src/common/enum/FillModes.h"
+#include "src/common/enum/Tools.h"
 #include "src/annotations/misc/ShadowEffect.h"
 
 namespace kImageAnnotator {
@@ -49,7 +49,7 @@ public:
 	virtual PropertiesPtr properties() const;
 	virtual void finish();
 	virtual void scale(qreal sx, qreal sy) = 0;
-	virtual ToolTypes toolType() const = 0;
+	virtual Tools toolType() const = 0;
 	virtual void setProperties(const PropertiesPtr &properties);
 
 protected:

@@ -23,7 +23,7 @@
 #include <QColor>
 #include <QSharedPointer>
 
-#include "src/common/enum/FillTypes.h"
+#include "src/common/enum/FillModes.h"
 
 namespace kImageAnnotator {
 
@@ -43,8 +43,8 @@ public:
 	void setTextColor(const QColor &color);
 	int width() const;
 	void setWidth(int size);
-	FillTypes fillType() const;
-	void setFillType(FillTypes fillType);
+	FillModes fillType() const;
+	void setFillType(FillModes fillType);
 	bool shadowEnabled() const;
 	void setShadowEnabled(bool enabled);
 	virtual PropertiesPtr clone() const;
@@ -53,7 +53,7 @@ private:
 	QColor mColor;
 	QColor mTextColor;
 	int mWidth;
-	FillTypes mFillType;
+	FillModes mFillType;
 	bool mShadowEnabled;
 };
 

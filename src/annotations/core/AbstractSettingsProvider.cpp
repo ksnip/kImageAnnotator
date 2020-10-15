@@ -27,10 +27,10 @@ AbstractSettingsProvider::AbstractSettingsProvider() :
 
 }
 
-void AbstractSettingsProvider::toolChanged(ToolTypes toolType)
+void AbstractSettingsProvider::toolChanged(Tools tool)
 {
 	if(mSettingsListener != nullptr) {
-		mSettingsListener->toolChanged(toolType);
+		mSettingsListener->toolChanged(tool);
 	}
 }
 
@@ -53,6 +53,13 @@ void AbstractSettingsProvider::setActiveListener(ISettingsListener *settingsList
 	mSettingsListener = settingsListener;
 	if(mSettingsListener != nullptr) {
 		updateFirstBadgeNumber(mSettingsListener->firstBadgeNumber());
+	}
+}
+
+void AbstractSettingsProvider::effectChanged(Effects effect)
+{
+	if(mSettingsListener != nullptr) {
+		mSettingsListener->effectChanged(effect);
 	}
 }
 

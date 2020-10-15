@@ -33,9 +33,9 @@ AnnotationImage::AnnotationImage(const AnnotationImage &other) : AnnotationRect(
     this->mImage = other.mImage;
 }
 
-ToolTypes AnnotationImage::toolType() const
+Tools AnnotationImage::toolType() const
 {
-    return ToolTypes::Image;
+    return Tools::Image;
 }
 
 void AnnotationImage::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)

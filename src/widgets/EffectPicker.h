@@ -17,48 +17,47 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_STICKERPICKER_H
-#define KIMAGEANNOTATOR_STICKERPICKER_H
+#ifndef KIMAGEANNOTATOR_EFFECTPICKER_H
+#define KIMAGEANNOTATOR_EFFECTPICKER_H
 
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QToolButton>
+#include <QMenu>
+#include <QAction>
 
-#include "src/widgets/menuButtons/GridMenuToolButton.h"
+#include "src/widgets/menuButtons/ListMenuToolButton.h"
 #include "src/common/constants/Constants.h"
+#include "src/common/enum/Effects.h"
 #include "src/common/helper/IconLoader.h"
-#include "src/common/helper/PathHelper.h"
 
 namespace kImageAnnotator {
 
-class StickerPicker : public QWidget
+class EffectPicker : public QWidget
 {
-Q_OBJECT
+	Q_OBJECT
 public:
-	explicit StickerPicker(QWidget *parent);
-	~StickerPicker() override;
-	void setSticker(const QString &name);
-	QString sticker() const;
-	void setStickers(const QStringList &stickerPaths, bool keepDefault);
-
+	explicit EffectPicker(QWidget *parent);
+	~EffectPicker() override;
+	void setEffect(Effects effect);
+	Effects effect() const;
 
 signals:
-	void stickerSelected(const QString &sticker) const;
+	void effectSelected(Effects effect) const;
 
 private:
 	QHBoxLayout *mLayout;
 	QLabel *mLabel;
-	GridMenuToolButton *mToolButton;
+	ListMenuToolButton *mToolButton;
 
-	void init();
-	void addItem(const QString &path);
+	void initGui();
 
 private slots:
+	void insertItem(Effects effects, const QString &iconName, const QString &text);
 	void selectionChanged();
-	QString getResourcePath(const QString &name) const;
-	void addDefaultStickers();
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_STICKERPICKER_H
+#endif //KIMAGEANNOTATOR_EFFECTPICKER_H

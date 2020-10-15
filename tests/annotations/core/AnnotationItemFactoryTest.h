@@ -35,7 +35,7 @@ using kImageAnnotator::AnnotationEllipse;
 using kImageAnnotator::AnnotationImage;
 using kImageAnnotator::AnnotationSticker;
 using kImageAnnotator::AnnotationNumberPointer;
-using kImageAnnotator::ToolTypes;
+using kImageAnnotator::Tools;
 using kImageAnnotator::Config;
 using kImageAnnotator::AnnotationPropertiesFactory;
 

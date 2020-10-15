@@ -31,32 +31,32 @@ QString ConfigNameHelper::toolType()
 	return annotator() + QStringLiteral("ToolType");
 }
 
-QString ConfigNameHelper::toolWidth(ToolTypes tool)
+QString ConfigNameHelper::toolWidth(Tools tool)
 {
 	return annotator() + QStringLiteral("ToolWidth_") + QString::number(static_cast<int>(tool));
 }
 
-QString ConfigNameHelper::toolColor(ToolTypes tool)
+QString ConfigNameHelper::toolColor(Tools tool)
 {
 	return annotator() + QStringLiteral("ToolColor_") + QString::number(static_cast<int>(tool));
 }
 
-QString ConfigNameHelper::toolTextColor(ToolTypes tool)
+QString ConfigNameHelper::toolTextColor(Tools tool)
 {
 	return annotator() + QStringLiteral("ToolTextColor_") + QString::number(static_cast<int>(tool));
 }
 
-QString ConfigNameHelper::toolFillType(ToolTypes tool)
+QString ConfigNameHelper::toolFillType(Tools tool)
 {
 	return annotator() + QStringLiteral("ToolFillType_") + QString::number(static_cast<int>(tool));
 }
 
-QString ConfigNameHelper::toolFontSize(ToolTypes tool)
+QString ConfigNameHelper::toolFontSize(Tools tool)
 {
 	return annotator() + QStringLiteral("ToolFontSize_") + QString::number(static_cast<int>(tool));
 }
 
-QString ConfigNameHelper::obfuscateFactor(ToolTypes tool)
+QString ConfigNameHelper::obfuscateFactor(Tools tool)
 {
 	return annotator() + QStringLiteral("ToolObfuscateFactor_") + QString::number(static_cast<int>(tool));
 }

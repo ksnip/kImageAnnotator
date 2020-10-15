@@ -31,10 +31,10 @@ WidgetConfigurator::WidgetConfigurator() :
 	mObfuscateFactorWidget(nullptr),
 	mStickerWidget(nullptr)
 {
-	mCurrentTool = ToolTypes::Select;
+	mCurrentTool = Tools::Select;
 }
 
-void WidgetConfigurator::setCurrentTool(ToolTypes tool)
+void WidgetConfigurator::setCurrentTool(Tools tool)
 {
 	if (mCurrentTool == tool) {
 		return;
@@ -62,7 +62,7 @@ void WidgetConfigurator::setWidthWidget(NumberPicker *widget)
 	updateWidgets();
 }
 
-void WidgetConfigurator::setFillTypeWidget(FillTypePicker *widget)
+void WidgetConfigurator::setFillTypeWidget(FillModePicker *widget)
 {
 	mFillTypeWidget = widget;
 	updateWidgets();
@@ -101,8 +101,8 @@ void WidgetConfigurator::updateWidgets() const
 void WidgetConfigurator::updateProperties() const
 {
 	switch (mCurrentTool) {
-		case ToolTypes::Text:
-		case ToolTypes::Number:
+		case Tools::Text:
+		case Tools::Number:
 			setNoFillAndNoBorderVisible(true);
 			break;
 		default:
@@ -113,8 +113,8 @@ void WidgetConfigurator::updateProperties() const
 void WidgetConfigurator::updateVisibility() const
 {
 	switch (mCurrentTool) {
-		case ToolTypes::Select:
-		case ToolTypes::Image:
+		case Tools::Select:
+		case Tools::Image:
 			setColorWidgetVisible(false);
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(false);
@@ -124,8 +124,8 @@ void WidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
-		case ToolTypes::Pen:
-		case ToolTypes::MarkerPen:
+		case Tools::Pen:
+		case Tools::MarkerPen:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(true);
@@ -135,8 +135,8 @@ void WidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
-		case ToolTypes::MarkerRect:
-		case ToolTypes::MarkerEllipse:
+		case Tools::MarkerRect:
+		case Tools::MarkerEllipse:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(false);
@@ -146,9 +146,9 @@ void WidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
-		case ToolTypes::Line:
-		case ToolTypes::Arrow:
-		case ToolTypes::DoubleArrow:
+		case Tools::Line:
+		case Tools::Arrow:
+		case Tools::DoubleArrow:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(true);
@@ -158,8 +158,8 @@ void WidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
-		case ToolTypes::Ellipse:
-		case ToolTypes::Rect:
+		case Tools::Ellipse:
+		case Tools::Rect:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(true);
@@ -169,7 +169,7 @@ void WidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
-		case ToolTypes::Number:
+		case Tools::Number:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(true);
 			setWidthWidgetVisible(true);
@@ -179,7 +179,7 @@ void WidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
-		case ToolTypes::NumberPointer:
+		case Tools::NumberPointer:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(true);
 			setWidthWidgetVisible(false);
@@ -189,7 +189,7 @@ void WidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
-		case ToolTypes::Text:
+		case Tools::Text:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(true);
 			setWidthWidgetVisible(true);
@@ -199,8 +199,8 @@ void WidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
-		case ToolTypes::Blur:
-		case ToolTypes::Pixelate:
+		case Tools::Blur:
+		case Tools::Pixelate:
 			setColorWidgetVisible(false);
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(false);
@@ -210,7 +210,7 @@ void WidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(true);
 			setStickerWidgetVisible(false);
 			break;
-		case ToolTypes::Sticker:
+		case Tools::Sticker:
 			setColorWidgetVisible(false);
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(false);

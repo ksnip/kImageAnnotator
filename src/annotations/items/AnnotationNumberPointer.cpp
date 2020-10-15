@@ -43,9 +43,9 @@ AnnotationNumberPointer::~AnnotationNumberPointer()
 	delete mRect;
 }
 
-ToolTypes AnnotationNumberPointer::toolType() const
+Tools AnnotationNumberPointer::toolType() const
 {
-	return ToolTypes::NumberPointer;
+	return Tools::NumberPointer;
 }
 
 QPainterPath AnnotationNumberPointer::shape() const

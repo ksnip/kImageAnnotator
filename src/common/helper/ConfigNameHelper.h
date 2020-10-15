@@ -22,7 +22,7 @@
 
 #include <QString>
 
-#include "src/common/enum/ToolTypes.h"
+#include "src/common/enum/Tools.h"
 
 namespace kImageAnnotator {
 
@@ -31,12 +31,12 @@ class ConfigNameHelper
 public:
 	static QString annotator();
 	static QString toolType();
-	static QString toolWidth(ToolTypes tool);
-	static QString toolColor(ToolTypes tool);
-	static QString toolTextColor(ToolTypes tool);
-	static QString toolFillType(ToolTypes tool);
-	static QString toolFontSize(ToolTypes tool);
-	static QString obfuscateFactor(ToolTypes tool);
+	static QString toolWidth(Tools tool);
+	static QString toolColor(Tools tool);
+	static QString toolTextColor(Tools tool);
+	static QString toolFillType(Tools tool);
+	static QString toolFontSize(Tools tool);
+	static QString obfuscateFactor(Tools tool);
 };
 
 }

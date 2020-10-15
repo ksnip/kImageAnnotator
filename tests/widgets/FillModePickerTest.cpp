@@ -17,47 +17,47 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "FillTypePickerTest.h"
+#include "FillModePickerTest.h"
 
-void FillTypePickerTest::TestSelectFill_Should_EmitSignal_When_FillChanged()
+void FillModePickerTest::TestSelectFill_Should_EmitSignal_When_FillChanged()
 {
-	qRegisterMetaType<FillTypes>("FillTypes");
-	FillTypePicker fillPicker(QIcon(), QStringLiteral("test"));
-	QSignalSpy spy(&fillPicker, &FillTypePicker::fillSelected);
-	auto expectedFill = FillTypes::BorderAndNoFill;
+	qRegisterMetaType<FillModes>("FillModes");
+	FillModePicker fillPicker(nullptr);
+	QSignalSpy spy(&fillPicker, &FillModePicker::fillSelected);
+	auto expectedFill = FillModes::BorderAndNoFill;
 
 	fillPicker.setFillType(expectedFill);
 
 	QCOMPARE(spy.count(), 1);
-	auto resultFill = qvariant_cast<FillTypes>(spy.at(0).at(0));
+	auto resultFill = qvariant_cast<FillModes>(spy.at(0).at(0));
 	QCOMPARE(resultFill, expectedFill);
 }
 
-void FillTypePickerTest::TestAddNoBorderAndNoFillToList_Should_AddTypeToList()
+void FillModePickerTest::TestAddNoBorderAndNoFillToList_Should_AddTypeToList()
 {
-	qRegisterMetaType<FillTypes>("FillTypes");
-	FillTypePicker fillPicker(QIcon(), QStringLiteral("test"));
-	QSignalSpy spy(&fillPicker, &FillTypePicker::fillSelected);
-	auto expectedFill = FillTypes::NoBorderAndNoFill;
+	qRegisterMetaType<FillModes>("FillModes");
+	FillModePicker fillPicker(nullptr);
+	QSignalSpy spy(&fillPicker, &FillModePicker::fillSelected);
+	auto expectedFill = FillModes::NoBorderAndNoFill;
 
 	fillPicker.addNoFillAndNoBorderToList();
 	fillPicker.setFillType(expectedFill);
 
 	QCOMPARE(spy.count(), 1);
-	auto resultFill = qvariant_cast<FillTypes>(spy.at(0).at(0));
+	auto resultFill = qvariant_cast<FillModes>(spy.at(0).at(0));
 	QCOMPARE(resultFill, expectedFill);
 }
 
-void FillTypePickerTest::TestRemoveNoBorderAndNoFillToList_Should_RemoveTypeFromList()
+void FillModePickerTest::TestRemoveNoBorderAndNoFillToList_Should_RemoveTypeFromList()
 {
-	qRegisterMetaType<FillTypes>("FillTypes");
-	FillTypePicker fillPicker(QIcon(), QStringLiteral("test"));
-	QSignalSpy spy(&fillPicker, &FillTypePicker::fillSelected);
-	auto expectedFill = FillTypes::NoBorderAndNoFill;
+	qRegisterMetaType<FillModes>("FillModes");
+	FillModePicker fillPicker(nullptr);
+	QSignalSpy spy(&fillPicker, &FillModePicker::fillSelected);
+	auto expectedFill = FillModes::NoBorderAndNoFill;
 	fillPicker.addNoFillAndNoBorderToList();
 	fillPicker.setFillType(expectedFill);
 	QCOMPARE(spy.count(), 1);
-	auto resultFill = qvariant_cast<FillTypes>(spy.at(0).at(0));
+	auto resultFill = qvariant_cast<FillModes>(spy.at(0).at(0));
 	QCOMPARE(resultFill, expectedFill);
 
 	fillPicker.removeNoFillAndNoBorderToList();
@@ -66,4 +66,4 @@ void FillTypePickerTest::TestRemoveNoBorderAndNoFillToList_Should_RemoveTypeFrom
 	QCOMPARE(spy.count(), 1);
 }
 
-QTEST_MAIN(FillTypePickerTest);
+QTEST_MAIN(FillModePickerTest);

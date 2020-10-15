@@ -29,7 +29,7 @@ void MockSettingsProvider::activateSelectTool()
 
 }
 
-ToolTypes MockSettingsProvider::toolType() const
+Tools MockSettingsProvider::toolType() const
 {
 	return mToolType;
 }
@@ -54,7 +54,7 @@ int MockSettingsProvider::fontSize() const
 	return mFontSize;
 }
 
-FillTypes MockSettingsProvider::fillType() const
+FillModes MockSettingsProvider::fillType() const
 {
 	return mFillType;
 }
@@ -64,9 +64,9 @@ int MockSettingsProvider::obfuscationFactor() const
 	return mBlurRadius;
 }
 
-void MockSettingsProvider::setToolType(ToolTypes toolType)
+void MockSettingsProvider::setToolType(Tools tool)
 {
-	mToolType = toolType;
+	mToolType = tool;
 }
 
 void MockSettingsProvider::setToolColor(const QColor &toolColor)
@@ -89,9 +89,9 @@ void MockSettingsProvider::setFontSize(int fontSize)
 	mFontSize = fontSize;
 }
 
-void MockSettingsProvider::setFillType(FillTypes fillType)
+void MockSettingsProvider::setFillType(FillModes fillMode)
 {
-	mFillType = fillType;
+	mFillType = fillMode;
 }
 
 void MockSettingsProvider::setBlurRadius(int blurRadius)

@@ -31,7 +31,7 @@ public:
 	AnnotationBlur(const QPointF &startPosition, const ObfuscatePropertiesPtr &properties);
 	AnnotationBlur(const AnnotationBlur &other);
 	~AnnotationBlur() override = default;
-	ToolTypes toolType() const override;
+	Tools toolType() const override;
 
 protected:
 	QImage obfuscateBackground(const QImage &sceneBehindItem) const override;

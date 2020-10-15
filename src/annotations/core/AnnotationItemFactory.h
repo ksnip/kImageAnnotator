@@ -37,7 +37,7 @@
 #include "src/annotations/items/AnnotationImage.h"
 #include "src/annotations/items/AnnotationSticker.h"
 #include "src/annotations/misc/NumberManager.h"
-#include "src/common/enum/ToolTypes.h"
+#include "src/common/enum/Tools.h"
 
 namespace kImageAnnotator {
 
@@ -60,7 +60,7 @@ private:
 	AbstractSettingsProvider *mSettingsProvider;
 	NumberManager *mNumberManager;
 
-	AbstractAnnotationItem *createItem(const QPointF &initPosition, const ToolTypes &toolType, const PropertiesPtr &properties);
+	AbstractAnnotationItem *createItem(const QPointF &initPosition, const Tools &toolType, const PropertiesPtr &properties);
 	AbstractAnnotationItem *cloneItem(const AbstractAnnotationItem *item);
 	void setZValue(AbstractAnnotationItem *item);
 };

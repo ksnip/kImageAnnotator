@@ -29,9 +29,9 @@ AnnotationBlur::AnnotationBlur(const AnnotationBlur &other) : AbstractAnnotation
 {
 }
 
-ToolTypes AnnotationBlur::toolType() const
+Tools AnnotationBlur::toolType() const
 {
-	return ToolTypes::Blur;
+	return Tools::Blur;
 }
 
 QImage AnnotationBlur::obfuscateBackground(const QImage &sceneBehindItem) const

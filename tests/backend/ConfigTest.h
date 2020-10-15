@@ -24,11 +24,11 @@
 #include <QSettings>
 
 #include "src/backend/Config.h"
-#include "src/common/enum/ToolTypes.h"
+#include "src/common/enum/Tools.h"
 
 using kImageAnnotator::Config;
 using kImageAnnotator::ConfigNameHelper;
-using kImageAnnotator::ToolTypes;
+using kImageAnnotator::Tools;
 
 class ConfigTest : public QObject
 {

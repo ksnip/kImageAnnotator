@@ -30,7 +30,7 @@ public:
 	AnnotationPen(const QPointF &startPosition, const PropertiesPtr &properties);
 	AnnotationPen(const AnnotationPen &other);
 	~AnnotationPen() override = default;
-	ToolTypes toolType() const override;
+	Tools toolType() const override;
 
 protected:
 	void updateShape() override;

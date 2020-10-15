@@ -21,12 +21,13 @@
 
 namespace kImageAnnotator {
 
-StickerPicker::StickerPicker(const QIcon &icon, const QString &tooltip) :
+StickerPicker::StickerPicker(QWidget *parent) :
+	QWidget(parent),
 	mLayout(new QHBoxLayout(this)),
 	mLabel(new QLabel(this)),
 	mToolButton(new GridMenuToolButton(this))
 {
-	init(icon, tooltip);
+	init();
 }
 
 StickerPicker::~StickerPicker()
@@ -46,12 +47,13 @@ QString StickerPicker::sticker() const
 	return mToolButton->currentData().toString();
 }
 
-void StickerPicker::init(const QIcon &icon, const QString &tooltip)
+void StickerPicker::init()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
+	auto icon = IconLoader::load(QLatin1Literal("sticker.svg"));
 	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
-	mLabel->setToolTip(tooltip);
+	mLabel->setToolTip(tr("Sticker"));
 
 	mToolButton->setFixedSize(Constants::SettingsWidgetSize);
 	mToolButton->setIconSize(Constants::ToolButtonIconSize);

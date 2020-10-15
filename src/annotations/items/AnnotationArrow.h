@@ -31,7 +31,7 @@ public:
 	AnnotationArrow(const QPointF &startPosition, const PropertiesPtr &properties);
 	AnnotationArrow(const AnnotationArrow &other);
 	~AnnotationArrow() override = default;
-	ToolTypes toolType() const override;
+	Tools toolType() const override;
 
 protected:
 	void updateShape() override;

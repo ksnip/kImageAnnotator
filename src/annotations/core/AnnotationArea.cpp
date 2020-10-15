@@ -181,6 +181,12 @@ int AnnotationArea::firstBadgeNumber() const
 	return mItemFactory->firstBadgeNumber();
 }
 
+void AnnotationArea::effectChanged(Effects effect)
+{
+	auto graphicsEffect = mEffectsFactory.create(effect);
+	mImage->setGraphicsEffect(graphicsEffect);
+}
+
 void AnnotationArea::update()
 {
 	mItemModifier->updateSelection();
@@ -190,7 +196,7 @@ void AnnotationArea::update()
 void AnnotationArea::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
 	if (event->button() == Qt::LeftButton) {
-		if (mSettingsProvider->toolType() == ToolTypes::Select) {
+		if (mSettingsProvider->toolType() == Tools::Select) {
 			mItemModifier->handleMousePress(event->scenePos(), mItems, mKeyHelper->isControlPressed());
 		} else {
 			mItemModifier->clear();
@@ -217,7 +223,7 @@ void AnnotationArea::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
 	if (event->button() == Qt::LeftButton) {
-		if (mSettingsProvider->toolType() == ToolTypes::Select) {
+		if (mSettingsProvider->toolType() == Tools::Select) {
 			mItemModifier->handleMouseRelease(mItems);
 		} else if (mCurrentItem != nullptr) {
 			mCurrentItem->finish();
@@ -263,10 +269,10 @@ void AnnotationArea::addPointToCurrentItem(const QPointF &position)
 	mCurrentItem->addPoint(position, mKeyHelper->isControlPressed());
 }
 
-void AnnotationArea::toolChanged(ToolTypes toolType)
+void AnnotationArea::toolChanged(Tools toolType)
 {
 	for (auto item : *mItems) {
-		if (toolType == ToolTypes::Select) {
+		if (toolType == Tools::Select) {
 			item->setCursor(CursorHelper::movableCursor());
 		} else {
 			item->unsetCursor();

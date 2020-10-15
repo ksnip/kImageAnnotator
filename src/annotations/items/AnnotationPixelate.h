@@ -30,7 +30,7 @@ public:
 	AnnotationPixelate(const QPointF &startPosition, const ObfuscatePropertiesPtr &properties);
 	AnnotationPixelate(const AnnotationPixelate &other);
 	~AnnotationPixelate() override = default;
-	ToolTypes toolType() const override;
+	Tools toolType() const override;
 
 protected:
 	QImage obfuscateBackground(const QImage &sceneBehindItem) const override;

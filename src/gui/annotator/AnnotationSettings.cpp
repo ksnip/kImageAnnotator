@@ -23,7 +23,19 @@ namespace kImageAnnotator {
 
 AnnotationSettings::AnnotationSettings(Config *config) :
 	mConfig(config),
-	mEditExistingItem(false)
+	mEditExistingItem(false),
+	mMainLayout(new QVBoxLayout),
+	mToolLayout(new QHBoxLayout),
+	mToolPicker(new ToolPicker(this)),
+	mColorPicker(new ColorPicker(this)),
+	mWidthPicker(new NumberPicker(this)),
+	mTextColorPicker(new ColorPicker(this)),
+	mFontSizePicker(new NumberPicker(this)),
+	mFillTypePicker(new FillModePicker(this)),
+	mFirstNumberPicker(new NumberPicker(this)),
+	mObfuscateFactorPicker(new NumberPicker(this)),
+	mStickerPicker(new StickerPicker(this)),
+	mEffectPicker(new EffectPicker(this))
 {
 	initGui();
 	loadToolTypeFromConfig();
@@ -37,6 +49,7 @@ AnnotationSettings::~AnnotationSettings()
 	delete mTextColorPicker;
 	delete mFontSizePicker;
 	delete mFillTypePicker;
+	delete mEffectPicker;
 	delete mFirstNumberPicker;
 	delete mObfuscateFactorPicker;
 	delete mStickerPicker;
@@ -71,35 +84,44 @@ void AnnotationSettings::loadFromItem(const AbstractAnnotationItem *item)
 void AnnotationSettings::activateSelectTool()
 {
 	mEditExistingItem = false;
-	mWidgetConfigurator.setCurrentTool(ToolTypes::Select);
-	mToolPicker->setTool(ToolTypes::Select);
+	mWidgetConfigurator.setCurrentTool(Tools::Select);
+	mToolPicker->setTool(Tools::Select);
 }
 
-ToolTypes AnnotationSettings::toolType() const
+Tools AnnotationSettings::toolType() const
 {
 	return mToolPicker->tool();
 }
 
 void AnnotationSettings::initGui()
 {
-	mMainLayout = new QVBoxLayout();
-	mToolLayout = new QHBoxLayout();
-	mToolPicker = new ToolPicker();
-	mColorPicker = new ColorPicker(IconLoader::load(QStringLiteral("color.svg")), tr("Color"));
-	mWidthPicker = new NumberPicker(IconLoader::load(QStringLiteral("width.svg")), tr("Width"));
-	mTextColorPicker = new ColorPicker(IconLoader::load(QStringLiteral("textColor.svg")), tr("Text Color"));
-	mFontSizePicker = new NumberPicker(IconLoader::load(QStringLiteral("fontSize.svg")), tr("Font Size"));
+	mColorPicker->setIcon(IconLoader::load(QLatin1Literal("color.svg")));
+	mColorPicker->setToolTip(tr("Color"));
+
+	mTextColorPicker->setIcon(IconLoader::load(QLatin1Literal("textColor.svg")));
+	mTextColorPicker->setToolTip(tr("Text Color"));
+
+	mWidthPicker->setIcon(IconLoader::load(QLatin1Literal("width.svg")));
+	mWidthPicker->setToolTip(tr("Width"));
+
+	mFontSizePicker->setIcon(IconLoader::load(QLatin1Literal("fontSize.svg")));
+	mFontSizePicker->setToolTip(tr("Font Size"));
 	mFontSizePicker->setRange(10, 40);
-	mFillTypePicker = new FillTypePicker(IconLoader::load(QStringLiteral("fillType.svg")), tr("Border And Fill Visibility"));
-	mFirstNumberPicker = new NumberPicker(IconLoader::load(QStringLiteral("number.svg")), tr("Starting Number"));
+
+	mFirstNumberPicker->setIcon(IconLoader::load(QLatin1Literal("number.svg")));
+	mFirstNumberPicker->setToolTip(tr("Starting Number"));
 	mFirstNumberPicker->setRange(1, 100);
-	mObfuscateFactorPicker = new NumberPicker(IconLoader::load(QStringLiteral("obfuscateFactor.svg")), tr("Obfuscation Factor"));
+
+	mObfuscateFactorPicker->setIcon(IconLoader::load(QLatin1Literal("obfuscateFactor.svg")));
+	mObfuscateFactorPicker->setToolTip(tr("Obfuscation Factor"));
 	mObfuscateFactorPicker->setRange(1, 20);
-	mStickerPicker = new StickerPicker(IconLoader::load(QStringLiteral("sticker.svg")), tr("Sticker"));
+
 
 	mToolLayout->addWidget(mToolPicker);
 	mMainLayout->addLayout(mToolLayout);
-	mMainLayout->addSpacing(20);
+	mMainLayout->addSpacing(10);
+	mMainLayout->addWidget(mEffectPicker);
+	mMainLayout->addSpacing(10);
 	mMainLayout->addWidget(mColorPicker);
 	mMainLayout->addWidget(mWidthPicker);
 	mMainLayout->addWidget(mTextColorPicker);
@@ -129,10 +151,11 @@ void AnnotationSettings::initGui()
 	connect(mWidthPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::toolWidthChanged);
 	connect(mTextColorPicker, &ColorPicker::colorSelected, this, &AnnotationSettings::toolTextColorChanged);
 	connect(mFontSizePicker, &NumberPicker::numberSelected, this, &AnnotationSettings::toolFontSizeChanged);
-	connect(mFillTypePicker, &FillTypePicker::fillSelected, this, &AnnotationSettings::toolFillTypeChanged);
+	connect(mFillTypePicker, &FillModePicker::fillSelected, this, &AnnotationSettings::toolFillTypeChanged);
 	connect(mFirstNumberPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::saveFirstBadgeNumber);
 	connect(mObfuscateFactorPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::obfuscateFactorChanged);
 	connect(mStickerPicker, &StickerPicker::stickerSelected, this, &AnnotationSettings::stickerChanged);
+	connect(mEffectPicker, &EffectPicker::effectSelected, this, &AnnotationSettings::effectChanged);
 }
 
 void AnnotationSettings::loadToolTypeFromConfig()
@@ -140,7 +163,7 @@ void AnnotationSettings::loadToolTypeFromConfig()
 	mToolPicker->setTool(mConfig->selectedTool());
 }
 
-void AnnotationSettings::loadFromConfig(ToolTypes tool)
+void AnnotationSettings::loadFromConfig(Tools tool)
 {
 	mWidgetConfigurator.setCurrentTool(tool);
 	mColorPicker->setColor(mConfig->toolColor(tool));
@@ -151,7 +174,7 @@ void AnnotationSettings::loadFromConfig(ToolTypes tool)
 	mObfuscateFactorPicker->setNumber(mConfig->obfuscationFactor(tool));
 }
 
-void AnnotationSettings::toolTypeChanged(ToolTypes toolType)
+void AnnotationSettings::toolTypeChanged(Tools toolType)
 {
 	mEditExistingItem = false;
 	mConfig->setSelectedToolType(toolType);
@@ -188,7 +211,7 @@ void AnnotationSettings::toolWidthChanged(int size)
 	}
 }
 
-void AnnotationSettings::toolFillTypeChanged(FillTypes fill)
+void AnnotationSettings::toolFillTypeChanged(FillModes fill)
 {
 	if(mEditExistingItem) {
 		itemSettingChanged();
@@ -242,7 +265,7 @@ int AnnotationSettings::toolWidth() const
 	return mWidthPicker->number();
 }
 
-FillTypes AnnotationSettings::fillType() const
+FillModes AnnotationSettings::fillType() const
 {
 	return mFillTypePicker->fillType();
 }
@@ -275,6 +298,11 @@ void AnnotationSettings::reloadConfig()
 void AnnotationSettings::setStickers(const QStringList &stickerPaths, bool keepDefault)
 {
 	mStickerPicker->setStickers(stickerPaths, keepDefault);
+}
+
+void AnnotationSettings::effectChanged(Effects effect)
+{
+	AbstractSettingsProvider::effectChanged(effect);
 }
 
 } // namespace kImageAnnotator

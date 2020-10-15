@@ -1,41 +1,40 @@
 /*
  * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONELLIPSE_H
-#define KIMAGEANNOTATOR_ANNOTATIONELLIPSE_H
+#ifndef KIMAGEANNOTATOR_FILLPICKERTEST_H
+#define KIMAGEANNOTATOR_FILLPICKERTEST_H
 
-#include "AbstractAnnotationRect.h"
+#include <QtTest>
 
-namespace kImageAnnotator {
+#include "src/widgets/FillModePicker.h"
 
-class AnnotationEllipse : public AbstractAnnotationRect
+using kImageAnnotator::FillModePicker;
+using kImageAnnotator::FillModes;
+
+class FillModePickerTest : public QObject
 {
-public:
-	AnnotationEllipse(const QPointF &startPosition, const PropertiesPtr &properties);
-	AnnotationEllipse(const AnnotationEllipse &other);
-	~AnnotationEllipse() override = default;
-	Tools toolType() const override;
+Q_OBJECT
 
-protected:
-	void updateShape() override;
+private slots:
+	void TestSelectFill_Should_EmitSignal_When_FillChanged();
+	void TestAddNoBorderAndNoFillToList_Should_AddTypeToList();
+	void TestRemoveNoBorderAndNoFillToList_Should_RemoveTypeFromList();
 };
 
-} // namespace kImageAnnotator
-
-#endif // KIMAGEANNOTATOR_ANNOTATIONELLIPSE_H
+#endif // KIMAGEANNOTATOR_FILLPICKERTEST_H

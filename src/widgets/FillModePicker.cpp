@@ -17,60 +17,62 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "FillTypePicker.h"
+#include "FillModePicker.h"
 
 namespace kImageAnnotator {
 
-FillTypePicker::FillTypePicker(const QIcon &icon, const QString &tooltip) :
+FillModePicker::FillModePicker(QWidget *parent) :
+	QWidget(parent),
 	mToolButton(new ListMenuToolButton(this)),
 	mLayout(new QHBoxLayout(this)),
 	mLabel(new QLabel(this))
 {
-	initGui(icon, tooltip);
+	initGui();
 }
 
-FillTypePicker::~FillTypePicker()
+FillModePicker::~FillModePicker()
 {
 	delete mLayout;
 	delete mLabel;
 	delete mToolButton;
 }
 
-void FillTypePicker::setFillType(FillTypes fillType)
+void FillModePicker::setFillType(FillModes fillType)
 {
 	mToolButton->setCurrentData(static_cast<int>(fillType));
 }
 
-void FillTypePicker::addNoFillAndNoBorderToList()
+void FillModePicker::addNoFillAndNoBorderToList()
 {
-	mToolButton->setDataVisible(static_cast<int>(FillTypes::NoBorderAndNoFill), true);
+	mToolButton->setDataVisible(static_cast<int>(FillModes::NoBorderAndNoFill), true);
 }
 
-void FillTypePicker::removeNoFillAndNoBorderToList()
+void FillModePicker::removeNoFillAndNoBorderToList()
 {
-	mToolButton->setDataVisible(static_cast<int>(FillTypes::NoBorderAndNoFill), false);
+	mToolButton->setDataVisible(static_cast<int>(FillModes::NoBorderAndNoFill), false);
 }
 
-FillTypes FillTypePicker::fillType() const
+FillModes FillModePicker::fillType() const
 {
-	return mToolButton->currentData().value<FillTypes>();
+	return mToolButton->currentData().value<FillModes>();
 }
 
-void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
+void FillModePicker::initGui()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
+	auto icon = IconLoader::load(QLatin1Literal("fillType.svg"));
 	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
-	mLabel->setToolTip(tooltip);
+	mLabel->setToolTip(tr("Border And Fill Visibility"));
 
-	insertItem(FillTypes::BorderAndFill, QStringLiteral("fillType_borderAndFill.svg"), tr("Border and Fill"));
-	insertItem(FillTypes::BorderAndNoFill, QStringLiteral("fillType_borderAndNoFill.svg"), tr("Border and No Fill"));
-	insertItem(FillTypes::NoBorderAndNoFill, QStringLiteral("fillType_noBorderAndNoFill.svg"), tr("No Border and No Fill"));
+	insertItem(FillModes::BorderAndFill, QLatin1Literal("fillType_borderAndFill.svg"), tr("Border and Fill"));
+	insertItem(FillModes::BorderAndNoFill, QLatin1Literal("fillType_borderAndNoFill.svg"), tr("Border and No Fill"));
+	insertItem(FillModes::NoBorderAndNoFill, QLatin1Literal("fillType_noBorderAndNoFill.svg"), tr("No Border and No Fill"));
 
 	mToolButton->setFixedSize(Constants::SettingsWidgetSize);
 	mToolButton->setIconSize(Constants::ToolButtonIconSize);
 	mToolButton->setFocusPolicy(Qt::NoFocus);
-	connect(mToolButton, &ListMenuToolButton::selectionChanged, this, &FillTypePicker::selectionChanged);
+	connect(mToolButton, &ListMenuToolButton::selectionChanged, this, &FillModePicker::selectionChanged);
 
 	mLayout->addWidget(mLabel);
 	mLayout->addWidget(mToolButton);
@@ -79,15 +81,15 @@ void FillTypePicker::initGui(const QIcon &icon, const QString &tooltip)
 	setFixedSize(sizeHint());
 }
 
-void FillTypePicker::insertItem(FillTypes fillType, const QString &iconName, const QString &text)
+void FillModePicker::insertItem(FillModes fillType, const QString &iconName, const QString &text)
 {
 	auto icon = IconLoader::load(iconName);
 	mToolButton->addItem(icon, text, static_cast<int>(fillType));
 }
 
-void FillTypePicker::selectionChanged()
+void FillModePicker::selectionChanged()
 {
-	auto fillType = mToolButton->currentData().value<FillTypes>();
+	auto fillType = mToolButton->currentData().value<FillModes>();
 	emit fillSelected(fillType);
 }
 

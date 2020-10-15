@@ -67,7 +67,7 @@ AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPositio
 
 AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPosition, const QPixmap &image)
 {
-    auto properties = mPropertiesFactory->create(ToolTypes::Image);
+    auto properties = mPropertiesFactory->create(Tools::Image);
     auto newItem = new AnnotationImage(initPosition, image, properties);
 
     setZValue(newItem);
@@ -85,56 +85,56 @@ AbstractAnnotationItem *AnnotationItemFactory::clone(const AbstractAnnotationIte
 	return newItem;
 }
 
-AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPosition, const ToolTypes &toolType, const PropertiesPtr &properties)
+AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPosition, const Tools &toolType, const PropertiesPtr &properties)
 {
 	AbstractAnnotationItem *newItem = nullptr;
 
 	switch (toolType) {
-		case ToolTypes::Pen:
+		case Tools::Pen:
 			newItem = new AnnotationPen(initPosition, properties.staticCast<AnnotationPathProperties>());
 			break;
-		case ToolTypes::MarkerPen:
+		case Tools::MarkerPen:
 			newItem = new AnnotationPen(initPosition, properties.staticCast<AnnotationPathProperties>());
 			break;
-		case ToolTypes::MarkerRect:
+		case Tools::MarkerRect:
 			newItem = new AnnotationRect(initPosition, properties);
 			break;
-		case ToolTypes::MarkerEllipse:
+		case Tools::MarkerEllipse:
 			newItem = new AnnotationEllipse(initPosition, properties);
 			break;
-		case ToolTypes::Line:
+		case Tools::Line:
 			newItem = new AnnotationLine(initPosition, properties);
 			break;
-		case ToolTypes::Ellipse:
+		case Tools::Ellipse:
 			newItem = new AnnotationEllipse(initPosition, properties);
 			break;
-		case ToolTypes::Rect:
+		case Tools::Rect:
 			newItem = new AnnotationRect(initPosition, properties);
 			break;
-		case ToolTypes::Arrow:
+		case Tools::Arrow:
 			newItem = new AnnotationArrow(initPosition, properties);
 			break;
-		case ToolTypes::DoubleArrow:
+		case Tools::DoubleArrow:
 			newItem = new AnnotationDoubleArrow(initPosition, properties);
 			break;
-		case ToolTypes::Number:
+		case Tools::Number:
 			newItem = new AnnotationNumber(initPosition, properties.staticCast<AnnotationTextProperties>());
 			mNumberManager->addItem(dynamic_cast<AnnotationNumber *>(newItem));
 			break;
-		case ToolTypes::NumberPointer:
+		case Tools::NumberPointer:
 			newItem = new AnnotationNumberPointer(initPosition, properties.staticCast<AnnotationTextProperties>());
 			mNumberManager->addItem(dynamic_cast<AnnotationNumberPointer *>(newItem));
 			break;
-		case ToolTypes::Text:
+		case Tools::Text:
 			newItem = new AnnotationText(initPosition, properties.staticCast<AnnotationTextProperties>());
 			break;
-		case ToolTypes::Blur:
+		case Tools::Blur:
 			newItem = new AnnotationBlur(initPosition, properties.staticCast<AnnotationObfuscateProperties>());
 			break;
-		case ToolTypes::Pixelate:
+		case Tools::Pixelate:
 			newItem = new AnnotationPixelate(initPosition, properties.staticCast<AnnotationObfuscateProperties>());
 			break;
-		case ToolTypes::Sticker:
+		case Tools::Sticker:
 			newItem = new AnnotationSticker(initPosition, properties.staticCast<AnnotationStickerProperties>());
 			break;
 		default:
@@ -150,54 +150,54 @@ AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotatio
 	AbstractAnnotationItem *newItem = nullptr;
 
 	switch (item->toolType()) {
-		case ToolTypes::Pen:
+		case Tools::Pen:
 			newItem = new AnnotationPen(*(dynamic_cast<const AnnotationPen *>(item)));
 			break;
-		case ToolTypes::MarkerPen:
+		case Tools::MarkerPen:
 			newItem = new AnnotationPen(*(dynamic_cast<const AnnotationPen *>(item)));
 			break;
-		case ToolTypes::MarkerRect:
+		case Tools::MarkerRect:
 			newItem = new AnnotationRect(*(dynamic_cast<const AnnotationRect *>(item)));
 			break;
-		case ToolTypes::MarkerEllipse:
+		case Tools::MarkerEllipse:
 			newItem = new AnnotationEllipse(*(dynamic_cast<const AnnotationEllipse *>(item)));
 			break;
-		case ToolTypes::Line:
+		case Tools::Line:
 			newItem = new AnnotationLine(*(dynamic_cast<const AnnotationLine *>(item)));
 			break;
-		case ToolTypes::Ellipse:
+		case Tools::Ellipse:
 			newItem = new AnnotationEllipse(*(dynamic_cast<const AnnotationEllipse *>(item)));
 			break;
-		case ToolTypes::Rect:
+		case Tools::Rect:
 			newItem = new AnnotationRect(*(dynamic_cast<const AnnotationRect *>(item)));
 			break;
-		case ToolTypes::Arrow:
+		case Tools::Arrow:
 			newItem = new AnnotationArrow(*(dynamic_cast<const AnnotationArrow *>(item)));
 			break;
-		case ToolTypes::DoubleArrow:
+		case Tools::DoubleArrow:
 			newItem = new AnnotationDoubleArrow(*(dynamic_cast<const AnnotationArrow *>(item)));
 			break;
-		case ToolTypes::Number:
+		case Tools::Number:
 			newItem = new AnnotationNumber(*(dynamic_cast<const AnnotationNumber *>(item)));
 			mNumberManager->addItem(dynamic_cast<AnnotationNumber *>(newItem));
 			break;
-		case ToolTypes::NumberPointer:
+		case Tools::NumberPointer:
 			newItem = new AnnotationNumberPointer(*(dynamic_cast<const AnnotationNumberPointer *>(item)));
 			mNumberManager->addItem(dynamic_cast<AnnotationNumberPointer *>(newItem));
 			break;
-		case ToolTypes::Text:
+		case Tools::Text:
 			newItem = new AnnotationText(*(dynamic_cast<const AnnotationText *>(item)));
 			break;
-		case ToolTypes::Blur:
+		case Tools::Blur:
 			newItem = new AnnotationBlur(*(dynamic_cast<const AnnotationBlur *>(item)));
 			break;
-		case ToolTypes::Pixelate:
+		case Tools::Pixelate:
 			newItem = new AnnotationPixelate(*(dynamic_cast<const AnnotationPixelate *>(item)));
 			break;
-		case ToolTypes::Image:
+		case Tools::Image:
 			newItem = new AnnotationImage(*(dynamic_cast<const AnnotationImage *>(item)));
 			break;
-		case ToolTypes::Sticker:
+		case Tools::Sticker:
 			newItem = new AnnotationSticker(*(dynamic_cast<const AnnotationSticker *>(item)));
 			break;
 		default:

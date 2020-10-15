@@ -41,7 +41,7 @@ public:
 	AnnotationText(const AnnotationText &other);
 	~AnnotationText() override = default;
 	void finish() override;
-	ToolTypes toolType() const override;
+	Tools toolType() const override;
 	QPainterPath shape() const override;
 	void enableEditing() override;
 	void disableEditing() override;

@@ -36,10 +36,12 @@ class ColorPicker : public QWidget
 {
 Q_OBJECT
 public:
-	explicit ColorPicker(const QIcon &icon, const QString &tooltip);
+	explicit ColorPicker(QWidget *parent);
 	~ColorPicker() override;
 	void setColor(const QColor &color);
 	QColor color() const;
+	void setToolTip(const QString &toolTip);
+	void setIcon(const QIcon &icon);
 
 signals:
 	void colorSelected(const QColor &color);
@@ -49,7 +51,7 @@ private:
 	QLabel *mLabel;
 	KColorPicker *mkColorPicker;
 
-	void initGui(const QIcon &icon, const QString &tooltip);
+	void initGui();
 
 private slots:
 	void colorChanged(const QColor &color);

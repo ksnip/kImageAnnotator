@@ -30,7 +30,7 @@ public:
 	AnnotationRect(const QPointF &startPosition, const PropertiesPtr &properties);
 	AnnotationRect(const AnnotationRect &other);
 	~AnnotationRect() override = default;
-	ToolTypes toolType() const override;
+	Tools toolType() const override;
 
 protected:
 	void updateShape() override;

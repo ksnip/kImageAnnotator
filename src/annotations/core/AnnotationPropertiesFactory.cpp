@@ -29,7 +29,7 @@ AnnotationPropertiesFactory::AnnotationPropertiesFactory(Config *config, Abstrac
 	Q_ASSERT(mSettingsProvider != nullptr);
 }
 
-PropertiesPtr AnnotationPropertiesFactory::create(ToolTypes toolType) const
+PropertiesPtr AnnotationPropertiesFactory::create(Tools toolType) const
 {
 	auto properties = createPropertiesObject(toolType);
 
@@ -46,27 +46,27 @@ PropertiesPtr AnnotationPropertiesFactory::create(ToolTypes toolType) const
 	return properties;
 }
 
-PropertiesPtr AnnotationPropertiesFactory::createPropertiesObject(ToolTypes toolType) const
+PropertiesPtr AnnotationPropertiesFactory::createPropertiesObject(Tools toolType) const
 {
 	switch (toolType) {
-		case ToolTypes::Pen:
-		case ToolTypes::MarkerPen:
+		case Tools::Pen:
+		case Tools::MarkerPen:
 			return PropertiesPtr(new AnnotationPathProperties());
-		case ToolTypes::Number:
-		case ToolTypes::NumberPointer:
-		case ToolTypes::Text:
+		case Tools::Number:
+		case Tools::NumberPointer:
+		case Tools::Text:
 			return PropertiesPtr(new AnnotationTextProperties());
-		case ToolTypes::Blur:
-		case ToolTypes::Pixelate:
+		case Tools::Blur:
+		case Tools::Pixelate:
 			return PropertiesPtr(new AnnotationObfuscateProperties());
-		case ToolTypes ::Sticker:
+		case Tools ::Sticker:
 			return PropertiesPtr(new AnnotationStickerProperties());
 		default:
 			return PropertiesPtr(new AnnotationProperties());
 	}
 }
 
-void AnnotationPropertiesFactory::setColor(const PropertiesPtr &properties, ToolTypes toolType) const
+void AnnotationPropertiesFactory::setColor(const PropertiesPtr &properties, Tools toolType) const
 {
 	auto color = mSettingsProvider->toolColor();
 
@@ -82,13 +82,13 @@ void AnnotationPropertiesFactory::setTextColor(const PropertiesPtr &properties) 
 	properties->setTextColor(mSettingsProvider->textColor());
 }
 
-void AnnotationPropertiesFactory::setWidthSize(const PropertiesPtr &properties, ToolTypes toolType) const
+void AnnotationPropertiesFactory::setWidthSize(const PropertiesPtr &properties, Tools toolType) const
 {
 	switch (toolType) {
-		case ToolTypes::NumberPointer:
+		case Tools::NumberPointer:
 			properties->setWidth(1);
 			break;
-		case ToolTypes::MarkerPen:
+		case Tools::MarkerPen:
 			properties->setWidth(mSettingsProvider->toolWidth() * 3);
 			break;
 		default:
@@ -96,29 +96,29 @@ void AnnotationPropertiesFactory::setWidthSize(const PropertiesPtr &properties, 
 	}
 }
 
-void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, ToolTypes toolType) const
+void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, Tools toolType) const
 {
 	switch (toolType) {
-		case ToolTypes::MarkerPen:
-			properties->setFillType(FillTypes::BorderAndNoFill);
+		case Tools::MarkerPen:
+			properties->setFillType(FillModes::BorderAndNoFill);
 			break;
-		case ToolTypes::MarkerRect:
-		case ToolTypes::MarkerEllipse:
-			properties->setFillType(FillTypes::NoBorderAndFill);
+		case Tools::MarkerRect:
+		case Tools::MarkerEllipse:
+			properties->setFillType(FillModes::NoBorderAndFill);
 			break;
-		case ToolTypes::Image:
-		case ToolTypes::Sticker:
-		case ToolTypes::NumberPointer:
-			properties->setFillType(FillTypes::BorderAndFill);
+		case Tools::Image:
+		case Tools::Sticker:
+		case Tools::NumberPointer:
+			properties->setFillType(FillModes::BorderAndFill);
 			break;
 		default:
 			properties->setFillType(mSettingsProvider->fillType());
 	}
 }
 
-void AnnotationPropertiesFactory::setShadowEnabled(const PropertiesPtr &properties, ToolTypes toolType) const
+void AnnotationPropertiesFactory::setShadowEnabled(const PropertiesPtr &properties, Tools toolType) const
 {
-	if (isObfuscateTool(toolType) || isMarkerTool(toolType) || toolType == ToolTypes::Image) {
+	if (isObfuscateTool(toolType) || isMarkerTool(toolType) || toolType == Tools::Image) {
 		properties->setShadowEnabled(false);
 	} else {
 		properties->setShadowEnabled(mConfig->itemShadowEnabled());
@@ -134,7 +134,7 @@ void AnnotationPropertiesFactory::setPathProperties(const PropertiesPtr &propert
 	}
 }
 
-void AnnotationPropertiesFactory::setTextProperties(const PropertiesPtr &properties, ToolTypes toolType) const
+void AnnotationPropertiesFactory::setTextProperties(const PropertiesPtr &properties, Tools toolType) const
 {
 	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
 	if (textProperties != nullptr) {
@@ -160,14 +160,14 @@ void AnnotationPropertiesFactory::setStickerProperties(const PropertiesPtr &prop
 	}
 }
 
-bool AnnotationPropertiesFactory::isMarkerTool(ToolTypes toolType) const
+bool AnnotationPropertiesFactory::isMarkerTool(Tools toolType) const
 {
-	return toolType == ToolTypes::MarkerPen || toolType == ToolTypes::MarkerRect || toolType == ToolTypes::MarkerEllipse;
+	return toolType == Tools::MarkerPen || toolType == Tools::MarkerRect || toolType == Tools::MarkerEllipse;
 }
 
-bool AnnotationPropertiesFactory::isObfuscateTool(const ToolTypes &toolType) const
+bool AnnotationPropertiesFactory::isObfuscateTool(const Tools &toolType) const
 {
-	return toolType == ToolTypes::Blur || toolType == ToolTypes::Pixelate;
+	return toolType == Tools::Blur || toolType == Tools::Pixelate;
 }
 
 } // namespace kImageAnnotator

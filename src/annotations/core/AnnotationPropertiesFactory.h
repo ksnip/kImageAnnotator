@@ -26,7 +26,7 @@
 #include "src/annotations/properties/AnnotationObfuscateProperties.h"
 #include "src/annotations/properties/AnnotationStickerProperties.h"
 #include "src/backend/Config.h"
-#include "src/common/enum/ToolTypes.h"
+#include "src/common/enum/Tools.h"
 #include "AbstractSettingsProvider.h"
 
 namespace kImageAnnotator {
@@ -37,24 +37,24 @@ public:
 	explicit AnnotationPropertiesFactory(Config *config, AbstractSettingsProvider *settingsProvider);
 	~AnnotationPropertiesFactory() = default;
 
-	PropertiesPtr create(ToolTypes toolType) const;
+	PropertiesPtr create(Tools toolType) const;
 
 private:
 	Config *mConfig;
 	AbstractSettingsProvider *mSettingsProvider;
 
-	PropertiesPtr createPropertiesObject(ToolTypes toolType) const;
-	void setShadowEnabled(const PropertiesPtr &properties, ToolTypes toolType) const;
-	void setColor(const PropertiesPtr &properties, ToolTypes toolType) const;
+	PropertiesPtr createPropertiesObject(Tools toolType) const;
+	void setShadowEnabled(const PropertiesPtr &properties, Tools toolType) const;
+	void setColor(const PropertiesPtr &properties, Tools toolType) const;
 	void setTextColor(const PropertiesPtr &properties) const;
-	void setWidthSize(const PropertiesPtr &properties, ToolTypes toolType) const;
-	void setFill(const PropertiesPtr &properties, ToolTypes toolType) const;
+	void setWidthSize(const PropertiesPtr &properties, Tools toolType) const;
+	void setFill(const PropertiesPtr &properties, Tools toolType) const;
 	void setPathProperties(const PropertiesPtr &properties) const;
-	void setTextProperties(const PropertiesPtr &properties, ToolTypes toolType) const;
+	void setTextProperties(const PropertiesPtr &properties, Tools toolType) const;
 	void setObfuscateProperties(const PropertiesPtr &properties) const;
 	void setStickerProperties(const PropertiesPtr &properties) const;
-	bool isMarkerTool(ToolTypes toolType) const;
-	bool isObfuscateTool(const ToolTypes &toolType) const;
+	bool isMarkerTool(Tools toolType) const;
+	bool isObfuscateTool(const Tools &toolType) const;
 };
 
 } // namespace kImageAnnotator

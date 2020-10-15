@@ -29,9 +29,9 @@ AnnotationRect::AnnotationRect(const AnnotationRect &other) : AbstractAnnotation
 {
 }
 
-ToolTypes AnnotationRect::toolType() const
+Tools AnnotationRect::toolType() const
 {
-	return ToolTypes::Rect;
+	return Tools::Rect;
 }
 
 void AnnotationRect::updateShape()

@@ -34,7 +34,7 @@ public:
 	AnnotationNumberPointer(const QPointF &startPosition, const TextPropertiesPtr& properties);
 	AnnotationNumberPointer(const AnnotationNumberPointer &other);
 	~AnnotationNumberPointer() override;
-	ToolTypes toolType() const override;
+	Tools toolType() const override;
 	QPainterPath shape() const override;
 	TextPropertiesPtr textProperties() const;
 	void finish() override;

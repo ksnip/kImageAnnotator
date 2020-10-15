@@ -28,7 +28,7 @@
 
 #include "CustomToolButton.h"
 #include "CustomToolButtonAction.h"
-#include "src/common/enum/ToolTypes.h"
+#include "src/common/enum/Tools.h"
 #include "src/common/helper/IconLoader.h"
 
 namespace kImageAnnotator {
@@ -37,29 +37,29 @@ class ToolPicker : public QWidget
 {
 Q_OBJECT
 public:
-	explicit ToolPicker();
+	explicit ToolPicker(QWidget *parent);
 	~ToolPicker() override;
-	void setTool(ToolTypes newTool);
-	ToolTypes tool();
+	void setTool(Tools newTool);
+	Tools tool();
 
 signals:
-	void toolSelected(ToolTypes newTool);
+	void toolSelected(Tools newTool);
 
 private:
 	QActionGroup *mActionGroup;
 	QGridLayout *mLayout;
-	ToolTypes mSelectedToolType;
-	QHash<QAction *, ToolTypes> mActionToTool;
+	Tools mSelectedToolType;
+	QHash<QAction *, Tools> mActionToTool;
 	QHash<QAction *, CustomToolButton *> mActionToButton;
 
 	void initGui();
-	QAction *createAction(const QString &tooltip, const QIcon &icon, Qt::Key shortcut, ToolTypes toolType);
+	QAction *createAction(const QString &tooltip, const QIcon &icon, Qt::Key shortcut, Tools toolType);
 	CustomToolButton *createButton(QAction *defaultAction);
 	CustomToolButton *createButton(QMenu *menu);
 
 private slots:
 	void actionTriggered(QAction *action);
-	void setToolAndNotify(ToolTypes newTool);
+	void setToolAndNotify(Tools newTool);
 };
 
 } // namespace kImageAnnotator
