@@ -5,27 +5,27 @@
     <name>kImageAnnotator::AnnotationContextMenu</name>
     <message>
         <source>Arrange</source>
-        <translation type="unfinished"></translation>
+        <translation>排序</translation>
     </message>
     <message>
         <source>Bring to Front</source>
-        <translation type="unfinished"></translation>
+        <translation>置于顶层</translation>
     </message>
     <message>
         <source>Bring Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>上移一层</translation>
     </message>
     <message>
         <source>Send Backward</source>
-        <translation type="unfinished"></translation>
+        <translation>下移一层</translation>
     </message>
     <message>
         <source>Send to Back</source>
-        <translation type="unfinished"></translation>
+        <translation>置于底层</translation>
     </message>
     <message>
         <source>Select This</source>
-        <translation type="unfinished"></translation>
+        <translation>选中当前</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -68,15 +68,15 @@
     </message>
     <message>
         <source>Starting Number</source>
-        <translation type="unfinished"></translation>
+        <translation>起始值</translation>
     </message>
     <message>
         <source>Blur Radius</source>
-        <translation type="unfinished"></translation>
+        <translation>模糊半径</translation>
     </message>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>贴纸</translation>
     </message>
 </context>
 <context>
@@ -95,11 +95,11 @@
     </message>
     <message>
         <source>Close All to the Left</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭左侧</translation>
     </message>
     <message>
         <source>Close All to the Right</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭右侧</translation>
     </message>
 </context>
 <context>
@@ -114,19 +114,19 @@
     </message>
     <message>
         <source>X:</source>
-        <translation type="unfinished"></translation>
+        <translation>X:</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation type="unfinished"></translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <source>W:</source>
-        <translation type="unfinished"></translation>
+        <translation>宽度：</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation type="unfinished"></translation>
+        <translation>高度：</translation>
     </message>
 </context>
 <context>
@@ -183,27 +183,27 @@
     <name>kImageAnnotator::ToolPicker</name>
     <message>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>选择</translation>
     </message>
     <message>
         <source>Pen</source>
-        <translation type="unfinished"></translation>
+        <translation>笔</translation>
     </message>
     <message>
         <source>Number</source>
-        <translation type="unfinished"></translation>
+        <translation>数字</translation>
     </message>
     <message>
         <source>Marker Rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>高亮矩形区域</translation>
     </message>
     <message>
         <source>Marker Ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>高亮椭圆区域</translation>
     </message>
     <message>
         <source>Marker Pen</source>
-        <translation type="unfinished"></translation>
+        <translation>高亮笔</translation>
     </message>
     <message>
         <source>Text</source>
@@ -219,27 +219,27 @@
     </message>
     <message>
         <source>Line</source>
-        <translation type="unfinished"></translation>
+        <translation>线段</translation>
     </message>
     <message>
         <source>Blur</source>
-        <translation type="unfinished"></translation>
+        <translation>模糊</translation>
     </message>
     <message>
         <source>Rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>矩形</translation>
     </message>
     <message>
         <source>Ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>椭圆</translation>
     </message>
     <message>
         <source>Number Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>数字标注</translation>
     </message>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>贴纸</translation>
     </message>
 </context>
 </TS>
