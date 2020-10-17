@@ -28,7 +28,7 @@
 #include "src/widgets/NumberPicker.h"
 #include "src/widgets/FillModePicker.h"
 #include "src/widgets/StickerPicker.h"
-#include "src/widgets/EffectPicker.h"
+#include "src/widgets/ImageEffectPicker.h"
 #include "src/backend/Config.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 #include "src/annotations/properties/AnnotationObfuscateProperties.h"
@@ -53,6 +53,7 @@ public:
 	FillModes fillType() const override;
 	int obfuscationFactor() const override;
 	QString sticker() const override;
+	ImageEffects effect() const override;
 	void updateFirstBadgeNumber(int number) override;
 	void reloadConfig();
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
@@ -69,7 +70,7 @@ private:
 	NumberPicker *mFirstNumberPicker;
 	NumberPicker *mObfuscateFactorPicker;
 	StickerPicker *mStickerPicker;
-	EffectPicker *mEffectPicker;
+	ImageEffectPicker *mEffectPicker;
 	Config *mConfig;
 	WidgetConfigurator mWidgetConfigurator;
 	bool mEditExistingItem;
@@ -89,7 +90,7 @@ private slots:
 	void obfuscateFactorChanged(int factor);
 	void stickerChanged(const QString &sticker);
 	void loadFromItem(const AbstractAnnotationItem *item);
-	void effectChanged(Effects effect) override;
+	void effectChanged(ImageEffects effect) override;
 };
 
 } // namespace kImageAnnotator

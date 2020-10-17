@@ -24,7 +24,10 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AnnotationItemFactory.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AnnotationPropertiesFactory.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AbstractSettingsProvider.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/effects/EffectsFactory.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/imageEffects/ImageEffectFactory.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/imageEffects/NoImageEffect.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/imageEffects/DropShadowImageEffect.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/imageEffects/BorderImageEffect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationPathProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationTextProperties.cpp
@@ -108,7 +111,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListMenuItem.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListItemGroup.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/EffectPicker.cpp
+		${CMAKE_CURRENT_SOURCE_DIR}/widgets/ImageEffectPicker.cpp
 	)
 
 set(KIMAGEANNOTATOR_SRCS ${KIMAGEANNOTATOR_SRCS} PARENT_SCOPE)

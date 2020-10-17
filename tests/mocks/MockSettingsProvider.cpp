@@ -104,6 +104,11 @@ QString MockSettingsProvider::sticker() const
 	return mStickerPath;
 }
 
+ImageEffects MockSettingsProvider::effect() const
+{
+	return ImageEffects::NoEffect;
+}
+
 void MockSettingsProvider::setSticker(const QString &stickerPath)
 {
 	mStickerPath =  stickerPath;

@@ -17,13 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "EffectsFactory.h"
+#ifndef KIMAGEANNOTATOR_BORDERIMAGEEFFECT_H
+#define KIMAGEANNOTATOR_BORDERIMAGEEFFECT_H
 
-QGraphicsEffect *kImageAnnotator::EffectsFactory::create(kImageAnnotator::Effects effect) const
+#include <QGraphicsEffect>
+#include <QPainter>
+
+namespace kImageAnnotator {
+
+class BorderImageEffect : public QGraphicsEffect
 {
-	if(effect == Effects::DropShadow) {
-		return new QGraphicsDropShadowEffect;
-	} else {
-		return nullptr;
-	}
-}
+Q_OBJECT
+public:
+	explicit BorderImageEffect() = default;
+	~BorderImageEffect() override = default;
+
+protected:
+	void draw(QPainter * painter) override;
+};
+
+} // namespace kImageAnnotator
+
+#endif //KIMAGEANNOTATOR_BORDERIMAGEEFFECT_H

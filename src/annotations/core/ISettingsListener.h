@@ -21,7 +21,7 @@
 #define KIMAGEANNOTATOR_ISETTINGSLISTENER_H
 
 #include "src/common/enum/Tools.h"
-#include "src/common/enum/Effects.h"
+#include "src/common/enum/ImageEffects.h"
 
 namespace kImageAnnotator {
 
@@ -32,7 +32,7 @@ public:
 	virtual void itemSettingsChanged() = 0;
 	virtual void firstBadgeNumberChanged(int number) = 0;
 	virtual int firstBadgeNumber() const = 0;
-	virtual void effectChanged(Effects effect) = 0;
+	virtual void imageEffectChanged(ImageEffects effect) = 0;
 };
 
 } // namespace kImageAnnotator

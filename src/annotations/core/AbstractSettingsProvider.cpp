@@ -56,10 +56,10 @@ void AbstractSettingsProvider::setActiveListener(ISettingsListener *settingsList
 	}
 }
 
-void AbstractSettingsProvider::effectChanged(Effects effect)
+void AbstractSettingsProvider::effectChanged(ImageEffects effect)
 {
 	if(mSettingsListener != nullptr) {
-		mSettingsListener->effectChanged(effect);
+		mSettingsListener->imageEffectChanged(effect);
 	}
 }
 

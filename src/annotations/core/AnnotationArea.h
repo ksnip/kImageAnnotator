@@ -46,7 +46,7 @@
 #include "src/annotations/undo/PasteCommand.h"
 #include "src/annotations/undo/ChangePropertiesCommand.h"
 #include "src/annotations/core/ZoomValueProvider.h"
-#include "src/annotations/core/effects/EffectsFactory.h"
+#include "src/annotations/core/imageEffects/ImageEffectFactory.h"
 
 namespace kImageAnnotator {
 
@@ -70,7 +70,7 @@ public:
 	void itemSettingsChanged();
 	void firstBadgeNumberChanged(int number) override;
 	int firstBadgeNumber() const override;
-	void effectChanged(Effects effect) override;
+	void imageEffectChanged(ImageEffects effect) override;
 
 public slots:
     virtual void update();
@@ -100,7 +100,6 @@ private:
 	QAction *mRedoAction;
 	IDevicePixelRatioScaler *mDevicePixelRatioScaler;
 	KeyEventListener mKeyListener;
-	EffectsFactory mEffectsFactory;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

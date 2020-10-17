@@ -17,23 +17,21 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_EFFECTSFACTORY_H
-#define KIMAGEANNOTATOR_EFFECTSFACTORY_H
+#ifndef KIMAGEANNOTATOR_DROPSHADOWIMAGEEFFECT_H
+#define KIMAGEANNOTATOR_DROPSHADOWIMAGEEFFECT_H
 
-#include <QGraphicsEffect>
-
-#include "src/common/enum/Effects.h"
+#include <QGraphicsDropShadowEffect>
 
 namespace kImageAnnotator {
 
-class EffectsFactory
+class DropShadowImageEffect : public QGraphicsDropShadowEffect
 {
+Q_OBJECT
 public:
-	explicit EffectsFactory() = default;
-	~EffectsFactory() = default;
-	QGraphicsEffect* create(Effects effect) const;
+	explicit DropShadowImageEffect();
+	~DropShadowImageEffect() override = default;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_EFFECTSFACTORY_H
+#endif //KIMAGEANNOTATOR_DROPSHADOWIMAGEEFFECT_H

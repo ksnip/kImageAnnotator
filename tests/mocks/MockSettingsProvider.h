@@ -26,6 +26,7 @@ using kImageAnnotator::AbstractSettingsProvider;
 using kImageAnnotator::AbstractAnnotationItem;
 using kImageAnnotator::Tools;
 using kImageAnnotator::FillModes;
+using kImageAnnotator::ImageEffects;
 
 class MockSettingsProvider : public AbstractSettingsProvider
 {
@@ -47,6 +48,7 @@ public:
 	int obfuscationFactor() const override;
 	void setBlurRadius(int blurRadius);
 	QString sticker() const override;
+	ImageEffects effect() const override;
 	void setSticker(const QString &stickerPath);
 	void updateFirstBadgeNumber(int number) override;
 

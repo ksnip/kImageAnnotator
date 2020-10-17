@@ -73,6 +73,7 @@ void AnnotationArea::loadImage(const QPixmap &image)
 
 	resetAnnotationArea();
 	replaceBackgroundImage(image);
+	imageEffectChanged(mSettingsProvider->effect());
 }
 
 void AnnotationArea::insertImageItem(const QPointF &position, const QPixmap &image)
@@ -96,7 +97,8 @@ QImage AnnotationArea::image()
 
 	mItemModifier->clear();
 
-	setSceneRect(itemsBoundingRect()); // Cover all items
+	auto graphicsEffectRect = mImage->graphicsEffect()->boundingRect();
+	setSceneRect(itemsBoundingRect().united(graphicsEffectRect)); // Cover all items
 
 	auto scaleFactor = mDevicePixelRatioScaler->scaleFactor();
 	QImage image(sceneRect().size().toSize() * scaleFactor, QImage::Format_ARGB32_Premultiplied);
@@ -181,9 +183,9 @@ int AnnotationArea::firstBadgeNumber() const
 	return mItemFactory->firstBadgeNumber();
 }
 
-void AnnotationArea::effectChanged(Effects effect)
+void AnnotationArea::imageEffectChanged(ImageEffects effect)
 {
-	auto graphicsEffect = mEffectsFactory.create(effect);
+	auto graphicsEffect = ImageEffectFactory::create(effect);
 	mImage->setGraphicsEffect(graphicsEffect);
 }
 

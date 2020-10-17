@@ -44,6 +44,7 @@ public:
 	virtual FillModes fillType() const = 0;
 	virtual int obfuscationFactor() const = 0;
 	virtual QString sticker() const = 0;
+	virtual ImageEffects effect() const = 0;
 	virtual void updateFirstBadgeNumber(int number) = 0;
 	void setActiveListener(ISettingsListener *settingsListener);
 
@@ -51,7 +52,7 @@ protected:
 	virtual void toolChanged(Tools tool);
 	virtual void firstBadgeNumberChanged(int number);
 	virtual void itemSettingChanged();
-	virtual void effectChanged(Effects effect);
+	virtual void effectChanged(ImageEffects effect);
 
 private:
 	ISettingsListener *mSettingsListener;

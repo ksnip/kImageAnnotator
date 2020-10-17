@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_EFFECTPICKER_H
-#define KIMAGEANNOTATOR_EFFECTPICKER_H
+#ifndef KIMAGEANNOTATOR_IMAGEEFFECTPICKER_H
+#define KIMAGEANNOTATOR_IMAGEEFFECTPICKER_H
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -29,22 +29,22 @@
 
 #include "src/widgets/menuButtons/ListMenuToolButton.h"
 #include "src/common/constants/Constants.h"
-#include "src/common/enum/Effects.h"
+#include "src/common/enum/ImageEffects.h"
 #include "src/common/helper/IconLoader.h"
 
 namespace kImageAnnotator {
 
-class EffectPicker : public QWidget
+class ImageEffectPicker : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit EffectPicker(QWidget *parent);
-	~EffectPicker() override;
-	void setEffect(Effects effect);
-	Effects effect() const;
+	explicit ImageEffectPicker(QWidget *parent);
+	~ImageEffectPicker() override;
+	void setEffect(ImageEffects effect);
+	ImageEffects effect() const;
 
 signals:
-	void effectSelected(Effects effect) const;
+	void effectSelected(ImageEffects effect) const;
 
 private:
 	QHBoxLayout *mLayout;
@@ -54,10 +54,10 @@ private:
 	void initGui();
 
 private slots:
-	void insertItem(Effects effects, const QString &iconName, const QString &text);
+	void insertItem(ImageEffects effects, const QString &iconName, const QString &text);
 	void selectionChanged();
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_EFFECTPICKER_H
+#endif //KIMAGEANNOTATOR_IMAGEEFFECTPICKER_H

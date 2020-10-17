@@ -27,6 +27,9 @@
         <file alias="fillType_borderAndNoFill.svg" >icons/dark/fillType_borderAndNoFill.svg</file>
         <file alias="fillType_noBorderAndNoFill.svg" >icons/dark/fillType_noBorderAndNoFill.svg</file>
         <file alias="effect.svg" >icons/dark/effect.svg</file>
+        <file alias="borderImageEffect.svg" >icons/dark/borderImageEffect.svg</file>
+        <file alias="dropShadowImageEffect.svg" >icons/dark/dropShadowImageEffect.svg</file>
+        <file alias="noImageEffect.svg" >icons/dark/noImageEffect.svg</file>
     </qresource>
 
     <qresource prefix="/icons/light">

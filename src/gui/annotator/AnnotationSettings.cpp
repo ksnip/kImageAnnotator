@@ -35,7 +35,7 @@ AnnotationSettings::AnnotationSettings(Config *config) :
 	mFirstNumberPicker(new NumberPicker(this)),
 	mObfuscateFactorPicker(new NumberPicker(this)),
 	mStickerPicker(new StickerPicker(this)),
-	mEffectPicker(new EffectPicker(this))
+	mEffectPicker(new ImageEffectPicker(this))
 {
 	initGui();
 	loadToolTypeFromConfig();
@@ -155,12 +155,13 @@ void AnnotationSettings::initGui()
 	connect(mFirstNumberPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::saveFirstBadgeNumber);
 	connect(mObfuscateFactorPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::obfuscateFactorChanged);
 	connect(mStickerPicker, &StickerPicker::stickerSelected, this, &AnnotationSettings::stickerChanged);
-	connect(mEffectPicker, &EffectPicker::effectSelected, this, &AnnotationSettings::effectChanged);
+	connect(mEffectPicker, &ImageEffectPicker::effectSelected, this, &AnnotationSettings::effectChanged);
 }
 
 void AnnotationSettings::loadToolTypeFromConfig()
 {
 	mToolPicker->setTool(mConfig->selectedTool());
+	mEffectPicker->setEffect(ImageEffects::NoEffect);
 }
 
 void AnnotationSettings::loadFromConfig(Tools tool)
@@ -285,6 +286,11 @@ QString AnnotationSettings::sticker() const
 	return mStickerPicker->sticker();
 }
 
+ImageEffects AnnotationSettings::effect() const
+{
+	return mEffectPicker->effect();
+}
+
 void AnnotationSettings::updateFirstBadgeNumber(int number)
 {
 	mFirstNumberPicker->setNumber(number);
@@ -300,7 +306,7 @@ void AnnotationSettings::setStickers(const QStringList &stickerPaths, bool keepD
 	mStickerPicker->setStickers(stickerPaths, keepDefault);
 }
 
-void AnnotationSettings::effectChanged(Effects effect)
+void AnnotationSettings::effectChanged(ImageEffects effect)
 {
 	AbstractSettingsProvider::effectChanged(effect);
 }

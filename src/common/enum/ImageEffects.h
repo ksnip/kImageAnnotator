@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,15 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "ShadowEffect.h"
+#ifndef KIMAGEANNOTATOR_IMAGEEFFECTS_H
+#define KIMAGEANNOTATOR_IMAGEEFFECTS_H
+
+#include <QMetaType>
 
 namespace kImageAnnotator {
 
-ShadowEffect::ShadowEffect()
+enum class ImageEffects
 {
-    setColor(QColor(63, 63, 63, 190));
-    setBlurRadius(7);
-    setOffset(QPoint(2, 2));
-}
+	NoEffect,
+	DropShadow,
+	Border,
+};
 
 } // namespace kImageAnnotator
+
+Q_DECLARE_METATYPE(kImageAnnotator::ImageEffects);
+
+#endif // KIMAGEANNOTATOR_IMAGEEFFECTS_H

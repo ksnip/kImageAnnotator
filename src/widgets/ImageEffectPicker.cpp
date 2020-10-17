@@ -17,11 +17,11 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "EffectPicker.h"
+#include "ImageEffectPicker.h"
 
 namespace kImageAnnotator {
 
-EffectPicker::EffectPicker(QWidget *parent) :
+ImageEffectPicker::ImageEffectPicker(QWidget *parent) :
 	QWidget(parent),
 	mToolButton(new ListMenuToolButton(this)),
 	mLayout(new QHBoxLayout(this)),
@@ -30,24 +30,24 @@ EffectPicker::EffectPicker(QWidget *parent) :
 	initGui();
 }
 
-EffectPicker::~EffectPicker()
+ImageEffectPicker::~ImageEffectPicker()
 {
 	delete mLayout;
 	delete mLabel;
 	delete mToolButton;
 }
 
-void EffectPicker::setEffect(Effects effect)
+void ImageEffectPicker::setEffect(ImageEffects effect)
 {
 	mToolButton->setCurrentData(static_cast<int>(effect));
 }
 
-Effects EffectPicker::effect() const
+ImageEffects ImageEffectPicker::effect() const
 {
-	return mToolButton->currentData().value<Effects>();
+	return mToolButton->currentData().value<ImageEffects>();
 }
 
-void EffectPicker::initGui()
+void ImageEffectPicker::initGui()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -55,13 +55,14 @@ void EffectPicker::initGui()
 	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
 	mLabel->setToolTip(tr("Image Effects"));
 
-	insertItem(Effects::NoEffect, QLatin1Literal("noEffect.svg"), tr("No Effect"));
-	insertItem(Effects::DropShadow, QLatin1Literal("dropShadow.svg"), tr("Drop Shadow"));
+	insertItem(ImageEffects::NoEffect, QLatin1Literal("noImageEffect.svg"), tr("No Effect"));
+	insertItem(ImageEffects::DropShadow, QLatin1Literal("dropShadowImageEffect.svg"), tr("Drop Shadow"));
+	insertItem(ImageEffects::Border, QLatin1Literal("borderImageEffect.svg"), tr("Border"));
 
 	mToolButton->setFixedSize(Constants::SettingsWidgetSize);
 	mToolButton->setIconSize(Constants::ToolButtonIconSize);
 	mToolButton->setFocusPolicy(Qt::NoFocus);
-	connect(mToolButton, &ListMenuToolButton::selectionChanged, this, &EffectPicker::selectionChanged);
+	connect(mToolButton, &ListMenuToolButton::selectionChanged, this, &ImageEffectPicker::selectionChanged);
 
 	mLayout->addWidget(mLabel);
 	mLayout->addWidget(mToolButton);
@@ -70,15 +71,15 @@ void EffectPicker::initGui()
 	setFixedSize(sizeHint());
 }
 
-void EffectPicker::insertItem(Effects effects, const QString &iconName, const QString &text)
+void ImageEffectPicker::insertItem(ImageEffects effects, const QString &iconName, const QString &text)
 {
 	auto icon = IconLoader::load(iconName);
 	mToolButton->addItem(icon, text, static_cast<int>(effects));
 }
 
-void EffectPicker::selectionChanged()
+void ImageEffectPicker::selectionChanged()
 {
-	auto effect = mToolButton->currentData().value<Effects>();
+	auto effect = mToolButton->currentData().value<ImageEffects>();
 	emit effectSelected(effect);
 }
 

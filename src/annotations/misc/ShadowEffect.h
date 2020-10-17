@@ -29,9 +29,6 @@ class ShadowEffect : public QGraphicsDropShadowEffect
 public:
     explicit ShadowEffect();
     ~ShadowEffect() override = default;
-
-private:
-    QColor mColor;
 };
 
 } // namespace kImageAnnotator

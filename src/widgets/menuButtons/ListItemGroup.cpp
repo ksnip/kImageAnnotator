@@ -55,8 +55,8 @@ void ListItemGroup::updateCheckedItem()
 	if(item != nullptr && item != mCheckedItem && item->isChecked()) {
 		mCheckedItem->setIsChecked(false);
 		mCheckedItem = item;
-		emit checkedItemChanged();
 	}
+	emit checkedItemChanged();
 }
 
 } // namespace kImageAnnotator
