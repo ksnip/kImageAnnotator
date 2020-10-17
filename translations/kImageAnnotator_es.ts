@@ -5,241 +5,241 @@
     <name>kImageAnnotator::AnnotationContextMenu</name>
     <message>
         <source>Arrange</source>
-        <translation type="unfinished"></translation>
+        <translation>Organizar</translation>
     </message>
     <message>
         <source>Bring to Front</source>
-        <translation type="unfinished"></translation>
+        <translation>Traer al frente</translation>
     </message>
     <message>
         <source>Bring Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Traer adelante</translation>
     </message>
     <message>
         <source>Send Backward</source>
-        <translation type="unfinished"></translation>
+        <translation>Enviar atrás</translation>
     </message>
     <message>
         <source>Send to Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Enviar al fondo</translation>
     </message>
     <message>
         <source>Select This</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar esto</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Pegar</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationSettings</name>
     <message>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Color</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Anchura</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Color de texto</translation>
     </message>
     <message>
         <source>Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño de letra</translation>
     </message>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Visibilidad de borde y relleno</translation>
     </message>
     <message>
         <source>Starting Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Número inicial</translation>
     </message>
     <message>
         <source>Blur Radius</source>
-        <translation type="unfinished"></translation>
+        <translation>Radio de desenfoque</translation>
     </message>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>Adhesivo</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationTabContextMenu</name>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrar</translation>
     </message>
     <message>
         <source>Close Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrar otros</translation>
     </message>
     <message>
         <source>Close All</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrar todo</translation>
     </message>
     <message>
         <source>Close All to the Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrar todos a la izquierda</translation>
     </message>
     <message>
         <source>Close All to the Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrar todos a la derecha</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::CropWidget</name>
     <message>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Recortar</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>X:</source>
-        <translation type="unfinished"></translation>
+        <translation>X:</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation type="unfinished"></translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <source>W:</source>
-        <translation type="unfinished"></translation>
+        <translation>↔:</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation type="unfinished"></translation>
+        <translation>↕:</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::FillTypePicker</name>
     <message>
         <source>No Border and No Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin borde ni relleno</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Borde y relleno</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Borde sin relleno</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ScaleDialog</name>
     <message>
         <source>Scale Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Redimensionar imagen</translation>
     </message>
     <message>
         <source>Keep Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Mantener relación de aspecto</translation>
     </message>
     <message>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anchura:</translation>
     </message>
     <message>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Altura:</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Pixel</source>
-        <translation type="unfinished"></translation>
+        <translation>Píxel</translation>
     </message>
     <message>
         <source>Percent</source>
-        <translation type="unfinished"></translation>
+        <translation>Porcentaje</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ToolPicker</name>
     <message>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar</translation>
     </message>
     <message>
         <source>Pen</source>
-        <translation type="unfinished"></translation>
+        <translation>Pluma</translation>
     </message>
     <message>
         <source>Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Número</translation>
     </message>
     <message>
         <source>Marker Rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcador, rectángulo</translation>
     </message>
     <message>
         <source>Marker Ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcador, elipse</translation>
     </message>
     <message>
         <source>Marker Pen</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcador, pluma</translation>
     </message>
     <message>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Texto</translation>
     </message>
     <message>
         <source>Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Flecha</translation>
     </message>
     <message>
         <source>Double Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Flecha doble</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Línea</translation>
     </message>
     <message>
         <source>Blur</source>
-        <translation type="unfinished"></translation>
+        <translation>Desenfoque</translation>
     </message>
     <message>
         <source>Rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>Rectángulo</translation>
     </message>
     <message>
         <source>Ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>Elipse</translation>
     </message>
     <message>
         <source>Number Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Apuntador numérico</translation>
     </message>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>Adhesivo</translation>
     </message>
 </context>
 </TS>
