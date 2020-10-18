@@ -187,7 +187,6 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetSmoothPathBasedOnConf
 	auto properties = propertiesFactory.create(tool);
 
 	auto pathProperties = properties.dynamicCast<AnnotationPathProperties>();
-
 	QCOMPARE(pathProperties->smoothPathEnabled(), smoothPathEnabled);
 	QCOMPARE(pathProperties->smoothFactor(), smoothPathFactor);
 }
@@ -205,7 +204,6 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetToolFontAndFontSizeBa
 	auto properties = propertiesFactory.create(tool);
 
 	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
-
 	QCOMPARE(textProperties->font(), font);
 }
 
