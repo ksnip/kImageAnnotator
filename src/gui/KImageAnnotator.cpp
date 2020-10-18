@@ -112,11 +112,7 @@ void KImageAnnotator::insertImageItem(const QPointF &position, const QPixmap &pi
 QSize KImageAnnotator::sizeHint() const
 {
 	Q_D(const KImageAnnotator);
-	if (isVisible()) {
-		return d->mCoreView.sizeHint();
-	} else {
-		return { 0, 0 };
-	}
+	return d->mCoreView.sizeHint();
 }
 
 void KImageAnnotator::setTextFont(const QFont &font)
