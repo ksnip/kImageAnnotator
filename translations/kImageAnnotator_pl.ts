@@ -63,20 +63,12 @@
         <translation>Rozmiar czcionki</translation>
     </message>
     <message>
-        <source>Border And Fill Visibility</source>
-        <translation>Widoczność krawędzi i wypełnienia</translation>
-    </message>
-    <message>
         <source>Starting Number</source>
         <translation>Numer początkowy</translation>
     </message>
     <message>
-        <source>Blur Radius</source>
-        <translation>Promień rozmycia</translation>
-    </message>
-    <message>
-        <source>Sticker</source>
-        <translation>Naklejka</translation>
+        <source>Obfuscation Factor</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -130,18 +122,45 @@
     </message>
 </context>
 <context>
-    <name>kImageAnnotator::FillTypePicker</name>
+    <name>kImageAnnotator::FillModePicker</name>
     <message>
-        <source>No Border and No Fill</source>
-        <translation>Bez obramowania i bez wypełnienia</translation>
+        <source>Border And Fill Visibility</source>
+        <translation type="unfinished">Widoczność krawędzi i wypełnienia</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation>Obramowanie i wypełnienie</translation>
+        <translation type="unfinished">Obramowanie i wypełnienie</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation>Obramowanie i bez wypełnienia</translation>
+        <translation type="unfinished">Obramowanie i bez wypełnienia</translation>
+    </message>
+    <message>
+        <source>No Border and No Fill</source>
+        <translation type="unfinished">Bez obramowania i bez wypełnienia</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::ImageEffectPicker</name>
+    <message>
+        <source>Image Effects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Effect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drop Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grayscale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Border</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -177,6 +196,13 @@
     <message>
         <source>Percent</source>
         <translation>Procent</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::StickerPicker</name>
+    <message>
+        <source>Sticker</source>
+        <translation type="unfinished">Naklejka</translation>
     </message>
 </context>
 <context>
@@ -240,6 +266,10 @@
     <message>
         <source>Sticker</source>
         <translation>Naklejka</translation>
+    </message>
+    <message>
+        <source>Pixelate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

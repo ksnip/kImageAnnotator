@@ -63,20 +63,12 @@
         <translation>字体大小</translation>
     </message>
     <message>
-        <source>Border And Fill Visibility</source>
-        <translation>边框和填充可见性</translation>
-    </message>
-    <message>
         <source>Starting Number</source>
         <translation>起始值</translation>
     </message>
     <message>
-        <source>Blur Radius</source>
-        <translation>模糊半径</translation>
-    </message>
-    <message>
-        <source>Sticker</source>
-        <translation>贴纸</translation>
+        <source>Obfuscation Factor</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -130,18 +122,45 @@
     </message>
 </context>
 <context>
-    <name>kImageAnnotator::FillTypePicker</name>
+    <name>kImageAnnotator::FillModePicker</name>
     <message>
-        <source>No Border and No Fill</source>
-        <translation>无边框且无填充</translation>
+        <source>Border And Fill Visibility</source>
+        <translation type="unfinished">边框和填充可见性</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation>有边框且有填充</translation>
+        <translation type="unfinished">有边框且有填充</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation>有边框且无填充</translation>
+        <translation type="unfinished">有边框且无填充</translation>
+    </message>
+    <message>
+        <source>No Border and No Fill</source>
+        <translation type="unfinished">无边框且无填充</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::ImageEffectPicker</name>
+    <message>
+        <source>Image Effects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Effect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drop Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grayscale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Border</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -177,6 +196,13 @@
     <message>
         <source>Percent</source>
         <translation>百分比</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::StickerPicker</name>
+    <message>
+        <source>Sticker</source>
+        <translation type="unfinished">贴纸</translation>
     </message>
 </context>
 <context>
@@ -240,6 +266,10 @@
     <message>
         <source>Sticker</source>
         <translation>贴纸</translation>
+    </message>
+    <message>
+        <source>Pixelate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

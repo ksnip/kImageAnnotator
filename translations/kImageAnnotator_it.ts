@@ -63,19 +63,11 @@
         <translation>Dimensione dei caratteri</translation>
     </message>
     <message>
-        <source>Border And Fill Visibility</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Starting Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Blur Radius</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sticker</source>
+        <source>Obfuscation Factor</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -130,9 +122,9 @@
     </message>
 </context>
 <context>
-    <name>kImageAnnotator::FillTypePicker</name>
+    <name>kImageAnnotator::FillModePicker</name>
     <message>
-        <source>No Border and No Fill</source>
+        <source>Border And Fill Visibility</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -141,6 +133,33 @@
     </message>
     <message>
         <source>Border and No Fill</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Border and No Fill</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::ImageEffectPicker</name>
+    <message>
+        <source>Image Effects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Effect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drop Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grayscale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Border</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -177,6 +196,13 @@
     <message>
         <source>Percent</source>
         <translation>Percentuale</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::StickerPicker</name>
+    <message>
+        <source>Sticker</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -239,6 +265,10 @@
     </message>
     <message>
         <source>Sticker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pixelate</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -63,19 +63,11 @@
         <translation>Μέγεθος γραμματοσειράς</translation>
     </message>
     <message>
-        <source>Border And Fill Visibility</source>
-        <translation>Ορατότητα περιγράμματος και γέμισης</translation>
-    </message>
-    <message>
         <source>Starting Number</source>
         <translation>Αριθμός έναρξης</translation>
     </message>
     <message>
-        <source>Blur Radius</source>
-        <translation>Ακτίνα θόλωσης</translation>
-    </message>
-    <message>
-        <source>Sticker</source>
+        <source>Obfuscation Factor</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -130,18 +122,45 @@
     </message>
 </context>
 <context>
-    <name>kImageAnnotator::FillTypePicker</name>
+    <name>kImageAnnotator::FillModePicker</name>
     <message>
-        <source>No Border and No Fill</source>
-        <translation>Χωρίς περίγραμμα και χωρίς γέμιση</translation>
+        <source>Border And Fill Visibility</source>
+        <translation type="unfinished">Ορατότητα περιγράμματος και γέμισης</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation>Περίγραμμα και γέμιση</translation>
+        <translation type="unfinished">Περίγραμμα και γέμιση</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation>Περίγραμμα χωρίς γέμιση</translation>
+        <translation type="unfinished">Περίγραμμα χωρίς γέμιση</translation>
+    </message>
+    <message>
+        <source>No Border and No Fill</source>
+        <translation type="unfinished">Χωρίς περίγραμμα και χωρίς γέμιση</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::ImageEffectPicker</name>
+    <message>
+        <source>Image Effects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Effect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drop Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grayscale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Border</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -177,6 +196,13 @@
     <message>
         <source>Percent</source>
         <translation>Ποσοστό</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::StickerPicker</name>
+    <message>
+        <source>Sticker</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -239,6 +265,10 @@
     </message>
     <message>
         <source>Sticker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pixelate</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

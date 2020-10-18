@@ -63,20 +63,12 @@
         <translation>Tamanho da fonte</translation>
     </message>
     <message>
-        <source>Border And Fill Visibility</source>
-        <translation>Modo de desenho da borda e do preenchimento</translation>
-    </message>
-    <message>
         <source>Starting Number</source>
         <translation>Número inicial</translation>
     </message>
     <message>
-        <source>Blur Radius</source>
-        <translation>Raio de desfoque</translation>
-    </message>
-    <message>
-        <source>Sticker</source>
-        <translation>Adesivo</translation>
+        <source>Obfuscation Factor</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -130,18 +122,45 @@
     </message>
 </context>
 <context>
-    <name>kImageAnnotator::FillTypePicker</name>
+    <name>kImageAnnotator::FillModePicker</name>
     <message>
-        <source>No Border and No Fill</source>
-        <translation>Sem borda e sem preenchimento</translation>
+        <source>Border And Fill Visibility</source>
+        <translation type="unfinished">Modo de desenho da borda e do preenchimento</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation>Com borda e com preenchimento</translation>
+        <translation type="unfinished">Com borda e com preenchimento</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation>Com borda e sem preenchimento</translation>
+        <translation type="unfinished">Com borda e sem preenchimento</translation>
+    </message>
+    <message>
+        <source>No Border and No Fill</source>
+        <translation type="unfinished">Sem borda e sem preenchimento</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::ImageEffectPicker</name>
+    <message>
+        <source>Image Effects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Effect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drop Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grayscale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Border</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -177,6 +196,13 @@
     <message>
         <source>Percent</source>
         <translation>Porcentagem</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::StickerPicker</name>
+    <message>
+        <source>Sticker</source>
+        <translation type="unfinished">Adesivo</translation>
     </message>
 </context>
 <context>
@@ -240,6 +266,10 @@
     <message>
         <source>Sticker</source>
         <translation>Adesivo</translation>
+    </message>
+    <message>
+        <source>Pixelate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
