@@ -125,26 +125,26 @@
     <name>kImageAnnotator::FillModePicker</name>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation type="unfinished">Видимість рамки і заповнення</translation>
+        <translation>Видимість рамки і заповнення</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation type="unfinished">Рамка і заповнення</translation>
+        <translation>Рамка і заповнення</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation type="unfinished">Рамка без заповнення</translation>
+        <translation>Рамка без заповнення</translation>
     </message>
     <message>
         <source>No Border and No Fill</source>
-        <translation type="unfinished">Без рамки і заповнення</translation>
+        <translation>Без рамки і заповнення</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Ефекти зображення</translation>
     </message>
     <message>
         <source>No Effect</source>
