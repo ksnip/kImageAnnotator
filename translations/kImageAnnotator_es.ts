@@ -147,10 +147,6 @@
         <source>Border and No Fill</source>
         <translation>Borde sin relleno</translation>
     </message>
-    <message>
-        <source>No Border and No Fill</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>kImageAnnotator::ImageEffectPicker</name>
