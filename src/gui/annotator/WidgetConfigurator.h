@@ -51,7 +51,7 @@ private:
 	ColorPicker *mColorWidget;
 	ColorPicker *mTextColorWidget;
 	NumberPicker *mWidthWidget;
-	FillModePicker *mFillTypeWidget;
+	FillModePicker *mFillModeWidget;
 	NumberPicker *mFontSizeWidget;
 	NumberPicker *mFirstNumberWidget;
 	NumberPicker *mObfuscateFactorWidget;

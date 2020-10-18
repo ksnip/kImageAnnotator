@@ -36,7 +36,7 @@ namespace kImageAnnotator {
 
 class FillModePicker : public QWidget
 {
-Q_OBJECT
+	Q_OBJECT
 public:
 	explicit FillModePicker(QWidget *parent);
 	~FillModePicker() override;

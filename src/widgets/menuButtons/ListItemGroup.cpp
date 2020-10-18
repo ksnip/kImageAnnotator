@@ -52,11 +52,11 @@ QList<ListMenuItem *> ListItemGroup::items() const
 void ListItemGroup::updateCheckedItem()
 {
 	auto item = dynamic_cast<ListMenuItem*>(sender());
-	if(item != nullptr && item != mCheckedItem && item->isChecked()) {
+	if(item != nullptr && item->isChecked()) {
 		mCheckedItem->setIsChecked(false);
 		mCheckedItem = item;
+		emit checkedItemChanged();
 	}
-	emit checkedItemChanged();
 }
 
 } // namespace kImageAnnotator

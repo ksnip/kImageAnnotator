@@ -33,37 +33,4 @@ void FillModePickerTest::TestSelectFill_Should_EmitSignal_When_FillChanged()
 	QCOMPARE(resultFill, expectedFill);
 }
 
-void FillModePickerTest::TestAddNoBorderAndNoFillToList_Should_AddTypeToList()
-{
-	qRegisterMetaType<FillModes>("FillModes");
-	FillModePicker fillPicker(nullptr);
-	QSignalSpy spy(&fillPicker, &FillModePicker::fillSelected);
-	auto expectedFill = FillModes::NoBorderAndNoFill;
-
-	fillPicker.addNoFillAndNoBorderToList();
-	fillPicker.setFillType(expectedFill);
-
-	QCOMPARE(spy.count(), 1);
-	auto resultFill = qvariant_cast<FillModes>(spy.at(0).at(0));
-	QCOMPARE(resultFill, expectedFill);
-}
-
-void FillModePickerTest::TestRemoveNoBorderAndNoFillToList_Should_RemoveTypeFromList()
-{
-	qRegisterMetaType<FillModes>("FillModes");
-	FillModePicker fillPicker(nullptr);
-	QSignalSpy spy(&fillPicker, &FillModePicker::fillSelected);
-	auto expectedFill = FillModes::NoBorderAndNoFill;
-	fillPicker.addNoFillAndNoBorderToList();
-	fillPicker.setFillType(expectedFill);
-	QCOMPARE(spy.count(), 1);
-	auto resultFill = qvariant_cast<FillModes>(spy.at(0).at(0));
-	QCOMPARE(resultFill, expectedFill);
-
-	fillPicker.removeNoFillAndNoBorderToList();
-	fillPicker.setFillType(expectedFill);
-
-	QCOMPARE(spy.count(), 1);
-}
-
 QTEST_MAIN(FillModePickerTest);

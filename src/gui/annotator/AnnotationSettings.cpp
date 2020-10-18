@@ -31,7 +31,7 @@ AnnotationSettings::AnnotationSettings(Config *config) :
 	mWidthPicker(new NumberPicker(this)),
 	mTextColorPicker(new ColorPicker(this)),
 	mFontSizePicker(new NumberPicker(this)),
-	mFillTypePicker(new FillModePicker(this)),
+	mFillModePicker(new FillModePicker(this)),
 	mFirstNumberPicker(new NumberPicker(this)),
 	mObfuscateFactorPicker(new NumberPicker(this)),
 	mStickerPicker(new StickerPicker(this)),
@@ -48,7 +48,7 @@ AnnotationSettings::~AnnotationSettings()
 	delete mWidthPicker;
 	delete mTextColorPicker;
 	delete mFontSizePicker;
-	delete mFillTypePicker;
+	delete mFillModePicker;
 	delete mEffectPicker;
 	delete mFirstNumberPicker;
 	delete mObfuscateFactorPicker;
@@ -70,7 +70,7 @@ void AnnotationSettings::loadFromItem(const AbstractAnnotationItem *item)
 	mColorPicker->setColor(properties->color());
 	mTextColorPicker->setColor(properties->textColor());
 	mWidthPicker->setNumber(properties->width());
-	mFillTypePicker->setFillType(properties->fillType());
+	mFillModePicker->setFillType(properties->fillType());
 	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
 	if(textProperties != nullptr) {
 		mFontSizePicker->setNumber(textProperties->font().pointSize());
@@ -116,7 +116,6 @@ void AnnotationSettings::initGui()
 	mObfuscateFactorPicker->setToolTip(tr("Obfuscation Factor"));
 	mObfuscateFactorPicker->setRange(1, 20);
 
-
 	mToolLayout->addWidget(mToolPicker);
 	mMainLayout->addLayout(mToolLayout);
 	mMainLayout->addSpacing(10);
@@ -126,7 +125,7 @@ void AnnotationSettings::initGui()
 	mMainLayout->addWidget(mWidthPicker);
 	mMainLayout->addWidget(mTextColorPicker);
 	mMainLayout->addWidget(mFontSizePicker);
-	mMainLayout->addWidget(mFillTypePicker);
+	mMainLayout->addWidget(mFillModePicker);
 	mMainLayout->addWidget(mFirstNumberPicker);
 	mMainLayout->addWidget(mObfuscateFactorPicker);
 	mMainLayout->addWidget(mStickerPicker);
@@ -136,7 +135,7 @@ void AnnotationSettings::initGui()
 	mWidgetConfigurator.setColorWidget(mColorPicker);
 	mWidgetConfigurator.setTextColorWidget(mTextColorPicker);
 	mWidgetConfigurator.setWidthWidget(mWidthPicker);
-	mWidgetConfigurator.setFillTypeWidget(mFillTypePicker);
+	mWidgetConfigurator.setFillTypeWidget(mFillModePicker);
 	mWidgetConfigurator.setFontSizeWidget(mFontSizePicker);
 	mWidgetConfigurator.setFirstNumberWidget(mFirstNumberPicker);
 	mWidgetConfigurator.setObfuscateFactorWidget(mObfuscateFactorPicker);
@@ -151,7 +150,7 @@ void AnnotationSettings::initGui()
 	connect(mWidthPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::toolWidthChanged);
 	connect(mTextColorPicker, &ColorPicker::colorSelected, this, &AnnotationSettings::toolTextColorChanged);
 	connect(mFontSizePicker, &NumberPicker::numberSelected, this, &AnnotationSettings::toolFontSizeChanged);
-	connect(mFillTypePicker, &FillModePicker::fillSelected, this, &AnnotationSettings::toolFillTypeChanged);
+	connect(mFillModePicker, &FillModePicker::fillSelected, this, &AnnotationSettings::toolFillTypeChanged);
 	connect(mFirstNumberPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::saveFirstBadgeNumber);
 	connect(mObfuscateFactorPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::obfuscateFactorChanged);
 	connect(mStickerPicker, &StickerPicker::stickerSelected, this, &AnnotationSettings::stickerChanged);
@@ -170,7 +169,7 @@ void AnnotationSettings::loadFromConfig(Tools tool)
 	mColorPicker->setColor(mConfig->toolColor(tool));
 	mTextColorPicker->setColor(mConfig->toolTextColor(tool));
 	mWidthPicker->setNumber(mConfig->toolWidth(tool));
-	mFillTypePicker->setFillType(mConfig->toolFillType(tool));
+	mFillModePicker->setFillType(mConfig->toolFillType(tool));
 	mFontSizePicker->setNumber(mConfig->toolFontSize(tool));
 	mObfuscateFactorPicker->setNumber(mConfig->obfuscationFactor(tool));
 }
@@ -268,7 +267,7 @@ int AnnotationSettings::toolWidth() const
 
 FillModes AnnotationSettings::fillType() const
 {
-	return mFillTypePicker->fillType();
+	return mFillModePicker->fillType();
 }
 
 int AnnotationSettings::fontSize() const

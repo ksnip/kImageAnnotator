@@ -66,7 +66,7 @@ private:
 	NumberPicker *mWidthPicker;
 	ColorPicker *mTextColorPicker;
 	NumberPicker *mFontSizePicker;
-	FillModePicker *mFillTypePicker;
+	FillModePicker *mFillModePicker;
 	NumberPicker *mFirstNumberPicker;
 	NumberPicker *mObfuscateFactorPicker;
 	StickerPicker *mStickerPicker;

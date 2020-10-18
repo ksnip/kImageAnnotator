@@ -25,7 +25,7 @@ WidgetConfigurator::WidgetConfigurator() :
 	mColorWidget(nullptr),
 	mTextColorWidget(nullptr),
 	mWidthWidget(nullptr),
-	mFillTypeWidget(nullptr),
+	mFillModeWidget(nullptr),
 	mFontSizeWidget(nullptr),
 	mFirstNumberWidget(nullptr),
 	mObfuscateFactorWidget(nullptr),
@@ -64,7 +64,7 @@ void WidgetConfigurator::setWidthWidget(NumberPicker *widget)
 
 void WidgetConfigurator::setFillTypeWidget(FillModePicker *widget)
 {
-	mFillTypeWidget = widget;
+	mFillModeWidget = widget;
 	updateWidgets();
 }
 
@@ -248,8 +248,8 @@ void WidgetConfigurator::setWidthWidgetVisible(bool enabled) const
 
 void WidgetConfigurator::setFillWidgetVisible(bool enabled) const
 {
-	if (mFillTypeWidget) {
-		mFillTypeWidget->setVisible(enabled);
+	if (mFillModeWidget) {
+		mFillModeWidget->setVisible(enabled);
 	}
 }
 
@@ -269,11 +269,11 @@ void WidgetConfigurator::setFirstNumberWidgetVisible(bool enabled) const
 
 void WidgetConfigurator::setNoFillAndNoBorderVisible(bool enabled) const
 {
-	if (mFillTypeWidget) {
+	if (mFillModeWidget) {
 		if (enabled) {
-			mFillTypeWidget->addNoFillAndNoBorderToList();
+			mFillModeWidget->addNoFillAndNoBorderToList();
 		} else {
-			mFillTypeWidget->removeNoFillAndNoBorderToList();
+			mFillModeWidget->removeNoFillAndNoBorderToList();
 		}
 	}
 }

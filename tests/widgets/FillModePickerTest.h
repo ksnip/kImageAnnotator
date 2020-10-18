@@ -33,8 +33,6 @@ Q_OBJECT
 
 private slots:
 	void TestSelectFill_Should_EmitSignal_When_FillChanged();
-	void TestAddNoBorderAndNoFillToList_Should_AddTypeToList();
-	void TestRemoveNoBorderAndNoFillToList_Should_RemoveTypeFromList();
 };
 
 #endif // KIMAGEANNOTATOR_FILLPICKERTEST_H
