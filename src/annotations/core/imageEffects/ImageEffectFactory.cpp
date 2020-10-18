@@ -28,6 +28,7 @@ QGraphicsEffect *kImageAnnotator::ImageEffectFactory::create(kImageAnnotator::Im
 			return new DropShadowImageEffect;
 		case ImageEffects::Border:
 			return new BorderImageEffect;
-			break;
+		case ImageEffects::Grayscale:
+			return new GrayscaleImageEffect;
 	}
 }

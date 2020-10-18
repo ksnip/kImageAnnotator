@@ -57,6 +57,7 @@ void ImageEffectPicker::initGui()
 
 	insertItem(ImageEffects::NoEffect, QLatin1Literal("noImageEffect.svg"), tr("No Effect"));
 	insertItem(ImageEffects::DropShadow, QLatin1Literal("dropShadowImageEffect.svg"), tr("Drop Shadow"));
+	insertItem(ImageEffects::Grayscale, QLatin1Literal("grayscaleImageEffect.svg"), tr("Grayscale"));
 	insertItem(ImageEffects::Border, QLatin1Literal("borderImageEffect.svg"), tr("Border"));
 
 	mToolButton->setFixedSize(Constants::SettingsWidgetSize);

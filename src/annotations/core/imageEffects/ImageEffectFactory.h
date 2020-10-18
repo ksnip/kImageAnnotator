@@ -24,6 +24,7 @@
 
 #include "NoImageEffect.h"
 #include "DropShadowImageEffect.h"
+#include "GrayscaleImageEffect.h"
 #include "BorderImageEffect.h"
 #include "src/common/enum/ImageEffects.h"
 

@@ -3,7 +3,7 @@ Tool for annotating images
 
 Version 0.4.0 - Work in Progress
 
-![kImageAnnotator](https://i.imgur.com/27kGPO0.png "kImageAnnotator")
+![kImageAnnotator](https://i.imgur.com/cyS8FRD.png "kImageAnnotator")
 
 ### Dependencies
 

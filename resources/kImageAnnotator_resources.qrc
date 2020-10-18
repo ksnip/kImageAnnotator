@@ -29,6 +29,7 @@
         <file alias="effect.svg" >icons/dark/effect.svg</file>
         <file alias="borderImageEffect.svg" >icons/dark/borderImageEffect.svg</file>
         <file alias="dropShadowImageEffect.svg" >icons/dark/dropShadowImageEffect.svg</file>
+        <file alias="grayscaleImageEffect.svg" >icons/dark/grayscaleImageEffect.svg</file>
         <file alias="noImageEffect.svg" >icons/dark/noImageEffect.svg</file>
     </qresource>
 
@@ -59,6 +60,10 @@
         <file alias="fillType_borderAndNoFill.svg" >icons/light/fillType_borderAndNoFill.svg</file>
         <file alias="fillType_noBorderAndNoFill.svg" >icons/light/fillType_noBorderAndNoFill.svg</file>
         <file alias="effect.svg" >icons/light/effect.svg</file>
+        <file alias="borderImageEffect.svg" >icons/light/borderImageEffect.svg</file>
+        <file alias="dropShadowImageEffect.svg" >icons/light/dropShadowImageEffect.svg</file>
+        <file alias="grayscaleImageEffect.svg" >icons/light/grayscaleImageEffect.svg</file>
+        <file alias="noImageEffect.svg" >icons/light/noImageEffect.svg</file>
     </qresource>
 
     <qresource prefix="/stickers">
