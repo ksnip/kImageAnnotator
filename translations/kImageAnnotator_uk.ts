@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished"></translation>
+        <translation>Коефіцієнт затемнення</translation>
     </message>
 </context>
 <context>
@@ -148,19 +148,19 @@
     </message>
     <message>
         <source>No Effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Без ефектів</translation>
     </message>
     <message>
         <source>Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Відкидання тіні</translation>
     </message>
     <message>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation>Відтінки сірого</translation>
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>Рамка</translation>
     </message>
 </context>
 <context>
@@ -202,7 +202,7 @@
     <name>kImageAnnotator::StickerPicker</name>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished">Наліпка</translation>
+        <translation>Наліпка</translation>
     </message>
 </context>
 <context>
@@ -269,7 +269,7 @@
     </message>
     <message>
         <source>Pixelate</source>
-        <translation type="unfinished"></translation>
+        <translation>Пікселізація</translation>
     </message>
 </context>
 </TS>
