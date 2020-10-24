@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished"></translation>
+        <translation>模糊系数</translation>
     </message>
 </context>
 <context>
@@ -125,42 +125,42 @@
     <name>kImageAnnotator::FillModePicker</name>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation type="unfinished">边框和填充可见性</translation>
+        <translation>边框和填充可见性</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation type="unfinished">有边框且有填充</translation>
+        <translation>有边框且有填充</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation type="unfinished">有边框且无填充</translation>
+        <translation>有边框且无填充</translation>
     </message>
     <message>
         <source>No Border and No Fill</source>
-        <translation type="unfinished">无边框且无填充</translation>
+        <translation>无边框且无填充</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>滤镜</translation>
     </message>
     <message>
         <source>No Effect</source>
-        <translation type="unfinished"></translation>
+        <translation>无滤镜</translation>
     </message>
     <message>
         <source>Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>阴影</translation>
     </message>
     <message>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation>灰度</translation>
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>描边</translation>
     </message>
 </context>
 <context>
@@ -202,7 +202,7 @@
     <name>kImageAnnotator::StickerPicker</name>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished">贴纸</translation>
+        <translation>贴纸</translation>
     </message>
 </context>
 <context>
@@ -269,7 +269,7 @@
     </message>
     <message>
         <source>Pixelate</source>
-        <translation type="unfinished"></translation>
+        <translation>像素化</translation>
     </message>
 </context>
 </TS>
