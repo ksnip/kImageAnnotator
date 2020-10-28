@@ -57,6 +57,10 @@ protected:
 	virtual void updateShape() = 0;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
 	virtual void updateProperties(const PropertiesPtr &properties);
+	bool hasFill() const;
+	bool hasBorder() const;
+	void adjustPainter(QPainter *painter) const;
+	QPen painterPen() const;
 
 private:
 	PropertiesPtr mProperties;
@@ -65,8 +69,6 @@ private:
 	QPen mPainterPen;
 	ShadowEffect *mShadowEffect;
 
-	bool hasFill() const;
-	bool hasBorder() const;
 	void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
 	void addShadowIfRequired();
 	void drawPath(QPainter *painter) const;

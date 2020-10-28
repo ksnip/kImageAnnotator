@@ -21,7 +21,12 @@
 
 namespace kImageAnnotator {
 
-Config::Config()
+Config::Config() :
+	mSelectTool(Tools::Pen),
+	mItemShadowEnabled(false),
+	mSmoothPathEnabled(false),
+	mSaveToolSelection(false),
+	mSmoothFactor(0)
 {
 	mAllTools = QList<Tools>{
 		Tools::Pen,
@@ -35,6 +40,7 @@ Config::Config()
 		Tools::Ellipse,
 		Tools::Number,
 		Tools::NumberPointer,
+		Tools::NumberArrow,
 		Tools::Text,
 		Tools::Blur,
 		Tools::Pixelate,
@@ -253,9 +259,10 @@ void Config::initToolFillTypes()
 
 void Config::initToolFonts()
 {
-	mToolToFont[Tools::Text] = QFont(QStringLiteral("Times"), loadToolFontSize(Tools::Text), QFont::Bold);
-	mToolToFont[Tools::Number] = QFont(QStringLiteral("Helvetica"), loadToolFontSize(Tools::Number), QFont::Bold);
-	mToolToFont[Tools::NumberPointer] = QFont(QStringLiteral("Helvetica"), loadToolFontSize(Tools::NumberPointer), QFont::Bold);
+	mToolToFont[Tools::Text] = QFont(QLatin1Literal("Times"), loadToolFontSize(Tools::Text), QFont::Bold);
+	mToolToFont[Tools::Number] = QFont(QLatin1Literal("Helvetica"), loadToolFontSize(Tools::Number), QFont::Bold);
+	mToolToFont[Tools::NumberPointer] = QFont(QLatin1Literal("Helvetica"), loadToolFontSize(Tools::NumberPointer), QFont::Bold);
+	mToolToFont[Tools::NumberArrow] = QFont(QLatin1Literal("Helvetica"), loadToolFontSize(Tools::NumberArrow), QFont::Bold);
 }
 
 void Config::initObfuscateFactor()
@@ -392,7 +399,7 @@ void Config::saveObfuscateFactor(Tools toolType, int radius)
 	}
 }
 
-QColor Config::defaultToolColor(Tools toolType) const
+QColor Config::defaultToolColor(Tools toolType)
 {
 	switch (toolType) {
 		case Tools::MarkerPen:
@@ -413,19 +420,20 @@ QColor Config::defaultToolColor(Tools toolType) const
 	}
 }
 
-QColor Config::defaultToolTextColor(Tools toolType) const
+QColor Config::defaultToolTextColor(Tools toolType)
 {
 	switch (toolType) {
 		case Tools::Text:
 		case Tools::Number:
 		case Tools::NumberPointer:
+		case Tools::NumberArrow:
 			return { Qt::white };
 		default:
 			return { Qt::blue };
 	}
 }
 
-int Config::defaultToolWidth(Tools toolType) const
+int Config::defaultToolWidth(Tools toolType)
 {
 	switch (toolType) {
 		case Tools::MarkerPen:
@@ -442,7 +450,7 @@ int Config::defaultToolWidth(Tools toolType) const
 	}
 }
 
-FillModes Config::defaultToolFillType(Tools toolType) const
+FillModes Config::defaultToolFillType(Tools toolType)
 {
 	switch (toolType) {
 		case Tools::Arrow:
@@ -457,6 +465,8 @@ FillModes Config::defaultToolFillType(Tools toolType) const
 		case Tools::MarkerEllipse:
 		case Tools::Image:
 			return FillModes::NoBorderAndFill;
+		case Tools::NumberArrow:
+			return FillModes::NoBorderAndNoFill;
 		default:
 			return FillModes::BorderAndNoFill;
 	}
@@ -467,20 +477,21 @@ Tools Config::defaultToolType()
 	return Tools::Pen;
 }
 
-int Config::defaultToolFontSize(Tools toolType) const
+int Config::defaultToolFontSize(Tools toolType)
 {
 	switch (toolType) {
 		case Tools::Text:
 			return 15;
 		case Tools::Number:
 		case Tools::NumberPointer:
+		case Tools::NumberArrow:
 			return 20;
 		default:
 			return 10;
 	}
 }
 
-int Config::defaultObfuscateFactor() const
+int Config::defaultObfuscateFactor()
 {
 	return 10;
 }

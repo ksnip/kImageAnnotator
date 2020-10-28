@@ -103,6 +103,7 @@ void WidgetConfigurator::updateProperties() const
 	switch (mCurrentTool) {
 		case Tools::Text:
 		case Tools::Number:
+		case Tools::NumberArrow:
 			setNoFillAndNoBorderVisible(true);
 			break;
 		default:
@@ -184,6 +185,16 @@ void WidgetConfigurator::updateVisibility() const
 			setTextColorWidgetVisible(true);
 			setWidthWidgetVisible(false);
 			setFillWidgetVisible(false);
+			setFontSizeWidgetVisible(true);
+			setFirstNumberWidgetVisible(true);
+			setObfuscateFactorWidgetVisible(false);
+			setStickerWidgetVisible(false);
+			break;
+		case Tools::NumberArrow:
+			setColorWidgetVisible(true);
+			setTextColorWidgetVisible(true);
+			setWidthWidgetVisible(true);
+			setFillWidgetVisible(true);
 			setFontSizeWidgetVisible(true);
 			setFirstNumberWidgetVisible(true);
 			setObfuscateFactorWidgetVisible(false);

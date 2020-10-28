@@ -5,6 +5,7 @@
         <file alias="doubleArrow.svg" >icons/dark/doubleArrow.svg</file>
         <file alias="number.svg" >icons/dark/number.svg</file>
         <file alias="numberPointer.svg" >icons/dark/numberPointer.svg</file>
+        <file alias="numberArrow.svg" >icons/dark/numberArrow.svg</file>
         <file alias="markerPen.svg" >icons/dark/markerPen.svg</file>
         <file alias="markerRect.svg" >icons/dark/markerRect.svg</file>
         <file alias="markerEllipse.svg" >icons/dark/markerEllipse.svg</file>

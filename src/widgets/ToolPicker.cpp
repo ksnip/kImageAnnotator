@@ -92,6 +92,8 @@ void ToolPicker::initGui()
 	menu->addAction(action);
 	action = createAction(tr("Number Pointer"), IconLoader::load(QLatin1Literal("numberPointer.svg")), Qt::Key_O, Tools::NumberPointer);
 	menu->addAction(action);
+	action = createAction(tr("Number Arrow"), IconLoader::load(QLatin1Literal("numberArrow.svg")), Qt::Key_W, Tools::NumberArrow);
+	menu->addAction(action);
 	button = createButton(menu);
 	mLayout->addWidget(button, 2, 1);
 

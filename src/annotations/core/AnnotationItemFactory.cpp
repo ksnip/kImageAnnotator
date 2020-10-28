@@ -91,8 +91,6 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 
 	switch (toolType) {
 		case Tools::Pen:
-			newItem = new AnnotationPen(initPosition, properties.staticCast<AnnotationPathProperties>());
-			break;
 		case Tools::MarkerPen:
 			newItem = new AnnotationPen(initPosition, properties.staticCast<AnnotationPathProperties>());
 			break;
@@ -125,6 +123,10 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 			newItem = new AnnotationNumberPointer(initPosition, properties.staticCast<AnnotationTextProperties>());
 			mNumberManager->addItem(dynamic_cast<AnnotationNumberPointer *>(newItem));
 			break;
+		case Tools::NumberArrow:
+			newItem = new AnnotationNumberArrow(initPosition, properties.staticCast<AnnotationTextProperties>());
+			mNumberManager->addItem(dynamic_cast<AnnotationNumberArrow *>(newItem));
+			break;
 		case Tools::Text:
 			newItem = new AnnotationText(initPosition, properties.staticCast<AnnotationTextProperties>());
 			break;
@@ -151,8 +153,6 @@ AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotatio
 
 	switch (item->toolType()) {
 		case Tools::Pen:
-			newItem = new AnnotationPen(*(dynamic_cast<const AnnotationPen *>(item)));
-			break;
 		case Tools::MarkerPen:
 			newItem = new AnnotationPen(*(dynamic_cast<const AnnotationPen *>(item)));
 			break;
@@ -184,6 +184,10 @@ AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotatio
 		case Tools::NumberPointer:
 			newItem = new AnnotationNumberPointer(*(dynamic_cast<const AnnotationNumberPointer *>(item)));
 			mNumberManager->addItem(dynamic_cast<AnnotationNumberPointer *>(newItem));
+			break;
+		case Tools::NumberArrow:
+			newItem = new AnnotationNumberArrow(*(dynamic_cast<const AnnotationNumberArrow *>(item)));
+			mNumberManager->addItem(dynamic_cast<AnnotationNumberArrow *>(newItem));
 			break;
 		case Tools::Text:
 			newItem = new AnnotationText(*(dynamic_cast<const AnnotationText *>(item)));

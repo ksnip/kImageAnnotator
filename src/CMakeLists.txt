@@ -59,6 +59,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationEllipse.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationNumber.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationNumberPointer.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationNumberArrow.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationPen.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationPixelate.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationText.cpp

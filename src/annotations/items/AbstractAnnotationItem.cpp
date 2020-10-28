@@ -97,8 +97,7 @@ void AbstractAnnotationItem::paint(QPainter *painter, const QStyleOptionGraphics
 		return;
 	}
 
-	painter->setRenderHint(QPainter::Antialiasing, true);
-	shiftPainterForAllOddShapeWidth(painter);
+	adjustPainter(painter);
 
 	if (mShape->elementCount() == 1 && hasBorder()) {
 		drawPoint(painter);
@@ -106,6 +105,17 @@ void AbstractAnnotationItem::paint(QPainter *painter, const QStyleOptionGraphics
 	else {
 		drawPath(painter);
 	}
+}
+
+void AbstractAnnotationItem::adjustPainter(QPainter *painter) const
+{
+	painter->setRenderHint(QPainter::Antialiasing, true);
+	shiftPainterForAllOddShapeWidth(painter);
+}
+
+QPen AbstractAnnotationItem::painterPen() const
+{
+	return mPainterPen;
 }
 
 void AbstractAnnotationItem::drawPoint(QPainter *painter) const

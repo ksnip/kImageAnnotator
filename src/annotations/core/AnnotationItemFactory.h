@@ -32,6 +32,7 @@
 #include "src/annotations/items/AnnotationEllipse.h"
 #include "src/annotations/items/AnnotationNumber.h"
 #include "src/annotations/items/AnnotationNumberPointer.h"
+#include "src/annotations/items/AnnotationNumberArrow.h"
 #include "src/annotations/items/AnnotationText.h"
 #include "src/annotations/items/AnnotationBlur.h"
 #include "src/annotations/items/AnnotationImage.h"

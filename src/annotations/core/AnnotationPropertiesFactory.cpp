@@ -54,6 +54,7 @@ PropertiesPtr AnnotationPropertiesFactory::createPropertiesObject(Tools toolType
 			return PropertiesPtr(new AnnotationPathProperties());
 		case Tools::Number:
 		case Tools::NumberPointer:
+		case Tools::NumberArrow:
 		case Tools::Text:
 			return PropertiesPtr(new AnnotationTextProperties());
 		case Tools::Blur:
@@ -160,12 +161,12 @@ void AnnotationPropertiesFactory::setStickerProperties(const PropertiesPtr &prop
 	}
 }
 
-bool AnnotationPropertiesFactory::isMarkerTool(Tools toolType) const
+bool AnnotationPropertiesFactory::isMarkerTool(Tools toolType)
 {
 	return toolType == Tools::MarkerPen || toolType == Tools::MarkerRect || toolType == Tools::MarkerEllipse;
 }
 
-bool AnnotationPropertiesFactory::isObfuscateTool(const Tools &toolType) const
+bool AnnotationPropertiesFactory::isObfuscateTool(const Tools &toolType)
 {
 	return toolType == Tools::Blur || toolType == Tools::Pixelate;
 }

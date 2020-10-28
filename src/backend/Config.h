@@ -117,13 +117,13 @@ private:
 	int loadObfuscateFactor(Tools toolType);
 	void saveObfuscateFactor(Tools toolType, int radius);
 
-	QColor defaultToolColor(Tools toolType) const;
-	QColor defaultToolTextColor(Tools toolType) const;
-	int defaultToolWidth(Tools toolType) const;
-	FillModes defaultToolFillType(Tools toolType) const;
-	Tools defaultToolType();
-	int defaultToolFontSize(Tools toolType) const;
-	int defaultObfuscateFactor() const;
+	static QColor defaultToolColor(Tools toolType) ;
+	static QColor defaultToolTextColor(Tools toolType) ;
+	static int defaultToolWidth(Tools toolType) ;
+	static FillModes defaultToolFillType(Tools toolType) ;
+	static Tools defaultToolType();
+	static int defaultToolFontSize(Tools toolType) ;
+	static int defaultObfuscateFactor() ;
 };
 
 } // namespace kImageAnnotator

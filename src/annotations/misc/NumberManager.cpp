@@ -36,6 +36,11 @@ void kImageAnnotator::NumberManager::addItem(AnnotationNumberPointer *item)
 	addItemInner(item);
 }
 
+void NumberManager::addItem(AnnotationNumberArrow *item)
+{
+	addItemInner(item);
+}
+
 void NumberManager::addItemInner(AbstractAnnotationItem *item)
 {
 	Q_ASSERT(item != nullptr);

@@ -38,6 +38,7 @@ enum class Tools
 	Ellipse,
 	Number,
 	NumberPointer,
+	NumberArrow,
 	Text,
 	Blur,
 	Image,

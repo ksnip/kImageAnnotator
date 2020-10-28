@@ -53,8 +53,8 @@ private:
 	void setTextProperties(const PropertiesPtr &properties, Tools toolType) const;
 	void setObfuscateProperties(const PropertiesPtr &properties) const;
 	void setStickerProperties(const PropertiesPtr &properties) const;
-	bool isMarkerTool(Tools toolType) const;
-	bool isObfuscateTool(const Tools &toolType) const;
+	static bool isMarkerTool(Tools toolType) ;
+	static bool isObfuscateTool(const Tools &toolType) ;
 };
 
 } // namespace kImageAnnotator

@@ -24,6 +24,7 @@
 
 #include "src/annotations/items/AnnotationNumber.h"
 #include "src/annotations/items/AnnotationNumberPointer.h"
+#include "src/annotations/items/AnnotationNumberArrow.h"
 
 namespace kImageAnnotator {
 
@@ -35,6 +36,7 @@ public:
 	~NumberManager() override = default;
 	void addItem(AnnotationNumber *item);
 	void addItem(AnnotationNumberPointer *item);
+	void addItem(AnnotationNumberArrow *item);
 	void reset();
 	void setFirstNumber(int number);
 	int firstNumber() const;

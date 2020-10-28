@@ -6,6 +6,7 @@
 * New: Add interface for adding custom tab context menu actions. ([#96](https://github.com/ksnip/kImageAnnotator/issues/96))
 * New: Add drop shadow to captured images. ([#133](https://github.com/ksnip/kImageAnnotator/issues/133))
 * New: Add grayscale image effect. ([#151](https://github.com/ksnip/kImageAnnotator/issues/151))
+* New: Add numeric pointer with arrow annotation item. ([#152](https://github.com/ksnip/kImageAnnotator/issues/152))
 * Changed: Draw point when clicking and releasing without moving cursor. ([#136](https://github.com/ksnip/kImageAnnotator/issues/136))
 * Changed: Zoom out less than 100%. ([#150](https://github.com/ksnip/kImageAnnotator/issues/150))
 * Fixed: Blur radius not updated when changing current items settings. ([#142](https://github.com/ksnip/kImageAnnotator/issues/142))
