@@ -39,6 +39,7 @@
         <file alias="doubleArrow.svg" >icons/light/doubleArrow.svg</file>
         <file alias="number.svg" >icons/light/number.svg</file>
         <file alias="numberPointer.svg" >icons/light/numberPointer.svg</file>
+        <file alias="numberArrow.svg" >icons/light/numberArrow.svg</file>
         <file alias="markerPen.svg" >icons/light/markerPen.svg</file>
         <file alias="markerRect.svg" >icons/light/markerRect.svg</file>
         <file alias="markerEllipse.svg" >icons/light/markerEllipse.svg</file>
