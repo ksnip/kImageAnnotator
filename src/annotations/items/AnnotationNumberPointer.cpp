@@ -22,25 +22,17 @@
 namespace kImageAnnotator {
 
 AnnotationNumberPointer::AnnotationNumberPointer(const QPointF &startPosition, const TextPropertiesPtr &properties) :
-	AbstractAnnotationLine(startPosition, properties),
-	mRect(new QRectF)
+	AbstractAnnotationPointerRect(startPosition, properties)
 {
-	mLine->setP2(startPosition);
-	mRect->moveCenter(startPosition);
 }
 
 AnnotationNumberPointer::AnnotationNumberPointer(const AnnotationNumberPointer &other) :
-	AbstractAnnotationLine(other),
-	BaseAnnotationNumber(other),
-	mRect(new QRectF)
+	AbstractAnnotationPointerRect(other),
+	BaseAnnotationNumber(other)
 {
-	mRect = new QRectF();
-	updateShape();
-}
+	BaseAnnotationNumber::updateRect(mRect, textProperties()->font());
 
-AnnotationNumberPointer::~AnnotationNumberPointer()
-{
-	delete mRect;
+	updateShape();
 }
 
 Tools AnnotationNumberPointer::toolType() const
@@ -48,38 +40,19 @@ Tools AnnotationNumberPointer::toolType() const
 	return Tools::NumberPointer;
 }
 
-QPainterPath AnnotationNumberPointer::shape() const
-{
-	auto path = AbstractAnnotationLine::shape();
-	path.addRect(*mRect);
-	return path;
-}
-
 TextPropertiesPtr AnnotationNumberPointer::textProperties() const
 {
 	return AbstractAnnotationItem::properties().staticCast<AnnotationTextProperties>();
 }
 
-void AnnotationNumberPointer::finish()
-{
-	auto rectWidth = mRect->width();
-	if(mLine->length() <= rectWidth / 2) {
-		auto offset = rectWidth * 0.8;
-		mLine->setP2(mLine->p1() + QPointF(offset, -offset));
-		updateRect();
-	}
-	AbstractAnnotationItem::finish();
-}
-
 void AnnotationNumberPointer::updateShape()
 {
-	mRect->moveCenter(mLine->p1());
-	BaseAnnotationNumber::updateRect(mRect, textProperties()->font());
+	auto line = QLineF(mRect->center(), mPointer);
+	auto pointerWidth = qMin(mRect->width(), mRect->height()) * 0.7;
+	auto pointer = AnnotationShapeCreator::createPointer(pointerWidth, line.length());
+	auto finishedPointer = AnnotationShapeCreator::translate(pointer, mPointer, -line.angle());
 
-	auto pointer = AnnotationShapeCreator::createPointer(mRect->width() * 0.7, mLine->length());
-	auto finishedPointer = AnnotationShapeCreator::translate(pointer, mLine->p2(), -mLine->angle());
-
-	QPainterPath path(mLine->p1());
+	QPainterPath path(mRect->center());
 	path.setFillRule(Qt::WindingFill);
 	path.addPolygon(finishedPointer);
 	path.closeSubpath();
@@ -90,7 +63,7 @@ void AnnotationNumberPointer::updateShape()
 
 void AnnotationNumberPointer::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-	AbstractAnnotationLine::paint(painter, option, widget);
+	AbstractAnnotationPointerRect::paint(painter, option, widget);
 
 	painter->setFont(textProperties()->font());
 	painter->setPen(properties()->textColor());
@@ -106,6 +79,7 @@ void AnnotationNumberPointer::updateProperties(const PropertiesPtr &properties)
 void AnnotationNumberPointer::updateRect()
 {
 	prepareGeometryChange();
+	BaseAnnotationNumber::updateRect(mRect, textProperties()->font());
 	updateShape();
 }
 

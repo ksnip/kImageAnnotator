@@ -32,8 +32,8 @@ class AnnotationItemArranger : public QObject
 {
 Q_OBJECT
 public:
-    explicit AnnotationItemArranger(const QList<AbstractAnnotationItem *> selectedItems, QList<AbstractAnnotationItem *> *items);
-    ~AnnotationItemArranger() = default;
+    explicit AnnotationItemArranger(const QList<AbstractAnnotationItem *> &selectedItems, QList<AbstractAnnotationItem *> *items);
+    ~AnnotationItemArranger() override = default;
 
 signals:
     void newCommand(ArrangeCommand *arrange) const;

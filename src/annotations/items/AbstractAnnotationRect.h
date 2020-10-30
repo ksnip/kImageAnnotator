@@ -33,7 +33,7 @@ public:
 	AbstractAnnotationRect(const QPointF &startPosition, const PropertiesPtr &properties);
 	AbstractAnnotationRect(const AbstractAnnotationRect &other);
 	~AbstractAnnotationRect() override;
-	void addPoint(const QPointF &position, bool modified = false) override;
+	void addPoint(const QPointF &position, bool modified) override;
 	void setPosition(const QPointF &newPosition) override;
 	QRectF rect() const;
 	void setPointAt(const QPointF &point, int index) override;

@@ -34,7 +34,7 @@ Q_OBJECT
 public:
     AnnotationItemResizer(AbstractAnnotationItem *item, ZoomValueProvider *zoomValueProvider);
     ~AnnotationItemResizer() override;
-    virtual QRectF boundingRect() const override;
+    QRectF boundingRect() const override;
     void grabHandle(const QPointF &pos);
     void moveHandle(const QPointF &pos);
     void releaseHandle();
@@ -48,7 +48,7 @@ signals:
     void newCommand(ResizeCommand *resize) const;
 
 protected:
-    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
     AbstractItemResizeHandles *mResizeHandles;

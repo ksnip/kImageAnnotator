@@ -45,12 +45,14 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/resizeHandles/LineResizeHandles.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/resizeHandles/RectResizeHandles.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/resizeHandles/PathResizeHandles.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/resizeHandles/PointerRectResizeHandles.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/resizeHandles/ResizeHandle.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/resizeHandles/ResizeHandlesFactory.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationItem.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationLine.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationObfuscate.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationRect.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationPointerRect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationPath.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationLine.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationArrow.cpp

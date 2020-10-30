@@ -20,24 +20,22 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONNUMBERPOINTER_H
 #define KIMAGEANNOTATOR_ANNOTATIONNUMBERPOINTER_H
 
-#include "src/annotations/items/AbstractAnnotationLine.h"
+#include "src/annotations/items/AbstractAnnotationPointerRect.h"
 #include "src/annotations/items/BaseAnnotationNumber.h"
 #include "src/annotations/items/helper/AnnotationShapeCreator.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 
 namespace kImageAnnotator {
 
-class AnnotationNumberPointer : public AbstractAnnotationLine, public BaseAnnotationNumber
+class AnnotationNumberPointer : public AbstractAnnotationPointerRect, public BaseAnnotationNumber
 {
 Q_OBJECT
 public:
 	AnnotationNumberPointer(const QPointF &startPosition, const TextPropertiesPtr& properties);
 	AnnotationNumberPointer(const AnnotationNumberPointer &other);
-	~AnnotationNumberPointer() override;
+	~AnnotationNumberPointer() override = default;
 	Tools toolType() const override;
-	QPainterPath shape() const override;
 	TextPropertiesPtr textProperties() const;
-	void finish() override;
 
 protected:
 	void updateShape() override;
@@ -45,8 +43,6 @@ protected:
 	void updateProperties(const PropertiesPtr &properties) override;
 
 private:
-	QRectF *mRect;
-
 	void updateRect() override;
 };
 

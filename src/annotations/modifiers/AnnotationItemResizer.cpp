@@ -21,11 +21,11 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemResizer::AnnotationItemResizer(AbstractAnnotationItem *item, ZoomValueProvider *zoomValueProvider)
+AnnotationItemResizer::AnnotationItemResizer(AbstractAnnotationItem *item, ZoomValueProvider *zoomValueProvider) :
+	mAnnotationItem(item),
+	mZoomValueProvider(zoomValueProvider),
+	mCurrentHandle(-1)
 {
-    mAnnotationItem = item;
-	mZoomValueProvider = zoomValueProvider;
-    mCurrentHandle = -1;
     mResizeHandles = ResizeHandlesFactory::createResizeHandles(item, zoomValueProvider->zoomValue());
     connect(zoomValueProvider, &ZoomValueProvider::zoomValueChanged, this, &AnnotationItemResizer::applyZoomValue);
     prepareGeometryChange();

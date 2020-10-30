@@ -30,11 +30,11 @@ class LineResizeHandles : public AbstractItemResizeHandles
 {
 public:
     LineResizeHandles(AbstractAnnotationLine *lineItem, double zoomValue);
-    ~LineResizeHandles() = default;
-    virtual void update() override;
+    ~LineResizeHandles() override = default;
+    void update() override;
 
 protected:
-    virtual void initCursors() override;
+    void initCursors() override;
 
 private:
     AbstractAnnotationLine *mLineItem;

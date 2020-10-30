@@ -21,10 +21,10 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemArranger::AnnotationItemArranger(const QList<AbstractAnnotationItem *> selectedItems, QList<AbstractAnnotationItem *> *items)
+AnnotationItemArranger::AnnotationItemArranger(const QList<AbstractAnnotationItem *> &selectedItems, QList<AbstractAnnotationItem *> *items) :
+	mSelectedItems(selectedItems),
+	mItems(items)
 {
-    mSelectedItems = selectedItems;
-    mItems = items;
 }
 
 void AnnotationItemArranger::bringToFront()

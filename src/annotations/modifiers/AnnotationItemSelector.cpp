@@ -140,15 +140,8 @@ void AnnotationItemSelector::paint(QPainter *painter, const QStyleOptionGraphics
 	painter->setPen(mSelectionPen);
 	painter->setBrush(Qt::NoBrush);
 	for (auto item : *mSelectedItems) {
-		if (!isLineItem(item)) {
-			painter->drawRect(item->boundingRect());
-		}
+		painter->drawRect(item->boundingRect());
 	}
-}
-
-bool AnnotationItemSelector::isLineItem(AbstractAnnotationItem *item) const
-{
-	return dynamic_cast<AbstractAnnotationLine *>(item) != nullptr;
 }
 
 void AnnotationItemSelector::initSelectionRectAt(const QPointF &position)

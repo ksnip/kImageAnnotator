@@ -23,6 +23,7 @@
 #include "LineResizeHandles.h"
 #include "RectResizeHandles.h"
 #include "PathResizeHandles.h"
+#include "PointerRectResizeHandles.h"
 
 namespace kImageAnnotator {
 
@@ -35,6 +36,7 @@ private:
     static AbstractItemResizeHandles *GetPathResizeHandles(AbstractAnnotationItem *item, double zoomValue);
     static AbstractItemResizeHandles *GetRectResizeHandles(AbstractAnnotationItem *item, double zoomValue);
     static AbstractItemResizeHandles *GetLineResizeHandles(AbstractAnnotationItem *item, double zoomValue);
+    static AbstractItemResizeHandles *GetPointerRectResizeHandles(AbstractAnnotationItem *item, double zoomValue);
 };
 
 } // namespace kImageAnnotator

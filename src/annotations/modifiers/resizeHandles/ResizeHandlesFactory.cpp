@@ -28,6 +28,11 @@ AbstractItemResizeHandles *ResizeHandlesFactory::createResizeHandles(AbstractAnn
         return resizeHandles;
     }
 
+	resizeHandles = GetPointerRectResizeHandles(item, zoomValue);
+	if (resizeHandles != nullptr) {
+		return resizeHandles;
+	}
+
     resizeHandles = GetRectResizeHandles(item, zoomValue);
     if (resizeHandles != nullptr) {
         return resizeHandles;
@@ -53,6 +58,15 @@ AbstractItemResizeHandles *ResizeHandlesFactory::GetRectResizeHandles(AbstractAn
         return new RectResizeHandles(rectItem, zoomValue);
     }
     return nullptr;
+}
+
+AbstractItemResizeHandles *ResizeHandlesFactory::GetPointerRectResizeHandles(AbstractAnnotationItem *item, double zoomValue)
+{
+	auto rectItem = dynamic_cast<AbstractAnnotationPointerRect *>(item);
+	if (rectItem != nullptr) {
+		return new PointerRectResizeHandles(rectItem, zoomValue);
+	}
+	return nullptr;
 }
 
 AbstractItemResizeHandles *ResizeHandlesFactory::GetPathResizeHandles(AbstractAnnotationItem *item, double zoomValue)

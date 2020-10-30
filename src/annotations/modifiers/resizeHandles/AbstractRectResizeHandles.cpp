@@ -56,7 +56,6 @@ void AbstractRectResizeHandles::initCursors()
     mCursors.append(CursorHelper::verticalResizeCursor());
     mCursors.append(CursorHelper::bDiagResizeCursor());
     mCursors.append(CursorHelper::horizontalResizeCursor());
-
 }
 
 void AbstractRectResizeHandles::updateRectCursors()

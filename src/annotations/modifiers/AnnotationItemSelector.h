@@ -23,7 +23,6 @@
 #include <QGraphicsWidget>
 
 #include "src/annotations/items/AbstractAnnotationItem.h"
-#include "src/annotations/items/AbstractAnnotationLine.h"
 #include "src/annotations/core/ZoomValueProvider.h"
 
 namespace kImageAnnotator {
@@ -45,7 +44,7 @@ public:
 	void update();
 
 protected:
-	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
 	QRectF mSelectionRect;
@@ -62,7 +61,6 @@ private:
 	void selectItem(AbstractAnnotationItem *item);
 	void unselectItem(AbstractAnnotationItem *item);
 	AbstractAnnotationItem *findItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
-	bool isLineItem(AbstractAnnotationItem *item) const;
 	void applyZoomValue(double value);
 };
 

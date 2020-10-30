@@ -21,9 +21,9 @@
 
 namespace kImageAnnotator {
 
-RectResizeHandles::RectResizeHandles(AbstractAnnotationRect *rectItem, double zoomValue)
+RectResizeHandles::RectResizeHandles(AbstractAnnotationRect *rectItem, double zoomValue) :
+	mRectItem(rectItem)
 {
-	mRectItem = rectItem;
 	initHandles(8, zoomValue);
 	initCursors();
 	update();

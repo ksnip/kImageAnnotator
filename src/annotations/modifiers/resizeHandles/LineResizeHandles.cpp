@@ -21,9 +21,9 @@
 
 namespace kImageAnnotator {
 
-LineResizeHandles::LineResizeHandles(AbstractAnnotationLine *lineItem, double zoomValue)
+LineResizeHandles::LineResizeHandles(AbstractAnnotationLine *lineItem, double zoomValue) :
+	mLineItem(lineItem)
 {
-	mLineItem = lineItem;
 	initHandles(2, zoomValue);
 	initCursors();
 	update();

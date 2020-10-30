@@ -21,9 +21,9 @@
 
 namespace kImageAnnotator {
 
-PathResizeHandles::PathResizeHandles(AbstractAnnotationPath *pathItem, double zoomValue)
+PathResizeHandles::PathResizeHandles(AbstractAnnotationPath *pathItem, double zoomValue) :
+	mPathItem(pathItem)
 {
-    mPathItem = pathItem;
     initHandles(8, zoomValue);
     initCursors();
     update();
