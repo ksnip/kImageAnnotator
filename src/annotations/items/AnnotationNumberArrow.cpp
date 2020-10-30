@@ -22,25 +22,17 @@
 namespace kImageAnnotator {
 
 AnnotationNumberArrow::AnnotationNumberArrow(const QPointF &startPosition, const kImageAnnotator::TextPropertiesPtr &properties) :
-	AbstractAnnotationLine(startPosition, properties),
-	mRect(new QRectF)
+	AbstractAnnotationPointerRect(startPosition, properties)
 {
-	mLine->setP2(startPosition);
-	mRect->moveCenter(startPosition);
 }
 
 AnnotationNumberArrow::AnnotationNumberArrow(const kImageAnnotator::AnnotationNumberArrow &other) :
-	AbstractAnnotationLine(other),
-	BaseAnnotationNumber(other),
-	mRect(new QRectF)
+	AbstractAnnotationPointerRect(other),
+	BaseAnnotationNumber(other)
 {
-	mRect = new QRectF();
-	updateShape();
-}
+	BaseAnnotationNumber::updateRect(mRect, textProperties()->font());
 
-AnnotationNumberArrow::~AnnotationNumberArrow()
-{
-	delete mRect;
+	updateShape();
 }
 
 Tools AnnotationNumberArrow::toolType() const
@@ -48,41 +40,29 @@ Tools AnnotationNumberArrow::toolType() const
 	return Tools::NumberArrow;
 }
 
-QPainterPath AnnotationNumberArrow::shape() const
-{
-	auto path = AbstractAnnotationLine::shape();
-	path.addRect(*mRect);
-	return path;
-}
-
 TextPropertiesPtr AnnotationNumberArrow::textProperties() const
 {
 	return AbstractAnnotationItem::properties().staticCast<AnnotationTextProperties>();
 }
 
-void AnnotationNumberArrow::finish()
+QPainterPath AnnotationNumberArrow::shape() const
 {
-	auto rectWidth = mRect->width();
-	if(mLine->length() <= rectWidth / 2) {
-		auto offset = rectWidth * 0.8;
-		mLine->setP2(mLine->p1() + QPointF(offset, -offset));
-		updateRect();
-	}
-	AbstractAnnotationItem::finish();
+	auto path = AbstractAnnotationPointerRect::shape();
+	path.addRect(*mRect);
+	return path;
 }
 
 void AnnotationNumberArrow::updateShape()
 {
-	QLineF tmpLine(mLine->p2(), mLine->p1());
+	QLineF tmpLine(mPointer, mRect->center());
 	tmpLine.setLength(tmpLine.length() - mRect->width() / 2);
 	QLineF shaft(tmpLine.p2(), tmpLine.p1());
 	shaft.setLength(tmpLine.length() - 5);
 
 	auto arrow = AnnotationShapeCreator::createArrowHead(properties()->width() / 2);
-	arrow = AnnotationShapeCreator::translate(arrow, mLine->p2(), -mLine->angle());
+	arrow = AnnotationShapeCreator::translate(arrow, mPointer, -shaft.angle());
 
-	mRect->moveCenter(mLine->p1());
-	BaseAnnotationNumber::updateRect(mRect, textProperties()->font());
+	mRect->moveCenter(mRect->center());
 
 	mArrowShape = QPainterPath(shaft.p1());
 	mArrowShape.setFillRule(Qt::WindingFill);
@@ -129,6 +109,7 @@ void AnnotationNumberArrow::updateProperties(const PropertiesPtr &properties)
 void AnnotationNumberArrow::updateRect()
 {
 	prepareGeometryChange();
+	BaseAnnotationNumber::updateRect(mRect, textProperties()->font());
 	updateShape();
 }
 

@@ -20,24 +20,23 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONNUMBERARROW_H
 #define KIMAGEANNOTATOR_ANNOTATIONNUMBERARROW_H
 
-#include "src/annotations/items/AbstractAnnotationLine.h"
+#include "src/annotations/items/AbstractAnnotationPointerRect.h"
 #include "src/annotations/items/BaseAnnotationNumber.h"
 #include "src/annotations/items/helper/AnnotationShapeCreator.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 
 namespace kImageAnnotator {
 
-class AnnotationNumberArrow : public AbstractAnnotationLine, public BaseAnnotationNumber
+class AnnotationNumberArrow : public AbstractAnnotationPointerRect, public BaseAnnotationNumber
 {
 Q_OBJECT
 public:
 	AnnotationNumberArrow(const QPointF &startPosition, const TextPropertiesPtr& properties);
 	AnnotationNumberArrow(const AnnotationNumberArrow &other);
-	~AnnotationNumberArrow() override;
+	~AnnotationNumberArrow() override = default;
 	Tools toolType() const override;
-	QPainterPath shape() const override;
 	TextPropertiesPtr textProperties() const;
-	void finish() override;
+	QPainterPath shape() const override;
 
 protected:
 	void updateShape() override;
@@ -45,7 +44,6 @@ protected:
 	void updateProperties(const PropertiesPtr &properties) override;
 
 private:
-	QRectF *mRect;
 	QPainterPath mArrowShape;
 
 	void updateRect() override;
