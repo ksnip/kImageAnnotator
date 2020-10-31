@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished"></translation>
+        <translation>Współczynnik zaciemniania</translation>
     </message>
 </context>
 <context>
@@ -125,42 +125,42 @@
     <name>kImageAnnotator::FillModePicker</name>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation type="unfinished">Widoczność krawędzi i wypełnienia</translation>
+        <translation>Widoczność krawędzi i wypełnienia</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation type="unfinished">Obramowanie i wypełnienie</translation>
+        <translation>Obramowanie i wypełnienie</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation type="unfinished">Obramowanie i bez wypełnienia</translation>
+        <translation>Obramowanie i brak wypełnienia</translation>
     </message>
     <message>
         <source>No Border and No Fill</source>
-        <translation type="unfinished">Bez obramowania i bez wypełnienia</translation>
+        <translation>Bez obramowania i bez wypełnienia</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Efekty obrazu</translation>
     </message>
     <message>
         <source>No Effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Bez efektu</translation>
     </message>
     <message>
         <source>Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Cień</translation>
     </message>
     <message>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation>Skala szarości</translation>
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>Obramowanie</translation>
     </message>
 </context>
 <context>
@@ -202,7 +202,7 @@
     <name>kImageAnnotator::StickerPicker</name>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished">Naklejka</translation>
+        <translation>Naklejka</translation>
     </message>
 </context>
 <context>
@@ -269,7 +269,7 @@
     </message>
     <message>
         <source>Pixelate</source>
-        <translation type="unfinished"></translation>
+        <translation>Pikslowanie</translation>
     </message>
 </context>
 </TS>
