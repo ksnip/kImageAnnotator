@@ -26,9 +26,9 @@
 
 #include "AbstractAnnotationRect.h"
 #include "interfaces/EditableItem.h"
+#include "src/annotations/items/text/AnnotationTextHandler.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
-#include "src/annotations/items/helper/TextCursor.h"
-#include "src/annotations/items/helper/KeyInputHelper.h"
+#include "src/annotations/items/text/TextCursor.h"
 #include "src/common/filter/IgnoreShortcutsFilter.h"
 
 namespace kImageAnnotator {
@@ -55,25 +55,15 @@ protected:
 	void paint(QPainter *, const QStyleOptionGraphicsItem *, QWidget *) override;
 
 private:
-	QString mText;
-	KeyInputHelper mKeyInputHelper;
-	TextCursor mTextCursor;
+	AnnotationTextHandler mBaseAnnotationText;
 	IgnoreShortcutsFilter mIgnoreShortcutsFilter;
-	bool mIsInEditMode;
-	QPen mEditModeOutlinePen;
 
 	void connectSlots();
-	QRect getTextRect() const;
-	void setupEditModeOutlinePen();
+	void setupFlags();
 
 private slots:
-	void removeText(TextPositions direction);
-	void insertText(const QString &text);
-	void moveCursor(TextPositions direction);
-	void pasteText();
 	void escape();
-	void adjustRect();
-	bool isCursorInBlock(int blockPosition, int blockLength) const;
+	void refresh();
 };
 
 } // namespace kImageAnnotator

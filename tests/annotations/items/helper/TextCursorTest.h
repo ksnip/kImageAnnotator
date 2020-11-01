@@ -22,7 +22,7 @@
 
 #include <QtTest>
 
-#include "src/annotations/items/helper/TextCursor.h"
+#include "src/annotations/items/text/TextCursor.h"
 
 using kImageAnnotator::TextCursor;
 using kImageAnnotator::TextPositions;

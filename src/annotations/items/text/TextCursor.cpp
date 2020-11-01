@@ -21,15 +21,17 @@
 
 namespace kImageAnnotator {
 
-TextCursor::TextCursor()
+TextCursor::TextCursor() :
+	mBlinkTimer(new QTimer(this))
 {
-    mBlinkTimer = new QTimer(this);
+	connectSlots();
+}
 
-    connect(mBlinkTimer, &QTimer::timeout, [this]()
-    {
-        mIsVisible = !mIsVisible;
-        emit tick();
-    });
+TextCursor::TextCursor(const TextCursor &other) :
+	mBlinkTimer(new QTimer(this)),
+	mPosition(other.mPosition)
+{
+	connectSlots();
 }
 
 TextCursor::~TextCursor()
@@ -144,6 +146,15 @@ void TextCursor::moveToSamePositionInNewBlock(int positionInBlock, const QTextBl
 void TextCursor::movePositionToEndOfBlock(const QTextBlock &targetBlock)
 {
     mPosition = targetBlock.position() + targetBlock.length() - 1;
+}
+
+void TextCursor::connectSlots()
+{
+	connect(mBlinkTimer, &QTimer::timeout, [this]()
+	{
+		mIsVisible = !mIsVisible;
+		emit tick();
+	});
 }
 
 } // namespace kImageAnnotator

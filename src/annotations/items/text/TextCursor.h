@@ -24,7 +24,7 @@
 #include <QTextDocument>
 #include <QTextBlock>
 
-#include "src/annotations/items/helper/TextPositions.h"
+#include "TextPositions.h"
 
 namespace kImageAnnotator {
 
@@ -33,6 +33,7 @@ class TextCursor : public QObject
 Q_OBJECT
 public:
     explicit TextCursor();
+	TextCursor(const TextCursor &other);
     ~TextCursor() override;
     void move(TextPositions direction, const QString &text);
     void start();
@@ -57,6 +58,7 @@ private:
     void fitPositionToNewBlock(int positionInBlock, const QTextBlock &targetBlock);
     void movePositionToEndOfBlock(const QTextBlock &targetBlock);
     void moveToSamePositionInNewBlock(int positionInBlock, const QTextBlock &targetBlock);
+	void connectSlots();
 };
 
 } // namespace kImageAnnotator

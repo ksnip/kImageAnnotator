@@ -69,9 +69,10 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationImage.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationSticker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/BaseAnnotationNumber.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/KeyInputHelper.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/TextCursor.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/CapsLockStatusChecker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/text/AnnotationTextHandler.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/text/KeyInputHelper.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/text/TextCursor.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/text/CapsLockStatusChecker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/NumberRectHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/AnnotationShapeCreator.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/AddCommand.cpp
@@ -103,7 +104,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ToolPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ColorPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/NumberPicker.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/widgets/FillModePicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/FillModePicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomSpinBox.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButton.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButtonAction.cpp
@@ -115,7 +116,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListMenuItem.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListItemGroup.cpp
-		${CMAKE_CURRENT_SOURCE_DIR}/widgets/ImageEffectPicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ImageEffectPicker.cpp
 	)
 
 set(KIMAGEANNOTATOR_SRCS ${KIMAGEANNOTATOR_SRCS} PARENT_SCOPE)

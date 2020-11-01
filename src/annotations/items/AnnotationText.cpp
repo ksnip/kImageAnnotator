@@ -21,21 +21,19 @@
 
 namespace kImageAnnotator {
 
-AnnotationText::AnnotationText(const QPointF &startPosition, const TextPropertiesPtr &properties) : AbstractAnnotationRect(startPosition, properties)
+AnnotationText::AnnotationText(const QPointF &startPosition, const TextPropertiesPtr &properties) :
+	AbstractAnnotationRect(startPosition, properties)
 {
-	setFlag(QGraphicsItem::ItemIsFocusable, true);
-	setFlag(QGraphicsItem::ItemAcceptsInputMethod, true);
+	setupFlags();
 	connectSlots();
-	setupEditModeOutlinePen();
 }
 
-AnnotationText::AnnotationText(const AnnotationText &other) : AbstractAnnotationRect(other)
+AnnotationText::AnnotationText(const AnnotationText &other) :
+	AbstractAnnotationRect(other),
+	mBaseAnnotationText(other.mBaseAnnotationText)
 {
-	mText = other.mText;
-
-	setFlag(QGraphicsItem::ItemIsFocusable, true);
+	setupFlags();
 	connectSlots();
-	setupEditModeOutlinePen();
 }
 
 void AnnotationText::updateShape()
@@ -53,14 +51,12 @@ void AnnotationText::focusOutEvent(QFocusEvent *event)
 
 void AnnotationText::keyPressEvent(QKeyEvent *event)
 {
-	mKeyInputHelper.handleKeyPress(event);
-	adjustRect();
+	mBaseAnnotationText.handleKeyEvent(event);
 }
 
 void AnnotationText::inputMethodEvent(QInputMethodEvent *event)
 {
-	insertText(event->commitString());
-	adjustRect();
+	mBaseAnnotationText.insertText(event->commitString());
 }
 
 void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget)
@@ -68,65 +64,11 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 	// Paint border
 	AbstractAnnotationRect::paint(painter, style, widget);
 
-	auto textArea = mRect->toRect();
-	if (mIsInEditMode && textArea.isValid()) {
-		setupEditModeOutlinePen();
-		painter->setBrush(Qt::NoBrush);
-		painter->setPen(mEditModeOutlinePen);
-		painter->drawRect(textArea);
-	}
-
-	// Workaround for issue #70 -> Cursor not drawn with with Qt 5.9
-	if (mIsInEditMode) {
-		painter->setBrush(QColor(255,255,255,10));
-		painter->drawRect(*mRect);
-	}
-
-	// Paint text
-	painter->setPen(properties()->textColor());
-	auto margin = properties()->width();
-
-	painter->setClipRect(boundingRect().adjusted(margin, margin, -margin, -margin));
-
-	QFontMetrics fontMetrics(textProperties()->font());
-	auto boxHeight = 0;
-
-	QTextDocument document(mText);
-	for (auto block = document.begin(); block != document.end(); block = block.next()) {
-		auto blockPosition = block.position();
-		auto blockLength = block.length();
-		QTextLayout textLayout(block);
-		textLayout.setCacheEnabled(true);
-		textLayout.setFont(textProperties()->font());
-		auto blockHeight = 0;
-		textLayout.setCacheEnabled(true);
-
-		textLayout.beginLayout();
-		while (true) {
-			auto line = textLayout.createLine();
-			if (!line.isValid()) {
-				break;
-			}
-
-			line.setLineWidth(textArea.width() - margin * 2);
-			blockHeight += fontMetrics.leading();
-			line.setPosition(textArea.adjusted(margin, margin, 0, 0).topLeft());
-			blockHeight += line.height();
-		}
-		textLayout.endLayout();
-
-		textLayout.draw(painter, QPoint(0, boxHeight));
-
-		if (mTextCursor.isVisible() && isCursorInBlock(blockPosition, blockLength)) {
-			textLayout.drawCursor(painter, QPointF(1, boxHeight), mTextCursor.position() - blockPosition, 2);
-		}
-		boxHeight += blockHeight;
-	}
-}
-
-bool AnnotationText::isCursorInBlock(int blockPosition, int blockLength) const
-{
-	return mTextCursor.position() >= blockPosition && mTextCursor.position() < blockPosition + blockLength;
+	// Paint Text
+	auto font = textProperties()->font();
+	auto color = textProperties()->textColor();
+	auto margin = textProperties()->width();
+	mBaseAnnotationText.paintText(painter, mRect, font, color, margin);
 }
 
 void AnnotationText::finish()
@@ -142,53 +84,10 @@ Tools AnnotationText::toolType() const
 QPainterPath AnnotationText::shape() const
 {
 	auto path = AbstractAnnotationItem::shape();
-	path.addRect(getTextRect());
+	auto font = textProperties()->font();
+	auto margin = textProperties()->width();
+	path.addRect(mBaseAnnotationText.getTextRect(mRect, font, margin));
 	return path;
-}
-
-void AnnotationText::setupEditModeOutlinePen()
-{
-	mEditModeOutlinePen.setColor(Qt::white);
-	mEditModeOutlinePen.setWidthF(1);
-	mEditModeOutlinePen.setStyle(Qt::DotLine);
-}
-
-void AnnotationText::removeText(TextPositions direction)
-{
-	auto currentCursorPos = mTextCursor.position();
-	if (direction == TextPositions::Previous) {
-		if (currentCursorPos == 0) {
-			return;
-		}
-		mText.remove(currentCursorPos - 1, 1);
-		moveCursor(TextPositions::Previous);
-	} else if (direction == TextPositions::Next) {
-		if (currentCursorPos >= mText.length()) {
-			return;
-		}
-		mText.remove(currentCursorPos, 1);
-	}
-}
-
-void AnnotationText::insertText(const QString &text)
-{
-	mText.insert(mTextCursor.position(), text);
-	mTextCursor.move(TextPositions::Next, mText);
-}
-
-void AnnotationText::moveCursor(TextPositions direction)
-{
-	mTextCursor.move(direction, mText);
-}
-
-void AnnotationText::pasteText()
-{
-	auto clipboard = QApplication::clipboard();
-	if (clipboard->text().isEmpty()) {
-		return;
-	}
-	mText.insert(mTextCursor.position(), clipboard->text());
-	mTextCursor.setPosition(mTextCursor.position() + clipboard->text().length());
 }
 
 void AnnotationText::escape()
@@ -196,63 +95,42 @@ void AnnotationText::escape()
 	clearFocus();
 }
 
-void AnnotationText::adjustRect()
+void AnnotationText::refresh()
 {
 	prepareGeometryChange();
-	auto newRect = getTextRect().normalized();
-	auto currentRect = mRect->normalized();
-	if (newRect.width() > currentRect.width()) {
-		currentRect.setWidth(newRect.width());
-	}
-	if (newRect.height() > currentRect.height()) {
-		currentRect.setHeight(newRect.height());
-	}
-	mRect->setRect(currentRect.x(), currentRect.y(), currentRect.width(), currentRect.height());
-
+	auto font = textProperties()->font();
+	auto margin = textProperties()->width();
+	mBaseAnnotationText.updateRect(mRect, font, margin);
 	updateShape();
 }
 
 void AnnotationText::connectSlots()
 {
-	connect(&mKeyInputHelper, &KeyInputHelper::move, this, &AnnotationText::moveCursor);
-	connect(&mKeyInputHelper, &KeyInputHelper::insert, this, &AnnotationText::insertText);
-	connect(&mKeyInputHelper, &KeyInputHelper::remove, this, &AnnotationText::removeText);
-	connect(&mKeyInputHelper, &KeyInputHelper::paste, this, &AnnotationText::pasteText);
-	connect(&mKeyInputHelper, &KeyInputHelper::escape, this, &AnnotationText::escape);
-	connect(&mTextCursor, &TextCursor::tick, [this]() { prepareGeometryChange(); });
-}
-
-QRect AnnotationText::getTextRect() const
-{
-	QFontMetrics fontMetrics(textProperties()->font());
-	auto margin = properties()->width();
-	auto newRect = fontMetrics.boundingRect(mRect->toRect().normalized(), Qt::AlignLeft, mText);
-	newRect.adjust(0, 0, margin * 2, margin * 2);
-	return newRect;
+	connect(&mBaseAnnotationText, &AnnotationTextHandler::changed, this, &AnnotationText::refresh);
+	connect(&mBaseAnnotationText, &AnnotationTextHandler::finished, this, &AnnotationText::escape);
 }
 
 void AnnotationText::enableEditing()
 {
-    adjustRect();
     setFocus();
 
-    mTextCursor.start();
-    mIgnoreShortcutsFilter.apply();
-    mIsInEditMode = true;
-    prepareGeometryChange();
+	mBaseAnnotationText.enableEditing();
 }
 
 void AnnotationText::disableEditing()
 {
-    mTextCursor.stop();
-    mIgnoreShortcutsFilter.remove();
-    mIsInEditMode = false;
-	prepareGeometryChange();
+	mBaseAnnotationText.disableEditing();
 }
 
 TextPropertiesPtr AnnotationText::textProperties() const
 {
 	return AbstractAnnotationItem::properties().staticCast<AnnotationTextProperties>();
+}
+
+void AnnotationText::setupFlags()
+{
+	setFlag(ItemIsFocusable, true);
+	setFlag(ItemAcceptsInputMethod, true);
 }
 
 } // namespace kImageAnnotator
