@@ -26,7 +26,7 @@ AnnotationTextPointer::AnnotationTextPointer(const QPointF &startPosition, const
 {
 	setupFlags();
 	connectSlots();
-	mRect->setWidth(10);
+	mRect->setWidth(20);
 	mRect->setHeight(26);
 }
 
@@ -41,6 +41,7 @@ AnnotationTextPointer::AnnotationTextPointer(const AnnotationTextPointer &other)
 void AnnotationTextPointer::finish()
 {
 	enableEditing();
+	AbstractAnnotationPointerRect::finish();
 }
 
 Tools AnnotationTextPointer::toolType() const
