@@ -64,7 +64,7 @@ void ScaleCommandTest::TestRedo_Should_ScaleItemsBySameFactorAsImage()
 	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto rectItem = new AnnotationRect(QPointF(0, 0), properties);
-	rectItem->addPoint(QPointF(50, 50));
+	rectItem->addPoint(QPointF(50, 50), false);
 	annotationArea.addAnnotationItem(rectItem);
 	ScaleCommand scaleCommand(&image, newSize, &annotationArea);
 
@@ -83,7 +83,7 @@ void ScaleCommandTest::TestUndo_Should_ScaleItemsBackToOriginalSize()
 	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto rectItem = new AnnotationRect(QPointF(0, 0), properties);
-	rectItem->addPoint(QPointF(50, 50));
+	rectItem->addPoint(QPointF(50, 50), false);
 	annotationArea.addAnnotationItem(rectItem);
 	ScaleCommand scaleCommand(&image, newSize, &annotationArea);
 	scaleCommand.redo();

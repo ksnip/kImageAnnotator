@@ -46,7 +46,7 @@ void CropCommandTest::TestRedo_Should_MoveItemToNewPosition()
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QRectF rect(150, 150, 300, 300);
 	auto item = new AnnotationRect(rect.topLeft(), properties);
-	item->addPoint(rect.bottomRight());
+	item->addPoint(rect.bottomRight(), false);
 	annotationArea.addAnnotationItem(item);
 	CropCommand cropCommand(&graphicsPixmapItem, cropRect, &annotationArea);
 
@@ -82,7 +82,7 @@ void CropCommandTest::TestUndo_Should_MoveItemBackToPreviousPosition()
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QRectF rect(150, 150, 300, 300);
 	auto item = new AnnotationRect(rect.topLeft(), properties);
-	item->addPoint(rect.bottomRight());
+	item->addPoint(rect.bottomRight(), false);
 	annotationArea.addAnnotationItem(item);
 	CropCommand cropCommand(&graphicsPixmapItem, cropRect, &annotationArea);
 	cropCommand.redo();
@@ -94,5 +94,4 @@ void CropCommandTest::TestUndo_Should_MoveItemBackToPreviousPosition()
 }
 
 QTEST_MAIN(CropCommandTest);
-
 
