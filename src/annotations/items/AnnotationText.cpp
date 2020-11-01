@@ -30,7 +30,7 @@ AnnotationText::AnnotationText(const QPointF &startPosition, const TextPropertie
 
 AnnotationText::AnnotationText(const AnnotationText &other) :
 	AbstractAnnotationRect(other),
-	mBaseAnnotationText(other.mBaseAnnotationText)
+	mTextHandler(other.mTextHandler)
 {
 	setupFlags();
 	connectSlots();
@@ -51,12 +51,12 @@ void AnnotationText::focusOutEvent(QFocusEvent *event)
 
 void AnnotationText::keyPressEvent(QKeyEvent *event)
 {
-	mBaseAnnotationText.handleKeyEvent(event);
+	mTextHandler.handleKeyEvent(event);
 }
 
 void AnnotationText::inputMethodEvent(QInputMethodEvent *event)
 {
-	mBaseAnnotationText.insertText(event->commitString());
+	mTextHandler.insertText(event->commitString());
 }
 
 void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget)
@@ -68,7 +68,7 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 	auto font = textProperties()->font();
 	auto color = textProperties()->textColor();
 	auto margin = textProperties()->width();
-	mBaseAnnotationText.paintText(painter, mRect, font, color, margin);
+	mTextHandler.paintText(painter, mRect, font, color, margin);
 }
 
 void AnnotationText::finish()
@@ -86,7 +86,7 @@ QPainterPath AnnotationText::shape() const
 	auto path = AbstractAnnotationItem::shape();
 	auto font = textProperties()->font();
 	auto margin = textProperties()->width();
-	path.addRect(mBaseAnnotationText.getTextRect(mRect, font, margin));
+	path.addRect(mTextHandler.getTextRect(mRect, font, margin));
 	return path;
 }
 
@@ -100,26 +100,25 @@ void AnnotationText::refresh()
 	prepareGeometryChange();
 	auto font = textProperties()->font();
 	auto margin = textProperties()->width();
-	mBaseAnnotationText.updateRect(mRect, font, margin);
+	mTextHandler.updateRect(mRect, font, margin);
 	updateShape();
 }
 
 void AnnotationText::connectSlots()
 {
-	connect(&mBaseAnnotationText, &AnnotationTextHandler::changed, this, &AnnotationText::refresh);
-	connect(&mBaseAnnotationText, &AnnotationTextHandler::finished, this, &AnnotationText::escape);
+	connect(&mTextHandler, &AnnotationTextHandler::changed, this, &AnnotationText::refresh);
+	connect(&mTextHandler, &AnnotationTextHandler::finished, this, &AnnotationText::escape);
 }
 
 void AnnotationText::enableEditing()
 {
     setFocus();
-
-	mBaseAnnotationText.enableEditing();
+	mTextHandler.enableEditing();
 }
 
 void AnnotationText::disableEditing()
 {
-	mBaseAnnotationText.disableEditing();
+	mTextHandler.disableEditing();
 }
 
 TextPropertiesPtr AnnotationText::textProperties() const

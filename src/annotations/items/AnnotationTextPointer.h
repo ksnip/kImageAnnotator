@@ -1,9 +1,9 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -11,29 +11,30 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public License
+ * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONTEXT_H
-#define KIMAGEANNOTATOR_ANNOTATIONTEXT_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONTEXTPOINTER_H
+#define KIMAGEANNOTATOR_ANNOTATIONTEXTPOINTER_H
 
-#include "AbstractAnnotationRect.h"
+#include "AbstractAnnotationPointerRect.h"
 #include "src/annotations/items/interfaces/EditableItem.h"
 #include "src/annotations/items/text/AnnotationTextHandler.h"
+#include "src/annotations/items/helper/AnnotationShapeCreator.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 
 namespace kImageAnnotator {
 
-class AnnotationText : public AbstractAnnotationRect, public EditableItem
+class AnnotationTextPointer : public AbstractAnnotationPointerRect, public EditableItem
 {
 Q_OBJECT
 public:
-	AnnotationText(const QPointF &startPosition, const TextPropertiesPtr &properties);
-	AnnotationText(const AnnotationText &other);
-	~AnnotationText() override = default;
+	AnnotationTextPointer(const QPointF &startPosition, const TextPropertiesPtr &properties);
+	AnnotationTextPointer(const AnnotationTextPointer &other);
+	~AnnotationTextPointer() override = default;
 	void finish() override;
 	Tools toolType() const override;
 	QPainterPath shape() const override;
@@ -61,4 +62,4 @@ private slots:
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONTEXT_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONTEXTPOINTER_H

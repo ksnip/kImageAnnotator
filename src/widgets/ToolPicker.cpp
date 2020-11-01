@@ -83,8 +83,12 @@ void ToolPicker::initGui()
 	button = createButton(menu);
 	mLayout->addWidget(button, 1, 1);
 
+	menu = new QMenu();
 	action = createAction(tr("Text"), IconLoader::load(QLatin1Literal("text.svg")), Qt::Key_T, Tools::Text);
-	button = createButton(action);
+	menu->addAction(action);
+	action = createAction(tr("Text Pointer"), IconLoader::load(QLatin1Literal("textPointer.svg")), Qt::Key_N, Tools::TextPointer);
+	menu->addAction(action);
+	button = createButton(menu);
 	mLayout->addWidget(button, 2, 0);
 
 	menu = new QMenu();

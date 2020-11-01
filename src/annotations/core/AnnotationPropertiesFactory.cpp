@@ -56,6 +56,7 @@ PropertiesPtr AnnotationPropertiesFactory::createPropertiesObject(Tools toolType
 		case Tools::NumberPointer:
 		case Tools::NumberArrow:
 		case Tools::Text:
+		case Tools::TextPointer:
 			return PropertiesPtr(new AnnotationTextProperties());
 		case Tools::Blur:
 		case Tools::Pixelate:
@@ -110,6 +111,7 @@ void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, Tools
 		case Tools::Image:
 		case Tools::Sticker:
 		case Tools::NumberPointer:
+		case Tools::TextPointer:
 			properties->setFillType(FillModes::BorderAndFill);
 			break;
 		default:

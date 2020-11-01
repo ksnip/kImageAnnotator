@@ -42,6 +42,7 @@ Config::Config() :
 		Tools::NumberPointer,
 		Tools::NumberArrow,
 		Tools::Text,
+		Tools::TextPointer,
 		Tools::Blur,
 		Tools::Pixelate,
 		Tools::Image
@@ -259,10 +260,13 @@ void Config::initToolFillTypes()
 
 void Config::initToolFonts()
 {
-	mToolToFont[Tools::Text] = QFont(QLatin1Literal("Times"), loadToolFontSize(Tools::Text), QFont::Bold);
-	mToolToFont[Tools::Number] = QFont(QLatin1Literal("Helvetica"), loadToolFontSize(Tools::Number), QFont::Bold);
-	mToolToFont[Tools::NumberPointer] = QFont(QLatin1Literal("Helvetica"), loadToolFontSize(Tools::NumberPointer), QFont::Bold);
-	mToolToFont[Tools::NumberArrow] = QFont(QLatin1Literal("Helvetica"), loadToolFontSize(Tools::NumberArrow), QFont::Bold);
+	auto textFont = QFont(QLatin1Literal("Times"), loadToolFontSize(Tools::Text), QFont::Bold);
+	auto numberFont = QFont(QLatin1Literal("Helvetica"), loadToolFontSize(Tools::Number), QFont::Bold);
+	mToolToFont[Tools::Text] = textFont;
+	mToolToFont[Tools::TextPointer] = textFont;
+	mToolToFont[Tools::Number] = numberFont;
+	mToolToFont[Tools::NumberPointer] = numberFont;
+	mToolToFont[Tools::NumberArrow] = numberFont;
 }
 
 void Config::initObfuscateFactor()
@@ -424,6 +428,7 @@ QColor Config::defaultToolTextColor(Tools toolType)
 {
 	switch (toolType) {
 		case Tools::Text:
+		case Tools::TextPointer:
 		case Tools::Number:
 		case Tools::NumberPointer:
 		case Tools::NumberArrow:
@@ -445,6 +450,8 @@ int Config::defaultToolWidth(Tools toolType)
 			return 5;
 		case Tools::Text:
 			return 2;
+		case Tools::TextPointer:
+			return 1;
 		default:
 			return 3;
 	}
@@ -460,6 +467,7 @@ FillModes Config::defaultToolFillType(Tools toolType)
 		case Tools::NumberPointer:
 		case Tools::Blur:
 		case Tools::Pixelate:
+		case Tools::TextPointer:
 			return FillModes::BorderAndFill;
 		case Tools::MarkerRect:
 		case Tools::MarkerEllipse:
@@ -481,6 +489,7 @@ int Config::defaultToolFontSize(Tools toolType)
 {
 	switch (toolType) {
 		case Tools::Text:
+		case Tools::TextPointer:
 			return 15;
 		case Tools::Number:
 		case Tools::NumberPointer:

@@ -34,6 +34,7 @@
 #include "src/annotations/items/AnnotationNumberPointer.h"
 #include "src/annotations/items/AnnotationNumberArrow.h"
 #include "src/annotations/items/AnnotationText.h"
+#include "src/annotations/items/AnnotationTextPointer.h"
 #include "src/annotations/items/AnnotationBlur.h"
 #include "src/annotations/items/AnnotationImage.h"
 #include "src/annotations/items/AnnotationSticker.h"
