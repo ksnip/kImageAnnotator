@@ -41,6 +41,7 @@ enum class Tools
 	NumberArrow,
 	Text,
 	TextPointer,
+	TextArrow,
 	Blur,
 	Image,
 	Sticker,

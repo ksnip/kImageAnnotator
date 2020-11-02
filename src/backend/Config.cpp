@@ -43,6 +43,7 @@ Config::Config() :
 		Tools::NumberArrow,
 		Tools::Text,
 		Tools::TextPointer,
+		Tools::TextArrow,
 		Tools::Blur,
 		Tools::Pixelate,
 		Tools::Image
@@ -264,6 +265,7 @@ void Config::initToolFonts()
 	auto numberFont = QFont(QLatin1Literal("Helvetica"), loadToolFontSize(Tools::Number), QFont::Bold);
 	mToolToFont[Tools::Text] = textFont;
 	mToolToFont[Tools::TextPointer] = textFont;
+	mToolToFont[Tools::TextArrow] = textFont;
 	mToolToFont[Tools::Number] = numberFont;
 	mToolToFont[Tools::NumberPointer] = numberFont;
 	mToolToFont[Tools::NumberArrow] = numberFont;
@@ -429,6 +431,7 @@ QColor Config::defaultToolTextColor(Tools toolType)
 	switch (toolType) {
 		case Tools::Text:
 		case Tools::TextPointer:
+		case Tools::TextArrow:
 		case Tools::Number:
 		case Tools::NumberPointer:
 		case Tools::NumberArrow:
@@ -449,7 +452,9 @@ int Config::defaultToolWidth(Tools toolType)
 		case Tools::Number:
 			return 5;
 		case Tools::Text:
+		case Tools::TextArrow:
 			return 2;
+		case Tools::NumberPointer:
 		case Tools::TextPointer:
 			return 1;
 		default:
@@ -468,12 +473,14 @@ FillModes Config::defaultToolFillType(Tools toolType)
 		case Tools::Blur:
 		case Tools::Pixelate:
 		case Tools::TextPointer:
+		case Tools::Image:
+		case Tools::Sticker:
 			return FillModes::BorderAndFill;
 		case Tools::MarkerRect:
 		case Tools::MarkerEllipse:
-		case Tools::Image:
 			return FillModes::NoBorderAndFill;
 		case Tools::NumberArrow:
+		case Tools::TextArrow:
 			return FillModes::NoBorderAndNoFill;
 		default:
 			return FillModes::BorderAndNoFill;
@@ -490,6 +497,7 @@ int Config::defaultToolFontSize(Tools toolType)
 	switch (toolType) {
 		case Tools::Text:
 		case Tools::TextPointer:
+		case Tools::TextArrow:
 			return 15;
 		case Tools::Number:
 		case Tools::NumberPointer:

@@ -220,6 +220,16 @@ void WidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			break;
+		case Tools::TextArrow:
+			setColorWidgetVisible(true);
+			setTextColorWidgetVisible(true);
+			setWidthWidgetVisible(true);
+			setFillWidgetVisible(true);
+			setFontSizeWidgetVisible(true);
+			setFirstNumberWidgetVisible(false);
+			setObfuscateFactorWidgetVisible(false);
+			setStickerWidgetVisible(false);
+			break;
 		case Tools::Blur:
 		case Tools::Pixelate:
 			setColorWidgetVisible(false);

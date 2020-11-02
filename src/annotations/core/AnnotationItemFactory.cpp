@@ -133,6 +133,9 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 		case Tools::TextPointer:
 			newItem = new AnnotationTextPointer(initPosition, properties.staticCast<AnnotationTextProperties>());
 			break;
+		case Tools::TextArrow:
+			newItem = new AnnotationTextArrow(initPosition, properties.staticCast<AnnotationTextProperties>());
+			break;
 		case Tools::Blur:
 			newItem = new AnnotationBlur(initPosition, properties.staticCast<AnnotationObfuscateProperties>());
 			break;
@@ -197,6 +200,9 @@ AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotatio
 			break;
 		case Tools::TextPointer:
 			newItem = new AnnotationTextPointer(*(dynamic_cast<const AnnotationTextPointer *>(item)));
+			break;
+		case Tools::TextArrow:
+			newItem = new AnnotationTextArrow(*(dynamic_cast<const AnnotationTextArrow *>(item)));
 			break;
 		case Tools::Blur:
 			newItem = new AnnotationBlur(*(dynamic_cast<const AnnotationBlur *>(item)));

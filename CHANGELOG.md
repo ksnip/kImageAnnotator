@@ -8,6 +8,7 @@
 * New: Add grayscale image effect. ([#151](https://github.com/ksnip/kImageAnnotator/issues/151))
 * New: Add numeric pointer with arrow annotation item. ([#152](https://github.com/ksnip/kImageAnnotator/issues/152))
 * New: Add text pointer annotation item. ([#154](https://github.com/ksnip/kImageAnnotator/issues/154))
+* New: Add text pointer with arrow annotation item. ([#153](https://github.com/ksnip/kImageAnnotator/issues/153))
 * Changed: Draw point when clicking and releasing without moving cursor. ([#136](https://github.com/ksnip/kImageAnnotator/issues/136))
 * Changed: Zoom out less than 100%. ([#150](https://github.com/ksnip/kImageAnnotator/issues/150))
 * Fixed: Blur radius not updated when changing current items settings. ([#142](https://github.com/ksnip/kImageAnnotator/issues/142))

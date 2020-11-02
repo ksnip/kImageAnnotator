@@ -43,6 +43,8 @@ public:
 	TextPropertiesPtr textProperties() const;
 
 protected:
+	AnnotationTextHandler mTextHandler;
+
 	void updateShape() override;
 	void focusOutEvent(QFocusEvent *event) override;
 	void keyPressEvent(QKeyEvent *event) override;
@@ -50,8 +52,6 @@ protected:
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget) override;
 
 private:
-	AnnotationTextHandler mTextHandler;
-
 	void connectSlots();
 	void setupFlags();
 

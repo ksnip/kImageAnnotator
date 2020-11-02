@@ -47,7 +47,8 @@ public:
 	static QLineF extendLine(const QLineF &line, int extendBy);
 	static QPointF rectPointAtIndex(const QRectF &rect, int index);
 	static QRectF setRectPointAtIndex(const QRectF &rect, int index, const QPointF &pos);
-	static QPainterPath smoothOut(const QPainterPath &path, int smootFactor);
+	static QPainterPath smoothOut(const QPainterPath &path, int smoothFactor);
+	static QPointF intersectionBetweenRectAndLineFromCenter(const QLineF &line, const QRectF &rect);
 
 private:
 	static int invertOffsetIfTopSmallerThenBottom(const QRectF &rect, int yOffset);
@@ -57,6 +58,7 @@ private:
 	static double getRoundingRate(const QPointF &point1, const QPointF &point2);
 	static QList<QPointF> getPathPoints(const QPainterPath &path, int smootFactor);
 	static QPainterPath createSmoothPath(const QList<QPointF> &points);
+	static bool linesIntersect(const QLineF &line1, const QLineF &line2, QPointF &intersection);
 };
 
 } // namespace kImageAnnotator

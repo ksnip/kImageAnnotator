@@ -86,7 +86,9 @@ void ToolPicker::initGui()
 	menu = new QMenu();
 	action = createAction(tr("Text"), IconLoader::load(QLatin1Literal("text.svg")), Qt::Key_T, Tools::Text);
 	menu->addAction(action);
-	action = createAction(tr("Text Pointer"), IconLoader::load(QLatin1Literal("textPointer.svg")), Qt::Key_N, Tools::TextPointer);
+	action = createAction(tr("Text Pointer"), IconLoader::load(QLatin1Literal("textPointer.svg")), Qt::Key_C, Tools::TextPointer);
+	menu->addAction(action);
+	action = createAction(tr("Text Arrow"), IconLoader::load(QLatin1Literal("textArrow.svg")), Qt::Key_H, Tools::TextArrow);
 	menu->addAction(action);
 	button = createButton(menu);
 	mLayout->addWidget(button, 2, 0);

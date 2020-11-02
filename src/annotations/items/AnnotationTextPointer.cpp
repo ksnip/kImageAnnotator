@@ -52,9 +52,13 @@ Tools AnnotationTextPointer::toolType() const
 QPainterPath AnnotationTextPointer::shape() const
 {
 	auto path = AbstractAnnotationItem::shape();
-	auto font = textProperties()->font();
-	auto margin = textProperties()->width();
-	path.addRect(mTextHandler.getTextRect(mRect, font, margin));
+
+	if(!hasFill()){
+		auto font = textProperties()->font();
+		auto margin = textProperties()->width();
+		path.addRect(mTextHandler.getTextRect(mRect, font, margin));
+	}
+
 	return path;
 }
 
@@ -108,7 +112,7 @@ void AnnotationTextPointer::inputMethodEvent(QInputMethodEvent *event)
 
 void AnnotationTextPointer::paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget)
 {
-	// Paint border
+	// Paint border and fill
 	AbstractAnnotationRect::paint(painter, style, widget);
 
 	// Paint Text

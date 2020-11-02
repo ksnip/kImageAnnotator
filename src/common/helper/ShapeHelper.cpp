@@ -152,9 +152,9 @@ QRectF ShapeHelper::setRectPointAtIndex(const QRectF &rect, int index, const QPo
 	return updatedRect;
 }
 
-QPainterPath ShapeHelper::smoothOut(const QPainterPath &path, int smootFactor)
+QPainterPath ShapeHelper::smoothOut(const QPainterPath &path, int smoothFactor)
 {
-	auto points = getPathPoints(path, smootFactor);
+	auto points = getPathPoints(path, smoothFactor);
 
 	// Don't proceed if we only have 3 or less points.
 	if (points.count() < 3) {
@@ -239,6 +239,31 @@ double ShapeHelper::getRoundingRate(const QPointF &point1, const QPointF &point2
 		rat = 0.5;
 	}
 	return rat;
+}
+
+QPointF ShapeHelper::intersectionBetweenRectAndLineFromCenter(const QLineF &line, const QRectF &rect)
+{
+	QLineF leftLine(rect.bottomLeft(), rect.topLeft());
+	QLineF topLine(rect.topLeft(), rect.topRight());
+	QLineF rightLine(rect.topRight(), rect.bottomRight());
+	QLineF bottomLine(rect.bottomLeft(), rect.bottomRight());
+
+	QPointF intersectionPoint;
+	if(linesIntersect(line, leftLine, intersectionPoint)) {
+		return intersectionPoint;
+	} else if(linesIntersect(line, topLine, intersectionPoint)) {
+		return intersectionPoint;
+	} else if(linesIntersect(line, rightLine, intersectionPoint)) {
+		return intersectionPoint;
+	} else if(linesIntersect(line, bottomLine, intersectionPoint)) {
+		return intersectionPoint;
+	}
+	return intersectionPoint;
+}
+
+bool ShapeHelper::linesIntersect(const QLineF &line1, const QLineF &line2, QPointF &intersection)
+{
+	return line1.intersect(line2, &intersection) == QLineF::BoundedIntersection;
 }
 
 } // namespace kImageAnnotator

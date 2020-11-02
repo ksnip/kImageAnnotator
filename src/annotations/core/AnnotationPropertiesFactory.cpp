@@ -57,6 +57,7 @@ PropertiesPtr AnnotationPropertiesFactory::createPropertiesObject(Tools toolType
 		case Tools::NumberArrow:
 		case Tools::Text:
 		case Tools::TextPointer:
+		case Tools::TextArrow:
 			return PropertiesPtr(new AnnotationTextProperties());
 		case Tools::Blur:
 		case Tools::Pixelate:
@@ -86,37 +87,16 @@ void AnnotationPropertiesFactory::setTextColor(const PropertiesPtr &properties) 
 
 void AnnotationPropertiesFactory::setWidthSize(const PropertiesPtr &properties, Tools toolType) const
 {
-	switch (toolType) {
-		case Tools::NumberPointer:
-			properties->setWidth(1);
-			break;
-		case Tools::MarkerPen:
-			properties->setWidth(mSettingsProvider->toolWidth() * 3);
-			break;
-		default:
-			properties->setWidth(mSettingsProvider->toolWidth());
+	if(toolType == Tools::MarkerPen) {
+		properties->setWidth(mSettingsProvider->toolWidth() * 3);
+	} else {
+		properties->setWidth(mSettingsProvider->toolWidth());
 	}
 }
 
 void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, Tools toolType) const
 {
-	switch (toolType) {
-		case Tools::MarkerPen:
-			properties->setFillType(FillModes::BorderAndNoFill);
-			break;
-		case Tools::MarkerRect:
-		case Tools::MarkerEllipse:
-			properties->setFillType(FillModes::NoBorderAndFill);
-			break;
-		case Tools::Image:
-		case Tools::Sticker:
-		case Tools::NumberPointer:
-		case Tools::TextPointer:
-			properties->setFillType(FillModes::BorderAndFill);
-			break;
-		default:
-			properties->setFillType(mSettingsProvider->fillType());
-	}
+	properties->setFillType(mSettingsProvider->fillType());
 }
 
 void AnnotationPropertiesFactory::setShadowEnabled(const PropertiesPtr &properties, Tools toolType) const
