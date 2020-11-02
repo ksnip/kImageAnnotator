@@ -15,6 +15,7 @@
         <file alias="select.svg" >icons/dark/select.svg</file>
         <file alias="sticker.svg" >icons/dark/sticker.svg</file>
         <file alias="text.svg" >icons/dark/text.svg</file>
+        <file alias="textPointer.svg" >icons/dark/textPointer.svg</file>
         <file alias="ellipse.svg" >icons/dark/ellipse.svg</file>
         <file alias="blur.svg" >icons/dark/blur.svg</file>
         <file alias="pixelate.svg" >icons/dark/pixelate.svg</file>
@@ -49,6 +50,7 @@
         <file alias="select.svg" >icons/light/select.svg</file>
         <file alias="sticker.svg" >icons/light/sticker.svg</file>
         <file alias="text.svg" >icons/light/text.svg</file>
+        <file alias="textPointer.svg" >icons/light/textPointer.svg</file>
         <file alias="ellipse.svg" >icons/light/ellipse.svg</file>
         <file alias="blur.svg" >icons/light/blur.svg</file>
         <file alias="pixelate.svg" >icons/light/pixelate.svg</file>

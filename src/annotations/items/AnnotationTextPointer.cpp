@@ -27,7 +27,7 @@ AnnotationTextPointer::AnnotationTextPointer(const QPointF &startPosition, const
 	setupFlags();
 	connectSlots();
 	mRect->setWidth(20);
-	mRect->setHeight(26);
+	mRect->setHeight(properties->font().pixelSize());
 }
 
 AnnotationTextPointer::AnnotationTextPointer(const AnnotationTextPointer &other) :
