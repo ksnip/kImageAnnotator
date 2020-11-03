@@ -271,5 +271,17 @@
         <source>Pixelate</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Text Pointer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Number Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

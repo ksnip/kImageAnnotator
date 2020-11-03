@@ -70,14 +70,6 @@
         <source>Obfuscation Factor</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Blur Radius</source>
-        <translation>Radio de desenfoque</translation>
-    </message>
-    <message>
-        <source>Sticker</source>
-        <translation>Adhesivo</translation>
-    </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationTabContextMenu</name>
@@ -210,7 +202,7 @@
     <name>kImageAnnotator::StickerPicker</name>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Adhesivo</translation>
     </message>
 </context>
 <context>
@@ -277,6 +269,18 @@
     </message>
     <message>
         <source>Pixelate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text Pointer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Number Arrow</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
