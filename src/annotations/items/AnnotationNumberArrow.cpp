@@ -22,34 +22,18 @@
 namespace kImageAnnotator {
 
 AnnotationNumberArrow::AnnotationNumberArrow(const QPointF &startPosition, const kImageAnnotator::TextPropertiesPtr &properties) :
-	AbstractAnnotationPointerRect(startPosition, properties)
+	AnnotationNumberPointer(startPosition, properties)
 {
 }
 
 AnnotationNumberArrow::AnnotationNumberArrow(const kImageAnnotator::AnnotationNumberArrow &other) :
-	AbstractAnnotationPointerRect(other),
-	BaseAnnotationNumber(other)
+	AnnotationNumberPointer(other)
 {
-	BaseAnnotationNumber::updateRect(mRect, textProperties()->font());
-
-	updateShape();
 }
 
 Tools AnnotationNumberArrow::toolType() const
 {
 	return Tools::NumberArrow;
-}
-
-TextPropertiesPtr AnnotationNumberArrow::textProperties() const
-{
-	return AbstractAnnotationItem::properties().staticCast<AnnotationTextProperties>();
-}
-
-QPainterPath AnnotationNumberArrow::shape() const
-{
-	auto path = AbstractAnnotationPointerRect::shape();
-	path.addRect(*mRect);
-	return path;
 }
 
 void AnnotationNumberArrow::updateShape()
@@ -98,19 +82,6 @@ void AnnotationNumberArrow::paint(QPainter *painter, const QStyleOptionGraphicsI
 	painter->setFont(textProperties()->font());
 	painter->setPen(properties()->textColor());
 	painter->drawText(*mRect, Qt::AlignCenter, numberString());
-}
-
-void AnnotationNumberArrow::updateProperties(const PropertiesPtr &properties)
-{
-	AbstractAnnotationItem::updateProperties(properties);
-	updateRect();
-}
-
-void AnnotationNumberArrow::updateRect()
-{
-	prepareGeometryChange();
-	BaseAnnotationNumber::updateRect(mRect, textProperties()->font());
-	updateShape();
 }
 
 } // namespace kImageAnnotator
