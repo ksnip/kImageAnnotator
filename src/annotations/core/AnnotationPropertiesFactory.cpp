@@ -96,7 +96,19 @@ void AnnotationPropertiesFactory::setWidthSize(const PropertiesPtr &properties, 
 
 void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, Tools toolType) const
 {
-	properties->setFillType(mSettingsProvider->fillType());
+	switch (toolType) {
+		case Tools::MarkerPen:
+		case Tools::MarkerRect:
+		case Tools::MarkerEllipse:
+		case Tools::Image:
+		case Tools::Sticker:
+		case Tools::NumberPointer:
+		case Tools::TextPointer:
+			properties->setFillType(mConfig->toolFillType(toolType));
+			break;
+		default:
+			properties->setFillType(mSettingsProvider->fillType());
+	}
 }
 
 void AnnotationPropertiesFactory::setShadowEnabled(const PropertiesPtr &properties, Tools toolType) const

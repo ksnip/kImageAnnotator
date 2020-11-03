@@ -120,7 +120,7 @@ private:
 	static QColor defaultToolColor(Tools toolType) ;
 	static QColor defaultToolTextColor(Tools toolType) ;
 	static int defaultToolWidth(Tools toolType) ;
-	static FillModes defaultToolFillType(Tools toolType) ;
+	static FillModes defaultToolFillMode(Tools toolType) ;
 	static Tools defaultToolType();
 	static int defaultToolFontSize(Tools toolType) ;
 	static int defaultObfuscateFactor() ;

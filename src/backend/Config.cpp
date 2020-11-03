@@ -46,7 +46,8 @@ Config::Config() :
 		Tools::TextArrow,
 		Tools::Blur,
 		Tools::Pixelate,
-		Tools::Image
+		Tools::Image,
+		Tools::Sticker
 	};
 	initGeneralSettings();
 	initToolSettings();
@@ -340,9 +341,9 @@ void Config::saveToolWidth(Tools toolType, int size)
 FillModes Config::loadToolFillType(Tools toolType)
 {
 	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::toolFillType(toolType), static_cast<int>(defaultToolFillType(toolType))).value<FillModes>();
+		return mConfig.value(ConfigNameHelper::toolFillType(toolType), static_cast<int>(defaultToolFillMode(toolType))).value<FillModes>();
 	} else {
-		return defaultToolFillType(toolType);
+		return defaultToolFillMode(toolType);
 	}
 }
 
@@ -462,7 +463,7 @@ int Config::defaultToolWidth(Tools toolType)
 	}
 }
 
-FillModes Config::defaultToolFillType(Tools toolType)
+FillModes Config::defaultToolFillMode(Tools toolType)
 {
 	switch (toolType) {
 		case Tools::Arrow:

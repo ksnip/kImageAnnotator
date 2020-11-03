@@ -21,7 +21,8 @@
 
 namespace kImageAnnotator {
 
-AbstractAnnotationItem::AbstractAnnotationItem(const PropertiesPtr &properties) : mShadowEffect(nullptr)
+AbstractAnnotationItem::AbstractAnnotationItem(const PropertiesPtr &properties) :
+	mShadowEffect(nullptr)
 {
 	Q_ASSERT(properties != nullptr);
 
@@ -35,7 +36,8 @@ AbstractAnnotationItem::AbstractAnnotationItem(const PropertiesPtr &properties) 
 	addShadowIfRequired();
 }
 
-AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &other) : mShadowEffect(nullptr)
+AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &other) :
+	mShadowEffect(nullptr)
 {
 	mProperties = other.mProperties->clone();
 	mShape = new QPainterPath(*other.mShape);

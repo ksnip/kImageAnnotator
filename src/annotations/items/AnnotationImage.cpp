@@ -21,7 +21,8 @@
 
 namespace kImageAnnotator {
 
-kImageAnnotator::AnnotationImage::AnnotationImage(const QPointF &startPosition, const QPixmap &image, const PropertiesPtr &properties) : AnnotationRect(startPosition, properties)
+kImageAnnotator::AnnotationImage::AnnotationImage(const QPointF &startPosition, const QPixmap &image, const PropertiesPtr &properties) :
+	AnnotationRect(startPosition, properties)
 {
     mImage = image;
     mRect->setRect(mRect->x(), mRect->y(), image.width(), image.height());
@@ -31,6 +32,7 @@ kImageAnnotator::AnnotationImage::AnnotationImage(const QPointF &startPosition, 
 AnnotationImage::AnnotationImage(const AnnotationImage &other) : AnnotationRect(other)
 {
     this->mImage = other.mImage;
+	updateShape();
 }
 
 Tools AnnotationImage::toolType() const
