@@ -273,15 +273,15 @@
     </message>
     <message>
         <source>Text Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Pointeur de texte</translation>
     </message>
     <message>
         <source>Text Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Flèche de texte</translation>
     </message>
     <message>
         <source>Number Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Flèche de nombre</translation>
     </message>
 </context>
 </TS>
