@@ -230,6 +230,7 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 		} else if (mCurrentItem != nullptr) {
 			mCurrentItem->finish();
 			mCurrentItem = nullptr;
+			mSettingsProvider->activateSelectTool();
 		}
 	}
 
