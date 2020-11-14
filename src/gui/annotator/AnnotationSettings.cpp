@@ -121,6 +121,8 @@ void AnnotationSettings::initGui()
 	QLabel *mZoomLevelLabel = new QLabel(tr("Zoom:"));
 	mZoomLevelIndicator->setEnabled(false);
 	mZoomLevelIndicator->setRange(0, 1000);
+	mZoomLevelIndicator->setButtonSymbols(QAbstractSpinBox::NoButtons);
+	mZoomLevelIndicator->setSuffix(QStringLiteral("%"));
 
 	QHBoxLayout *zoomLayout = new QHBoxLayout();
 	zoomLayout->addWidget(mZoomLevelLabel);
