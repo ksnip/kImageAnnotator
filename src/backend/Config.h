@@ -74,6 +74,9 @@ public slots:
 	int smoothFactor() const;
 	void setSmoothFactor(int factor);
 
+	bool switchToSelectToolAfterDrawingItem() const;
+	void setSwitchToSelectToolAfterDrawingItem(bool enabled);
+
 	int obfuscationFactor(Tools toolType) const;
 	void setObfuscationFactor(int factor, Tools toolType);
 
@@ -91,6 +94,7 @@ private:
 	bool mSmoothPathEnabled;
 	bool mSaveToolSelection;
 	int mSmoothFactor;
+	bool mSwitchToSelectToolAfterDrawingItem;
 
 	void initToolSettings();
 	void initSelectedTool();

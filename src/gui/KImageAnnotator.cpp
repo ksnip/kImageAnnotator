@@ -152,6 +152,12 @@ void KImageAnnotator::setSmoothFactor(int factor)
 	d->mConfig.setSmoothFactor(factor);
 }
 
+void KImageAnnotator::setSwitchToSelectToolAfterDrawingItem(bool enabled)
+{
+	Q_D(KImageAnnotator);
+	d->mConfig.setSwitchToSelectToolAfterDrawingItem(enabled);
+}
+
 void KImageAnnotator::setTabBarAutoHide(bool enabled)
 {
 	Q_D(KImageAnnotator);
