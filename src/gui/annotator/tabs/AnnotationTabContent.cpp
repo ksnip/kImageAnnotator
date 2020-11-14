@@ -30,6 +30,12 @@ AnnotationTabContent::AnnotationTabContent(const QPixmap &pixmap, Config *config
 	mAnnotationArea->loadImage(pixmap);
 	mMainLayout->addWidget(mAnnotationView);
 	setLayout(mMainLayout);
+
+	connect(mAnnotationView->zoomValueProvider(), &ZoomValueProvider::zoomValueChanged,
+			[settingsProvider](double value) {
+		settingsProvider->updateZoomLevel(value);
+	});
+	settingsProvider->updateZoomLevel(mAnnotationView->zoomValueProvider()->zoomValue());
 }
 
 AnnotationTabContent::~AnnotationTabContent()

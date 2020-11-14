@@ -55,6 +55,7 @@ public:
 	QString sticker() const override;
 	ImageEffects effect() const override;
 	void updateFirstBadgeNumber(int number) override;
+	void updateZoomLevel(double value) override;
 	void reloadConfig();
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
 
@@ -70,6 +71,7 @@ private:
 	NumberPicker *mFirstNumberPicker;
 	NumberPicker *mObfuscateFactorPicker;
 	StickerPicker *mStickerPicker;
+	QSpinBox *mZoomLevelIndicator;
 	ImageEffectPicker *mEffectPicker;
 	Config *mConfig;
 	WidgetConfigurator mWidgetConfigurator;

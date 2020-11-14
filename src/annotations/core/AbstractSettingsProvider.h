@@ -46,6 +46,7 @@ public:
 	virtual QString sticker() const = 0;
 	virtual ImageEffects effect() const = 0;
 	virtual void updateFirstBadgeNumber(int number) = 0;
+	virtual void updateZoomLevel(double value) = 0;
 	void setActiveListener(ISettingsListener *settingsListener);
 
 protected:

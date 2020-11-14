@@ -51,6 +51,7 @@ public:
 	ImageEffects effect() const override;
 	void setSticker(const QString &stickerPath);
 	void updateFirstBadgeNumber(int number) override;
+	void updateZoomLevel(double value) override;
 
 private:
 	Tools mToolType;
@@ -61,6 +62,7 @@ private:
 	FillModes mFillType;
 	int mBlurRadius;
 	QString mStickerPath;
+	double mZoomLevel;
 };
 
 #endif //KIMAGEANNOTATOR_MOCKSETTINGSPROVIDER_H

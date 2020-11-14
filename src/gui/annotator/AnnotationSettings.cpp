@@ -35,6 +35,7 @@ AnnotationSettings::AnnotationSettings(Config *config) :
 	mFirstNumberPicker(new NumberPicker(this)),
 	mObfuscateFactorPicker(new NumberPicker(this)),
 	mStickerPicker(new StickerPicker(this)),
+	mZoomLevelIndicator(new QSpinBox(this)),
 	mEffectPicker(new ImageEffectPicker(this))
 {
 	initGui();
@@ -53,6 +54,7 @@ AnnotationSettings::~AnnotationSettings()
 	delete mFirstNumberPicker;
 	delete mObfuscateFactorPicker;
 	delete mStickerPicker;
+	delete mZoomLevelIndicator;
 	delete mToolLayout;
 }
 
@@ -116,6 +118,14 @@ void AnnotationSettings::initGui()
 	mObfuscateFactorPicker->setToolTip(tr("Obfuscation Factor"));
 	mObfuscateFactorPicker->setRange(1, 20);
 
+	QLabel *mZoomLevelLabel = new QLabel(tr("Zoom:"));
+	mZoomLevelIndicator->setEnabled(false);
+	mZoomLevelIndicator->setRange(0, 1000);
+
+	QHBoxLayout *zoomLayout = new QHBoxLayout();
+	zoomLayout->addWidget(mZoomLevelLabel);
+	zoomLayout->addWidget(mZoomLevelIndicator);
+
 	mToolLayout->addWidget(mToolPicker);
 	mMainLayout->addLayout(mToolLayout);
 	mMainLayout->addSpacing(10);
@@ -129,6 +139,8 @@ void AnnotationSettings::initGui()
 	mMainLayout->addWidget(mFirstNumberPicker);
 	mMainLayout->addWidget(mObfuscateFactorPicker);
 	mMainLayout->addWidget(mStickerPicker);
+	mMainLayout->addStretch(1);
+	mMainLayout->addLayout(zoomLayout);
 	mMainLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 	mMainLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -303,6 +315,12 @@ void AnnotationSettings::reloadConfig()
 void AnnotationSettings::setStickers(const QStringList &stickerPaths, bool keepDefault)
 {
 	mStickerPicker->setStickers(stickerPaths, keepDefault);
+}
+
+void AnnotationSettings::updateZoomLevel(double value)
+{
+	auto zoomValue = qRound(value * 100);
+	mZoomLevelIndicator->setValue(zoomValue);
 }
 
 void AnnotationSettings::effectChanged(ImageEffects effect)
