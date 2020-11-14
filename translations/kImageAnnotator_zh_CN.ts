@@ -284,4 +284,11 @@
         <translation>数字箭头标注</translation>
     </message>
 </context>
+<context>
+    <name>kImageAnnotator::ZoomIndicator</name>
+    <message>
+        <source>Zoom Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>
