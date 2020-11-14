@@ -118,3 +118,8 @@ void MockSettingsProvider::updateFirstBadgeNumber(int number)
 {
 
 }
+
+void MockSettingsProvider::updateZoomLevel(double value)
+{
+    mZoomLevel = value;
+}

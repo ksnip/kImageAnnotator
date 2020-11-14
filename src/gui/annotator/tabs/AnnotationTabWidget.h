@@ -38,6 +38,7 @@ public:
 	int addTab(const QPixmap &image, const QString &title, const QString &toolTip);
 	AnnotationArea* currentAnnotationArea() const;
 	AnnotationArea *annotationAreaAt(int index) const;
+	ZoomValueProvider* currentZoomValueProvider() const;
 	QAction* undoAction() const;
 	QAction* redoAction() const;
 	void updateTabInfo(int index, const QString &title, const QString &toolTip);
@@ -67,7 +68,7 @@ private slots:
 	void redoTriggered() const;
 	void updateCurrentWidget(int index);
 	void showTabContextMenu(const QPoint &pos);
-	void updateSettingsListener();
+	void tabChanged();
 };
 
 } // namespace kImageAnnotator

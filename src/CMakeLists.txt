@@ -119,6 +119,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListMenuItem.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListItemGroup.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ImageEffectPicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ZoomIndicator.cpp
 	)
 
 set(KIMAGEANNOTATOR_SRCS ${KIMAGEANNOTATOR_SRCS} PARENT_SCOPE)

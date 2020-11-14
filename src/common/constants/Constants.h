@@ -31,7 +31,7 @@ const int MinPathResizeRectSize = 20;
 
 const int ResizeHandleSize = 16;
 
-const QSize SettingsWidgetSize(54, 32);
+const QSize SettingsWidgetSize(64, 32);
 
 const QSize ToolButtonIconSize(28, 28);
 
@@ -39,7 +39,7 @@ const QSize MenuItemIconSize(20, 20);
 
 const QSize SettingsWidgetIconSize(20, 20);
 
-const QColor HoverColor(QStringLiteral("#add8e6"));
+const QColor HoverColor(QLatin1Literal("#add8e6"));
 
 } // namespace Constants
 

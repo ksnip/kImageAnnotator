@@ -29,6 +29,7 @@
 #include "src/widgets/FillModePicker.h"
 #include "src/widgets/StickerPicker.h"
 #include "src/widgets/ImageEffectPicker.h"
+#include "src/widgets/ZoomIndicator.h"
 #include "src/backend/Config.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 #include "src/annotations/properties/AnnotationObfuscateProperties.h"
@@ -55,6 +56,7 @@ public:
 	QString sticker() const override;
 	ImageEffects effect() const override;
 	void updateFirstBadgeNumber(int number) override;
+	void updateZoomLevel(double value) override;
 	void reloadConfig();
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
 
@@ -71,6 +73,7 @@ private:
 	NumberPicker *mObfuscateFactorPicker;
 	StickerPicker *mStickerPicker;
 	ImageEffectPicker *mEffectPicker;
+	ZoomIndicator *mZoomIndicator;
 	Config *mConfig;
 	WidgetConfigurator mWidgetConfigurator;
 	bool mEditExistingItem;

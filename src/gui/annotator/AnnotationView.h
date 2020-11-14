@@ -46,7 +46,6 @@ protected:
 	void mousePressEvent(QMouseEvent *event) override;
 	void mouseReleaseEvent(QMouseEvent *event) override;
 	void wheelEvent(QWheelEvent *event) override;
-	void paintEvent(QPaintEvent *event) override;
 
 private:
 	AnnotationViewZoomer *mAnnotationViewZoomer;

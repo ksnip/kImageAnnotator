@@ -39,7 +39,7 @@ AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvide
 	connect(mRedoAction, &QAction::triggered, this, &AnnotationTabWidget::redoTriggered);
 	connect(mTabBar, &QTabBar::tabMoved, this, &AnnotationTabWidget::tabMoved);
 	connect(mTabBar, &QTabBar::customContextMenuRequested, this, &AnnotationTabWidget::showTabContextMenu);
-	connect(mTabBar, &QTabBar::currentChanged, this, &AnnotationTabWidget::updateSettingsListener);
+	connect(mTabBar, &QTabBar::currentChanged, this, &AnnotationTabWidget::tabChanged);
 
 	connect(mTabContextMenu, &AnnotationTabContextMenu::closeTab, mTabCloser, &AnnotationTabCloser::closeTabTriggered);
 	connect(mTabContextMenu, &AnnotationTabContextMenu::closeOtherTabs, mTabCloser, &AnnotationTabCloser::closeOtherTabsTriggered);
@@ -64,6 +64,11 @@ AnnotationArea* AnnotationTabWidget::currentAnnotationArea() const
 AnnotationArea *AnnotationTabWidget::annotationAreaAt(int index) const
 {
 	return widget(index) != nullptr ? dynamic_cast<AnnotationTabContent*>(widget(index))->annotationArea() : nullptr;
+}
+
+ZoomValueProvider *AnnotationTabWidget::currentZoomValueProvider() const
+{
+	return currentWidget() != nullptr ? dynamic_cast<AnnotationTabContent *>(currentWidget())->zoomValueProvider() : nullptr;
 }
 
 QAction *AnnotationTabWidget::undoAction() const
@@ -129,9 +134,13 @@ void AnnotationTabWidget::showTabContextMenu(const QPoint &pos)
 	}
 }
 
-void AnnotationTabWidget::updateSettingsListener()
+void AnnotationTabWidget::tabChanged()
 {
 	mSettingsProvider->setActiveListener(currentAnnotationArea());
+	const auto zoomValueProvider = currentZoomValueProvider();
+	if(zoomValueProvider != nullptr) {
+		mSettingsProvider->updateZoomLevel(zoomValueProvider->zoomValue());
+	}
 }
 
 void AnnotationTabWidget::addContextMenuActions(const QList<QAction *> &actions)

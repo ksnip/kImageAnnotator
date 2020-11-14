@@ -35,7 +35,8 @@ AnnotationSettings::AnnotationSettings(Config *config) :
 	mFirstNumberPicker(new NumberPicker(this)),
 	mObfuscateFactorPicker(new NumberPicker(this)),
 	mStickerPicker(new StickerPicker(this)),
-	mEffectPicker(new ImageEffectPicker(this))
+	mEffectPicker(new ImageEffectPicker(this)),
+	mZoomIndicator(new ZoomIndicator(this))
 {
 	initGui();
 	loadToolTypeFromConfig();
@@ -53,6 +54,7 @@ AnnotationSettings::~AnnotationSettings()
 	delete mFirstNumberPicker;
 	delete mObfuscateFactorPicker;
 	delete mStickerPicker;
+	delete mZoomIndicator;
 	delete mToolLayout;
 }
 
@@ -129,6 +131,8 @@ void AnnotationSettings::initGui()
 	mMainLayout->addWidget(mFirstNumberPicker);
 	mMainLayout->addWidget(mObfuscateFactorPicker);
 	mMainLayout->addWidget(mStickerPicker);
+	mMainLayout->addStretch(1);
+	mMainLayout->addWidget(mZoomIndicator);
 	mMainLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 	mMainLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -303,6 +307,11 @@ void AnnotationSettings::reloadConfig()
 void AnnotationSettings::setStickers(const QStringList &stickerPaths, bool keepDefault)
 {
 	mStickerPicker->setStickers(stickerPaths, keepDefault);
+}
+
+void AnnotationSettings::updateZoomLevel(double value)
+{
+	mZoomIndicator->setZoomLevel(value);
 }
 
 void AnnotationSettings::effectChanged(ImageEffects effect)
