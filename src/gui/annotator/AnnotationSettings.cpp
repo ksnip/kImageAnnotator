@@ -35,8 +35,8 @@ AnnotationSettings::AnnotationSettings(Config *config) :
 	mFirstNumberPicker(new NumberPicker(this)),
 	mObfuscateFactorPicker(new NumberPicker(this)),
 	mStickerPicker(new StickerPicker(this)),
-	mZoomLevelIndicator(new QSpinBox(this)),
-	mEffectPicker(new ImageEffectPicker(this))
+	mEffectPicker(new ImageEffectPicker(this)),
+	mZoomIndicator(new ZoomIndicator(this))
 {
 	initGui();
 	loadToolTypeFromConfig();
@@ -54,7 +54,7 @@ AnnotationSettings::~AnnotationSettings()
 	delete mFirstNumberPicker;
 	delete mObfuscateFactorPicker;
 	delete mStickerPicker;
-	delete mZoomLevelIndicator;
+	delete mZoomIndicator;
 	delete mToolLayout;
 }
 
@@ -118,16 +118,6 @@ void AnnotationSettings::initGui()
 	mObfuscateFactorPicker->setToolTip(tr("Obfuscation Factor"));
 	mObfuscateFactorPicker->setRange(1, 20);
 
-	QLabel *mZoomLevelLabel = new QLabel(tr("Zoom:"));
-	mZoomLevelIndicator->setReadOnly(true);
-	mZoomLevelIndicator->setRange(0, 1000);
-	mZoomLevelIndicator->setButtonSymbols(QAbstractSpinBox::NoButtons);
-	mZoomLevelIndicator->setSuffix(QStringLiteral("%"));
-
-	QHBoxLayout *zoomLayout = new QHBoxLayout();
-	zoomLayout->addWidget(mZoomLevelLabel);
-	zoomLayout->addWidget(mZoomLevelIndicator);
-
 	mToolLayout->addWidget(mToolPicker);
 	mMainLayout->addLayout(mToolLayout);
 	mMainLayout->addSpacing(10);
@@ -142,7 +132,7 @@ void AnnotationSettings::initGui()
 	mMainLayout->addWidget(mObfuscateFactorPicker);
 	mMainLayout->addWidget(mStickerPicker);
 	mMainLayout->addStretch(1);
-	mMainLayout->addLayout(zoomLayout);
+	mMainLayout->addWidget(mZoomIndicator);
 	mMainLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 	mMainLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -321,8 +311,7 @@ void AnnotationSettings::setStickers(const QStringList &stickerPaths, bool keepD
 
 void AnnotationSettings::updateZoomLevel(double value)
 {
-	auto zoomValue = qRound(value * 100);
-	mZoomLevelIndicator->setValue(zoomValue);
+	mZoomIndicator->setZoomLevel(value);
 }
 
 void AnnotationSettings::effectChanged(ImageEffects effect)

@@ -23,19 +23,18 @@ namespace kImageAnnotator {
 
 AnnotationTabContent::AnnotationTabContent(const QPixmap &pixmap, Config *config, AbstractSettingsProvider *settingsProvider) :
 	mAnnotationView(new AnnotationView(this)),
-	mAnnotationArea(new AnnotationArea(config, settingsProvider, new DevicePixelRatioScaler, mAnnotationView->zoomValueProvider())),
-	mMainLayout(new QHBoxLayout(this))
+	mZoomValueProvider(mAnnotationView->zoomValueProvider()),
+	mAnnotationArea(new AnnotationArea(config, settingsProvider, new DevicePixelRatioScaler, mZoomValueProvider)),
+	mMainLayout(new QHBoxLayout(this)),
+	mSettingsProvider(settingsProvider)
 {
 	mAnnotationView->setScene(mAnnotationArea);
 	mAnnotationArea->loadImage(pixmap);
 	mMainLayout->addWidget(mAnnotationView);
 	setLayout(mMainLayout);
 
-	connect(mAnnotationView->zoomValueProvider(), &ZoomValueProvider::zoomValueChanged,
-			[settingsProvider](double value) {
-		settingsProvider->updateZoomLevel(value);
-	});
-	settingsProvider->updateZoomLevel(mAnnotationView->zoomValueProvider()->zoomValue());
+	connect(mZoomValueProvider, &ZoomValueProvider::zoomValueChanged, this, &AnnotationTabContent::zoomValueChange);
+	zoomValueChange(mZoomValueProvider->zoomValue());
 }
 
 AnnotationTabContent::~AnnotationTabContent()
@@ -48,6 +47,11 @@ AnnotationTabContent::~AnnotationTabContent()
 AnnotationArea* AnnotationTabContent::annotationArea() const
 {
 	return mAnnotationArea;
+}
+
+void AnnotationTabContent::zoomValueChange(double value)
+{
+	mSettingsProvider->updateZoomLevel(value);
 }
 
 } // namespace kImageAnnotator

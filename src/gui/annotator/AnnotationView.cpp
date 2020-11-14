@@ -28,7 +28,6 @@ AnnotationView::AnnotationView(QWidget *parent) :
 {
 	setTransformationAnchor(QGraphicsView::NoAnchor);
 	disableDragging();
-	setViewportUpdateMode(QGraphicsView::ViewportUpdateMode::FullViewportUpdate);
 }
 
 ZoomValueProvider *AnnotationView::zoomValueProvider() const

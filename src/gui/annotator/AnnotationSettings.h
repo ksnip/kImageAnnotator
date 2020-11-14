@@ -29,6 +29,7 @@
 #include "src/widgets/FillModePicker.h"
 #include "src/widgets/StickerPicker.h"
 #include "src/widgets/ImageEffectPicker.h"
+#include "src/widgets/ZoomIndicator.h"
 #include "src/backend/Config.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 #include "src/annotations/properties/AnnotationObfuscateProperties.h"
@@ -71,8 +72,8 @@ private:
 	NumberPicker *mFirstNumberPicker;
 	NumberPicker *mObfuscateFactorPicker;
 	StickerPicker *mStickerPicker;
-	QSpinBox *mZoomLevelIndicator;
 	ImageEffectPicker *mEffectPicker;
+	ZoomIndicator *mZoomIndicator;
 	Config *mConfig;
 	WidgetConfigurator mWidgetConfigurator;
 	bool mEditExistingItem;

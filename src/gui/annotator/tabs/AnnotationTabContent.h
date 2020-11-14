@@ -42,8 +42,13 @@ public:
 
 private:
 	AnnotationView *mAnnotationView;
+	ZoomValueProvider *mZoomValueProvider;
 	AnnotationArea *mAnnotationArea;
 	QHBoxLayout *mMainLayout;
+	AbstractSettingsProvider *mSettingsProvider;
+
+private slots:
+	void zoomValueChange(double value);
 };
 
 } // namespace kImageAnnotator
