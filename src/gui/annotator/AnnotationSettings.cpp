@@ -119,7 +119,7 @@ void AnnotationSettings::initGui()
 	mObfuscateFactorPicker->setRange(1, 20);
 
 	QLabel *mZoomLevelLabel = new QLabel(tr("Zoom:"));
-	mZoomLevelIndicator->setEnabled(false);
+	mZoomLevelIndicator->setReadOnly(true);
 	mZoomLevelIndicator->setRange(0, 1000);
 	mZoomLevelIndicator->setButtonSymbols(QAbstractSpinBox::NoButtons);
 	mZoomLevelIndicator->setSuffix(QStringLiteral("%"));
