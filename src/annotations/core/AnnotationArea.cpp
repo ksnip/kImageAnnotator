@@ -34,9 +34,11 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 	mItemFactory(new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider)),
 	mItems(new QList<AbstractAnnotationItem *>()),
 	mItemCopier(new AnnotationItemClipboard(mItemModifier)),
-	mDevicePixelRatioScaler(devicePixelRatioScaler)
+	mDevicePixelRatioScaler(devicePixelRatioScaler),
+	mConfig(config)
 {
 	Q_ASSERT(mSettingsProvider != nullptr);
+	Q_ASSERT(mConfig != nullptr);
 
 	addItem(mItemModifier);
 
@@ -230,7 +232,9 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 		} else if (mCurrentItem != nullptr) {
 			mCurrentItem->finish();
 			mCurrentItem = nullptr;
-			mSettingsProvider->activateSelectTool();
+			if (mConfig->switchToSelectToolAfterDrawingItem()) {
+				mSettingsProvider->activateSelectTool();
+			}
 		}
 	}
 

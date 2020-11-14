@@ -57,6 +57,7 @@ public Q_SLOTS:
 	void setSmoothPathEnabled(bool enabled);
 	void setSaveToolSelection(bool enabled);
 	void setSmoothFactor(int factor);
+	void setSwitchToSelectToolAfterDrawingItem(bool enabled);
 	void setTabBarAutoHide(bool enabled);
 	void removeTab(int index);
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);

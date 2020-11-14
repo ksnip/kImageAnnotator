@@ -100,6 +100,7 @@ private:
 	QAction *mRedoAction;
 	IDevicePixelRatioScaler *mDevicePixelRatioScaler;
 	KeyEventListener mKeyListener;
+	Config *mConfig;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

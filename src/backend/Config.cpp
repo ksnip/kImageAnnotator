@@ -26,7 +26,8 @@ Config::Config() :
 	mItemShadowEnabled(false),
 	mSmoothPathEnabled(false),
 	mSaveToolSelection(false),
-	mSmoothFactor(0)
+	mSmoothFactor(0),
+	mSwitchToSelectToolAfterDrawingItem(false)
 {
 	mAllTools = QList<Tools>{
 		Tools::Pen,
@@ -199,6 +200,16 @@ void Config::setSmoothFactor(int factor)
 	mSmoothFactor = factor;
 }
 
+bool Config::switchToSelectToolAfterDrawingItem() const
+{
+	return mSwitchToSelectToolAfterDrawingItem;
+}
+
+void Config::setSwitchToSelectToolAfterDrawingItem(bool enabled)
+{
+	mSwitchToSelectToolAfterDrawingItem = enabled;
+}
+
 int Config::obfuscationFactor(Tools toolType) const
 {
 	return mToolToObfuscationFactor[toolType];
@@ -285,6 +296,7 @@ void Config::initGeneralSettings()
 	mSmoothPathEnabled = true;
 	mItemShadowEnabled = true;
 	mSmoothFactor = 7;
+	mSwitchToSelectToolAfterDrawingItem = false;
 }
 
 QColor Config::loadToolColor(Tools toolType)
