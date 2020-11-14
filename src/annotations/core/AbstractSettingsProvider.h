@@ -24,6 +24,7 @@
 #include <QList>
 
 #include "ISettingsListener.h"
+#include "ZoomValueProvider.h"
 #include "src/common/enum/FillModes.h"
 #include "src/annotations/items/AbstractAnnotationItem.h"
 

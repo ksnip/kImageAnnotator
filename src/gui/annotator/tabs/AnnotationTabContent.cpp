@@ -34,7 +34,6 @@ AnnotationTabContent::AnnotationTabContent(const QPixmap &pixmap, Config *config
 	setLayout(mMainLayout);
 
 	connect(mZoomValueProvider, &ZoomValueProvider::zoomValueChanged, this, &AnnotationTabContent::zoomValueChange);
-	zoomValueChange(mZoomValueProvider->zoomValue());
 }
 
 AnnotationTabContent::~AnnotationTabContent()
@@ -47,6 +46,11 @@ AnnotationTabContent::~AnnotationTabContent()
 AnnotationArea* AnnotationTabContent::annotationArea() const
 {
 	return mAnnotationArea;
+}
+
+ZoomValueProvider *AnnotationTabContent::zoomValueProvider() const
+{
+	return mAnnotationView->zoomValueProvider();
 }
 
 void AnnotationTabContent::zoomValueChange(double value)
