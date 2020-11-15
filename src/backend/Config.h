@@ -77,8 +77,14 @@ public slots:
 	bool switchToSelectToolAfterDrawingItem() const;
 	void setSwitchToSelectToolAfterDrawingItem(bool enabled);
 
+	bool startingNumberUpdatesExistingItems() const;
+	void setStartingNumberUpdatesExistingItems(bool enabled);
+
 	int obfuscationFactor(Tools toolType) const;
 	void setObfuscationFactor(int factor, Tools toolType);
+
+signals:
+	void startingNumberUpdatesExistingItemsChanged(bool value) const;
 
 private:
 	QSettings mConfig;
@@ -95,6 +101,7 @@ private:
 	bool mSaveToolSelection;
 	int mSmoothFactor;
 	bool mSwitchToSelectToolAfterDrawingItem;
+	bool mStartingNumberUpdatesExistingItems;
 
 	void initToolSettings();
 	void initSelectedTool();

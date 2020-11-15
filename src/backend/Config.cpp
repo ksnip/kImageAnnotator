@@ -27,7 +27,8 @@ Config::Config() :
 	mSmoothPathEnabled(false),
 	mSaveToolSelection(false),
 	mSmoothFactor(0),
-	mSwitchToSelectToolAfterDrawingItem(false)
+	mSwitchToSelectToolAfterDrawingItem(false),
+	mStartingNumberUpdatesExistingItems(true)
 {
 	mAllTools = QList<Tools>{
 		Tools::Pen,
@@ -210,6 +211,19 @@ void Config::setSwitchToSelectToolAfterDrawingItem(bool enabled)
 	mSwitchToSelectToolAfterDrawingItem = enabled;
 }
 
+bool Config::startingNumberUpdatesExistingItems() const
+{
+	return mStartingNumberUpdatesExistingItems;
+}
+
+void Config::setStartingNumberUpdatesExistingItems(bool enabled)
+{
+	if (enabled != mStartingNumberUpdatesExistingItems) {
+		mStartingNumberUpdatesExistingItems = enabled;
+		emit startingNumberUpdatesExistingItemsChanged(enabled);
+	}
+}
+
 int Config::obfuscationFactor(Tools toolType) const
 {
 	return mToolToObfuscationFactor[toolType];
@@ -297,6 +311,7 @@ void Config::initGeneralSettings()
 	mItemShadowEnabled = true;
 	mSmoothFactor = 7;
 	mSwitchToSelectToolAfterDrawingItem = false;
+	mStartingNumberUpdatesExistingItems = true;
 }
 
 QColor Config::loadToolColor(Tools toolType)

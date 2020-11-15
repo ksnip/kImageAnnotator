@@ -40,6 +40,7 @@ public:
 	void reset();
 	void setFirstNumber(int number);
 	int firstNumber() const;
+	void setStartingNumberUpdatesExistingItems(bool value);
 
 public slots:
 	void updateNumbers();
@@ -47,6 +48,7 @@ public slots:
 private:
 	int mFirstNumber;
 	QList<AbstractAnnotationItem *> mItems;
+	bool mStartingNumberUpdatesExistingItems;
 
 	void addItemInner(AbstractAnnotationItem *item);
 };

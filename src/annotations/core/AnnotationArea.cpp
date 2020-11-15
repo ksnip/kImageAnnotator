@@ -54,6 +54,12 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 
 	connect(&mKeyListener, &KeyEventListener::keyPressed, mKeyHelper, &KeyHelper::keyPress);
 	connect(&mKeyListener, &KeyEventListener::keyReleased, mKeyHelper, &KeyHelper::keyRelease);
+
+	connect(mConfig, &Config::startingNumberUpdatesExistingItemsChanged,
+			[this](bool value) {
+		mItemFactory->setStartingNumberUpdatesExistingItems(value);
+	});
+	mItemFactory->setStartingNumberUpdatesExistingItems(mConfig->startingNumberUpdatesExistingItems());
 }
 
 AnnotationArea::~AnnotationArea()

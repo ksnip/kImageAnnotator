@@ -53,6 +53,7 @@ public:
 	void reset();
 	void setFirstBadgeNumber(int number);
 	int firstBadgeNumber() const;
+	void setStartingNumberUpdatesExistingItems(bool value);
 	AbstractAnnotationItem *create(const QPointF &initPosition);
 	AbstractAnnotationItem *create(const QPointF &initPosition, const QPixmap &image);
 	AbstractAnnotationItem *clone(const AbstractAnnotationItem *item);

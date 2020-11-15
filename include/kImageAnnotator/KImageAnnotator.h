@@ -58,6 +58,7 @@ public Q_SLOTS:
 	void setSaveToolSelection(bool enabled);
 	void setSmoothFactor(int factor);
 	void setSwitchToSelectToolAfterDrawingItem(bool enabled);
+	void setStartingNumberUpdatesExistingItems(bool enabled);
 	void setTabBarAutoHide(bool enabled);
 	void removeTab(int index);
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
