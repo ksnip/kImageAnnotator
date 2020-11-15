@@ -288,7 +288,7 @@
     <name>kImageAnnotator::ZoomIndicator</name>
     <message>
         <source>Zoom Level</source>
-        <translation type="unfinished"></translation>
+        <translation>Масштаб</translation>
     </message>
 </context>
 </TS>
