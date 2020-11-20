@@ -309,6 +309,9 @@ void AnnotationArea::deleteSelectedItems()
 	auto selectedItems = mItemModifier->selectedItems();
 	mItemModifier->clear();
 	mUndoStack->push(new DeleteCommand(selectedItems, this));
+	if (mSettingsProvider->toolType() == Tools::Select) {
+		mSettingsProvider->activateSelectTool();
+	}
 }
 
 void AnnotationArea::pasteCopiedItems(const QPointF &position)

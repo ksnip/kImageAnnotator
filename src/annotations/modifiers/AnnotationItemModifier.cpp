@@ -148,9 +148,9 @@ void AnnotationItemModifier::handleSelection()
 	if (count == 0) {
 		clear();
 	} else {
-		mItemResizer->attachTo(selectedItems);
-		emit itemsSelected(selectedItems);
+        mItemResizer->attachTo(selectedItems);
 	}
+	emit itemsSelected(selectedItems);
 }
 
 void AnnotationItemModifier::updateCursor(Qt::CursorShape cursor)
