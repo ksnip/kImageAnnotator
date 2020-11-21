@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,6 +26,8 @@ AnnotationItemModifier::AnnotationItemModifier(ZoomValueProvider *zoomValueProvi
 	mItemSelector = new AnnotationItemSelector(zoomValueProvider);
 	mItemResizer = new AnnotationMultiItemResizer(zoomValueProvider);
 	mItemMover = new AnnotationItemMover();
+	mIgnoreNextReleaseEvent = false;
+
 	addToGroup(mItemSelector);
 	addToGroup(mItemResizer);
 	setZValue(1000);
@@ -79,6 +81,11 @@ void AnnotationItemModifier::handleMouseMove(const QPointF &pos)
 
 void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem *> *items)
 {
+	if (mIgnoreNextReleaseEvent) {
+		mIgnoreNextReleaseEvent = false;
+		return;
+	}
+
 	if (mItemResizer->isResizing()) {
 		mItemResizer->releaseHandle();
 		mItemResizer->showCurrentResizer();
@@ -91,6 +98,14 @@ void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem *> 
 	}
 
 	handleSelection();
+}
+
+void AnnotationItemModifier::handleMouseDoubleClick()
+{
+	if (mItemSelector->selectedItems().size() == 1) {
+		mIgnoreNextReleaseEvent = true;
+		emit itemEdit();
+	}
 }
 
 void AnnotationItemModifier::handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed)

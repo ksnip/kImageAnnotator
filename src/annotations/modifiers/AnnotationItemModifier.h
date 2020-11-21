@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -40,6 +40,7 @@ public:
 	void handleMousePress(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
 	void handleMouseMove(const QPointF &pos);
 	void handleMouseRelease(QList<AbstractAnnotationItem *> *items);
+	void handleMouseDoubleClick();
 	void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
 	QList<AbstractAnnotationItem *> selectedItems() const;
 	QRectF boundingRect() const override;
@@ -53,6 +54,7 @@ signals:
 	void itemsSelected(const QList<AbstractAnnotationItem *> &items) const;
 	void itemsDeselected();
 	void itemModified() const;
+	void itemEdit();
 
 protected:
 	void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
@@ -62,6 +64,7 @@ private:
 	AnnotationMultiItemResizer *mItemResizer;
 	AnnotationItemSelector *mItemSelector;
 	AnnotationItemMover *mItemMover;
+	bool mIgnoreNextReleaseEvent;
 
 	void handleSelection();
 	void updateCursor(Qt::CursorShape cursor);
