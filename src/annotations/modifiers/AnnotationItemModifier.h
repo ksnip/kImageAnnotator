@@ -51,6 +51,7 @@ public slots:
 signals:
 	void newCommand(QUndoCommand *command);
 	void itemsSelected(const QList<AbstractAnnotationItem *> &items) const;
+	void itemsDeselected();
 	void itemModified() const;
 
 protected:

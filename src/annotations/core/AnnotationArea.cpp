@@ -44,6 +44,7 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 
 	connect(mItemModifier, &AnnotationItemModifier::newCommand, mUndoStack, &UndoStack::push);
 	connect(mItemModifier, &AnnotationItemModifier::itemsSelected, this, &AnnotationArea::itemsSelected);
+	connect(mItemModifier, &AnnotationItemModifier::itemsDeselected, this, &AnnotationArea::itemsDeselected);
 	connect(mItemModifier, &AnnotationItemModifier::itemModified, this, &AnnotationArea::imageChanged);
 	connect(mUndoStack, &UndoStack::indexChanged, this, &AnnotationArea::update);
 	connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
@@ -343,6 +344,11 @@ void AnnotationArea::itemsSelected(const QList<AbstractAnnotationItem *> &items)
 	}
 	auto item = items.first();
 	mSettingsProvider->editItem(item);
+}
+
+void AnnotationArea::itemsDeselected()
+{
+	mSettingsProvider->activateSelectTool();
 }
 
 void AnnotationArea::dragMoveEvent(QGraphicsSceneDragDropEvent *event)
