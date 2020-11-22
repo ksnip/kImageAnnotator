@@ -147,6 +147,7 @@ void AnnotationItemModifier::handleSelection()
 	auto count = selectedItems.count();
 	if (count == 0) {
 		clear();
+		emit itemsDeselected();
 	} else {
 		mItemResizer->attachTo(selectedItems);
 		emit itemsSelected(selectedItems);

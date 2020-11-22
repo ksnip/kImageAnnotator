@@ -114,6 +114,7 @@ private slots:
     void enableEditing();
     EditableItem* selectedEditableItem() const;
 	void itemsSelected(const QList<AbstractAnnotationItem *> &items) const;
+	void itemsDeselected();
 };
 
 } // namespace kImageAnnotator
