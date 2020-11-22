@@ -18,6 +18,8 @@
  */
 
 #include <QtGui/QPainterPath>
+#include <QtMath>
+#include <QtDebug>
 #include "ShapeHelper.h"
 
 namespace kImageAnnotator {
@@ -127,23 +129,59 @@ QPointF ShapeHelper::rectPointAtIndex(const QRectF &rect, int index)
 	}
 }
 
-QRectF ShapeHelper::setRectPointAtIndex(const QRectF &rect, int index, const QPointF &pos)
+QRectF ShapeHelper::setRectPointAtIndex(const QRectF &rect, int index, const QPointF &pos, bool keepAspectRatio)
 {
 	auto updatedRect = rect;
 	if (index == 0) {
-		updatedRect.setTopLeft(pos);
+		if (!keepAspectRatio) {
+			updatedRect.setTopLeft(pos);
+		} else {
+			const auto xDif = updatedRect.topLeft().x() - pos.x();
+			const auto yDif = updatedRect.topLeft().y() - pos.y();
+			const auto min = qMin(xDif, yDif);
+			const auto newX = updatedRect.topLeft().x() - min;
+			const auto newY = updatedRect.topLeft().y() - min;
+			updatedRect.setTopLeft(QPointF(newX, newY));
+		}
 	} else if (index == 1) {
 		updatedRect.setTop(pos.y());
 	} else if (index == 2) {
-		updatedRect.setTopRight(pos);
+		if (!keepAspectRatio) {
+			updatedRect.setTopRight(pos);
+		} else {
+			const auto xDif = pos.x() - updatedRect.topRight().x();
+			const auto yDif = updatedRect.topRight().y() - pos.y();
+			const auto min = qMin(xDif, yDif);
+			const auto newX = updatedRect.topRight().x() + min;
+			const auto newY = updatedRect.topRight().y() - min;
+			updatedRect.setTopRight(QPointF(newX, newY));
+		}
 	} else if (index == 3) {
 		updatedRect.setRight(pos.x());
 	} else if (index == 4) {
-		updatedRect.setBottomRight(pos);
+		if (!keepAspectRatio) {
+			updatedRect.setBottomRight(pos);
+		} else {
+			const auto xDif = pos.x() - updatedRect.bottomRight().x();
+			const auto yDif = pos.y() - updatedRect.bottomRight().y();
+			const auto min = qMin(xDif, yDif);
+			const auto newX = updatedRect.bottomRight().x() + min;
+			const auto newY = updatedRect.bottomRight().y() + min;
+			updatedRect.setBottomRight(QPointF(newX, newY));
+		}
 	} else if (index == 5) {
 		updatedRect.setBottom(pos.y());
 	} else if (index == 6) {
-		updatedRect.setBottomLeft(pos);
+		if (!keepAspectRatio) {
+			updatedRect.setBottomLeft(pos);
+		} else {
+			const auto xDif = updatedRect.bottomLeft().x() - pos.x();
+			const auto yDif = pos.y() - updatedRect.bottomLeft().y();
+			const auto min = qMin(xDif, yDif);
+			const auto newX = updatedRect.bottomLeft().x() - min;
+			const auto newY = updatedRect.bottomLeft().y() + min;
+			updatedRect.setBottomLeft(QPointF(newX, newY));
+		}
 	} else if (index == 7) {
 		updatedRect.setLeft(pos.x());
 	} else {

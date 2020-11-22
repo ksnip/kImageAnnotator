@@ -32,7 +32,7 @@ public:
 	~AbstractAnnotationPointerRect() override = default;
 	void addPoint(const QPointF &position, bool modified) override;
 	void setPosition(const QPointF &newPosition) override;
-	void setPointAt(const QPointF &point, int index) override;
+	void setPointAt(const QPointF &point, int index, bool keepAspectRatio = false) override;
 	QPointF pointAt(int index) const override;
 	void finish() override;
 

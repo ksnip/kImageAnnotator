@@ -49,7 +49,7 @@ void AbstractAnnotationPointerRect::setPosition(const QPointF &newPosition)
 	AbstractAnnotationRect::setPosition(newPosition);
 }
 
-void AbstractAnnotationPointerRect::setPointAt(const QPointF &point, int index)
+void AbstractAnnotationPointerRect::setPointAt(const QPointF &point, int index, bool keepAspectRatio)
 {
 	if(isPointer(index)){
 		mPointer = point;

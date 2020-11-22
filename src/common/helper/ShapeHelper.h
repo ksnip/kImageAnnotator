@@ -46,7 +46,7 @@ public:
 	static QPointF rectLeftWithOffset(const QRectF &rect, int offset);
 	static QLineF extendLine(const QLineF &line, int extendBy);
 	static QPointF rectPointAtIndex(const QRectF &rect, int index);
-	static QRectF setRectPointAtIndex(const QRectF &rect, int index, const QPointF &pos);
+    static QRectF setRectPointAtIndex(const QRectF &rect, int index, const QPointF &pos, bool keepAspectRatio = false);
 	static QPainterPath smoothOut(const QPainterPath &path, int smoothFactor);
 	static QPointF intersectionBetweenRectAndLineFromCenter(const QLineF &line, const QRectF &rect);
 

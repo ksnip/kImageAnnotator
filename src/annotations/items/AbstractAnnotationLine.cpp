@@ -57,7 +57,7 @@ QLineF AbstractAnnotationLine::line() const
 	return *mLine;
 }
 
-void AbstractAnnotationLine::setPointAt(const QPointF &point, int index)
+void AbstractAnnotationLine::setPointAt(const QPointF &point, int index, bool keepAspectRatio)
 {
 	prepareGeometryChange();
 
