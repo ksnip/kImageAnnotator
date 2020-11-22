@@ -17,6 +17,7 @@
 * Fixed: Blur radius not updated when changing current items settings. ([#142](https://github.com/ksnip/kImageAnnotator/issues/142))
 * Fixed: Text tool opens many unix sockets. ([#144](https://github.com/ksnip/kImageAnnotator/issues/144))
 * Fixed: Text No Border and No Fill shows shadow beneath text. ([#148](https://github.com/ksnip/kImageAnnotator/issues/148))
+* Fixed: Item properties remain displayed after item is removed or deselected. ([#168](https://github.com/ksnip/kImageAnnotator/issues/168))
 
 ## Release 0.3.2
 * Fixed: Tests fail to build with shared library. ([#128](https://github.com/ksnip/kImageAnnotator/issues/128))
