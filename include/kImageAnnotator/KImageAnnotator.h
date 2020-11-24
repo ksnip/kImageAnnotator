@@ -22,6 +22,7 @@
 
 #include <QWidget>
 
+#include <kImageAnnotator/include/NumberUpdateMode.h>
 #include <kImageAnnotator/KImageAnnotatorExport.h>
 
 namespace kImageAnnotator {
@@ -58,7 +59,7 @@ public Q_SLOTS:
 	void setSaveToolSelection(bool enabled);
 	void setSmoothFactor(int factor);
 	void setSwitchToSelectToolAfterDrawingItem(bool enabled);
-	void setStartingNumberUpdatesExistingItems(bool enabled);
+	void setNumberUpdateMode(NumberUpdateMode numberUpdateMode);
 	void setTabBarAutoHide(bool enabled);
 	void removeTab(int index);
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);

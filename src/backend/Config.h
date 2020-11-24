@@ -29,6 +29,7 @@
 
 #include "src/common/enum/Tools.h"
 #include "src/common/enum/FillModes.h"
+#include "src/common/enum/NumberUpdateMode.h"
 #include "src/common/helper/ConfigNameHelper.h"
 
 namespace kImageAnnotator {
@@ -77,14 +78,14 @@ public slots:
 	bool switchToSelectToolAfterDrawingItem() const;
 	void setSwitchToSelectToolAfterDrawingItem(bool enabled);
 
-	bool startingNumberUpdatesExistingItems() const;
-	void setStartingNumberUpdatesExistingItems(bool enabled);
+	NumberUpdateMode numberUpdateMode() const;
+	void setNumberUpdateMode(enum NumberUpdateMode numberUpdateMode);
 
 	int obfuscationFactor(Tools toolType) const;
 	void setObfuscationFactor(int factor, Tools toolType);
 
 signals:
-	void startingNumberUpdatesExistingItemsChanged(bool value) const;
+	void numberUpdateModeChanged(enum NumberUpdateMode numberUpdateMode) const;
 
 private:
 	QSettings mConfig;
@@ -101,7 +102,7 @@ private:
 	bool mSaveToolSelection;
 	int mSmoothFactor;
 	bool mSwitchToSelectToolAfterDrawingItem;
-	bool mStartingNumberUpdatesExistingItems;
+	NumberUpdateMode mNumberUpdateMode;
 
 	void initToolSettings();
 	void initSelectedTool();

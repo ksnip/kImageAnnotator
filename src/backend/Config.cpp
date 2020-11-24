@@ -28,7 +28,7 @@ Config::Config() :
 	mSaveToolSelection(false),
 	mSmoothFactor(0),
 	mSwitchToSelectToolAfterDrawingItem(false),
-	mStartingNumberUpdatesExistingItems(true)
+	mNumberUpdateMode(NumberUpdateMode::UseNextNumber)
 {
 	mAllTools = QList<Tools>{
 		Tools::Pen,
@@ -211,16 +211,16 @@ void Config::setSwitchToSelectToolAfterDrawingItem(bool enabled)
 	mSwitchToSelectToolAfterDrawingItem = enabled;
 }
 
-bool Config::startingNumberUpdatesExistingItems() const
+NumberUpdateMode Config::numberUpdateMode() const
 {
-	return mStartingNumberUpdatesExistingItems;
+	return mNumberUpdateMode;
 }
 
-void Config::setStartingNumberUpdatesExistingItems(bool enabled)
+void Config::setNumberUpdateMode(enum NumberUpdateMode numberUpdateMode)
 {
-	if (enabled != mStartingNumberUpdatesExistingItems) {
-		mStartingNumberUpdatesExistingItems = enabled;
-		emit startingNumberUpdatesExistingItemsChanged(enabled);
+	if (numberUpdateMode != mNumberUpdateMode) {
+		mNumberUpdateMode = numberUpdateMode;
+		emit numberUpdateModeChanged(numberUpdateMode);
 	}
 }
 
@@ -311,7 +311,7 @@ void Config::initGeneralSettings()
 	mItemShadowEnabled = true;
 	mSmoothFactor = 7;
 	mSwitchToSelectToolAfterDrawingItem = false;
-	mStartingNumberUpdatesExistingItems = true;
+	mNumberUpdateMode = NumberUpdateMode::UseNextNumber;
 }
 
 QColor Config::loadToolColor(Tools toolType)

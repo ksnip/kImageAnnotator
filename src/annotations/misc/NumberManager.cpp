@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,7 +23,7 @@ namespace kImageAnnotator {
 
 NumberManager::NumberManager() :
 	mFirstNumber(1),
-	mStartingNumberUpdatesExistingItems(true)
+	mNumberUpdateMode(NumberUpdateMode::UseNextNumber)
 {
 }
 
@@ -46,15 +46,20 @@ void NumberManager::addItemInner(AbstractAnnotationItem *item)
 {
 	Q_ASSERT(item != nullptr);
 
-	connect(item, &AbstractAnnotationItem::visibleChanged, this, &NumberManager::updateNumbers);
+	connect(item, &AbstractAnnotationItem::visibleChanged, this, &NumberManager::updateNumbersIfRequired);
 	mItems.append(item);
 
-	if (mStartingNumberUpdatesExistingItems) {
-		updateNumbers();
+	if (mNumberUpdateMode == NumberUpdateMode::UseNextNumber) {
+		updateNumbersIfRequired();
 	} else {
-		auto numberItem = dynamic_cast<BaseAnnotationNumber *>(item);
-		numberItem->setNumber(mFirstNumber);
+		initItemNumber(item);
 	}
+}
+
+void NumberManager::initItemNumber(AbstractAnnotationItem *item)
+{
+	auto numberItem = dynamic_cast<BaseAnnotationNumber *>(item);
+	numberItem->setNumber(mFirstNumber);
 }
 
 void NumberManager::reset()
@@ -62,9 +67,9 @@ void NumberManager::reset()
 	mItems.clear();
 }
 
-void NumberManager::updateNumbers()
+void NumberManager::updateNumbersIfRequired()
 {
-	if (!mStartingNumberUpdatesExistingItems) {
+	if (mNumberUpdateMode == NumberUpdateMode::UseStartingNumber) {
 		return;
 	}
 
@@ -80,7 +85,7 @@ void NumberManager::updateNumbers()
 void NumberManager::setFirstNumber(int number)
 {
 	mFirstNumber = number;
-	updateNumbers();
+	updateNumbersIfRequired();
 }
 
 int NumberManager::firstNumber() const
@@ -88,9 +93,9 @@ int NumberManager::firstNumber() const
 	return mFirstNumber;
 }
 
-void NumberManager::setStartingNumberUpdatesExistingItems(bool value)
+void NumberManager::setNumberUpdateMode(NumberUpdateMode numberUpdateMode)
 {
-	mStartingNumberUpdatesExistingItems = value;
+	mNumberUpdateMode = numberUpdateMode;
 }
 
 } // namespace kImageAnnotator

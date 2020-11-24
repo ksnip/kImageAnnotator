@@ -54,9 +54,9 @@ int AnnotationItemFactory::firstBadgeNumber() const
 	return mNumberManager->firstNumber();
 }
 
-void AnnotationItemFactory::setStartingNumberUpdatesExistingItems(bool value)
+void AnnotationItemFactory::setNumberUpdateMode(NumberUpdateMode numberUpdateMode)
 {
-	mNumberManager->setStartingNumberUpdatesExistingItems(value);
+	mNumberManager->setNumberUpdateMode(numberUpdateMode);
 }
 
 AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPosition)
