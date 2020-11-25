@@ -26,7 +26,7 @@ AnnotationItemModifier::AnnotationItemModifier(ZoomValueProvider *zoomValueProvi
 	mItemSelector = new AnnotationItemSelector(zoomValueProvider);
 	mItemResizer = new AnnotationMultiItemResizer(zoomValueProvider);
 	mItemMover = new AnnotationItemMover();
-	mIgnoreNextReleaseEvent = false;
+	mItemEditor = new AnnotationItemEditor();
 
 	addToGroup(mItemSelector);
 	addToGroup(mItemResizer);
@@ -42,10 +42,13 @@ AnnotationItemModifier::~AnnotationItemModifier()
 	delete mItemResizer;
 	delete mItemSelector;
 	delete mItemMover;
+	delete mItemEditor;
 }
 
 void AnnotationItemModifier::handleMousePress(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed)
 {
+	mItemEditor->clear();
+
 	mItemResizer->grabHandle(pos);
 	if (mItemResizer->isResizing()) {
 		mItemResizer->hideCurrentResizer();
@@ -81,11 +84,6 @@ void AnnotationItemModifier::handleMouseMove(const QPointF &pos)
 
 void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem *> *items)
 {
-	if (mIgnoreNextReleaseEvent) {
-		mIgnoreNextReleaseEvent = false;
-		return;
-	}
-
 	if (mItemResizer->isResizing()) {
 		mItemResizer->releaseHandle();
 		mItemResizer->showCurrentResizer();
@@ -97,13 +95,15 @@ void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem *> 
 		updateCursor(mItemMover->cursor());
 	}
 
-	handleSelection();
+	if (!mItemEditor->isEditing()) {
+		handleSelection();
+	}
 }
 
-void AnnotationItemModifier::handleMouseDoubleClick()
+void AnnotationItemModifier::handleMouseDoubleClick(const QPointF &pos, QList<AbstractAnnotationItem *> *items)
 {
-	if (mItemSelector->selectedItems().size() == 1) {
-		mIgnoreNextReleaseEvent = true;
+	mItemEditor->handleEditAt(pos, items);
+	if (mItemEditor->isEditing()) {
 		emit itemEdit();
 	}
 }

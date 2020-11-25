@@ -246,7 +246,7 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 void AnnotationArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
 	if (event->button() == Qt::LeftButton && mSettingsProvider->toolType() == Tools::Select) {
-		mItemModifier->handleMouseDoubleClick();
+		mItemModifier->handleMouseDoubleClick(event->scenePos(), mItems);
 	}
 }
 

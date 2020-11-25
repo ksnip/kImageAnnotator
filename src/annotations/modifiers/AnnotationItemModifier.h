@@ -28,6 +28,7 @@
 #include "AnnotationMultiItemResizer.h"
 #include "AnnotationItemSelector.h"
 #include "AnnotationItemMover.h"
+#include "AnnotationItemEditor.h"
 
 namespace kImageAnnotator {
 
@@ -40,7 +41,7 @@ public:
 	void handleMousePress(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
 	void handleMouseMove(const QPointF &pos);
 	void handleMouseRelease(QList<AbstractAnnotationItem *> *items);
-	void handleMouseDoubleClick();
+	void handleMouseDoubleClick(const QPointF &pos, QList<AbstractAnnotationItem *> *items);
 	void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
 	QList<AbstractAnnotationItem *> selectedItems() const;
 	QRectF boundingRect() const override;
@@ -64,7 +65,7 @@ private:
 	AnnotationMultiItemResizer *mItemResizer;
 	AnnotationItemSelector *mItemSelector;
 	AnnotationItemMover *mItemMover;
-	bool mIgnoreNextReleaseEvent;
+	AnnotationItemEditor *mItemEditor;
 
 	void handleSelection();
 	void updateCursor(Qt::CursorShape cursor);

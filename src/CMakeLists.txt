@@ -40,6 +40,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/AnnotationItemSelector.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/AnnotationItemMover.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/AnnotationItemArranger.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/AnnotationItemEditor.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/resizeHandles/AbstractItemResizeHandles.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/resizeHandles/AbstractRectResizeHandles.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/modifiers/resizeHandles/LineResizeHandles.cpp
