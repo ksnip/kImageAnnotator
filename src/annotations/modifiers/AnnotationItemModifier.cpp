@@ -95,9 +95,7 @@ void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem *> 
 		updateCursor(mItemMover->cursor());
 	}
 
-	if (!mItemEditor->isEditing()) {
-		handleSelection();
-	}
+	handleSelection();
 }
 
 void AnnotationItemModifier::handleMouseDoubleClick(const QPointF &pos, QList<AbstractAnnotationItem *> *items)
