@@ -21,13 +21,12 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemModifier::AnnotationItemModifier(ZoomValueProvider *zoomValueProvider)
+AnnotationItemModifier::AnnotationItemModifier(ZoomValueProvider *zoomValueProvider) :
+	mItemSelector(new AnnotationItemSelector(zoomValueProvider)),
+	mItemResizer(new AnnotationMultiItemResizer(zoomValueProvider)),
+	mItemMover(new AnnotationItemMover),
+	mItemEditor(new AnnotationItemEditor)
 {
-	mItemSelector = new AnnotationItemSelector(zoomValueProvider);
-	mItemResizer = new AnnotationMultiItemResizer(zoomValueProvider);
-	mItemMover = new AnnotationItemMover();
-	mItemEditor = new AnnotationItemEditor();
-
 	addToGroup(mItemSelector);
 	addToGroup(mItemResizer);
 	setZValue(1000);

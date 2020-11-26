@@ -18,7 +18,6 @@
  */
 
 #include "AnnotationItemEditor.h"
-#include "src/annotations/items/interfaces/EditableItem.h"
 
 namespace kImageAnnotator {
 
@@ -29,9 +28,8 @@ AnnotationItemEditor::AnnotationItemEditor()
 
 void AnnotationItemEditor::handleEditAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items)
 {
-	auto item = findItemAt(pos, items);
-	mCurrentEditItem = dynamic_cast<EditableItem *>(item);
-	if (mCurrentEditItem) {
+	mCurrentEditItem = findEditableItemAt(pos, items);
+	if (mCurrentEditItem != nullptr) {
 		mCurrentEditItem->enableEditing();
 	}
 }
@@ -46,15 +44,17 @@ void AnnotationItemEditor::clear()
 	mCurrentEditItem = nullptr;
 }
 
-AbstractAnnotationItem *AnnotationItemEditor::findItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items)
+EditableItem *AnnotationItemEditor::findEditableItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items)
 {
 	QRectF rect(position - QPointF(2, 2), QSize(4, 4));
 
 	for (auto item : *items) {
-		if (item->intersects(rect)) {
-			return item;
+		auto editableItem = dynamic_cast<EditableItem *>(item);
+		if (editableItem != nullptr && item->intersects(rect)) {
+			return editableItem;
 		}
 	}
+	
 	return nullptr;
 }
 

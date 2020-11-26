@@ -37,8 +37,9 @@ public:
 	void clear();
 
 private:
-	AbstractAnnotationItem *findItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
 	EditableItem *mCurrentEditItem;
+
+	static EditableItem *findEditableItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
 };
 
 } // namespace kImageAnnotator
