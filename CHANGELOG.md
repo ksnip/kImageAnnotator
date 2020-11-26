@@ -19,6 +19,7 @@
 * Fixed: Text tool opens many unix sockets. ([#144](https://github.com/ksnip/kImageAnnotator/issues/144))
 * Fixed: Text No Border and No Fill shows shadow beneath text. ([#148](https://github.com/ksnip/kImageAnnotator/issues/148))
 * Fixed: Item properties remain displayed after item is removed or deselected. ([#168](https://github.com/ksnip/kImageAnnotator/issues/168))
+* Fixed: Changing text box through editing text doesn't update resize handles. ([#171](https://github.com/ksnip/kImageAnnotator/issues/171))
 
 ## Release 0.3.2
 * Fixed: Tests fail to build with shared library. ([#128](https://github.com/ksnip/kImageAnnotator/issues/128))

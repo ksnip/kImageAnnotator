@@ -61,7 +61,7 @@ private:
     AnnotationItemResizer *getResizerForItem(AbstractAnnotationItem *item);
     void showResizer(AnnotationItemResizer *resizer);
     void hideResizer(QGraphicsItem *resizer);
-    AnnotationItemResizer *castToResizer(QGraphicsItem *item) const;
+    static AnnotationItemResizer *castToResizer(QGraphicsItem *item) ;
 };
 
 } // namespace kImageAnnotator

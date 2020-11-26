@@ -170,10 +170,11 @@ void AnnotationMultiItemResizer::hideResizer(QGraphicsItem *resizer)
 void AnnotationMultiItemResizer::showResizer(AnnotationItemResizer *resizer)
 {
     addToGroup(resizer);
+    resizer->refresh();
     resizer->show();
 }
 
-AnnotationItemResizer *AnnotationMultiItemResizer::castToResizer(QGraphicsItem *item) const
+AnnotationItemResizer *AnnotationMultiItemResizer::castToResizer(QGraphicsItem *item)
 {
     return dynamic_cast<AnnotationItemResizer *>(item);
 }
