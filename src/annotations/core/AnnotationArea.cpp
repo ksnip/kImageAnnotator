@@ -46,7 +46,6 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 	connect(mItemModifier, &AnnotationItemModifier::itemsSelected, this, &AnnotationArea::itemsSelected);
 	connect(mItemModifier, &AnnotationItemModifier::itemsDeselected, this, &AnnotationArea::itemsDeselected);
 	connect(mItemModifier, &AnnotationItemModifier::itemModified, this, &AnnotationArea::imageChanged);
-	connect(mItemModifier, &AnnotationItemModifier::itemEdit, this, &AnnotationArea::enableEditing);
 	connect(mUndoStack, &UndoStack::indexChanged, this, &AnnotationArea::update);
 	connect(mKeyHelper, &KeyHelper::deleteReleased, this, &AnnotationArea::deleteSelectedItems);
 	connect(mKeyHelper, &KeyHelper::escapeReleased, mItemModifier, &AnnotationItemModifier::clear);
@@ -335,6 +334,7 @@ void AnnotationArea::enableEditing()
     if(editableItem != nullptr) {
         mItemModifier->clear();
         editableItem->enableEditing();
+        itemsDeselected();
     }
 }
 

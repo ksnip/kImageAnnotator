@@ -31,11 +31,14 @@ void AnnotationItemEditor::handleEditAt(const QPointF &pos, QList<AbstractAnnota
 {
 	auto item = findItemAt(pos, items);
 	mCurrentEditItem = dynamic_cast<EditableItem *>(item);
+	if (mCurrentEditItem) {
+		mCurrentEditItem->enableEditing();
+	}
 }
 
 bool AnnotationItemEditor::isEditing() const
 {
-	return (mCurrentEditItem != nullptr);
+	return mCurrentEditItem != nullptr;
 }
 
 void AnnotationItemEditor::clear()

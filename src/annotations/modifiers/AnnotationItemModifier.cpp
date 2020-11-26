@@ -102,7 +102,7 @@ void AnnotationItemModifier::handleMouseDoubleClick(const QPointF &pos, QList<Ab
 {
 	mItemEditor->handleEditAt(pos, items);
 	if (mItemEditor->isEditing()) {
-		emit itemEdit();
+		clear();
 	}
 }
 
