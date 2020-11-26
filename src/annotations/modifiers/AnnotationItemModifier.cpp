@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,11 +21,12 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemModifier::AnnotationItemModifier(ZoomValueProvider *zoomValueProvider)
+AnnotationItemModifier::AnnotationItemModifier(ZoomValueProvider *zoomValueProvider) :
+	mItemSelector(new AnnotationItemSelector(zoomValueProvider)),
+	mItemResizer(new AnnotationMultiItemResizer(zoomValueProvider)),
+	mItemMover(new AnnotationItemMover),
+	mItemEditor(new AnnotationItemEditor)
 {
-	mItemSelector = new AnnotationItemSelector(zoomValueProvider);
-	mItemResizer = new AnnotationMultiItemResizer(zoomValueProvider);
-	mItemMover = new AnnotationItemMover();
 	addToGroup(mItemSelector);
 	addToGroup(mItemResizer);
 	setZValue(1000);
@@ -40,10 +41,13 @@ AnnotationItemModifier::~AnnotationItemModifier()
 	delete mItemResizer;
 	delete mItemSelector;
 	delete mItemMover;
+	delete mItemEditor;
 }
 
 void AnnotationItemModifier::handleMousePress(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed)
 {
+	mItemEditor->clear();
+
 	mItemResizer->grabHandle(pos);
 	if (mItemResizer->isResizing()) {
 		mItemResizer->hideCurrentResizer();
@@ -91,6 +95,14 @@ void AnnotationItemModifier::handleMouseRelease(QList<AbstractAnnotationItem *> 
 	}
 
 	handleSelection();
+}
+
+void AnnotationItemModifier::handleMouseDoubleClick(const QPointF &pos, QList<AbstractAnnotationItem *> *items)
+{
+	mItemEditor->handleEditAt(pos, items);
+	if (mItemEditor->isEditing()) {
+		clear();
+	}
 }
 
 void AnnotationItemModifier::handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed)

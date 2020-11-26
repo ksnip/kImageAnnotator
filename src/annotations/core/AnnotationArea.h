@@ -79,11 +79,12 @@ signals:
     void imageChanged() const;
 
 protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
-    void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
-    void dragMoveEvent(QGraphicsSceneDragDropEvent *event) override;
-    void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) override;
+	void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
+	void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event) override;
+	void dragMoveEvent(QGraphicsSceneDragDropEvent *event) override;
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) override;
 
 private:
 	AbstractSettingsProvider *mSettingsProvider;

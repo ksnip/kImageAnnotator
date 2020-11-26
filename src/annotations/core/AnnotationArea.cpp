@@ -242,6 +242,13 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 	QGraphicsScene::mouseReleaseEvent(event);
 }
 
+void AnnotationArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+{
+	if (event->button() == Qt::LeftButton && mSettingsProvider->toolType() == Tools::Select) {
+		mItemModifier->handleMouseDoubleClick(event->scenePos(), mItems);
+	}
+}
+
 void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
 	mItemModifier->handleSelectionAt(event->scenePos(), mItems, mKeyHelper->isControlPressed());
@@ -327,6 +334,7 @@ void AnnotationArea::enableEditing()
     if(editableItem != nullptr) {
         mItemModifier->clear();
         editableItem->enableEditing();
+        itemsDeselected();
     }
 }
 

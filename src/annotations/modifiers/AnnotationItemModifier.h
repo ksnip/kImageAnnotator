@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,6 +28,7 @@
 #include "AnnotationMultiItemResizer.h"
 #include "AnnotationItemSelector.h"
 #include "AnnotationItemMover.h"
+#include "AnnotationItemEditor.h"
 
 namespace kImageAnnotator {
 
@@ -40,6 +41,7 @@ public:
 	void handleMousePress(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
 	void handleMouseMove(const QPointF &pos);
 	void handleMouseRelease(QList<AbstractAnnotationItem *> *items);
+	void handleMouseDoubleClick(const QPointF &pos, QList<AbstractAnnotationItem *> *items);
 	void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
 	QList<AbstractAnnotationItem *> selectedItems() const;
 	QRectF boundingRect() const override;
@@ -53,6 +55,7 @@ signals:
 	void itemsSelected(const QList<AbstractAnnotationItem *> &items) const;
 	void itemsDeselected();
 	void itemModified() const;
+	void itemEdit();
 
 protected:
 	void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
@@ -62,6 +65,7 @@ private:
 	AnnotationMultiItemResizer *mItemResizer;
 	AnnotationItemSelector *mItemSelector;
 	AnnotationItemMover *mItemMover;
+	AnnotationItemEditor *mItemEditor;
 
 	void handleSelection();
 	void updateCursor(Qt::CursorShape cursor);
