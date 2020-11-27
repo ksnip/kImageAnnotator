@@ -2,6 +2,7 @@
 <RCC version="1.0">
     <qresource prefix="/icons/dark">
         <file alias="arrow.svg" >icons/dark/arrow.svg</file>
+	<file alias="duplicate.svg" >icons/dark/duplicate.svg</file>
         <file alias="doubleArrow.svg" >icons/dark/doubleArrow.svg</file>
         <file alias="number.svg" >icons/dark/number.svg</file>
         <file alias="numberPointer.svg" >icons/dark/numberPointer.svg</file>
@@ -39,6 +40,7 @@
 
     <qresource prefix="/icons/light">
         <file alias="arrow.svg" >icons/light/arrow.svg</file>
+	<file alias="duplicate.svg" >icons/light/duplicate.svg</file>
         <file alias="doubleArrow.svg" >icons/light/doubleArrow.svg</file>
         <file alias="number.svg" >icons/light/number.svg</file>
         <file alias="numberPointer.svg" >icons/light/numberPointer.svg</file>

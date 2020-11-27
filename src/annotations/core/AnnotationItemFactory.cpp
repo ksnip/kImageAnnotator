@@ -90,6 +90,9 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 	AbstractAnnotationItem *newItem = nullptr;
 
 	switch (toolType) {
+		case Tools::Duplicate:
+			newItem = new AnnotationDuplicate(initPosition, properties);
+			break;
 		case Tools::Pen:
 		case Tools::MarkerPen:
 			newItem = new AnnotationPen(initPosition, properties.staticCast<AnnotationPathProperties>());
@@ -158,6 +161,9 @@ AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotatio
 	AbstractAnnotationItem *newItem = nullptr;
 
 	switch (item->toolType()) {
+		case Tools::Duplicate:
+			newItem = new AnnotationDuplicate(*(dynamic_cast<const AnnotationDuplicate *>(item)));
+			break;
 		case Tools::Pen:
 		case Tools::MarkerPen:
 			newItem = new AnnotationPen(*(dynamic_cast<const AnnotationPen *>(item)));

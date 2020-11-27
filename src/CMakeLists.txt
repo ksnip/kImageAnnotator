@@ -71,6 +71,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationBlur.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationImage.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationSticker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationDuplicate.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/BaseAnnotationNumber.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/text/AnnotationTextHandler.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/text/KeyInputHelper.cpp
