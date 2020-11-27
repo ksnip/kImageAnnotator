@@ -22,7 +22,7 @@
 
 #include <QWidget>
 
-#include <kImageAnnotator/include/NumberUpdateMode.h>
+#include "NumberUpdateMode.h"
 #include <kImageAnnotator/KImageAnnotatorExport.h>
 
 namespace kImageAnnotator {
