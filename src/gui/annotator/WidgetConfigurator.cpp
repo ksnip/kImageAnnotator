@@ -251,6 +251,16 @@ void WidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(true);
 			break;
+	case Tools::Duplicate:
+			setColorWidgetVisible(false);
+			setTextColorWidgetVisible(false);
+			setWidthWidgetVisible(false);
+			setFillWidgetVisible(false);
+			setFontSizeWidgetVisible(false);
+			setFirstNumberWidgetVisible(false);
+			setObfuscateFactorWidgetVisible(false);
+			setStickerWidgetVisible(false);
+			break;
 		default:
 			qCritical("Unknown tooltype in WidgetConfigurator");
 	}

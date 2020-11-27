@@ -232,6 +232,9 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 			mItemModifier->handleMouseRelease(mItems);
 		} else if (mCurrentItem != nullptr) {
 			mCurrentItem->finish();
+			if (mCurrentItem->requiresSelectionAfterCreation()) {
+				mItemModifier->handleSelectionAt(event->scenePos(), mItems, false);
+			}
 			mCurrentItem = nullptr;
 			if (mConfig->switchToSelectToolAfterDrawingItem()) {
 				mSettingsProvider->activateSelectTool();

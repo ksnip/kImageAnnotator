@@ -45,7 +45,8 @@ enum class Tools
 	Blur,
 	Image,
 	Sticker,
-	Pixelate
+	Pixelate,
+	Duplicate
 };
 
 inline uint qHash(const Tools &tool, uint seed)

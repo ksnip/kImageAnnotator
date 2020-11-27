@@ -48,6 +48,7 @@ public:
 	virtual QPointF position();
 	virtual PropertiesPtr properties() const;
 	virtual void finish();
+	virtual bool requiresSelectionAfterCreation() const;
 	virtual void scale(qreal sx, qreal sy) = 0;
 	virtual Tools toolType() const = 0;
 	virtual void setProperties(const PropertiesPtr &properties);

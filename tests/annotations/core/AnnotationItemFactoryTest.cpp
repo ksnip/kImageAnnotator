@@ -66,7 +66,7 @@ void AnnotationItemFactoryTest::TestCreate_Should_ReturnNullPtrForUnknownType()
 {
 	auto config = new Config;
 	auto settingsProvider = new MockSettingsProvider();
-	settingsProvider->setToolType((Tools) 20);
+	settingsProvider->setToolType((Tools) 21);
 	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
 	AnnotationItemFactory itemFactory(&propertiesFactory, settingsProvider);
 
