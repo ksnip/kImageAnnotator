@@ -19,7 +19,6 @@
 
 #include <QtGui/QPainterPath>
 #include <QtMath>
-#include <QtDebug>
 #include "ShapeHelper.h"
 
 namespace kImageAnnotator {

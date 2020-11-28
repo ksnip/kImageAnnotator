@@ -59,6 +59,7 @@ QLineF AbstractAnnotationLine::line() const
 
 void AbstractAnnotationLine::setPointAt(const QPointF &point, int index, bool keepAspectRatio)
 {
+	Q_UNUSED(keepAspectRatio);
 	prepareGeometryChange();
 
 	if (index <= 0) {
