@@ -27,7 +27,7 @@ void ResizeCommandTest::TestRedo_Should_MoveProvidedHandleToNewPosition()
 	auto item = new AnnotationLine(line.p1(), properties);
 	item->addPoint(line.p2(), false);
 	QPointF newPosition(50, 50);
-	ResizeCommand resize(item, 1, newPosition);
+	ResizeCommand resize(item, 1, newPosition, false);
 	QCOMPARE(item->line().p2(), line.p2());
 
 	resize.redo();
@@ -42,7 +42,7 @@ void ResizeCommandTest::TestUndo_Should_MoveProvidedHandleToInitialPosition()
 	auto item = new AnnotationLine(line.p1(), properties);
 	item->addPoint(line.p2(), false);
 	QPointF newPosition(50, 50);
-	ResizeCommand resize(item, 1, newPosition);
+	ResizeCommand resize(item, 1, newPosition, false);
 	resize.redo();
 	QCOMPARE(item->line().p2(), newPosition);
 
@@ -59,8 +59,8 @@ void ResizeCommandTest::TestMergeWith_Should_TakeNewHandlePositionFromLastResize
 	item->addPoint(line.p2(), false);
 	QPointF newPosition1(50, 50);
 	QPointF newPosition2(60, 60);
-	ResizeCommand resize1(item, 1, newPosition1);
-	ResizeCommand resize2(item, 1, newPosition2);
+	ResizeCommand resize1(item, 1, newPosition1, false);
+	ResizeCommand resize2(item, 1, newPosition2, false);
 	QCOMPARE(item->line().p2(), line.p2());
 
 	resize1.mergeWith(&resize2);
@@ -77,8 +77,8 @@ void ResizeCommandTest::TestMergeWith_Should_KeepInitialPositionFromFirstResizeC
 	item->addPoint(line.p2(), false);
 	QPointF newPosition1(50, 50);
 	QPointF newPosition2(60, 60);
-	ResizeCommand resize1(item, 1, newPosition1);
-	ResizeCommand resize2(item, 1, newPosition2);
+	ResizeCommand resize1(item, 1, newPosition1, false);
+	ResizeCommand resize2(item, 1, newPosition2, false);
 
 	resize1.mergeWith(&resize2);
 
@@ -99,8 +99,8 @@ void ResizeCommandTest::TestMergeWith_Should_NotMergeResizeCommands_When_ItemsAr
 	item2->addPoint(line2.p2(), false);
 	QPointF newPosition1(50, 50);
 	QPointF newPosition2(60, 60);
-	ResizeCommand resize1(item1, 1, newPosition1);
-	ResizeCommand resize2(item2, 1, newPosition2);
+	ResizeCommand resize1(item1, 1, newPosition1, false);
+	ResizeCommand resize2(item2, 1, newPosition2, false);
 	QCOMPARE(item1->line().p2(), line1.p2());
 
 	resize1.mergeWith(&resize2);
@@ -117,8 +117,8 @@ void ResizeCommandTest::TestMergeWith_Should_NotMergeResizeCommands_When_Handles
 	item1->addPoint(line1.p2(), false);
 	QPointF newPosition1(50, 50);
 	QPointF newPosition2(60, 60);
-	ResizeCommand resize1(item1, 1, newPosition1);
-	ResizeCommand resize2(item1, 3, newPosition2);
+	ResizeCommand resize1(item1, 1, newPosition1, false);
+	ResizeCommand resize2(item1, 3, newPosition2, false);
 	QCOMPARE(item1->line().p2(), line1.p2());
 
 	resize1.mergeWith(&resize2);

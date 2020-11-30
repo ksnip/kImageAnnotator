@@ -34,7 +34,7 @@ public:
         Id = 1235
     };
 
-    explicit ResizeCommand(AbstractAnnotationItem *item, int handleIndex, QPointF newPos, bool keepAspectRatio = false);
+	explicit ResizeCommand(AbstractAnnotationItem *item, int handleIndex, QPointF newPos, bool keepAspectRatio);
     ~ResizeCommand() = default;
     virtual void undo() override;
     virtual void redo() override;

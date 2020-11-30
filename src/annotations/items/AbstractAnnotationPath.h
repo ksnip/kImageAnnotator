@@ -35,7 +35,7 @@ public:
 	~AbstractAnnotationPath() override;
 	void addPoint(const QPointF &position, bool modified) override;
 	void setPosition(const QPointF &newPosition) override;
-	void setPointAt(const QPointF &point, int handleIndex, bool keepAspectRatio = false) override;
+	void setPointAt(const QPointF &point, int handleIndex, bool keepAspectRatio) override;
 	QPointF pointAt(int index) const override;
 	void finish() override;
 	void scale(qreal sx, qreal sy) override;

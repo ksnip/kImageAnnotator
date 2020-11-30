@@ -32,7 +32,7 @@ ResizeCommand::ResizeCommand(AbstractAnnotationItem *item, int handleIndex, QPoi
 
 void ResizeCommand::undo()
 {
-    mItem->setPointAt(mOriginalPos, mHandleIndex);
+	mItem->setPointAt(mOriginalPos, mHandleIndex, false);
 }
 
 void ResizeCommand::redo()

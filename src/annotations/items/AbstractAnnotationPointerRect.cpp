@@ -57,7 +57,7 @@ void AbstractAnnotationPointerRect::setPointAt(const QPointF &point, int index, 
 		prepareGeometryChange();
 		updateShape();
 	} else {
-		AbstractAnnotationRect::setPointAt(point, index);
+		AbstractAnnotationRect::setPointAt(point, index, false);
 	}
 }
 

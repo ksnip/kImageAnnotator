@@ -34,7 +34,7 @@ public:
 	void addPoint(const QPointF &position, bool modified) override;
 	void setPosition(const QPointF &newPosition) override;
 	QLineF line() const;
-	void setPointAt(const QPointF &point, int index, bool snapToAngle = false) override;
+	void setPointAt(const QPointF &point, int index, bool snapToAngle) override;
 	QPointF pointAt(int index) const override;
 	void scale(qreal sx, qreal sy) override;
 

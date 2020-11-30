@@ -151,7 +151,7 @@ void RectResizeHandlesTest::TestUpdate_Should_MoveHandlesToNewPosition()
 	QCOMPARE(rectResizeHandles.handles()[5].anchor(), ShapeHelper::rectBottom(rect));
 	QCOMPARE(rectResizeHandles.handles()[6].anchor(), rect.bottomLeft());
 	QCOMPARE(rectResizeHandles.handles()[7].anchor(), ShapeHelper::rectLeft(rect));
-	rectItem.setPointAt(newRect.topLeft(), 0);
+	rectItem.setPointAt(newRect.topLeft(), 0, false);
 	rectItem.addPoint(newRect.bottomRight(), false);
 
 	rectResizeHandles.update();

@@ -136,8 +136,8 @@ void LineResizeHandlesTest::TestUpdate_Should_SetMoveHandlesToNewPositions()
 	LineResizeHandles lineResizeHandles(&lineItem, 1.0);
 	QCOMPARE(lineResizeHandles.handles()[0].center(), p1);
 	QCOMPARE(lineResizeHandles.handles()[1].center(), p2);
-	lineItem.setPointAt(p3, 0);
-	lineItem.setPointAt(p4, 1);
+	lineItem.setPointAt(p3, 0, false);
+	lineItem.setPointAt(p4, 1, false);
 
 	lineResizeHandles.update();
 
