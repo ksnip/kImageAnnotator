@@ -34,7 +34,7 @@ public:
 	void addPoint(const QPointF &position, bool modified) override;
 	void setPosition(const QPointF &newPosition) override;
 	QLineF line() const;
-	void setPointAt(const QPointF &point, int index, bool keepAspectRatio = false) override;
+	void setPointAt(const QPointF &point, int index, bool snapToAngle = false) override;
 	QPointF pointAt(int index) const override;
 	void scale(qreal sx, qreal sy) override;
 
@@ -42,6 +42,7 @@ protected:
 	QLineF *mLine;
 
 	void snapToAngle(bool enabled);
+	QPointF getSnapPoint(QPointF from, QPointF to) const;
 };
 
 } // namespace kImageAnnotator
