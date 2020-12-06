@@ -17,7 +17,6 @@
  * Boston, MA 02110-1301, USA.
  */
 
-
 #include "AbstractAnnotationPath.h"
 
 namespace kImageAnnotator {
@@ -55,11 +54,11 @@ void AbstractAnnotationPath::setPosition(const QPointF &newPosition)
 	updateShape();
 }
 
-void AbstractAnnotationPath::setPointAt(const QPointF &point, int handleIndex)
+void AbstractAnnotationPath::setPointAt(const QPointF &point, int handleIndex, bool keepAspectRatio)
 {
 	auto oppositeIndex = (handleIndex + 4) % 8;
 	auto currentPos = ShapeHelper::rectPointAtIndex(boundingRect(), oppositeIndex);
-	auto rect = ShapeHelper::setRectPointAtIndex(boundingRect(), handleIndex, point);
+	auto rect = ShapeHelper::setRectPointAtIndex(boundingRect(), handleIndex, point, keepAspectRatio);
 	if (rect.width() >= Constants::MinPathResizeRectSize && rect.height() >= Constants::MinPathResizeRectSize) {
 		prepareGeometryChange();
 		scalePath(rect);

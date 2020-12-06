@@ -21,22 +21,23 @@
 
 namespace kImageAnnotator {
 
-ResizeCommand::ResizeCommand(AbstractAnnotationItem *item, int handleIndex, QPointF newPos)
+ResizeCommand::ResizeCommand(AbstractAnnotationItem *item, int handleIndex, QPointF newPos, bool keepAspectRatio)
 {
     mItem = item;
     mHandleIndex = handleIndex;
     mNewPos = newPos;
     mOriginalPos = item->pointAt(handleIndex);
+    mKeepAspectRatio = keepAspectRatio;
 }
 
 void ResizeCommand::undo()
 {
-    mItem->setPointAt(mOriginalPos, mHandleIndex);
+	mItem->setPointAt(mOriginalPos, mHandleIndex, false);
 }
 
 void ResizeCommand::redo()
 {
-    mItem->setPointAt(mNewPos, mHandleIndex);
+    mItem->setPointAt(mNewPos, mHandleIndex, mKeepAspectRatio);
 }
 
 bool ResizeCommand::mergeWith(const QUndoCommand *command)

@@ -36,7 +36,7 @@ public:
 	void addPoint(const QPointF &position, bool modified) override;
 	void setPosition(const QPointF &newPosition) override;
 	QRectF rect() const;
-	void setPointAt(const QPointF &point, int index) override;
+	void setPointAt(const QPointF &point, int index, bool keepAspectRatio) override;
 	QPointF pointAt(int index) const override;
 	void scale(qreal sx, qreal sy) override;
 

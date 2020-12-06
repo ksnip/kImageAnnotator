@@ -38,7 +38,7 @@ public:
     QRectF boundingRect() const override;
     void attachTo(const QList<AbstractAnnotationItem *>& items);
     void detach();
-    void grabHandle(const QPointF &pos);
+	void grabHandle(const QPointF &pos, bool keepAspectRatio);
     void moveHandle(const QPointF &pos);
     void releaseHandle();
     bool isResizing() const;

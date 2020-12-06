@@ -32,7 +32,7 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_GrabHandle_When_Provi
 	AnnotationMultiItemResizer itemResizer(&zoomValueProvider);
 	itemResizer.attachTo(items);
 
-	itemResizer.grabHandle(line1.p1());
+	itemResizer.grabHandle(line1.p1(), false);
 
 	QCOMPARE(itemResizer.isResizing(), true);
 }
@@ -48,7 +48,7 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_NotGrabHandle_When_Pr
 	AnnotationMultiItemResizer itemResizer(&zoomValueProvider);
 	itemResizer.attachTo(items);
 
-	itemResizer.grabHandle(line1.p1() + QPointF(-10, -10));
+	itemResizer.grabHandle(line1.p1() + QPointF(-10, -10), false);
 
 	QCOMPARE(itemResizer.isResizing(), false);
 }
@@ -67,7 +67,7 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_MoveResizeHandle_When
 	connect(&itemResizer, &AnnotationMultiItemResizer::newCommand, &undoStack, &QUndoStack::push);
 	itemResizer.attachTo(items);
 
-	itemResizer.grabHandle(line1.p1());
+	itemResizer.grabHandle(line1.p1(), false);
 	itemResizer.moveHandle(newPoint);
 
 	QCOMPARE(item1.line().p1(), newPoint);
@@ -90,7 +90,7 @@ void AnnotationMultiItemResizerTest::TestGrabHandle_Should_OnlyMoveOneResizeHand
 	connect(&itemResizer, &AnnotationMultiItemResizer::newCommand, &undoStack, &QUndoStack::push);
 	itemResizer.attachTo(items);
 
-	itemResizer.grabHandle(line1.p1());
+	itemResizer.grabHandle(line1.p1(), false);
 	itemResizer.moveHandle(newPoint);
 
 	QCOMPARE(item1.line().p1(), newPoint);
@@ -109,7 +109,7 @@ void AnnotationMultiItemResizerTest::TestReleaseHandle_Should_ReleaseHandle()
 	MockZoomValueProvider zoomValueProvider;
 	AnnotationMultiItemResizer itemResizer(&zoomValueProvider);
 	itemResizer.attachTo(items);
-	itemResizer.grabHandle(line1.p1());
+	itemResizer.grabHandle(line1.p1(), false);
 	QCOMPARE(itemResizer.isResizing(), true);
 
 	itemResizer.releaseHandle();
