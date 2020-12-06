@@ -42,7 +42,7 @@ public:
 	QPainterPath shape() const override;
 	virtual bool intersects(const QRectF &rect) const;
 	virtual void addPoint(const QPointF &position, bool modified) = 0;
-	virtual void setPointAt(const QPointF &point, int index) = 0;
+	virtual void setPointAt(const QPointF &point, int index, bool keepAspectRatio) = 0;
 	virtual QPointF pointAt(int index) const = 0;
 	virtual void setPosition(const QPointF &newPosition) = 0;
 	virtual QPointF position();

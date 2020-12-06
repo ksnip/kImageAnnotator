@@ -60,10 +60,10 @@ QRectF AbstractAnnotationRect::rect() const
 	return *mRect;
 }
 
-void AbstractAnnotationRect::setPointAt(const QPointF &point, int index)
+void AbstractAnnotationRect::setPointAt(const QPointF &point, int index, bool keepAspectRatio)
 {
 	prepareGeometryChange();
-	auto newRect = ShapeHelper::setRectPointAtIndex(*mRect, index, point);
+	auto newRect = ShapeHelper::setRectPointAtIndex(*mRect, index, point, keepAspectRatio);
 	mRect->setRect(newRect.x(), newRect.y(), newRect.width(), newRect.height());
 	updateShape();
 }

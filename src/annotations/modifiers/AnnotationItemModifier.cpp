@@ -48,7 +48,7 @@ void AnnotationItemModifier::handleMousePress(const QPointF &pos, QList<Abstract
 {
 	mItemEditor->clear();
 
-	mItemResizer->grabHandle(pos);
+	mItemResizer->grabHandle(pos, isCtrlPressed);
 	if (mItemResizer->isResizing()) {
 		mItemResizer->hideCurrentResizer();
 		return;

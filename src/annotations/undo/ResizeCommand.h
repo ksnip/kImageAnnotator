@@ -34,7 +34,7 @@ public:
         Id = 1235
     };
 
-    explicit ResizeCommand(AbstractAnnotationItem *item, int handleIndex, QPointF newPos);
+	explicit ResizeCommand(AbstractAnnotationItem *item, int handleIndex, QPointF newPos, bool keepAspectRatio);
     ~ResizeCommand() = default;
     virtual void undo() override;
     virtual void redo() override;
@@ -46,6 +46,7 @@ private:
     int mHandleIndex;
     QPointF mNewPos;
     QPointF mOriginalPos;
+    bool mKeepAspectRatio;
 };
 
 } // namespace kImageAnnotator

@@ -57,14 +57,22 @@ QLineF AbstractAnnotationLine::line() const
 	return *mLine;
 }
 
-void AbstractAnnotationLine::setPointAt(const QPointF &point, int index)
+void AbstractAnnotationLine::setPointAt(const QPointF &point, int index, bool snapToAngle)
 {
 	prepareGeometryChange();
 
 	if (index <= 0) {
-		mLine->setP1(point);
+		if (snapToAngle) {
+			mLine->setP1(getSnapPoint(mLine->p2(), point));
+		} else {
+			mLine->setP1(point);
+		}
 	} else {
-		mLine->setP2(point);
+		if (snapToAngle) {
+			mLine->setP2(getSnapPoint(mLine->p1(), point));
+		} else {
+			mLine->setP2(point);
+		}
 	}
 
 	updateShape();
@@ -96,6 +104,17 @@ void AbstractAnnotationLine::snapToAngle(bool enabled)
 		auto newAngle = MathHelper::roundAngleTo(mLine->angle(), 45);
 		mLine->setAngle(newAngle);
 	}
+}
+
+QPointF AbstractAnnotationLine::getSnapPoint(QPointF from, QPointF to) const
+{
+	QLineF line = QLineF(from, to);
+	const auto angle = line.angle();
+
+	auto newAngle = MathHelper::roundAngleTo(angle, 45);
+	line.setAngle(newAngle);
+
+	return line.p2();
 }
 
 } // namespace kImageAnnotator
