@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished"></translation>
+        <translation>Dekkevnefaktor</translation>
     </message>
 </context>
 <context>
@@ -129,38 +129,38 @@
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation type="unfinished">Rammelinje og utfylling</translation>
+        <translation type="unfinished">Kantlinje og utfylling</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation type="unfinished">Rammelinje og ingen utfylling</translation>
+        <translation type="unfinished">Kantlinje og ingen utfylling</translation>
     </message>
     <message>
         <source>No Border and No Fill</source>
-        <translation type="unfinished">Ingen rammelinje og ingen utfylling</translation>
+        <translation type="unfinished">Ingen kantlinje og ingen utfylling</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Bildeeffekter</translation>
     </message>
     <message>
         <source>No Effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen effekt</translation>
     </message>
     <message>
         <source>Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Kastskygge</translation>
     </message>
     <message>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation>Gråskala</translation>
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>Kantlinje</translation>
     </message>
 </context>
 <context>
@@ -269,26 +269,26 @@
     </message>
     <message>
         <source>Pixelate</source>
-        <translation type="unfinished"></translation>
+        <translation>Pikseler</translation>
     </message>
     <message>
         <source>Text Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekstpeker</translation>
     </message>
     <message>
         <source>Text Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekstpil</translation>
     </message>
     <message>
         <source>Number Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Nummerpil</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ZoomIndicator</name>
     <message>
         <source>Zoom Level</source>
-        <translation type="unfinished"></translation>
+        <translation>Forstørrelsesnivå</translation>
     </message>
 </context>
 </TS>
