@@ -1,5 +1,8 @@
 # Change log
 
+## Release 0.4.1
+* Fixed: Brazilian Portuguese translation not loaded. ([#176](https://github.com/ksnip/kImageAnnotator/issues/176))
+
 ## Release 0.4.0
 * New: Add Pixelate image area tool. ([#140](https://github.com/ksnip/kImageAnnotator/issues/140))
 * New: Zoom in and out. ([#123](https://github.com/ksnip/kImageAnnotator/issues/123))
