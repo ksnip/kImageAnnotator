@@ -206,8 +206,6 @@ KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator)
 {
 	initResource();
 
-	QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-
 	mMainLayout.addWidget(&mCoreView);
 	kImageAnnotator->setLayout(&mMainLayout);
 	kImageAnnotator->hide();
