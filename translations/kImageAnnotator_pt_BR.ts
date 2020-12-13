@@ -129,11 +129,38 @@
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation>Com borda e com preenchimento</translation>
+        <translation type="unfinished">Com borda e com preenchimento</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation>Com borda e sem preenchimento</translation>
+        <translation type="unfinished">Com borda e sem preenchimento</translation>
+    </message>
+    <message>
+        <source>No Border and No Fill</source>
+        <translation type="unfinished">Sem borda e sem preenchimento</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::ImageEffectPicker</name>
+    <message>
+        <source>Image Effects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Effect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drop Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grayscale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Border</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No Border and No Fill</source>
@@ -343,6 +370,29 @@
     <message>
         <source>Zoom Level</source>
         <translation>Nível de zoom</translation>
+    </message>
+    <message>
+        <source>Text Pointer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Number Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pixelate</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::ZoomIndicator</name>
+    <message>
+        <source>Zoom Level</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
