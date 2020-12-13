@@ -26,6 +26,8 @@
 
 namespace kImageAnnotator {
 
+KIMAGEANNOTATOR_EXPORT void loadTranslations();
+
 class KImageAnnotatorPrivate;
 
 class KIMAGEANNOTATOR_EXPORT KImageAnnotator : public QWidget

@@ -77,6 +77,7 @@ if (UNIX AND NOT APPLE)
 endif ()
 
 target_compile_definitions(kImageAnnotator PRIVATE KIMAGEANNOTATOR_LIB)
+target_compile_definitions(kImageAnnotator PRIVATE KIMAGEANNOTATOR_LANG_INSTALL_DIR="${KIMAGEANNOTATOR_LANG_INSTALL_DIR}")
 
 set_target_properties(kImageAnnotator
 					  PROPERTIES
