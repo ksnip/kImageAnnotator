@@ -18,6 +18,7 @@
  */
 
 #include <QCoreApplication>
+#include <QTranslator>
 #include <QHBoxLayout>
 
 #include <kImageAnnotator/KImageAnnotator.h>
@@ -30,6 +31,22 @@ inline void initResource()
 }
 
 namespace kImageAnnotator {
+
+void loadTranslations()
+{
+	static QTranslator *currentTranslator = nullptr;
+	auto translator = new QTranslator(QCoreApplication::instance());
+	if (translator->load(QLocale(), QLatin1String("kImageAnnotator"),
+	                                QLatin1String("_"),
+	                                QLatin1String(KIMAGEANNOTATOR_LANG_INSTALL_DIR))) {
+		if (currentTranslator) {
+			QCoreApplication::removeTranslator(currentTranslator);
+			delete currentTranslator;
+		}
+		QCoreApplication::installTranslator(translator);
+		currentTranslator = translator;
+	}
+}
 
 class KImageAnnotatorPrivate
 {
