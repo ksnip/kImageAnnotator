@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished"></translation>
+        <translation>Уровень обфускации</translation>
     </message>
 </context>
 <context>
@@ -125,42 +125,42 @@
     <name>kImageAnnotator::FillModePicker</name>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation type="unfinished">Видимость обводки и заливки</translation>
+        <translation>Видимость обводки и заливки</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation type="unfinished">Обводка и заливка</translation>
+        <translation>Обводка и заливка</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation type="unfinished">Обводка без заливки</translation>
+        <translation>Обводка без заливки</translation>
     </message>
     <message>
         <source>No Border and No Fill</source>
-        <translation type="unfinished">Без обводки и заливки</translation>
+        <translation>Без обводки и заливки</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Графические эффекты</translation>
     </message>
     <message>
         <source>No Effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Без эффекта</translation>
     </message>
     <message>
         <source>Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Отбросить тень</translation>
     </message>
     <message>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation>Оттенки серого</translation>
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>Рамка</translation>
     </message>
 </context>
 <context>
@@ -202,7 +202,7 @@
     <name>kImageAnnotator::StickerPicker</name>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished">Стикер</translation>
+        <translation>Стикер</translation>
     </message>
 </context>
 <context>
@@ -269,26 +269,26 @@
     </message>
     <message>
         <source>Pixelate</source>
-        <translation type="unfinished"></translation>
+        <translation>Пикселизовать</translation>
     </message>
     <message>
         <source>Text Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Текстовый указатель</translation>
     </message>
     <message>
         <source>Text Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Стрелка с текстом</translation>
     </message>
     <message>
         <source>Number Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Стрелка с цифрой</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ZoomIndicator</name>
     <message>
         <source>Zoom Level</source>
-        <translation type="unfinished"></translation>
+        <translation>Уровень масштабирования</translation>
     </message>
 </context>
 </TS>
