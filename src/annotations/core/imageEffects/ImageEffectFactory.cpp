@@ -22,13 +22,13 @@
 QGraphicsEffect *kImageAnnotator::ImageEffectFactory::create(kImageAnnotator::ImageEffects effect)
 {
 	switch (effect) {
-		case ImageEffects::NoEffect:
-			return new NoImageEffect;
 		case ImageEffects::DropShadow:
 			return new DropShadowImageEffect;
 		case ImageEffects::Border:
 			return new BorderImageEffect;
 		case ImageEffects::Grayscale:
 			return new GrayscaleImageEffect;
+		default:
+			return new NoImageEffect;
 	}
 }
