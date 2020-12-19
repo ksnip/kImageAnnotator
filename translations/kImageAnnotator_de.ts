@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished"></translation>
+        <translation>Obfuskierungs-Faktor</translation>
     </message>
 </context>
 <context>
@@ -87,11 +87,11 @@
     </message>
     <message>
         <source>Close All to the Left</source>
-        <translation>Alle nach links schließen</translation>
+        <translation>Alle linksseitig schließen</translation>
     </message>
     <message>
         <source>Close All to the Right</source>
-        <translation>Alle nach rechts schließen</translation>
+        <translation>Alle rechtsseitig schließen</translation>
     </message>
 </context>
 <context>
@@ -125,42 +125,42 @@
     <name>kImageAnnotator::FillModePicker</name>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation type="unfinished">Sichtbarkeit von Rahmen und Füllungen</translation>
+        <translation>Sichtbarkeit von Rahmen und Füllungen</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation type="unfinished">Rahmen und Füllung</translation>
+        <translation>Rahmen und Füllung</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation type="unfinished">Rahmen und keine Füllung</translation>
+        <translation>Rahmen und keine Füllung</translation>
     </message>
     <message>
         <source>No Border and No Fill</source>
-        <translation type="unfinished">Kein Rahmen und keine Füllung</translation>
+        <translation>Kein Rahmen und keine Füllung</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Bildeffekte</translation>
     </message>
     <message>
         <source>No Effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Effekt</translation>
     </message>
     <message>
         <source>Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Schlagschatten</translation>
     </message>
     <message>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation>Graustufen</translation>
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>Rand</translation>
     </message>
 </context>
 <context>
@@ -202,7 +202,7 @@
     <name>kImageAnnotator::StickerPicker</name>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished">Aufkleber</translation>
+        <translation>Aufkleber</translation>
     </message>
 </context>
 <context>
@@ -269,26 +269,26 @@
     </message>
     <message>
         <source>Pixelate</source>
-        <translation type="unfinished"></translation>
+        <translation>Verpixelung</translation>
     </message>
     <message>
         <source>Text Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprechblase</translation>
     </message>
     <message>
         <source>Text Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Pfeil mit Text</translation>
     </message>
     <message>
         <source>Number Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Pfeil mit Zahl</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ZoomIndicator</name>
     <message>
         <source>Zoom Level</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoomstufe</translation>
     </message>
 </context>
 </TS>
