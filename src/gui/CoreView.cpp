@@ -104,6 +104,11 @@ void CoreView::showScaler()
 	mScaleWidget->activate(mAnnotationWidget->annotationArea());
 }
 
+void CoreView::setSettingsVisible(bool isVisible)
+{
+	mAnnotationWidget->setSettingsVisible(isVisible);
+}
+
 void CoreView::setTabBarAutoHide(bool enabled)
 {
 	mAnnotationWidget->setTabBarAutoHide(enabled);

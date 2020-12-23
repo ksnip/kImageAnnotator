@@ -159,4 +159,9 @@ void AnnotationWidget::addTabContextMenuActions(const QList<QAction *> &actions)
 	mAnnotationTabWidget->addContextMenuActions(actions);
 }
 
+void AnnotationWidget::setSettingsVisible(bool isVisible)
+{
+	isVisible ? mSettings->show() : mSettings->hide();
+}
+
 } // namespace kImageAnnotator

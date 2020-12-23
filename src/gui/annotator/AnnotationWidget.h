@@ -51,6 +51,7 @@ public:
 	void setTabBarAutoHide(bool enabled);
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
 	void addTabContextMenuActions(const QList<QAction*> & actions);
+	void setSettingsVisible(bool isVisible);
 
 signals:
 	void imageChanged() const;

@@ -188,6 +188,12 @@ void KImageAnnotator::showScaler()
 	d->mCoreView.showScaler();
 }
 
+void KImageAnnotator::setSettingsVisible(bool isVisible)
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.setSettingsVisible(isVisible);
+}
+
 void KImageAnnotator::setStickers(const QStringList &stickerPaths, bool keepDefault)
 {
 	Q_D(KImageAnnotator);
