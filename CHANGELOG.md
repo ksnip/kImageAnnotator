@@ -1,6 +1,7 @@
 # Change log
 
 ## Release 0.5.0
+* New: Add function for loading translations. ([#173](https://github.com/ksnip/kImageAnnotator/issues/173))
 
 ## Release 0.4.1
 * Fixed: Brazilian Portuguese translation not loaded. ([#176](https://github.com/ksnip/kImageAnnotator/issues/176))

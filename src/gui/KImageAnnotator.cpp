@@ -34,17 +34,19 @@ namespace kImageAnnotator {
 
 void loadTranslations()
 {
-	static QTranslator *currentTranslator = nullptr;
+	static QTranslator *existingTranslator = nullptr;
 	auto translator = new QTranslator(QCoreApplication::instance());
-	if (translator->load(QLocale(), QLatin1String("kImageAnnotator"),
-	                                QLatin1String("_"),
-	                                QLatin1String(KIMAGEANNOTATOR_LANG_INSTALL_DIR))) {
-		if (currentTranslator) {
-			QCoreApplication::removeTranslator(currentTranslator);
-			delete currentTranslator;
+	auto translationsLoaded = translator->load(QLocale(),
+											   QLatin1String("kImageAnnotator"),
+											   QLatin1String("_"),
+											   QLatin1String(KIMAGEANNOTATOR_LANG_INSTALL_DIR));
+	if (translationsLoaded) {
+		if (existingTranslator != nullptr) {
+			QCoreApplication::removeTranslator(existingTranslator);
+			delete existingTranslator;
 		}
 		QCoreApplication::installTranslator(translator);
-		currentTranslator = translator;
+		existingTranslator = translator;
 	}
 }
 
