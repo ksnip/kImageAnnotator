@@ -1,5 +1,7 @@
 # Change log
 
+## Release 0.5.0
+
 ## Release 0.4.1
 * Fixed: Brazilian Portuguese translation not loaded. ([#176](https://github.com/ksnip/kImageAnnotator/issues/176))
 * Fixed: error: control reaches end of non-void function. ([#177](https://github.com/ksnip/kImageAnnotator/issues/177))
