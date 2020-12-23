@@ -103,7 +103,7 @@ void AnnotationTextHandler::paintText(QPainter *painter, QRectF *rect, const QFo
 
 	// Workaround for issue #70 -> Cursor not drawn with with Qt 5.9
 	if (mIsInEditMode) {
-		painter->setBrush(QColor(255,255,255,10));
+		painter->setBrush(QColor(255,255,255,50));
 		painter->drawRect(*rect);
 	}
 
@@ -142,7 +142,7 @@ void AnnotationTextHandler::paintText(QPainter *painter, QRectF *rect, const QFo
 		textLayout.draw(painter, QPoint(0, boxHeight));
 
 		if (mTextCursor.isVisible() && isCursorInBlock(blockPosition, blockLength)) {
-			textLayout.drawCursor(painter, QPointF(1, boxHeight), mTextCursor.position() - blockPosition, 2);
+			textLayout.drawCursor(painter, QPointF(0, boxHeight), mTextCursor.position() - blockPosition, 1);
 		}
 		boxHeight += blockHeight;
 	}
@@ -177,7 +177,7 @@ QRect AnnotationTextHandler::getTextRect(QRectF *rect, const QFont& font, int ma
 {
 	QFontMetrics fontMetrics(font);
 	auto newRect = fontMetrics.boundingRect(rect->toRect().normalized(), Qt::AlignLeft, mText);
-	newRect.adjust(0, 0, margin * 2, margin * 2);
+	newRect.adjust(0, 2, (margin * 2) + 2, margin * 2);
 	return newRect;
 }
 
