@@ -40,10 +40,9 @@ protected:
 	void updateShape() override;
 
 private:
-	void captureScene();
-
-	bool mItemCreationFinished;
 	QImage mSceneSelectionImage;
+
+	void captureScene();
 };
 
 } // namespace kImageAnnotator

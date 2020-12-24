@@ -75,6 +75,8 @@ void AnnotationPropertiesFactory::setColor(const PropertiesPtr &properties, Tool
 
 	if (isMarkerTool(toolType)) {
 		color.setAlpha(60);
+	} else if( toolType == Tools::Duplicate) {
+		color.setAlpha(30);
 	}
 
 	properties->setColor(color);
@@ -104,6 +106,7 @@ void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, Tools
 		case Tools::Sticker:
 		case Tools::NumberPointer:
 		case Tools::TextPointer:
+		case Tools::Duplicate:
 			properties->setFillType(mConfig->toolFillType(toolType));
 			break;
 		default:
@@ -113,11 +116,16 @@ void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, Tools
 
 void AnnotationPropertiesFactory::setShadowEnabled(const PropertiesPtr &properties, Tools toolType) const
 {
-	if (isObfuscateTool(toolType) || isMarkerTool(toolType) || toolType == Tools::Image) {
-		properties->setShadowEnabled(false);
-	} else {
+	if (isToolWithShadowSupport(toolType)) {
 		properties->setShadowEnabled(mConfig->itemShadowEnabled());
+	} else {
+		properties->setShadowEnabled(false);
 	}
+}
+
+bool AnnotationPropertiesFactory::isToolWithShadowSupport(Tools &toolType) const
+{
+	return !isObfuscateTool(toolType) && !isMarkerTool(toolType) && toolType != Tools::Image && toolType != Tools::Duplicate;
 }
 
 void AnnotationPropertiesFactory::setPathProperties(const PropertiesPtr &properties) const

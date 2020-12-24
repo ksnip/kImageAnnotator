@@ -48,7 +48,8 @@ Config::Config() :
 		Tools::Blur,
 		Tools::Pixelate,
 		Tools::Image,
-		Tools::Sticker
+		Tools::Sticker,
+		Tools::Duplicate
 	};
 	initGeneralSettings();
 	initToolSettings();
@@ -434,6 +435,8 @@ QColor Config::defaultToolColor(Tools toolType)
 		case Tools::Blur:
 		case Tools::Pixelate:
 			return { Qt::white };
+		case Tools::Duplicate:
+			return { Qt::green };
 		default:
 			return { Qt::red };
 	}
@@ -469,6 +472,7 @@ int Config::defaultToolWidth(Tools toolType)
 			return 2;
 		case Tools::NumberPointer:
 		case Tools::TextPointer:
+		case Tools::Duplicate:
 			return 1;
 		default:
 			return 3;
@@ -491,6 +495,7 @@ FillModes Config::defaultToolFillMode(Tools toolType)
 			return FillModes::BorderAndFill;
 		case Tools::MarkerRect:
 		case Tools::MarkerEllipse:
+		case Tools::Duplicate:
 			return FillModes::NoBorderAndFill;
 		case Tools::NumberArrow:
 		case Tools::TextArrow:

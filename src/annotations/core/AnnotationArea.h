@@ -108,6 +108,7 @@ private:
 	void resetAnnotationArea();
 	void removeAllItems();
 	void replaceBackgroundImage(const QPixmap &image);
+	void finishDrawingItem(const QPointF &pos);
 
 private slots:
     void deleteSelectedItems();

@@ -22,14 +22,8 @@
 namespace kImageAnnotator {
 
 AnnotationDuplicate::AnnotationDuplicate(const QPointF &startPosition, const PropertiesPtr &properties) :
-		AbstractAnnotationRect(startPosition, properties),
-		mItemCreationFinished(false)
+	AbstractAnnotationRect(startPosition, properties)
 {
-	auto annotationProperties = new AnnotationProperties(QColor(0, 255, 0, 30), 1);
-	annotationProperties->setFillType(FillModes::NoBorderAndFill);
-	annotationProperties->setShadowEnabled(false);
-	PropertiesPtr propsPtr(annotationProperties);
-	updateProperties(propsPtr);
 }
 
 Tools AnnotationDuplicate::toolType() const
@@ -52,7 +46,6 @@ void AnnotationDuplicate::updateShape()
 void AnnotationDuplicate::finish()
 {
 	prepareGeometryChange();
-	mItemCreationFinished = true;
 
 	captureScene();
 }
@@ -75,7 +68,7 @@ void AnnotationDuplicate::captureScene()
 
 void AnnotationDuplicate::paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget)
 {
-	if (!mItemCreationFinished) {
+	if (mSceneSelectionImage.isNull()) {
 		AbstractAnnotationItem::paint(painter, style, widget);
 	} else {
 		painter->drawImage(mRect->normalized(), mSceneSelectionImage);
