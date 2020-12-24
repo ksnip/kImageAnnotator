@@ -231,18 +231,26 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 		if (mSettingsProvider->toolType() == Tools::Select) {
 			mItemModifier->handleMouseRelease(mItems);
 		} else if (mCurrentItem != nullptr) {
-			mCurrentItem->finish();
-			if (mCurrentItem->requiresSelectionAfterCreation()) {
-				mItemModifier->handleSelectionAt(event->scenePos(), mItems, false);
-			}
-			mCurrentItem = nullptr;
-			if (mConfig->switchToSelectToolAfterDrawingItem()) {
-				mSettingsProvider->activateSelectTool();
-			}
+			finishDrawingItem(event->scenePos());
 		}
 	}
 
 	QGraphicsScene::mouseReleaseEvent(event);
+}
+
+void AnnotationArea::finishDrawingItem(const QPointF &pos)
+{
+	mCurrentItem->finish();
+
+	if (mCurrentItem->requiresSelectionAfterCreation()) {
+		mItemModifier->handleSelectionAt(pos, mItems, false);
+	}
+
+	mCurrentItem = nullptr;
+
+	if (mConfig->switchToSelectToolAfterDrawingItem()) {
+		mSettingsProvider->activateSelectTool();
+	}
 }
 
 void AnnotationArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
