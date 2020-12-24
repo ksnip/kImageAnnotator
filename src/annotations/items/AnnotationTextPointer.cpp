@@ -119,7 +119,8 @@ void AnnotationTextPointer::paint(QPainter *painter, const QStyleOptionGraphicsI
 	auto font = textProperties()->font();
 	auto color = textProperties()->textColor();
 	auto margin = textProperties()->width();
-	mTextHandler.paintText(painter, mRect, font, color, margin);
+	auto isShadowEnabled = properties()->shadowEnabled();
+	mTextHandler.paintText(painter, mRect, font, color, margin, isShadowEnabled);
 }
 
 void AnnotationTextPointer::connectSlots()

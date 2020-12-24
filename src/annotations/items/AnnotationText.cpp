@@ -68,7 +68,8 @@ void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *st
 	auto font = textProperties()->font();
 	auto color = textProperties()->textColor();
 	auto margin = textProperties()->width();
-	mTextHandler.paintText(painter, mRect, font, color, margin);
+	auto isShadowEnabled = properties()->shadowEnabled();
+	mTextHandler.paintText(painter, mRect, font, color, margin, isShadowEnabled);
 }
 
 void AnnotationText::finish()
