@@ -55,6 +55,7 @@ private:
 	void setStickerProperties(const PropertiesPtr &properties) const;
 	static bool isMarkerTool(Tools toolType) ;
 	static bool isObfuscateTool(const Tools &toolType) ;
+	bool isToolWithShadowSupport(Tools &toolType) const;
 };
 
 } // namespace kImageAnnotator

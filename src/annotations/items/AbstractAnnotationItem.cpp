@@ -180,6 +180,11 @@ void AbstractAnnotationItem::finish()
 	// By default, does nothing
 }
 
+bool AbstractAnnotationItem::requiresSelectionAfterCreation() const
+{
+	return false;
+}
+
 void AbstractAnnotationItem::setProperties(const PropertiesPtr &properties)
 {
 	Q_ASSERT(properties != nullptr);

@@ -162,6 +162,10 @@
         <source>Border</source>
         <translation>Borda</translation>
     </message>
+    <message>
+        <source>No Border and No Fill</source>
+        <translation>Sem borda e sem preenchimento</translation>
+    </message>
 </context>
 <context>
     <name>kImageAnnotator::ScaleDialog</name>
