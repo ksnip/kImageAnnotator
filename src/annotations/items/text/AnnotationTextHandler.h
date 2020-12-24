@@ -40,7 +40,7 @@ public:
 	void insertText(const QString &text);
 	void enableEditing();
 	void disableEditing();
-	void paintText(QPainter *painter, QRectF *rect, const QFont& font, const QColor& color, int margin);
+	void paintText(QPainter *painter, QRectF *rect, const QFont &font, const QColor &color, int margin, bool isShadowEnabled);
 	void updateRect(QRectF *rect, const QFont &font, int margin) const;
 	QRect getTextRect(QRectF *rect, const QFont& font, int margin) const;
 	void handleKeyEvent(QKeyEvent *event);

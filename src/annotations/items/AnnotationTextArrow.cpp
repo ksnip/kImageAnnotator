@@ -85,7 +85,8 @@ void AnnotationTextArrow::paint(QPainter *painter, const QStyleOptionGraphicsIte
 	auto font = textProperties()->font();
 	auto color = textProperties()->textColor();
 	auto margin = textProperties()->width();
-	mTextHandler.paintText(painter, mRect, font, color, margin);
+	auto isShadowEnabled = properties()->shadowEnabled();
+	mTextHandler.paintText(painter, mRect, font, color, margin, isShadowEnabled);
 }
 
 } // namespace kImageAnnotator
