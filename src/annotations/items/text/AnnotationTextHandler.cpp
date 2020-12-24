@@ -92,7 +92,7 @@ void AnnotationTextHandler::disableEditing()
 	emit changed();
 }
 
-void AnnotationTextHandler::paintText(QPainter *painter, QRectF *rect, const QFont& font, const QColor& color, int margin)
+void AnnotationTextHandler::paintText(QPainter *painter, QRectF *rect, const QFont &font, const QColor &color, int margin, bool isShadowEnabled)
 {
 	auto textArea = rect->toRect();
 	if (mIsInEditMode && textArea.isValid()) {
@@ -101,8 +101,9 @@ void AnnotationTextHandler::paintText(QPainter *painter, QRectF *rect, const QFo
 		painter->drawRect(textArea);
 	}
 
-	// Workaround for issue #70 -> Cursor not drawn with with Qt 5.9
-	if (mIsInEditMode) {
+	// Workaround for issue #70 / #184 -> Cursor not drawn with with Qt 5.9
+	// https://bugreports.qt.io/browse/QTBUG-82022
+	if (mIsInEditMode && isShadowEnabled) {
 		painter->setBrush(QColor(255,255,255,50));
 		painter->drawRect(*rect);
 	}
