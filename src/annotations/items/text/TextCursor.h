@@ -46,7 +46,7 @@ signals:
     void tick() const;
 
 private:
-    int mBlinkIntervalInMs = 1000;
+    int mBlinkIntervalInMs = 800;
     QTimer *mBlinkTimer;
     int mPosition = 0;
     bool mIsVisible = false;

@@ -60,6 +60,7 @@ void TextCursor::move(TextPositions direction, const QString &text)
 
 void TextCursor::start()
 {
+	mIsVisible = true;
     mBlinkTimer->start(mBlinkIntervalInMs);
 }
 
