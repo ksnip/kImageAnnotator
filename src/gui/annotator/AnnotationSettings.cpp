@@ -319,4 +319,10 @@ void AnnotationSettings::effectChanged(ImageEffects effect)
 	AbstractSettingsProvider::effectChanged(effect);
 }
 
+void AnnotationSettings::setCollapsed(bool isCollapsed)
+{
+	isCollapsed ? setFixedSize(0, 0) : setFixedSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+}
+
+
 } // namespace kImageAnnotator

@@ -58,7 +58,7 @@ public slots:
 	void showAnnotator();
 	void showCropper();
 	void showScaler();
-	void setSettingsVisible(bool isVisible);
+	void setSettingsCollapsed(bool isCollapsed);
 	void setTabBarAutoHide(bool enabled);
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
 	void addTabContextMenuActions(const QList<QAction*> & actions);

@@ -207,10 +207,10 @@ void KImageAnnotator::showScaler()
 	d->mCoreView.showScaler();
 }
 
-void KImageAnnotator::setSettingsVisible(bool isVisible)
+void KImageAnnotator::setSettingsCollapsed(bool isCollapsed)
 {
 	Q_D(KImageAnnotator);
-	d->mCoreView.setSettingsVisible(isVisible);
+	d->mCoreView.setSettingsCollapsed(isCollapsed);
 }
 
 void KImageAnnotator::setStickers(const QStringList &stickerPaths, bool keepDefault)

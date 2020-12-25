@@ -3,6 +3,7 @@
 ## Release 0.5.0
 * New: Add function for loading translations. ([#173](https://github.com/ksnip/kImageAnnotator/issues/173))
 * New: Add a new tool for creating resizable movable duplicates of regions. ([#131](https://github.com/ksnip/kImageAnnotator/issues/131))
+* New: Add support for hiding annotation settings panel. ([#182](https://github.com/ksnip/kImageAnnotator/issues/182))
 
 ## Release 0.4.1
 * Fixed: Brazilian Portuguese translation not loaded. ([#176](https://github.com/ksnip/kImageAnnotator/issues/176))

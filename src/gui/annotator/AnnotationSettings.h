@@ -59,6 +59,7 @@ public:
 	void updateZoomLevel(double value) override;
 	void reloadConfig();
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
+	void setCollapsed(bool isCollapsed);
 
 private:
 	QVBoxLayout *mMainLayout;
