@@ -294,28 +294,5 @@
         <source>Zoom Level</source>
         <translation>Nível de zoom</translation>
     </message>
-    <message>
-        <source>Text Pointer</source>
-        <translation>Texto com ponteiro</translation>
-    </message>
-    <message>
-        <source>Text Arrow</source>
-        <translation>Texto com seta</translation>
-    </message>
-    <message>
-        <source>Number Arrow</source>
-        <translation>Número com seta</translation>
-    </message>
-    <message>
-        <source>Pixelate</source>
-        <translation>Pixelizar</translation>
-    </message>
-</context>
-<context>
-    <name>kImageAnnotator::ZoomIndicator</name>
-    <message>
-        <source>Zoom Level</source>
-        <translation>Nível de zoom</translation>
-    </message>
 </context>
 </TS>
