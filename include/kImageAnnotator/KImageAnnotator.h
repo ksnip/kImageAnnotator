@@ -47,6 +47,7 @@ public:
 	void showAnnotator();
 	void showCropper();
 	void showScaler();
+	void setSettingsCollapsed(bool isCollapsed);
 
 public Q_SLOTS:
 	void loadImage(const QPixmap &pixmap);

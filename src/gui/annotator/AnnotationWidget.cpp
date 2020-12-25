@@ -159,4 +159,9 @@ void AnnotationWidget::addTabContextMenuActions(const QList<QAction *> &actions)
 	mAnnotationTabWidget->addContextMenuActions(actions);
 }
 
+void AnnotationWidget::setSettingsCollapsed(bool isCollapsed)
+{
+	mSettings->setCollapsed(isCollapsed);
+}
+
 } // namespace kImageAnnotator
