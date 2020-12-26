@@ -53,7 +53,7 @@ void CustomToolButtonAction::initDefaultWidget()
 	mLayout->addWidget(mImage);
 	mLayout->addWidget(mText);
 	mMenuItem->setLayout(mLayout);
-	mMenuItem->setStyleSheet(QStringLiteral(":hover{background-color:palette(highlight);}"));
+	mMenuItem->setStyleSheet(QLatin1String(":hover{background-color:palette(highlight);}"));
 }
 
 }

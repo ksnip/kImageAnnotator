@@ -51,7 +51,7 @@ void StickerPicker::init()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
-	auto icon = IconLoader::load(QLatin1Literal("sticker.svg"));
+	auto icon = IconLoader::load(QLatin1String("sticker.svg"));
 	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
 	mLabel->setToolTip(tr("Sticker"));
 
@@ -73,23 +73,23 @@ void StickerPicker::init()
 
 void StickerPicker::addDefaultStickers()
 {
-	QStringList defaultStickers{ QLatin1Literal("face_blowing_a_kiss"),
-								 QLatin1Literal("face_savoring_food"),
-								 QLatin1Literal("grinning_face_with_big_eyes"),
-								 QLatin1Literal("grinning_face_with_smiling_eyes"),
-								 QLatin1Literal("grinning_face_with_sweat"),
-								 QLatin1Literal("grinning_squinting_face"),
-								 QLatin1Literal("hushed_face"),
-								 QLatin1Literal("nerd_face"),
-								 QLatin1Literal("neutral_face"),
-								 QLatin1Literal("smiling_face_with_heart_eyes"),
-								 QLatin1Literal("smiling_face_with_hearts"),
-								 QLatin1Literal("confused_face"),
-								 QLatin1Literal("face_with_symbols_on_mouth"),
-								 QLatin1Literal("pouting_face"),
-								 QLatin1Literal("smiling_face_with_sunglasses"),
-								 QLatin1Literal("check_mark"),
-								 QLatin1Literal("cross_mark")
+	QStringList defaultStickers{ QLatin1String("face_blowing_a_kiss"),
+								 QLatin1String("face_savoring_food"),
+								 QLatin1String("grinning_face_with_big_eyes"),
+								 QLatin1String("grinning_face_with_smiling_eyes"),
+								 QLatin1String("grinning_face_with_sweat"),
+								 QLatin1String("grinning_squinting_face"),
+								 QLatin1String("hushed_face"),
+								 QLatin1String("nerd_face"),
+								 QLatin1String("neutral_face"),
+								 QLatin1String("smiling_face_with_heart_eyes"),
+								 QLatin1String("smiling_face_with_hearts"),
+								 QLatin1String("confused_face"),
+								 QLatin1String("face_with_symbols_on_mouth"),
+								 QLatin1String("pouting_face"),
+								 QLatin1String("smiling_face_with_sunglasses"),
+								 QLatin1String("check_mark"),
+								 QLatin1String("cross_mark")
 	};
 
 	for(const auto& sticker : defaultStickers) {
@@ -99,7 +99,7 @@ void StickerPicker::addDefaultStickers()
 
 QString StickerPicker::getResourcePath(const QString &name) const
 {
-	return QLatin1Literal(":/stickers/") + name + QLatin1Literal(".svg");
+	return QLatin1String(":/stickers/") + name + QLatin1String(".svg");
 }
 
 void StickerPicker::addItem(const QString &path)

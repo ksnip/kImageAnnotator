@@ -24,12 +24,12 @@ namespace kImageAnnotator {
 QIcon IconLoader::load(QString name)
 {
 	auto type = getThemePrefix();
-	return QIcon(QStringLiteral(":/icons/") + type + name);
+	return QIcon(QLatin1String(":/icons/") + type + name);
 }
 
 QString IconLoader::getThemePrefix()
 {
-	return isDarkTheme() ? QStringLiteral("dark/") : QStringLiteral("light/");
+	return isDarkTheme() ? QLatin1String("dark/") : QLatin1String("light/");
 }
 
 double IconLoader::getThemeLuma()
