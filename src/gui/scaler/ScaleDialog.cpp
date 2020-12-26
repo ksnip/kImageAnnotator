@@ -71,7 +71,7 @@ void ScaleDialog::initGui()
 	mHeightPercentLabel->setText(tr("Height:"));
 
 	mWidthPixelSpinBox = new CustomSpinBox(this);
-	mWidthPixelSpinBox->setSuffix(QStringLiteral("px"));
+	mWidthPixelSpinBox->setSuffix(QLatin1String("px"));
 	mWidthPixelSpinBox->setMinimum(1);
 	mWidthPixelSpinBox->setMaximum(4000);
 	mWidthPixelSpinBox->setValueSilent(mSizeHandler.size().width());
@@ -80,7 +80,7 @@ void ScaleDialog::initGui()
 	connect(&mSizeHandler, &ScaleSizeHandler::widthPixelChanged, mWidthPixelSpinBox, &CustomSpinBox::setValueSilent);
 
 	mHeightPixelSpinBox = new CustomSpinBox(this);
-	mHeightPixelSpinBox->setSuffix(QStringLiteral("px"));
+	mHeightPixelSpinBox->setSuffix(QLatin1String("px"));
 	mHeightPixelSpinBox->setMinimum(1);
 	mHeightPixelSpinBox->setMaximum(4000);
 	mHeightPixelSpinBox->setValueSilent(mSizeHandler.size().height());
@@ -89,7 +89,7 @@ void ScaleDialog::initGui()
 	connect(&mSizeHandler, &ScaleSizeHandler::heightPixelChanged, mHeightPixelSpinBox, &CustomSpinBox::setValueSilent);
 
 	mWidthPercentSpinBox = new CustomSpinBox(this);
-	mWidthPercentSpinBox->setSuffix(QStringLiteral("%"));
+	mWidthPercentSpinBox->setSuffix(QLatin1String("%"));
 	mWidthPercentSpinBox->setMinimum(1);
 	mWidthPercentSpinBox->setMaximum(400);
 	mWidthPercentSpinBox->setValueSilent(100);
@@ -98,7 +98,7 @@ void ScaleDialog::initGui()
 	connect(&mSizeHandler, &ScaleSizeHandler::widthPercentChanged, mWidthPercentSpinBox, &CustomSpinBox::setValueSilent);
 
 	mHeightPercentSpinBox = new CustomSpinBox(this);
-	mHeightPercentSpinBox->setSuffix(QStringLiteral("%"));
+	mHeightPercentSpinBox->setSuffix(QLatin1String("%"));
 	mHeightPercentSpinBox->setMinimum(1);
 	mHeightPercentSpinBox->setMaximum(400);
 	mHeightPercentSpinBox->setValueSilent(100);

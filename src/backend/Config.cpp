@@ -273,8 +273,8 @@ void Config::initToolFillTypes()
 
 void Config::initToolFonts()
 {
-	auto textFont = QFont(QLatin1Literal("Times"), loadToolFontSize(Tools::Text), QFont::Bold);
-	auto numberFont = QFont(QLatin1Literal("Helvetica"), loadToolFontSize(Tools::Number), QFont::Bold);
+	auto textFont = QFont(QLatin1String("Times"), loadToolFontSize(Tools::Text), QFont::Bold);
+	auto numberFont = QFont(QLatin1String("Helvetica"), loadToolFontSize(Tools::Number), QFont::Bold);
 	mToolToFont[Tools::Text] = textFont;
 	mToolToFont[Tools::TextPointer] = textFont;
 	mToolToFont[Tools::TextArrow] = textFont;

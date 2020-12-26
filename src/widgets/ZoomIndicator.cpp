@@ -34,7 +34,7 @@ void ZoomIndicator::init()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
-	auto icon = IconLoader::load(QLatin1Literal("zoom.svg"));
+	auto icon = IconLoader::load(QLatin1String("zoom.svg"));
 	mLabel->setPixmap(icon.pixmap(SettingsWidgetIconSize));
 	mLabel->setToolTip(tr("Zoom Level"));
 
@@ -43,7 +43,7 @@ void ZoomIndicator::init()
 	mSpinBox->setReadOnly(true);
 	mSpinBox->setRange(0, 800);
 	mSpinBox->setButtonSymbols(QAbstractSpinBox::NoButtons);
-	mSpinBox->setSuffix(QLatin1Literal("%"));
+	mSpinBox->setSuffix(QLatin1String("%"));
 	mSpinBox->setToolTip(mLabel->toolTip());
 
 	mLayout->addWidget(mLabel);
