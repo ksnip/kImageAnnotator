@@ -53,8 +53,8 @@ private:
 	void setTextProperties(const PropertiesPtr &properties, Tools toolType) const;
 	void setObfuscateProperties(const PropertiesPtr &properties) const;
 	void setStickerProperties(const PropertiesPtr &properties) const;
-	static bool isMarkerTool(Tools toolType) ;
-	static bool isObfuscateTool(const Tools &toolType) ;
+	static bool isMarkerTool(Tools toolType);
+	static bool isObfuscateTool(const Tools &toolType);
 	bool isToolWithShadowSupport(Tools &toolType) const;
 };
 

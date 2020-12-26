@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,7 +22,8 @@
 namespace kImageAnnotator {
 
 NumberManager::NumberManager() :
-	mFirstNumber(1)
+	mNumberSeed(1),
+	mNumberUpdateMode(NumberUpdateMode::UpdateAllNumbers)
 {
 }
 
@@ -45,9 +46,21 @@ void NumberManager::addItemInner(AbstractAnnotationItem *item)
 {
 	Q_ASSERT(item != nullptr);
 
-	connect(item, &AbstractAnnotationItem::visibleChanged, this, &NumberManager::updateNumbers);
 	mItems.append(item);
-	updateNumbers();
+
+	if (mNumberUpdateMode == NumberUpdateMode::UpdateAllNumbers) {
+		connect(item, &AbstractAnnotationItem::visibleChanged, this, &NumberManager::updateExistingNumbersIfRequired);
+		updateExistingNumbers();
+	} else {
+		initItemNumber(item);
+		emit numberSeedChanged(mNumberSeed);
+	}
+}
+
+void NumberManager::initItemNumber(AbstractAnnotationItem *item)
+{
+	auto numberItem = dynamic_cast<BaseAnnotationNumber *>(item);
+	numberItem->setNumber(mNumberSeed++);
 }
 
 void NumberManager::reset()
@@ -55,9 +68,16 @@ void NumberManager::reset()
 	mItems.clear();
 }
 
-void NumberManager::updateNumbers()
+void NumberManager::updateExistingNumbersIfRequired()
 {
-	auto number = mFirstNumber;
+	if(mNumberUpdateMode == NumberUpdateMode::UpdateAllNumbers) {
+		updateExistingNumbers();
+	}
+}
+
+void NumberManager::updateExistingNumbers()
+{
+	auto number = mNumberSeed;
 	for (auto item : mItems) {
 		if (item->isVisible()) {
 			auto numberItem = dynamic_cast<BaseAnnotationNumber *>(item);
@@ -66,15 +86,20 @@ void NumberManager::updateNumbers()
 	}
 }
 
-void NumberManager::setFirstNumber(int number)
+void NumberManager::setNumberSeed(int numberSeed)
 {
-	mFirstNumber = number;
-	updateNumbers();
+	mNumberSeed = numberSeed;
+	updateExistingNumbersIfRequired();
 }
 
-int NumberManager::firstNumber() const
+int NumberManager::numberSeed() const
 {
-	return mFirstNumber;
+	return mNumberSeed;
+}
+
+void NumberManager::setNumberUpdateMode(NumberUpdateMode numberUpdateMode)
+{
+	mNumberUpdateMode = numberUpdateMode;
 }
 
 } // namespace kImageAnnotator

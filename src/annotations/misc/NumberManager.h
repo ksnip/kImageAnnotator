@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,6 +22,7 @@
 
 #include <QObject>
 
+#include "src/common/enum/NumberUpdateMode.h"
 #include "src/annotations/items/AnnotationNumber.h"
 #include "src/annotations/items/AnnotationNumberPointer.h"
 #include "src/annotations/items/AnnotationNumberArrow.h"
@@ -38,17 +39,24 @@ public:
 	void addItem(AnnotationNumberPointer *item);
 	void addItem(AnnotationNumberArrow *item);
 	void reset();
-	void setFirstNumber(int number);
-	int firstNumber() const;
+	void setNumberSeed(int numberSeed);
+	int numberSeed() const;
+	void setNumberUpdateMode(NumberUpdateMode numberUpdateMode);
+
+signals:
+	void numberSeedChanged(int numberSeed);
 
 public slots:
-	void updateNumbers();
+	void updateExistingNumbersIfRequired();
 
 private:
-	int mFirstNumber;
+	int mNumberSeed;
 	QList<AbstractAnnotationItem *> mItems;
+	NumberUpdateMode mNumberUpdateMode;
 
 	void addItemInner(AbstractAnnotationItem *item);
+	void initItemNumber(AbstractAnnotationItem *item);
+	void updateExistingNumbers();
 };
 
 } // namepsace kImageAnnotator

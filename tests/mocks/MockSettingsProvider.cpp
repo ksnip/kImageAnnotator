@@ -114,12 +114,12 @@ void MockSettingsProvider::setSticker(const QString &stickerPath)
 	mStickerPath =  stickerPath;
 }
 
-void MockSettingsProvider::updateFirstBadgeNumber(int number)
-{
-
-}
-
 void MockSettingsProvider::updateZoomLevel(double value)
 {
     mZoomLevel = value;
+}
+
+void MockSettingsProvider::updateNumberToolSeed(int numberToolSeed)
+{
+
 }

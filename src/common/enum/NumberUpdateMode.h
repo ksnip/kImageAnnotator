@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,24 +17,19 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ISETTINGSLISTENER_H
-#define KIMAGEANNOTATOR_ISETTINGSLISTENER_H
+#ifndef KIMAGEANNOTATOR_NUMBERUPDATEMODE_H
+#define KIMAGEANNOTATOR_NUMBERUPDATEMODE_H
 
-#include "src/common/enum/Tools.h"
-#include "src/common/enum/ImageEffects.h"
+#include <QMetaType>
 
 namespace kImageAnnotator {
 
-class ISettingsListener
+enum class NumberUpdateMode
 {
-public:
-	virtual void toolChanged(Tools toolType) = 0;
-	virtual void itemSettingsChanged() = 0;
-	virtual void numberToolSeedChanged(int numberToolSeed) = 0;
-	virtual int numberToolSeed() const = 0;
-	virtual void imageEffectChanged(ImageEffects effect) = 0;
+    UpdateAllNumbers,
+    UpdateOnlyNewNumbers
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ISETTINGSLISTENER_H
+#endif // KIMAGEANNOTATOR_NUMBERUPDATEMODE_H

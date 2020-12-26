@@ -32,7 +32,7 @@ AnnotationSettings::AnnotationSettings(Config *config) :
 	mTextColorPicker(new ColorPicker(this)),
 	mFontSizePicker(new NumberPicker(this)),
 	mFillModePicker(new FillModePicker(this)),
-	mFirstNumberPicker(new NumberPicker(this)),
+	mNumberToolSeedPicker(new NumberPicker(this)),
 	mObfuscateFactorPicker(new NumberPicker(this)),
 	mStickerPicker(new StickerPicker(this)),
 	mEffectPicker(new ImageEffectPicker(this)),
@@ -51,7 +51,7 @@ AnnotationSettings::~AnnotationSettings()
 	delete mFontSizePicker;
 	delete mFillModePicker;
 	delete mEffectPicker;
-	delete mFirstNumberPicker;
+	delete mNumberToolSeedPicker;
 	delete mObfuscateFactorPicker;
 	delete mStickerPicker;
 	delete mZoomIndicator;
@@ -110,9 +110,9 @@ void AnnotationSettings::initGui()
 	mFontSizePicker->setToolTip(tr("Font Size"));
 	mFontSizePicker->setRange(10, 40);
 
-	mFirstNumberPicker->setIcon(IconLoader::load(QLatin1Literal("number.svg")));
-	mFirstNumberPicker->setToolTip(tr("Starting Number"));
-	mFirstNumberPicker->setRange(1, 100);
+	mNumberToolSeedPicker->setIcon(IconLoader::load(QLatin1Literal("number.svg")));
+	mNumberToolSeedPicker->setToolTip(tr("Number Seed"));
+	mNumberToolSeedPicker->setRange(1, 100);
 
 	mObfuscateFactorPicker->setIcon(IconLoader::load(QLatin1Literal("obfuscateFactor.svg")));
 	mObfuscateFactorPicker->setToolTip(tr("Obfuscation Factor"));
@@ -128,7 +128,7 @@ void AnnotationSettings::initGui()
 	mMainLayout->addWidget(mTextColorPicker);
 	mMainLayout->addWidget(mFontSizePicker);
 	mMainLayout->addWidget(mFillModePicker);
-	mMainLayout->addWidget(mFirstNumberPicker);
+	mMainLayout->addWidget(mNumberToolSeedPicker);
 	mMainLayout->addWidget(mObfuscateFactorPicker);
 	mMainLayout->addWidget(mStickerPicker);
 	mMainLayout->addStretch(1);
@@ -141,7 +141,7 @@ void AnnotationSettings::initGui()
 	mWidgetConfigurator.setWidthWidget(mWidthPicker);
 	mWidgetConfigurator.setFillTypeWidget(mFillModePicker);
 	mWidgetConfigurator.setFontSizeWidget(mFontSizePicker);
-	mWidgetConfigurator.setFirstNumberWidget(mFirstNumberPicker);
+	mWidgetConfigurator.setFirstNumberWidget(mNumberToolSeedPicker);
 	mWidgetConfigurator.setObfuscateFactorWidget(mObfuscateFactorPicker);
 	mWidgetConfigurator.setStickerWidget(mStickerPicker);
 
@@ -155,7 +155,7 @@ void AnnotationSettings::initGui()
 	connect(mTextColorPicker, &ColorPicker::colorSelected, this, &AnnotationSettings::toolTextColorChanged);
 	connect(mFontSizePicker, &NumberPicker::numberSelected, this, &AnnotationSettings::toolFontSizeChanged);
 	connect(mFillModePicker, &FillModePicker::fillSelected, this, &AnnotationSettings::toolFillTypeChanged);
-	connect(mFirstNumberPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::saveFirstBadgeNumber);
+	connect(mNumberToolSeedPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::saveNumberToolSeed);
 	connect(mObfuscateFactorPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::obfuscateFactorChanged);
 	connect(mStickerPicker, &StickerPicker::stickerSelected, this, &AnnotationSettings::stickerChanged);
 	connect(mEffectPicker, &ImageEffectPicker::effectSelected, this, &AnnotationSettings::effectChanged);
@@ -233,9 +233,9 @@ void AnnotationSettings::toolFontSizeChanged(int size)
 	}
 }
 
-void AnnotationSettings::saveFirstBadgeNumber(int number)
+void AnnotationSettings::saveNumberToolSeed(int newNumberToolSeed)
 {
-	firstBadgeNumberChanged(number);
+	numberToolSeedChanged(newNumberToolSeed);
 }
 
 void AnnotationSettings::obfuscateFactorChanged(int factor)
@@ -294,9 +294,9 @@ ImageEffects AnnotationSettings::effect() const
 	return mEffectPicker->effect();
 }
 
-void AnnotationSettings::updateFirstBadgeNumber(int number)
+void AnnotationSettings::updateNumberToolSeed(int numberToolSeed)
 {
-	mFirstNumberPicker->setNumber(number);
+	mNumberToolSeedPicker->setNumber(numberToolSeed);
 }
 
 void AnnotationSettings::reloadConfig()
