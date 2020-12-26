@@ -55,6 +55,8 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 
 	connect(&mKeyListener, &KeyEventListener::keyPressed, mKeyHelper, &KeyHelper::keyPress);
 	connect(&mKeyListener, &KeyEventListener::keyReleased, mKeyHelper, &KeyHelper::keyRelease);
+
+	mItemFactory->setConfig(mConfig);
 }
 
 AnnotationArea::~AnnotationArea()

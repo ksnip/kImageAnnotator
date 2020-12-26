@@ -42,6 +42,7 @@
 #include "src/annotations/items/AnnotationSticker.h"
 #include "src/annotations/misc/NumberManager.h"
 #include "src/common/enum/Tools.h"
+#include "src/common/enum/NumberUpdateMode.h"
 
 namespace kImageAnnotator {
 
@@ -54,15 +55,20 @@ public:
 	void reset();
 	void setFirstBadgeNumber(int number);
 	int firstBadgeNumber() const;
+	void setConfig(Config *config);
 	AbstractAnnotationItem *create(const QPointF &initPosition);
 	AbstractAnnotationItem *create(const QPointF &initPosition, const QPixmap &image);
 	AbstractAnnotationItem *clone(const AbstractAnnotationItem *item);
+
+private slots:
+	void setNumberUpdateMode(NumberUpdateMode numberUpdateMode);
 
 private:
 	int mNextZValue;
 	AnnotationPropertiesFactory *mPropertiesFactory;
 	AbstractSettingsProvider *mSettingsProvider;
 	NumberManager *mNumberManager;
+	Config *mConfig;
 
 	AbstractAnnotationItem *createItem(const QPointF &initPosition, const Tools &toolType, const PropertiesPtr &properties);
 	AbstractAnnotationItem *cloneItem(const AbstractAnnotationItem *item);

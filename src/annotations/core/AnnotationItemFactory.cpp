@@ -54,6 +54,20 @@ int AnnotationItemFactory::firstBadgeNumber() const
 	return mNumberManager->firstNumber();
 }
 
+void AnnotationItemFactory::setNumberUpdateMode(NumberUpdateMode numberUpdateMode)
+{
+	mNumberManager->setNumberUpdateMode(numberUpdateMode);
+}
+
+void AnnotationItemFactory::setConfig(Config *config)
+{
+	mConfig  = config;
+
+	connect(mConfig, &Config::numberUpdateModeChanged,
+			this, &AnnotationItemFactory::setNumberUpdateMode);
+	setNumberUpdateMode(mConfig->numberUpdateMode());
+}
+
 AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPosition)
 {
 	auto toolType = mSettingsProvider->toolType();
