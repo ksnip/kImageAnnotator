@@ -50,7 +50,7 @@ public:
 	QString sticker() const override;
 	ImageEffects effect() const override;
 	void setSticker(const QString &stickerPath);
-	void updateFirstBadgeNumber(int number) override;
+	void updateNumberToolSeed(int numberToolSeed) override;
 	void updateZoomLevel(double value) override;
 
 private:

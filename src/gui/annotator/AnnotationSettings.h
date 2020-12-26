@@ -55,7 +55,7 @@ public:
 	int obfuscationFactor() const override;
 	QString sticker() const override;
 	ImageEffects effect() const override;
-	void updateFirstBadgeNumber(int number) override;
+	void updateNumberToolSeed(int numberToolSeed) override;
 	void updateZoomLevel(double value) override;
 	void reloadConfig();
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
@@ -70,7 +70,7 @@ private:
 	ColorPicker *mTextColorPicker;
 	NumberPicker *mFontSizePicker;
 	FillModePicker *mFillModePicker;
-	NumberPicker *mFirstNumberPicker;
+	NumberPicker *mNumberToolSeedPicker;
 	NumberPicker *mObfuscateFactorPicker;
 	StickerPicker *mStickerPicker;
 	ImageEffectPicker *mEffectPicker;
@@ -90,7 +90,7 @@ private slots:
 	void toolWidthChanged(int size);
 	void toolFontSizeChanged(int size);
 	void toolFillTypeChanged(FillModes fill);
-	void saveFirstBadgeNumber(int size);
+	void saveNumberToolSeed(int newNumberToolSeed);
 	void obfuscateFactorChanged(int factor);
 	void stickerChanged(const QString &sticker);
 	void loadFromItem(const AbstractAnnotationItem *item);

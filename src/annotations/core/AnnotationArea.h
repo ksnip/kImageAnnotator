@@ -68,8 +68,8 @@ public:
     virtual void clearSelection();
 	virtual void toolChanged(Tools toolType) override;
 	void itemSettingsChanged();
-	void firstBadgeNumberChanged(int number) override;
-	int firstBadgeNumber() const override;
+	void numberToolSeedChanged(int numberToolSeed) override;
+	int numberToolSeed() const override;
 	void imageEffectChanged(ImageEffects effect) override;
 
 public slots:
@@ -87,6 +87,7 @@ protected:
 	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) override;
 
 private:
+	Config *mConfig;
 	AbstractSettingsProvider *mSettingsProvider;
 	AnnotationPropertiesFactory *mPropertiesFactory;
 	AnnotationItemFactory *mItemFactory;
@@ -101,7 +102,6 @@ private:
 	QAction *mRedoAction;
 	IDevicePixelRatioScaler *mDevicePixelRatioScaler;
 	KeyEventListener mKeyListener;
-	Config *mConfig;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

@@ -39,20 +39,24 @@ public:
 	void addItem(AnnotationNumberPointer *item);
 	void addItem(AnnotationNumberArrow *item);
 	void reset();
-	void setFirstNumber(int number);
-	int firstNumber() const;
+	void setNumberSeed(int numberSeed);
+	int numberSeed() const;
 	void setNumberUpdateMode(NumberUpdateMode numberUpdateMode);
 
+signals:
+	void numberSeedChanged(int numberSeed);
+
 public slots:
-	void updateNumbersIfRequired();
+	void updateExistingNumbersIfRequired();
 
 private:
-	int mFirstNumber;
+	int mNumberSeed;
 	QList<AbstractAnnotationItem *> mItems;
 	NumberUpdateMode mNumberUpdateMode;
 
 	void addItemInner(AbstractAnnotationItem *item);
 	void initItemNumber(AbstractAnnotationItem *item);
+	void updateExistingNumbers();
 };
 
 } // namepsace kImageAnnotator

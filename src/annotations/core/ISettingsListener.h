@@ -30,8 +30,8 @@ class ISettingsListener
 public:
 	virtual void toolChanged(Tools toolType) = 0;
 	virtual void itemSettingsChanged() = 0;
-	virtual void firstBadgeNumberChanged(int number) = 0;
-	virtual int firstBadgeNumber() const = 0;
+	virtual void numberToolSeedChanged(int numberToolSeed) = 0;
+	virtual int numberToolSeed() const = 0;
 	virtual void imageEffectChanged(ImageEffects effect) = 0;
 };
 

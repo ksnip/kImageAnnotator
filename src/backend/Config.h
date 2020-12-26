@@ -79,7 +79,7 @@ public slots:
 	void setSwitchToSelectToolAfterDrawingItem(bool enabled);
 
 	NumberUpdateMode numberUpdateMode() const;
-	void setNumberUpdateMode(enum NumberUpdateMode numberUpdateMode);
+	void setNumberToolUpdateMode(enum NumberUpdateMode numberUpdateMode);
 
 	int obfuscationFactor(Tools toolType) const;
 	void setObfuscationFactor(int factor, Tools toolType);

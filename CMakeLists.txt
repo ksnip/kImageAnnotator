@@ -98,10 +98,6 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/kImageAnnotator
 		DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 		)
 
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/common/enum/NumberUpdateMode.h
-	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kImageAnnotator/include
-	)
-
 configure_package_config_file(
 		${CMAKE_CURRENT_SOURCE_DIR}/cmake/kImageAnnotatorConfig.cmake.in
 		${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotatorConfig.cmake

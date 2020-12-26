@@ -21,13 +21,19 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemFactory::AnnotationItemFactory(AnnotationPropertiesFactory *propertiesFactory, AbstractSettingsProvider *settingsProvider) :
+AnnotationItemFactory::AnnotationItemFactory(AnnotationPropertiesFactory *propertiesFactory, AbstractSettingsProvider *settingsProvider, Config *config) :
 	mPropertiesFactory(propertiesFactory),
 	mSettingsProvider(settingsProvider),
+	mConfig(config),
 	mNumberManager(new NumberManager),
 	mNextZValue(1)
 {
 	Q_ASSERT(mSettingsProvider != nullptr);
+	Q_ASSERT(mConfig != nullptr);
+
+	connect(mConfig, &Config::numberUpdateModeChanged, this, &AnnotationItemFactory::setNumberUpdateMode);
+	connect(mNumberManager, &NumberManager::numberSeedChanged, this, &AnnotationItemFactory::numberSeedChanged);
+	setNumberUpdateMode(mConfig->numberUpdateMode());
 
 	reset();
 }
@@ -44,28 +50,19 @@ void AnnotationItemFactory::reset()
 	mNumberManager->reset();
 }
 
-void AnnotationItemFactory::setFirstBadgeNumber(int number)
+void AnnotationItemFactory::setNumberToolSeed(int numberSeed)
 {
-	mNumberManager->setFirstNumber(number);
+	mNumberManager->setNumberSeed(numberSeed);
 }
 
-int AnnotationItemFactory::firstBadgeNumber() const
+int AnnotationItemFactory::numberToolSeed() const
 {
-	return mNumberManager->firstNumber();
+	return mNumberManager->numberSeed();
 }
 
 void AnnotationItemFactory::setNumberUpdateMode(NumberUpdateMode numberUpdateMode)
 {
 	mNumberManager->setNumberUpdateMode(numberUpdateMode);
-}
-
-void AnnotationItemFactory::setConfig(Config *config)
-{
-	mConfig  = config;
-
-	connect(mConfig, &Config::numberUpdateModeChanged,
-			this, &AnnotationItemFactory::setNumberUpdateMode);
-	setNumberUpdateMode(mConfig->numberUpdateMode());
 }
 
 AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPosition)
@@ -247,6 +244,11 @@ void AnnotationItemFactory::setZValue(AbstractAnnotationItem *item)
 	if (item != nullptr) {
 		item->setZValue(mNextZValue++);
 	}
+}
+
+void AnnotationItemFactory::numberSeedChanged(int newNumberSeed)
+{
+	mSettingsProvider->updateNumberToolSeed(newNumberSeed);
 }
 
 } // namespace kImageAnnotator

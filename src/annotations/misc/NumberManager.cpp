@@ -22,8 +22,8 @@
 namespace kImageAnnotator {
 
 NumberManager::NumberManager() :
-	mFirstNumber(1),
-	mNumberUpdateMode(NumberUpdateMode::UseNextNumber)
+	mNumberSeed(1),
+	mNumberUpdateMode(NumberUpdateMode::UpdateAllNumbers)
 {
 }
 
@@ -46,20 +46,21 @@ void NumberManager::addItemInner(AbstractAnnotationItem *item)
 {
 	Q_ASSERT(item != nullptr);
 
-	connect(item, &AbstractAnnotationItem::visibleChanged, this, &NumberManager::updateNumbersIfRequired);
 	mItems.append(item);
 
-	if (mNumberUpdateMode == NumberUpdateMode::UseNextNumber) {
-		updateNumbersIfRequired();
+	if (mNumberUpdateMode == NumberUpdateMode::UpdateAllNumbers) {
+		connect(item, &AbstractAnnotationItem::visibleChanged, this, &NumberManager::updateExistingNumbersIfRequired);
+		updateExistingNumbers();
 	} else {
 		initItemNumber(item);
+		emit numberSeedChanged(mNumberSeed);
 	}
 }
 
 void NumberManager::initItemNumber(AbstractAnnotationItem *item)
 {
 	auto numberItem = dynamic_cast<BaseAnnotationNumber *>(item);
-	numberItem->setNumber(mFirstNumber);
+	numberItem->setNumber(mNumberSeed++);
 }
 
 void NumberManager::reset()
@@ -67,13 +68,16 @@ void NumberManager::reset()
 	mItems.clear();
 }
 
-void NumberManager::updateNumbersIfRequired()
+void NumberManager::updateExistingNumbersIfRequired()
 {
-	if (mNumberUpdateMode == NumberUpdateMode::UseStartingNumber) {
-		return;
+	if(mNumberUpdateMode == NumberUpdateMode::UpdateAllNumbers) {
+		updateExistingNumbers();
 	}
+}
 
-	auto number = mFirstNumber;
+void NumberManager::updateExistingNumbers()
+{
+	auto number = mNumberSeed;
 	for (auto item : mItems) {
 		if (item->isVisible()) {
 			auto numberItem = dynamic_cast<BaseAnnotationNumber *>(item);
@@ -82,15 +86,15 @@ void NumberManager::updateNumbersIfRequired()
 	}
 }
 
-void NumberManager::setFirstNumber(int number)
+void NumberManager::setNumberSeed(int numberSeed)
 {
-	mFirstNumber = number;
-	updateNumbersIfRequired();
+	mNumberSeed = numberSeed;
+	updateExistingNumbersIfRequired();
 }
 
-int NumberManager::firstNumber() const
+int NumberManager::numberSeed() const
 {
-	return mFirstNumber;
+	return mNumberSeed;
 }
 
 void NumberManager::setNumberUpdateMode(NumberUpdateMode numberUpdateMode)

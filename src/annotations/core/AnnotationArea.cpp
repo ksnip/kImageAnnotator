@@ -27,15 +27,15 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 	mCurrentItem(nullptr),
 	mUndoAction(nullptr),
 	mRedoAction(nullptr),
+	mConfig(config),
 	mKeyHelper(new KeyHelper),
 	mSettingsProvider(settingsProvider),
 	mItemModifier(new AnnotationItemModifier(zoomValueProvider)),
 	mPropertiesFactory(new AnnotationPropertiesFactory(config, mSettingsProvider)),
-	mItemFactory(new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider)),
+	mItemFactory(new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider, mConfig)),
 	mItems(new QList<AbstractAnnotationItem *>()),
 	mItemCopier(new AnnotationItemClipboard(mItemModifier)),
-	mDevicePixelRatioScaler(devicePixelRatioScaler),
-	mConfig(config)
+	mDevicePixelRatioScaler(devicePixelRatioScaler)
 {
 	Q_ASSERT(mSettingsProvider != nullptr);
 	Q_ASSERT(mConfig != nullptr);
@@ -55,8 +55,6 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 
 	connect(&mKeyListener, &KeyEventListener::keyPressed, mKeyHelper, &KeyHelper::keyPress);
 	connect(&mKeyListener, &KeyEventListener::keyReleased, mKeyHelper, &KeyHelper::keyRelease);
-
-	mItemFactory->setConfig(mConfig);
 }
 
 AnnotationArea::~AnnotationArea()
@@ -178,14 +176,14 @@ void AnnotationArea::itemSettingsChanged()
 	}
 }
 
-void AnnotationArea::firstBadgeNumberChanged(int number)
+void AnnotationArea::numberToolSeedChanged(int numberToolSeed)
 {
-	mItemFactory->setFirstBadgeNumber(number);
+	mItemFactory->setNumberToolSeed(numberToolSeed);
 }
 
-int AnnotationArea::firstBadgeNumber() const
+int AnnotationArea::numberToolSeed() const
 {
-	return mItemFactory->firstBadgeNumber();
+	return mItemFactory->numberToolSeed();
 }
 
 void AnnotationArea::imageEffectChanged(ImageEffects effect)

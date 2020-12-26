@@ -34,10 +34,10 @@ void AbstractSettingsProvider::toolChanged(Tools tool)
 	}
 }
 
-void AbstractSettingsProvider::firstBadgeNumberChanged(int number)
+void AbstractSettingsProvider::numberToolSeedChanged(int numberToolSeed)
 {
 	if(mSettingsListener != nullptr) {
-		mSettingsListener->firstBadgeNumberChanged(number);
+		mSettingsListener->numberToolSeedChanged(numberToolSeed);
 	}
 }
 
@@ -52,7 +52,7 @@ void AbstractSettingsProvider::setActiveListener(ISettingsListener *settingsList
 {
 	mSettingsListener = settingsListener;
 	if(mSettingsListener != nullptr) {
-		updateFirstBadgeNumber(mSettingsListener->firstBadgeNumber());
+		updateNumberToolSeed(mSettingsListener->numberToolSeed());
 	}
 }
 

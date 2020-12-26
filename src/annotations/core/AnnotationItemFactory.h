@@ -50,12 +50,11 @@ class AnnotationItemFactory : public QObject
 {
 Q_OBJECT
 public:
-	explicit AnnotationItemFactory(AnnotationPropertiesFactory *propertiesFactory, AbstractSettingsProvider *settingsProvider);
+	explicit AnnotationItemFactory(AnnotationPropertiesFactory *propertiesFactory, AbstractSettingsProvider *settingsProvider, Config *config);
 	~AnnotationItemFactory() override;
 	void reset();
-	void setFirstBadgeNumber(int number);
-	int firstBadgeNumber() const;
-	void setConfig(Config *config);
+	void setNumberToolSeed(int numberSeed);
+	int numberToolSeed() const;
 	AbstractAnnotationItem *create(const QPointF &initPosition);
 	AbstractAnnotationItem *create(const QPointF &initPosition, const QPixmap &image);
 	AbstractAnnotationItem *clone(const AbstractAnnotationItem *item);
@@ -73,6 +72,7 @@ private:
 	AbstractAnnotationItem *createItem(const QPointF &initPosition, const Tools &toolType, const PropertiesPtr &properties);
 	AbstractAnnotationItem *cloneItem(const AbstractAnnotationItem *item);
 	void setZValue(AbstractAnnotationItem *item);
+	void numberSeedChanged(int newNumberSeed);
 };
 
 } // namespace kImageAnnotator

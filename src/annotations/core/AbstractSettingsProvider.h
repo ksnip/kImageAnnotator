@@ -46,13 +46,13 @@ public:
 	virtual int obfuscationFactor() const = 0;
 	virtual QString sticker() const = 0;
 	virtual ImageEffects effect() const = 0;
-	virtual void updateFirstBadgeNumber(int number) = 0;
+	virtual void updateNumberToolSeed(int numberToolSeed) = 0;
 	virtual void updateZoomLevel(double value) = 0;
 	void setActiveListener(ISettingsListener *settingsListener);
 
 protected:
 	virtual void toolChanged(Tools tool);
-	virtual void firstBadgeNumberChanged(int number);
+	virtual void numberToolSeedChanged(int numberToolSeed);
 	virtual void itemSettingChanged();
 	virtual void effectChanged(ImageEffects effect);
 

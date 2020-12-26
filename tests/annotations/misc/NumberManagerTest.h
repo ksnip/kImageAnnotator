@@ -27,6 +27,7 @@ using kImageAnnotator::NumberManager;
 using kImageAnnotator::AnnotationNumber;
 using kImageAnnotator::AnnotationTextProperties;
 using kImageAnnotator::TextPropertiesPtr;
+using kImageAnnotator::NumberUpdateMode;
 
 #include "src/annotations/misc/NumberManager.h"
 
@@ -34,10 +35,14 @@ class NumberManagerTest : public QObject
 {
 Q_OBJECT
 
-private    slots:
-	void TestAddItem_Should_TriggerNumberUpdate();
-	void TestUpdateNumbers_Should_BeTriggered_When_ItemIsHidden();
-	void TestFirstNumberChanged_Should_TriggerUpdateOfAllNumber();
+private slots:
+	void TestAddItem_Should_AssignCorrectNumbers_When_UpdateAllNumbersModeSelected();
+	void TestAddItem_Should_AssignCorrectNumbers_When_UpdateOnlyNewNumbers();
+	void TestUpdateNumbers_Should_BeTriggered_When_ItemIsHiddenAndUpdateAllNumbersModeSelected();
+	void TestUpdateNumbers_Should_NotBeTriggered_When_ItemIsHiddenAndUpdateOnlyNewNumbersModeSelected();
+	void TestNumberSeedChanged_Should_TriggerUpdateOfAllNumber_When_UpdateAllNumbersModeSelected();
+	void TestNumberSeedChanged_Should_NotTriggerUpdateOfAllNumber_When_UpdateOnlyNewNumbersModeSelected();
+	void TestNumberSeedChanged_Should_AffectOnlyNewItems_When_UpdateOnlyNewNumbersModeSelected();
 };
 
 #endif // KIMAGEANNOTATOR_NUMBERMANAGERTEST_H

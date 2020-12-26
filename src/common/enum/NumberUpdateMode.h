@@ -26,8 +26,8 @@ namespace kImageAnnotator {
 
 enum class NumberUpdateMode
 {
-    UseStartingNumber,
-    UseNextNumber
+    UpdateAllNumbers,
+    UpdateOnlyNewNumbers
 };
 
 } // namespace kImageAnnotator
