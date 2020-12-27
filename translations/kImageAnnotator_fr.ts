@@ -63,12 +63,12 @@
         <translation>Taille de la police</translation>
     </message>
     <message>
-        <source>Starting Number</source>
-        <translation>Numéro de début</translation>
-    </message>
-    <message>
         <source>Obfuscation Factor</source>
         <translation>Facteur d&apos;obfuscation</translation>
+    </message>
+    <message>
+        <source>Number Seed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -282,6 +282,10 @@
     <message>
         <source>Number Arrow</source>
         <translation>Flèche de nombre</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

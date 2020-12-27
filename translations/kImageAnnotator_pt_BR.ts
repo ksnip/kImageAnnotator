@@ -63,12 +63,12 @@
         <translation>Tamanho da fonte</translation>
     </message>
     <message>
-        <source>Starting Number</source>
-        <translation>Número inicial</translation>
-    </message>
-    <message>
         <source>Obfuscation Factor</source>
         <translation>Fator de Obfuscação</translation>
+    </message>
+    <message>
+        <source>Number Seed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -161,10 +161,6 @@
     <message>
         <source>Border</source>
         <translation>Borda</translation>
-    </message>
-    <message>
-        <source>No Border and No Fill</source>
-        <translation>Sem borda e sem preenchimento</translation>
     </message>
 </context>
 <context>
@@ -286,6 +282,10 @@
     <message>
         <source>Pixelate</source>
         <translation>Pixelizar</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

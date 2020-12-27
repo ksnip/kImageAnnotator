@@ -63,12 +63,12 @@
         <translation>Teckenstorlek</translation>
     </message>
     <message>
-        <source>Starting Number</source>
-        <translation>Startnummer</translation>
-    </message>
-    <message>
         <source>Obfuscation Factor</source>
         <translation>Fördunklingsfaktor</translation>
+    </message>
+    <message>
+        <source>Number Seed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -282,6 +282,10 @@
     <message>
         <source>Number Arrow</source>
         <translation>Sifferpil</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

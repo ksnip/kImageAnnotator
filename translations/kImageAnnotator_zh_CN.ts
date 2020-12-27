@@ -63,12 +63,12 @@
         <translation>字体大小</translation>
     </message>
     <message>
-        <source>Starting Number</source>
-        <translation>起始值</translation>
-    </message>
-    <message>
         <source>Obfuscation Factor</source>
         <translation>模糊系数</translation>
+    </message>
+    <message>
+        <source>Number Seed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -282,6 +282,10 @@
     <message>
         <source>Number Arrow</source>
         <translation>数字箭头标注</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

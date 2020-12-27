@@ -63,12 +63,12 @@
         <translation>Розмір шрифту</translation>
     </message>
     <message>
-        <source>Starting Number</source>
-        <translation>Початковий номер</translation>
-    </message>
-    <message>
         <source>Obfuscation Factor</source>
         <translation>Коефіцієнт затемнення</translation>
+    </message>
+    <message>
+        <source>Number Seed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -282,6 +282,10 @@
     <message>
         <source>Number Arrow</source>
         <translation>Стрілка з номером</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

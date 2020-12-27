@@ -63,11 +63,11 @@
         <translation>Tamaño de letra</translation>
     </message>
     <message>
-        <source>Starting Number</source>
-        <translation>Número inicial</translation>
+        <source>Obfuscation Factor</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Obfuscation Factor</source>
+        <source>Number Seed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -281,6 +281,10 @@
     </message>
     <message>
         <source>Number Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

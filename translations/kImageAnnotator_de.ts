@@ -63,12 +63,12 @@
         <translation>Schriftgröße</translation>
     </message>
     <message>
-        <source>Starting Number</source>
-        <translation>Anfangsnummer</translation>
-    </message>
-    <message>
         <source>Obfuscation Factor</source>
         <translation>Obfuskierungs-Faktor</translation>
+    </message>
+    <message>
+        <source>Number Seed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -282,6 +282,10 @@
     <message>
         <source>Number Arrow</source>
         <translation>Pfeil mit Zahl</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
