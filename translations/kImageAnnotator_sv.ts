@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Number Seed</source>
-        <translation>Nummerbricka</translation>
+        <translation type="unfinished">Nummerbricka</translation>
     </message>
 </context>
 <context>
