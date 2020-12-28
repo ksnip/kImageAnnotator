@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Number Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Número</translation>
     </message>
 </context>
 <context>
@@ -285,7 +285,7 @@
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplicar</translation>
     </message>
 </context>
 <context>
