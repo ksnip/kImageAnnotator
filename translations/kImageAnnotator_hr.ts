@@ -48,7 +48,7 @@
     <name>kImageAnnotator::AnnotationSettings</name>
     <message>
         <source>Color</source>
-        <translation>Kolor</translation>
+        <translation>Boja</translation>
     </message>
     <message>
         <source>Width</source>
@@ -215,7 +215,7 @@
     </message>
     <message>
         <source>Double Arrow</source>
-        <translation>dvostruka strelica</translation>
+        <translation>Dvostruka strelica</translation>
     </message>
     <message>
         <source>Line</source>
