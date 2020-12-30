@@ -17,22 +17,29 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "CropView.h"
+#ifndef KIMAGEANNOTATOR_SELECTIONMOVEHELPER_H
+#define KIMAGEANNOTATOR_SELECTIONMOVEHELPER_H
+
+#include <QPointF>
+#include <QRectF>
 
 namespace kImageAnnotator {
 
-CropView::CropView(SelectionHandler *cropSelectionHandler, KeyHelper *keyHelper) :
-	BaseSelectionView(cropSelectionHandler, keyHelper)
+class SelectionMoveHelper
 {
-}
+public:
+	explicit SelectionMoveHelper();
+	~SelectionMoveHelper() = default;
+	void grabSelection(const QPointF &position, const QRectF &selection);
+	void releaseSelection();
+	bool isSelectionGabbed() const;
+	QPointF grabOffset() const;
 
-void CropView::drawForeground(QPainter *painter, const QRectF &rect)
-{
-	painter->setClipRegion(QRegion(sceneRect().toRect()).subtracted(QRegion(currentSelection().toRect())));
-	painter->setBrush(QColor(0, 0, 0, 150));
-	painter->drawRect(sceneRect());
-
-	BaseSelectionView::drawForeground(painter, rect);
-}
+private:
+	bool mIsSelectionGabbed{};
+	QPointF mGrabOffset;
+};
 
 } // namespace kImageAnnotator
+
+#endif //KIMAGEANNOTATOR_SELECTIONMOVEHELPER_H

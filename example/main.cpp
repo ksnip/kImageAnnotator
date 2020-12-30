@@ -43,12 +43,15 @@ int main(int argc, char **argv)
 	auto annotationAction = new QAction(QLatin1Literal("Annotation"), &mainWindow);
 	auto cropAction = new QAction(QLatin1Literal("Crop"), &mainWindow);
 	auto scaleAction = new QAction(QLatin1Literal("Scale"), &mainWindow);
+	auto modifyCanvasAction = new QAction(QLatin1Literal("Modify Canvas"), &mainWindow);
 	mainWindow.connect(annotationAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showAnnotator);
 	mainWindow.connect(cropAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showCropper);
 	mainWindow.connect(scaleAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showScaler);
+	mainWindow.connect(modifyCanvasAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showCanvasModifier);
 	menu->addAction(annotationAction);
 	menu->addAction(cropAction);
 	menu->addAction(scaleAction);
+	menu->addAction(modifyCanvasAction);
 	menuBar->addMenu(menu);
 	mainWindow.show();
 	mainWindow.setMinimumSize(kImageAnnotator->sizeHint());

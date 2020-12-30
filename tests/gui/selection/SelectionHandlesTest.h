@@ -17,25 +17,26 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPSELECTIONHANDLERTEST_H
-#define KIMAGEANNOTATOR_CROPSELECTIONHANDLERTEST_H
+#ifndef KIMAGEANNOTATOR_SELECTIONHANDLESTEST_H
+#define KIMAGEANNOTATOR_SELECTIONHANDLESTEST_H
 
 #include <QtTest>
 
-class CropSelectionHandlerTest : public QObject
+#include "src/gui/selection/SelectionHandles.h"
+
+using kImageAnnotator::SelectionHandles;
+using kImageAnnotator::Constants::ResizeHandleSize;
+
+class SelectionHandlesTest : public QObject
 {
 Q_OBJECT
-
 private slots:
-	void TestSetWidth_Should_EmitSelectionChangedSignal();
-	void TestSetHeight_Should_EmitSelectionChangedSignal();
-	void TestSetPositionX_Should_EmitSelectionChangedSignal();
-	void TestSetPositionY_Should_EmitSelectionChangedSignal();
-	void TestResetSelection_Should_SetSelectionToSceneRect();
-	void TestIsInMotion_Should_ReturnTrue_WhenClickedOnSelection();
-	void TestIsInMotion_Should_ReturnTrue_WhenClickedOnHandle();
-	void TestIsInMotion_Should_ReturnFalse_WhenClickedOutsideSelectionAndHandle();
-	void TestSelectionHandles_Should_ReturnEightItems();
+	void TestIsHandleGrabbed_Should_ReturnTrue_When_ClickedOnHandle();
+	void TestIsHandleGrabbed_Should_ReturnFalse_When_ClickedOutsideHandle();
+	void TestGrabbedIndex_Should_ReturnIndexOfHandle_When_ClickedOnHandle();
+	void TestGrabbedIndex_Should_ReturnMinusOne_When_ClickedOutsideHandle();
+	void TestGrabOffset_Should_ReturnClickOffsetForHandle();
+	void TestUpdateHandles_Should_PositionHandlesOnCorrectPlaces();
 };
 
-#endif // KIMAGEANNOTATOR_CROPSELECTIONHANDLERTEST_H
+#endif // KIMAGEANNOTATOR_SELECTIONHANDLESTEST_H

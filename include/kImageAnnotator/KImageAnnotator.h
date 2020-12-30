@@ -47,6 +47,7 @@ public:
 	void showAnnotator();
 	void showCropper();
 	void showScaler();
+	void showCanvasModifier();
 	void setSettingsCollapsed(bool isCollapsed);
 
 public Q_SLOTS:

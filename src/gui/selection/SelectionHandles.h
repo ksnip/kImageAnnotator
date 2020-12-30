@@ -28,11 +28,11 @@
 
 namespace kImageAnnotator {
 
-class CropHandles
+class SelectionHandles
 {
 public:
-	explicit CropHandles();
-	~CropHandles() = default;
+	explicit SelectionHandles();
+	~SelectionHandles() = default;
 	QVector<QRectF> handles() const;
 	void grabHandle(const QPointF &position, const QRectF &selection);
 	void releaseHandle();

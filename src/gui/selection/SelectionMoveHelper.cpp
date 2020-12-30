@@ -17,22 +17,38 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "CropView.h"
+#include "SelectionMoveHelper.h"
 
 namespace kImageAnnotator {
 
-CropView::CropView(SelectionHandler *cropSelectionHandler, KeyHelper *keyHelper) :
-	BaseSelectionView(cropSelectionHandler, keyHelper)
+SelectionMoveHelper::SelectionMoveHelper() : mIsSelectionGabbed(false)
 {
+
 }
 
-void CropView::drawForeground(QPainter *painter, const QRectF &rect)
+void SelectionMoveHelper::grabSelection(const QPointF &position, const QRectF &selection)
 {
-	painter->setClipRegion(QRegion(sceneRect().toRect()).subtracted(QRegion(currentSelection().toRect())));
-	painter->setBrush(QColor(0, 0, 0, 150));
-	painter->drawRect(sceneRect());
-
-	BaseSelectionView::drawForeground(painter, rect);
+	if (selection.contains(position)) {
+		mGrabOffset = position - selection.topLeft();
+		mIsSelectionGabbed = true;
+	} else {
+		mIsSelectionGabbed = false;
+	}
 }
 
-} // namespace kImageAnnotator
+void SelectionMoveHelper::releaseSelection()
+{
+	mIsSelectionGabbed = false;
+}
+
+bool SelectionMoveHelper::isSelectionGabbed() const
+{
+	return mIsSelectionGabbed;
+}
+
+QPointF kImageAnnotator::SelectionMoveHelper::grabOffset() const
+{
+	return mGrabOffset;
+}
+
+}

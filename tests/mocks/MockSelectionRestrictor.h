@@ -17,24 +17,24 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPSELECTIONMOVEHELPERTEST_H
-#define KIMAGEANNOTATOR_CROPSELECTIONMOVEHELPERTEST_H
+#ifndef KIMAGEANNOTATOR_MOCKSELECTIONRESTRICTOR_H
+#define KIMAGEANNOTATOR_MOCKSELECTIONRESTRICTOR_H
 
-#include <QtTest>
+#include <QRectF>
 
-#include "src/gui/cropper/CropSelectionMoveHelper.h"
+#include "src/gui/selection/ISelectionRestrictor.h"
 
-using kImageAnnotator::CropSelectionMoveHelper;
+using kImageAnnotator::ISelectionRestrictor;
 
-class CropSelectionMoveHelperTest : public QObject
+class MockSelectionRestrictor : public ISelectionRestrictor
 {
-Q_OBJECT
+public:
+	explicit MockSelectionRestrictor() = default;
+	~MockSelectionRestrictor() override = default;
 
-private slots:
-	void TestGrabSelection_Should_GrabSelection_WhenPositionWithinSelection();
-	void TestGrabSelection_Should_NotGrabSelection_WhenPositionOutsideSelection();
-	void TestGrabSelection_Should_SetCorrectOffset();
-	void TestReleaseSelection_Should_ReleaseSelection();
+	QRectF &restrictResize(QRectF &newRect, const QRectF &currentRect, const QRectF &rectLimit) const override;
+	QRectF &restrictMove(QRectF &newRect, const QRectF &rectLimit) const override;
 };
 
-#endif // KIMAGEANNOTATOR_CROPSELECTIONMOVEHELPERTEST_H
+
+#endif //KIMAGEANNOTATOR_MOCKSELECTIONRESTRICTOR_H

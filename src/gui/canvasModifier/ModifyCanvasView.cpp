@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,20 +17,21 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "CropView.h"
+#include "ModifyCanvasView.h"
 
 namespace kImageAnnotator {
 
-CropView::CropView(SelectionHandler *cropSelectionHandler, KeyHelper *keyHelper) :
-	BaseSelectionView(cropSelectionHandler, keyHelper)
+ModifyCanvasView::ModifyCanvasView(SelectionHandler *selectionHandler, KeyHelper *keyHelper) :
+	BaseSelectionView(selectionHandler, keyHelper)
 {
+
 }
 
-void CropView::drawForeground(QPainter *painter, const QRectF &rect)
+void ModifyCanvasView::drawForeground(QPainter *painter, const QRectF &rect)
 {
-	painter->setClipRegion(QRegion(sceneRect().toRect()).subtracted(QRegion(currentSelection().toRect())));
+	painter->setClipRegion(QRegion(rect.toRect()).subtracted(QRegion(currentSelection().toRect())));
 	painter->setBrush(QColor(0, 0, 0, 150));
-	painter->drawRect(sceneRect());
+	painter->drawRect(rect);
 
 	BaseSelectionView::drawForeground(painter, rect);
 }

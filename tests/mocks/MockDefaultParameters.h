@@ -31,7 +31,7 @@ using kImageAnnotator::Config;
 struct MockAnnotationAreaParameters
 {
     Config config;
-    MockSettingsProvider provider;
+    MockSettingsProvider settingsProvider;
     MockDevicePixelRatioScaler scaler;
     MockZoomValueProvider zoomValueProvider;
 };

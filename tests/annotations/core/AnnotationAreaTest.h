@@ -43,6 +43,8 @@ private slots:
 	void TestExportAsImage_Should_ExportScaledImage_When_ScalingEnabled();
 	void TestAddAnnotationItem_Should_AddAnnotationItemToScene();
 	void TestRemoveAnnotationItem_Should_RemoveAnnotationItemFromScene();
+	void TestCanvasRect_Should_ReturnRectUnionOfAllItems_When_NoCanvasRectSet();
+	void TestCanvasRect_Should_ReturnUserDefinedRect_When_CanvasRectSet();
 };
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONAREATEST_H

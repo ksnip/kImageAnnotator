@@ -45,6 +45,7 @@
 #include "src/annotations/undo/ScaleCommand.h"
 #include "src/annotations/undo/PasteCommand.h"
 #include "src/annotations/undo/ChangePropertiesCommand.h"
+#include "src/annotations/undo/ModifyCanvasCommand.h"
 #include "src/annotations/core/ZoomValueProvider.h"
 #include "src/annotations/core/imageEffects/ImageEffectFactory.h"
 
@@ -71,6 +72,9 @@ public:
 	void numberToolSeedChanged(int numberToolSeed) override;
 	int numberToolSeed() const override;
 	void imageEffectChanged(ImageEffects effect) override;
+	void setCanvasRect(const QRectF &rect);
+	QRectF canvasRect() const;
+	void modifyCanvas(const QRectF &canvasRect);
 
 public slots:
     virtual void update();
@@ -102,6 +106,7 @@ private:
 	QAction *mRedoAction;
 	IDevicePixelRatioScaler *mDevicePixelRatioScaler;
 	KeyEventListener mKeyListener;
+	QRectF mCanvasRect;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

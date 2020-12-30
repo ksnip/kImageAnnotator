@@ -22,16 +22,18 @@
 
 #include <QRectF>
 
+#include "src/gui/selection/ISelectionRestrictor.h"
+
 namespace kImageAnnotator {
 
-class CropSelectionRestrictor
+class CropSelectionRestrictor : public ISelectionRestrictor
 {
 public:
 	explicit CropSelectionRestrictor() = default;
-	~CropSelectionRestrictor() = default;
+	~CropSelectionRestrictor() override = default;
 
-	QRectF &restrictResize(QRectF &newRect, const QRectF &currentRect, const QRectF &maxRect) const;
-	QRectF &restrictMove(QRectF &newRect, const QRectF &maxRect) const;
+	QRectF &restrictResize(QRectF &newRect, const QRectF &currentRect, const QRectF &rectLimit) const override;
+	QRectF &restrictMove(QRectF &newRect, const QRectF &rectLimit) const override;
 };
 
 } // namespace kImageAnnotator

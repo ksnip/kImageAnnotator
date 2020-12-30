@@ -10,12 +10,16 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/tabs/AnnotationTabWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/tabs/AnnotationTabContextMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/tabs/AnnotationTabCloser.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/canvasModifier/ModifyCanvasView.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/canvasModifier/ModifyCanvasWidget.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/canvasModifier/ModifyCanvasSelectionRestrictor.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropView.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropSelectionHandler.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropSelectionRestrictor.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropHandles.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropSelectionMoveHelper.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionHandler.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionMoveHelper.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionHandles.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/BaseSelectionView.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleDialog.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleSizeHandler.cpp
@@ -88,6 +92,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ScaleCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/PasteCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ChangePropertiesCommand.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ModifyCanvasCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/ShadowEffect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/ImageBlurrer.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/AnnotationItemClipboard.cpp

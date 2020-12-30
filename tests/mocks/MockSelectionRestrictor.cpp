@@ -17,26 +17,14 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPHANDLESTEST_H
-#define KIMAGEANNOTATOR_CROPHANDLESTEST_H
+#include "MockSelectionRestrictor.h"
 
-#include <QtTest>
-
-#include "src/gui/cropper/CropHandles.h"
-
-using kImageAnnotator::CropHandles;
-using kImageAnnotator::Constants::ResizeHandleSize;
-
-class CropHandlesTest : public QObject
+QRectF &MockSelectionRestrictor::restrictResize(QRectF &newRect, const QRectF &currentRect, const QRectF &rectLimit) const
 {
-Q_OBJECT
-private slots:
-	void TestIsHandleGrabbed_Should_ReturnTrue_When_ClickedOnHandle();
-	void TestIsHandleGrabbed_Should_ReturnFalse_When_ClickedOutsideHandle();
-	void TestGrabbedIndex_Should_ReturnIndexOfHandle_When_ClickedOnHandle();
-	void TestGrabbedIndex_Should_ReturnMinusOne_When_ClickedOutsideHandle();
-	void TestGrabOffset_Should_ReturnClickOffsetForHandle();
-	void TestUpdateHandles_Should_PositionHandlesOnCorrectPlaces();
-};
+	return newRect;
+}
 
-#endif // KIMAGEANNOTATOR_CROPHANDLESTEST_H
+QRectF &MockSelectionRestrictor::restrictMove(QRectF &newRect, const QRectF &rectLimit) const
+{
+	return newRect;
+}

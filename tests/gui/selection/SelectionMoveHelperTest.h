@@ -3,7 +3,7 @@
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
+ * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,22 +17,24 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "CropView.h"
+#ifndef KIMAGEANNOTATOR_SELECTIONMOVEHELPERTEST_H
+#define KIMAGEANNOTATOR_SELECTIONMOVEHELPERTEST_H
 
-namespace kImageAnnotator {
+#include <QtTest>
 
-CropView::CropView(SelectionHandler *cropSelectionHandler, KeyHelper *keyHelper) :
-	BaseSelectionView(cropSelectionHandler, keyHelper)
+#include "src/gui/selection/SelectionMoveHelper.h"
+
+using kImageAnnotator::SelectionMoveHelper;
+
+class SelectionMoveHelperTest : public QObject
 {
-}
+Q_OBJECT
 
-void CropView::drawForeground(QPainter *painter, const QRectF &rect)
-{
-	painter->setClipRegion(QRegion(sceneRect().toRect()).subtracted(QRegion(currentSelection().toRect())));
-	painter->setBrush(QColor(0, 0, 0, 150));
-	painter->drawRect(sceneRect());
+private slots:
+	void TestGrabSelection_Should_GrabSelection_WhenPositionWithinSelection();
+	void TestGrabSelection_Should_NotGrabSelection_WhenPositionOutsideSelection();
+	void TestGrabSelection_Should_SetCorrectOffset();
+	void TestReleaseSelection_Should_ReleaseSelection();
+};
 
-	BaseSelectionView::drawForeground(painter, rect);
-}
-
-} // namespace kImageAnnotator
+#endif // KIMAGEANNOTATOR_SELECTIONMOVEHELPERTEST_H

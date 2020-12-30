@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,29 +17,24 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPSELECTIONMOVEHELPER_H
-#define KIMAGEANNOTATOR_CROPSELECTIONMOVEHELPER_H
+#ifndef KIMAGEANNOTATOR_MODIFYCANVASVIEW_H
+#define KIMAGEANNOTATOR_MODIFYCANVASVIEW_H
 
-#include <QPointF>
-#include <QRectF>
+#include "src/gui/selection/BaseSelectionView.h"
 
 namespace kImageAnnotator {
 
-class CropSelectionMoveHelper
+class ModifyCanvasView : public BaseSelectionView
 {
+Q_OBJECT
 public:
-	explicit CropSelectionMoveHelper();
-	~CropSelectionMoveHelper() = default;
-	void grabSelection(const QPointF &position, const QRectF &selection);
-	void releaseSelection();
-	bool isSelectionGabbed() const;
-	QPointF grabOffset() const;
+	explicit ModifyCanvasView(SelectionHandler *selectionHandler, KeyHelper *keyHelper);
+	~ModifyCanvasView() override = default;
 
-private:
-	bool mIsSelectionGabbed{};
-	QPointF mGrabOffset;
+protected:
+	void drawForeground(QPainter *painter, const QRectF &rect) override;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_CROPSELECTIONMOVEHELPER_H
+#endif //KIMAGEANNOTATOR_MODIFYCANVASVIEW_H

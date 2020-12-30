@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,29 +17,32 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPWIDGET_H
-#define KIMAGEANNOTATOR_CROPWIDGET_H
+#ifndef KIMAGEANNOTATOR_MODIFYCANVASWIDGET_H
+#define KIMAGEANNOTATOR_MODIFYCANVASWIDGET_H
 
 #include <QWidget>
+#include <QPushButton>
 #include <QPushButton>
 #include <QLabel>
 #include <QLineEdit>
 #include <QHBoxLayout>
 #include <QIntValidator>
+#include <QCheckBox>
 
-#include "CropView.h"
-#include "src/gui/selection/SelectionHandler.h"
+#include "ModifyCanvasView.h"
+#include "ModifyCanvasSelectionRestrictor.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/common/helper/KeyHelper.h"
+#include "src/gui/selection/SelectionHandler.h"
 
 namespace kImageAnnotator {
 
-class CropWidget : public QWidget
+class ModifyCanvasWidget : public QWidget
 {
 Q_OBJECT
 public:
-	explicit CropWidget();
-	~CropWidget() override;
+	explicit ModifyCanvasWidget();
+	~ModifyCanvasWidget() override;
 	void activate(AnnotationArea *annotationArea);
 
 signals:
@@ -52,10 +55,10 @@ private:
 	AnnotationArea *mAnnotationArea;
 	KeyHelper *mKeyHelper;
 	SelectionHandler *mSelectionHandler;
-	CropView *mCropView;
+	ModifyCanvasView *mModifyCanvasView;
 	QVBoxLayout *mMainLayout;
 	QHBoxLayout *mPanelLayout;
-	QPushButton *mCropButton;
+	QPushButton *mApplyButton;
 	QPushButton *mCancelButton;
 	QLineEdit *mPositionXLineEdit;
 	QLineEdit *mPositionYLineEdit;
@@ -66,6 +69,7 @@ private:
 	QLabel *mWidthLabel;
 	QLabel *mHeightLabel;
 	QIntValidator *mInputValidator;
+	QCheckBox *mRestrictCheckBox;
 
 	void initGui();
 	void initKeyHelper();
@@ -73,14 +77,15 @@ private:
 	void reset();
 
 private slots:
-	void crop();
+	void apply();
 	void selectionChanged(const QRectF &rect);
 	void xChanged(const QString &text);
 	void yChanged(const QString &text);
 	void widthChanged(const QString &text);
 	void heightChanged(const QString &text);
+	void restrictionChanged();
 };
 
 } // kImageAnnotator namespace
 
-#endif //KIMAGEANNOTATOR_CROPWIDGET_H
+#endif //KIMAGEANNOTATOR_MODIFYCANVASWIDGET_H

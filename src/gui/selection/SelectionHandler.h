@@ -23,19 +23,19 @@
 #include <QRectF>
 #include <QList>
 
-#include "CropSelectionRestrictor.h"
-#include "CropHandles.h"
-#include "CropSelectionMoveHelper.h"
+#include "src/gui/cropper/CropSelectionRestrictor.h"
+#include "src/gui/selection/SelectionHandles.h"
+#include "SelectionMoveHelper.h"
 #include "src/annotations/core/AnnotationArea.h"
 
 namespace kImageAnnotator {
 
-class CropSelectionHandler : public QObject
+class SelectionHandler : public QObject
 {
 Q_OBJECT
 public:
-	explicit CropSelectionHandler();
-	~CropSelectionHandler() override = default;
+	explicit SelectionHandler(ISelectionRestrictor *selectionRestrictor);
+	~SelectionHandler() override;
 	void init(AnnotationArea *annotationArea);
 	QRectF selection() const;
 	QVector<QRectF> selectionHandles() const;
@@ -46,9 +46,11 @@ public:
 	void setHeight(int height);
 	void setPositionX(int x);
 	void setPositionY(int y);
-	void resetSelection();
+	void resetSelection(const QRectF &selection, const QRectF &selectionLimit);
 	bool isInMotion() const;
 	bool selectionContains(const QPointF &pos) const;
+	void setRestrictionEnabled(bool enabled);
+	bool restrictionEnabled() const;
 
 signals:
 	void selectionChanged(const QRectF &rect) const;
@@ -56,14 +58,17 @@ signals:
 private:
 	AnnotationArea *mAnnotationArea;
 	QRectF mSelection;
-	QRectF mMaxSelection;
-	CropSelectionRestrictor mSelectionRestrictor;
-	CropHandles mCropHandles;
-	CropSelectionMoveHelper mMoveHelper;
+	QRectF mSelectionLimit;
+	ISelectionRestrictor *mSelectionRestrictor;
+	SelectionHandles mHandles;
+	SelectionMoveHelper mMoveHelper;
+	bool mRestrictionEnabled;
 
 	void update();
 	void notifyAboutChange() const;
 	void setSelection(const QRectF &rect);
+	QRectF &restrictResize(QRectF &selection);
+	QRectF &restrictMove(QRectF &selection) const;
 };
 
 } // namespace kImageAnnotator

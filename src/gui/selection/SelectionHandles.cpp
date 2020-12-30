@@ -17,23 +17,23 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "CropHandles.h"
+#include "SelectionHandles.h"
 
 namespace kImageAnnotator {
 
-CropHandles::CropHandles() : mGrabbedIndex(-1)
+SelectionHandles::SelectionHandles() : mGrabbedIndex(-1)
 {
 	for (auto i = 0; i < 8; i++) {
 		mHandles.append(QRectF(0, 0, Constants::ResizeHandleSize, Constants::ResizeHandleSize));
 	}
 }
 
-QVector<QRectF> CropHandles::handles() const
+QVector<QRectF> SelectionHandles::handles() const
 {
 	return mHandles;
 }
 
-void CropHandles::grabHandle(const QPointF &position, const QRectF &selection)
+void SelectionHandles::grabHandle(const QPointF &position, const QRectF &selection)
 {
 	for (auto handle : mHandles) {
 		if (handle.contains(position)) {
@@ -45,17 +45,17 @@ void CropHandles::grabHandle(const QPointF &position, const QRectF &selection)
 	mGrabbedIndex = -1;
 }
 
-void CropHandles::releaseHandle()
+void SelectionHandles::releaseHandle()
 {
 	mGrabbedIndex = -1;
 }
 
-int CropHandles::grabbedIndex() const
+int SelectionHandles::grabbedIndex() const
 {
 	return mGrabbedIndex;
 }
 
-void CropHandles::updateHandles(const QRectF &selection)
+void SelectionHandles::updateHandles(const QRectF &selection)
 {
 	auto rectSize = Constants::ResizeHandleSize / 2;
 	mHandles[0].moveTopLeft(ShapeHelper::rectTopLeftWithOffset(selection, 0).toPoint());
@@ -68,12 +68,12 @@ void CropHandles::updateHandles(const QRectF &selection)
 	mHandles[7].moveCenter(ShapeHelper::rectLeftWithOffset(selection, -rectSize).toPoint());
 }
 
-bool CropHandles::isHandleGrabbed() const
+bool SelectionHandles::isHandleGrabbed() const
 {
 	return mGrabbedIndex != -1;
 }
 
-QPointF CropHandles::grabOffset() const
+QPointF SelectionHandles::grabOffset() const
 {
 	return mGrabOffset;
 }

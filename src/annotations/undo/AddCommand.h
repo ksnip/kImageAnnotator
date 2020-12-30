@@ -33,7 +33,7 @@ class AddCommand : public QUndoCommand
 {
 public:
     AddCommand(AbstractAnnotationItem *item, AnnotationArea *annotationArea);
-    ~AddCommand();
+    ~AddCommand() = default;
     virtual void undo() override;
     virtual void redo() override;
 

@@ -25,11 +25,13 @@ CoreView::CoreView(Config *config) :
 	mConfig(config),
 	mAnnotationWidget(new AnnotationWidget(mConfig)),
 	mCropWidget(new CropWidget),
-	mScaleWidget(new ScaleWidget)
+	mScaleWidget(new ScaleWidget),
+	mModifyCanvasWidget(new ModifyCanvasWidget)
 {
 	addWidget(mAnnotationWidget);
 	addWidget(mCropWidget);
 	addWidget(mScaleWidget);
+	addWidget(mModifyCanvasWidget);
 
 	connect(mAnnotationWidget, &AnnotationWidget::imageChanged, this, &CoreView::imageChanged);
 	connect(mAnnotationWidget, &AnnotationWidget::currentTabChanged, this, &CoreView::currentTabChanged);
@@ -38,6 +40,7 @@ CoreView::CoreView(Config *config) :
 	connect(mAnnotationWidget, &AnnotationWidget::tabContextMenuOpened, this, &CoreView::tabContextMenuOpened);
 	connect(mCropWidget, &CropWidget::closing, this, &CoreView::showAnnotator);
 	connect(mScaleWidget, &ScaleWidget::closing, this, &CoreView::showAnnotator);
+	connect(mModifyCanvasWidget, &ModifyCanvasWidget::closing, this, &CoreView::showAnnotator);
 }
 
 CoreView::~CoreView()
@@ -45,6 +48,7 @@ CoreView::~CoreView()
 	delete mAnnotationWidget;
 	delete mCropWidget;
 	delete mScaleWidget;
+	delete mModifyCanvasWidget;
 }
 
 QImage CoreView::image() const
@@ -102,6 +106,14 @@ void CoreView::showScaler()
 	mAnnotationWidget->clearSelection();
 	setCurrentWidget(mScaleWidget);
 	mScaleWidget->activate(mAnnotationWidget->annotationArea());
+}
+
+void CoreView::showCanvasModifier()
+{
+	mAnnotationWidget->setUndoEnabled(false);
+	mAnnotationWidget->clearSelection();
+	setCurrentWidget(mModifyCanvasWidget);
+	mModifyCanvasWidget->activate(mAnnotationWidget->annotationArea());
 }
 
 void CoreView::setSettingsCollapsed(bool isCollapsed)

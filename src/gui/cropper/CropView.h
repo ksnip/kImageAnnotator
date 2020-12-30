@@ -20,35 +20,19 @@
 #ifndef KIMAGEANNOTATOR_CROPVIEW_H
 #define KIMAGEANNOTATOR_CROPVIEW_H
 
-#include <QGraphicsView>
-
-#include "CropSelectionHandler.h"
-#include "src/annotations/core/AnnotationArea.h"
-#include "src/common/helper/KeyHelper.h"
+#include "src/gui/selection/BaseSelectionView.h"
 
 namespace kImageAnnotator {
 
-class CropView : public QGraphicsView
+class CropView : public BaseSelectionView
 {
 Q_OBJECT
 public:
-	explicit CropView(CropSelectionHandler *cropSelectionHandler, KeyHelper *keyHelper);
+	explicit CropView(SelectionHandler *selectionHandler, KeyHelper *keyHelper);
 	~CropView() override = default;
-	void init(AnnotationArea *annotationArea);
 
 protected:
-	void keyPressEvent(QKeyEvent *event) override;
-	void keyReleaseEvent(QKeyEvent *event) override;
-	void mouseMoveEvent(QMouseEvent *event) override;
-	void mousePressEvent(QMouseEvent *event) override;
-	void mouseReleaseEvent(QMouseEvent *event) override;
 	void drawForeground(QPainter *painter, const QRectF &rect) override;
-
-private:
-	CropSelectionHandler *mCropSelectionHandler;
-	KeyHelper *mKeyHelper;
-
-	void updateCursor(const QPointF &pos);
 };
 
 } // namespace kImageAnnotator

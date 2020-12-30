@@ -18,46 +18,46 @@
  */
 
 
-#include "CropSelectionMoveHelperTest.h"
+#include "SelectionMoveHelperTest.h"
 
-void CropSelectionMoveHelperTest::TestGrabSelection_Should_GrabSelection_WhenPositionWithinSelection()
+void SelectionMoveHelperTest::TestGrabSelection_Should_GrabSelection_WhenPositionWithinSelection()
 {
 	QRectF selection(100, 100, 300, 300);
 	QPointF position(150, 150);
-	CropSelectionMoveHelper moveHelper;
+	SelectionMoveHelper moveHelper;
 
 	moveHelper.grabSelection(position, selection);
 
 	QCOMPARE(moveHelper.isSelectionGabbed(), true);
 }
 
-void CropSelectionMoveHelperTest::TestGrabSelection_Should_NotGrabSelection_WhenPositionOutsideSelection()
+void SelectionMoveHelperTest::TestGrabSelection_Should_NotGrabSelection_WhenPositionOutsideSelection()
 {
 	QRectF selection(100, 100, 300, 300);
 	QPointF position(50, 50);
-	CropSelectionMoveHelper moveHelper;
+	SelectionMoveHelper moveHelper;
 
 	moveHelper.grabSelection(position, selection);
 
 	QCOMPARE(moveHelper.isSelectionGabbed(), false);
 }
 
-void CropSelectionMoveHelperTest::TestGrabSelection_Should_SetCorrectOffset()
+void SelectionMoveHelperTest::TestGrabSelection_Should_SetCorrectOffset()
 {
 	QRectF selection(100, 100, 300, 300);
 	QPointF position(150, 150);
-	CropSelectionMoveHelper moveHelper;
+	SelectionMoveHelper moveHelper;
 
 	moveHelper.grabSelection(position, selection);
 
 	QCOMPARE(moveHelper.grabOffset(), QPointF(50, 50));
 }
 
-void CropSelectionMoveHelperTest::TestReleaseSelection_Should_ReleaseSelection()
+void SelectionMoveHelperTest::TestReleaseSelection_Should_ReleaseSelection()
 {
 	QRectF selection(100, 100, 300, 300);
 	QPointF position(150, 150);
-	CropSelectionMoveHelper moveHelper;
+	SelectionMoveHelper moveHelper;
 	moveHelper.grabSelection(position, selection);
 	QCOMPARE(moveHelper.isSelectionGabbed(), true);
 
@@ -66,6 +66,6 @@ void CropSelectionMoveHelperTest::TestReleaseSelection_Should_ReleaseSelection()
 	QCOMPARE(moveHelper.isSelectionGabbed(), false);
 }
 
-QTEST_MAIN(CropSelectionMoveHelperTest);
+QTEST_MAIN(SelectionMoveHelperTest);
 
 

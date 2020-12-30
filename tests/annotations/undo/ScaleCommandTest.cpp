@@ -29,7 +29,7 @@ void ScaleCommandTest::TestRedo_Should_ScaleImageToNewSize()
 	QGraphicsPixmapItem image(pixmap);
 
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	ScaleCommand scaleCommand(&image, newSize, &annotationArea);
 
 	scaleCommand.redo();
@@ -44,7 +44,7 @@ void ScaleCommandTest::TestUndo_Should_ScaleImageBackToOldSize()
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	ScaleCommand scaleCommand(&image, newSize, &annotationArea);
 	scaleCommand.redo();
 	QCOMPARE(image.boundingRect().size().toSize(), newSize);
@@ -61,7 +61,7 @@ void ScaleCommandTest::TestRedo_Should_ScaleItemsBySameFactorAsImage()
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto rectItem = new AnnotationRect(QPointF(0, 0), properties);
 	rectItem->addPoint(QPointF(50, 50), false);
@@ -80,7 +80,7 @@ void ScaleCommandTest::TestUndo_Should_ScaleItemsBackToOriginalSize()
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto rectItem = new AnnotationRect(QPointF(0, 0), properties);
 	rectItem->addPoint(QPointF(50, 50), false);

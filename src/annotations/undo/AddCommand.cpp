@@ -27,10 +27,6 @@ AddCommand::AddCommand(AbstractAnnotationItem *item, AnnotationArea *annotationA
     mAnnotationArea = annotationArea;
 }
 
-AddCommand::~AddCommand()
-{
-}
-
 void AddCommand::undo()
 {
     mAnnotationArea->removeAnnotationItem(mItem);

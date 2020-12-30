@@ -18,84 +18,84 @@
  */
 
 
-#include "CropHandlesTest.h"
+#include "SelectionHandlesTest.h"
 
-void CropHandlesTest::TestIsHandleGrabbed_Should_ReturnTrue_When_ClickedOnHandle()
+void SelectionHandlesTest::TestIsHandleGrabbed_Should_ReturnTrue_When_ClickedOnHandle()
 {
 	QRectF selection(0, 0, 500, 500);
 	auto halfHandle = ResizeHandleSize / 2;
 	QPointF position(halfHandle, halfHandle);
-	CropHandles cropHandles;
-	cropHandles.updateHandles(selection);
-	cropHandles.grabHandle(position, selection);
+	SelectionHandles handles;
+	handles.updateHandles(selection);
+	handles.grabHandle(position, selection);
 
-	auto isHandleGrabbed = cropHandles.isHandleGrabbed();
+	auto isHandleGrabbed = handles.isHandleGrabbed();
 
 	QCOMPARE(isHandleGrabbed, true);
 }
 
-void CropHandlesTest::TestIsHandleGrabbed_Should_ReturnFalse_When_ClickedOutsideHandle()
+void SelectionHandlesTest::TestIsHandleGrabbed_Should_ReturnFalse_When_ClickedOutsideHandle()
 {
 	QRectF selection(0, 0, 500, 500);
 	QPointF position(300, 300);
-	CropHandles cropHandles;
-	cropHandles.updateHandles(selection);
-	cropHandles.grabHandle(position, selection);
+	SelectionHandles handles;
+	handles.updateHandles(selection);
+	handles.grabHandle(position, selection);
 
-	auto isHandleGrabbed = cropHandles.isHandleGrabbed();
+	auto isHandleGrabbed = handles.isHandleGrabbed();
 
 	QCOMPARE(isHandleGrabbed, false);
 }
 
-void CropHandlesTest::TestGrabbedIndex_Should_ReturnIndexOfHandle_When_ClickedOnHandle()
+void SelectionHandlesTest::TestGrabbedIndex_Should_ReturnIndexOfHandle_When_ClickedOnHandle()
 {
 	QRectF selection(0, 0, 500, 500);
 	auto halfHandle = ResizeHandleSize / 2;
 	QPointF position(halfHandle, halfHandle);
-	CropHandles cropHandles;
-	cropHandles.updateHandles(selection);
-	cropHandles.grabHandle(position, selection);
+	SelectionHandles handles;
+	handles.updateHandles(selection);
+	handles.grabHandle(position, selection);
 
-	auto grabbedIndex = cropHandles.grabbedIndex();
+	auto grabbedIndex = handles.grabbedIndex();
 
 	QCOMPARE(grabbedIndex, 0);
 }
 
-void CropHandlesTest::TestGrabbedIndex_Should_ReturnMinusOne_When_ClickedOutsideHandle()
+void SelectionHandlesTest::TestGrabbedIndex_Should_ReturnMinusOne_When_ClickedOutsideHandle()
 {
 	QRectF selection(0, 0, 500, 500);
 	QPointF position(300, 300);
-	CropHandles cropHandles;
-	cropHandles.updateHandles(selection);
-	cropHandles.grabHandle(position, selection);
+	SelectionHandles handles;
+	handles.updateHandles(selection);
+	handles.grabHandle(position, selection);
 
-	auto grabbedIndex = cropHandles.grabbedIndex();
+	auto grabbedIndex = handles.grabbedIndex();
 
 	QCOMPARE(grabbedIndex, -1);
 }
 
-void CropHandlesTest::TestGrabOffset_Should_ReturnClickOffsetForHandle()
+void SelectionHandlesTest::TestGrabOffset_Should_ReturnClickOffsetForHandle()
 {
 	QRectF selection(0, 0, 500, 500);
 	auto halfHandle = ResizeHandleSize / 2;
 	QPointF position(halfHandle, halfHandle);
-	CropHandles cropHandles;
-	cropHandles.updateHandles(selection);
-	cropHandles.grabHandle(position, selection);
+	SelectionHandles handles;
+	handles.updateHandles(selection);
+	handles.grabHandle(position, selection);
 
-	auto grabOffset = cropHandles.grabOffset();
+	auto grabOffset = handles.grabOffset();
 
 	QCOMPARE(grabOffset, QPointF(halfHandle, halfHandle));
 }
 
-void CropHandlesTest::TestUpdateHandles_Should_PositionHandlesOnCorrectPlaces()
+void SelectionHandlesTest::TestUpdateHandles_Should_PositionHandlesOnCorrectPlaces()
 {
 	QRectF selection(0, 0, 500, 500);
-	CropHandles cropHandles;
+	SelectionHandles selectionHandles;
 
-	cropHandles.updateHandles(selection);
+	selectionHandles.updateHandles(selection);
 
-	auto handles = cropHandles.handles();
+	auto handles = selectionHandles.handles();
 
 	QCOMPARE(handles[0].topLeft(), QPointF(0, 0));
 	QCOMPARE(handles[1].topLeft(), QPointF(selection.width() / 2 - ResizeHandleSize / 2, 0));
@@ -107,4 +107,4 @@ void CropHandlesTest::TestUpdateHandles_Should_PositionHandlesOnCorrectPlaces()
 	QCOMPARE(handles[7].topLeft(), QPointF(0, selection.height() / 2 - ResizeHandleSize / 2));
 }
 
-QTEST_MAIN(CropHandlesTest);
+QTEST_MAIN(SelectionHandlesTest);

@@ -24,7 +24,7 @@
 void CropCommandTest::TestRedo_Should_CropImageAndScene()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -39,7 +39,7 @@ void CropCommandTest::TestRedo_Should_CropImageAndScene()
 void CropCommandTest::TestRedo_Should_MoveItemToNewPosition()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -59,7 +59,7 @@ void CropCommandTest::TestRedo_Should_MoveItemToNewPosition()
 void CropCommandTest::TestUndo_Should_RestoreOriginalImageAndSceneSize()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -75,7 +75,7 @@ void CropCommandTest::TestUndo_Should_RestoreOriginalImageAndSceneSize()
 void CropCommandTest::TestUndo_Should_MoveItemBackToPreviousPosition()
 {
 	MockAnnotationAreaParameters p;
-	AnnotationArea annotationArea(&p.config, &p.provider, &p.scaler, &p.zoomValueProvider);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);

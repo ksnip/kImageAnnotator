@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,60 +17,58 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "CropSelectionRestrictor.h"
+#include "ModifyCanvasSelectionRestrictor.h"
 
 namespace kImageAnnotator {
 
-QRectF &CropSelectionRestrictor::restrictResize(QRectF &newRect, const QRectF &currentRect, const QRectF &rectLimit) const
+QRectF &ModifyCanvasSelectionRestrictor::restrictResize(QRectF &newRect, const QRectF &currentRect, const QRectF &rectLimit) const
 {
-	if (newRect.x() < rectLimit.x()) {
+	if (newRect.x() > rectLimit.x()) {
 		newRect.setX(rectLimit.x());
 	}
 
-	if (newRect.y() < rectLimit.y()) {
+	if (newRect.y() > rectLimit.y()) {
 		newRect.setY(rectLimit.y());
 	}
 
-	if (newRect.width() < 0) {
-		newRect.setWidth(0);
-		newRect.moveLeft(currentRect.left());
+	if (newRect.right() < rectLimit.right()) {
+		newRect.setRight(rectLimit.right());
 	}
 
-	if (newRect.height() < 0) {
-		newRect.setHeight(0);
-		newRect.moveTop(currentRect.top());
+	if (newRect.height() < rectLimit.height()) {
+		newRect.setHeight(rectLimit.height());
 	}
 
-	if (newRect.x() + newRect.width() > rectLimit.width()) {
+	if (newRect.x() + newRect.width() < rectLimit.width()) {
 		newRect.setWidth(rectLimit.width() - newRect.x());
 	}
 
-	if (newRect.y() + newRect.height() > rectLimit.height()) {
+	if (newRect.y() + newRect.height() < rectLimit.height()) {
 		newRect.setHeight(rectLimit.height() - newRect.y());
 	}
 
 	return newRect;
 }
 
-QRectF &CropSelectionRestrictor::restrictMove(QRectF &newRect, const QRectF &rectLimit) const
+QRectF &ModifyCanvasSelectionRestrictor::restrictMove(QRectF &newRect, const QRectF &rectLimit) const
 {
-	if (newRect.x() < rectLimit.x()) {
+	if (newRect.x() > rectLimit.x()) {
 		newRect.moveLeft(rectLimit.x());
 	}
 
-	if (newRect.y() < rectLimit.y()) {
+	if (newRect.y() > rectLimit.y()) {
 		newRect.moveTop(rectLimit.y());
 	}
 
-	if ((newRect.x() + newRect.width()) > rectLimit.width()) {
+	if ((newRect.x() + newRect.width()) < rectLimit.width()) {
 		newRect.moveTo(rectLimit.width() - newRect.width(), newRect.y());
 	}
 
-	if ((newRect.y() + newRect.height()) > rectLimit.height()) {
+	if ((newRect.y() + newRect.height()) < rectLimit.height()) {
 		newRect.moveTo(newRect.x(), rectLimit.height() - newRect.height());
 	}
 
 	return newRect;
 }
 
-} // namespave kImageAnnotator
+} // namespace kImageAnnotator

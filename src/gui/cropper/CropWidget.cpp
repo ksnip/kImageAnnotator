@@ -23,18 +23,31 @@ namespace kImageAnnotator {
 
 CropWidget::CropWidget() :
 	mAnnotationArea(nullptr),
-    mKeyHelper(new KeyHelper()),
-    mCropSelectionHandler(new CropSelectionHandler()),
-    mCropView(new CropView(mCropSelectionHandler, mKeyHelper))
+	mKeyHelper(new KeyHelper()),
+	mSelectionHandler(new SelectionHandler(new CropSelectionRestrictor)),
+	mCropView(new CropView(mSelectionHandler, mKeyHelper)),
+	mCropButton(new QPushButton),
+	mCancelButton(new QPushButton),
+	mPanelLayout(new QHBoxLayout),
+	mPositionXLabel(new QLabel),
+	mPositionYLabel(new QLabel),
+	mHeightLabel(new QLabel),
+	mWidthLabel(new QLabel),
+	mPositionXLineEdit(new QLineEdit),
+	mPositionYLineEdit(new QLineEdit),
+	mWidthLineEdit(new QLineEdit),
+	mHeightLineEdit(new QLineEdit),
+	mMainLayout(new QVBoxLayout),
+	mInputValidator(new QIntValidator(0, 9999, this))
 {
-	initCropSelectionHandler();
+	initSelectionHandler();
 	initKeyHelper();
 	initGui();
 }
 
-void CropWidget::initCropSelectionHandler() const
+void CropWidget::initSelectionHandler() const
 {
-	connect(mCropSelectionHandler, &CropSelectionHandler::selectionChanged, this, &CropWidget::selectionChanged);
+	connect(mSelectionHandler, &SelectionHandler::selectionChanged, this, &CropWidget::selectionChanged);
 }
 
 void CropWidget::initKeyHelper()
@@ -47,7 +60,7 @@ void CropWidget::initKeyHelper()
 CropWidget::~CropWidget()
 {
 	delete mKeyHelper;
-	delete mCropSelectionHandler;
+	delete mSelectionHandler;
 	delete mCropView;
 	delete mMainLayout;
 	delete mCropButton;
@@ -56,6 +69,11 @@ CropWidget::~CropWidget()
 	delete mPositionYLineEdit;
 	delete mWidthLineEdit;
 	delete mHeightLineEdit;
+	delete mPositionXLabel;
+	delete mPositionYLabel;
+	delete mWidthLabel;
+	delete mHeightLabel;
+	delete mInputValidator;
 }
 
 void CropWidget::activate(AnnotationArea *annotationArea)
@@ -63,7 +81,7 @@ void CropWidget::activate(AnnotationArea *annotationArea)
 	Q_ASSERT(annotationArea != nullptr);
 
 	mAnnotationArea = annotationArea;
-	mCropSelectionHandler->init(annotationArea);
+	mSelectionHandler->init(annotationArea);
 	mCropView->init(annotationArea);
 	reset();
 	setFocus();
@@ -71,49 +89,42 @@ void CropWidget::activate(AnnotationArea *annotationArea)
 
 void CropWidget::initGui()
 {
-	mCropButton = new QPushButton();
 	mCropButton->setText(tr("Crop"));
 	connect(mCropButton, &QPushButton::clicked, this, &CropWidget::crop);
 
-	mCancelButton = new QPushButton();
 	mCancelButton->setText(tr("Cancel"));
 	connect(mCancelButton, &QPushButton::clicked, this, &CropWidget::closing);
 
-	mPanelLayout = new QHBoxLayout();
 	mPanelLayout->setAlignment(Qt::AlignCenter);
 
-	auto label = new QLabel(tr("X:"));
-	mPanelLayout->addWidget(label, 0, Qt::AlignCenter);
+	mPositionXLabel->setText(tr("X:"));
+	mPanelLayout->addWidget(mPositionXLabel, 0, Qt::AlignCenter);
 
-	mPositionXLineEdit = new QLineEdit();
-	mPositionXLineEdit->setValidator(new QIntValidator(0, 9999, mPositionXLineEdit));
+	mPositionXLineEdit->setValidator(mInputValidator);
 	mPositionXLineEdit->setFixedSize(40, mPositionXLineEdit->minimumSizeHint().height());
 	connect(mPositionXLineEdit, &QLineEdit::textEdited, this, &CropWidget::xChanged);
 	mPanelLayout->addWidget(mPositionXLineEdit, 0, Qt::AlignCenter);
 
-	label = new QLabel(tr("Y:"));
-	mPanelLayout->addWidget(label, 0, Qt::AlignCenter);
+	mPositionYLabel->setText(tr("Y:"));
+	mPanelLayout->addWidget(mPositionYLabel, 0, Qt::AlignCenter);
 
-	mPositionYLineEdit = new QLineEdit();
-	mPositionYLineEdit->setValidator(new QIntValidator(0, 9999, mPositionYLineEdit));
+	mPositionYLineEdit->setValidator(mInputValidator);
 	mPositionYLineEdit->setFixedSize(40, mPositionYLineEdit->minimumSizeHint().height());
 	connect(mPositionYLineEdit, &QLineEdit::textEdited, this, &CropWidget::yChanged);
 	mPanelLayout->addWidget(mPositionYLineEdit, 0, Qt::AlignCenter);
 
-	label = new QLabel(tr("W:"));
-	mPanelLayout->addWidget(label, 0, Qt::AlignCenter);
+	mWidthLabel->setText(tr("W:"));
+	mPanelLayout->addWidget(mWidthLabel, 0, Qt::AlignCenter);
 
-	mWidthLineEdit = new QLineEdit();
-	mWidthLineEdit->setValidator(new QIntValidator(0, 9999, mWidthLineEdit));
+	mWidthLineEdit->setValidator(mInputValidator);
 	mWidthLineEdit->setFixedSize(40, mWidthLineEdit->minimumSizeHint().height());
 	connect(mWidthLineEdit, &QLineEdit::textEdited, this, &CropWidget::widthChanged);
 	mPanelLayout->addWidget(mWidthLineEdit, 0, Qt::AlignCenter);
 
-	label = new QLabel(tr("H:"));
-	mPanelLayout->addWidget(label, 0, Qt::AlignCenter);
+	mHeightLabel->setText(tr("H:"));
+	mPanelLayout->addWidget(mHeightLabel, 0, Qt::AlignCenter);
 
-	mHeightLineEdit = new QLineEdit();
-	mHeightLineEdit->setValidator(new QIntValidator(0, 9999, mHeightLineEdit));
+	mHeightLineEdit->setValidator(mInputValidator);
 	mHeightLineEdit->setFixedSize(40, mHeightLineEdit->minimumSizeHint().height());
 	connect(mHeightLineEdit, &QLineEdit::textEdited, this, &CropWidget::heightChanged);
 	mPanelLayout->addWidget(mHeightLineEdit, 0, Qt::AlignCenter);
@@ -121,7 +132,6 @@ void CropWidget::initGui()
 	mPanelLayout->addWidget(mCropButton, 0, Qt::AlignCenter);
 	mPanelLayout->addWidget(mCancelButton, 0, Qt::AlignCenter);
 
-	mMainLayout = new QVBoxLayout();
 	mMainLayout->addWidget(mCropView);
 	mMainLayout->addLayout(mPanelLayout);
 
@@ -138,7 +148,7 @@ void CropWidget::crop()
 {
 	Q_ASSERT(mAnnotationArea != nullptr);
 
-	mAnnotationArea->crop(mCropSelectionHandler->selection());
+	mAnnotationArea->crop(mSelectionHandler->selection());
 	emit closing();
 }
 
@@ -153,30 +163,31 @@ void CropWidget::selectionChanged(const QRectF &rect)
 void kImageAnnotator::CropWidget::xChanged(const QString &text)
 {
 	auto x = text.toInt();
-	mCropSelectionHandler->setPositionX(x);
+	mSelectionHandler->setPositionX(x);
 }
 
 void CropWidget::yChanged(const QString &text)
 {
 	auto y = text.toInt();
-	mCropSelectionHandler->setPositionY(y);
+	mSelectionHandler->setPositionY(y);
 }
 
 void CropWidget::widthChanged(const QString &text)
 {
 	auto width = text.toInt();
-	mCropSelectionHandler->setWidth(width);
+	mSelectionHandler->setWidth(width);
 }
 
 void CropWidget::heightChanged(const QString &text)
 {
 	auto height = text.toInt();
-	mCropSelectionHandler->setHeight(height);
+	mSelectionHandler->setHeight(height);
 }
 
 void CropWidget::reset()
 {
-	mCropSelectionHandler->resetSelection();
+	auto selection = mAnnotationArea->sceneRect();
+	mSelectionHandler->resetSelection(selection, selection);
 }
 
 } // namespace kImageAnnotator

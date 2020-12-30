@@ -30,9 +30,10 @@ set(UNITTEST_SRC
 	common/helper/ShapeHelperTest.cpp
 	common/helper/PathHelperTest.cpp
 	gui/cropper/CropSelectionRestrictorTest.cpp
-	gui/cropper/CropSelectionMoveHelperTest.cpp
-	gui/cropper/CropSelectionHandlerTest.cpp
-	gui/cropper/CropHandlesTest.cpp
+	gui/canvasModifier/ModifyCanvasSelectionRestrictorTest.cpp
+	gui/selection/SelectionMoveHelperTest.cpp
+	gui/selection/SelectionHandlerTest.cpp
+	gui/selection/SelectionHandlesTest.cpp
 	gui/scaler/ScaleSizeHandlerTest.cpp
 	gui/annotator/tabs/AnnotationTabCloserTest.cpp
 	gui/annotator/tabs/AnnotationTabContextMenuTest.cpp
@@ -50,6 +51,7 @@ set(TESTUTILS_SRC
 	mocks/MockSettingsProvider.cpp
 	mocks/MockDevicePixelRatioScaler.cpp
 	mocks/MockDefaultParameters.h
+	mocks/MockSelectionRestrictor.cpp
 	)
 
 add_library(KIMAGEANNOTATOR_STATIC STATIC ${KIMAGEANNOTATOR_SRCS})

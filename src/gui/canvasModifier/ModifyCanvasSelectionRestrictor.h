@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,22 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "CropView.h"
+#ifndef KIMAGEANNOTATOR_CANVASMDIFIERSELECTIONRESTRICTOR_H
+#define KIMAGEANNOTATOR_CANVASMDIFIERSELECTIONRESTRICTOR_H
+
+#include <QRectF>
+
+#include "src/gui/selection/ISelectionRestrictor.h"
 
 namespace kImageAnnotator {
 
-CropView::CropView(SelectionHandler *cropSelectionHandler, KeyHelper *keyHelper) :
-	BaseSelectionView(cropSelectionHandler, keyHelper)
+class ModifyCanvasSelectionRestrictor : public ISelectionRestrictor
 {
-}
+public:
+	explicit ModifyCanvasSelectionRestrictor() = default;
+	~ModifyCanvasSelectionRestrictor() override = default;
 
-void CropView::drawForeground(QPainter *painter, const QRectF &rect)
-{
-	painter->setClipRegion(QRegion(sceneRect().toRect()).subtracted(QRegion(currentSelection().toRect())));
-	painter->setBrush(QColor(0, 0, 0, 150));
-	painter->drawRect(sceneRect());
-
-	BaseSelectionView::drawForeground(painter, rect);
-}
+	QRectF &restrictResize(QRectF &newRect, const QRectF &currentRect, const QRectF &rectLimit) const override;
+	QRectF &restrictMove(QRectF &newRect, const QRectF &rectLimit) const override;
+};
 
 } // namespace kImageAnnotator
+
+#endif //KIMAGEANNOTATOR_CANVASMDIFIERSELECTIONRESTRICTOR_H

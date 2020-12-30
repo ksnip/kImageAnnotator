@@ -99,10 +99,7 @@ QImage AnnotationArea::image()
 	}
 
 	mItemModifier->clear();
-
-	auto graphicsEffectRect = mImage->graphicsEffect()->boundingRect();
-	setSceneRect(itemsBoundingRect().united(graphicsEffectRect)); // Cover all items
-
+	setSceneRect(canvasRect());
 	auto scaleFactor = mDevicePixelRatioScaler->scaleFactor();
 	QImage image(sceneRect().size().toSize() * scaleFactor, QImage::Format_ARGB32_Premultiplied);
 	image.fill(Qt::white);
@@ -190,6 +187,26 @@ void AnnotationArea::imageEffectChanged(ImageEffects effect)
 {
 	auto graphicsEffect = ImageEffectFactory::create(effect);
 	mImage->setGraphicsEffect(graphicsEffect);
+}
+
+void AnnotationArea::setCanvasRect(const QRectF &rect)
+{
+	mCanvasRect = rect;
+}
+
+QRectF AnnotationArea::canvasRect() const
+{
+	if(mCanvasRect.isNull()) {
+		auto graphicsEffectRect = mImage->graphicsEffect()->boundingRect();
+		return itemsBoundingRect().united(graphicsEffectRect);
+	} else {
+		return mCanvasRect;
+	}
+}
+
+void AnnotationArea::modifyCanvas(const QRectF &canvasRect)
+{
+	mUndoStack->push(new ModifyCanvasCommand(canvasRect, this));
 }
 
 void AnnotationArea::update()

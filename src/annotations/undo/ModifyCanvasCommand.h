@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,38 +17,29 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "CropSelectionMoveHelper.h"
+#ifndef KIMAGEANNOTATOR_MODIFYCANVASCOMMAND_H
+#define KIMAGEANNOTATOR_MODIFYCANVASCOMMAND_H
+
+#include <QUndoCommand>
+
+#include "src/annotations/core/AnnotationArea.h"
 
 namespace kImageAnnotator {
 
-CropSelectionMoveHelper::CropSelectionMoveHelper() : mIsSelectionGabbed(false)
+class ModifyCanvasCommand : public QUndoCommand
 {
+public:
+	explicit ModifyCanvasCommand(const QRectF &canvasRect, AnnotationArea *annotationArea);
+	~ModifyCanvasCommand() override = default;
+	void undo() override;
+	void redo() override;
 
-}
+private:
+	AnnotationArea *mAnnotationArea;
+	QRectF mNewCanvasRect;
+	QRectF mOriginalCanvasRect;
+};
 
-void CropSelectionMoveHelper::grabSelection(const QPointF &position, const QRectF &selection)
-{
-	if (selection.contains(position)) {
-		mGrabOffset = position - selection.topLeft();
-		mIsSelectionGabbed = true;
-	} else {
-		mIsSelectionGabbed = false;
-	}
-}
+} // namespace kImageAnnotator
 
-void CropSelectionMoveHelper::releaseSelection()
-{
-	mIsSelectionGabbed = false;
-}
-
-bool CropSelectionMoveHelper::isSelectionGabbed() const
-{
-	return mIsSelectionGabbed;
-}
-
-QPointF kImageAnnotator::CropSelectionMoveHelper::grabOffset() const
-{
-	return mGrabOffset;
-}
-
-}
+#endif //KIMAGEANNOTATOR_MODIFYCANVASCOMMAND_H
