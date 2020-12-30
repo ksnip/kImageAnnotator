@@ -63,20 +63,12 @@
         <translation>Veličina fonta</translation>
     </message>
     <message>
-        <source>Border And Fill Visibility</source>
-        <translation>Vidljivost ruba i ispune</translation>
+        <source>Number Seed</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Starting Number</source>
-        <translation>Početni broj</translation>
-    </message>
-    <message>
-        <source>Blur Radius</source>
-        <translation>Radijus mutnoće</translation>
-    </message>
-    <message>
-        <source>Sticker</source>
-        <translation>Naljepnica</translation>
+        <source>Obfuscation Factor</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -130,18 +122,81 @@
     </message>
 </context>
 <context>
-    <name>kImageAnnotator::FillTypePicker</name>
+    <name>kImageAnnotator::FillModePicker</name>
     <message>
-        <source>No Border and No Fill</source>
-        <translation>Bez ruba i bez ispune</translation>
+        <source>Border And Fill Visibility</source>
+        <translation type="unfinished">Vidljivost ruba i ispune</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation>Rub i ispuna</translation>
+        <translation type="unfinished">Rub i ispuna</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation>Rub i bez ispune</translation>
+        <translation type="unfinished">Rub i bez ispune</translation>
+    </message>
+    <message>
+        <source>No Border and No Fill</source>
+        <translation type="unfinished">Bez ruba i bez ispune</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::ImageEffectPicker</name>
+    <message>
+        <source>Image Effects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Effect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drop Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grayscale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Border</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::ModifyCanvasWidget</name>
+    <message>
+        <source>Restricted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When enabled enforces the canvas
+to include the background image.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>X:</source>
+        <translation type="unfinished">X:</translation>
+    </message>
+    <message>
+        <source>Y:</source>
+        <translation type="unfinished">Y:</translation>
+    </message>
+    <message>
+        <source>W:</source>
+        <translation type="unfinished">Š:</translation>
+    </message>
+    <message>
+        <source>H:</source>
+        <translation type="unfinished">V:</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Prekini</translation>
     </message>
 </context>
 <context>
@@ -177,6 +232,13 @@
     <message>
         <source>Percent</source>
         <translation>Postotak</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::StickerPicker</name>
+    <message>
+        <source>Sticker</source>
+        <translation type="unfinished">Naljepnica</translation>
     </message>
 </context>
 <context>
@@ -240,6 +302,33 @@
     <message>
         <source>Sticker</source>
         <translation>Naljepnica</translation>
+    </message>
+    <message>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text Pointer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Number Arrow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pixelate</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::ZoomIndicator</name>
+    <message>
+        <source>Zoom Level</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
