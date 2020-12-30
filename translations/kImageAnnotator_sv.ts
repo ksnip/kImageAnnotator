@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Number Seed</source>
-        <translation type="unfinished">Nummerbricka</translation>
+        <translation>Räkneverk</translation>
     </message>
 </context>
 <context>
@@ -167,36 +167,37 @@
     <name>kImageAnnotator::ModifyCanvasWidget</name>
     <message>
         <source>Restricted</source>
-        <translation type="unfinished"></translation>
+        <translation>Begränsad</translation>
     </message>
     <message>
         <source>When enabled enforces the canvas
 to include the background image.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vid aktivering tvingas arbetsytan
+att inkludera bakgrundsbilden.</translation>
     </message>
     <message>
         <source>X:</source>
-        <translation type="unfinished">X:</translation>
+        <translation>X:</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation type="unfinished">Y:</translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <source>W:</source>
-        <translation type="unfinished">B:</translation>
+        <translation>B:</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation type="unfinished">H:</translation>
+        <translation>H:</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Tillämpa</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Avbryt</translation>
+        <translation>Avbryt</translation>
     </message>
 </context>
 <context>
