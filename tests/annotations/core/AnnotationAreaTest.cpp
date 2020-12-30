@@ -94,8 +94,8 @@ void AnnotationAreaTest::TestRemoveAnnotationItem_Should_RemoveAnnotationItemFro
 
 void AnnotationAreaTest::TestCanvasRect_Should_ReturnRectUnionOfAllItems_When_NoCanvasRectSet()
 {
-	QRect backgroundImageBoundingRect(0,0,400,400);
-	QPixmap pixmap(backgroundImageBoundingRect.size());
+	QRectF backgroundImageBoundingRect(0,0,400,400);
+	QPixmap pixmap(backgroundImageBoundingRect.size().toSize());
 	pixmap.fill(QColor(Qt::green));
 	MockAnnotationAreaParameters parameters;
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
