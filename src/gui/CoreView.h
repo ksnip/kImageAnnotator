@@ -39,7 +39,7 @@ public:
 	QImage imageAt(int index) const;
 	QAction *undoAction();
 	QAction *redoAction();
-	QSize sizeHint() const;
+	QSize sizeHint() const override;
 	void reloadConfig();
 
 signals:

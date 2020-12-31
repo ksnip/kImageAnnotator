@@ -67,7 +67,7 @@ public:
     virtual void scale(const QSize& size);
     virtual void clearSelection();
 	virtual void toolChanged(Tools toolType) override;
-	void itemSettingsChanged();
+	void itemSettingsChanged() override;
 	void firstBadgeNumberChanged(int number) override;
 	int firstBadgeNumber() const override;
 	void imageEffectChanged(ImageEffects effect) override;
