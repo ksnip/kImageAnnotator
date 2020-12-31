@@ -68,7 +68,7 @@ public:
     virtual void scale(const QSize& size);
     virtual void clearSelection();
 	virtual void toolChanged(Tools toolType) override;
-	void itemSettingsChanged();
+	void itemSettingsChanged() override;
 	void numberToolSeedChanged(int numberToolSeed) override;
 	int numberToolSeed() const override;
 	void imageEffectChanged(ImageEffects effect) override;
