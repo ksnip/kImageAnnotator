@@ -37,8 +37,7 @@ include(FeatureSummary)
 set(KCOLORPICKER_MIN_VERSION "0.1.5")
 find_package(kColorPicker ${KCOLORPICKER_MIN_VERSION} REQUIRED)
 
-set(BASEPATH "${CMAKE_CURRENT_SOURCE_DIR}")
-include_directories("${BASEPATH}")
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 add_subdirectory(src)
 add_subdirectory(translations)
