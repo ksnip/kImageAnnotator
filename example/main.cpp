@@ -32,8 +32,8 @@ int main(int argc, char **argv)
 	QPixmap pixmap(QSize(500, 500));
 	pixmap.fill(QColor(Qt::darkGreen));
 	auto kImageAnnotator = new KImageAnnotator();
-	kImageAnnotator->addTab(pixmap, QLatin1Literal("image1"), QLatin1Literal("image1"));
-	kImageAnnotator->addTab(pixmap, QLatin1Literal("image2"), QLatin1Literal("image2"));
+	kImageAnnotator->addTab(pixmap, QStringLiteral("image1"), QStringLiteral("image1"));
+	kImageAnnotator->addTab(pixmap, QStringLiteral("image2"), QStringLiteral("image2"));
 	kImageAnnotator->adjustSize();
 
 	QMainWindow mainWindow;
