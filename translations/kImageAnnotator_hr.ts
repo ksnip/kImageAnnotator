@@ -64,7 +64,7 @@
     </message>
     <message>
         <source>Number Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Brojač</translation>
     </message>
     <message>
         <source>Obfuscation Factor</source>
@@ -125,34 +125,34 @@
     <name>kImageAnnotator::FillModePicker</name>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation type="unfinished">Vidljivost ruba i ispune</translation>
+        <translation>Vidljivost ruba i ispune</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation type="unfinished">Rub i ispuna</translation>
+        <translation>Rub i ispuna</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation type="unfinished">Rub i bez ispune</translation>
+        <translation>Rub i bez ispune</translation>
     </message>
     <message>
         <source>No Border and No Fill</source>
-        <translation type="unfinished">Bez ruba i bez ispune</translation>
+        <translation>Bez ruba i bez ispune</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Efekt za slike</translation>
     </message>
     <message>
         <source>No Effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Bez efekta</translation>
     </message>
     <message>
         <source>Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Odmaknuta sjena</translation>
     </message>
     <message>
         <source>Grayscale</source>
@@ -160,43 +160,44 @@
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>Rub</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ModifyCanvasWidget</name>
     <message>
         <source>Restricted</source>
-        <translation type="unfinished"></translation>
+        <translation>Ograničeno</translation>
     </message>
     <message>
         <source>When enabled enforces the canvas
 to include the background image.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kad je aktivirano, uključuje
+pozadinsku sliku na platno.</translation>
     </message>
     <message>
         <source>X:</source>
-        <translation type="unfinished">X:</translation>
+        <translation>X:</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation type="unfinished">Y:</translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <source>W:</source>
-        <translation type="unfinished">Š:</translation>
+        <translation>Š:</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation type="unfinished">V:</translation>
+        <translation>V:</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Primijeni</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Prekini</translation>
+        <translation>Odustani</translation>
     </message>
 </context>
 <context>
@@ -238,7 +239,7 @@ to include the background image.</source>
     <name>kImageAnnotator::StickerPicker</name>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished">Naljepnica</translation>
+        <translation>Naljepnica</translation>
     </message>
 </context>
 <context>
@@ -305,7 +306,7 @@ to include the background image.</source>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Dupliciraj</translation>
     </message>
     <message>
         <source>Text Pointer</source>
@@ -328,7 +329,7 @@ to include the background image.</source>
     <name>kImageAnnotator::ZoomIndicator</name>
     <message>
         <source>Zoom Level</source>
-        <translation type="unfinished"></translation>
+        <translation>Razina zumiranja</translation>
     </message>
 </context>
 </TS>
