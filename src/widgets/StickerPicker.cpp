@@ -51,7 +51,7 @@ void StickerPicker::init()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
-	auto icon = IconLoader::load(QLatin1String("sticker.svg"));
+	auto icon = IconLoader::load(QStringLiteral("sticker.svg"));
 	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
 	mLabel->setToolTip(tr("Sticker"));
 

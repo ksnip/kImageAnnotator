@@ -51,14 +51,14 @@ void ImageEffectPicker::initGui()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
-	auto icon = IconLoader::load(QLatin1String("effect.svg"));
+	auto icon = IconLoader::load(QStringLiteral("effect.svg"));
 	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
 	mLabel->setToolTip(tr("Image Effects"));
 
-	insertItem(ImageEffects::NoEffect, QLatin1String("noImageEffect.svg"), tr("No Effect"));
-	insertItem(ImageEffects::DropShadow, QLatin1String("dropShadowImageEffect.svg"), tr("Drop Shadow"));
-	insertItem(ImageEffects::Grayscale, QLatin1String("grayscaleImageEffect.svg"), tr("Grayscale"));
-	insertItem(ImageEffects::Border, QLatin1String("borderImageEffect.svg"), tr("Border"));
+	insertItem(ImageEffects::NoEffect, QStringLiteral("noImageEffect.svg"), tr("No Effect"));
+	insertItem(ImageEffects::DropShadow, QStringLiteral("dropShadowImageEffect.svg"), tr("Drop Shadow"));
+	insertItem(ImageEffects::Grayscale, QStringLiteral("grayscaleImageEffect.svg"), tr("Grayscale"));
+	insertItem(ImageEffects::Border, QStringLiteral("borderImageEffect.svg"), tr("Border"));
 
 	mToolButton->setFixedSize(Constants::SettingsWidgetSize);
 	mToolButton->setIconSize(Constants::ToolButtonIconSize);
