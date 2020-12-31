@@ -207,6 +207,7 @@ QRectF AnnotationArea::canvasRect() const
 void AnnotationArea::modifyCanvas(const QRectF &canvasRect)
 {
 	mUndoStack->push(new ModifyCanvasCommand(canvasRect, this));
+	emit imageChanged();
 }
 
 void AnnotationArea::update()
