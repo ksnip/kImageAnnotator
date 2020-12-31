@@ -39,11 +39,11 @@ int main(int argc, char **argv)
 	QMainWindow mainWindow;
 	mainWindow.setCentralWidget(kImageAnnotator);
 	auto menuBar = mainWindow.menuBar();
-	auto menu = new QMenu(QLatin1Literal("Edit"));
-	auto annotationAction = new QAction(QLatin1Literal("Annotation"), &mainWindow);
-	auto cropAction = new QAction(QLatin1Literal("Crop"), &mainWindow);
-	auto scaleAction = new QAction(QLatin1Literal("Scale"), &mainWindow);
-	auto modifyCanvasAction = new QAction(QLatin1Literal("Modify Canvas"), &mainWindow);
+	auto menu = new QMenu(QStringLiteral("Edit"));
+	auto annotationAction = new QAction(QStringLiteral("Annotation"), &mainWindow);
+	auto cropAction = new QAction(QStringLiteral("Crop"), &mainWindow);
+	auto scaleAction = new QAction(QStringLiteral("Scale"), &mainWindow);
+	auto modifyCanvasAction = new QAction(QStringLiteral("Modify Canvas"), &mainWindow);
 	mainWindow.connect(annotationAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showAnnotator);
 	mainWindow.connect(cropAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showCropper);
 	mainWindow.connect(scaleAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showScaler);
