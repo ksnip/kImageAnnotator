@@ -17,33 +17,36 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_MODIFYCANVASVIEW_H
-#define KIMAGEANNOTATOR_MODIFYCANVASVIEW_H
+#ifndef KIMAGEANNOTATOR_COLORDIALOGBUTTON_H
+#define KIMAGEANNOTATOR_COLORDIALOGBUTTON_H
 
-#include "src/gui/selection/BaseSelectionView.h"
-#include "src/annotations/misc/CanvasPainter.h"
+#include <QPushButton>
+#include <QColorDialog>
+#include <QPainter>
 
 namespace kImageAnnotator {
 
-class ModifyCanvasView : public BaseSelectionView
+class ColorDialogButton : public QPushButton
 {
 Q_OBJECT
 public:
-	explicit ModifyCanvasView(SelectionHandler *selectionHandler, KeyHelper *keyHelper);
-	~ModifyCanvasView() override = default;
-	void setCanvasRect(const QRectF &rect);
-	void setCanvasColor(const QColor &color);
+	explicit ColorDialogButton(QWidget *parent);
+	~ColorDialogButton() override = default;
+	void setColor(const QColor &color);
+	QColor color() const;
 
-protected:
-	void drawForeground(QPainter *painter, const QRectF &rect) override;
-	void drawBackground(QPainter *painter, const QRectF &rect) override;
+signals:
+	void colorChanged(const QColor &color);
 
 private:
-	CanvasPainter mCanvasPainter;
-	QRectF mCanvasRect;
-	QColor mCanvasColor;
+	QColor mColor;
+
+	QPixmap createPixmapFromColor(const QColor &color) const;
+
+private slots:
+	void openDialog();
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_MODIFYCANVASVIEW_H
+#endif //KIMAGEANNOTATOR_COLORDIALOGBUTTON_H

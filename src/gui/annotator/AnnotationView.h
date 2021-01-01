@@ -27,6 +27,7 @@
 
 #include "src/common/helper/KeyHelper.h"
 #include "src/annotations/core/AnnotationArea.h"
+#include "src/annotations/misc/CanvasPainter.h"
 #include "src/gui/annotator/AnnotationViewZoomer.h"
 
 namespace kImageAnnotator {
@@ -46,12 +47,14 @@ protected:
 	void mousePressEvent(QMouseEvent *event) override;
 	void mouseReleaseEvent(QMouseEvent *event) override;
 	void wheelEvent(QWheelEvent *event) override;
+	void drawBackground(QPainter *painter, const QRectF &rect) override;
 
 private:
 	AnnotationViewZoomer *mAnnotationViewZoomer;
 	bool mIsDragging;
 	QPoint mLastPosition;
 	KeyHelper mKeyHelper;
+	CanvasPainter mCanvasPainter;
 
 	void scrollTo(const QPoint &pos);
 	void scrollByDelta(QScrollBar *scrollBar, int delta) const;

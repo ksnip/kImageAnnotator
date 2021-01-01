@@ -34,13 +34,15 @@ ModifyCanvasWidget::ModifyCanvasWidget() :
 	mPositionYLabel(new QLabel),
 	mHeightLabel(new QLabel),
 	mWidthLabel(new QLabel),
+	mColorLabel(new QLabel),
 	mPositionXLineEdit(new QLineEdit),
 	mPositionYLineEdit(new QLineEdit),
 	mWidthLineEdit(new QLineEdit),
 	mHeightLineEdit(new QLineEdit),
 	mMainLayout(new QVBoxLayout),
 	mInputValidator(new QIntValidator(-9999, 9999, this)),
-	mRestrictCheckBox(new QCheckBox)
+	mRestrictCheckBox(new QCheckBox),
+	mColorDialogButton(new ColorDialogButton(this))
 {
 	initSelectionHandler();
 	initKeyHelper();
@@ -61,8 +63,10 @@ ModifyCanvasWidget::~ModifyCanvasWidget()
 	delete mPositionYLabel;
 	delete mWidthLabel;
 	delete mHeightLabel;
+	delete mColorLabel;
 	delete mInputValidator;
 	delete mRestrictCheckBox;
+	delete mColorDialogButton;
 }
 
 void ModifyCanvasWidget::activate(AnnotationArea *annotationArea)
@@ -114,6 +118,10 @@ void ModifyCanvasWidget::initGui()
 	mHeightLineEdit->setFixedSize(40, mHeightLineEdit->minimumSizeHint().height());
 	connect(mHeightLineEdit, &QLineEdit::textEdited, this, &ModifyCanvasWidget::heightChanged);
 
+	mColorLabel->setText(tr("Color:"));
+	mColorLabel->setToolTip(tr("Canvas Background Color"));
+	connect(mColorDialogButton, &ColorDialogButton::colorChanged, mModifyCanvasView, &ModifyCanvasView::setCanvasColor);
+
 	mApplyButton->setText(tr("Apply"));
 	connect(mApplyButton, &QPushButton::clicked, this, &ModifyCanvasWidget::apply);
 
@@ -122,6 +130,9 @@ void ModifyCanvasWidget::initGui()
 
 	mPanelLayout->setAlignment(Qt::AlignCenter);
 	mPanelLayout->addWidget(mRestrictCheckBox, 0, Qt::AlignCenter);
+	mPanelLayout->addSpacing(10);
+	mPanelLayout->addWidget(mColorLabel, 0, Qt::AlignCenter);
+	mPanelLayout->addWidget(mColorDialogButton, 0, Qt::AlignCenter);
 	mPanelLayout->addSpacing(10);
 	mPanelLayout->addWidget(mPositionXLabel, 0, Qt::AlignCenter);
 	mPanelLayout->addWidget(mPositionXLineEdit, 0, Qt::AlignCenter);
@@ -150,6 +161,7 @@ void ModifyCanvasWidget::initKeyHelper()
 void ModifyCanvasWidget::initSelectionHandler() const
 {
 	connect(mSelectionHandler, &SelectionHandler::selectionChanged, this, &ModifyCanvasWidget::selectionChanged);
+	connect(mSelectionHandler, &SelectionHandler::selectionChanged, mModifyCanvasView, &ModifyCanvasView::setCanvasRect);
 }
 
 void ModifyCanvasWidget::reset()
@@ -157,11 +169,14 @@ void ModifyCanvasWidget::reset()
 	auto selection = mAnnotationArea->canvasRect();
 	auto selectionLimit = mAnnotationArea->sceneRect();
 	mSelectionHandler->resetSelection(selection, selectionLimit);
+	mColorDialogButton->setColor(mAnnotationArea->canvasColor());
+	mModifyCanvasView->setCanvasColor(mAnnotationArea->canvasColor());
+	mModifyCanvasView->setCanvasRect(mAnnotationArea->canvasRect());
 }
 
 void ModifyCanvasWidget::apply()
 {
-	mAnnotationArea->modifyCanvas(mSelectionHandler->selection());
+	mAnnotationArea->modifyCanvas(mSelectionHandler->selection(), mColorDialogButton->color());
 	emit closing();
 }
 

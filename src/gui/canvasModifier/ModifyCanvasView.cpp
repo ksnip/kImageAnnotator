@@ -24,7 +24,17 @@ namespace kImageAnnotator {
 ModifyCanvasView::ModifyCanvasView(SelectionHandler *selectionHandler, KeyHelper *keyHelper) :
 	BaseSelectionView(selectionHandler, keyHelper)
 {
+	setViewportUpdateMode(ViewportUpdateMode::FullViewportUpdate);
+}
 
+void ModifyCanvasView::setCanvasRect(const QRectF &rect)
+{
+	mCanvasRect = rect;
+}
+
+void ModifyCanvasView::setCanvasColor(const QColor &color)
+{
+	mCanvasColor = color;
 }
 
 void ModifyCanvasView::drawForeground(QPainter *painter, const QRectF &rect)
@@ -34,6 +44,11 @@ void ModifyCanvasView::drawForeground(QPainter *painter, const QRectF &rect)
 	painter->drawRect(rect);
 
 	BaseSelectionView::drawForeground(painter, rect);
+}
+
+void ModifyCanvasView::drawBackground(QPainter *painter, const QRectF &rect)
+{
+	mCanvasPainter.paint(painter, mCanvasRect, mCanvasColor);
 }
 
 } // namespace kImageAnnotator

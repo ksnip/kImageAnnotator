@@ -98,6 +98,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/AnnotationItemClipboard.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/AnnotationContextMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/NumberManager.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/CanvasPainter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/backend/Config.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/provider/DevicePixelRatioScaler.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/CursorHelper.cpp
@@ -127,6 +128,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListItemGroup.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ImageEffectPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ZoomIndicator.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ColorDialogButton.cpp
 	)
 
 set(KIMAGEANNOTATOR_SRCS ${KIMAGEANNOTATOR_SRCS} PARENT_SCOPE)

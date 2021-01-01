@@ -34,6 +34,7 @@
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/common/helper/KeyHelper.h"
 #include "src/gui/selection/SelectionHandler.h"
+#include "src/widgets/ColorDialogButton.h"
 
 namespace kImageAnnotator {
 
@@ -68,8 +69,10 @@ private:
 	QLabel *mPositionYLabel;
 	QLabel *mWidthLabel;
 	QLabel *mHeightLabel;
+	QLabel *mColorLabel;
 	QIntValidator *mInputValidator;
 	QCheckBox *mRestrictCheckBox;
+	ColorDialogButton *mColorDialogButton;
 
 	void initGui();
 	void initKeyHelper();

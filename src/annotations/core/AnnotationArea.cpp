@@ -35,7 +35,8 @@ AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *setting
 	mItemFactory(new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider, mConfig)),
 	mItems(new QList<AbstractAnnotationItem *>()),
 	mItemCopier(new AnnotationItemClipboard(mItemModifier)),
-	mDevicePixelRatioScaler(devicePixelRatioScaler)
+	mDevicePixelRatioScaler(devicePixelRatioScaler),
+	mCanvasColor(config->canvasColor())
 {
 	Q_ASSERT(mSettingsProvider != nullptr);
 	Q_ASSERT(mConfig != nullptr);
@@ -102,7 +103,7 @@ QImage AnnotationArea::image()
 	setSceneRect(canvasRect());
 	auto scaleFactor = mDevicePixelRatioScaler->scaleFactor();
 	QImage image(sceneRect().size().toSize() * scaleFactor, QImage::Format_ARGB32_Premultiplied);
-	image.fill(Qt::white);
+	image.fill(mCanvasColor);
 
 	QPainter painter(&image);
 	painter.setRenderHint(QPainter::Antialiasing);
@@ -196,7 +197,7 @@ void AnnotationArea::setCanvasRect(const QRectF &rect)
 
 QRectF AnnotationArea::canvasRect() const
 {
-	if(mCanvasRect.isNull()) {
+	if(!isCustomCanvasRect()) {
 		auto graphicsEffectRect = mImage->graphicsEffect()->boundingRect();
 		return itemsBoundingRect().united(graphicsEffectRect);
 	} else {
@@ -204,9 +205,24 @@ QRectF AnnotationArea::canvasRect() const
 	}
 }
 
-void AnnotationArea::modifyCanvas(const QRectF &canvasRect)
+bool AnnotationArea::isCustomCanvasRect() const
 {
-	mUndoStack->push(new ModifyCanvasCommand(canvasRect, this));
+	return !mCanvasRect.isNull();
+}
+
+void AnnotationArea::setCanvasColor(const QColor &color)
+{
+	mCanvasColor = color;
+}
+
+QColor AnnotationArea::canvasColor() const
+{
+	return mCanvasColor;
+}
+
+void AnnotationArea::modifyCanvas(const QRectF &canvasRect, const QColor &color)
+{
+	mUndoStack->push(new ModifyCanvasCommand(canvasRect, color, this));
 	emit imageChanged();
 }
 

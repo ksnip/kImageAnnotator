@@ -17,33 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_MODIFYCANVASVIEW_H
-#define KIMAGEANNOTATOR_MODIFYCANVASVIEW_H
+#ifndef KIMAGEANNOTATOR_CANVASPAINTER_H
+#define KIMAGEANNOTATOR_CANVASPAINTER_H
 
-#include "src/gui/selection/BaseSelectionView.h"
-#include "src/annotations/misc/CanvasPainter.h"
+#include <QPainter>
 
 namespace kImageAnnotator {
 
-class ModifyCanvasView : public BaseSelectionView
+class CanvasPainter
 {
-Q_OBJECT
 public:
-	explicit ModifyCanvasView(SelectionHandler *selectionHandler, KeyHelper *keyHelper);
-	~ModifyCanvasView() override = default;
-	void setCanvasRect(const QRectF &rect);
-	void setCanvasColor(const QColor &color);
-
-protected:
-	void drawForeground(QPainter *painter, const QRectF &rect) override;
-	void drawBackground(QPainter *painter, const QRectF &rect) override;
+	CanvasPainter();
+	~CanvasPainter();
+	void paint(QPainter *painter, const QRectF &rect, const QColor &color);
 
 private:
-	CanvasPainter mCanvasPainter;
-	QRectF mCanvasRect;
-	QColor mCanvasColor;
+	QImage *mCanvasBackground;
+	void createTiledBackground();
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_MODIFYCANVASVIEW_H
+#endif //KIMAGEANNOTATOR_CANVASPAINTER_H

@@ -17,33 +17,38 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_MODIFYCANVASVIEW_H
-#define KIMAGEANNOTATOR_MODIFYCANVASVIEW_H
-
-#include "src/gui/selection/BaseSelectionView.h"
-#include "src/annotations/misc/CanvasPainter.h"
+#include "CanvasPainter.h"
 
 namespace kImageAnnotator {
 
-class ModifyCanvasView : public BaseSelectionView
+CanvasPainter::CanvasPainter() :
+	mCanvasBackground(new QImage(QSize(20, 20), QImage::Format_ARGB32_Premultiplied))
 {
-Q_OBJECT
-public:
-	explicit ModifyCanvasView(SelectionHandler *selectionHandler, KeyHelper *keyHelper);
-	~ModifyCanvasView() override = default;
-	void setCanvasRect(const QRectF &rect);
-	void setCanvasColor(const QColor &color);
+	createTiledBackground();
+}
 
-protected:
-	void drawForeground(QPainter *painter, const QRectF &rect) override;
-	void drawBackground(QPainter *painter, const QRectF &rect) override;
+CanvasPainter::~CanvasPainter()
+{
+	delete mCanvasBackground;
+}
 
-private:
-	CanvasPainter mCanvasPainter;
-	QRectF mCanvasRect;
-	QColor mCanvasColor;
-};
+void CanvasPainter::paint(QPainter *painter, const QRectF &rect, const QColor &color)
+{
+	painter->setPen(Qt::NoPen);
+	painter->setBrush(*mCanvasBackground);
+	painter->drawRect(rect);
+	painter->setBrush(color);
+	painter->drawRect(rect);
+}
+
+void CanvasPainter::createTiledBackground()
+{
+	mCanvasBackground->fill(Qt::white);
+	QPainter painter(mCanvasBackground);
+	painter.setPen(Qt::NoPen);
+	painter.setBrush(Qt::gray);
+	painter.drawRect(0, 0, 10, 10);
+	painter.drawRect(10, 10, 20, 20);
+}
 
 } // namespace kImageAnnotator
-
-#endif //KIMAGEANNOTATOR_MODIFYCANVASVIEW_H

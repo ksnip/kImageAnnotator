@@ -48,7 +48,6 @@ public:
 	void showCropper();
 	void showScaler();
 	void showCanvasModifier();
-	void setSettingsCollapsed(bool isCollapsed);
 
 public Q_SLOTS:
 	void loadImage(const QPixmap &pixmap);
@@ -67,6 +66,8 @@ public Q_SLOTS:
 	void removeTab(int index);
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
 	void addTabContextMenuActions(const QList<QAction*> & actions);
+	void setSettingsCollapsed(bool isCollapsed);
+	void setCanvasColor(const QColor &color);
 
 Q_SIGNALS:
 	void imageChanged() const;

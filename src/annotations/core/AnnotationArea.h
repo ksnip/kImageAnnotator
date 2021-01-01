@@ -74,7 +74,10 @@ public:
 	void imageEffectChanged(ImageEffects effect) override;
 	void setCanvasRect(const QRectF &rect);
 	QRectF canvasRect() const;
-	void modifyCanvas(const QRectF &canvasRect);
+	bool isCustomCanvasRect() const;
+	void setCanvasColor(const QColor &color);
+	QColor canvasColor() const;
+	void modifyCanvas(const QRectF &canvasRect, const QColor &color);
 
 public slots:
     virtual void update();
@@ -107,6 +110,7 @@ private:
 	IDevicePixelRatioScaler *mDevicePixelRatioScaler;
 	KeyEventListener mKeyListener;
 	QRectF mCanvasRect;
+	QColor mCanvasColor;
 
     void addItemAtPosition(const QPointF& position);
     void addPointToCurrentItem(const QPointF& position);

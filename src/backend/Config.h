@@ -84,6 +84,9 @@ public slots:
 	int obfuscationFactor(Tools toolType) const;
 	void setObfuscationFactor(int factor, Tools toolType);
 
+	QColor canvasColor() const;
+	void setCanvasColor(const QColor &color);
+
 signals:
 	void numberUpdateModeChanged(enum NumberUpdateMode numberUpdateMode) const;
 
@@ -103,6 +106,7 @@ private:
 	int mSmoothFactor;
 	bool mSwitchToSelectToolAfterDrawingItem;
 	NumberUpdateMode mNumberUpdateMode;
+	QColor mCanvasColor;
 
 	void initToolSettings();
 	void initSelectedTool();

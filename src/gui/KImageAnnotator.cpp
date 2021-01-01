@@ -238,6 +238,12 @@ void KImageAnnotator::addTabContextMenuActions(const QList<QAction *> &actions)
 	d->mCoreView.addTabContextMenuActions(actions);
 }
 
+void KImageAnnotator::setCanvasColor(const QColor &color)
+{
+	Q_D(KImageAnnotator);
+	d->mConfig.setCanvasColor(color);
+}
+
 // KImageAnnotatorPrivate
 
 KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator) : q_ptr(kImageAnnotator), mCoreView(&mConfig)

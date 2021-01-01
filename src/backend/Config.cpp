@@ -240,6 +240,16 @@ void Config::setObfuscationFactor(int factor, Tools toolType)
 	saveObfuscateFactor(toolType, factor);
 }
 
+QColor Config::canvasColor() const
+{
+	return mCanvasColor;
+}
+
+void Config::setCanvasColor(const QColor &color)
+{
+	mCanvasColor = color;
+}
+
 // Private Methods
 
 void Config::initToolSettings()
@@ -313,6 +323,7 @@ void Config::initGeneralSettings()
 	mSmoothFactor = 7;
 	mSwitchToSelectToolAfterDrawingItem = false;
 	mNumberUpdateMode = NumberUpdateMode::UpdateOnlyNewNumbers;
+	mCanvasColor = Qt::white;
 }
 
 QColor Config::loadToolColor(Tools toolType)

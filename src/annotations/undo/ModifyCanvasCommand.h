@@ -29,7 +29,7 @@ namespace kImageAnnotator {
 class ModifyCanvasCommand : public QUndoCommand
 {
 public:
-	explicit ModifyCanvasCommand(const QRectF &canvasRect, AnnotationArea *annotationArea);
+	explicit ModifyCanvasCommand(const QRectF &canvasRect, const QColor &color, AnnotationArea *annotationArea);
 	~ModifyCanvasCommand() override = default;
 	void undo() override;
 	void redo() override;
@@ -38,6 +38,8 @@ private:
 	AnnotationArea *mAnnotationArea;
 	QRectF mNewCanvasRect;
 	QRectF mOriginalCanvasRect;
+	QColor mNewCanvasColor;
+	QColor mOriginalCanvasColor;
 };
 
 } // namespace kImageAnnotator

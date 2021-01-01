@@ -6,6 +6,7 @@
 * New: Add support for hiding annotation settings panel. ([#182](https://github.com/ksnip/kImageAnnotator/issues/182))
 * New: Add config option for numbering tool to only set next number. ([#42](https://github.com/ksnip/kImageAnnotator/issues/42))
 * New: Allow manually changing canvas size. ([#92](https://github.com/ksnip/kImageAnnotator/issues/92))
+* New: Canvas background color configurable. ([#91](https://github.com/ksnip/kImageAnnotator/issues/91))
 
 ## Release 0.4.1
 * Fixed: Brazilian Portuguese translation not loaded. ([#176](https://github.com/ksnip/kImageAnnotator/issues/176))

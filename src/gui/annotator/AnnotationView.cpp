@@ -28,6 +28,7 @@ AnnotationView::AnnotationView(QWidget *parent) :
 {
 	setTransformationAnchor(QGraphicsView::NoAnchor);
 	disableDragging();
+	setViewportUpdateMode(ViewportUpdateMode::FullViewportUpdate);
 }
 
 ZoomValueProvider *AnnotationView::zoomValueProvider() const
@@ -83,6 +84,12 @@ void AnnotationView::mouseReleaseEvent(QMouseEvent *event)
 void AnnotationView::wheelEvent(QWheelEvent *event)
 {
 	mAnnotationViewZoomer->wheelZoom(event);
+}
+
+void AnnotationView::drawBackground(QPainter *painter, const QRectF &rect)
+{
+	auto annotationArea = dynamic_cast<AnnotationArea *>(scene());
+	mCanvasPainter.paint(painter, annotationArea->canvasRect(), annotationArea->canvasColor());
 }
 
 void AnnotationView::scrollTo(const QPoint &pos)
