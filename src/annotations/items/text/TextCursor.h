@@ -36,6 +36,7 @@ public:
 	TextCursor(const TextCursor &other);
     ~TextCursor() override;
     void move(TextPositions direction, const QString &text);
+    void moveForwardBy(const QString &text, int moveBy);
     void start();
     void stop();
     int position() const;
@@ -51,7 +52,7 @@ private:
     int mPosition = 0;
     bool mIsVisible = false;
 
-    void moveCursorForward(const QString &text);
+    void moveCursorForwardBy(const QString &text, int moveBy);
     void moveCursorBack(const QString &text);
     void moveCursorUp(const QString &text);
     void moveCursorDown(const QString &text);

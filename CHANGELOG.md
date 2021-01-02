@@ -13,6 +13,7 @@
 * Fixed: error: control reaches end of non-void function. ([#177](https://github.com/ksnip/kImageAnnotator/issues/177))
 * Fixed: Cursor in Text tool have too bad visibility. ([#184](https://github.com/ksnip/kImageAnnotator/issues/184))
 * Fixed: bumped SONAME without name change. ([#185](https://github.com/ksnip/kImageAnnotator/issues/185))
+* Fixed: Entering multiple characters at once moves the text cursor only for one character. ([#186](https://github.com/ksnip/kImageAnnotator/issues/186))
 
 ## Release 0.4.0
 * New: Add Pixelate image area tool. ([#140](https://github.com/ksnip/kImageAnnotator/issues/140))

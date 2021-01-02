@@ -33,8 +33,8 @@ Q_OBJECT
 
 private slots:
 	void TestMove_Should_MoveCursorByOnePointToRight_When_DirectionNext();
-	void TestMove_Should_MoveCursorByOnePointToLeft_When_DirectionPreviouse();
-	void TestMove_Should_MoveCursorToEnd_When_DirectionPreviouseAndCurrentPositionAtStart();
+	void TestMove_Should_MoveCursorByOnePointToLeft_When_DirectionPrevious();
+	void TestMove_Should_MoveCursorToEnd_When_DirectionPreviousAndCurrentPositionAtStart();
 	void TestMove_Should_MoveCursorToStart_When_DirectionNextAndCurrentPositionAtEnd();
 	void TestMove_Should_MoveCursorToNextLineSamePosition_When_DirectionDown();
 	void TestMove_Should_NotMoveCursor_When_DirectionDownAndInLastLine();
@@ -44,6 +44,8 @@ private slots:
 	void TestMove_Should_MoveCursorToEndOfPreviousLine_When_DirectionUpAndPositionAtEndOfLineAndLineAboveIsSmaller();
 	void TestMove_Should_MoveCursorToSamePositionOfPreviousLine_When_DirectionUpAndPositionAtEndOfLineAndLineAboveIsLarger();
 	void TestMove_Should_MoveCursorToSamePositionOfNextLine_When_DirectionDownAndPositionAtEndOfLineAndLineBelowIsLarger();
+	void TestMoveForwardBy_Should_MoveCursorForwardByRequestedSteps();
+	void TestMoveForwardBy_Should_MoveCursorToStartPlusRemainingSteps_When_RequestedSteps_LargerThenTextLength();
 };
 
 #endif // KIMAGEANNOTATOR_TEXTCURSORTEST_H

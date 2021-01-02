@@ -40,7 +40,7 @@ AnnotationTextHandler::AnnotationTextHandler(const AnnotationTextHandler &other)
 void AnnotationTextHandler::insertText(const QString &text)
 {
 	mText.insert(mTextCursor.position(), text);
-	mTextCursor.move(TextPositions::Next, mText);
+	mTextCursor.moveForwardBy(mText, text.length());
 	emit changed();
 }
 

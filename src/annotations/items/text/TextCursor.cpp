@@ -43,7 +43,7 @@ void TextCursor::move(TextPositions direction, const QString &text)
 {
     switch (direction) {
         case TextPositions::Next:
-            moveCursorForward(text);
+			moveCursorForwardBy(text, 1);
             break;
         case TextPositions::Previous:
             moveCursorBack(text);
@@ -56,6 +56,12 @@ void TextCursor::move(TextPositions direction, const QString &text)
             break;
     }
     mIsVisible = true;
+}
+
+void TextCursor::moveForwardBy(const QString &text, int moveBy)
+{
+	moveCursorForwardBy(text, moveBy);
+	mIsVisible = true;
 }
 
 void TextCursor::start()
@@ -85,11 +91,11 @@ bool TextCursor::isVisible() const
     return mIsVisible;
 }
 
-void TextCursor::moveCursorForward(const QString &text)
+void TextCursor::moveCursorForwardBy(const QString &text, int moveBy)
 {
-    mPosition++;
+    mPosition += moveBy;
     if (mPosition > text.length()) {
-        mPosition = 0;
+        mPosition = mPosition - text.length() - 1;
     }
 }
 
