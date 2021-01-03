@@ -24,11 +24,11 @@ namespace kImageAnnotator {
 
 ModifyCanvasCommand::ModifyCanvasCommand(const QRectF &canvasRect, const QColor &color, AnnotationArea *annotationArea) :
 	mAnnotationArea(annotationArea),
-	mNewCanvasRect(canvasRect),
 	mNewCanvasColor(color),
 	mOriginalCanvasColor(annotationArea->canvasColor())
 {
 	mOriginalCanvasRect = mAnnotationArea->isCustomCanvasRect() ? annotationArea->canvasRect() : QRectF();
+	mNewCanvasRect = canvasRect == annotationArea->canvasRect() ? QRectF() : canvasRect;
 }
 
 void ModifyCanvasCommand::undo()
