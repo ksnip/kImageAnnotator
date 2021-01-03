@@ -118,6 +118,7 @@ private:
 	void removeAllItems();
 	void replaceBackgroundImage(const QPixmap &image);
 	void finishDrawingItem(const QPointF &pos);
+	QRectF annotationItemsBoundingRect() const;
 
 private slots:
     void deleteSelectedItems();

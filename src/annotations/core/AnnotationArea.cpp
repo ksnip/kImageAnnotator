@@ -199,7 +199,7 @@ QRectF AnnotationArea::canvasRect() const
 {
 	if(!isCustomCanvasRect()) {
 		auto graphicsEffectRect = mImage->graphicsEffect()->boundingRect();
-		return itemsBoundingRect().united(graphicsEffectRect);
+		return annotationItemsBoundingRect().united(graphicsEffectRect);
 	} else {
 		return mCanvasRect;
 	}
@@ -285,6 +285,15 @@ void AnnotationArea::finishDrawingItem(const QPointF &pos)
 	if (mConfig->switchToSelectToolAfterDrawingItem()) {
 		mSettingsProvider->activateSelectTool();
 	}
+}
+
+QRectF AnnotationArea::annotationItemsBoundingRect() const
+{
+	QRectF boundingRect;
+	for(auto item : *mItems) {
+		boundingRect = boundingRect.united(item->boundingRect());
+	}
+	return boundingRect;
 }
 
 void AnnotationArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
