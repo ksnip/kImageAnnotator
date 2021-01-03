@@ -68,12 +68,6 @@ void BaseSelectionView::drawForeground(QPainter *painter, const QRectF &rect)
 {
 	auto selection = mSelectionHandler->selection();
 
-	// Draw semi transparent background for not selected area
-	painter->setClipRegion(QRegion(sceneRect().toRect()).subtracted(QRegion(selection.toRect())));
-	painter->setBrush(QColor(0, 0, 0, 150));
-	painter->drawRect(sceneRect());
-
-
 	// Draw border around selected are
 	painter->setClipRect(rect);
 	painter->setBrush(Qt::NoBrush);

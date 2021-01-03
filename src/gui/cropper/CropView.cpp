@@ -35,4 +35,10 @@ void CropView::drawForeground(QPainter *painter, const QRectF &rect)
 	BaseSelectionView::drawForeground(painter, rect);
 }
 
+void CropView::drawBackground(QPainter *painter, const QRectF &rect)
+{
+	auto annotationArea = dynamic_cast<AnnotationArea *>(scene());
+	mCanvasPainter.paint(painter, annotationArea->canvasRect(), annotationArea->canvasColor());
+}
+
 } // namespace kImageAnnotator

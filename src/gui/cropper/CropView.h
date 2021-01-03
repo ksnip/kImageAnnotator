@@ -21,6 +21,7 @@
 #define KIMAGEANNOTATOR_CROPVIEW_H
 
 #include "src/gui/selection/BaseSelectionView.h"
+#include "src/annotations/misc/CanvasPainter.h"
 
 namespace kImageAnnotator {
 
@@ -33,6 +34,10 @@ public:
 
 protected:
 	void drawForeground(QPainter *painter, const QRectF &rect) override;
+	void drawBackground(QPainter *painter, const QRectF &rect) override;
+
+private:
+	CanvasPainter mCanvasPainter;
 };
 
 } // namespace kImageAnnotator
