@@ -9,19 +9,19 @@
     </message>
     <message>
         <source>Bring to Front</source>
-        <translation>Postavi ispred</translation>
+        <translation>Premjesti skroz naprijed</translation>
     </message>
     <message>
         <source>Bring Forward</source>
-        <translation>Postavi ispred</translation>
+        <translation>Premjesti prema naprijed</translation>
     </message>
     <message>
         <source>Send Backward</source>
-        <translation>Postavi iza</translation>
+        <translation>Premjesti prema natrag</translation>
     </message>
     <message>
         <source>Send to Back</source>
-        <translation>Postavi iza</translation>
+        <translation>Premjesti skroz natrag</translation>
     </message>
     <message>
         <source>Select This</source>
@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished"></translation>
+        <translation>Faktor zamućenja</translation>
     </message>
 </context>
 <context>
@@ -79,7 +79,7 @@
     </message>
     <message>
         <source>Close Other</source>
-        <translation>zatvori ostale</translation>
+        <translation>Zatvori ostale</translation>
     </message>
     <message>
         <source>Close All</source>
@@ -156,7 +156,7 @@
     </message>
     <message>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation>Crno-bijela</translation>
     </message>
     <message>
         <source>Border</source>
@@ -310,19 +310,19 @@ pozadinsku sliku na platno.</translation>
     </message>
     <message>
         <source>Text Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokazivač s tekstom</translation>
     </message>
     <message>
         <source>Text Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Strelica s tekstom</translation>
     </message>
     <message>
         <source>Number Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Strelica s brojem</translation>
     </message>
     <message>
         <source>Pixelate</source>
-        <translation type="unfinished"></translation>
+        <translation>Pikseliziraj</translation>
     </message>
 </context>
 <context>
