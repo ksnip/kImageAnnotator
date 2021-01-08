@@ -102,7 +102,7 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Prekini</translation>
+        <translation>Odustani</translation>
     </message>
     <message>
         <source>X:</source>
@@ -144,7 +144,7 @@
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
-        <translation>Efekt za slike</translation>
+        <translation>Slikovni efekti</translation>
     </message>
     <message>
         <source>No Effect</source>
@@ -172,8 +172,8 @@
     <message>
         <source>When enabled enforces the canvas
 to include the background image.</source>
-        <translation>Kad je aktivirano, uključuje
-pozadinsku sliku na platno.</translation>
+        <translation>Kad je aktivirano, područje crtanja
+uključuje sliku pozadine.</translation>
     </message>
     <message>
         <source>X:</source>
@@ -224,7 +224,7 @@ pozadinsku sliku na platno.</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Prekini</translation>
+        <translation>Odustani</translation>
     </message>
     <message>
         <source>Pixel</source>
@@ -250,7 +250,7 @@ pozadinsku sliku na platno.</translation>
     </message>
     <message>
         <source>Pen</source>
-        <translation>Pero</translation>
+        <translation>Olovka</translation>
     </message>
     <message>
         <source>Number</source>
@@ -258,15 +258,15 @@ pozadinsku sliku na platno.</translation>
     </message>
     <message>
         <source>Marker Rectangle</source>
-        <translation>Marker pravokutnik</translation>
+        <translation>Pravokutni odabir</translation>
     </message>
     <message>
         <source>Marker Ellipse</source>
-        <translation>Marker elipsa</translation>
+        <translation>Ovalni odabir</translation>
     </message>
     <message>
         <source>Marker Pen</source>
-        <translation>Marker olovka</translation>
+        <translation>Prostoručni odabir</translation>
     </message>
     <message>
         <source>Text</source>
@@ -294,11 +294,11 @@ pozadinsku sliku na platno.</translation>
     </message>
     <message>
         <source>Ellipse</source>
-        <translation>Elipsa</translation>
+        <translation>Oval</translation>
     </message>
     <message>
         <source>Number Pointer</source>
-        <translation>Označivač brojeva</translation>
+        <translation>Pokazivač s brojem</translation>
     </message>
     <message>
         <source>Sticker</source>
