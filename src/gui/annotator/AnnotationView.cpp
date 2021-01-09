@@ -24,11 +24,32 @@ namespace kImageAnnotator {
 AnnotationView::AnnotationView(QWidget *parent) :
 	mIsDragging(false),
 	QGraphicsView(parent),
-	mAnnotationViewZoomer(new AnnotationViewZoomer(this))
+	mAnnotationViewZoomer(new AnnotationViewZoomer(this)),
+	mZoomInAction(new QAction(this)),
+	mZoomOutAction(new QAction(this))
 {
 	setTransformationAnchor(QGraphicsView::NoAnchor);
 	disableDragging();
 	setViewportUpdateMode(ViewportUpdateMode::FullViewportUpdate);
+
+	addZoomActions();
+}
+
+void AnnotationView::addZoomActions()
+{
+	mZoomInAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Plus));
+	mZoomOutAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Minus));
+
+	connect(mZoomInAction, &QAction::triggered, [this](){
+		mAnnotationViewZoomer->zoom(0.1);
+	});
+
+	connect(mZoomOutAction, &QAction::triggered, [this](){
+		mAnnotationViewZoomer->zoom(-0.1);
+	});
+
+	addAction(mZoomInAction);
+	addAction(mZoomOutAction);
 }
 
 ZoomValueProvider *AnnotationView::zoomValueProvider() const

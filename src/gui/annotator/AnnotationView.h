@@ -41,6 +41,7 @@ public:
 	ZoomValueProvider *zoomValueProvider() const;
 
 protected:
+	void addZoomActions();
 	void keyPressEvent(QKeyEvent *event) override;
 	void keyReleaseEvent(QKeyEvent *event) override;
 	void mouseMoveEvent(QMouseEvent *event) override;
@@ -51,6 +52,8 @@ protected:
 
 private:
 	AnnotationViewZoomer *mAnnotationViewZoomer;
+	QAction *mZoomInAction;
+	QAction *mZoomOutAction;
 	bool mIsDragging;
 	QPoint mLastPosition;
 	KeyHelper mKeyHelper;
