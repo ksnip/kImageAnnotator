@@ -55,75 +55,75 @@ void ToolPicker::initGui()
 	mActionGroup = new QActionGroup(this);
 	connect(mActionGroup, &QActionGroup::triggered, this, &ToolPicker::actionTriggered);
 
-	auto action = createAction(tr("Select"), IconLoader::load(QLatin1String("select.svg")), Qt::Key_S, Tools::Select);
+	auto action = createAction(tr("Select"), IconLoader::load(QStringLiteral("select.svg")), Qt::Key_S, Tools::Select);
 	auto button = createButton(action);
 	mLayout->addWidget(button, 0, 0);
 
-	action = createAction(tr("Duplicate"), IconLoader::load(QLatin1Literal("duplicate.svg")), Qt::Key_U, Tools::Duplicate);
+	action = createAction(tr("Duplicate"), IconLoader::load(QStringLiteral("duplicate.svg")), Qt::Key_U, Tools::Duplicate);
 	button = createButton(action);
 	mLayout->addWidget(button, 0, 1);
 
 	auto menu = new QMenu();
-	action = createAction(tr("Arrow"), IconLoader::load(QLatin1String("arrow.svg")), Qt::Key_A, Tools::Arrow);
+	action = createAction(tr("Arrow"), IconLoader::load(QStringLiteral("arrow.svg")), Qt::Key_A, Tools::Arrow);
 	menu->addAction(action);
-	action = createAction(tr("Double Arrow"), IconLoader::load(QLatin1String("doubleArrow.svg")), Qt::Key_D, Tools::DoubleArrow);
+	action = createAction(tr("Double Arrow"), IconLoader::load(QStringLiteral("doubleArrow.svg")), Qt::Key_D, Tools::DoubleArrow);
 	menu->addAction(action);
-	action = createAction(tr("Line"), IconLoader::load(QLatin1String("line.svg")), Qt::Key_L, Tools::Line);
+	action = createAction(tr("Line"), IconLoader::load(QStringLiteral("line.svg")), Qt::Key_L, Tools::Line);
 	menu->addAction(action);
 	button = createButton(menu);
 	mLayout->addWidget(button, 1, 0);
 
-	action = createAction(tr("Pen"), IconLoader::load(QLatin1String("pen.svg")), Qt::Key_P, Tools::Pen);
+	action = createAction(tr("Pen"), IconLoader::load(QStringLiteral("pen.svg")), Qt::Key_P, Tools::Pen);
 	button = createButton(action);
 	mLayout->addWidget(button, 1, 1);
 
 	menu = new QMenu();
-	action = createAction(tr("Marker Rectangle"), IconLoader::load(QLatin1String("markerRect.svg")), Qt::Key_J, Tools::MarkerRect);
+	action = createAction(tr("Marker Rectangle"), IconLoader::load(QStringLiteral("markerRect.svg")), Qt::Key_J, Tools::MarkerRect);
 	menu->addAction(action);
-	action = createAction(tr("Marker Ellipse"), IconLoader::load(QLatin1String("markerEllipse.svg")), Qt::Key_K, Tools::MarkerEllipse);
+	action = createAction(tr("Marker Ellipse"), IconLoader::load(QStringLiteral("markerEllipse.svg")), Qt::Key_K, Tools::MarkerEllipse);
 	menu->addAction(action);
-	action = createAction(tr("Marker Pen"), IconLoader::load(QLatin1String("markerPen.svg")), Qt::Key_M, Tools::MarkerPen);
+	action = createAction(tr("Marker Pen"), IconLoader::load(QStringLiteral("markerPen.svg")), Qt::Key_M, Tools::MarkerPen);
 	menu->addAction(action);
 	button = createButton(menu);
 	mLayout->addWidget(button, 2, 0);
 
 	menu = new QMenu();
-	action = createAction(tr("Text"), IconLoader::load(QLatin1String("text.svg")), Qt::Key_T, Tools::Text);
+	action = createAction(tr("Text"), IconLoader::load(QStringLiteral("text.svg")), Qt::Key_T, Tools::Text);
 	menu->addAction(action);
-	action = createAction(tr("Text Pointer"), IconLoader::load(QLatin1String("textPointer.svg")), Qt::Key_C, Tools::TextPointer);
+	action = createAction(tr("Text Pointer"), IconLoader::load(QStringLiteral("textPointer.svg")), Qt::Key_C, Tools::TextPointer);
 	menu->addAction(action);
-	action = createAction(tr("Text Arrow"), IconLoader::load(QLatin1String("textArrow.svg")), Qt::Key_H, Tools::TextArrow);
+	action = createAction(tr("Text Arrow"), IconLoader::load(QStringLiteral("textArrow.svg")), Qt::Key_H, Tools::TextArrow);
 	menu->addAction(action);
 	button = createButton(menu);
 	mLayout->addWidget(button, 2, 1);
 
 	menu = new QMenu();
-	action = createAction(tr("Number"), IconLoader::load(QLatin1String("number.svg")), Qt::Key_N, Tools::Number);
+	action = createAction(tr("Number"), IconLoader::load(QStringLiteral("number.svg")), Qt::Key_N, Tools::Number);
 	menu->addAction(action);
-	action = createAction(tr("Number Pointer"), IconLoader::load(QLatin1String("numberPointer.svg")), Qt::Key_O, Tools::NumberPointer);
+	action = createAction(tr("Number Pointer"), IconLoader::load(QStringLiteral("numberPointer.svg")), Qt::Key_O, Tools::NumberPointer);
 	menu->addAction(action);
-	action = createAction(tr("Number Arrow"), IconLoader::load(QLatin1String("numberArrow.svg")), Qt::Key_W, Tools::NumberArrow);
+	action = createAction(tr("Number Arrow"), IconLoader::load(QStringLiteral("numberArrow.svg")), Qt::Key_W, Tools::NumberArrow);
 	menu->addAction(action);
 	button = createButton(menu);
 	mLayout->addWidget(button, 3, 0);
 
 	menu = new QMenu();
-	action = createAction(tr("Blur"), IconLoader::load(QLatin1String("blur.svg")), Qt::Key_B, Tools::Blur);
+	action = createAction(tr("Blur"), IconLoader::load(QStringLiteral("blur.svg")), Qt::Key_B, Tools::Blur);
 	menu->addAction(action);
-	action = createAction(tr("Pixelate"), IconLoader::load(QLatin1String("pixelate.svg")), Qt::Key_X, Tools::Pixelate);
+	action = createAction(tr("Pixelate"), IconLoader::load(QStringLiteral("pixelate.svg")), Qt::Key_X, Tools::Pixelate);
 	menu->addAction(action);
 	button = createButton(menu);
 	mLayout->addWidget(button, 3, 1);
 
 	menu = new QMenu();
-	action = createAction(tr("Rectangle"), IconLoader::load(QLatin1String("rect.svg")), Qt::Key_R, Tools::Rect);
+	action = createAction(tr("Rectangle"), IconLoader::load(QStringLiteral("rect.svg")), Qt::Key_R, Tools::Rect);
 	menu->addAction(action);
-	action = createAction(tr("Ellipse"), IconLoader::load(QLatin1String("ellipse.svg")), Qt::Key_E, Tools::Ellipse);
+	action = createAction(tr("Ellipse"), IconLoader::load(QStringLiteral("ellipse.svg")), Qt::Key_E, Tools::Ellipse);
 	menu->addAction(action);
 	button = createButton(menu);
 	mLayout->addWidget(button, 4, 0);
 
-	action = createAction(tr("Sticker"), IconLoader::load(QLatin1String("sticker.svg")), Qt::Key_I, Tools::Sticker);
+	action = createAction(tr("Sticker"), IconLoader::load(QStringLiteral("sticker.svg")), Qt::Key_I, Tools::Sticker);
 	button = createButton(action);
 	mLayout->addWidget(button, 4, 1);
 

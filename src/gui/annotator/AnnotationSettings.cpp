@@ -97,24 +97,24 @@ Tools AnnotationSettings::toolType() const
 
 void AnnotationSettings::initGui()
 {
-	mColorPicker->setIcon(IconLoader::load(QLatin1String("color.svg")));
+	mColorPicker->setIcon(IconLoader::load(QStringLiteral("color.svg")));
 	mColorPicker->setToolTip(tr("Color"));
 
-	mTextColorPicker->setIcon(IconLoader::load(QLatin1String("textColor.svg")));
+	mTextColorPicker->setIcon(IconLoader::load(QStringLiteral("textColor.svg")));
 	mTextColorPicker->setToolTip(tr("Text Color"));
 
-	mWidthPicker->setIcon(IconLoader::load(QLatin1String("width.svg")));
+	mWidthPicker->setIcon(IconLoader::load(QStringLiteral("width.svg")));
 	mWidthPicker->setToolTip(tr("Width"));
 
-	mFontSizePicker->setIcon(IconLoader::load(QLatin1String("fontSize.svg")));
+	mFontSizePicker->setIcon(IconLoader::load(QStringLiteral("fontSize.svg")));
 	mFontSizePicker->setToolTip(tr("Font Size"));
 	mFontSizePicker->setRange(10, 40);
-	
-	mNumberToolSeedPicker->setIcon(IconLoader::load(QLatin1Literal("number.svg")));
+
+	mNumberToolSeedPicker->setIcon(IconLoader::load(QStringLiteral("number.svg")));
 	mNumberToolSeedPicker->setToolTip(tr("Number Seed"));
 	mNumberToolSeedPicker->setRange(1, 100);
 
-	mObfuscateFactorPicker->setIcon(IconLoader::load(QLatin1String("obfuscateFactor.svg")));
+	mObfuscateFactorPicker->setIcon(IconLoader::load(QStringLiteral("obfuscateFactor.svg")));
 	mObfuscateFactorPicker->setToolTip(tr("Obfuscation Factor"));
 	mObfuscateFactorPicker->setRange(1, 20);
 
