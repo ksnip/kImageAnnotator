@@ -37,8 +37,7 @@ include(FeatureSummary)
 set(KCOLORPICKER_MIN_VERSION "0.1.5")
 find_package(kColorPicker ${KCOLORPICKER_MIN_VERSION} REQUIRED)
 
-set(BASEPATH "${CMAKE_CURRENT_SOURCE_DIR}")
-include_directories("${BASEPATH}")
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 add_subdirectory(src)
 add_subdirectory(translations)
@@ -73,7 +72,11 @@ target_include_directories(kImageAnnotator
 target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets Qt5::Svg PRIVATE kColorPicker::kColorPicker)
 
 if (UNIX AND NOT APPLE)
-	target_link_libraries(kImageAnnotator PRIVATE X11)
+	if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.14.0)
+		target_link_libraries(kImageAnnotator PRIVATE X11::X11)
+	else()
+		target_link_libraries(kImageAnnotator PRIVATE X11)
+	endif()
 endif ()
 
 target_compile_definitions(kImageAnnotator PRIVATE KIMAGEANNOTATOR_LIB)
