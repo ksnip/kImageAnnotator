@@ -54,7 +54,13 @@ set(TESTUTILS_SRC
 
 add_library(KIMAGEANNOTATOR_STATIC STATIC ${KIMAGEANNOTATOR_SRCS})
 
-target_link_libraries(KIMAGEANNOTATOR_STATIC Qt5::Widgets Qt5::Svg kImageAnnotator kColorPicker::kColorPicker X11)
+target_link_libraries(KIMAGEANNOTATOR_STATIC Qt5::Widgets Qt5::Svg kImageAnnotator kColorPicker::kColorPicker)
+
+if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.14.0)
+	target_link_libraries(KIMAGEANNOTATOR_STATIC X11::X11)
+else()
+	target_link_libraries(KIMAGEANNOTATOR_STATIC X11)
+endif()
 
 foreach (UnitTest ${UNITTEST_SRC})
 	get_filename_component(UnitTestName ${UnitTest} NAME_WE)
