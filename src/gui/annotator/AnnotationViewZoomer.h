@@ -36,8 +36,8 @@ class AnnotationViewZoomer : public ZoomValueProvider
 public:
 	explicit AnnotationViewZoomer(QGraphicsView *view);
 	~AnnotationViewZoomer() override = default;
-
 	double zoomValue() const override;
+	void setZoomValue(double value) override;
 
 	void zoom(double factor);
 	void zoomToPoint(double factor, const QPoint &viewPoint);

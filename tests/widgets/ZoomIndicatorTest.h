@@ -17,46 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ZOOMINDICATOR_H
-#define KIMAGEANNOTATOR_ZOOMINDICATOR_H
+#ifndef KIMAGEANNOTATOR_ZOOMINDICATORTEST_H
+#define KIMAGEANNOTATOR_ZOOMINDICATORTEST_H
 
-#include <QWidget>
-#include <QLabel>
-#include <QHBoxLayout>
-#include <QAction>
+#include <QtTest>
 
-#include "CustomSpinBox.h"
-#include "src/common/helper/IconLoader.h"
-#include "src/common/constants/Constants.h"
+#include "src/widgets/ZoomIndicator.h"
 
-namespace kImageAnnotator {
+using kImageAnnotator::ZoomIndicator;
 
-class ZoomIndicator : public QWidget
+class ZoomIndicatorTest : public QObject
 {
 Q_OBJECT
-public:
-	explicit ZoomIndicator(QWidget *parent);
-	~ZoomIndicator() override;
-	void setZoomValue(double value);
-
-signals:
-	void zoomValueChanged(double zoomLevel);
-
-private:
-	QHBoxLayout *mLayout;
-	QLabel *mLabel;
-	CustomSpinBox *mSpinBox;
-	QAction *mZoomInAction;
-	QAction *mZoomOutAction;
-
-	void init();
-
 private slots:
-	void notifyZoomValueChanged(double value);
-	void zoomIn();
-	void zoomOut();
+	void SetZoomValue_Should_NotEmitSignalForChangedZoomValue();
+	void ActivateZoomOutShortcut_Should_EmitSignalForChangedZoomValue();
+	void ActivateZoomInShortcut_Should_EmitSignalForChangedZoomValue();
 };
 
-} // namespace kImageAnnotator
-
-#endif //KIMAGEANNOTATOR_ZOOMINDICATOR_H
+#endif //KIMAGEANNOTATOR_ZOOMINDICATORTEST_H

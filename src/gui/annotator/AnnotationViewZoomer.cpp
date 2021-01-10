@@ -64,4 +64,9 @@ void AnnotationViewZoomer::wheelZoom(QWheelEvent *event)
 	event->accept(); // supress scrolling
 }
 
+void AnnotationViewZoomer::setZoomValue(double value)
+{
+	zoom(value - zoomValue());
+}
+
 } // namespace kImageAnnotator

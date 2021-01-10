@@ -155,10 +155,11 @@ void AnnotationSettings::initGui()
 	connect(mTextColorPicker, &ColorPicker::colorSelected, this, &AnnotationSettings::toolTextColorChanged);
 	connect(mFontSizePicker, &NumberPicker::numberSelected, this, &AnnotationSettings::toolFontSizeChanged);
 	connect(mFillModePicker, &FillModePicker::fillSelected, this, &AnnotationSettings::toolFillTypeChanged);
-	connect(mNumberToolSeedPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::saveNumberToolSeed);
+	connect(mNumberToolSeedPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::notifyNumberToolSeedChanged);
 	connect(mObfuscateFactorPicker, &NumberPicker::numberSelected, this, &AnnotationSettings::obfuscateFactorChanged);
 	connect(mStickerPicker, &StickerPicker::stickerSelected, this, &AnnotationSettings::stickerChanged);
 	connect(mEffectPicker, &ImageEffectPicker::effectSelected, this, &AnnotationSettings::effectChanged);
+	connect(mZoomIndicator, &ZoomIndicator::zoomValueChanged, this, &AnnotationSettings::notifyZoomValueChanged);
 }
 
 void AnnotationSettings::loadToolTypeFromConfig()
@@ -233,9 +234,14 @@ void AnnotationSettings::toolFontSizeChanged(int size)
 	}
 }
 
-void AnnotationSettings::saveNumberToolSeed(int newNumberToolSeed)
+void AnnotationSettings::notifyNumberToolSeedChanged(int newNumberToolSeed)
 {
 	numberToolSeedChanged(newNumberToolSeed);
+}
+
+void AnnotationSettings::notifyZoomValueChanged(double value)
+{
+	zoomValueChanged(value);
 }
 
 void AnnotationSettings::obfuscateFactorChanged(int factor)
@@ -311,7 +317,7 @@ void AnnotationSettings::setStickers(const QStringList &stickerPaths, bool keepD
 
 void AnnotationSettings::updateZoomLevel(double value)
 {
-	mZoomIndicator->setZoomLevel(value);
+	mZoomIndicator->setZoomValue(value);
 }
 
 void AnnotationSettings::effectChanged(ImageEffects effect)
@@ -323,6 +329,5 @@ void AnnotationSettings::setCollapsed(bool isCollapsed)
 {
 	isCollapsed ? setFixedSize(0, 0) : setFixedSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
 }
-
 
 } // namespace kImageAnnotator

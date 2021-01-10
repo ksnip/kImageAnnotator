@@ -137,10 +137,7 @@ void AnnotationTabWidget::showTabContextMenu(const QPoint &pos)
 void AnnotationTabWidget::tabChanged()
 {
 	mSettingsProvider->setActiveListener(currentAnnotationArea());
-	const auto zoomValueProvider = currentZoomValueProvider();
-	if(zoomValueProvider != nullptr) {
-		mSettingsProvider->updateZoomLevel(zoomValueProvider->zoomValue());
-	}
+	mSettingsProvider->setActiveZoomValueProvider(currentZoomValueProvider());
 }
 
 void AnnotationTabWidget::addContextMenuActions(const QList<QAction *> &actions)

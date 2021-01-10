@@ -22,7 +22,8 @@
 namespace kImageAnnotator {
 
 AbstractSettingsProvider::AbstractSettingsProvider() :
-	mSettingsListener(nullptr)
+	mSettingsListener(nullptr),
+	mZoomValueProvider(nullptr)
 {
 
 }
@@ -56,10 +57,25 @@ void AbstractSettingsProvider::setActiveListener(ISettingsListener *settingsList
 	}
 }
 
+void AbstractSettingsProvider::setActiveZoomValueProvider(ZoomValueProvider *zoomValueProvider)
+{
+	mZoomValueProvider = zoomValueProvider;
+	if(mZoomValueProvider != nullptr) {
+		updateZoomLevel(mZoomValueProvider->zoomValue());
+	}
+}
+
 void AbstractSettingsProvider::effectChanged(ImageEffects effect)
 {
 	if(mSettingsListener != nullptr) {
 		mSettingsListener->imageEffectChanged(effect);
+	}
+}
+
+void AbstractSettingsProvider::zoomValueChanged(double value)
+{
+	if(mZoomValueProvider != nullptr) {
+		mZoomValueProvider->setZoomValue(value);
 	}
 }
 

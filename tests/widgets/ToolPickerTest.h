@@ -31,7 +31,6 @@ using kImageAnnotator::Tools;
 class ToolPickerTest : public QObject
 {
 Q_OBJECT
-
 private slots:
 	void TestSelectTool_Should_EmitSignal_When_ToolChanged();
 	void TestTool_Should_ReturnSelectedTool();

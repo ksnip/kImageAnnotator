@@ -30,7 +30,7 @@ class MockZoomValueProvider : public ZoomValueProvider
 public:
 	explicit MockZoomValueProvider(QObject *parent = nullptr);
 	double zoomValue() const override;
-	void setZoomValue(double value);
+	void setZoomValue(double value) override;
 
 private:
 	double mZoomValue;

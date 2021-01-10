@@ -44,6 +44,7 @@ set(UNITTEST_SRC
 	widgets/ImageEffectPickerTest.cpp
 	widgets/CustomSpinBoxTest.cpp
 	widgets/StickerPickerTest.cpp
+	widgets/ZoomIndicatorTest.cpp
 	)
 
 set(TESTUTILS_SRC

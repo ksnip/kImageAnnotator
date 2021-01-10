@@ -49,15 +49,18 @@ public:
 	virtual void updateNumberToolSeed(int numberToolSeed) = 0;
 	virtual void updateZoomLevel(double value) = 0;
 	void setActiveListener(ISettingsListener *settingsListener);
+	void setActiveZoomValueProvider(ZoomValueProvider *zoomValueProvider);
 
 protected:
 	virtual void toolChanged(Tools tool);
 	virtual void numberToolSeedChanged(int numberToolSeed);
 	virtual void itemSettingChanged();
 	virtual void effectChanged(ImageEffects effect);
+	virtual void zoomValueChanged(double value);
 
 private:
 	ISettingsListener *mSettingsListener;
+	ZoomValueProvider *mZoomValueProvider;
 };
 
 } // namespace kImageAnnotator

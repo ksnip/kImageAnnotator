@@ -90,7 +90,8 @@ private slots:
 	void toolWidthChanged(int size);
 	void toolFontSizeChanged(int size);
 	void toolFillTypeChanged(FillModes fill);
-	void saveNumberToolSeed(int newNumberToolSeed);
+	void notifyNumberToolSeedChanged(int newNumberToolSeed);
+	void notifyZoomValueChanged(double value);
 	void obfuscateFactorChanged(int factor);
 	void stickerChanged(const QString &sticker);
 	void loadFromItem(const AbstractAnnotationItem *item);
