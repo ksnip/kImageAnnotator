@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPCOMMANDTEST_H
-#define KIMAGEANNOTATOR_CROPCOMMANDTEST_H
+#ifndef KIMAGEANNOTATOR_MODIFYCANVASCOMMANDTEST_H
+#define KIMAGEANNOTATOR_MODIFYCANVASCOMMANDTEST_H
 
 #include <QtTest>
 
@@ -29,21 +29,19 @@
 #include "tests/mocks/MockDevicePixelRatioScaler.h"
 #include "tests/mocks/MockDefaultParameters.h"
 
-using kImageAnnotator::CropCommand;
+using kImageAnnotator::ModifyCanvasCommand;
 using kImageAnnotator::AnnotationArea;
-using kImageAnnotator::AnnotationRect;
-using kImageAnnotator::AnnotationProperties;
-using kImageAnnotator::Config;
 using kImageAnnotator::PropertiesPtr;
 
-class CropCommandTest : public QObject
+class ModifyCanvasCommandTest : public QObject
 {
 Q_OBJECT
 private slots:
-	void TestRedo_Should_CropImageAndScene();
-	void TestRedo_Should_MoveItemToNewPosition();
-	void TestUndo_Should_RestoreOriginalImageAndSceneSize();
-	void TestUndo_Should_MoveItemBackToPreviousPosition();
+	void Redo_Should_ModifyCanvasSizeAndColor_When_SizeAndColorChanged();
+	void Redo_Should_OnlyModifyCanvasColor_When_OnlyColorChanged();
+	void Undo_Should_RevertCanvasSizeAndColor_When_SizeAndColorChanged();
+	void Undo_Should_RevertOnlyColor_When_OnlyColorChanged();
 };
 
-#endif // KIMAGEANNOTATOR_CROPCOMMANDTEST_H
+
+#endif //KIMAGEANNOTATOR_MODIFYCANVASCOMMANDTEST_H

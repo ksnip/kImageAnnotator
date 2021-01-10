@@ -23,7 +23,7 @@
 
 void AddCommandTest::TestRedo_Should_ApplyOperation()
 {
-	MockAnnotationAreaParameters p;
+	MockDefaultParameters p;
 	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
@@ -39,7 +39,7 @@ void AddCommandTest::TestRedo_Should_ApplyOperation()
 
 void AddCommandTest::TestUndo_Should_UndoOperation()
 {
-	MockAnnotationAreaParameters p;
+	MockDefaultParameters p;
 	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);

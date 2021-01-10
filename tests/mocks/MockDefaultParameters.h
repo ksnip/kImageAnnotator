@@ -28,7 +28,7 @@
 
 using kImageAnnotator::Config;
 
-struct MockAnnotationAreaParameters
+struct MockDefaultParameters
 {
     Config config;
     MockSettingsProvider settingsProvider;

@@ -28,7 +28,7 @@ void ScaleCommandTest::TestRedo_Should_ScaleImageToNewSize()
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
 
-	MockAnnotationAreaParameters p;
+	MockDefaultParameters p;
 	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	ScaleCommand scaleCommand(&image, newSize, &annotationArea);
 
@@ -43,7 +43,7 @@ void ScaleCommandTest::TestUndo_Should_ScaleImageBackToOldSize()
 	auto newSize = QSize(250, 250);
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
-	MockAnnotationAreaParameters p;
+	MockDefaultParameters p;
 	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	ScaleCommand scaleCommand(&image, newSize, &annotationArea);
 	scaleCommand.redo();
@@ -60,7 +60,7 @@ void ScaleCommandTest::TestRedo_Should_ScaleItemsBySameFactorAsImage()
 	auto newSize = QSize(250, 250);
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
-	MockAnnotationAreaParameters p;
+	MockDefaultParameters p;
 	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto rectItem = new AnnotationRect(QPointF(0, 0), properties);
@@ -79,7 +79,7 @@ void ScaleCommandTest::TestUndo_Should_ScaleItemsBackToOriginalSize()
 	auto newSize = QSize(250, 250);
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
-	MockAnnotationAreaParameters p;
+	MockDefaultParameters p;
 	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto rectItem = new AnnotationRect(QPointF(0, 0), properties);

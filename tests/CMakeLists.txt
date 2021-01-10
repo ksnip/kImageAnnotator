@@ -13,6 +13,7 @@ set(UNITTEST_SRC
 	annotations/modifiers/resizeHandles/PointerRectResizeHandlesTest.cpp
 	annotations/undo/AddCommandTest.cpp
 	annotations/undo/DeleteCommandTest.cpp
+	annotations/undo/ModifyCanvasCommandTest.cpp
 	annotations/undo/MoveCommandTest.cpp
 	annotations/undo/ResizeCommandTest.cpp
 	annotations/undo/ArrangeCommandTest.cpp

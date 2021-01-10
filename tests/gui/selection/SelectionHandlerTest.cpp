@@ -21,7 +21,7 @@
 
 void SelectionHandlerTest::TestSetWidth_Should_EmitSelectionChangedSignal()
 {
-	MockAnnotationAreaParameters parameters;
+	MockDefaultParameters parameters;
 	auto selectionRestrictor = new MockSelectionRestrictor();
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
 	SelectionHandler selectionHandler(selectionRestrictor);
@@ -35,7 +35,7 @@ void SelectionHandlerTest::TestSetWidth_Should_EmitSelectionChangedSignal()
 
 void SelectionHandlerTest::TestSetHeight_Should_EmitSelectionChangedSignal()
 {
-	MockAnnotationAreaParameters parameters;
+	MockDefaultParameters parameters;
 	auto selectionRestrictor = new MockSelectionRestrictor();
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
 	SelectionHandler selectionHandler(selectionRestrictor);
@@ -49,7 +49,7 @@ void SelectionHandlerTest::TestSetHeight_Should_EmitSelectionChangedSignal()
 
 void SelectionHandlerTest::TestSetPositionX_Should_EmitSelectionChangedSignal()
 {
-	MockAnnotationAreaParameters parameters;
+	MockDefaultParameters parameters;
 	auto selectionRestrictor = new MockSelectionRestrictor();
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
 	SelectionHandler selectionHandler(selectionRestrictor);
@@ -63,7 +63,7 @@ void SelectionHandlerTest::TestSetPositionX_Should_EmitSelectionChangedSignal()
 
 void SelectionHandlerTest::TestSetPositionY_Should_EmitSelectionChangedSignal()
 {
-	MockAnnotationAreaParameters parameters;
+	MockDefaultParameters parameters;
 	auto selectionRestrictor = new MockSelectionRestrictor();
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
 	SelectionHandler selectionHandler(selectionRestrictor);
@@ -77,7 +77,7 @@ void SelectionHandlerTest::TestSetPositionY_Should_EmitSelectionChangedSignal()
 
 void SelectionHandlerTest::TestResetSelection_Should_SetSelectionToProvidedRect()
 {
-	MockAnnotationAreaParameters parameters;
+	MockDefaultParameters parameters;
 	auto selectionRestrictor = new MockSelectionRestrictor();
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
 	auto sceneRect = QRectF(0, 0, 500, 500);
@@ -94,7 +94,7 @@ void SelectionHandlerTest::TestResetSelection_Should_SetSelectionToProvidedRect(
 
 void SelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnSelection()
 {
-	MockAnnotationAreaParameters parameters;
+	MockDefaultParameters parameters;
 	auto selectionRestrictor = new MockSelectionRestrictor();
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
 	auto sceneRect = QRectF(0, 0, 500, 500);
@@ -112,7 +112,7 @@ void SelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnSelecti
 
 void SelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnHandle()
 {
-	MockAnnotationAreaParameters parameters;
+	MockDefaultParameters parameters;
 	auto selectionRestrictor = new MockSelectionRestrictor();
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
 	auto sceneRect = QRectF(0, 0, 500, 500);
@@ -129,7 +129,7 @@ void SelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnHandle(
 
 void SelectionHandlerTest::TestIsInMotion_Should_ReturnFalse_WhenClickedOutsideSelectionAndHandle()
 {
-	MockAnnotationAreaParameters parameters;
+	MockDefaultParameters parameters;
 	auto selectionRestrictor = new MockSelectionRestrictor();
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
 	auto sceneRect = QRectF(0, 0, 500, 500);
@@ -147,7 +147,7 @@ void SelectionHandlerTest::TestIsInMotion_Should_ReturnFalse_WhenClickedOutsideS
 
 void SelectionHandlerTest::TestSelectionHandles_Should_ReturnEightItems()
 {
-	MockAnnotationAreaParameters parameters;
+	MockDefaultParameters parameters;
 	auto selectionRestrictor = new MockSelectionRestrictor();
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
 	SelectionHandler selectionHandler(selectionRestrictor);
@@ -160,7 +160,7 @@ void SelectionHandlerTest::TestSelectionHandles_Should_ReturnEightItems()
 
 void SelectionHandlerTest::TestRestrictResize_Should_KeepCurrentSelection_When_NewSelectionHasNegativeWidthAndRestrictionDisabled()
 {
-	MockAnnotationAreaParameters parameters;
+	MockDefaultParameters parameters;
 	auto selectionRestrictor = new MockSelectionRestrictor();
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
 	SelectionHandler selectionHandler(selectionRestrictor);
@@ -177,7 +177,7 @@ void SelectionHandlerTest::TestRestrictResize_Should_KeepCurrentSelection_When_N
 
 void SelectionHandlerTest::TestRestrictResize_Should_KeepCurrentSelection_When_NewSelectionHasNegativeHeightAndRestrictionDisabled()
 {
-	MockAnnotationAreaParameters parameters;
+	MockDefaultParameters parameters;
 	auto selectionRestrictor = new MockSelectionRestrictor();
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
 	SelectionHandler selectionHandler(selectionRestrictor);

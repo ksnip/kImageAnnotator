@@ -39,7 +39,7 @@ void PasteCommandTest::TestRedo_Should_AddPastedItemsToAnnotationAreaAtGivenPosi
 {
 	auto offset = QPointF(10, 10);
 	auto position = QPointF(50, 50);
-	MockAnnotationAreaParameters mockParameters;
+	MockDefaultParameters mockParameters;
 	AnnotationPropertiesFactory propertiesFactory(&mockParameters.config, &mockParameters.settingsProvider);
 	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, &mockParameters.scaler, &mockParameters.zoomValueProvider);
 	AnnotationItemFactory itemFactory(&propertiesFactory, &mockParameters.settingsProvider, &mockParameters.config);
@@ -63,7 +63,7 @@ void PasteCommandTest::TestUndo_Should_RemovePastedItemsFromAnnotationArea()
 {
 	auto offset = QPointF(10, 10);
 	auto position = QPointF(50, 50);
-	MockAnnotationAreaParameters mockParameters;
+	MockDefaultParameters mockParameters;
 	AnnotationPropertiesFactory propertiesFactory(&mockParameters.config, &mockParameters.settingsProvider);
 	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, &mockParameters.scaler, &mockParameters.zoomValueProvider);
 	AnnotationItemFactory itemFactory(&propertiesFactory, &mockParameters.settingsProvider, &mockParameters.config);
