@@ -29,40 +29,4 @@ void ZoomIndicatorTest::SetZoomValue_Should_NotEmitSignalForChangedZoomValue()
 	QCOMPARE(spy.count(), 0);
 }
 
-void ZoomIndicatorTest::ActivateZoomInShortcut_Should_EmitSignalForChangedZoomValue()
-{
-	ZoomIndicator zoomIndicator(nullptr);
-	QSignalSpy spy(&zoomIndicator, &ZoomIndicator::zoomValueChanged);
-	zoomIndicator.setZoomValue(2);
-	zoomIndicator.show();
-	if(!QTest::qWaitForWindowExposed(&zoomIndicator)) {
-		QFAIL("Failed to show zoomIndicator before timeout");
-	}
-
-	QTest::keyPress(&zoomIndicator, Qt::Key_Plus, Qt::ControlModifier);
-	QTest::keyRelease(&zoomIndicator, Qt::Key_Plus, Qt::ControlModifier);
-
-	QCOMPARE(spy.count(), 1);
-	auto zoomValue = qvariant_cast<double>(spy.at(0).at(0));
-	QCOMPARE(zoomValue, 2.1);
-}
-
-void ZoomIndicatorTest::ActivateZoomOutShortcut_Should_EmitSignalForChangedZoomValue()
-{
-	ZoomIndicator zoomIndicator(nullptr);
-	QSignalSpy spy(&zoomIndicator, &ZoomIndicator::zoomValueChanged);
-	zoomIndicator.setZoomValue(2);
-	zoomIndicator.show();
-	if(!QTest::qWaitForWindowExposed(&zoomIndicator)) {
-		QFAIL("Failed to show zoomIndicator before timeout");
-	}
-
-	QTest::keyPress(&zoomIndicator, Qt::Key_Minus, Qt::ControlModifier);
-	QTest::keyRelease(&zoomIndicator, Qt::Key_Minus, Qt::ControlModifier);
-
-	QCOMPARE(spy.count(), 1);
-	auto zoomValue = qvariant_cast<double>(spy.at(0).at(0));
-	QCOMPARE(zoomValue, 1.9);
-}
-
 QTEST_MAIN(ZoomIndicatorTest);

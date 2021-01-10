@@ -31,8 +31,6 @@ class ZoomIndicatorTest : public QObject
 Q_OBJECT
 private slots:
 	void SetZoomValue_Should_NotEmitSignalForChangedZoomValue();
-	void ActivateZoomOutShortcut_Should_EmitSignalForChangedZoomValue();
-	void ActivateZoomInShortcut_Should_EmitSignalForChangedZoomValue();
 };
 
 #endif //KIMAGEANNOTATOR_ZOOMINDICATORTEST_H
