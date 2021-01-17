@@ -230,16 +230,23 @@ void AnnotationArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 	if (event->button() == Qt::LeftButton) {
 		if (mSettingsProvider->toolType() == Tools::Select) {
 			mItemModifier->handleMouseRelease(mItems);
-		} else if (mCurrentItem != nullptr) {
-			mCurrentItem->finish();
-			mCurrentItem = nullptr;
-			if (mConfig->switchToSelectToolAfterDrawingItem()) {
-				mSettingsProvider->activateSelectTool();
-			}
 		}
+		finishDrawingItem(event->scenePos());
 	}
 
 	QGraphicsScene::mouseReleaseEvent(event);
+}
+
+void AnnotationArea::finishDrawingItem(const QPointF &pos)
+{
+	if(mCurrentItem != nullptr) {
+		mCurrentItem->finish();
+		mCurrentItem = nullptr;
+
+		if (mConfig->switchToSelectToolAfterDrawingItem()) {
+			mSettingsProvider->activateSelectTool();
+		}
+	}
 }
 
 void AnnotationArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
@@ -251,6 +258,8 @@ void AnnotationArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 
 void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
+	finishDrawingItem(event->scenePos());
+
 	mItemModifier->handleSelectionAt(event->scenePos(), mItems, mKeyHelper->isControlPressed());
 	auto selectedItems = mItemModifier->selectedItems();
 
