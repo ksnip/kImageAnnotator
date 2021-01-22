@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Number Seed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Såtall</translation>
     </message>
 </context>
 <context>
@@ -167,12 +167,13 @@
     <name>kImageAnnotator::ModifyCanvasWidget</name>
     <message>
         <source>Restricted</source>
-        <translation type="unfinished"></translation>
+        <translation>Begrenset</translation>
     </message>
     <message>
         <source>When enabled enforces the canvas
 to include the background image.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Påtvinger bruk av bakgrunnsbilde
+i kanvas når påslått.</translation>
     </message>
     <message>
         <source>X:</source>
@@ -192,7 +193,7 @@ to include the background image.</source>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -321,7 +322,7 @@ to include the background image.</source>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Dupliser</translation>
     </message>
 </context>
 <context>
