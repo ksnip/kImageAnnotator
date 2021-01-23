@@ -167,36 +167,37 @@
     <name>kImageAnnotator::ModifyCanvasWidget</name>
     <message>
         <source>Restricted</source>
-        <translation type="unfinished"></translation>
+        <translation>Restreint</translation>
     </message>
     <message>
         <source>When enabled enforces the canvas
 to include the background image.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Si activé, applique le canevas
+pour inclure l’image d&apos;arrière-plan.</translation>
     </message>
     <message>
         <source>X:</source>
-        <translation type="unfinished">X :</translation>
+        <translation>X :</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation type="unfinished">Y :</translation>
+        <translation>Y :</translation>
     </message>
     <message>
         <source>W:</source>
-        <translation type="unfinished">L :</translation>
+        <translation>L :</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation type="unfinished">H :</translation>
+        <translation>H :</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Appliquer</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Annuler</translation>
+        <translation>Annuler</translation>
     </message>
 </context>
 <context>
@@ -321,7 +322,7 @@ to include the background image.</source>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Dupliquer</translation>
     </message>
 </context>
 <context>
