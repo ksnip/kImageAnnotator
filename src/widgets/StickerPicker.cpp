@@ -97,7 +97,7 @@ void StickerPicker::addDefaultStickers()
 	}
 }
 
-QString StickerPicker::getResourcePath(const QString &name) const
+QString StickerPicker::getResourcePath(const QString &name)
 {
 	return QLatin1String(":/stickers/") + name + QLatin1String(".svg");
 }

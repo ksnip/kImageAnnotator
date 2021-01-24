@@ -26,24 +26,29 @@ int ScaledSizeProvider::scaledWidth(int width)
 	return (int)(width * scaleFactor());
 }
 
+QSize ScaledSizeProvider::scaledSize(const QSize &size)
+{
+	return size * scaleFactor();
+}
+
 QSize ScaledSizeProvider::toolButtonIconSize()
 {
-	return Constants::ToolButtonIconSize * scaleFactor();
+	return scaledSize(Constants::ToolButtonIconSize);
 }
 
 QSize ScaledSizeProvider::settingsWidgetSize()
 {
-	return Constants::SettingsWidgetSize * scaleFactor();
+	return scaledSize(Constants::SettingsWidgetSize);
 }
 
 QSize ScaledSizeProvider::settingsWidgetIconSize()
 {
-	return Constants::SettingsWidgetIconSize * scaleFactor();
+	return scaledSize(Constants::SettingsWidgetIconSize);
 }
 
 QSize ScaledSizeProvider::menuItemIconSize()
 {
-	return Constants::MenuItemIconSize * scaleFactor();
+	return scaledSize(Constants::MenuItemIconSize);
 }
 
 int ScaledSizeProvider::resizeHandleSize()

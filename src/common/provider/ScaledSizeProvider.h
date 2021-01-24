@@ -38,6 +38,7 @@ public:
 	~ScaledSizeProvider() = default;
 
 	static int scaledWidth(int width);
+	static QSize scaledSize(const QSize &size);
 	static QSize toolButtonIconSize();
 	static QSize settingsWidgetSize();
 	static QSize settingsWidgetIconSize();

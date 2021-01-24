@@ -55,7 +55,7 @@ private:
 
 private slots:
 	void selectionChanged();
-	QString getResourcePath(const QString &name) const;
+	static QString getResourcePath(const QString &name);
 	void addDefaultStickers();
 };
 
