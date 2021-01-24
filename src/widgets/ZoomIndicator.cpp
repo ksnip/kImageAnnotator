@@ -33,7 +33,7 @@ ZoomIndicator::ZoomIndicator(QWidget *parent) :
 void ZoomIndicator::init()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
-
+	
 	auto icon = IconLoader::load(QLatin1String("zoom.svg"));
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
 	mLabel->setToolTip(tr("Zoom Level"));
