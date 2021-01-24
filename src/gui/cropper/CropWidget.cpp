@@ -97,11 +97,15 @@ void CropWidget::initGui()
 
 	mPanelLayout->setAlignment(Qt::AlignCenter);
 
+	auto width = ScaledSizeProvider::scaledWidth(40);
+
 	mPositionXLabel->setText(tr("X:"));
 	mPanelLayout->addWidget(mPositionXLabel, 0, Qt::AlignCenter);
 
+
 	mPositionXLineEdit->setValidator(mInputValidator);
-	mPositionXLineEdit->setFixedSize(40, mPositionXLineEdit->minimumSizeHint().height());
+	mPositionXLineEdit->setFixedSize(width, mPositionXLineEdit->minimumSizeHint().height());
+
 	connect(mPositionXLineEdit, &QLineEdit::textEdited, this, &CropWidget::xChanged);
 	mPanelLayout->addWidget(mPositionXLineEdit, 0, Qt::AlignCenter);
 
@@ -109,7 +113,8 @@ void CropWidget::initGui()
 	mPanelLayout->addWidget(mPositionYLabel, 0, Qt::AlignCenter);
 
 	mPositionYLineEdit->setValidator(mInputValidator);
-	mPositionYLineEdit->setFixedSize(40, mPositionYLineEdit->minimumSizeHint().height());
+	mPositionYLineEdit->setFixedSize(width, mPositionYLineEdit->minimumSizeHint().height());
+
 	connect(mPositionYLineEdit, &QLineEdit::textEdited, this, &CropWidget::yChanged);
 	mPanelLayout->addWidget(mPositionYLineEdit, 0, Qt::AlignCenter);
 
@@ -117,7 +122,8 @@ void CropWidget::initGui()
 	mPanelLayout->addWidget(mWidthLabel, 0, Qt::AlignCenter);
 
 	mWidthLineEdit->setValidator(mInputValidator);
-	mWidthLineEdit->setFixedSize(40, mWidthLineEdit->minimumSizeHint().height());
+	mWidthLineEdit->setFixedSize(width, mWidthLineEdit->minimumSizeHint().height());
+
 	connect(mWidthLineEdit, &QLineEdit::textEdited, this, &CropWidget::widthChanged);
 	mPanelLayout->addWidget(mWidthLineEdit, 0, Qt::AlignCenter);
 
@@ -125,7 +131,8 @@ void CropWidget::initGui()
 	mPanelLayout->addWidget(mHeightLabel, 0, Qt::AlignCenter);
 
 	mHeightLineEdit->setValidator(mInputValidator);
-	mHeightLineEdit->setFixedSize(40, mHeightLineEdit->minimumSizeHint().height());
+	mHeightLineEdit->setFixedSize(width, mHeightLineEdit->minimumSizeHint().height());
+
 	connect(mHeightLineEdit, &QLineEdit::textEdited, this, &CropWidget::heightChanged);
 	mPanelLayout->addWidget(mHeightLineEdit, 0, Qt::AlignCenter);
 

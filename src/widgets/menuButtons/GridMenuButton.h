@@ -26,7 +26,7 @@
 #include <QPainter>
 #include <QPaintEvent>
 
-#include "src/common/constants/Constants.h"
+#include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 

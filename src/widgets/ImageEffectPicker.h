@@ -28,7 +28,7 @@
 #include <QAction>
 
 #include "src/widgets/menuButtons/ListMenuToolButton.h"
-#include "src/common/constants/Constants.h"
+#include "src/common/provider/ScaledSizeProvider.h"
 #include "src/common/enum/ImageEffects.h"
 #include "src/common/helper/IconLoader.h"
 

@@ -52,11 +52,11 @@ void StickerPicker::init()
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
 	auto icon = IconLoader::load(QStringLiteral("sticker.svg"));
-	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
+	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
 	mLabel->setToolTip(tr("Sticker"));
 
-	mToolButton->setFixedSize(Constants::SettingsWidgetSize);
-	mToolButton->setIconSize(Constants::ToolButtonIconSize);
+	mToolButton->setFixedSize(ScaledSizeProvider::settingsWidgetSize());
+	mToolButton->setIconSize(ScaledSizeProvider::toolButtonIconSize());
 	mToolButton->setFocusPolicy(Qt::NoFocus);
 	mToolButton->setPopupMode(QToolButton::InstantPopup);
 
@@ -97,7 +97,7 @@ void StickerPicker::addDefaultStickers()
 	}
 }
 
-QString StickerPicker::getResourcePath(const QString &name) const
+QString StickerPicker::getResourcePath(const QString &name)
 {
 	return QLatin1String(":/stickers/") + name + QLatin1String(".svg");
 }

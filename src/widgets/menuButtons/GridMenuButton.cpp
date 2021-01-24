@@ -27,9 +27,9 @@ GridMenuButton::GridMenuButton(const QIcon &icon, const QString &toolTip, QVaria
 	setIcon(icon);
 	setToolTip(toolTip);
 
-	setIconSize(QSize(32, 32));
+	setIconSize(ScaledSizeProvider::scaledSize(QSize(32, 32)));
 	setCheckable(true);
-	setFixedSize(iconSize() + QSize(4,4));
+	setFixedSize(iconSize() + ScaledSizeProvider::scaledSize(QSize(4,4)));
 }
 
 QVariant kImageAnnotator::GridMenuButton::data() const
@@ -43,9 +43,7 @@ void GridMenuButton::paintEvent(QPaintEvent *event)
 	QStyleOption styleOption;
 	styleOption.initFrom(this);
 	auto buttonRect = event->rect().adjusted(0, 0, -1, -1);
-
-	qDebug("Pen w %s", qPrintable(QString::number(painter.pen().widthF())));
-
+	
 	if(styleOption.state & QStyle::State_MouseOver)
 	{
 		auto defaultPen = painter.pen();

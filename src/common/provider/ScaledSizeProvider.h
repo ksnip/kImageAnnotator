@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,36 +17,43 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPHANDELS_H
-#define KIMAGEANNOTATOR_CROPHANDELS_H
+#ifndef KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
+#define KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
 
-#include <QRectF>
-#include <QVector>
+#include <QSize>
 
-#include "src/common/provider/ScaledSizeProvider.h"
-#include "src/common/helper/ShapeHelper.h"
+#if defined(__linux__)
+#include <QApplication>
+#include <QScreen>
+#endif
+
+#include "src/common/constants/Constants.h"
 
 namespace kImageAnnotator {
 
-class SelectionHandles
+class ScaledSizeProvider
 {
 public:
-	explicit SelectionHandles();
-	~SelectionHandles() = default;
-	QVector<QRectF> handles() const;
-	void grabHandle(const QPointF &position, const QRectF &selection);
-	void releaseHandle();
-	int grabbedIndex() const;
-	void updateHandles(const QRectF &selection);
-	bool isHandleGrabbed() const;
-	QPointF grabOffset() const;
+	ScaledSizeProvider() = default;
+	~ScaledSizeProvider() = default;
+
+	static int scaledWidth(int width);
+	static QSize scaledSize(const QSize &size);
+	static QSize toolButtonIconSize();
+	static QSize settingsWidgetSize();
+	static QSize settingsWidgetIconSize();
+	static QSize menuItemIconSize();
+	static int resizeHandleSize();
 
 private:
-	QVector<QRectF> mHandles;
-	int mGrabbedIndex;
-	QPointF mGrabOffset;
+	static qreal scaleFactor();
+	static qreal getScaleFactor();
+
+#if defined(__linux__)
+	static bool isGnomeEnvironment();
 };
+#endif
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_CROPHANDELS_H
+#endif //KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H

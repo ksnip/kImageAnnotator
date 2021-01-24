@@ -52,7 +52,7 @@ void ImageEffectPicker::initGui()
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
 	auto icon = IconLoader::load(QStringLiteral("effect.svg"));
-	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
+	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
 	mLabel->setToolTip(tr("Image Effects"));
 
 	insertItem(ImageEffects::NoEffect, QStringLiteral("noImageEffect.svg"), tr("No Effect"));
@@ -60,8 +60,8 @@ void ImageEffectPicker::initGui()
 	insertItem(ImageEffects::Grayscale, QStringLiteral("grayscaleImageEffect.svg"), tr("Grayscale"));
 	insertItem(ImageEffects::Border, QStringLiteral("borderImageEffect.svg"), tr("Border"));
 
-	mToolButton->setFixedSize(Constants::SettingsWidgetSize);
-	mToolButton->setIconSize(Constants::ToolButtonIconSize);
+	mToolButton->setFixedSize(ScaledSizeProvider::settingsWidgetSize());
+	mToolButton->setIconSize(ScaledSizeProvider::toolButtonIconSize());
 	mToolButton->setFocusPolicy(Qt::NoFocus);
 	connect(mToolButton, &ListMenuToolButton::selectionChanged, this, &ImageEffectPicker::selectionChanged);
 

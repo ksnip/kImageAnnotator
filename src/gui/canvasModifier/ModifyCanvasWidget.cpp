@@ -94,28 +94,30 @@ void ModifyCanvasWidget::initGui()
 	mRestrictCheckBox->setChecked(mSelectionHandler->restrictionEnabled());
 	connect(mRestrictCheckBox, &QCheckBox::stateChanged, this, &ModifyCanvasWidget::restrictionChanged);
 
+	auto width = ScaledSizeProvider::scaledWidth(40);
+
 	mPositionXLabel->setText(tr("X:"));
 
 	mPositionXLineEdit->setValidator(mInputValidator);
-	mPositionXLineEdit->setFixedSize(40, mPositionXLineEdit->minimumSizeHint().height());
+	mPositionXLineEdit->setFixedSize(width, mPositionXLineEdit->minimumSizeHint().height());
 	connect(mPositionXLineEdit, &QLineEdit::textEdited, this, &ModifyCanvasWidget::xChanged);
 
 	mPositionYLabel->setText(tr("Y:"));
 
 	mPositionYLineEdit->setValidator(mInputValidator);
-	mPositionYLineEdit->setFixedSize(40, mPositionYLineEdit->minimumSizeHint().height());
+	mPositionYLineEdit->setFixedSize(width, mPositionYLineEdit->minimumSizeHint().height());
 	connect(mPositionYLineEdit, &QLineEdit::textEdited, this, &ModifyCanvasWidget::yChanged);
 
 	mWidthLabel->setText(tr("W:"));
 
 	mWidthLineEdit->setValidator(mInputValidator);
-	mWidthLineEdit->setFixedSize(40, mWidthLineEdit->minimumSizeHint().height());
+	mWidthLineEdit->setFixedSize(width, mWidthLineEdit->minimumSizeHint().height());
 	connect(mWidthLineEdit, &QLineEdit::textEdited, this, &ModifyCanvasWidget::widthChanged);
 
 	mHeightLabel->setText(tr("H:"));
 
 	mHeightLineEdit->setValidator(mInputValidator);
-	mHeightLineEdit->setFixedSize(40, mHeightLineEdit->minimumSizeHint().height());
+	mHeightLineEdit->setFixedSize(width, mHeightLineEdit->minimumSizeHint().height());
 	connect(mHeightLineEdit, &QLineEdit::textEdited, this, &ModifyCanvasWidget::heightChanged);
 
 	mColorLabel->setText(tr("Color:"));
