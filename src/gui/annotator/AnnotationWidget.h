@@ -24,6 +24,7 @@
 
 #include "src/gui/annotator/tabs/AnnotationTabWidget.h"
 #include "src/annotations/core/AnnotationArea.h"
+#include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 
