@@ -144,7 +144,6 @@ CustomToolButton *ToolPicker::createButton(QAction *defaultAction)
 {
 	auto button = new CustomToolButton(this);
 	button->setAction(defaultAction);
-	button->setIconSize(ScaledSizeProvider::toolButtonIconSize());
 	mActionToButton[defaultAction] = button;
 	return button;
 }
