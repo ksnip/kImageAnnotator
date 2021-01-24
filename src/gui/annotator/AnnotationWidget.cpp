@@ -41,9 +41,8 @@ QSize AnnotationWidget::sizeHint() const
 	auto sceneSize = mAnnotationTabWidget->sizeHint();
 	auto width = minSize.width() + sceneSize.width();
 	auto height = (minSize.height() > sceneSize.height()) ? minSize.height() : sceneSize.height();
-	auto offset = QSize(100, 100);
-	auto size = QSize(width, height) + offset;
-	return ScaledSizeProvider::scaledSize(size);
+	auto offset = ScaledSizeProvider::scaledSize(QSize(100, 100));
+	return QSize(width, height) + offset;
 }
 
 void AnnotationWidget::initGui()
