@@ -62,15 +62,15 @@ void FillModePicker::initGui()
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
 	auto icon = IconLoader::load(QLatin1String("fillType.svg"));
-	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
+	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
 	mLabel->setToolTip(tr("Border And Fill Visibility"));
 
 	insertItem(FillModes::BorderAndFill, QLatin1String("fillType_borderAndFill.svg"), tr("Border and Fill"));
 	insertItem(FillModes::BorderAndNoFill, QLatin1String("fillType_borderAndNoFill.svg"), tr("Border and No Fill"));
 	insertItem(FillModes::NoBorderAndNoFill, QLatin1String("fillType_noBorderAndNoFill.svg"), tr("No Border and No Fill"));
 
-	mToolButton->setFixedSize(Constants::SettingsWidgetSize);
-	mToolButton->setIconSize(Constants::ToolButtonIconSize);
+	mToolButton->setFixedSize(ScaledSizeProvider::settingsWidgetSize());
+	mToolButton->setIconSize(ScaledSizeProvider::toolButtonIconSize());
 	mToolButton->setFocusPolicy(Qt::NoFocus);
 	connect(mToolButton, &ListMenuToolButton::selectionChanged, this, &FillModePicker::selectionChanged);
 

@@ -23,7 +23,7 @@
 #include <QRectF>
 #include <QVector>
 
-#include "src/common/constants/Constants.h"
+#include "src/common/provider/ScaledSizeProvider.h"
 #include "src/common/helper/ShapeHelper.h"
 
 namespace kImageAnnotator {

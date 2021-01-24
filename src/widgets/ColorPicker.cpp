@@ -58,16 +58,16 @@ void ColorPicker::setToolTip(const QString &toolTip)
 
 void ColorPicker::setIcon(const QIcon &icon)
 {
-	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
+	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
 }
 
 void ColorPicker::initGui()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
-	mLabel->setFixedSize(Constants::SettingsWidgetIconSize);
+	mLabel->setFixedSize(ScaledSizeProvider::settingsWidgetIconSize());
 
-	mkColorPicker->setFixedSize(Constants::SettingsWidgetSize);
+	mkColorPicker->setFixedSize(ScaledSizeProvider::settingsWidgetSize());
 	mkColorPicker->setFocusPolicy(Qt::NoFocus);
 
 	mLayout->addWidget(mLabel);

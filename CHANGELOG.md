@@ -7,6 +7,7 @@
 * Fixed: bumped SONAME without name change. ([#185](https://github.com/ksnip/kImageAnnotator/issues/185))
 * Fixed: Entering multiple characters at once moves the text cursor only for one character. ([#186](https://github.com/ksnip/kImageAnnotator/issues/186))
 * Fixed: Activating context menu while drawing item leaves item in error state. ([#196](https://github.com/ksnip/kImageAnnotator/issues/196))
+* Fixed: Icons not scaled on gnome with hdpi enabled. ([#201](https://github.com/ksnip/kImageAnnotator/issues/201))
 
 ## Release 0.4.0
 * New: Add Pixelate image area tool. ([#140](https://github.com/ksnip/kImageAnnotator/issues/140))

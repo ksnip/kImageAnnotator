@@ -25,7 +25,7 @@
 #include <QLabel>
 
 #include "src/widgets/menuButtons/GridMenuToolButton.h"
-#include "src/common/constants/Constants.h"
+#include "src/common/provider/ScaledSizeProvider.h"
 #include "src/common/helper/IconLoader.h"
 #include "src/common/helper/PathHelper.h"
 

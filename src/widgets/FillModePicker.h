@@ -28,9 +28,9 @@
 #include <QAction>
 
 #include "src/widgets/menuButtons/ListMenuToolButton.h"
-#include "src/common/constants/Constants.h"
 #include "src/common/enum/FillModes.h"
 #include "src/common/helper/IconLoader.h"
+#include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 

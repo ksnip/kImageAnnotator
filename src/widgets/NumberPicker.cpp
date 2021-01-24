@@ -48,9 +48,9 @@ void NumberPicker::initGui()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
-	mLabel->setFixedSize(Constants::SettingsWidgetIconSize);
+	mLabel->setFixedSize(ScaledSizeProvider::settingsWidgetIconSize());
 
-	mSpinBox->setFixedSize(Constants::SettingsWidgetSize);
+	mSpinBox->setFixedSize(ScaledSizeProvider::settingsWidgetSize());
 	mSpinBox->setMinimum(1);
 	mSpinBox->setMaximum(20);
 	mSpinBox->setFocusPolicy(Qt::NoFocus);
@@ -93,7 +93,7 @@ void NumberPicker::setToolTip(const QString &toolTip)
 
 void NumberPicker::setIcon(const QIcon &icon)
 {
-	mLabel->setPixmap(icon.pixmap(Constants::SettingsWidgetIconSize));
+	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
 }
 
 } // namespace kImageAnnotator

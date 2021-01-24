@@ -23,8 +23,9 @@ namespace kImageAnnotator {
 
 CropHandles::CropHandles() : mGrabbedIndex(-1)
 {
+	auto size = ScaledSizeProvider::resizeHandleSize();
 	for (auto i = 0; i < 8; i++) {
-		mHandles.append(QRectF(0, 0, Constants::ResizeHandleSize, Constants::ResizeHandleSize));
+		mHandles.append(QRectF(0, 0, size, size));
 	}
 }
 
@@ -57,7 +58,7 @@ int CropHandles::grabbedIndex() const
 
 void CropHandles::updateHandles(const QRectF &selection)
 {
-	auto rectSize = Constants::ResizeHandleSize / 2;
+	auto rectSize = ScaledSizeProvider::resizeHandleSize() / 2;
 	mHandles[0].moveTopLeft(ShapeHelper::rectTopLeftWithOffset(selection, 0).toPoint());
 	mHandles[1].moveCenter(ShapeHelper::rectTopWithOffset(selection, -rectSize).toPoint());
 	mHandles[2].moveTopRight(ShapeHelper::rectTopRightWithOffset(selection, 0).toPoint());

@@ -26,7 +26,7 @@
 #include <QIcon>
 
 #include "CustomSpinBox.h"
-#include "src/common/constants/Constants.h"
+#include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 
