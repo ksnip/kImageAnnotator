@@ -24,6 +24,7 @@ namespace kImageAnnotator {
 kImageAnnotator::CustomSpinBox::CustomSpinBox(QWidget *parent) : QSpinBox(parent)
 {
 	setAlignment(Qt::AlignHCenter);
+
 	connect(this, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &CustomSpinBox::valueChanged);
 }
 
