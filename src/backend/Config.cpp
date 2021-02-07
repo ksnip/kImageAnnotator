@@ -133,7 +133,18 @@ void Config::setToolFillType(FillModes fillType, Tools tool)
 
 QFont Config::toolFont(Tools toolType) const
 {
-	return mToolToFont[toolType];
+	switch (toolType) {
+		case Tools::Number:
+		case Tools::NumberPointer:
+		case Tools::NumberArrow:
+			return mToolToFont[Tools::Number];
+		case Tools::Text:
+		case Tools::TextPointer:
+		case Tools::TextArrow:
+			return mToolToFont[Tools::Text];
+		default:
+			return mToolToFont[toolType];
+	}
 }
 
 void Config::setToolFont(const QFont &font, Tools toolType)
@@ -144,12 +155,25 @@ void Config::setToolFont(const QFont &font, Tools toolType)
 		return;
 	}
 
-	mToolToFont[toolType] = tmpFont;
+	switch (toolType) {
+		case Tools::Number:
+		case Tools::NumberPointer:
+		case Tools::NumberArrow:
+			mToolToFont[Tools::Number] = tmpFont;
+			break;
+		case Tools::Text:
+		case Tools::TextPointer:
+		case Tools::TextArrow:
+			mToolToFont[Tools::Text] = tmpFont;
+			break;
+		default:
+			mToolToFont[toolType] = tmpFont;
+	}
 }
 
 int Config::toolFontSize(Tools toolType) const
 {
-	return mToolToFont[toolType].pointSize();
+	return toolFont(toolType).pointSize();
 }
 
 void Config::setToolFontSize(int fontSize, Tools toolType)
@@ -158,8 +182,23 @@ void Config::setToolFontSize(int fontSize, Tools toolType)
 		return;
 	}
 
-	mToolToFont[toolType].setPointSize(fontSize);
-	saveToolFontSize(toolType, fontSize);
+	switch (toolType) {
+		case Tools::Number:
+		case Tools::NumberPointer:
+		case Tools::NumberArrow:
+			mToolToFont[Tools::Number].setPointSize(fontSize);
+			saveToolFontSize(Tools::Number, fontSize);
+			break;
+		case Tools::Text:
+		case Tools::TextPointer:
+		case Tools::TextArrow:
+			mToolToFont[Tools::Text].setPointSize(fontSize);
+			saveToolFontSize(Tools::Text, fontSize);
+			break;
+		default:
+			mToolToFont[toolType].setPointSize(fontSize);
+			saveToolFontSize(toolType, fontSize);
+	}
 }
 
 bool Config::itemShadowEnabled() const
@@ -301,11 +340,7 @@ void Config::initToolFonts()
 	auto textFont = QFont(QLatin1String("Times"), loadToolFontSize(Tools::Text), QFont::Bold);
 	auto numberFont = QFont(QLatin1String("Helvetica"), loadToolFontSize(Tools::Number), QFont::Bold);
 	mToolToFont[Tools::Text] = textFont;
-	mToolToFont[Tools::TextPointer] = textFont;
-	mToolToFont[Tools::TextArrow] = textFont;
 	mToolToFont[Tools::Number] = numberFont;
-	mToolToFont[Tools::NumberPointer] = numberFont;
-	mToolToFont[Tools::NumberArrow] = numberFont;
 }
 
 void Config::initObfuscateFactor()
