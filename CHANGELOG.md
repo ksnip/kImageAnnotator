@@ -9,6 +9,7 @@
 * Fixed: Entering multiple characters at once moves the text cursor only for one character. ([#186](https://github.com/ksnip/kImageAnnotator/issues/186))
 * Fixed: Activating context menu while drawing item leaves item in error state. ([#196](https://github.com/ksnip/kImageAnnotator/issues/196))
 * Fixed: Icons not scaled on gnome with hdpi enabled. ([#201](https://github.com/ksnip/kImageAnnotator/issues/201))
+* Fixed: Text/Number Pointer and Text/Number Arrow don't inherit Text/Number Font in Settings. ([#208](https://github.com/ksnip/kImageAnnotator/issues/208))
 
 ## Release 0.4.0
 * New: Add Pixelate image area tool. ([#140](https://github.com/ksnip/kImageAnnotator/issues/140))
