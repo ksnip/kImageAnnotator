@@ -82,7 +82,11 @@ void AnnotationView::mouseReleaseEvent(QMouseEvent *event)
 
 void AnnotationView::wheelEvent(QWheelEvent *event)
 {
-	mAnnotationViewZoomer->wheelZoom(event);
+	if(event->modifiers() & Qt::ControlModifier ) {
+		mAnnotationViewZoomer->wheelZoom(event);
+	} else {
+		QGraphicsView::wheelEvent(event);
+	}
 }
 
 void AnnotationView::scrollTo(const QPoint &pos)
