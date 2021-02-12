@@ -48,6 +48,7 @@ private:
 	CustomSpinBox *mSpinBox;
 	QAction *mZoomInAction;
 	QAction *mZoomOutAction;
+	QAction *mResetZoomAction;
 
 	void init();
 
@@ -55,6 +56,8 @@ private slots:
 	void notifyZoomValueChanged(double value);
 	void zoomIn();
 	void zoomOut();
+	void resetZoomOut();
+	QString getToolTip() const;
 };
 
 } // namespace kImageAnnotator

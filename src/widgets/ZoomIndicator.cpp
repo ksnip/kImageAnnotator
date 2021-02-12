@@ -27,9 +27,20 @@ ZoomIndicator::ZoomIndicator(QWidget *parent) :
 	mLabel(new QLabel(this)),
 	mSpinBox(new CustomSpinBox(this)),
 	mZoomInAction(new QAction(this)),
-	mZoomOutAction(new QAction(this))
+	mZoomOutAction(new QAction(this)),
+	mResetZoomAction(new QAction(this))
 {
 	init();
+}
+
+ZoomIndicator::~ZoomIndicator()
+{
+	delete mLabel;
+	delete mSpinBox;
+	delete mLayout;
+	delete mZoomInAction;
+	delete mZoomOutAction;
+	delete mResetZoomAction;
 }
 
 void ZoomIndicator::init()
@@ -38,24 +49,27 @@ void ZoomIndicator::init()
 
 	auto icon = IconLoader::load(QStringLiteral("zoom.svg"));
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
-	mLabel->setToolTip(tr("Zoom Level"));
 
 	mSpinBox->setFixedSize(ScaledSizeProvider::settingsWidgetSize());
 	mSpinBox->setFocusPolicy(Qt::NoFocus);
 	mSpinBox->setRange(10, 800);
 	mSpinBox->setSingleStep(10);
 	mSpinBox->setSuffix(QLatin1String("%"));
-	mSpinBox->setToolTip(mLabel->toolTip());
 	mSpinBox->setWrapping(false);
 
-	mZoomInAction->setShortcut(Qt::Key_Plus + Qt::CTRL);
-	mZoomOutAction->setShortcut(Qt::Key_Minus + Qt::CTRL);
+	mZoomInAction->setShortcut(Qt::CTRL + Qt::Key_Plus);
+	mZoomOutAction->setShortcut(Qt::CTRL + Qt::Key_Minus);
+	mResetZoomAction->setShortcut(Qt::CTRL + Qt::Key_0);
+
+	setToolTip(getToolTip());
 
 	connect(mZoomInAction, &QAction::triggered, this, &ZoomIndicator::zoomIn);
 	connect(mZoomOutAction, &QAction::triggered, this, &ZoomIndicator::zoomOut);
+	connect(mResetZoomAction, &QAction::triggered, this, &ZoomIndicator::resetZoomOut);
 
 	addAction(mZoomInAction);
 	addAction(mZoomOutAction);
+	addAction(mResetZoomAction);
 
 	connect(mSpinBox, &CustomSpinBox::valueChanged, this, &ZoomIndicator::notifyZoomValueChanged);
 
@@ -66,13 +80,13 @@ void ZoomIndicator::init()
 	setFixedSize(sizeHint());
 }
 
-ZoomIndicator::~ZoomIndicator()
+QString ZoomIndicator::getToolTip() const
 {
-	delete mLabel;
-	delete mSpinBox;
-	delete mLayout;
-	delete mZoomInAction;
-	delete mZoomOutAction;
+	auto newLine = QLatin1String("\n");
+	auto zoomIn = tr("Zoom In (%1)").arg(mZoomInAction->shortcut().toString());
+	auto zoomOut = tr("Zoom Out (%1)").arg(mZoomOutAction->shortcut().toString());
+	auto resetZoom = tr("Reset Zoom (%1)").arg(mResetZoomAction->shortcut().toString());
+	return zoomIn + newLine + zoomOut + newLine + resetZoom;
 }
 
 void ZoomIndicator::setZoomValue(double value)
@@ -96,6 +110,11 @@ void ZoomIndicator::zoomOut()
 {
 	auto currentZoom = mSpinBox->value();
 	notifyZoomValueChanged(currentZoom - 10);
+}
+
+void ZoomIndicator::resetZoomOut()
+{
+	notifyZoomValueChanged(100);
 }
 
 } // namespace kImageAnnotator

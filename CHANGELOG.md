@@ -9,6 +9,7 @@
 * New: Canvas background color configurable. ([#91](https://github.com/ksnip/kImageAnnotator/issues/91))
 * New: Zoom in and out with keyboard shortcuts. ([#192](https://github.com/ksnip/kImageAnnotator/issues/192))
 * New: Zoom in and out via buttons from UI. ([#197](https://github.com/ksnip/kImageAnnotator/issues/197))
+* New: Add reset zoom keyboard shortcut with tooltip. ([#209](https://github.com/ksnip/kImageAnnotator/issues/209))
 * Fixed: Deleting item outside image doesn't decrease canvas size. ([#164](https://github.com/ksnip/kImageAnnotator/issues/164))
 
 ## Release 0.4.1
