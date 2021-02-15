@@ -23,9 +23,9 @@ namespace kImageAnnotator {
 
 DropShadowImageEffect::DropShadowImageEffect()
 {
-	setColor(QColor(63, 63, 63, 190));
-	setBlurRadius(7);
-	setOffset(QPoint(4, 4));
+	setColor(QColor(0, 0, 0));
+	setBlurRadius(30);
+	setOffset(QPoint(0, 2));
 }
 
 } // namespace kImageAnnotator
