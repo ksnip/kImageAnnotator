@@ -57,8 +57,8 @@ void ZoomIndicator::init()
 	mSpinBox->setSuffix(QLatin1String("%"));
 	mSpinBox->setWrapping(false);
 
-	mZoomInAction->setShortcut(Qt::CTRL + Qt::Key_Plus);
-	mZoomOutAction->setShortcut(Qt::CTRL + Qt::Key_Minus);
+	mZoomInAction->setShortcut(QKeySequence::ZoomIn);
+	mZoomOutAction->setShortcut(QKeySequence::ZoomOut);
 	mResetZoomAction->setShortcut(Qt::CTRL + Qt::Key_0);
 
 	setToolTip(getToolTip());
