@@ -125,7 +125,7 @@
     <name>kImageAnnotator::FillModePicker</name>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation type="unfinished">Modo de desenho da borda e do preenchimento</translation>
+        <translation>Modo de desenho da borda e do preenchimento</translation>
     </message>
     <message>
         <source>Border and Fill</source>
@@ -172,7 +172,7 @@
     <message>
         <source>When enabled enforces the canvas
 to include the background image.</source>
-        <translation type="unfinished">Quando ativado, impõe a tela
+        <translation>Quando ativado, impõe a tela
 para incluir a imagem de fundo.</translation>
     </message>
     <message>
