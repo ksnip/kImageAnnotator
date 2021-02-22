@@ -52,6 +52,7 @@ public:
 	virtual void scale(qreal sx, qreal sy) = 0;
 	virtual Tools toolType() const = 0;
 	virtual void setProperties(const PropertiesPtr &properties);
+	virtual bool allowsApplyingImageEffects() const;
 
 protected:
 	void setShape(QPainterPath &newShape);

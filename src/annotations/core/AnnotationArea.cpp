@@ -188,6 +188,12 @@ void AnnotationArea::imageEffectChanged(ImageEffects effect)
 {
 	auto graphicsEffect = ImageEffectFactory::create(effect);
 	mImage->setGraphicsEffect(graphicsEffect);
+	for (auto &item : *mItems) {
+		auto itemGraphicsEffect = ImageEffectFactory::create(effect);
+		if (item->allowsApplyingImageEffects()) {
+			item->setGraphicsEffect(itemGraphicsEffect);
+		}
+	}
 }
 
 void AnnotationArea::setCanvasRect(const QRectF &rect)
@@ -277,7 +283,7 @@ void AnnotationArea::finishDrawingItem(const QPointF &pos)
 		mCurrentItem->finish();
 
 		if (mCurrentItem->requiresSelectionAfterCreation()) {
-			mItemModifier->handleSelectionAt(pos, mItems, false);
+			mItemModifier->handleSelectionAt(mCurrentItem->boundingRect().topLeft(), mItems, false);
 		}
 
 		mCurrentItem = nullptr;
@@ -306,8 +312,6 @@ void AnnotationArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 
 void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
-	finishDrawingItem(event->scenePos());
-
 	mItemModifier->handleSelectionAt(event->scenePos(), mItems, mKeyHelper->isControlPressed());
 	auto selectedItems = mItemModifier->selectedItems();
 

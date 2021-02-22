@@ -34,6 +34,7 @@ public:
 	Tools toolType() const override;
 	void finish() override;
 	bool requiresSelectionAfterCreation() const override;
+	bool allowsApplyingImageEffects() const override;
 
 protected:
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget) override;

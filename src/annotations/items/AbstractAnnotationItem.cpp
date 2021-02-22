@@ -193,6 +193,11 @@ void AbstractAnnotationItem::setProperties(const PropertiesPtr &properties)
 	updateProperties(properties);
 }
 
+bool AbstractAnnotationItem::allowsApplyingImageEffects() const
+{
+	return false;
+}
+
 void AbstractAnnotationItem::addShadowIfRequired()
 {
 	if (mProperties->shadowEnabled()) {

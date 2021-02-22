@@ -36,6 +36,11 @@ bool AnnotationDuplicate::requiresSelectionAfterCreation() const
 	return true;
 }
 
+bool AnnotationDuplicate::allowsApplyingImageEffects() const
+{
+	return true;
+}
+
 void AnnotationDuplicate::updateShape()
 {
 	QPainterPath path;
@@ -54,6 +59,9 @@ void AnnotationDuplicate::captureScene()
 {
 	auto parentScene = scene();
 	if (parentScene != nullptr) {
+		*mRect = parentScene->sceneRect().intersected(*mRect);
+		updateShape();
+
 		mSceneSelectionImage = QImage(mRect->normalized().size().toSize(), QImage::Format_ARGB32_Premultiplied);
 		mSceneSelectionImage.fill(Qt::transparent);
 		QPainter imagePainter(&mSceneSelectionImage);
