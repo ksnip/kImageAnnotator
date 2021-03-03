@@ -36,9 +36,9 @@ bool AnnotationDuplicate::requiresSelectionAfterCreation() const
 	return true;
 }
 
-bool AnnotationDuplicate::allowsApplyingImageEffects() const
+void AnnotationDuplicate::applyImageEffect(QGraphicsEffect *effect)
 {
-	return true;
+	setGraphicsEffect(effect);
 }
 
 void AnnotationDuplicate::updateShape()

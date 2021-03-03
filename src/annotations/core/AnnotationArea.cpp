@@ -190,9 +190,7 @@ void AnnotationArea::imageEffectChanged(ImageEffects effect)
 	mImage->setGraphicsEffect(graphicsEffect);
 	for (auto &item : *mItems) {
 		auto itemGraphicsEffect = ImageEffectFactory::create(effect);
-		if (item->allowsApplyingImageEffects()) {
-			item->setGraphicsEffect(itemGraphicsEffect);
-		}
+		item->applyImageEffect(itemGraphicsEffect);
 	}
 }
 

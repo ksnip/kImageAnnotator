@@ -193,9 +193,9 @@ void AbstractAnnotationItem::setProperties(const PropertiesPtr &properties)
 	updateProperties(properties);
 }
 
-bool AbstractAnnotationItem::allowsApplyingImageEffects() const
+void AbstractAnnotationItem::applyImageEffect(QGraphicsEffect *effect)
 {
-	return false;
+	Q_UNUSED(effect);
 }
 
 void AbstractAnnotationItem::addShadowIfRequired()
