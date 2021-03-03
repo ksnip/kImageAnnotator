@@ -310,6 +310,8 @@ void AnnotationArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 
 void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
+	finishDrawingItem(event->scenePos());
+
 	mItemModifier->handleSelectionAt(event->scenePos(), mItems, mKeyHelper->isControlPressed());
 	auto selectedItems = mItemModifier->selectedItems();
 
@@ -317,7 +319,7 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 	auto isMenuOverItem = !selectedItems.isEmpty();
 	contextMenu.setOverItem(isMenuOverItem);
 	contextMenu.setPastEnabled(!mItemCopier->isEmpty());
-    contextMenu.setEditVisible(selectedEditableItem() != nullptr);
+	contextMenu.setEditVisible(selectedEditableItem() != nullptr);
 	AnnotationItemArranger itemArranger(selectedItems, mItems);
 	connect(&itemArranger, &AnnotationItemArranger::newCommand, mUndoStack, &UndoStack::push);
 	connect(&contextMenu, &AnnotationContextMenu::bringToFront, &itemArranger, &AnnotationItemArranger::bringToFront);
