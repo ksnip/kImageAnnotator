@@ -281,7 +281,7 @@ void AnnotationArea::finishDrawingItem(const QPointF &pos)
 		mCurrentItem->finish();
 
 		if (mCurrentItem->requiresSelectionAfterCreation()) {
-			mItemModifier->handleSelectionAt(mCurrentItem->boundingRect().topLeft(), mItems, false);
+			mItemModifier->handleSelectionAt(mCurrentItem->position(), mItems, false);
 		}
 
 		mCurrentItem = nullptr;
