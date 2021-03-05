@@ -52,7 +52,11 @@ private:
     int mPosition = 0;
     bool mIsVisible = false;
 
+    void moveCursorAtBeginning();
+    void moveCursorAtEnd(const QString &text);
+    void moveCursorAtNextWordBeginning(const QString &text);
     void moveCursorForwardBy(const QString &text, int moveBy);
+    void moveCursorAtPreviousWordBeginning(const QString &text);
     void moveCursorBack(const QString &text);
     void moveCursorUp(const QString &text);
     void moveCursorDown(const QString &text);

@@ -42,8 +42,20 @@ TextCursor::~TextCursor()
 void TextCursor::move(TextPositions direction, const QString &text)
 {
     switch (direction) {
+        case TextPositions::Beginning:
+            moveCursorAtBeginning();
+            break;
+        case TextPositions::End:
+            moveCursorAtEnd(text);
+            break;
+        case TextPositions::NextWordBeginning:
+            moveCursorAtNextWordBeginning(text);
+            break;
         case TextPositions::Next:
-			moveCursorForwardBy(text, 1);
+            moveCursorForwardBy(text, 1);
+            break;
+        case TextPositions::PreviousWordBeginning:
+            moveCursorAtPreviousWordBeginning(text);
             break;
         case TextPositions::Previous:
             moveCursorBack(text);
@@ -91,11 +103,63 @@ bool TextCursor::isVisible() const
     return mIsVisible;
 }
 
+void TextCursor::moveCursorAtBeginning()
+{
+    mPosition = 0;
+}
+
+void TextCursor::moveCursorAtEnd(const QString &text)
+{
+    mPosition = text.length();
+}
+
+void TextCursor::moveCursorAtNextWordBeginning(const QString &text)
+{
+    int lastSpacePos{-1};
+    int pos{mPosition};
+
+    while (pos < text.length()) {
+        if (text.at(pos).isSpace()) {
+            lastSpacePos = pos;
+        } else {
+            if (lastSpacePos >= 0) {
+                break;
+            }
+        }
+        ++ pos;
+    }
+
+    mPosition = pos;
+}
+
 void TextCursor::moveCursorForwardBy(const QString &text, int moveBy)
 {
     mPosition += moveBy;
     if (mPosition > text.length()) {
         mPosition = mPosition - text.length() - 1;
+    }
+}
+
+void TextCursor::moveCursorAtPreviousWordBeginning(const QString &text)
+{
+    int lastNonSpacePos{-1};
+    int pos{mPosition-1};
+
+    while (pos >= 0) {
+        if (text.at(pos).isSpace()) {
+            if (lastNonSpacePos >= 0) {
+                break;
+            }
+        } else {
+            lastNonSpacePos = pos;
+        }
+        -- pos;
+    }
+
+    if (lastNonSpacePos >= 0) {
+        mPosition = lastNonSpacePos;
+    } else {
+        mPosition = 0;
     }
 }
 
