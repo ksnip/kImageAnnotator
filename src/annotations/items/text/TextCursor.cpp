@@ -43,19 +43,19 @@ void TextCursor::move(TextPositions direction, const QString &text)
 {
     switch (direction) {
         case TextPositions::Beginning:
-            moveCursorAtBeginning();
+            moveCursorToBeginning();
             break;
         case TextPositions::End:
-            moveCursorAtEnd(text);
+            moveCursorToEnd(text);
             break;
         case TextPositions::NextWordBeginning:
-            moveCursorAtNextWordBeginning(text);
+            moveCursorToNextWordBeginning(text);
             break;
         case TextPositions::Next:
             moveCursorForwardBy(text, 1);
             break;
         case TextPositions::PreviousWordBeginning:
-            moveCursorAtPreviousWordBeginning(text);
+            moveCursorToPreviousWordBeginning(text);
             break;
         case TextPositions::Previous:
             moveCursorBack(text);
@@ -103,30 +103,28 @@ bool TextCursor::isVisible() const
     return mIsVisible;
 }
 
-void TextCursor::moveCursorAtBeginning()
+void TextCursor::moveCursorToBeginning()
 {
     mPosition = 0;
 }
 
-void TextCursor::moveCursorAtEnd(const QString &text)
+void TextCursor::moveCursorToEnd(const QString &text)
 {
     mPosition = text.length();
 }
 
-void TextCursor::moveCursorAtNextWordBeginning(const QString &text)
+void TextCursor::moveCursorToNextWordBeginning(const QString &text)
 {
-    int lastSpacePos{-1};
-    int pos{mPosition};
+    int lastSpacePos = -1;
+    int pos = mPosition;
 
     while (pos < text.length()) {
         if (text.at(pos).isSpace()) {
             lastSpacePos = pos;
-        } else {
-            if (lastSpacePos >= 0) {
-                break;
-            }
+        } else if (lastSpacePos >= 0) {
+            break;
         }
-        ++ pos;
+        ++pos;
     }
 
     mPosition = pos;
@@ -140,10 +138,10 @@ void TextCursor::moveCursorForwardBy(const QString &text, int moveBy)
     }
 }
 
-void TextCursor::moveCursorAtPreviousWordBeginning(const QString &text)
+void TextCursor::moveCursorToPreviousWordBeginning(const QString &text)
 {
-    int lastNonSpacePos{-1};
-    int pos{mPosition-1};
+    int lastNonSpacePos = -1;
+    int pos = mPosition - 1;
 
     while (pos >= 0) {
         if (text.at(pos).isSpace()) {
