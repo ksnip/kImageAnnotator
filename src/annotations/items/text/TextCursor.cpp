@@ -119,6 +119,10 @@ void TextCursor::moveCursorToNextWordBeginning(const QString &text)
     int pos = mPosition;
 
     while (pos < text.length()) {
+        if (text.at(pos) == QChar(QChar::LineFeed) && pos != mPosition) {
+            break;
+        }
+
         if (text.at(pos).isSpace()) {
             lastSpacePos = pos;
         } else if (lastSpacePos >= 0) {
