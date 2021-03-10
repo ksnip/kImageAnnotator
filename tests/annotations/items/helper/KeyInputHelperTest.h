@@ -39,8 +39,12 @@ private slots:
 	void TestHandleKeyPress_Should_EmitEscape_When_KeyIsReturnAndNoModifier();
 	void TestHandleKeyPress_Should_EmitEscape_When_KeyIsEnterAndNoModifier();
 	void TestHandleKeyPress_Should_EmitEscapeSignal_When_KeyIsEscape();
+	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsHome();
+	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsEnd();
 	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowLeft();
+	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowLeftAndModifierCtrl();
 	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowRight();
+	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowRightAndModifierCtrl();
 	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowUp();
 	void TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowDown();
 	void TestHandleKeyPress_Should_EmitPasteSignal_When_KeyIsPaste();

@@ -26,6 +26,10 @@ namespace kImageAnnotator {
 
 enum class TextPositions
 {
+    Beginning,
+    End,
+    PreviousWordBeginning,
+    NextWordBeginning,
     Next,
     Previous,
     Up,

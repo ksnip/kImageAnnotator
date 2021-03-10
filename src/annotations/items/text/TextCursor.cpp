@@ -22,14 +22,16 @@
 namespace kImageAnnotator {
 
 TextCursor::TextCursor() :
-	mBlinkTimer(new QTimer(this))
+	mBlinkTimer(new QTimer(this)),
+	mLineFeedChar(QChar::LineFeed)
 {
 	connectSlots();
 }
 
 TextCursor::TextCursor(const TextCursor &other) :
 	mBlinkTimer(new QTimer(this)),
-	mPosition(other.mPosition)
+	mPosition(other.mPosition),
+	mLineFeedChar(QChar::LineFeed)
 {
 	connectSlots();
 }
@@ -42,8 +44,20 @@ TextCursor::~TextCursor()
 void TextCursor::move(TextPositions direction, const QString &text)
 {
     switch (direction) {
+        case TextPositions::Beginning:
+            moveCursorToBeginning();
+            break;
+        case TextPositions::End:
+            moveCursorToEnd(text);
+            break;
+        case TextPositions::NextWordBeginning:
+            moveCursorToNextWordBeginning(text);
+            break;
         case TextPositions::Next:
-			moveCursorForwardBy(text, 1);
+            moveCursorForwardBy(text, 1);
+            break;
+        case TextPositions::PreviousWordBeginning:
+            moveCursorToPreviousWordBeginning(text);
             break;
         case TextPositions::Previous:
             moveCursorBack(text);
@@ -91,11 +105,78 @@ bool TextCursor::isVisible() const
     return mIsVisible;
 }
 
+void TextCursor::moveCursorToBeginning()
+{
+    mPosition = 0;
+}
+
+void TextCursor::moveCursorToEnd(const QString &text)
+{
+    mPosition = text.length();
+}
+
+void TextCursor::moveCursorToNextWordBeginning(const QString &text)
+{
+    auto lastSpacePos = -1;
+    auto currentPos = mPosition;
+
+    while (currentPos < text.length()) {
+		auto currentChar = text.at(currentPos);
+
+		if (currentChar == mLineFeedChar && currentPos != mPosition) {
+            break;
+        }
+
+        if (currentChar.isSpace()) {
+            lastSpacePos = currentPos;
+        } else if (lastSpacePos >= 0) {
+            break;
+        }
+        currentPos++;
+    }
+
+    mPosition = currentPos;
+}
+
 void TextCursor::moveCursorForwardBy(const QString &text, int moveBy)
 {
     mPosition += moveBy;
     if (mPosition > text.length()) {
-        mPosition = mPosition - text.length() - 1;
+        mPosition = text.length();
+    }
+}
+
+void TextCursor::moveCursorToPreviousWordBeginning(const QString &text)
+{
+    auto lastNonSpacePos = -1;
+    auto currentPos = mPosition - 1;
+
+    while (currentPos >= 0) {
+		auto currentChar = text.at(currentPos);
+
+		if (currentChar == mLineFeedChar) {
+			lastNonSpacePos = currentPos;
+
+            if (lastNonSpacePos + 1 != mPosition) {
+                lastNonSpacePos++;
+            }
+            break;
+        }
+
+        if (currentChar.isSpace()) {
+            if (lastNonSpacePos >= 0) {
+                break;
+            }
+        } else {
+            lastNonSpacePos = currentPos;
+        }
+        currentPos--;
+    }
+
+    if (lastNonSpacePos >= 0) {
+        mPosition = lastNonSpacePos;
+    } else {
+        mPosition = 0;
     }
 }
 
@@ -103,7 +184,7 @@ void TextCursor::moveCursorBack(const QString &text)
 {
     mPosition--;
     if (mPosition < 0) {
-        mPosition = text.length();
+        mPosition = 0;
     }
 }
 

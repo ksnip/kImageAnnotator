@@ -107,6 +107,34 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitEscapeSignal_When_KeyIsEs
 	QCOMPARE(spy.count(), 1);
 }
 
+void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsHome()
+{
+	qRegisterMetaType<TextPositions>("TextPositions");
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Home, Qt::NoModifier);
+
+	keyInputHelper.handleKeyPress(&keyEvent);
+
+	QCOMPARE(spy.count(), 1);
+	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, TextPositions::Beginning);
+}
+
+void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsEnd()
+{
+	qRegisterMetaType<TextPositions>("TextPositions");
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_End, Qt::NoModifier);
+
+	keyInputHelper.handleKeyPress(&keyEvent);
+
+	QCOMPARE(spy.count(), 1);
+	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, TextPositions::End);
+}
+
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowLeft()
 {
 	qRegisterMetaType<TextPositions>("TextPositions");
@@ -121,6 +149,20 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArro
 	QCOMPARE(resultDirection, TextPositions::Previous);
 }
 
+void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowLeftAndModifierCtrl()
+{
+	qRegisterMetaType<TextPositions>("TextPositions");
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Left, Qt::ControlModifier);
+
+	keyInputHelper.handleKeyPress(&keyEvent);
+
+	QCOMPARE(spy.count(), 1);
+	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, TextPositions::PreviousWordBeginning);
+}
+
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowRight()
 {
 	qRegisterMetaType<TextPositions>("TextPositions");
@@ -133,6 +175,20 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArro
 	QCOMPARE(spy.count(), 1);
 	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
 	QCOMPARE(resultDirection, TextPositions::Next);
+}
+
+void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowRightAndModifierCtrl()
+{
+	qRegisterMetaType<TextPositions>("TextPositions");
+	KeyInputHelper keyInputHelper;
+	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
+	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Right, Qt::ControlModifier);
+
+	keyInputHelper.handleKeyPress(&keyEvent);
+
+	QCOMPARE(spy.count(), 1);
+	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, TextPositions::NextWordBeginning);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowUp()

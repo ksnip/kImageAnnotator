@@ -42,16 +42,30 @@ void KeyInputHelper::handleKeyPress(const QKeyEvent *event)
 			emit escape();
 			return;
 		case Qt::Key_Left:
-			emit move(TextPositions::Previous);
+			if (isControlPressed(event)) {
+				emit move(TextPositions::PreviousWordBeginning);
+			} else {
+				emit move(TextPositions::Previous);
+			}
 			break;
 		case Qt::Key_Right:
-			emit move(TextPositions::Next);
+			if (isControlPressed(event)) {
+				emit move(TextPositions::NextWordBeginning);
+			} else {
+				emit move(TextPositions::Next);
+			}
 			break;
 		case Qt::Key_Up:
 			emit move(TextPositions::Up);
 			break;
 		case Qt::Key_Down:
 			emit move(TextPositions::Down);
+			break;
+		case Qt::Key::Key_Home:
+			emit move(TextPositions::Beginning);
+			break;
+		case Qt::Key::Key_End:
+			emit move(TextPositions::End);
 			break;
 		case Qt::Key_Paste:
 			emit paste();
@@ -85,6 +99,11 @@ QString KeyInputHelper::getTextWithCorrectCase(const QKeyEvent *event) const
 bool KeyInputHelper::isShiftPressed(const QKeyEvent *event) const
 {
 	return isModifierPressed(event, Qt::ShiftModifier);
+}
+
+bool KeyInputHelper::isControlPressed(const QKeyEvent *event) const
+{
+	return isModifierPressed(event, Qt::ControlModifier);
 }
 
 bool KeyInputHelper::isModifierPressed(const QKeyEvent *event, Qt::KeyboardModifier modifier) const
