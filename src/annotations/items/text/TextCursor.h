@@ -51,6 +51,7 @@ private:
     QTimer *mBlinkTimer;
     int mPosition = 0;
     bool mIsVisible = false;
+    QChar mLineFeedChar;
 
     void moveCursorToBeginning();
     void moveCursorToEnd(const QString &text);

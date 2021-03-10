@@ -10,6 +10,7 @@
 * New: Zoom in and out with keyboard shortcuts. ([#192](https://github.com/ksnip/kImageAnnotator/issues/192))
 * New: Zoom in and out via buttons from UI. ([#197](https://github.com/ksnip/kImageAnnotator/issues/197))
 * New: Add reset zoom keyboard shortcut with tooltip. ([#209](https://github.com/ksnip/kImageAnnotator/issues/209))
+* New: Add keyboard shortcut support for text tool. ([#183](https://github.com/ksnip/kImageAnnotator/issues/183))
 * Changed: Change drop shadow to cover all sites. ([#202](https://github.com/ksnip/kImageAnnotator/issues/202))
 * Fixed: Deleting item outside image doesn't decrease canvas size. ([#164](https://github.com/ksnip/kImageAnnotator/issues/164))
 * Fixed: Duplicate region of grayscale image has color. ([#214](https://github.com/ksnip/kImageAnnotator/issues/214))

@@ -22,14 +22,16 @@
 namespace kImageAnnotator {
 
 TextCursor::TextCursor() :
-	mBlinkTimer(new QTimer(this))
+	mBlinkTimer(new QTimer(this)),
+	mLineFeedChar(QChar::LineFeed)
 {
 	connectSlots();
 }
 
 TextCursor::TextCursor(const TextCursor &other) :
 	mBlinkTimer(new QTimer(this)),
-	mPosition(other.mPosition)
+	mPosition(other.mPosition),
+	mLineFeedChar(QChar::LineFeed)
 {
 	connectSlots();
 }
@@ -115,56 +117,60 @@ void TextCursor::moveCursorToEnd(const QString &text)
 
 void TextCursor::moveCursorToNextWordBeginning(const QString &text)
 {
-    int lastSpacePos = -1;
-    int pos = mPosition;
+    auto lastSpacePos = -1;
+    auto currentPos = mPosition;
 
-    while (pos < text.length()) {
-        if (text.at(pos) == QChar(QChar::LineFeed) && pos != mPosition) {
+    while (currentPos < text.length()) {
+		auto currentChar = text.at(currentPos);
+
+		if (currentChar == mLineFeedChar && currentPos != mPosition) {
             break;
         }
 
-        if (text.at(pos).isSpace()) {
-            lastSpacePos = pos;
+        if (currentChar.isSpace()) {
+            lastSpacePos = currentPos;
         } else if (lastSpacePos >= 0) {
             break;
         }
-        ++pos;
+        currentPos++;
     }
 
-    mPosition = pos;
+    mPosition = currentPos;
 }
 
 void TextCursor::moveCursorForwardBy(const QString &text, int moveBy)
 {
     mPosition += moveBy;
     if (mPosition > text.length()) {
-        mPosition = mPosition - text.length() - 1;
+        mPosition = text.length();
     }
 }
 
 void TextCursor::moveCursorToPreviousWordBeginning(const QString &text)
 {
-    int lastNonSpacePos = -1;
-    int pos = mPosition - 1;
+    auto lastNonSpacePos = -1;
+    auto currentPos = mPosition - 1;
 
-    while (pos >= 0) {
-        if (text.at(pos) == QChar(QChar::LineFeed)) {
-            if (pos + 1 != mPosition) {
-                lastNonSpacePos = pos + 1;
-            } else {
-                lastNonSpacePos = pos;
+    while (currentPos >= 0) {
+		auto currentChar = text.at(currentPos);
+
+		if (currentChar == mLineFeedChar) {
+			lastNonSpacePos = currentPos;
+
+            if (lastNonSpacePos + 1 != mPosition) {
+                lastNonSpacePos++;
             }
             break;
         }
 
-        if (text.at(pos).isSpace()) {
+        if (currentChar.isSpace()) {
             if (lastNonSpacePos >= 0) {
                 break;
             }
         } else {
-            lastNonSpacePos = pos;
+            lastNonSpacePos = currentPos;
         }
-        -- pos;
+        currentPos--;
     }
 
     if (lastNonSpacePos >= 0) {
@@ -178,7 +184,7 @@ void TextCursor::moveCursorBack(const QString &text)
 {
     mPosition--;
     if (mPosition < 0) {
-        mPosition = text.length();
+        mPosition = 0;
     }
 }
 
