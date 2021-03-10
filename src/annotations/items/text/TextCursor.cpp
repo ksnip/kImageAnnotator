@@ -148,6 +148,15 @@ void TextCursor::moveCursorToPreviousWordBeginning(const QString &text)
     int pos = mPosition - 1;
 
     while (pos >= 0) {
+        if (text.at(pos) == QChar(QChar::LineFeed)) {
+            if (pos + 1 != mPosition) {
+                lastNonSpacePos = pos + 1;
+            } else {
+                lastNonSpacePos = pos;
+            }
+            break;
+        }
+
         if (text.at(pos).isSpace()) {
             if (lastNonSpacePos >= 0) {
                 break;
