@@ -20,6 +20,41 @@
 
 #include "TextCursorTest.h"
 
+void TextCursorTest::TestMove_Should_MoveCursorToBeginning_When_DirectionBeginning()
+{
+    TextCursor textCursor;
+    QString text = QLatin1String("Test\n"
+                                  "123\n"
+                                  "test123");
+    textCursor.setPosition(16);
+    QCOMPARE(textCursor.position(), 16);
+
+    textCursor.move(TextPositions::Beginning, text);
+
+    QCOMPARE(textCursor.position(), 0);
+
+    textCursor.move(TextPositions::Beginning, text);
+
+    QCOMPARE(textCursor.position(), 0);
+}
+
+void TextCursorTest::TestMove_Should_MoveCursorToEnd_When_DirectionEnd()
+{
+    TextCursor textCursor;
+    QString text = QLatin1String("Test\n"
+                                  "123\n"
+                                  "test123");
+    QCOMPARE(textCursor.position(), 0);
+
+    textCursor.move(TextPositions::End, text);
+
+    QCOMPARE(textCursor.position(), 16);
+
+    textCursor.move(TextPositions::End, text);
+
+    QCOMPARE(textCursor.position(), 16);
+}
+
 void TextCursorTest::TestMove_Should_MoveCursorByOnePointToRight_When_DirectionNext()
 {
     TextCursor textCursor;
@@ -31,6 +66,21 @@ void TextCursorTest::TestMove_Should_MoveCursorByOnePointToRight_When_DirectionN
     textCursor.move(TextPositions::Next, text);
 
     QCOMPARE(textCursor.position(), 1);
+}
+
+void TextCursorTest::TestMove_Should_MoveCursorToNextWordBeginning_When_DirectionNextAndModifierCtrl()
+{
+    TextCursor textCursor;
+    QString text = QLatin1String(" This is  a string\n"
+                                 "spanning multiple lines "
+                                 " 123 1  ");
+    QCOMPARE(textCursor.position(), 0);
+
+    QVector<int> nextPositionList{1, 6, 10, 12, 18, 19, 28, 37, 44, 48, 51, 51};
+    for(int nextPosition : nextPositionList) {
+        textCursor.move(TextPositions::NextWordBeginning, text);
+        QCOMPARE(textCursor.position(), nextPosition);
+    }
 }
 
 void TextCursorTest::TestMove_Should_MoveCursorByOnePointToLeft_When_DirectionPrevious()
@@ -45,6 +95,22 @@ void TextCursorTest::TestMove_Should_MoveCursorByOnePointToLeft_When_DirectionPr
     textCursor.move(TextPositions::Previous, text);
 
     QCOMPARE(textCursor.position(), 0);
+}
+
+void TextCursorTest::TestMove_Should_MoveCursorToPreviousWordBeginning_When_DirectionPreviousAndModifierCtrl()
+{
+    TextCursor textCursor;
+    QString text = QLatin1String(" This is  a string\n"
+                                 "spanning multiple lines "
+                                 " 123 1  ");
+    textCursor.setPosition(51);
+    QCOMPARE(textCursor.position(), 51);
+
+    QVector<int> prevPositionList{48, 44, 37, 28, 19, 18, 12, 10, 6, 1, 0, 0};
+    for(int prevPosition : prevPositionList) {
+        textCursor.move(TextPositions::PreviousWordBeginning, text);
+        QCOMPARE(textCursor.position(), prevPosition);
+    }
 }
 
 void TextCursorTest::TestMove_Should_MoveCursorToEnd_When_DirectionPreviousAndCurrentPositionAtStart()

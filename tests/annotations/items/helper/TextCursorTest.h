@@ -32,8 +32,12 @@ class TextCursorTest : public QObject
 Q_OBJECT
 
 private slots:
+	void TestMove_Should_MoveCursorToBeginning_When_DirectionBeginning();
+	void TestMove_Should_MoveCursorToEnd_When_DirectionEnd();
 	void TestMove_Should_MoveCursorByOnePointToRight_When_DirectionNext();
+	void TestMove_Should_MoveCursorToNextWordBeginning_When_DirectionNextAndModifierCtrl();
 	void TestMove_Should_MoveCursorByOnePointToLeft_When_DirectionPrevious();
+	void TestMove_Should_MoveCursorToPreviousWordBeginning_When_DirectionPreviousAndModifierCtrl();
 	void TestMove_Should_MoveCursorToEnd_When_DirectionPreviousAndCurrentPositionAtStart();
 	void TestMove_Should_MoveCursorToStart_When_DirectionNextAndCurrentPositionAtEnd();
 	void TestMove_Should_MoveCursorToNextLineSamePosition_When_DirectionDown();
