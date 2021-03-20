@@ -172,7 +172,7 @@
     <message>
         <source>When enabled enforces the canvas
 to include the background image.</source>
-        <translation type="unfinished">Si activé, applique le canevas
+        <translation>Si activé, applique le canevas
 pour inclure l’image d&apos;arrière-plan.</translation>
     </message>
     <message>
