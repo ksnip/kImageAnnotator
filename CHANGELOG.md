@@ -15,6 +15,9 @@
 * Fixed: Deleting item outside image doesn't decrease canvas size. ([#164](https://github.com/ksnip/kImageAnnotator/issues/164))
 * Fixed: Duplicate region of grayscale image has color. ([#214](https://github.com/ksnip/kImageAnnotator/issues/214))
 
+## Release 0.4.2
+* Fixed: Fetching image from annotator with HiDPI enabled pixelates image. ([#218](https://github.com/ksnip/kImageAnnotator/issues/218))
+
 ## Release 0.4.1
 * Changed: Horizontally align text inside spin box. ([#203](https://github.com/ksnip/kImageAnnotator/issues/203))
 * Changed: Change zoom with mouse wheel to CTRL+Wheel. ([#210](https://github.com/ksnip/kImageAnnotator/issues/210))
