@@ -1,5 +1,8 @@
 # Change log
 
+## Release 0.4.2
+* Fixed: Fetching image from annotator with HiDPI enabled pixelates image. ([#218](https://github.com/ksnip/kImageAnnotator/issues/218))
+
 ## Release 0.4.1
 * Changed: Horizontally align text inside spin box. ([#203](https://github.com/ksnip/kImageAnnotator/issues/203))
 * Changed: Change zoom with mouse wheel to CTRL+Wheel. ([#210](https://github.com/ksnip/kImageAnnotator/issues/210))
