@@ -67,7 +67,7 @@ void AnnotationItemResizerTest::TestGrabHandle_Should_MoveResizeHandle_When_Hand
 	connect(&itemResizer, &AnnotationItemResizer::newCommand, &undoStack, &QUndoStack::push);
 
 	itemResizer.grabHandle(p1);
-	itemResizer.moveHandle(p3);
+	itemResizer.moveHandle(p3, false);
 
 	QCOMPARE(lineItem.line().p1(), p3);
 }

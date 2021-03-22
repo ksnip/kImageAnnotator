@@ -47,9 +47,9 @@ QRectF AnnotationItemSelector::boundingRect() const
 	}
 }
 
-void AnnotationItemSelector::handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isModifing)
+void AnnotationItemSelector::handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isModifying)
 {
-	handleSelectionAt(pos, items, isModifing);
+	handleSelectionAt(pos, items, isModifying);
 
 	if (mSelectedItems->count() > 0) {
 		return;

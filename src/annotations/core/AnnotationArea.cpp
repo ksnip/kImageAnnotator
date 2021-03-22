@@ -260,7 +260,7 @@ void AnnotationArea::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 		if (mCurrentItem) {
 			addPointToCurrentItem(event->scenePos());
 		} else {
-			mItemModifier->handleMouseMove(event->scenePos());
+			mItemModifier->handleMouseMove(event->scenePos(), mKeyHelper->isControlPressed());
 		}
 	}
 

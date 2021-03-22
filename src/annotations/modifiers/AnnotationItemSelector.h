@@ -33,7 +33,7 @@ public:
 	explicit AnnotationItemSelector(ZoomValueProvider *zoomValueProvider);
 	~AnnotationItemSelector() override;
 	QRectF boundingRect() const override;
-	void handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isModifing);
+	void handleSelectionOrShowSelectionRectAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isModifying);
 	void extendSelectionRectWhenShown(const QPointF &pos);
 	void finishSelectionRectWhenShown(QList<AbstractAnnotationItem *> *items);
 	void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool modifying);

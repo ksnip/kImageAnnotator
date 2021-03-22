@@ -54,27 +54,26 @@ void AnnotationMultiItemResizer::detach()
     mCurrentResizer = nullptr;
 }
 
-void AnnotationMultiItemResizer::grabHandle(const QPointF &pos, bool keepAspectRatio)
+void AnnotationMultiItemResizer::grabHandle(const QPointF &pos)
 {
     for (auto item : childItems()) {
         auto resizer = castToResizer(item);
         resizer->grabHandle(pos);
         if (resizer->isResizing()) {
             mCurrentResizer = resizer;
-			mCurrentResizer->setKeepAspectRatio(keepAspectRatio);
             return;
         }
     }
     mCurrentResizer = nullptr;
 }
 
-void AnnotationMultiItemResizer::moveHandle(const QPointF &pos)
+void AnnotationMultiItemResizer::moveHandle(const QPointF &pos, bool isCtrlPressed)
 {
     if (mCurrentResizer == nullptr) {
         return;
     }
 
-    mCurrentResizer->moveHandle(pos);
+	mCurrentResizer->moveHandle(pos, isCtrlPressed);
 }
 
 void AnnotationMultiItemResizer::releaseHandle()

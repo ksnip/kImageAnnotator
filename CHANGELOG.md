@@ -17,6 +17,7 @@
 
 ## Release 0.4.2
 * Fixed: Fetching image from annotator with HiDPI enabled pixelates image. ([#218](https://github.com/ksnip/kImageAnnotator/issues/218))
+* Fixed: Keep aspect ratio only work when pressing CTRL before moving resize handle. ([#219](https://github.com/ksnip/kImageAnnotator/issues/219))
 
 ## Release 0.4.1
 * Changed: Horizontally align text inside spin box. ([#203](https://github.com/ksnip/kImageAnnotator/issues/203))
