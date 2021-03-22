@@ -24,8 +24,7 @@ namespace kImageAnnotator {
 AnnotationItemResizer::AnnotationItemResizer(AbstractAnnotationItem *item, ZoomValueProvider *zoomValueProvider) :
 	mAnnotationItem(item),
 	mZoomValueProvider(zoomValueProvider),
-	mCurrentHandle(-1),
-	mKeepAspectRatio(false)
+	mCurrentHandle(-1)
 {
     mResizeHandles = ResizeHandlesFactory::createResizeHandles(item, zoomValueProvider->zoomValue());
     connect(zoomValueProvider, &ZoomValueProvider::zoomValueChanged, this, &AnnotationItemResizer::applyZoomValue);
@@ -52,10 +51,10 @@ void AnnotationItemResizer::grabHandle(const QPointF &pos)
     }
 }
 
-void AnnotationItemResizer::moveHandle(const QPointF &pos)
+void AnnotationItemResizer::moveHandle(const QPointF &pos, bool isCtrlPressed)
 {
     if (mCurrentHandle != -1) {
-		emit newCommand(new ResizeCommand(mAnnotationItem, mCurrentHandle, pos - mClickOffset, mKeepAspectRatio));
+		emit newCommand(new ResizeCommand(mAnnotationItem, mCurrentHandle, pos - mClickOffset, isCtrlPressed));
     }
 }
 
@@ -78,11 +77,6 @@ void AnnotationItemResizer::refresh()
 bool AnnotationItemResizer::isItemVisible() const
 {
 	return mAnnotationItem != nullptr && mAnnotationItem->isVisible();
-}
-
-void AnnotationItemResizer::setKeepAspectRatio(bool keepAspectRatio)
-{
-	mKeepAspectRatio = keepAspectRatio;
 }
 
 Qt::CursorShape AnnotationItemResizer::cursorForPos(const QPointF &pos)

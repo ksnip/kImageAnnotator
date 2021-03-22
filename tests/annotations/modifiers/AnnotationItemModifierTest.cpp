@@ -39,7 +39,7 @@ void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_MoveResi
 	modifer.handleMouseRelease(&items);
 
 	modifer.handleMousePress(p1, &items, false);
-	modifer.handleMouseMove(p3);
+	modifer.handleMouseMove(p3, false);
 
 	QCOMPARE(line.line().p1(), p3);
 	QCOMPARE(line.line().p2(), p2);
@@ -62,7 +62,7 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_NotMoveResizerH
 	modifer.handleMouseRelease(&items);
 
 	modifer.handleMousePress(p3, &items, false);
-	modifer.handleMouseMove(p4);
+	modifer.handleMouseMove(p4, false);
 
 	QCOMPARE(line.line().p1(), p1);
 	QCOMPARE(line.line().p2(), p2);
@@ -87,7 +87,7 @@ void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_SelectMu
 	AnnotationItemModifier modifer(&zoomValueProvider);
 
 	modifer.handleMousePress(p1 + QPointF(-5, -5), &items, false);
-	modifer.handleMouseMove(p4 + QPointF(5, 5));
+	modifer.handleMouseMove(p4 + QPointF(5, 5), false);
 	modifer.handleMouseRelease(&items);
 
 	auto results = modifer.selectedItems();
@@ -113,7 +113,7 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveClickedItem
 	connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
 
 	modifer.handleMousePress(clickPos, &items, false);
-	modifer.handleMouseMove(movePos);
+	modifer.handleMouseMove(movePos, false);
 
 	QCOMPARE(line.boundingRect().topLeft(), movePos - (clickPos - p1));
 }
@@ -140,12 +140,12 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveSelectedIte
 	QUndoStack undoStack;
 	connect(&modifer, &AnnotationItemModifier::newCommand, &undoStack, &QUndoStack::push);
 	modifer.handleMousePress(p1 + QPointF(-5, -5), &items, false);
-	modifer.handleMouseMove(p4 + QPointF(5, 5));
+	modifer.handleMouseMove(p4 + QPointF(5, 5), false);
 	modifer.handleMouseRelease(&items);
 	QCOMPARE(modifer.selectedItems().count(), 2);
 
 	modifer.handleMousePress(clickPos, &items, false);
-	modifer.handleMouseMove(movePos);
+	modifer.handleMouseMove(movePos, false);
 
 	QCOMPARE(line1.boundingRect().topLeft(), movePos - (clickPos - p1));
 	QCOMPARE(line2.boundingRect().topLeft(), movePos - (clickPos - p3));

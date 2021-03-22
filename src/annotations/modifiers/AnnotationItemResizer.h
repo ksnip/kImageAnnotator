@@ -36,12 +36,11 @@ public:
     ~AnnotationItemResizer() override;
     QRectF boundingRect() const override;
     void grabHandle(const QPointF &pos);
-    void moveHandle(const QPointF &pos);
+    void moveHandle(const QPointF &pos, bool isCtrlPressed);
     void releaseHandle();
     bool isResizing() const;
     void refresh();
     bool isItemVisible() const;
-	void setKeepAspectRatio(bool keepAspectRatio);
     Qt::CursorShape cursorForPos(const QPointF &pos);
     Qt::CursorShape cursorForCurrentHandle();
 
@@ -57,7 +56,6 @@ private:
     ZoomValueProvider *mZoomValueProvider;
     int mCurrentHandle;
     QPointF mClickOffset;
-	bool mKeepAspectRatio;
 
     void applyZoomValue(double value);
 };

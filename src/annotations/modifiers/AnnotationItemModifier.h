@@ -39,7 +39,7 @@ public:
 	explicit AnnotationItemModifier(ZoomValueProvider *zoomValueProvider);
 	~AnnotationItemModifier() override;
 	void handleMousePress(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
-	void handleMouseMove(const QPointF &pos);
+	void handleMouseMove(const QPointF &pos, bool isCtrlPressed);
 	void handleMouseRelease(QList<AbstractAnnotationItem *> *items);
 	void handleMouseDoubleClick(const QPointF &pos, QList<AbstractAnnotationItem *> *items);
 	void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
