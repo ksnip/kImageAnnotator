@@ -23,7 +23,7 @@ namespace kImageAnnotator {
 
 AnnotationArea::AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider, IDevicePixelRatioScaler *devicePixelRatioScaler, ZoomValueProvider *zoomValueProvider) :
 	mUndoStack(new UndoStack),
-	mImage(nullptr),
+	mBackgroundImage(nullptr),
 	mCurrentItem(nullptr),
 	mUndoAction(nullptr),
 	mRedoAction(nullptr),
@@ -89,13 +89,13 @@ void AnnotationArea::insertImageItem(const QPointF &position, const QPixmap &ima
 
 void AnnotationArea::replaceBackgroundImage(const QPixmap &image)
 {
-	mImage = QSharedPointer<QGraphicsPixmapItem>(addPixmap(image));
-	setSceneRect(mImage->boundingRect());
+	mBackgroundImage = QSharedPointer<QGraphicsPixmapItem>(addPixmap(image));
+	setSceneRect(mBackgroundImage->boundingRect());
 }
 
 QImage AnnotationArea::image()
 {
-	if (mImage == nullptr) {
+	if (mBackgroundImage == nullptr) {
 		return QImage();
 	}
 
@@ -114,7 +114,7 @@ QImage AnnotationArea::image()
 	painter.setRenderHint(QPainter::Antialiasing);
 	render(&painter, QRectF(), scaledSceneRect);
 
-	setSceneRect(mImage->boundingRect()); // Reset scene rect
+	setSceneRect(mBackgroundImage->boundingRect()); // Reset scene rect
 
 	return image;
 }
@@ -152,13 +152,19 @@ void AnnotationArea::removeAnnotationItem(AbstractAnnotationItem *item)
 void AnnotationArea::crop(const QRectF &rect)
 {
 	auto scaledRect = mDevicePixelRatioScaler->scale(rect);
-	mUndoStack->push(new CropCommand(mImage.data(), scaledRect, this));
+	mUndoStack->push(new CropCommand(mBackgroundImage.data(), scaledRect, this));
 	emit imageChanged();
 }
 
 void AnnotationArea::scale(const QSize &size)
 {
-	mUndoStack->push(new ScaleCommand(mImage.data(), size, this));
+	mUndoStack->push(new ScaleCommand(mBackgroundImage.data(), size, this));
+	emit imageChanged();
+}
+
+void AnnotationArea::rotate(qreal angel)
+{
+	mUndoStack->push(new RotateCommand(mBackgroundImage.data(), angel, this));
 	emit imageChanged();
 }
 
@@ -191,7 +197,7 @@ int AnnotationArea::numberToolSeed() const
 void AnnotationArea::imageEffectChanged(ImageEffects effect)
 {
 	auto graphicsEffect = ImageEffectFactory::create(effect);
-	mImage->setGraphicsEffect(graphicsEffect);
+	mBackgroundImage->setGraphicsEffect(graphicsEffect);
 	for (auto &item : *mItems) {
 		auto itemGraphicsEffect = ImageEffectFactory::create(effect);
 		item->applyImageEffect(itemGraphicsEffect);
@@ -206,8 +212,8 @@ void AnnotationArea::setCanvasRect(const QRectF &rect)
 QRectF AnnotationArea::canvasRect() const
 {
 	if(!isCustomCanvasRect()) {
-		auto graphicsEffectRect = mImage->graphicsEffect()->boundingRect();
-		return annotationItemsBoundingRect().united(graphicsEffectRect);
+		auto backgroundImageRect = mBackgroundImage->graphicsEffect()->boundingRect();
+		return annotationItemsBoundingRect().united(backgroundImageRect);
 	} else {
 		return mCanvasRect;
 	}

@@ -47,6 +47,7 @@ public:
 	void showAnnotator();
 	void showCropper();
 	void showScaler();
+	void showRotator();
 	void showCanvasModifier();
 
 public Q_SLOTS:

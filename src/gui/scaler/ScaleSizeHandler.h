@@ -29,7 +29,7 @@ class ScaleSizeHandler : public QObject
 {
 Q_OBJECT
 public:
-	explicit ScaleSizeHandler() = default;
+	explicit ScaleSizeHandler();
 	~ScaleSizeHandler() override = default;
 	void setSize(QSize size);
 	QSize size() const;

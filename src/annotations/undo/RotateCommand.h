@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,34 +17,33 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SCALECOMMAND_H
-#define KIMAGEANNOTATOR_SCALECOMMAND_H
+#ifndef KIMAGEANNOTATOR_ROTATECOMMAND_H
+#define KIMAGEANNOTATOR_ROTATECOMMAND_H
 
 #include <QUndoCommand>
+#include <QBitmap>
 
 #include "src/annotations/core/AnnotationArea.h"
 
 namespace kImageAnnotator {
 
-class ScaleCommand : public QUndoCommand
+class RotateCommand : public QUndoCommand
 {
 public:
-	ScaleCommand(QGraphicsPixmapItem *backgroundImage, const QSize &newSize, AnnotationArea *annotationArea);
-	~ScaleCommand();
+	RotateCommand(QGraphicsPixmapItem *backgroundImage, qreal angel, AnnotationArea *annotationArea);
+	~RotateCommand() override = default;
 	void undo() override;
 	void redo() override;
 
 private:
-	AnnotationArea *mAnnotationArea;
 	QGraphicsPixmapItem *mBackgroundImage;
-	QPixmap *mOldImage;
-	QPixmap *mNewImage;
-	qreal mWidthScaleFactor;
-	qreal mHeightScaleFactor;
+	AnnotationArea *mAnnotationArea;
+	QPixmap mOldPixmap;
+	QPixmap mNewPixmap;
 
-	void scaleItems(qreal widthScaleFactor, qreal heightScaleFactor);
+	static QPixmap rotatePixmap(const QPixmap &sourcePixmap, qreal angel);
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_SCALECOMMAND_H
+#endif //KIMAGEANNOTATOR_ROTATECOMMAND_H

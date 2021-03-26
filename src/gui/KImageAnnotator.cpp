@@ -214,6 +214,12 @@ void KImageAnnotator::showScaler()
 	d->mCoreView.showScaler();
 }
 
+void KImageAnnotator::showRotator()
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.showRotator();
+}
+
 void KImageAnnotator::showCanvasModifier()
 {
 	Q_D(KImageAnnotator);

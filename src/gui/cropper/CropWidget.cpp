@@ -97,7 +97,7 @@ void CropWidget::initGui()
 
 	mPanelLayout->setAlignment(Qt::AlignCenter);
 
-	auto width = ScaledSizeProvider::scaledWidth(40);
+	auto width = ScaledSizeProvider::scaledWidth(80);
 
 	mPositionXLabel->setText(tr("X:"));
 	mPanelLayout->addWidget(mPositionXLabel, 0, Qt::AlignCenter);

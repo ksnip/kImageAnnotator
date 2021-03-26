@@ -29,7 +29,7 @@ namespace kImageAnnotator {
 class CropCommand : public QUndoCommand
 {
 public:
-	CropCommand(QGraphicsPixmapItem *image, const QRectF &cropRect, AnnotationArea *annotationArea);
+	CropCommand(QGraphicsPixmapItem *backgroundImage, const QRectF &cropRect, AnnotationArea *annotationArea);
 	~CropCommand() override = default;
 	void undo() override;
 	void redo() override;
@@ -38,7 +38,7 @@ private:
 	AnnotationArea *mAnnotationArea;
 	QPixmap mOriginalImage;
 	QPixmap mCroppedImage;
-	QGraphicsPixmapItem *mImageItem;
+	QGraphicsPixmapItem *mBackgroundImage;
 	QPointF mNewItemOffset;
 };
 

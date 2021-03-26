@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,11 +17,11 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "ScaleWidget.h"
+#include "RotateWidget.h"
 
 namespace kImageAnnotator {
 
-kImageAnnotator::ScaleWidget::ScaleWidget() :
+RotateWidget::RotateWidget() :
 	mAnnotationArea(nullptr),
 	mView(new QGraphicsView),
 	mMainLayout(new QVBoxLayout(this))
@@ -29,13 +29,13 @@ kImageAnnotator::ScaleWidget::ScaleWidget() :
 	initGui();
 }
 
-ScaleWidget::~ScaleWidget()
+RotateWidget::~RotateWidget()
 {
 	delete mMainLayout;
 	delete mView;
 }
 
-void ScaleWidget::activate(AnnotationArea *annotationArea)
+void RotateWidget::activate(AnnotationArea *annotationArea)
 {
 	Q_ASSERT(annotationArea != nullptr);
 
@@ -44,25 +44,26 @@ void ScaleWidget::activate(AnnotationArea *annotationArea)
 	showDialog();
 }
 
-void ScaleWidget::initGui()
+void RotateWidget::initGui()
 {
 	mMainLayout->addWidget(mView);
 	setLayout(mMainLayout);
 }
 
-void ScaleWidget::showDialog()
+void RotateWidget::showDialog()
 {
-	auto sceneSize = mAnnotationArea->sceneRect().size();
-	ScaleDialog scaleDialog(sceneSize.toSize(), this);
-	connect(&scaleDialog, &ScaleDialog::finished, this, &ScaleWidget::scale);
-	scaleDialog.exec();
+	RotateDialog rotateDialog(this);
+	connect(&rotateDialog, &RotateDialog::finished, this, &RotateWidget::rotate);
+	rotateDialog.exec();
 
 	emit closing();
 }
 
-void ScaleWidget::scale(const QSize &newSize)
+void RotateWidget::rotate(qreal angel)
 {
-	mAnnotationArea->scale(newSize);
+	Q_ASSERT(mAnnotationArea != nullptr);
+
+	mAnnotationArea->rotate(angel);
 }
 
 } // namespace kImageAnnotator

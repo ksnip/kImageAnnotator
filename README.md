@@ -29,7 +29,7 @@ to be installed before building kImageAnnotator. Install instructions can be fou
 
 You can either build the project as shared library by providing the flag `-DBUILD_SHARED_LIBS=ON`
 to cmake or `-DBUILD_SHARED_LIBS=OFF` to build as static library. When no flag is provided a 
-static library is build. For windows we currenlty only support building as static library.
+static library is build. For windows we currently only support building as static library.
 
 ### Integrate library
 

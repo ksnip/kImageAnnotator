@@ -46,6 +46,7 @@
 #include "src/annotations/undo/PasteCommand.h"
 #include "src/annotations/undo/ChangePropertiesCommand.h"
 #include "src/annotations/undo/ModifyCanvasCommand.h"
+#include "src/annotations/undo/RotateCommand.h"
 #include "src/annotations/core/ZoomValueProvider.h"
 #include "src/annotations/core/imageEffects/ImageEffectFactory.h"
 
@@ -66,6 +67,7 @@ public:
     virtual void removeAnnotationItem(AbstractAnnotationItem *item);
     virtual void crop(const QRectF& rect);
     virtual void scale(const QSize& size);
+    virtual void rotate(qreal angel);
     virtual void clearSelection();
 	virtual void toolChanged(Tools toolType) override;
 	void itemSettingsChanged() override;
@@ -98,7 +100,7 @@ private:
 	AbstractSettingsProvider *mSettingsProvider;
 	AnnotationPropertiesFactory *mPropertiesFactory;
 	AnnotationItemFactory *mItemFactory;
-    QSharedPointer<QGraphicsPixmapItem> mImage;
+    QSharedPointer<QGraphicsPixmapItem> mBackgroundImage;
     AbstractAnnotationItem *mCurrentItem;
     AnnotationItemModifier *mItemModifier;
     QList<AbstractAnnotationItem*> *mItems;

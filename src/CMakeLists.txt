@@ -20,6 +20,8 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionMoveHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionHandles.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/BaseSelectionView.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/rotator/RotateDialog.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/rotator/RotateWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleDialog.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/scaler/ScaleSizeHandler.cpp
@@ -28,7 +30,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AnnotationItemFactory.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AnnotationPropertiesFactory.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/AbstractSettingsProvider.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/imageEffects/ImageEffectFactory.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/imageEffects/ImageEffectFactory.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/imageEffects/NoImageEffect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/imageEffects/DropShadowImageEffect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/imageEffects/BorderImageEffect.cpp
@@ -90,6 +92,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ArrangeCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/CropCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ScaleCommand.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/RotateCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/PasteCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ChangePropertiesCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ModifyCanvasCommand.cpp

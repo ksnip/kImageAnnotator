@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,60 +17,51 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SCALEDIALOG_H
-#define KIMAGEANNOTATOR_SCALEDIALOG_H
+#ifndef KIMAGEANNOTATOR_ROTATEDIALOG_H
+#define KIMAGEANNOTATOR_ROTATEDIALOG_H
 
 #include <QDialog>
-#include <QCheckBox>
-#include <QLabel>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QPushButton>
 #include <QGridLayout>
-#include <QGroupBox>
-#include <QVBoxLayout>
-#include <QtWidgets/QSpinBox>
+#include <QRadioButton>
 
-#include "ScaleSizeHandler.h"
 #include "src/widgets/CustomSpinBox.h"
 
 namespace kImageAnnotator {
 
-class ScaleDialog : public QDialog
+class RotateDialog : public QDialog
 {
 Q_OBJECT
 public:
-	explicit ScaleDialog(const QSize &imageSize, QWidget *parent = nullptr);
-	~ScaleDialog() override;
+	explicit RotateDialog(QWidget *parent = nullptr);
+	~RotateDialog() override;
 
 signals:
-	void finished(const QSize &newSize) const;
+	void finished(qreal angle) const;
 
 private:
-	ScaleSizeHandler mSizeHandler;
-	QCheckBox *mKeepAspectRatioCheckBox;
-	QLabel *mWidthPixelLabel;
-	QLabel *mHeightPixelLabel;
-	QLabel *mWidthPercentLabel;
-	QLabel *mHeightPercentLabel;
-	CustomSpinBox *mWidthPixelSpinBox;
-	CustomSpinBox *mHeightPixelSpinBox;
-	CustomSpinBox *mWidthPercentSpinBox;
-	CustomSpinBox *mHeightPercentSpinBox;
+	QRadioButton *m180RadioButton;
+	QRadioButton *m90ClockwiseRadioButton;
+	QRadioButton *m90CounterClockwiseRadioButton;
+	QRadioButton *mArbitraryRotationRadioButton;
+	CustomSpinBox *mArbitraryRotationSpinBox;
 	QPushButton *mOkButton;
 	QPushButton *mCancelButton;
-	QGridLayout *mPixelGridLayout;
-	QGridLayout *mPercentGridLayout;
-	QGroupBox *mPixelGroupBox;
-	QGroupBox *mPercentGroupBox;
+	QGridLayout *mRadioButtonLayout;
 	QHBoxLayout *mButtonRowLayout;
 	QVBoxLayout *mMainLayout;
 
 	void initGui();
+	void setDefault();
 
 private slots:
-	void scale();
+	void rotate();
 	void cancel();
+	void selectionChanged();
 };
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_SCALEDIALOG_H
+#endif //KIMAGEANNOTATOR_ROTATEDIALOG_H

@@ -26,11 +26,13 @@ CoreView::CoreView(Config *config) :
 	mAnnotationWidget(new AnnotationWidget(mConfig)),
 	mCropWidget(new CropWidget),
 	mScaleWidget(new ScaleWidget),
+	mRotateWidget(new RotateWidget),
 	mModifyCanvasWidget(new ModifyCanvasWidget)
 {
 	addWidget(mAnnotationWidget);
 	addWidget(mCropWidget);
 	addWidget(mScaleWidget);
+	addWidget(mRotateWidget);
 	addWidget(mModifyCanvasWidget);
 
 	connect(mAnnotationWidget, &AnnotationWidget::imageChanged, this, &CoreView::imageChanged);
@@ -40,6 +42,7 @@ CoreView::CoreView(Config *config) :
 	connect(mAnnotationWidget, &AnnotationWidget::tabContextMenuOpened, this, &CoreView::tabContextMenuOpened);
 	connect(mCropWidget, &CropWidget::closing, this, &CoreView::showAnnotator);
 	connect(mScaleWidget, &ScaleWidget::closing, this, &CoreView::showAnnotator);
+	connect(mRotateWidget, &RotateWidget::closing, this, &CoreView::showAnnotator);
 	connect(mModifyCanvasWidget, &ModifyCanvasWidget::closing, this, &CoreView::showAnnotator);
 }
 
@@ -48,6 +51,7 @@ CoreView::~CoreView()
 	delete mAnnotationWidget;
 	delete mCropWidget;
 	delete mScaleWidget;
+	delete mRotateWidget;
 	delete mModifyCanvasWidget;
 }
 
@@ -106,6 +110,14 @@ void CoreView::showScaler()
 	mAnnotationWidget->clearSelection();
 	setCurrentWidget(mScaleWidget);
 	mScaleWidget->activate(mAnnotationWidget->annotationArea());
+}
+
+void CoreView::showRotator()
+{
+	mAnnotationWidget->setUndoEnabled(false);
+	mAnnotationWidget->clearSelection();
+	setCurrentWidget(mRotateWidget);
+	mRotateWidget->activate(mAnnotationWidget->annotationArea());
 }
 
 void CoreView::showCanvasModifier()

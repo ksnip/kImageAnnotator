@@ -21,14 +21,14 @@
 
 namespace kImageAnnotator {
 
-kImageAnnotator::ScaleCommand::ScaleCommand(QGraphicsPixmapItem *image, const QSize &newSize, kImageAnnotator::AnnotationArea *annotationArea)
+kImageAnnotator::ScaleCommand::ScaleCommand(QGraphicsPixmapItem *backgroundImage, const QSize &newSize, kImageAnnotator::AnnotationArea *annotationArea)
 {
 	mAnnotationArea = annotationArea;
-	mImage = image;
-	auto currentSize = image->boundingRect().size();
+	mBackgroundImage = backgroundImage;
+	auto currentSize = backgroundImage->boundingRect().size();
 	mWidthScaleFactor = (qreal) newSize.width() / currentSize.width();
 	mHeightScaleFactor = (qreal) newSize.height() / currentSize.height();
-	mOldImage = new QPixmap(image->pixmap());
+	mOldImage = new QPixmap(backgroundImage->pixmap());
 	mNewImage = new QPixmap(mOldImage->scaled(newSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
 }
 
@@ -41,24 +41,24 @@ ScaleCommand::~ScaleCommand()
 void ScaleCommand::undo()
 {
 	scaleItems(1 / mWidthScaleFactor, 1 / mHeightScaleFactor);
-	mImage->resetTransform();
-	mImage->setPixmap(*mOldImage);
-	mAnnotationArea->setSceneRect(mImage->boundingRect());
+	mBackgroundImage->resetTransform();
+	mBackgroundImage->setPixmap(*mOldImage);
+	mAnnotationArea->setSceneRect(mBackgroundImage->boundingRect());
 }
 
 void ScaleCommand::redo()
 {
 	scaleItems(mWidthScaleFactor, mHeightScaleFactor);
-	mImage->resetTransform();
-	mImage->setPixmap(*mNewImage);
-	mAnnotationArea->setSceneRect(mImage->boundingRect());
+	mBackgroundImage->resetTransform();
+	mBackgroundImage->setPixmap(*mNewImage);
+	mAnnotationArea->setSceneRect(mBackgroundImage->boundingRect());
 }
 
 void ScaleCommand::scaleItems(qreal widthScaleFactor, qreal heightScaleFactor)
 {
 	for (auto base : mAnnotationArea->items()) {
 		auto item = dynamic_cast<AbstractAnnotationItem *>(base);
-		if (item) {
+		if (item != nullptr) {
 			item->scale(widthScaleFactor, heightScaleFactor);
 		}
 	}

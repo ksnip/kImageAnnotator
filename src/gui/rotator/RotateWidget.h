@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,34 +17,39 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SCALECOMMAND_H
-#define KIMAGEANNOTATOR_SCALECOMMAND_H
+#ifndef KIMAGEANNOTATOR_ROTATEWIDGET_H
+#define KIMAGEANNOTATOR_ROTATEWIDGET_H
 
-#include <QUndoCommand>
+#include <QWidget>
+#include <QGraphicsView>
+#include <QVBoxLayout>
 
+#include "RotateDialog.h"
 #include "src/annotations/core/AnnotationArea.h"
 
 namespace kImageAnnotator {
 
-class ScaleCommand : public QUndoCommand
+class RotateWidget : public QWidget
 {
+Q_OBJECT
 public:
-	ScaleCommand(QGraphicsPixmapItem *backgroundImage, const QSize &newSize, AnnotationArea *annotationArea);
-	~ScaleCommand();
-	void undo() override;
-	void redo() override;
+	explicit RotateWidget();
+	~RotateWidget() override;
+	void activate(AnnotationArea *annotationArea);
+
+signals:
+	void closing() const;
 
 private:
 	AnnotationArea *mAnnotationArea;
-	QGraphicsPixmapItem *mBackgroundImage;
-	QPixmap *mOldImage;
-	QPixmap *mNewImage;
-	qreal mWidthScaleFactor;
-	qreal mHeightScaleFactor;
+	QGraphicsView *mView;
+	QVBoxLayout *mMainLayout;
 
-	void scaleItems(qreal widthScaleFactor, qreal heightScaleFactor);
+	void initGui();
+	void showDialog();
+	void rotate(qreal angel);
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_SCALECOMMAND_H
+#endif //KIMAGEANNOTATOR_ROTATEWIDGET_H

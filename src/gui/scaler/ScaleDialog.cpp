@@ -21,7 +21,25 @@
 
 namespace kImageAnnotator {
 
-ScaleDialog::ScaleDialog(const QSize &imageSize, QWidget *parent) : QDialog(parent, Qt::WindowTitleHint | Qt::WindowCloseButtonHint)
+ScaleDialog::ScaleDialog(const QSize &imageSize, QWidget *parent) :
+	QDialog(parent, Qt::WindowTitleHint | Qt::WindowCloseButtonHint),
+	mKeepAspectRatioCheckBox(new QCheckBox),
+	mWidthPixelLabel(new QLabel),
+	mHeightPixelLabel(new QLabel),
+	mWidthPercentLabel(new QLabel),
+	mHeightPercentLabel(new QLabel),
+	mWidthPixelSpinBox(new CustomSpinBox(this)),
+	mHeightPixelSpinBox(new CustomSpinBox(this)),
+	mWidthPercentSpinBox(new CustomSpinBox(this)),
+	mOkButton(new QPushButton(this)),
+	mCancelButton(new QPushButton(this)),
+	mHeightPercentSpinBox(new CustomSpinBox(this)),
+	mPixelGridLayout(new QGridLayout),
+	mPercentGridLayout(new QGridLayout),
+	mPixelGroupBox(new QGroupBox(this)),
+	mPercentGroupBox(new QGroupBox(this)),
+	mButtonRowLayout(new QHBoxLayout),
+	mMainLayout(new QVBoxLayout)
 {
 	setWindowTitle(tr("Scale Image"));
 
@@ -53,24 +71,18 @@ ScaleDialog::~ScaleDialog()
 
 void ScaleDialog::initGui()
 {
-	mKeepAspectRatioCheckBox = new QCheckBox;
 	mKeepAspectRatioCheckBox->setText(tr("Keep Aspect Ratio"));
 	connect(mKeepAspectRatioCheckBox, &QCheckBox::toggled, &mSizeHandler, &ScaleSizeHandler::setAspectRatio);
 	mKeepAspectRatioCheckBox->setChecked(true);
 
-	mWidthPixelLabel = new QLabel;
 	mWidthPixelLabel->setText(tr("Width:"));
 
-	mHeightPixelLabel = new QLabel;
 	mHeightPixelLabel->setText(tr("Height:"));
 
-	mWidthPercentLabel = new QLabel;
 	mWidthPercentLabel->setText(tr("Width:"));
 
-	mHeightPercentLabel = new QLabel;
 	mHeightPercentLabel->setText(tr("Height:"));
 
-	mWidthPixelSpinBox = new CustomSpinBox(this);
 	mWidthPixelSpinBox->setSuffix(QLatin1String("px"));
 	mWidthPixelSpinBox->setMinimum(1);
 	mWidthPixelSpinBox->setMaximum(4000);
@@ -79,7 +91,6 @@ void ScaleDialog::initGui()
 	connect(mWidthPixelSpinBox, &CustomSpinBox::valueChanged, &mSizeHandler, &ScaleSizeHandler::setWidthPixel);
 	connect(&mSizeHandler, &ScaleSizeHandler::widthPixelChanged, mWidthPixelSpinBox, &CustomSpinBox::setValueSilent);
 
-	mHeightPixelSpinBox = new CustomSpinBox(this);
 	mHeightPixelSpinBox->setSuffix(QLatin1String("px"));
 	mHeightPixelSpinBox->setMinimum(1);
 	mHeightPixelSpinBox->setMaximum(4000);
@@ -88,7 +99,6 @@ void ScaleDialog::initGui()
 	connect(mHeightPixelSpinBox, &CustomSpinBox::valueChanged, &mSizeHandler, &ScaleSizeHandler::setHeightPixel);
 	connect(&mSizeHandler, &ScaleSizeHandler::heightPixelChanged, mHeightPixelSpinBox, &CustomSpinBox::setValueSilent);
 
-	mWidthPercentSpinBox = new CustomSpinBox(this);
 	mWidthPercentSpinBox->setSuffix(QLatin1String("%"));
 	mWidthPercentSpinBox->setMinimum(1);
 	mWidthPercentSpinBox->setMaximum(400);
@@ -97,7 +107,6 @@ void ScaleDialog::initGui()
 	connect(mWidthPercentSpinBox, &CustomSpinBox::valueChanged, &mSizeHandler, &ScaleSizeHandler::setWidthPercent);
 	connect(&mSizeHandler, &ScaleSizeHandler::widthPercentChanged, mWidthPercentSpinBox, &CustomSpinBox::setValueSilent);
 
-	mHeightPercentSpinBox = new CustomSpinBox(this);
 	mHeightPercentSpinBox->setSuffix(QLatin1String("%"));
 	mHeightPercentSpinBox->setMinimum(1);
 	mHeightPercentSpinBox->setMaximum(400);
@@ -106,40 +115,32 @@ void ScaleDialog::initGui()
 	connect(mHeightPercentSpinBox, &CustomSpinBox::valueChanged, &mSizeHandler, &ScaleSizeHandler::setHeightPercent);
 	connect(&mSizeHandler, &ScaleSizeHandler::heightPercentChanged, mHeightPercentSpinBox, &CustomSpinBox::setValueSilent);
 
-	mOkButton = new QPushButton;
 	mOkButton->setText(tr("OK"));
 	connect(mOkButton, &QPushButton::clicked, this, &ScaleDialog::scale);
 
-	mCancelButton = new QPushButton;
 	mCancelButton->setText(tr("Cancel"));
 	connect(mCancelButton, &QPushButton::clicked, this, &ScaleDialog::cancel);
 
-	mPixelGridLayout = new QGridLayout;
 	mPixelGridLayout->addWidget(mWidthPixelLabel, 0, 0);
 	mPixelGridLayout->addWidget(mWidthPixelSpinBox, 0, 1);
 	mPixelGridLayout->addWidget(mHeightPixelLabel, 1, 0);
 	mPixelGridLayout->addWidget(mHeightPixelSpinBox, 1, 1);
 
-	mPercentGridLayout = new QGridLayout;
 	mPercentGridLayout->addWidget(mWidthPercentLabel, 0, 0);
 	mPercentGridLayout->addWidget(mWidthPercentSpinBox, 0, 1);
 	mPercentGridLayout->addWidget(mHeightPercentLabel, 1, 0);
 	mPercentGridLayout->addWidget(mHeightPercentSpinBox, 1, 1);
 
-	mPixelGroupBox = new QGroupBox;
 	mPixelGroupBox->setTitle(tr("Pixel"));
 	mPixelGroupBox->setLayout(mPixelGridLayout);
 
-	mPercentGroupBox = new QGroupBox;
 	mPercentGroupBox->setTitle(tr("Percent"));
 	mPercentGroupBox->setLayout(mPercentGridLayout);
 
-	mButtonRowLayout = new QHBoxLayout;
 	mButtonRowLayout->addWidget(mOkButton);
 	mButtonRowLayout->addWidget(mCancelButton);
 	mButtonRowLayout->setAlignment(Qt::AlignRight);
 
-	mMainLayout = new QVBoxLayout;
 	mMainLayout->addWidget(mKeepAspectRatioCheckBox);
 	mMainLayout->addWidget(mPixelGroupBox);
 	mMainLayout->addWidget(mPercentGroupBox);

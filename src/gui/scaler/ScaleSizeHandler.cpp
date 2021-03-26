@@ -21,6 +21,12 @@
 
 namespace kImageAnnotator {
 
+ScaleSizeHandler::ScaleSizeHandler() :
+	mKeepAspectRatio(true)
+{
+
+}
+
 void ScaleSizeHandler::setSize(QSize size)
 {
 	mSize = size;
