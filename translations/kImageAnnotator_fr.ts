@@ -177,19 +177,19 @@ pour inclure l’image d&apos;arrière-plan.</translation>
     </message>
     <message>
         <source>X:</source>
-        <translation>X :</translation>
+        <translation>X&#xa0;:</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation>Y :</translation>
+        <translation>Y&#xa0;:</translation>
     </message>
     <message>
         <source>W:</source>
-        <translation>L :</translation>
+        <translation>L&#xa0;:</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation>H :</translation>
+        <translation>H&#xa0;:</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -198,6 +198,66 @@ pour inclure l’image d&apos;arrière-plan.</translation>
     <message>
         <source>Cancel</source>
         <translation>Annuler</translation>
+    </message>
+    <message>
+        <source>Color:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Canvas Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::RotateDialog</name>
+    <message>
+        <source>Rotate Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>180°</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>90° Clockwise</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>90° Counter Clockwise</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arbitrary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Positive values rotate clockwise, negative values counter clockwise.
+Rotating by non 90° multipliers might introduce loss of quality.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Horizontal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vertical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished">OK</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Annuler</translation>
+    </message>
+    <message>
+        <source>Rotate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flip</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -328,8 +388,16 @@ pour inclure l’image d&apos;arrière-plan.</translation>
 <context>
     <name>kImageAnnotator::ZoomIndicator</name>
     <message>
-        <source>Zoom Level</source>
-        <translation>Niveau de zoom</translation>
+        <source>Zoom In (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom Out (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Zoom (%1)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

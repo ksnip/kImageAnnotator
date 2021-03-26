@@ -196,6 +196,66 @@ to include the background image.</source>
     </message>
     <message>
         <source>Cancel</source>
+        <translation type="unfinished">İptal</translation>
+    </message>
+    <message>
+        <source>Color:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Canvas Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::RotateDialog</name>
+    <message>
+        <source>Rotate Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>180°</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>90° Clockwise</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>90° Counter Clockwise</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arbitrary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Positive values rotate clockwise, negative values counter clockwise.
+Rotating by non 90° multipliers might introduce loss of quality.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Horizontal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vertical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">İptal</translation>
+    </message>
+    <message>
+        <source>Rotate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flip</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -223,7 +283,7 @@ to include the background image.</source>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İptal</translation>
     </message>
     <message>
         <source>Pixel</source>
@@ -327,7 +387,15 @@ to include the background image.</source>
 <context>
     <name>kImageAnnotator::ZoomIndicator</name>
     <message>
-        <source>Zoom Level</source>
+        <source>Zoom In (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom Out (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Zoom (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
