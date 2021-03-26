@@ -12,6 +12,7 @@
 * New: Add reset zoom keyboard shortcut with tooltip. ([#209](https://github.com/ksnip/kImageAnnotator/issues/209))
 * New: Add keyboard shortcut support for text tool. ([#183](https://github.com/ksnip/kImageAnnotator/issues/183))
 * New: Allow rotating background image. ([#199](https://github.com/ksnip/kImageAnnotator/issues/199))
+* New: Allow flipping background image horizontally and vertically. ([#221](https://github.com/ksnip/kImageAnnotator/issues/221))
 * Changed: Change drop shadow to cover all sites. ([#202](https://github.com/ksnip/kImageAnnotator/issues/202))
 * Fixed: Deleting item outside image doesn't decrease canvas size. ([#164](https://github.com/ksnip/kImageAnnotator/issues/164))
 * Fixed: Duplicate region of grayscale image has color. ([#214](https://github.com/ksnip/kImageAnnotator/issues/214))
