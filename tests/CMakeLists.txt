@@ -20,6 +20,7 @@ set(UNITTEST_SRC
 	annotations/undo/CropCommandTest.cpp
 	annotations/undo/ScaleCommandTest.cpp
 	annotations/undo/PasteCommandTest.cpp
+	annotations/undo/RotateCommandTest.cpp
 	annotations/items/helper/KeyInputHelperTest.cpp
 	annotations/items/helper/TextCursorTest.cpp
 	annotations/misc/AnnotationItemClipboardTest.cpp

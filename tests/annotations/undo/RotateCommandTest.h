@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,30 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SCALECOMMANDTEST_H
-#define KIMAGEANNOTATOR_SCALECOMMANDTEST_H
+#ifndef KIMAGEANNOTATOR_ROTATECOMMANDTEST_H
+#define KIMAGEANNOTATOR_ROTATECOMMANDTEST_H
 
 #include <QtTest>
 
-#include "src/annotations/undo/ScaleCommand.h"
+#include "src/annotations/undo/RotateCommand.h"
 #include "tests/mocks/MockSettingsProvider.h"
 #include "tests/mocks/MockDevicePixelRatioScaler.h"
 
-using kImageAnnotator::ScaleCommand;
+using kImageAnnotator::RotateCommand;
 using kImageAnnotator::AnnotationArea;
-using kImageAnnotator::Config;
-using kImageAnnotator::AnnotationRect;
-using kImageAnnotator::AnnotationProperties;
-using kImageAnnotator::PropertiesPtr;
 
-class ScaleCommandTest : public QObject
+class RotateCommandTest : public QObject
 {
 Q_OBJECT
 private slots:
-	void TestRedo_Should_ScaleImageToNewSize();
-	void TestUndo_Should_ScaleImageBackToOldSize();
-	void TestRedo_Should_ScaleItemsBySameFactorAsImage();
-	void TestUndo_Should_ScaleItemsBackToOriginalSize();
+	void Redo_Should_RotatePixmapByProvidedAngel();
+	void Redo_Should_TrimPixmapAndRemoveTransparentPart_WhenRotatedBy45DegreeTwice();
 };
 
-#endif // KIMAGEANNOTATOR_SCALECOMMANDTEST_H
+
+#endif //KIMAGEANNOTATOR_ROTATECOMMANDTEST_H
