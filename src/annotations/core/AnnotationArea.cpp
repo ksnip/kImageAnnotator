@@ -204,10 +204,6 @@ void AnnotationArea::imageEffectChanged(ImageEffects effect)
 {
 	auto graphicsEffect = ImageEffectFactory::create(effect);
 	mBackgroundImage->setGraphicsEffect(graphicsEffect);
-	for (auto &item : *mItems) {
-		auto itemGraphicsEffect = ImageEffectFactory::create(effect);
-		item->applyImageEffect(itemGraphicsEffect);
-	}
 }
 
 void AnnotationArea::setCanvasRect(const QRectF &rect)

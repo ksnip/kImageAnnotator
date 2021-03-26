@@ -36,11 +36,6 @@ bool AnnotationDuplicate::requiresSelectionAfterCreation() const
 	return true;
 }
 
-void AnnotationDuplicate::applyImageEffect(QGraphicsEffect *effect)
-{
-	setGraphicsEffect(effect);
-}
-
 void AnnotationDuplicate::updateShape()
 {
 	QPainterPath path;

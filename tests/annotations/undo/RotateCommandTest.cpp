@@ -70,7 +70,6 @@ void RotateCommandTest::Undo_Should_RevertBackToInitialImage()
 {
 	// arrange
 	auto oldSize = QSizeF(100, 50);
-	auto newSize = QSizeF(50, 100);
 	auto angel = 90;
 	QPixmap pixmap(oldSize.toSize());
 	QGraphicsPixmapItem image(pixmap);
