@@ -170,7 +170,7 @@ void AnnotationArea::rotate(qreal angel)
 
 void AnnotationArea::flip(FlipDirection direction)
 {
-	mUndoStack->push(new FlipCommand(mBackgroundImage.data(), direction, this));
+	mUndoStack->push(new FlipCommand(mBackgroundImage.data(), direction));
 	emit imageChanged();
 }
 

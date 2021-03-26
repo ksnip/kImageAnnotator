@@ -21,8 +21,8 @@
 #define KIMAGEANNOTATOR_FLIPCOMMAND_H
 
 #include <QUndoCommand>
+#include <QGraphicsPixmapItem>
 
-#include "src/annotations/core/AnnotationArea.h"
 #include "src/common/enum/FlipDirection.h"
 
 namespace kImageAnnotator {
@@ -30,14 +30,13 @@ namespace kImageAnnotator {
 class FlipCommand : public QUndoCommand
 {
 public:
-	FlipCommand(QGraphicsPixmapItem *backgroundImage, FlipDirection direction, AnnotationArea *annotationArea);
+	FlipCommand(QGraphicsPixmapItem *backgroundImage, FlipDirection direction);
 	~FlipCommand() override = default;
 	void undo() override;
 	void redo() override;
 
 private:
 	QGraphicsPixmapItem *mBackgroundImage;
-	AnnotationArea *mAnnotationArea;
 	QPixmap mOldPixmap;
 	QPixmap mNewPixmap;
 

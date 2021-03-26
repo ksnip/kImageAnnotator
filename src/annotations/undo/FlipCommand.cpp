@@ -21,9 +21,8 @@
 
 namespace kImageAnnotator {
 
-FlipCommand::FlipCommand(QGraphicsPixmapItem *backgroundImage, FlipDirection direction, AnnotationArea *annotationArea) :
+FlipCommand::FlipCommand(QGraphicsPixmapItem *backgroundImage, FlipDirection direction) :
 	mBackgroundImage(backgroundImage),
-	mAnnotationArea(annotationArea),
 	mOldPixmap(backgroundImage->pixmap())
 {
 	mNewPixmap = flipPixmap(mOldPixmap, direction);
@@ -32,13 +31,11 @@ FlipCommand::FlipCommand(QGraphicsPixmapItem *backgroundImage, FlipDirection dir
 void FlipCommand::undo()
 {
 	mBackgroundImage->setPixmap(mOldPixmap);
-	mAnnotationArea->setSceneRect(mBackgroundImage->boundingRect());
 }
 
 void FlipCommand::redo()
 {
 	mBackgroundImage->setPixmap(mNewPixmap);
-	mAnnotationArea->setSceneRect(mBackgroundImage->boundingRect());
 }
 
 QPixmap FlipCommand::flipPixmap(const QPixmap &sourcePixmap, FlipDirection direction)
