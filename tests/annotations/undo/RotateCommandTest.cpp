@@ -78,13 +78,13 @@ void RotateCommandTest::Undo_Should_RevertBackToInitialImage()
 	AnnotationArea annotationArea(&defaultParameters.config, &defaultParameters.settingsProvider, &defaultParameters.scaler, &defaultParameters.zoomValueProvider);
 	RotateCommand rotateCommand(&image, angel, &annotationArea);
 	rotateCommand.redo();
-	QVERIFY(image.pixmap() != pixmap);
+	QVERIFY(image.pixmap().toImage() != pixmap.toImage());
 
 	// act
 	rotateCommand.undo();
 
 	// assert
-	QCOMPARE(image.pixmap(), pixmap);
+	QCOMPARE(image.pixmap().toImage(), pixmap.toImage());
 	QCOMPARE(image.boundingRect().size(), oldSize);
 	QCOMPARE(annotationArea.sceneRect().size(), oldSize);
 }
