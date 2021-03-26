@@ -36,12 +36,14 @@
 #include "src/annotations/misc/AnnotationContextMenu.h"
 #include "src/backend/Config.h"
 #include "src/common/enum/Tools.h"
+#include "src/common/enum/FlipDirection.h"
 #include "src/common/helper/CursorHelper.h"
 #include "src/common/helper/KeyHelper.h"
 #include "src/common/provider/IDevicePixelRatioScaler.h"
 #include "src/common/filter/KeyEventListener.h"
 #include "src/annotations/undo/UndoStack.h"
 #include "src/annotations/undo/CropCommand.h"
+#include "src/annotations/undo/FlipCommand.h"
 #include "src/annotations/undo/ScaleCommand.h"
 #include "src/annotations/undo/PasteCommand.h"
 #include "src/annotations/undo/ChangePropertiesCommand.h"
@@ -68,6 +70,7 @@ public:
     virtual void crop(const QRectF& rect);
     virtual void scale(const QSize& size);
     virtual void rotate(qreal angel);
+    virtual void flip(FlipDirection direction);
     virtual void clearSelection();
 	virtual void toolChanged(Tools toolType) override;
 	void itemSettingsChanged() override;

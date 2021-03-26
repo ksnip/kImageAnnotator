@@ -29,8 +29,9 @@ using kImageAnnotator::KImageAnnotator;
 int main(int argc, char **argv)
 {
 	QApplication app(argc, argv);
-	QPixmap pixmap(QSize(500, 500));
-	pixmap.fill(QColor(Qt::darkGreen));
+//	QPixmap pixmap(QSize(500, 500));
+//	pixmap.fill(QColor(Qt::darkGreen));
+	QPixmap pixmap("/home/dporobic/ksnip_20210325-123122.png");
 	auto kImageAnnotator = new KImageAnnotator();
 	kImageAnnotator->addTab(pixmap, QLatin1String("image1"), QLatin1String("image1"));
 	kImageAnnotator->addTab(pixmap, QLatin1String("image2"), QLatin1String("image2"));

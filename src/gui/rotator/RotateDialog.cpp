@@ -27,12 +27,18 @@ RotateDialog::RotateDialog(QWidget *parent) :
 	m90ClockwiseRadioButton(new QRadioButton(this)),
 	m90CounterClockwiseRadioButton(new QRadioButton(this)),
 	mArbitraryRotationRadioButton(new QRadioButton(this)),
+	mFlipHorizontalRadioButton(new QRadioButton(this)),
+	mFlipVerticalRadioButton(new QRadioButton(this)),
 	mArbitraryRotationSpinBox(new CustomSpinBox(this)),
 	mOkButton(new QPushButton(this)),
 	mCancelButton(new QPushButton(this)),
-	mRadioButtonLayout(new QGridLayout),
+	mRotateRadioButtonLayout(new QGridLayout),
+	mFlipRadioButtonLayout(new QGridLayout),
+	mRotateButtonGroupBox(new QGroupBox(this)),
+	mFlipButtonGroupBox(new QGroupBox(this)),
 	mButtonRowLayout(new QHBoxLayout),
-	mMainLayout(new QVBoxLayout)
+	mMainLayout(new QVBoxLayout),
+	mButtonGroup(new QButtonGroup(this))
 {
 	setWindowTitle(tr("Rotate Image"));
 
@@ -47,51 +53,78 @@ RotateDialog::~RotateDialog()
 	delete m90ClockwiseRadioButton;
 	delete m90CounterClockwiseRadioButton;
 	delete mArbitraryRotationRadioButton;
+	delete mFlipHorizontalRadioButton;
+	delete mFlipVerticalRadioButton;
 	delete mArbitraryRotationSpinBox;
 	delete mOkButton;
 	delete mCancelButton;
-	delete mRadioButtonLayout;
+	delete mRotateRadioButtonLayout;
+	delete mFlipRadioButtonLayout;
+	delete mRotateButtonGroupBox;
+	delete mFlipButtonGroupBox;
 	delete mButtonRowLayout;
 	delete mMainLayout;
+	delete mButtonGroup;
 }
 
 void RotateDialog::initGui()
 {
 	m180RadioButton->setText(tr("180°"));
 	m180RadioButton->setChecked(true);
-	connect(m180RadioButton, &QRadioButton::toggled, this, &RotateDialog::selectionChanged);
+	mButtonGroup->addButton(m180RadioButton);
 
 	m90ClockwiseRadioButton->setText(tr("90° Clockwise"));
-	connect(m90ClockwiseRadioButton, &QRadioButton::toggled, this, &RotateDialog::selectionChanged);
+	mButtonGroup->addButton(m90ClockwiseRadioButton);
 
 	m90CounterClockwiseRadioButton->setText(tr("90° Counter Clockwise"));
-	connect(m90CounterClockwiseRadioButton, &QRadioButton::toggled, this, &RotateDialog::selectionChanged);
+	mButtonGroup->addButton(m90CounterClockwiseRadioButton);
 
 	mArbitraryRotationRadioButton->setText(tr("Arbitrary"));
-	connect(mArbitraryRotationRadioButton, &QRadioButton::toggled, this, &RotateDialog::selectionChanged);
+	mArbitraryRotationRadioButton->setToolTip(tr("Positive values rotate clockwise, negative values counter clockwise.\n"
+											        "Rotating by non 90° multipliers might introduce loss of quality."));
+	mButtonGroup->addButton(mArbitraryRotationRadioButton);
 
 	mArbitraryRotationSpinBox->setSuffix(QString::fromUtf8("°"));
+	mArbitraryRotationSpinBox->setToolTip(mArbitraryRotationRadioButton->toolTip());
 	mArbitraryRotationSpinBox->setMinimum(-360);
 	mArbitraryRotationSpinBox->setMaximum(360);
 
+	mFlipHorizontalRadioButton->setText(tr("Horizontal"));
+	mButtonGroup->addButton(mFlipHorizontalRadioButton);
+
+	mFlipVerticalRadioButton->setText(tr("Vertical"));
+	mButtonGroup->addButton(mFlipVerticalRadioButton);
+
 	mOkButton->setText(tr("OK"));
-	connect(mOkButton, &QPushButton::clicked, this, &RotateDialog::rotate);
+	connect(mOkButton, &QPushButton::clicked, this, &RotateDialog::finish);
 
 	mCancelButton->setText(tr("Cancel"));
 	connect(mCancelButton, &QPushButton::clicked, this, &RotateDialog::cancel);
 
-	mRadioButtonLayout->setColumnMinimumWidth(0, 20);
-	mRadioButtonLayout->addWidget(m180RadioButton, 0, 0, 1, 2);
-	mRadioButtonLayout->addWidget(m90ClockwiseRadioButton, 1, 0, 1, 2);
-	mRadioButtonLayout->addWidget(m90CounterClockwiseRadioButton, 2, 0, 1, 2);
-	mRadioButtonLayout->addWidget(mArbitraryRotationRadioButton, 3, 0, 1, 2);
-	mRadioButtonLayout->addWidget(mArbitraryRotationSpinBox, 4, 1, 1, 1);
+	connect(mButtonGroup, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &RotateDialog::selectionChanged);
+
+	mRotateRadioButtonLayout->setColumnMinimumWidth(0, 20);
+	mRotateRadioButtonLayout->addWidget(m180RadioButton, 0, 0, 1, 2);
+	mRotateRadioButtonLayout->addWidget(m90ClockwiseRadioButton, 1, 0, 1, 2);
+	mRotateRadioButtonLayout->addWidget(m90CounterClockwiseRadioButton, 2, 0, 1, 2);
+	mRotateRadioButtonLayout->addWidget(mArbitraryRotationRadioButton, 3, 0, 1, 2);
+	mRotateRadioButtonLayout->addWidget(mArbitraryRotationSpinBox, 4, 1, 1, 1);
+
+	mFlipRadioButtonLayout->addWidget(mFlipHorizontalRadioButton, 0, 0);
+	mFlipRadioButtonLayout->addWidget(mFlipVerticalRadioButton, 1, 0);
+
+	mRotateButtonGroupBox->setTitle(tr("Rotate"));
+	mRotateButtonGroupBox->setLayout(mRotateRadioButtonLayout);
+
+	mFlipButtonGroupBox->setTitle(tr("Flip"));
+	mFlipButtonGroupBox->setLayout(mFlipRadioButtonLayout);
 
 	mButtonRowLayout->addWidget(mOkButton);
 	mButtonRowLayout->addWidget(mCancelButton);
 	mButtonRowLayout->setAlignment(Qt::AlignRight);
 
-	mMainLayout->addLayout(mRadioButtonLayout);
+	mMainLayout->addWidget(mRotateButtonGroupBox);
+	mMainLayout->addWidget(mFlipButtonGroupBox);
 	mMainLayout->addLayout(mButtonRowLayout);
 
 	setLayout(mMainLayout);
@@ -105,16 +138,20 @@ void RotateDialog::setDefault()
 	selectionChanged();
 }
 
-void RotateDialog::rotate()
+void RotateDialog::finish()
 {
 	if (m180RadioButton->isChecked()) {
-		emit finished(180);
+		emit rotate(180);
 	} else if (m90ClockwiseRadioButton->isChecked()) {
-		emit finished(90);
+		emit rotate(90);
 	} else if (m90CounterClockwiseRadioButton->isChecked()) {
-		emit finished(-90);
-	} else {
-		emit finished(mArbitraryRotationSpinBox->value());
+		emit rotate(-90);
+	} else if (mArbitraryRotationRadioButton->isChecked()) {
+		emit rotate(mArbitraryRotationSpinBox->value());
+	} else if (mFlipHorizontalRadioButton->isChecked()) {
+		emit flip(FlipDirection::Horizontal);
+	} else if (mFlipVerticalRadioButton->isChecked()) {
+		emit flip(FlipDirection::Vertical);
 	}
 
 	close();

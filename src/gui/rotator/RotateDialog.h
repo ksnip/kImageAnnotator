@@ -26,8 +26,11 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QRadioButton>
+#include <QGroupBox>
+#include <QButtonGroup>
 
 #include "src/widgets/CustomSpinBox.h"
+#include "src/common/enum/FlipDirection.h"
 
 namespace kImageAnnotator {
 
@@ -39,25 +42,32 @@ public:
 	~RotateDialog() override;
 
 signals:
-	void finished(qreal angle) const;
+	void rotate(qreal angle) const;
+	void flip(FlipDirection direction) const;
 
 private:
 	QRadioButton *m180RadioButton;
 	QRadioButton *m90ClockwiseRadioButton;
 	QRadioButton *m90CounterClockwiseRadioButton;
 	QRadioButton *mArbitraryRotationRadioButton;
+	QRadioButton *mFlipHorizontalRadioButton;
+	QRadioButton *mFlipVerticalRadioButton;
 	CustomSpinBox *mArbitraryRotationSpinBox;
 	QPushButton *mOkButton;
 	QPushButton *mCancelButton;
-	QGridLayout *mRadioButtonLayout;
+	QGridLayout *mRotateRadioButtonLayout;
+	QGridLayout *mFlipRadioButtonLayout;
+	QGroupBox *mRotateButtonGroupBox;
+	QGroupBox *mFlipButtonGroupBox;
 	QHBoxLayout *mButtonRowLayout;
 	QVBoxLayout *mMainLayout;
+	QButtonGroup *mButtonGroup;
 
 	void initGui();
 	void setDefault();
 
 private slots:
-	void rotate();
+	void finish();
 	void cancel();
 	void selectionChanged();
 };

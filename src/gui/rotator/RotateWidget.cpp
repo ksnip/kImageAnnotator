@@ -53,7 +53,8 @@ void RotateWidget::initGui()
 void RotateWidget::showDialog()
 {
 	RotateDialog rotateDialog(this);
-	connect(&rotateDialog, &RotateDialog::finished, this, &RotateWidget::rotate);
+	connect(&rotateDialog, &RotateDialog::rotate, this, &RotateWidget::rotate);
+	connect(&rotateDialog, &RotateDialog::flip, this, &RotateWidget::flip);
 	rotateDialog.exec();
 
 	emit closing();
@@ -64,6 +65,13 @@ void RotateWidget::rotate(qreal angel)
 	Q_ASSERT(mAnnotationArea != nullptr);
 
 	mAnnotationArea->rotate(angel);
+}
+
+void RotateWidget::flip(FlipDirection direction)
+{
+	Q_ASSERT(mAnnotationArea != nullptr);
+
+	mAnnotationArea->flip(direction);
 }
 
 } // namespace kImageAnnotator

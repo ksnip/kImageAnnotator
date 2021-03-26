@@ -87,6 +87,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/AnnotationShapeCreator.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/AddCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/DeleteCommand.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/FlipCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/MoveCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ResizeCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ArrangeCommand.cpp

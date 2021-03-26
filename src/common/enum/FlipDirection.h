@@ -17,40 +17,19 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ROTATEWIDGET_H
-#define KIMAGEANNOTATOR_ROTATEWIDGET_H
-
-#include <QWidget>
-#include <QGraphicsView>
-#include <QVBoxLayout>
-
-#include "RotateDialog.h"
-#include "src/annotations/core/AnnotationArea.h"
+#ifndef KIMAGEANNOTATOR_FLIPDIRECTION_H
+#define KIMAGEANNOTATOR_FLIPDIRECTION_H
 
 namespace kImageAnnotator {
 
-class RotateWidget : public QWidget
+enum class FlipDirection
 {
-Q_OBJECT
-public:
-	explicit RotateWidget();
-	~RotateWidget() override;
-	void activate(AnnotationArea *annotationArea);
-
-signals:
-	void closing() const;
-
-private:
-	AnnotationArea *mAnnotationArea;
-	QGraphicsView *mView;
-	QVBoxLayout *mMainLayout;
-
-	void initGui();
-	void showDialog();
-	void rotate(qreal angel);
-	void flip(FlipDirection direction);
+	Horizontal,
+	Vertical
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ROTATEWIDGET_H
+Q_DECLARE_METATYPE(kImageAnnotator::FlipDirection);
+
+#endif //KIMAGEANNOTATOR_FLIPDIRECTION_H
