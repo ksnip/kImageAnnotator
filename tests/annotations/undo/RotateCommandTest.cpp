@@ -24,10 +24,10 @@
 void RotateCommandTest::Redo_Should_RotatePixmapByProvidedAngel()
 {
 	// arrange
-	auto oldSize = QSize(100, 50);
-	auto newSize = QSize(50, 100);
+	auto oldSize = QSizeF(100, 50);
+	auto newSize = QSizeF(50, 100);
 	auto angel = 90;
-	QPixmap pixmap(oldSize);
+	QPixmap pixmap(oldSize.toSize());
 	QGraphicsPixmapItem image(pixmap);
 
 	MockDefaultParameters defaultParameters;
@@ -45,10 +45,10 @@ void RotateCommandTest::Redo_Should_RotatePixmapByProvidedAngel()
 void RotateCommandTest::Redo_Should_TrimPixmapAndRemoveTransparentPart_WhenRotatedBy45DegreeTwice()
 {
 	// arrange
-	auto oldSize = QSize(100, 50);
-	auto newSize = QSize(50, 100) + QSize(3, 3); // Rotating by non 90° multipliers creates fuzzy edges due to antialiasing.
+	auto oldSize = QSizeF(100, 50);
+	auto newSize = QSizeF(50, 100) + QSize(3, 3); // Rotating by non 90° multipliers creates fuzzy edges due to antialiasing.
 	auto angel = 45;
-	QPixmap pixmap(oldSize);
+	QPixmap pixmap(oldSize.toSize());
 	pixmap.fill(Qt::green);
 	QGraphicsPixmapItem image(pixmap);
 
@@ -64,6 +64,30 @@ void RotateCommandTest::Redo_Should_TrimPixmapAndRemoveTransparentPart_WhenRotat
 	// assert
 	QCOMPARE(image.boundingRect().size(), newSize);
 	QCOMPARE(annotationArea.sceneRect().size(), newSize);
+}
+
+void RotateCommandTest::Undo_Should_RevertBackToInitialImage()
+{
+	// arrange
+	auto oldSize = QSizeF(100, 50);
+	auto newSize = QSizeF(50, 100);
+	auto angel = 90;
+	QPixmap pixmap(oldSize.toSize());
+	QGraphicsPixmapItem image(pixmap);
+
+	MockDefaultParameters defaultParameters;
+	AnnotationArea annotationArea(&defaultParameters.config, &defaultParameters.settingsProvider, &defaultParameters.scaler, &defaultParameters.zoomValueProvider);
+	RotateCommand rotateCommand(&image, angel, &annotationArea);
+	rotateCommand.redo();
+	QVERIFY(image.pixmap() != pixmap);
+
+	// act
+	rotateCommand.undo();
+
+	// assert
+	QCOMPARE(image.pixmap(), pixmap);
+	QCOMPARE(image.boundingRect().size(), oldSize);
+	QCOMPARE(annotationArea.sceneRect().size(), oldSize);
 }
 
 QTEST_MAIN(RotateCommandTest)

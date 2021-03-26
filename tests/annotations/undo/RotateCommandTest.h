@@ -35,6 +35,7 @@ Q_OBJECT
 private slots:
 	void Redo_Should_RotatePixmapByProvidedAngel();
 	void Redo_Should_TrimPixmapAndRemoveTransparentPart_WhenRotatedBy45DegreeTwice();
+	void Undo_Should_RevertBackToInitialImage();
 };
 
 
