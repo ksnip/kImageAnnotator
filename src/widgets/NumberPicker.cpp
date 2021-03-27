@@ -41,9 +41,7 @@ NumberPicker::~NumberPicker()
 
 void NumberPicker::setNumber(int number)
 {
-	auto oldState = mSpinBox->blockSignals(true);
 	mSpinBox->setValue(number);
-	mSpinBox->blockSignals(oldState);
 }
 
 void NumberPicker::initGui()
