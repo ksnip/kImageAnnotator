@@ -62,6 +62,9 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationPointerRect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AbstractAnnotationPath.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationLine.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationMarkerEllipse.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationMarkerPen.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationMarkerRect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationArrow.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationDoubleArrow.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/AnnotationRect.cpp

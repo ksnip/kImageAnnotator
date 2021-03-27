@@ -87,7 +87,7 @@ private slots:
 	void toolTypeChanged(Tools toolType);
 	void toolColorChanged(const QColor &color);
 	void toolTextColorChanged(const QColor &color);
-	void toolWidthChanged(int size);
+	void toolWidthChanged(int width);
 	void toolFontSizeChanged(int size);
 	void toolFillTypeChanged(FillModes fill);
 	void notifyNumberToolSeedChanged(int newNumberToolSeed);

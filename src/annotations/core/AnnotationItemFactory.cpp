@@ -105,14 +105,16 @@ AbstractAnnotationItem *AnnotationItemFactory::createItem(const QPointF &initPos
 			newItem = new AnnotationDuplicate(initPosition, properties);
 			break;
 		case Tools::Pen:
-		case Tools::MarkerPen:
 			newItem = new AnnotationPen(initPosition, properties.staticCast<AnnotationPathProperties>());
 			break;
+		case Tools::MarkerPen:
+			newItem = new AnnotationMarkerPen(initPosition, properties.staticCast<AnnotationPathProperties>());
+			break;
 		case Tools::MarkerRect:
-			newItem = new AnnotationRect(initPosition, properties);
+			newItem = new AnnotationMarkerRect(initPosition, properties);
 			break;
 		case Tools::MarkerEllipse:
-			newItem = new AnnotationEllipse(initPosition, properties);
+			newItem = new AnnotationMarkerEllipse(initPosition, properties);
 			break;
 		case Tools::Line:
 			newItem = new AnnotationLine(initPosition, properties);
@@ -176,14 +178,16 @@ AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotatio
 			newItem = new AnnotationDuplicate(*(dynamic_cast<const AnnotationDuplicate *>(item)));
 			break;
 		case Tools::Pen:
-		case Tools::MarkerPen:
 			newItem = new AnnotationPen(*(dynamic_cast<const AnnotationPen *>(item)));
 			break;
+		case Tools::MarkerPen:
+			newItem = new AnnotationMarkerPen(*(dynamic_cast<const AnnotationMarkerPen *>(item)));
+			break;
 		case Tools::MarkerRect:
-			newItem = new AnnotationRect(*(dynamic_cast<const AnnotationRect *>(item)));
+			newItem = new AnnotationMarkerRect(*(dynamic_cast<const AnnotationMarkerRect *>(item)));
 			break;
 		case Tools::MarkerEllipse:
-			newItem = new AnnotationEllipse(*(dynamic_cast<const AnnotationEllipse *>(item)));
+			newItem = new AnnotationMarkerEllipse(*(dynamic_cast<const AnnotationMarkerEllipse *>(item)));
 			break;
 		case Tools::Line:
 			newItem = new AnnotationLine(*(dynamic_cast<const AnnotationLine *>(item)));

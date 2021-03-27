@@ -41,7 +41,9 @@ NumberPicker::~NumberPicker()
 
 void NumberPicker::setNumber(int number)
 {
+	auto oldState = mSpinBox->blockSignals(true);
 	mSpinBox->setValue(number);
+	mSpinBox->blockSignals(oldState);
 }
 
 void NumberPicker::initGui()
@@ -74,10 +76,12 @@ void NumberPicker::selectionChanged()
 
 void NumberPicker::setRange(int min, int max)
 {
+	auto oldState = mSpinBox->blockSignals(true);
 	if (min > 0 && max >= min) {
 		mSpinBox->setMinimum(min);
 		mSpinBox->setMaximum(max);
 	}
+	mSpinBox->blockSignals(oldState);
 }
 
 int NumberPicker::number() const

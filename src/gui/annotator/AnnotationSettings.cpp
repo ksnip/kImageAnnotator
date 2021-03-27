@@ -73,10 +73,12 @@ void AnnotationSettings::loadFromItem(const AbstractAnnotationItem *item)
 	mTextColorPicker->setColor(properties->textColor());
 	mWidthPicker->setNumber(properties->width());
 	mFillModePicker->setFillType(properties->fillType());
+
 	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
 	if(textProperties != nullptr) {
 		mFontSizePicker->setNumber(textProperties->font().pointSize());
 	}
+
 	auto obfuscateProperties = properties.dynamicCast<AnnotationObfuscateProperties>();
 	if(obfuscateProperties != nullptr) {
 		mObfuscateFactorPicker->setNumber(obfuscateProperties->factor());
@@ -116,7 +118,6 @@ void AnnotationSettings::initGui()
 
 	mObfuscateFactorPicker->setIcon(IconLoader::load(QStringLiteral("obfuscateFactor.svg")));
 	mObfuscateFactorPicker->setToolTip(tr("Obfuscation Factor"));
-	mObfuscateFactorPicker->setRange(1, 20);
 
 	mToolLayout->addWidget(mToolPicker);
 	mMainLayout->addLayout(mToolLayout);
@@ -207,12 +208,12 @@ void AnnotationSettings::toolTextColorChanged(const QColor &color)
 	}
 }
 
-void AnnotationSettings::toolWidthChanged(int size)
+void AnnotationSettings::toolWidthChanged(int width)
 {
 	if(mEditExistingItem) {
 		itemSettingChanged();
 	} else {
-		mConfig->setToolWidth(size, mToolPicker->tool());
+		mConfig->setToolWidth(width, mToolPicker->tool());
 	}
 }
 

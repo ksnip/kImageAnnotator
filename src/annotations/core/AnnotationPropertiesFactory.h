@@ -47,7 +47,7 @@ private:
 	void setShadowEnabled(const PropertiesPtr &properties, Tools toolType) const;
 	void setColor(const PropertiesPtr &properties, Tools toolType) const;
 	void setTextColor(const PropertiesPtr &properties) const;
-	void setWidthSize(const PropertiesPtr &properties, Tools toolType) const;
+	void setWidthSize(const PropertiesPtr &properties) const;
 	void setFill(const PropertiesPtr &properties, Tools toolType) const;
 	void setPathProperties(const PropertiesPtr &properties) const;
 	void setTextProperties(const PropertiesPtr &properties, Tools toolType) const;

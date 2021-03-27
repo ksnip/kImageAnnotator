@@ -106,14 +106,14 @@ int Config::toolWidth(Tools tool) const
 	return mToolToWidth[tool];
 }
 
-void Config::setToolWidth(int size, Tools tool)
+void Config::setToolWidth(int width, Tools tool)
 {
-	if (toolWidth(tool) == size) {
+	if (toolWidth(tool) == width) {
 		return;
 	}
 
-	mToolToWidth[tool] = size;
-	saveToolWidth(tool, size);
+	mToolToWidth[tool] = width;
+	saveToolWidth(tool, width);
 }
 
 FillModes Config::toolFillType(Tools tool) const
@@ -522,7 +522,7 @@ int Config::defaultToolWidth(Tools toolType)
 {
 	switch (toolType) {
 		case Tools::MarkerPen:
-			return 10;
+			return 30;
 		case Tools::Arrow:
 		case Tools::DoubleArrow:
 			return 6;

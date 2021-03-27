@@ -69,6 +69,7 @@ private:
 	void setNoFillAndNoBorderVisible(bool enabled) const;
 	void setObfuscateFactorWidgetVisible(bool enabled) const;
 	void setStickerWidgetVisible(bool enabled) const;
+	void setWidthRange(int min, int max) const;
 };
 
 } // namespace kImageAnnotator

@@ -106,8 +106,12 @@ void WidgetConfigurator::updateProperties() const
 		case Tools::NumberArrow:
 			setNoFillAndNoBorderVisible(true);
 			break;
+		case Tools::MarkerPen:
+			setWidthRange(1, 100);
+			break;
 		default:
 			setNoFillAndNoBorderVisible(false);
+			setWidthRange(1, 20);
 	}
 }
 
@@ -330,6 +334,13 @@ void WidgetConfigurator::setStickerWidgetVisible(bool enabled) const
 {
 	if (mStickerWidget) {
 		mStickerWidget->setVisible(enabled);
+	}
+}
+
+void WidgetConfigurator::setWidthRange(int min, int max) const
+{
+	if (mWidthWidget) {
+		mWidthWidget->setRange(min, max);
 	}
 }
 

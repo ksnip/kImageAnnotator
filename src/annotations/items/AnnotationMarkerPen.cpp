@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,26 +17,18 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONRECT_H
-#define KIMAGEANNOTATOR_ANNOTATIONRECT_H
-
-#include "AbstractAnnotationRect.h"
+#include "AnnotationMarkerPen.h"
 
 namespace kImageAnnotator {
 
-class AnnotationRect : public AbstractAnnotationRect
+AnnotationMarkerPen::AnnotationMarkerPen(const QPointF &startPosition, const PropertiesPtr &properties) :
+	AnnotationPen(startPosition, properties)
 {
-	Q_OBJECT
-public:
-	AnnotationRect(const QPointF &startPosition, const PropertiesPtr &properties);
-	AnnotationRect(const AnnotationRect &other);
-	~AnnotationRect() override = default;
-	Tools toolType() const override;
 
-protected:
-	void updateShape() override;
-};
+}
 
+Tools AnnotationMarkerPen::toolType() const
+{
+	return Tools::MarkerPen;
+}
 } // namespace kImageAnnotator
-
-#endif // KIMAGEANNOTATOR_ANNOTATIONRECT_H

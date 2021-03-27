@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,26 +17,23 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONRECT_H
-#define KIMAGEANNOTATOR_ANNOTATIONRECT_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONMARKERELLIPSE_H
+#define KIMAGEANNOTATOR_ANNOTATIONMARKERELLIPSE_H
 
-#include "AbstractAnnotationRect.h"
+#include "AnnotationEllipse.h"
 
 namespace kImageAnnotator {
 
-class AnnotationRect : public AbstractAnnotationRect
+class AnnotationMarkerEllipse : public AnnotationEllipse
 {
-	Q_OBJECT
+Q_OBJECT
 public:
-	AnnotationRect(const QPointF &startPosition, const PropertiesPtr &properties);
-	AnnotationRect(const AnnotationRect &other);
-	~AnnotationRect() override = default;
+	AnnotationMarkerEllipse(const QPointF &startPosition, const PropertiesPtr &properties);
+	AnnotationMarkerEllipse(const AnnotationMarkerEllipse &other) = default;
+	~AnnotationMarkerEllipse() override = default;
 	Tools toolType() const override;
-
-protected:
-	void updateShape() override;
 };
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_ANNOTATIONRECT_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONMARKERELLIPSE_H

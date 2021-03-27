@@ -53,7 +53,7 @@ public slots:
 	void setToolTextColor(const QColor &color, Tools tool);
 
 	int toolWidth(Tools tool) const;
-	void setToolWidth(int size, Tools tool);
+	void setToolWidth(int width, Tools tool);
 
 	FillModes toolFillType(Tools tool) const;
 	void setToolFillType(FillModes fillType, Tools tool);
