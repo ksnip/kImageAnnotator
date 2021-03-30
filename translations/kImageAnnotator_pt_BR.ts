@@ -201,63 +201,64 @@ para incluir a imagem de fundo.</translation>
     </message>
     <message>
         <source>Color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor:</translation>
     </message>
     <message>
         <source>Canvas Background Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Cor de fundo da tela</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::RotateDialog</name>
     <message>
         <source>Rotate Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Rotacionar Imagem</translation>
     </message>
     <message>
         <source>180°</source>
-        <translation type="unfinished"></translation>
+        <translation>180º</translation>
     </message>
     <message>
         <source>90° Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>90° no sentido horário</translation>
     </message>
     <message>
         <source>90° Counter Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>90° no sentido anti-horário</translation>
     </message>
     <message>
         <source>Arbitrary</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbitrário</translation>
     </message>
     <message>
         <source>Positive values rotate clockwise, negative values counter clockwise.
 Rotating by non 90° multipliers might introduce loss of quality.</source>
-        <translation type="unfinished"></translation>
+        <translation>Os valores positivos giram no sentido horário, os valores negativos no sentido anti-horário.
+Rotacionar por multiplicadores diferentes de 90° pode causar perda de qualidade.</translation>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>Horizontal</translation>
     </message>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Vertical</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Rotacionar</translation>
     </message>
     <message>
         <source>Flip</source>
-        <translation type="unfinished"></translation>
+        <translation>Girar - Inverter</translation>
     </message>
 </context>
 <context>
@@ -389,15 +390,15 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     <name>kImageAnnotator::ZoomIndicator</name>
     <message>
         <source>Zoom In (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom + (%1)</translation>
     </message>
     <message>
         <source>Zoom Out (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom - (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Redefinir Zoom (%1)</translation>
     </message>
 </context>
 </TS>
