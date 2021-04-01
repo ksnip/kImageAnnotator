@@ -201,7 +201,7 @@ Zeichenfläche das Hintergrundbild beinhaltet.</translation>
     </message>
     <message>
         <source>Color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbe:</translation>
     </message>
     <message>
         <source>Canvas Background Color</source>
@@ -212,19 +212,19 @@ Zeichenfläche das Hintergrundbild beinhaltet.</translation>
     <name>kImageAnnotator::RotateDialog</name>
     <message>
         <source>Rotate Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Bild drehen</translation>
     </message>
     <message>
         <source>180°</source>
-        <translation type="unfinished"></translation>
+        <translation>180°</translation>
     </message>
     <message>
         <source>90° Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>90° im UZS</translation>
     </message>
     <message>
         <source>90° Counter Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>90° gegen UZS</translation>
     </message>
     <message>
         <source>Arbitrary</source>
@@ -237,11 +237,11 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>Horizontal</translation>
     </message>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Vertikal</translation>
     </message>
     <message>
         <source>OK</source>
@@ -253,7 +253,7 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Drehen</translation>
     </message>
     <message>
         <source>Flip</source>
