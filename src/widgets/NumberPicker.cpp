@@ -50,7 +50,6 @@ void NumberPicker::initGui()
 
 	mLabel->setFixedSize(ScaledSizeProvider::settingsWidgetIconSize());
 
-	mSpinBox->setFixedSize(ScaledSizeProvider::settingsWidgetSize());
 	mSpinBox->setMinimum(1);
 	mSpinBox->setMaximum(20);
 	mSpinBox->setFocusPolicy(Qt::NoFocus);

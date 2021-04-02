@@ -22,36 +22,37 @@
 namespace kImageAnnotator {
 
 AnnotationWidget::AnnotationWidget(Config *config) :
-	mSettings(new AnnotationSettings(config)),
-	mAnnotationTabWidget(new AnnotationTabWidget(config, mSettings)),
-	mMainLayout(new QHBoxLayout(this))
+	mItemSettings(new AnnotationItemSettings()),
+	mGeneralSettings(new AnnotationGeneralSettings),
+	mToolSettings(new AnnotationToolSelection),
+	mSettingsAdapter(new AnnotationSettingsAdapter(mGeneralSettings, mItemSettings, mToolSettings, config)),
+	mAnnotationTabWidget(new AnnotationTabWidget(config, mSettingsAdapter))
 {
 	initGui();
 }
 
 AnnotationWidget::~AnnotationWidget()
 {
-	delete mMainLayout;
-	delete mSettings;
+	delete mSettingsAdapter;
+	delete mItemSettings;
+	delete mToolSettings;
+	delete mGeneralSettings;
 }
 
 QSize AnnotationWidget::sizeHint() const
 {
-	auto minSize = mSettings->sizeHint();
-	auto sceneSize = mAnnotationTabWidget->sizeHint();
-	auto width = minSize.width() + sceneSize.width();
-	auto height = (minSize.height() > sceneSize.height()) ? minSize.height() : sceneSize.height();
 	auto offset = ScaledSizeProvider::scaledSize(QSize(100, 100));
-	return QSize(width, height) + offset;
+	return QMainWindow::sizeHint() + offset;
 }
 
 void AnnotationWidget::initGui()
 {
-	mMainLayout->addWidget(mSettings);
-	mMainLayout->addWidget(mAnnotationTabWidget);
-	mMainLayout->setContentsMargins(0,0,0,0);
+	setCentralWidget(mAnnotationTabWidget);
 
-	setLayout(mMainLayout);
+	insertDockWidget(Qt::LeftDockWidgetArea, mToolSettings);
+	insertDockWidget(Qt::TopDockWidgetArea, mItemSettings);
+	insertDockWidget(Qt::BottomDockWidgetArea, mGeneralSettings);
+
 	setFocusPolicy(Qt::ClickFocus);
 
 	connect(mAnnotationTabWidget, &AnnotationTabWidget::imageChanged, this, &AnnotationWidget::imageChanged);
@@ -59,6 +60,13 @@ void AnnotationWidget::initGui()
 	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabCloseRequested, this, &AnnotationWidget::tabCloseRequested);
 	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabMoved, this, &AnnotationWidget::tabMoved);
 	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabContextMenuOpened, this, &AnnotationWidget::tabContextMenuOpened);
+}
+
+void AnnotationWidget::insertDockWidget(Qt::DockWidgetArea area, AnnotationDockWidgetContent *content)
+{
+	auto dockWidget = new AnnotationDockWidget(content);
+	mDockWidgets.append(dockWidget);
+	addDockWidget(area, dockWidget);
 }
 
 QImage AnnotationWidget::image() const
@@ -141,7 +149,7 @@ AnnotationArea *AnnotationWidget::annotationAreaAt(int index) const
 
 void AnnotationWidget::reloadConfig()
 {
-	mSettings->reloadConfig();
+	mSettingsAdapter->reloadConfig();
 }
 
 void AnnotationWidget::setTabBarAutoHide(bool enabled)
@@ -151,7 +159,7 @@ void AnnotationWidget::setTabBarAutoHide(bool enabled)
 
 void AnnotationWidget::setStickers(const QStringList &stickerPaths, bool keepDefault)
 {
-	mSettings->setStickers(stickerPaths, keepDefault);
+	mItemSettings->setStickers(stickerPaths, keepDefault);
 }
 
 void AnnotationWidget::addTabContextMenuActions(const QList<QAction *> &actions)
@@ -161,7 +169,9 @@ void AnnotationWidget::addTabContextMenuActions(const QList<QAction *> &actions)
 
 void AnnotationWidget::setSettingsCollapsed(bool isCollapsed)
 {
-	mSettings->setCollapsed(isCollapsed);
+	for(auto dockWidget : mDockWidgets) {
+		dockWidget->isVisible(!isCollapsed);
+	}
 }
 
 } // namespace kImageAnnotator

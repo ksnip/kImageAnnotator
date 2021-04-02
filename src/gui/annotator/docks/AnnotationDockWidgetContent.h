@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,29 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ICONLOADER_H
-#define KIMAGEANNOTATOR_ICONLOADER_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONDOCKWIDGETCONTENT_H
+#define KIMAGEANNOTATOR_ANNOTATIONDOCKWIDGETCONTENT_H
 
-#include <QIcon>
-#include <QApplication>
-#include <QPalette>
+#include <QWidget>
 
 namespace kImageAnnotator {
 
-class IconLoader
+class AnnotationDockWidgetContent : public QWidget
 {
 public:
-	static QIcon load(const QString &name);
-	static QPixmap loadAsPixmap(const QString &name);
-
-private:
-	IconLoader() = default;
-	~IconLoader() = default;
-	static bool isDarkTheme();
-	static QString getThemePrefix();
-	static double getThemeLuma();
+	AnnotationDockWidgetContent() = default;
+	~AnnotationDockWidgetContent() override = default;
+	virtual void setOrientation(Qt::Orientation orientation) = 0;
+	virtual QString name() const = 0;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ICONLOADER_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONDOCKWIDGETCONTENT_H

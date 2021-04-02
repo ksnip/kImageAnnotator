@@ -45,7 +45,7 @@ ZoomIndicator::~ZoomIndicator()
 
 void ZoomIndicator::init()
 {
-	mLayout->setContentsMargins(0, 0, 0, 0);
+	mLayout->setContentsMargins(1, 0, 0, 0);
 
 	auto icon = IconLoader::load(QStringLiteral("zoom.svg"));
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));

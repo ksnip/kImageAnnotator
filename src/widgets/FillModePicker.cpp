@@ -69,8 +69,6 @@ void FillModePicker::initGui()
 	insertItem(FillModes::BorderAndNoFill, QStringLiteral("fillType_borderAndNoFill.svg"), tr("Border and No Fill"));
 	insertItem(FillModes::NoBorderAndNoFill, QStringLiteral("fillType_noBorderAndNoFill.svg"), tr("No Border and No Fill"));
 
-	mToolButton->setFixedSize(ScaledSizeProvider::settingsWidgetSize());
-	mToolButton->setIconSize(ScaledSizeProvider::toolButtonIconSize());
 	mToolButton->setFocusPolicy(Qt::NoFocus);
 	connect(mToolButton, &ListMenuToolButton::selectionChanged, this, &FillModePicker::selectionChanged);
 

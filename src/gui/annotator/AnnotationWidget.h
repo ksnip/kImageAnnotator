@@ -20,15 +20,21 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONWIDGET_H
 #define KIMAGEANNOTATOR_ANNOTATIONWIDGET_H
 
-#include <QHBoxLayout>
+#include <QMainWindow>
+#include <QDockWidget>
+#include <QGridLayout>
 
+#include "src/gui/annotator/settings/AnnotationGeneralSettings.h"
+#include "src/gui/annotator/settings/AnnotationToolSelection.h"
+#include "src/gui/annotator/settings/AnnotationSettingsAdapter.h"
+#include "src/gui/annotator/docks/AnnotationDockWidget.h"
 #include "src/gui/annotator/tabs/AnnotationTabWidget.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 
-class AnnotationWidget : public QWidget
+class AnnotationWidget : public QMainWindow
 {
 Q_OBJECT
 public:
@@ -62,11 +68,15 @@ signals:
 	void tabContextMenuOpened(int index) const;
 
 private:
-	AnnotationSettings *mSettings;
+	AnnotationItemSettings *mItemSettings;
+	AnnotationGeneralSettings *mGeneralSettings;
+	AnnotationToolSelection *mToolSettings;
+	AnnotationSettingsAdapter *mSettingsAdapter;
 	AnnotationTabWidget *mAnnotationTabWidget;
-	QHBoxLayout *mMainLayout;
+	QList<AnnotationDockWidget*> mDockWidgets;
 
 	void initGui();
+	void insertDockWidget(Qt::DockWidgetArea area, AnnotationDockWidgetContent *content);
 };
 
 } // namespace kImageAnnotator

@@ -21,10 +21,16 @@
 
 namespace kImageAnnotator {
 
-QIcon IconLoader::load(QString name)
+QIcon IconLoader::load(const QString &name)
 {
 	auto type = getThemePrefix();
 	return QIcon(QLatin1String(":/icons/") + type + name);
+}
+
+QPixmap IconLoader::loadAsPixmap(const QString &name)
+{
+	auto type = getThemePrefix();
+	return QPixmap(QLatin1String(":/icons/") + type + name);
 }
 
 QString IconLoader::getThemePrefix()

@@ -21,7 +21,11 @@
 
 namespace kImageAnnotator {
 
-ToolPicker::ToolPicker(QWidget *parent) : QWidget(parent)
+ToolPicker::ToolPicker(QWidget *parent) :
+	QWidget(parent),
+	mLayout(new QBoxLayout(QBoxLayout::TopToBottom, this)),
+	mActionGroup(new QActionGroup(this)),
+	mSelectedToolType(Tools::Select)
 {
 	initGui();
 
@@ -48,20 +52,25 @@ Tools ToolPicker::tool()
 	return mSelectedToolType;
 }
 
+void ToolPicker::setOrientation(Qt::Orientation orientation)
+{
+	if(orientation == Qt::Horizontal) {
+		mLayout->setDirection(QBoxLayout::LeftToRight);
+	} else {
+		mLayout->setDirection(QBoxLayout::TopToBottom);
+	}
+	adjustSize();
+}
+
 void ToolPicker::initGui()
 {
-	mLayout = new QGridLayout(this);
-	mLayout->setContentsMargins(0, 0, 0, 0);
-	mActionGroup = new QActionGroup(this);
 	connect(mActionGroup, &QActionGroup::triggered, this, &ToolPicker::actionTriggered);
 
 	auto action = createAction(tr("Select"), IconLoader::load(QStringLiteral("select.svg")), Qt::Key_S, Tools::Select);
-	auto button = createButton(action);
-	mLayout->addWidget(button, 0, 0);
+	createButton(action);
 
 	action = createAction(tr("Duplicate"), IconLoader::load(QStringLiteral("duplicate.svg")), Qt::Key_U, Tools::Duplicate);
-	button = createButton(action);
-	mLayout->addWidget(button, 0, 1);
+	createButton(action);
 
 	auto menu = new QMenu();
 	action = createAction(tr("Arrow"), IconLoader::load(QStringLiteral("arrow.svg")), Qt::Key_A, Tools::Arrow);
@@ -70,12 +79,10 @@ void ToolPicker::initGui()
 	menu->addAction(action);
 	action = createAction(tr("Line"), IconLoader::load(QStringLiteral("line.svg")), Qt::Key_L, Tools::Line);
 	menu->addAction(action);
-	button = createButton(menu);
-	mLayout->addWidget(button, 1, 0);
+	createButton(menu);
 
 	action = createAction(tr("Pen"), IconLoader::load(QStringLiteral("pen.svg")), Qt::Key_P, Tools::Pen);
-	button = createButton(action);
-	mLayout->addWidget(button, 1, 1);
+	createButton(action);
 
 	menu = new QMenu();
 	action = createAction(tr("Marker Rectangle"), IconLoader::load(QStringLiteral("markerRect.svg")), Qt::Key_J, Tools::MarkerRect);
@@ -84,8 +91,7 @@ void ToolPicker::initGui()
 	menu->addAction(action);
 	action = createAction(tr("Marker Pen"), IconLoader::load(QStringLiteral("markerPen.svg")), Qt::Key_M, Tools::MarkerPen);
 	menu->addAction(action);
-	button = createButton(menu);
-	mLayout->addWidget(button, 2, 0);
+	createButton(menu);
 
 	menu = new QMenu();
 	action = createAction(tr("Text"), IconLoader::load(QStringLiteral("text.svg")), Qt::Key_T, Tools::Text);
@@ -94,8 +100,7 @@ void ToolPicker::initGui()
 	menu->addAction(action);
 	action = createAction(tr("Text Arrow"), IconLoader::load(QStringLiteral("textArrow.svg")), Qt::Key_H, Tools::TextArrow);
 	menu->addAction(action);
-	button = createButton(menu);
-	mLayout->addWidget(button, 2, 1);
+	createButton(menu);
 
 	menu = new QMenu();
 	action = createAction(tr("Number"), IconLoader::load(QStringLiteral("number.svg")), Qt::Key_N, Tools::Number);
@@ -104,31 +109,29 @@ void ToolPicker::initGui()
 	menu->addAction(action);
 	action = createAction(tr("Number Arrow"), IconLoader::load(QStringLiteral("numberArrow.svg")), Qt::Key_W, Tools::NumberArrow);
 	menu->addAction(action);
-	button = createButton(menu);
-	mLayout->addWidget(button, 3, 0);
+	createButton(menu);
 
 	menu = new QMenu();
 	action = createAction(tr("Blur"), IconLoader::load(QStringLiteral("blur.svg")), Qt::Key_B, Tools::Blur);
 	menu->addAction(action);
 	action = createAction(tr("Pixelate"), IconLoader::load(QStringLiteral("pixelate.svg")), Qt::Key_X, Tools::Pixelate);
 	menu->addAction(action);
-	button = createButton(menu);
-	mLayout->addWidget(button, 3, 1);
+	createButton(menu);
 
 	menu = new QMenu();
 	action = createAction(tr("Rectangle"), IconLoader::load(QStringLiteral("rect.svg")), Qt::Key_R, Tools::Rect);
 	menu->addAction(action);
 	action = createAction(tr("Ellipse"), IconLoader::load(QStringLiteral("ellipse.svg")), Qt::Key_E, Tools::Ellipse);
 	menu->addAction(action);
-	button = createButton(menu);
-	mLayout->addWidget(button, 4, 0);
+	createButton(menu);
 
 	action = createAction(tr("Sticker"), IconLoader::load(QStringLiteral("sticker.svg")), Qt::Key_I, Tools::Sticker);
-	button = createButton(action);
-	mLayout->addWidget(button, 4, 1);
+	createButton(action);
+
+	mLayout->setContentsMargins(0, 0, 0, 0);
+	mLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
 	setLayout(mLayout);
-	setFixedSize(sizeHint());
 }
 
 QAction *ToolPicker::createAction(const QString &tooltip, const QIcon &icon, Qt::Key shortcut, Tools toolType)
@@ -149,6 +152,7 @@ CustomToolButton *ToolPicker::createButton(QAction *defaultAction)
 	auto button = new CustomToolButton(this);
 	button->setAction(defaultAction);
 	mActionToButton[defaultAction] = button;
+	mLayout->addWidget(button);
 	return button;
 }
 
@@ -159,6 +163,7 @@ CustomToolButton *ToolPicker::createButton(QMenu *menu)
 	for(auto action : menu->actions()) {
 		mActionToButton[action] = button;
 	}
+	mLayout->addWidget(button);
 	return button;
 }
 

@@ -49,7 +49,7 @@ ImageEffects ImageEffectPicker::effect() const
 
 void ImageEffectPicker::initGui()
 {
-	mLayout->setContentsMargins(0, 0, 0, 0);
+	mLayout->setContentsMargins(1, 0, 0, 0);
 
 	auto icon = IconLoader::load(QStringLiteral("effect.svg"));
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
@@ -60,8 +60,6 @@ void ImageEffectPicker::initGui()
 	insertItem(ImageEffects::Grayscale, QStringLiteral("grayscaleImageEffect.svg"), tr("Grayscale"));
 	insertItem(ImageEffects::Border, QStringLiteral("borderImageEffect.svg"), tr("Border"));
 
-	mToolButton->setFixedSize(ScaledSizeProvider::settingsWidgetSize());
-	mToolButton->setIconSize(ScaledSizeProvider::toolButtonIconSize());
 	mToolButton->setFocusPolicy(Qt::NoFocus);
 	connect(mToolButton, &ListMenuToolButton::selectionChanged, this, &ImageEffectPicker::selectionChanged);
 

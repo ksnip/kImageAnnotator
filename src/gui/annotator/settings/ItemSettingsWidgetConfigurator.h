@@ -31,11 +31,11 @@
 
 namespace kImageAnnotator {
 
-class WidgetConfigurator
+class ItemSettingsWidgetConfigurator
 {
 public:
-	explicit WidgetConfigurator();
-	~WidgetConfigurator() = default;
+	explicit ItemSettingsWidgetConfigurator();
+	~ItemSettingsWidgetConfigurator() = default;
 	void setCurrentTool(Tools tool);
 	void setColorWidget(ColorPicker *widget);
 	void setTextColorWidget(ColorPicker *widget);

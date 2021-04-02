@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,33 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONSETTINGS_H
-#define KIMAGEANNOTATOR_ANNOTATIONSETTINGS_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONSETTINGSADAPTER_H
+#define KIMAGEANNOTATOR_ANNOTATIONSETTINGSADAPTER_H
 
-#include <QWidget>
-
-#include "WidgetConfigurator.h"
-#include "src/widgets/ToolPicker.h"
-#include "src/widgets/ColorPicker.h"
-#include "src/widgets/NumberPicker.h"
-#include "src/widgets/FillModePicker.h"
-#include "src/widgets/StickerPicker.h"
-#include "src/widgets/ImageEffectPicker.h"
-#include "src/widgets/ZoomIndicator.h"
-#include "src/backend/Config.h"
-#include "src/annotations/properties/AnnotationTextProperties.h"
-#include "src/annotations/properties/AnnotationObfuscateProperties.h"
-#include "src/annotations/items/AbstractAnnotationItem.h"
+#include "AnnotationGeneralSettings.h"
+#include "AnnotationItemSettings.h"
+#include "AnnotationToolSelection.h"
 #include "src/annotations/core/AbstractSettingsProvider.h"
 
 namespace kImageAnnotator {
 
-class AnnotationSettings : public QWidget, public AbstractSettingsProvider
+class AnnotationSettingsAdapter : public QObject, public AbstractSettingsProvider
 {
-Q_OBJECT
+	Q_OBJECT
 public:
-	explicit AnnotationSettings(Config *config);
-	~AnnotationSettings() override;
+	explicit AnnotationSettingsAdapter(AnnotationGeneralSettings *generalSettings, AnnotationItemSettings *itemSettings, AnnotationToolSelection *toolSettings, Config *config);
+	~AnnotationSettingsAdapter() override = default;
 	void editItem(AbstractAnnotationItem *item) override;
 	void activateSelectTool() override;
 	Tools toolType() const override;
@@ -58,46 +47,30 @@ public:
 	void updateNumberToolSeed(int numberToolSeed) override;
 	void updateZoomLevel(double value) override;
 	void reloadConfig();
-	void setStickers(const QStringList &stickerPaths, bool keepDefault);
-	void setCollapsed(bool isCollapsed);
 
 private:
-	QVBoxLayout *mMainLayout;
-	QHBoxLayout *mToolLayout;
-	ToolPicker *mToolPicker;
-	ColorPicker *mColorPicker;
-	NumberPicker *mWidthPicker;
-	ColorPicker *mTextColorPicker;
-	NumberPicker *mFontSizePicker;
-	FillModePicker *mFillModePicker;
-	NumberPicker *mNumberToolSeedPicker;
-	NumberPicker *mObfuscateFactorPicker;
-	StickerPicker *mStickerPicker;
-	ImageEffectPicker *mEffectPicker;
-	ZoomIndicator *mZoomIndicator;
+	AnnotationGeneralSettings *mGeneralSettings;
+	AnnotationItemSettings *mItemSettings;
+	AnnotationToolSelection *mToolSettings;
 	Config *mConfig;
-	WidgetConfigurator mWidgetConfigurator;
 	bool mEditExistingItem;
 
-	void initGui();
-	void loadFromConfig(Tools tool);
-
 private slots:
-	void loadToolTypeFromConfig();
+	void effectChanged(ImageEffects effect) override;
+	void zoomValueChanged(double value) override;
 	void toolTypeChanged(Tools toolType);
+	void loadFromConfig(Tools tool);
+	void loadFromItem(const AbstractAnnotationItem *item);
 	void toolColorChanged(const QColor &color);
 	void toolTextColorChanged(const QColor &color);
 	void toolWidthChanged(int width);
-	void toolFontSizeChanged(int size);
 	void toolFillTypeChanged(FillModes fill);
+	void toolFontSizeChanged(int size);
 	void notifyNumberToolSeedChanged(int newNumberToolSeed);
-	void notifyZoomValueChanged(double value);
 	void obfuscateFactorChanged(int factor);
 	void stickerChanged(const QString &sticker);
-	void loadFromItem(const AbstractAnnotationItem *item);
-	void effectChanged(ImageEffects effect) override;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONSETTINGS_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONSETTINGSADAPTER_H

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,29 +17,33 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ICONLOADER_H
-#define KIMAGEANNOTATOR_ICONLOADER_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONTOOLSELECTION_H
+#define KIMAGEANNOTATOR_ANNOTATIONTOOLSELECTION_H
 
-#include <QIcon>
-#include <QApplication>
-#include <QPalette>
+#include "src/gui/annotator/docks/AnnotationDockWidgetContent.h"
+#include "src/widgets/ToolPicker.h"
 
 namespace kImageAnnotator {
 
-class IconLoader
+class AnnotationToolSelection : public AnnotationDockWidgetContent
 {
+Q_OBJECT
 public:
-	static QIcon load(const QString &name);
-	static QPixmap loadAsPixmap(const QString &name);
+	AnnotationToolSelection();
+	~AnnotationToolSelection() override;
+	Tools toolType() const;
+	void setToolType(Tools tool);
+	void setOrientation(Qt::Orientation orientation) override;
+	QString name() const override;
+
+signals:
+	void toolTypeChanged(Tools toolType);
 
 private:
-	IconLoader() = default;
-	~IconLoader() = default;
-	static bool isDarkTheme();
-	static QString getThemePrefix();
-	static double getThemeLuma();
+	QVBoxLayout *mMainLayout;
+	ToolPicker *mToolPicker;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ICONLOADER_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONTOOLSELECTION_H

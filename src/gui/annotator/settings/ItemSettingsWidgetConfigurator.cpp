@@ -17,11 +17,11 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "WidgetConfigurator.h"
+#include "ItemSettingsWidgetConfigurator.h"
 
 namespace kImageAnnotator {
 
-WidgetConfigurator::WidgetConfigurator() :
+ItemSettingsWidgetConfigurator::ItemSettingsWidgetConfigurator() :
 	mColorWidget(nullptr),
 	mTextColorWidget(nullptr),
 	mWidthWidget(nullptr),
@@ -34,7 +34,7 @@ WidgetConfigurator::WidgetConfigurator() :
 	mCurrentTool = Tools::Select;
 }
 
-void WidgetConfigurator::setCurrentTool(Tools tool)
+void ItemSettingsWidgetConfigurator::setCurrentTool(Tools tool)
 {
 	if (mCurrentTool == tool) {
 		return;
@@ -44,61 +44,61 @@ void WidgetConfigurator::setCurrentTool(Tools tool)
 	updateWidgets();
 }
 
-void WidgetConfigurator::setColorWidget(ColorPicker *widget)
+void ItemSettingsWidgetConfigurator::setColorWidget(ColorPicker *widget)
 {
 	mColorWidget = widget;
 	updateWidgets();
 }
 
-void WidgetConfigurator::setTextColorWidget(ColorPicker *widget)
+void ItemSettingsWidgetConfigurator::setTextColorWidget(ColorPicker *widget)
 {
 	mTextColorWidget = widget;
 	updateWidgets();
 }
 
-void WidgetConfigurator::setWidthWidget(NumberPicker *widget)
+void ItemSettingsWidgetConfigurator::setWidthWidget(NumberPicker *widget)
 {
 	mWidthWidget = widget;
 	updateWidgets();
 }
 
-void WidgetConfigurator::setFillTypeWidget(FillModePicker *widget)
+void ItemSettingsWidgetConfigurator::setFillTypeWidget(FillModePicker *widget)
 {
 	mFillModeWidget = widget;
 	updateWidgets();
 }
 
-void WidgetConfigurator::setFontSizeWidget(NumberPicker *widget)
+void ItemSettingsWidgetConfigurator::setFontSizeWidget(NumberPicker *widget)
 {
 	mFontSizeWidget = widget;
 	updateWidgets();
 }
 
-void WidgetConfigurator::setFirstNumberWidget(NumberPicker *widget)
+void ItemSettingsWidgetConfigurator::setFirstNumberWidget(NumberPicker *widget)
 {
 	mFirstNumberWidget = widget;
 	updateWidgets();
 }
 
-void WidgetConfigurator::setObfuscateFactorWidget(NumberPicker *widget)
+void ItemSettingsWidgetConfigurator::setObfuscateFactorWidget(NumberPicker *widget)
 {
 	mObfuscateFactorWidget = widget;
 	updateWidgets();
 }
 
-void WidgetConfigurator::setStickerWidget(StickerPicker *widget)
+void ItemSettingsWidgetConfigurator::setStickerWidget(StickerPicker *widget)
 {
 	mStickerWidget = widget;
 	updateWidgets();
 }
 
-void WidgetConfigurator::updateWidgets() const
+void ItemSettingsWidgetConfigurator::updateWidgets() const
 {
 	updateProperties();
 	updateVisibility();
 }
 
-void WidgetConfigurator::updateProperties() const
+void ItemSettingsWidgetConfigurator::updateProperties() const
 {
 	switch (mCurrentTool) {
 		case Tools::Text:
@@ -115,7 +115,7 @@ void WidgetConfigurator::updateProperties() const
 	}
 }
 
-void WidgetConfigurator::updateVisibility() const
+void ItemSettingsWidgetConfigurator::updateVisibility() const
 {
 	switch (mCurrentTool) {
 		case Tools::Select:
@@ -270,49 +270,49 @@ void WidgetConfigurator::updateVisibility() const
 	}
 }
 
-void WidgetConfigurator::setColorWidgetVisible(bool enabled) const
+void ItemSettingsWidgetConfigurator::setColorWidgetVisible(bool enabled) const
 {
 	if (mColorWidget) {
 		mColorWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setTextColorWidgetVisible(bool enabled) const
+void ItemSettingsWidgetConfigurator::setTextColorWidgetVisible(bool enabled) const
 {
 	if (mTextColorWidget) {
 		mTextColorWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setWidthWidgetVisible(bool enabled) const
+void ItemSettingsWidgetConfigurator::setWidthWidgetVisible(bool enabled) const
 {
 	if (mWidthWidget) {
 		mWidthWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setFillWidgetVisible(bool enabled) const
+void ItemSettingsWidgetConfigurator::setFillWidgetVisible(bool enabled) const
 {
 	if (mFillModeWidget) {
 		mFillModeWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setFontSizeWidgetVisible(bool enabled) const
+void ItemSettingsWidgetConfigurator::setFontSizeWidgetVisible(bool enabled) const
 {
 	if (mFontSizeWidget) {
 		mFontSizeWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setFirstNumberWidgetVisible(bool enabled) const
+void ItemSettingsWidgetConfigurator::setFirstNumberWidgetVisible(bool enabled) const
 {
 	if (mFirstNumberWidget) {
 		mFirstNumberWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setNoFillAndNoBorderVisible(bool enabled) const
+void ItemSettingsWidgetConfigurator::setNoFillAndNoBorderVisible(bool enabled) const
 {
 	if (mFillModeWidget) {
 		if (enabled) {
@@ -323,21 +323,21 @@ void WidgetConfigurator::setNoFillAndNoBorderVisible(bool enabled) const
 	}
 }
 
-void WidgetConfigurator::setObfuscateFactorWidgetVisible(bool enabled) const
+void ItemSettingsWidgetConfigurator::setObfuscateFactorWidgetVisible(bool enabled) const
 {
 	if (mObfuscateFactorWidget) {
 		mObfuscateFactorWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setStickerWidgetVisible(bool enabled) const
+void ItemSettingsWidgetConfigurator::setStickerWidgetVisible(bool enabled) const
 {
 	if (mStickerWidget) {
 		mStickerWidget->setVisible(enabled);
 	}
 }
 
-void WidgetConfigurator::setWidthRange(int min, int max) const
+void ItemSettingsWidgetConfigurator::setWidthRange(int min, int max) const
 {
 	if (mWidthWidget) {
 		mWidthWidget->setRange(min, max);

@@ -24,7 +24,7 @@
 #include <QHBoxLayout>
 
 #include "src/gui/annotator/AnnotationView.h"
-#include "src/gui/annotator/AnnotationSettings.h"
+#include "src/gui/annotator/settings/AnnotationItemSettings.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/common/provider/DevicePixelRatioScaler.h"
 #include "src/gui/annotator/AnnotationViewZoomer.h"

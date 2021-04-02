@@ -36,6 +36,7 @@
         <file alias="grayscaleImageEffect.svg" >icons/dark/grayscaleImageEffect.svg</file>
         <file alias="noImageEffect.svg" >icons/dark/noImageEffect.svg</file>
         <file alias="zoom.svg" >icons/dark/zoom.svg</file>
+        <file alias="dragHandle.svg" >icons/dark/dragHandle.svg</file>
     </qresource>
 
     <qresource prefix="/icons/light">
@@ -74,6 +75,7 @@
         <file alias="grayscaleImageEffect.svg" >icons/light/grayscaleImageEffect.svg</file>
         <file alias="noImageEffect.svg" >icons/light/noImageEffect.svg</file>
         <file alias="zoom.svg" >icons/light/zoom.svg</file>
+        <file alias="dragHandle.svg" >icons/light/dragHandle.svg</file>
     </qresource>
 
     <qresource prefix="/stickers">

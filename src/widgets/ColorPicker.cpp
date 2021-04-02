@@ -67,7 +67,6 @@ void ColorPicker::initGui()
 
 	mLabel->setFixedSize(ScaledSizeProvider::settingsWidgetIconSize());
 
-	mkColorPicker->setFixedSize(ScaledSizeProvider::settingsWidgetSize());
 	mkColorPicker->setFocusPolicy(Qt::NoFocus);
 
 	mLayout->addWidget(mLabel);

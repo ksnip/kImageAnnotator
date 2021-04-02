@@ -54,6 +54,7 @@ void StickerPicker::init()
 	auto icon = IconLoader::load(QStringLiteral("sticker.svg"));
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
 	mLabel->setToolTip(tr("Sticker"));
+	mLabel->setMargin(0);
 
 	mToolButton->setFixedSize(ScaledSizeProvider::settingsWidgetSize());
 	mToolButton->setIconSize(ScaledSizeProvider::toolButtonIconSize());
