@@ -71,7 +71,6 @@ void AnnotationWidget::insertDockWidget(Qt::DockWidgetArea area, AnnotationDockW
 	auto dockWidget = new AnnotationDockWidget(content);
 	mDockWidgets.append(dockWidget);
 	addDockWidget(area, dockWidget);
-	connect(dockWidget, &AnnotationDockWidget::stateChanged, this, &AnnotationWidget::persistDockWidgets);
 }
 
 QImage AnnotationWidget::image() const
