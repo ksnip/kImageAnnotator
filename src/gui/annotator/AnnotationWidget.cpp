@@ -22,6 +22,7 @@
 namespace kImageAnnotator {
 
 AnnotationWidget::AnnotationWidget(Config *config) :
+	mConfig(config),
 	mItemSettings(new AnnotationItemSettings()),
 	mGeneralSettings(new AnnotationGeneralSettings),
 	mToolSettings(new AnnotationToolSelection),
@@ -29,6 +30,7 @@ AnnotationWidget::AnnotationWidget(Config *config) :
 	mAnnotationTabWidget(new AnnotationTabWidget(config, mSettingsAdapter))
 {
 	initGui();
+	restoreDockWidgets();
 }
 
 AnnotationWidget::~AnnotationWidget()
@@ -60,6 +62,8 @@ void AnnotationWidget::initGui()
 	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabCloseRequested, this, &AnnotationWidget::tabCloseRequested);
 	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabMoved, this, &AnnotationWidget::tabMoved);
 	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabContextMenuOpened, this, &AnnotationWidget::tabContextMenuOpened);
+
+	connect(qApp, &QCoreApplication::aboutToQuit, this, &AnnotationWidget::persistDockWidgets);
 }
 
 void AnnotationWidget::insertDockWidget(Qt::DockWidgetArea area, AnnotationDockWidgetContent *content)
@@ -67,6 +71,7 @@ void AnnotationWidget::insertDockWidget(Qt::DockWidgetArea area, AnnotationDockW
 	auto dockWidget = new AnnotationDockWidget(content);
 	mDockWidgets.append(dockWidget);
 	addDockWidget(area, dockWidget);
+	connect(dockWidget, &AnnotationDockWidget::stateChanged, this, &AnnotationWidget::persistDockWidgets);
 }
 
 QImage AnnotationWidget::image() const
@@ -172,6 +177,16 @@ void AnnotationWidget::setSettingsCollapsed(bool isCollapsed)
 	for(auto dockWidget : mDockWidgets) {
 		dockWidget->isVisible(!isCollapsed);
 	}
+}
+
+void AnnotationWidget::persistDockWidgets()
+{
+	mConfig->setAnnotatorDockWidgetsState(saveState());
+}
+
+void AnnotationWidget::restoreDockWidgets()
+{
+	restoreState(mConfig->annotatorDockWidgetsState());
 }
 
 } // namespace kImageAnnotator

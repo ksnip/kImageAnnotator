@@ -43,9 +43,10 @@ private:
 	QDockWidget::DockWidgetFeatures mHorizontalFeatures;
 
 	void resizeToContent();
-
+	
 private slots:
 	void updateDockLocation(Qt::DockWidgetArea area);
+	void setOrientation(Qt::Orientation orientation, QDockWidget::DockWidgetFeatures &features);
 	void resizeToDragHandle();
 };
 

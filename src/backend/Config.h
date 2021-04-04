@@ -87,6 +87,9 @@ public slots:
 	QColor canvasColor() const;
 	void setCanvasColor(const QColor &color);
 
+	QByteArray annotatorDockWidgetsState() const;
+	void setAnnotatorDockWidgetsState(const QByteArray &state);
+
 signals:
 	void numberUpdateModeChanged(enum NumberUpdateMode numberUpdateMode) const;
 

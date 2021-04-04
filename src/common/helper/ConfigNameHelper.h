@@ -29,7 +29,7 @@ namespace kImageAnnotator {
 class ConfigNameHelper
 {
 public:
-	static QString annotator();
+	static QString kImageAnnotator();
 	static QString toolType();
 	static QString toolWidth(Tools tool);
 	static QString toolColor(Tools tool);
@@ -37,6 +37,7 @@ public:
 	static QString toolFillType(Tools tool);
 	static QString toolFontSize(Tools tool);
 	static QString obfuscateFactor(Tools tool);
+	static QString annotatorDockWidgetsState();
 };
 
 }

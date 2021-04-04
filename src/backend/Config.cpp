@@ -289,6 +289,17 @@ void Config::setCanvasColor(const QColor &color)
 	mCanvasColor = color;
 }
 
+QByteArray Config::annotatorDockWidgetsState() const
+{
+	return mConfig.value(ConfigNameHelper::annotatorDockWidgetsState()).toByteArray();
+}
+
+void Config::setAnnotatorDockWidgetsState(const QByteArray &state)
+{
+	mConfig.setValue(ConfigNameHelper::annotatorDockWidgetsState(), state);
+	mConfig.sync();
+}
+
 // Private Methods
 
 void Config::initToolSettings()

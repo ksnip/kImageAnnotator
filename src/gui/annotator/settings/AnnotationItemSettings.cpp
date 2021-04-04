@@ -194,6 +194,7 @@ void AnnotationItemSettings::setOrientation(Qt::Orientation orientation)
 		mMainLayout->setDirection(QBoxLayout::TopToBottom);
 		mMainLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 	}
+	adjustSize();
 }
 
 QString AnnotationItemSettings::name() const

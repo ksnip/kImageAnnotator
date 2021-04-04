@@ -30,17 +30,8 @@ AnnotationDockWidgetDragHandle::AnnotationDockWidgetDragHandle(QWidget *parent) 
 	t.rotate(90);
 	mHorizontalHandlerImage = IconLoader::loadAsPixmap(QLatin1String("dragHandle.svg"));
 	mVerticalHandlerImage = mHorizontalHandlerImage.transformed(t);
-	
-	auto leftMargin = ScaledSizeProvider::scaledWidth(3);
-	auto topMargin = ScaledSizeProvider::scaledWidth(5);
-	auto rightMargin = 0;
-	auto bottomMargin = ScaledSizeProvider::scaledWidth(2);
-	mLayout->addWidget(mLabel);
-	mLayout->setAlignment(Qt::AlignCenter);
-	mLayout->setContentsMargins(leftMargin, topMargin, rightMargin, bottomMargin);
 
-	setCursor(Qt::SizeAllCursor);
-	setLayout(mLayout);
+	initGui();
 }
 
 AnnotationDockWidgetDragHandle::~AnnotationDockWidgetDragHandle()
@@ -91,6 +82,20 @@ void AnnotationDockWidgetDragHandle::setOrientation(Qt::Orientation orientation)
 	} else {
 		mLabel->setPixmap(mVerticalHandlerImage);
 	}
+}
+
+void AnnotationDockWidgetDragHandle::initGui()
+{
+	auto leftMargin = ScaledSizeProvider::scaledWidth(3);
+	auto topMargin = ScaledSizeProvider::scaledWidth(5);
+	auto rightMargin = 0;
+	auto bottomMargin = ScaledSizeProvider::scaledWidth(2);
+	mLayout->addWidget(mLabel);
+	mLayout->setAlignment(Qt::AlignCenter);
+	mLayout->setContentsMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+
+	setCursor(Qt::SizeAllCursor);
+	setLayout(mLayout);
 }
 
 } // namespace kImageAnnotator

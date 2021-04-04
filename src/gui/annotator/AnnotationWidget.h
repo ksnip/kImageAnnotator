@@ -23,6 +23,7 @@
 #include <QMainWindow>
 #include <QDockWidget>
 #include <QGridLayout>
+#include <QCoreApplication>
 
 #include "src/gui/annotator/settings/AnnotationGeneralSettings.h"
 #include "src/gui/annotator/settings/AnnotationToolSelection.h"
@@ -68,6 +69,7 @@ signals:
 	void tabContextMenuOpened(int index) const;
 
 private:
+	Config *mConfig;
 	AnnotationItemSettings *mItemSettings;
 	AnnotationGeneralSettings *mGeneralSettings;
 	AnnotationToolSelection *mToolSettings;
@@ -77,6 +79,10 @@ private:
 
 	void initGui();
 	void insertDockWidget(Qt::DockWidgetArea area, AnnotationDockWidgetContent *content);
+
+private slots:
+	void persistDockWidgets();
+	void restoreDockWidgets();
 };
 
 } // namespace kImageAnnotator

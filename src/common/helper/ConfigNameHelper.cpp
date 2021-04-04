@@ -21,44 +21,49 @@
 
 namespace kImageAnnotator {
 
-QString ConfigNameHelper::annotator()
+QString ConfigNameHelper::kImageAnnotator()
 {
 	return QLatin1String("KImageAnnotator/");
 }
 
 QString ConfigNameHelper::toolType()
 {
-	return annotator() + QLatin1String("ToolType");
+	return kImageAnnotator() + QLatin1String("ToolType");
 }
 
 QString ConfigNameHelper::toolWidth(Tools tool)
 {
-	return annotator() + QLatin1String("ToolWidth_") + QString::number(static_cast<int>(tool));
+	return kImageAnnotator() + QLatin1String("ToolWidth_") + QString::number(static_cast<int>(tool));
 }
 
 QString ConfigNameHelper::toolColor(Tools tool)
 {
-	return annotator() + QLatin1String("ToolColor_") + QString::number(static_cast<int>(tool));
+	return kImageAnnotator() + QLatin1String("ToolColor_") + QString::number(static_cast<int>(tool));
 }
 
 QString ConfigNameHelper::toolTextColor(Tools tool)
 {
-	return annotator() + QLatin1String("ToolTextColor_") + QString::number(static_cast<int>(tool));
+	return kImageAnnotator() + QLatin1String("ToolTextColor_") + QString::number(static_cast<int>(tool));
 }
 
 QString ConfigNameHelper::toolFillType(Tools tool)
 {
-	return annotator() + QLatin1String("ToolFillType_") + QString::number(static_cast<int>(tool));
+	return kImageAnnotator() + QLatin1String("ToolFillType_") + QString::number(static_cast<int>(tool));
 }
 
 QString ConfigNameHelper::toolFontSize(Tools tool)
 {
-	return annotator() + QLatin1String("ToolFontSize_") + QString::number(static_cast<int>(tool));
+	return kImageAnnotator() + QLatin1String("ToolFontSize_") + QString::number(static_cast<int>(tool));
 }
 
 QString ConfigNameHelper::obfuscateFactor(Tools tool)
 {
-	return annotator() + QLatin1String("ToolObfuscateFactor_") + QString::number(static_cast<int>(tool));
+	return kImageAnnotator() + QLatin1String("ToolObfuscateFactor_") + QString::number(static_cast<int>(tool));
+}
+
+QString ConfigNameHelper::annotatorDockWidgetsState()
+{
+	return kImageAnnotator() + QLatin1String("AnnotatorDockWidgetsState");
 }
 
 }

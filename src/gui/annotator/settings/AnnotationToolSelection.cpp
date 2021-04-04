@@ -60,6 +60,7 @@ void AnnotationToolSelection::setOrientation(Qt::Orientation orientation)
 	} else {
 		mMainLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 	}
+	adjustSize();
 }
 
 QString AnnotationToolSelection::name() const

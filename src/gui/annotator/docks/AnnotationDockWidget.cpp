@@ -28,6 +28,7 @@ AnnotationDockWidget::AnnotationDockWidget(AnnotationDockWidgetContent *content)
 	mVerticalFeatures(features() ^ QDockWidget::DockWidgetFloatable),
 	mHorizontalFeatures(QDockWidget::DockWidgetVerticalTitleBar | mVerticalFeatures)
 {
+	setObjectName(content->name());
 	setAllowedAreas(Qt::AllDockWidgetAreas);
 	setSizePolicy(QSizePolicy::Policy::Ignored, QSizePolicy::Policy::Ignored);
 
@@ -51,18 +52,20 @@ void AnnotationDockWidget::isVisible(bool isVisible)
 void AnnotationDockWidget::updateDockLocation(Qt::DockWidgetArea area)
 {
 	if(area == Qt::TopDockWidgetArea || area == Qt::BottomDockWidgetArea) {
-		mContent->setOrientation(Qt::Horizontal);
-		mDragHandle->setOrientation(Qt::Horizontal);
-		setFeatures(mHorizontalFeatures);
-		resizeToContent();
+		setOrientation(Qt::Horizontal, mHorizontalFeatures);
 	} else if (area == Qt::LeftDockWidgetArea || area == Qt::RightDockWidgetArea) {
-		mContent->setOrientation(Qt::Vertical);
-		mDragHandle->setOrientation(Qt::Vertical);
-		setFeatures(mVerticalFeatures);
-		resizeToContent();
+		setOrientation(Qt::Vertical, mVerticalFeatures);
 	} else {
 		resizeToDragHandle();
 	}
+}
+
+void AnnotationDockWidget::setOrientation(Qt::Orientation orientation, QDockWidget::DockWidgetFeatures &features)
+{
+	mContent->setOrientation(orientation);
+	mDragHandle->setOrientation(orientation);
+	setFeatures(features);
+	resizeToContent();
 }
 
 void AnnotationDockWidget::resizeToDragHandle()

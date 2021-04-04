@@ -21,12 +21,9 @@
 #define KIMAGEANNOTATOR_ANNOTATIONDOCKWIDGETDRAGHANDLE_H
 
 #include <QWidget>
-#include <QPainter>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QPixmap>
 #include <QMouseEvent>
-#include <QIcon>
 
 #include "src/common/helper/IconLoader.h"
 #include "src/common/provider/ScaledSizeProvider.h"
@@ -55,6 +52,8 @@ private:
 	QPixmap mHorizontalHandlerImage;
 	QLabel *mLabel;
 	QHBoxLayout *mLayout;
+
+	void initGui();
 };
 
 } // namespace kImageAnnotator
