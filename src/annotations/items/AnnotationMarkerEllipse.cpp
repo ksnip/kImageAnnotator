@@ -32,4 +32,10 @@ Tools AnnotationMarkerEllipse::toolType() const
 	return Tools::MarkerEllipse;
 }
 
+void AnnotationMarkerEllipse::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+	painter->setCompositionMode(QPainter::CompositionMode_Multiply);
+	AnnotationEllipse::paint(painter, option, widget);
+}
+
 } // namespace kImageAnnotator

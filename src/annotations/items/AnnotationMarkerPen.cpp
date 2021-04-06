@@ -31,4 +31,10 @@ Tools AnnotationMarkerPen::toolType() const
 {
 	return Tools::MarkerPen;
 }
+
+void AnnotationMarkerPen::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+	painter->setCompositionMode(QPainter::CompositionMode_Multiply);
+	AnnotationPen::paint(painter, option, widget);
+}
 } // namespace kImageAnnotator

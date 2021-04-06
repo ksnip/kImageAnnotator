@@ -32,4 +32,10 @@ Tools AnnotationMarkerRect::toolType() const
 	return Tools::MarkerRect;
 }
 
+void AnnotationMarkerRect::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+	painter->setCompositionMode(QPainter::CompositionMode_Multiply);
+	AnnotationRect::paint(painter, option, widget);
+}
+
 } // namespace kImageAnnotator

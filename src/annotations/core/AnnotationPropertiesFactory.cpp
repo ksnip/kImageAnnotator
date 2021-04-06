@@ -73,9 +73,7 @@ void AnnotationPropertiesFactory::setColor(const PropertiesPtr &properties, Tool
 {
 	auto color = mSettingsProvider->toolColor();
 
-	if (isMarkerTool(toolType)) {
-		color.setAlpha(60);
-	} else if(toolType == Tools::Duplicate) {
+	if(toolType == Tools::Duplicate) {
 		color.setAlpha(30);
 	}
 

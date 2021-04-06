@@ -32,6 +32,9 @@ public:
 	AnnotationMarkerPen(const AnnotationMarkerPen &other) = default;
 	~AnnotationMarkerPen() override = default;
 	Tools toolType() const override;
+
+protected:
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 };
 
 } // namespace kImageAnnotator

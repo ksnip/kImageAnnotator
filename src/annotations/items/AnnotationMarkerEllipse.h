@@ -32,6 +32,9 @@ public:
 	AnnotationMarkerEllipse(const AnnotationMarkerEllipse &other) = default;
 	~AnnotationMarkerEllipse() override = default;
 	Tools toolType() const override;
+
+protected:
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 };
 
 } // namespace kImageAnnotator
