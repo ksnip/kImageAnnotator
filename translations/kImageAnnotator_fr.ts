@@ -177,19 +177,19 @@ pour inclure l’image d&apos;arrière-plan.</translation>
     </message>
     <message>
         <source>X:</source>
-        <translation>X&#xa0;:</translation>
+        <translation>X :</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation>Y&#xa0;:</translation>
+        <translation>Y :</translation>
     </message>
     <message>
         <source>W:</source>
-        <translation>L&#xa0;:</translation>
+        <translation>L :</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation>H&#xa0;:</translation>
+        <translation>H :</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -201,7 +201,7 @@ pour inclure l’image d&apos;arrière-plan.</translation>
     </message>
     <message>
         <source>Color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleur :</translation>
     </message>
     <message>
         <source>Canvas Background Color</source>
@@ -212,52 +212,53 @@ pour inclure l’image d&apos;arrière-plan.</translation>
     <name>kImageAnnotator::RotateDialog</name>
     <message>
         <source>Rotate Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Pivoter l&apos;image</translation>
     </message>
     <message>
         <source>180°</source>
-        <translation type="unfinished"></translation>
+        <translation>180°</translation>
     </message>
     <message>
         <source>90° Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>90° horaire</translation>
     </message>
     <message>
         <source>90° Counter Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>90° anti-horaire</translation>
     </message>
     <message>
         <source>Arbitrary</source>
-        <translation type="unfinished"></translation>
+        <translation>Aléatoirement</translation>
     </message>
     <message>
         <source>Positive values rotate clockwise, negative values counter clockwise.
 Rotating by non 90° multipliers might introduce loss of quality.</source>
-        <translation type="unfinished"></translation>
+        <translation>Les valeurs positives tournent dans le sens des aiguilles d&apos;une montre, les valeurs négatives dans le sens inverse.
+La rotation par des multiplicateurs autres que 90° peut entraîner une perte de qualité.</translation>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>Horizontale</translation>
     </message>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Verticale</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Annuler</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Pivoter</translation>
     </message>
     <message>
         <source>Flip</source>
-        <translation type="unfinished"></translation>
+        <translation>Retourner</translation>
     </message>
 </context>
 <context>
@@ -389,15 +390,15 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     <name>kImageAnnotator::ZoomIndicator</name>
     <message>
         <source>Zoom In (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom avant (%1)</translation>
     </message>
     <message>
         <source>Zoom Out (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom arrière (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser le zoom (%1)</translation>
     </message>
 </context>
 </TS>
