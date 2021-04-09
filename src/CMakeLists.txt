@@ -40,6 +40,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/imageEffects/DropShadowImageEffect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/imageEffects/BorderImageEffect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/imageEffects/GrayscaleImageEffect.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/core/imageEffects/InvertColorImageEffect.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationPathProperties.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/properties/AnnotationTextProperties.cpp

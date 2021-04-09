@@ -30,6 +30,7 @@ enum class ImageEffects
 	DropShadow,
 	Grayscale,
 	Border,
+	InvertColor,
 };
 
 } // namespace kImageAnnotator

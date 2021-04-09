@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,20 +17,16 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "ImageEffectFactory.h"
+#include "InvertColorImageEffect.h"
 
-QGraphicsEffect *kImageAnnotator::ImageEffectFactory::create(kImageAnnotator::ImageEffects effect)
+namespace kImageAnnotator {
+
+void InvertColorImageEffect::draw(QPainter *painter)
 {
-	switch (effect) {
-		case ImageEffects::DropShadow:
-			return new DropShadowImageEffect;
-		case ImageEffects::Border:
-			return new BorderImageEffect;
-		case ImageEffects::Grayscale:
-			return new GrayscaleImageEffect;
-		case ImageEffects::InvertColor:
-			return new InvertColorImageEffect;
-		default:
-			return new NoImageEffect;
-	}
+	QPoint offset;
+	auto image = sourcePixmap(Qt::LogicalCoordinates, &offset).toImage();
+	image.invertPixels();
+	painter->drawImage(offset, image);
 }
+
+} // namespace kImageAnnotator

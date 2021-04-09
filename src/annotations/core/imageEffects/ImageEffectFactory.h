@@ -26,6 +26,7 @@
 #include "DropShadowImageEffect.h"
 #include "GrayscaleImageEffect.h"
 #include "BorderImageEffect.h"
+#include "InvertColorImageEffect.h"
 #include "src/common/enum/ImageEffects.h"
 
 namespace kImageAnnotator {

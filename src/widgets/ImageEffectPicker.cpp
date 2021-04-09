@@ -58,6 +58,7 @@ void ImageEffectPicker::initGui()
 	insertItem(ImageEffects::NoEffect, QStringLiteral("noImageEffect.svg"), tr("No Effect"));
 	insertItem(ImageEffects::DropShadow, QStringLiteral("dropShadowImageEffect.svg"), tr("Drop Shadow"));
 	insertItem(ImageEffects::Grayscale, QStringLiteral("grayscaleImageEffect.svg"), tr("Grayscale"));
+	insertItem(ImageEffects::InvertColor, QStringLiteral("invertColorImageEffect.svg"), tr("Invert Color"));
 	insertItem(ImageEffects::Border, QStringLiteral("borderImageEffect.svg"), tr("Border"));
 
 	mToolButton->setFocusPolicy(Qt::NoFocus);
