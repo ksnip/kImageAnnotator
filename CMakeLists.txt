@@ -34,7 +34,7 @@ endif ()
 
 include(FeatureSummary)
 
-set(KCOLORPICKER_MIN_VERSION "0.1.5")
+set(KCOLORPICKER_MIN_VERSION "0.1.6")
 find_package(kColorPicker ${KCOLORPICKER_MIN_VERSION} REQUIRED)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
