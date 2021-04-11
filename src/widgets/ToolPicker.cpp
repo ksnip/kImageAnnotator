@@ -85,11 +85,11 @@ void ToolPicker::initGui()
 	createButton(action);
 
 	menu = new QMenu();
+	action = createAction(tr("Marker Pen"), IconLoader::load(QStringLiteral("markerPen.svg")), Qt::Key_M, Tools::MarkerPen);
+	menu->addAction(action);
 	action = createAction(tr("Marker Rectangle"), IconLoader::load(QStringLiteral("markerRect.svg")), Qt::Key_J, Tools::MarkerRect);
 	menu->addAction(action);
 	action = createAction(tr("Marker Ellipse"), IconLoader::load(QStringLiteral("markerEllipse.svg")), Qt::Key_K, Tools::MarkerEllipse);
-	menu->addAction(action);
-	action = createAction(tr("Marker Pen"), IconLoader::load(QStringLiteral("markerPen.svg")), Qt::Key_M, Tools::MarkerPen);
 	menu->addAction(action);
 	createButton(menu);
 
