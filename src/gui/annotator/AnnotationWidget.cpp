@@ -174,7 +174,7 @@ void AnnotationWidget::addTabContextMenuActions(const QList<QAction *> &actions)
 void AnnotationWidget::setSettingsCollapsed(bool isCollapsed)
 {
 	for(auto dockWidget : mDockWidgets) {
-		dockWidget->isVisible(!isCollapsed);
+		dockWidget->setCollapsed(isCollapsed);
 	}
 }
 

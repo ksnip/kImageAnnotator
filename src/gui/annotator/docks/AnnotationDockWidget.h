@@ -34,13 +34,14 @@ Q_OBJECT
 public:
 	explicit AnnotationDockWidget(AnnotationDockWidgetContent *content);
 	~AnnotationDockWidget() override;
-	void isVisible(bool isVisible);
+	void setCollapsed(bool isCollapsed);
 
 private:
 	AnnotationDockWidgetContent *mContent;
 	AnnotationDockWidgetDragHandle *mDragHandle;
 	QDockWidget::DockWidgetFeatures mVerticalFeatures;
 	QDockWidget::DockWidgetFeatures mHorizontalFeatures;
+	bool mWasVisibleBeforeCollapse;
 
 	void resizeToContent();
 	
