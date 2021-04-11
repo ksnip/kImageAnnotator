@@ -20,6 +20,7 @@
 * Fixed: Duplicate region of grayscale image has color. ([#214](https://github.com/ksnip/kImageAnnotator/issues/214))
 * Fixed: Marker shows fill and width config when modifying existing item. ([#225](https://github.com/ksnip/kImageAnnotator/issues/225))
 * Fixed: Highlighter/Marker washed out color and overlapping. ([#227](https://github.com/ksnip/kImageAnnotator/issues/227))
+* Fixed: Popup menus shown outside screen. ([#226](https://github.com/ksnip/kImageAnnotator/issues/226))
 
 ## Release 0.4.2
 * Fixed: Fetching image from annotator with HiDPI enabled pixelates image. ([#218](https://github.com/ksnip/kImageAnnotator/issues/218))

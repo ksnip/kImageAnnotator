@@ -87,4 +87,9 @@ void ListMenu::setDataVisible(const QVariant &data, bool isVisible)
 	}
 }
 
+QSize ListMenu::sizeHint() const
+{
+	return mLayout->sizeHint();
+}
+
 } // namespace kImageAnnotator

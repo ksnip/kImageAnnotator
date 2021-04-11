@@ -98,12 +98,6 @@ QString kImageAnnotator::GridMenu::currentToolTip() const
 	return button != nullptr ? button->toolTip() : QString();
 }
 
-void kImageAnnotator::GridMenu::buttonClicked()
-{
-	close();
-	emit selectionChanged();
-}
-
 void GridMenu::clear()
 {
 	auto buttons = mButtonGroup->buttons();
@@ -113,6 +107,17 @@ void GridMenu::clear()
 	}
 	qDeleteAll(buttons);
 	QMenu::clear();
+	emit selectionChanged();
+}
+
+QSize GridMenu::sizeHint() const
+{
+	return mLayout->sizeHint();
+}
+
+void kImageAnnotator::GridMenu::buttonClicked()
+{
+	close();
 	emit selectionChanged();
 }
 

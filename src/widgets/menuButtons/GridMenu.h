@@ -42,6 +42,7 @@ public:
 	QVariant currentData() const;
 	QString currentToolTip() const;
 	void clear();
+	QSize sizeHint() const override;
 
 signals:
 	void selectionChanged();

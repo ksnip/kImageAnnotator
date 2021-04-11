@@ -42,6 +42,7 @@ public:
 	QIcon currentIcon() const;
 	QString currentText() const;
 	void setDataVisible(const QVariant &data, bool isVisible);
+	QSize sizeHint() const override;
 
 signals:
 	void selectionChanged();
