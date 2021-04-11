@@ -17,34 +17,35 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONGENERALSETTINGS_H
-#define KIMAGEANNOTATOR_ANNOTATIONGENERALSETTINGS_H
+#ifndef KIMAGEANNOTATOR_ANNOTATIONIMAGESETTINGS_H
+#define KIMAGEANNOTATOR_ANNOTATIONIMAGESETTINGS_H
 
 #include "src/gui/annotator/docks/AnnotationDockWidgetContent.h"
-#include "src/widgets/ZoomIndicator.h"
+#include "src/widgets/ImageEffectPicker.h"
 
 namespace kImageAnnotator {
 
-class AnnotationGeneralSettings : public AnnotationDockWidgetContent
+class AnnotationImageSettings : public AnnotationDockWidgetContent
 {
 Q_OBJECT
 public:
-	explicit AnnotationGeneralSettings();
-	~AnnotationGeneralSettings() override;
-	void updateZoomLevel(double value);
+	explicit AnnotationImageSettings();
+	~AnnotationImageSettings() override;
+	ImageEffects effect() const;
+	void setEffect(ImageEffects effect);
 	void setOrientation(Qt::Orientation orientation) override;
 	QString name() const override;
 
 signals:
-	void zoomValueChanged(double value);
+	void effectChanged(ImageEffects effect);
 
 private:
 	QBoxLayout *mMainLayout;
-	ZoomIndicator *mZoomIndicator;
+	ImageEffectPicker *mEffectPicker;
 
 	void initGui();
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONGENERALSETTINGS_H
+#endif //KIMAGEANNOTATOR_ANNOTATIONIMAGESETTINGS_H

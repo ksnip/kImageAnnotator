@@ -23,6 +23,7 @@
 #include "AnnotationGeneralSettings.h"
 #include "AnnotationItemSettings.h"
 #include "AnnotationToolSelection.h"
+#include "AnnotationImageSettings.h"
 #include "src/annotations/core/AbstractSettingsProvider.h"
 
 namespace kImageAnnotator {
@@ -31,7 +32,12 @@ class AnnotationSettingsAdapter : public QObject, public AbstractSettingsProvide
 {
 	Q_OBJECT
 public:
-	explicit AnnotationSettingsAdapter(AnnotationGeneralSettings *generalSettings, AnnotationItemSettings *itemSettings, AnnotationToolSelection *toolSettings, Config *config);
+	explicit AnnotationSettingsAdapter(
+			AnnotationGeneralSettings *generalSettings,
+			AnnotationItemSettings *itemSettings,
+			AnnotationToolSelection *toolSettings,
+			AnnotationImageSettings *imageSettings,
+			Config *config);
 	~AnnotationSettingsAdapter() override = default;
 	void editItem(AbstractAnnotationItem *item) override;
 	void activateSelectTool() override;
@@ -52,6 +58,7 @@ private:
 	AnnotationGeneralSettings *mGeneralSettings;
 	AnnotationItemSettings *mItemSettings;
 	AnnotationToolSelection *mToolSettings;
+	AnnotationImageSettings *mImageSettings;
 	Config *mConfig;
 	bool mEditExistingItem;
 

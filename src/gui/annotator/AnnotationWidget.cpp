@@ -25,8 +25,9 @@ AnnotationWidget::AnnotationWidget(Config *config) :
 	mConfig(config),
 	mItemSettings(new AnnotationItemSettings()),
 	mGeneralSettings(new AnnotationGeneralSettings),
-	mToolSettings(new AnnotationToolSelection),
-	mSettingsAdapter(new AnnotationSettingsAdapter(mGeneralSettings, mItemSettings, mToolSettings, config)),
+	mToolSelection(new AnnotationToolSelection),
+	mImageSettings(new AnnotationImageSettings),
+	mSettingsAdapter(new AnnotationSettingsAdapter(mGeneralSettings, mItemSettings, mToolSelection, mImageSettings, config)),
 	mAnnotationTabWidget(new AnnotationTabWidget(config, mSettingsAdapter))
 {
 	initGui();
@@ -37,7 +38,8 @@ AnnotationWidget::~AnnotationWidget()
 {
 	delete mSettingsAdapter;
 	delete mItemSettings;
-	delete mToolSettings;
+	delete mToolSelection;
+	delete mImageSettings;
 	delete mGeneralSettings;
 }
 
@@ -51,9 +53,10 @@ void AnnotationWidget::initGui()
 {
 	setCentralWidget(mAnnotationTabWidget);
 
-	insertDockWidget(Qt::LeftDockWidgetArea, mToolSettings);
+	insertDockWidget(Qt::LeftDockWidgetArea, mToolSelection);
 	insertDockWidget(Qt::TopDockWidgetArea, mItemSettings);
 	insertDockWidget(Qt::BottomDockWidgetArea, mGeneralSettings);
+	insertDockWidget(Qt::BottomDockWidgetArea, mImageSettings);
 
 	setFocusPolicy(Qt::ClickFocus);
 

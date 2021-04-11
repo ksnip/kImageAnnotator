@@ -7,6 +7,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/ItemSettingsWidgetConfigurator.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/AnnotationSettingsAdapter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/AnnotationItemSettings.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/AnnotationImageSettings.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/AnnotationGeneralSettings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/AnnotationToolSelection.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/docks/AnnotationDockWidget.cpp

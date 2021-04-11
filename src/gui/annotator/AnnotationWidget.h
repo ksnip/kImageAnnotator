@@ -25,8 +25,6 @@
 #include <QGridLayout>
 #include <QCoreApplication>
 
-#include "src/gui/annotator/settings/AnnotationGeneralSettings.h"
-#include "src/gui/annotator/settings/AnnotationToolSelection.h"
 #include "src/gui/annotator/settings/AnnotationSettingsAdapter.h"
 #include "src/gui/annotator/docks/AnnotationDockWidget.h"
 #include "src/gui/annotator/tabs/AnnotationTabWidget.h"
@@ -72,7 +70,8 @@ private:
 	Config *mConfig;
 	AnnotationItemSettings *mItemSettings;
 	AnnotationGeneralSettings *mGeneralSettings;
-	AnnotationToolSelection *mToolSettings;
+	AnnotationToolSelection *mToolSelection;
+	AnnotationImageSettings *mImageSettings;
 	AnnotationSettingsAdapter *mSettingsAdapter;
 	AnnotationTabWidget *mAnnotationTabWidget;
 	QList<AnnotationDockWidget*> mDockWidgets;

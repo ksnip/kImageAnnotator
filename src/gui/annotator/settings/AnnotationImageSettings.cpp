@@ -17,41 +17,34 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationGeneralSettings.h"
+#include "AnnotationImageSettings.h"
 
 namespace kImageAnnotator {
 
-AnnotationGeneralSettings::AnnotationGeneralSettings() :
+AnnotationImageSettings::AnnotationImageSettings() :
 	mMainLayout(new QBoxLayout(QBoxLayout::LeftToRight)),
-	mZoomIndicator(new ZoomIndicator(this))
+	mEffectPicker(new ImageEffectPicker(this))
 {
 	initGui();
 }
 
-AnnotationGeneralSettings::~AnnotationGeneralSettings()
+AnnotationImageSettings::~AnnotationImageSettings()
 {
-	delete mZoomIndicator;
+	delete mEffectPicker;
 	delete mMainLayout;
 }
 
-void AnnotationGeneralSettings::initGui()
+ImageEffects AnnotationImageSettings::effect() const
 {
-	mMainLayout->addWidget(mZoomIndicator);
-	mMainLayout->setContentsMargins(0, 0, 0, 0);
-
-	setLayout(mMainLayout);
-
-	setFocusPolicy(Qt::ClickFocus);
-
-	connect(mZoomIndicator, &ZoomIndicator::zoomValueChanged, this, &AnnotationGeneralSettings::zoomValueChanged);
+	return mEffectPicker->effect();
 }
 
-void AnnotationGeneralSettings::updateZoomLevel(double value)
+void AnnotationImageSettings::setEffect(ImageEffects effect)
 {
-	mZoomIndicator->setZoomValue(value);
+	mEffectPicker->setEffect(effect);
 }
 
-void AnnotationGeneralSettings::setOrientation(Qt::Orientation orientation)
+void AnnotationImageSettings::setOrientation(Qt::Orientation orientation)
 {
 	if(orientation == Qt::Horizontal) {
 		mMainLayout->setDirection(QBoxLayout::LeftToRight);
@@ -63,9 +56,21 @@ void AnnotationGeneralSettings::setOrientation(Qt::Orientation orientation)
 	adjustSize();
 }
 
-QString AnnotationGeneralSettings::name() const
+QString AnnotationImageSettings::name() const
 {
-	return tr("General Settings");
+	return tr("Image Settings");
+}
+
+void AnnotationImageSettings::initGui()
+{
+	mMainLayout->addWidget(mEffectPicker);
+	mMainLayout->setContentsMargins(0, 0, 0, 0);
+
+	setLayout(mMainLayout);
+
+	setFocusPolicy(Qt::ClickFocus);
+
+	connect(mEffectPicker, &ImageEffectPicker::effectSelected, this, &AnnotationImageSettings::effectChanged);
 }
 
 } // namespace kImageAnnotator

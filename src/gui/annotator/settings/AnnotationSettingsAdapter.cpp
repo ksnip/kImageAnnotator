@@ -21,16 +21,23 @@
 
 namespace kImageAnnotator {
 
-AnnotationSettingsAdapter::AnnotationSettingsAdapter(AnnotationGeneralSettings *generalSettings, AnnotationItemSettings *itemSettings, AnnotationToolSelection *toolSettings, Config *config) :
+AnnotationSettingsAdapter::AnnotationSettingsAdapter(
+		AnnotationGeneralSettings *generalSettings,
+		AnnotationItemSettings *itemSettings,
+		AnnotationToolSelection *toolSettings,
+		AnnotationImageSettings *imageSettings,
+		Config *config) :
 	mGeneralSettings(generalSettings),
 	mItemSettings(itemSettings),
 	mToolSettings(toolSettings),
+	mImageSettings(imageSettings),
 	mConfig(config),
 	mEditExistingItem(false)
 {
 	connect(mToolSettings, &AnnotationToolSelection::toolTypeChanged, this, &AnnotationSettingsAdapter::toolTypeChanged);
 
-	connect(mGeneralSettings, &AnnotationGeneralSettings::effectChanged, this, &AnnotationSettingsAdapter::effectChanged);
+	connect(mImageSettings, &AnnotationImageSettings::effectChanged, this, &AnnotationSettingsAdapter::effectChanged);
+
 	connect(mGeneralSettings, &AnnotationGeneralSettings::zoomValueChanged, this, &AnnotationSettingsAdapter::zoomValueChanged);
 
 	connect(mItemSettings, &AnnotationItemSettings::toolColorChanged, this, &AnnotationSettingsAdapter::toolColorChanged);
@@ -100,7 +107,7 @@ QString AnnotationSettingsAdapter::sticker() const
 
 ImageEffects AnnotationSettingsAdapter::effect() const
 {
-	return mGeneralSettings->effect();
+	return mImageSettings->effect();
 }
 
 void AnnotationSettingsAdapter::updateNumberToolSeed(int numberToolSeed)
@@ -116,7 +123,7 @@ void AnnotationSettingsAdapter::updateZoomLevel(double value)
 void AnnotationSettingsAdapter::reloadConfig()
 {
 	mToolSettings->setToolType(mConfig->selectedTool());
-	mGeneralSettings->setEffect(ImageEffects::NoEffect);
+	mImageSettings->setEffect(ImageEffects::NoEffect);
 	mItemSettings->setUpForTool(mConfig->selectedTool());
 }
 
