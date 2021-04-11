@@ -37,6 +37,7 @@ public:
 	static QString toolFillType(Tools tool);
 	static QString toolFontSize(Tools tool);
 	static QString obfuscateFactor(Tools tool);
+	static QString shadowEnabled(Tools tool);
 	static QString annotatorDockWidgetsState();
 };
 

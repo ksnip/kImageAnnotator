@@ -93,8 +93,8 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetShadowEnabledBasedOnC
 	auto tool = Tools::Pen;
 	auto config = new Config;
 	auto enabled = true;
-	config->setItemShadowEnabled(enabled);
 	auto settingsProvider = new MockSettingsProvider();
+	settingsProvider->setShadowEnabled(enabled);
 	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
 
 	auto properties = propertiesFactory.create(tool);

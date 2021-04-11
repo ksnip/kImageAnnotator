@@ -26,6 +26,7 @@
 #include "src/widgets/NumberPicker.h"
 #include "src/widgets/FillModePicker.h"
 #include "src/widgets/StickerPicker.h"
+#include "src/widgets/ToggleButton.h"
 #include "src/backend/Config.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 #include "src/annotations/properties/AnnotationObfuscateProperties.h"
@@ -53,8 +54,10 @@ public:
 	int obfuscationFactor() const;
 	void setObfuscationFactor(int factor);
 	QString sticker() const;
-	void updateNumberToolSeed(int numberToolSeed);
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
+	bool shadowEnabled() const;
+	void setShadowEnabled(bool enabled);
+	void updateNumberToolSeed(int numberToolSeed);
 	void setOrientation(Qt::Orientation orientation) override;
 	QString name() const override;
 
@@ -67,6 +70,7 @@ signals:
 	void notifyNumberToolSeedChanged(int newNumberToolSeed);
 	void obfuscateFactorChanged(int factor);
 	void stickerChanged(const QString &sticker);
+	void shadowEnabledChanged(bool enabled);
 
 private:
 	QBoxLayout *mMainLayout;
@@ -78,6 +82,7 @@ private:
 	NumberPicker *mNumberToolSeedPicker;
 	NumberPicker *mObfuscateFactorPicker;
 	StickerPicker *mStickerPicker;
+	ToggleButton *mShadowToggleButton;
 	ItemSettingsWidgetConfigurator mWidgetConfigurator;
 
 	void initGui();

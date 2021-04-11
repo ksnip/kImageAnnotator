@@ -57,7 +57,7 @@ public Q_SLOTS:
 	void insertImageItem(const QPointF &position, const QPixmap &pixmap);
 	void setTextFont(const QFont &font);
 	void setNumberFont(const QFont &font);
-	void setItemShadowEnabled(bool enabled);
+	Q_DECL_DEPRECATED void setItemShadowEnabled(bool enabled);
 	void setSmoothPathEnabled(bool enabled);
 	void setSaveToolSelection(bool enabled);
 	void setSmoothFactor(int factor);

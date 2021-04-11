@@ -50,6 +50,7 @@ public:
 	int obfuscationFactor() const override;
 	QString sticker() const override;
 	ImageEffects effect() const override;
+	bool shadowEnabled() const override;
 	void updateNumberToolSeed(int numberToolSeed) override;
 	void updateZoomLevel(double value) override;
 	void reloadConfig();
@@ -76,6 +77,7 @@ private slots:
 	void notifyNumberToolSeedChanged(int newNumberToolSeed);
 	void obfuscateFactorChanged(int factor);
 	void stickerChanged(const QString &sticker);
+	void shadowEnabledChanged(bool enabled);
 };
 
 } // namespace kImageAnnotator

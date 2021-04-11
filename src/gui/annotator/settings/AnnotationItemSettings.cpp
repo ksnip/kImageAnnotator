@@ -30,7 +30,8 @@ AnnotationItemSettings::AnnotationItemSettings() :
 	mFillModePicker(new FillModePicker(this)),
 	mNumberToolSeedPicker(new NumberPicker(this)),
 	mObfuscateFactorPicker(new NumberPicker(this)),
-	mStickerPicker(new StickerPicker(this))
+	mStickerPicker(new StickerPicker(this)),
+	mShadowToggleButton(new ToggleButton(this))
 {
 	initGui();
 }
@@ -45,6 +46,7 @@ AnnotationItemSettings::~AnnotationItemSettings()
 	delete mNumberToolSeedPicker;
 	delete mObfuscateFactorPicker;
 	delete mStickerPicker;
+	delete mShadowToggleButton;
 	delete mMainLayout;
 }
 
@@ -70,6 +72,9 @@ void AnnotationItemSettings::initGui()
 	mObfuscateFactorPicker->setIcon(IconLoader::load(QStringLiteral("obfuscateFactor.svg")));
 	mObfuscateFactorPicker->setToolTip(tr("Obfuscation Factor"));
 
+	mShadowToggleButton->setIcon(IconLoader::load(QStringLiteral("dropShadowImageEffect.svg")));
+	mShadowToggleButton->setToolTip(tr("Item Shadow"));
+
 	mMainLayout->addWidget(mColorPicker);
 	mMainLayout->addWidget(mWidthPicker);
 	mMainLayout->addWidget(mTextColorPicker);
@@ -78,6 +83,7 @@ void AnnotationItemSettings::initGui()
 	mMainLayout->addWidget(mNumberToolSeedPicker);
 	mMainLayout->addWidget(mObfuscateFactorPicker);
 	mMainLayout->addWidget(mStickerPicker);
+	mMainLayout->addWidget(mShadowToggleButton);
 
 	mMainLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -89,6 +95,7 @@ void AnnotationItemSettings::initGui()
 	mWidgetConfigurator.setFirstNumberWidget(mNumberToolSeedPicker);
 	mWidgetConfigurator.setObfuscateFactorWidget(mObfuscateFactorPicker);
 	mWidgetConfigurator.setStickerWidget(mStickerPicker);
+	mWidgetConfigurator.setShadowToggleWidget(mShadowToggleButton);
 
 	setLayout(mMainLayout);
 
@@ -102,7 +109,7 @@ void AnnotationItemSettings::initGui()
 	connect(mNumberToolSeedPicker, &NumberPicker::numberSelected, this, &AnnotationItemSettings::notifyNumberToolSeedChanged);
 	connect(mObfuscateFactorPicker, &NumberPicker::numberSelected, this, &AnnotationItemSettings::obfuscateFactorChanged);
 	connect(mStickerPicker, &StickerPicker::stickerSelected, this, &AnnotationItemSettings::stickerChanged);
-
+	connect(mShadowToggleButton, &ToggleButton::toggled, this, &AnnotationItemSettings::shadowEnabledChanged);
 }
 
 void AnnotationItemSettings::setUpForTool(Tools tool)
@@ -175,14 +182,24 @@ QString AnnotationItemSettings::sticker() const
 	return mStickerPicker->sticker();
 }
 
-void AnnotationItemSettings::updateNumberToolSeed(int numberToolSeed)
-{
-	mNumberToolSeedPicker->setNumber(numberToolSeed);
-}
-
 void AnnotationItemSettings::setStickers(const QStringList &stickerPaths, bool keepDefault)
 {
 	mStickerPicker->setStickers(stickerPaths, keepDefault);
+}
+
+bool AnnotationItemSettings::shadowEnabled() const
+{
+	return mShadowToggleButton->isChecked();
+}
+
+void AnnotationItemSettings::setShadowEnabled(bool enabled)
+{
+	mShadowToggleButton->setChecked(enabled);
+}
+
+void AnnotationItemSettings::updateNumberToolSeed(int numberToolSeed)
+{
+	mNumberToolSeedPicker->setNumber(numberToolSeed);
 }
 
 void AnnotationItemSettings::setOrientation(Qt::Orientation orientation)

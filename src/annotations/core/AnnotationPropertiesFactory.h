@@ -43,8 +43,8 @@ private:
 	Config *mConfig;
 	AbstractSettingsProvider *mSettingsProvider;
 
-	PropertiesPtr createPropertiesObject(Tools toolType) const;
-	void setShadowEnabled(const PropertiesPtr &properties, Tools toolType) const;
+	static PropertiesPtr createPropertiesObject(Tools toolType);
+	void setShadowEnabled(const PropertiesPtr &properties, Tools tools) const;
 	void setColor(const PropertiesPtr &properties, Tools toolType) const;
 	void setTextColor(const PropertiesPtr &properties) const;
 	void setWidthSize(const PropertiesPtr &properties) const;
@@ -53,9 +53,6 @@ private:
 	void setTextProperties(const PropertiesPtr &properties, Tools toolType) const;
 	void setObfuscateProperties(const PropertiesPtr &properties) const;
 	void setStickerProperties(const PropertiesPtr &properties) const;
-	static bool isMarkerTool(Tools toolType);
-	static bool isObfuscateTool(const Tools &toolType);
-	bool isToolWithShadowSupport(Tools &toolType) const;
 };
 
 } // namespace kImageAnnotator

@@ -48,8 +48,11 @@ public:
 	int obfuscationFactor() const override;
 	void setBlurRadius(int blurRadius);
 	QString sticker() const override;
-	ImageEffects effect() const override;
 	void setSticker(const QString &stickerPath);
+	ImageEffects effect() const override;
+	bool shadowEnabled() const override;
+	void setShadowEnabled(bool enabled);
+
 	void updateNumberToolSeed(int numberToolSeed) override;
 	void updateZoomLevel(double value) override;
 
@@ -63,6 +66,7 @@ private:
 	int mBlurRadius;
 	QString mStickerPath;
 	double mZoomLevel;
+	bool mShadowEnabled;
 };
 
 #endif //KIMAGEANNOTATOR_MOCKSETTINGSPROVIDER_H

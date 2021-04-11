@@ -109,6 +109,11 @@ ImageEffects MockSettingsProvider::effect() const
 	return ImageEffects::NoEffect;
 }
 
+bool MockSettingsProvider::shadowEnabled() const
+{
+	return mShadowEnabled;
+}
+
 void MockSettingsProvider::setSticker(const QString &stickerPath)
 {
 	mStickerPath =  stickerPath;
@@ -122,4 +127,9 @@ void MockSettingsProvider::updateZoomLevel(double value)
 void MockSettingsProvider::updateNumberToolSeed(int numberToolSeed)
 {
 
+}
+
+void MockSettingsProvider::setShadowEnabled(bool enabled)
+{
+	mShadowEnabled = enabled;
 }

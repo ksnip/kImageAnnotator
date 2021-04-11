@@ -46,7 +46,7 @@ PropertiesPtr AnnotationPropertiesFactory::create(Tools toolType) const
 	return properties;
 }
 
-PropertiesPtr AnnotationPropertiesFactory::createPropertiesObject(Tools toolType) const
+PropertiesPtr AnnotationPropertiesFactory::createPropertiesObject(Tools toolType)
 {
 	switch (toolType) {
 		case Tools::Pen:
@@ -108,18 +108,9 @@ void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, Tools
 	}
 }
 
-void AnnotationPropertiesFactory::setShadowEnabled(const PropertiesPtr &properties, Tools toolType) const
+void AnnotationPropertiesFactory::setShadowEnabled(const PropertiesPtr &properties, Tools tools) const
 {
-	if (isToolWithShadowSupport(toolType)) {
-		properties->setShadowEnabled(mConfig->itemShadowEnabled());
-	} else {
-		properties->setShadowEnabled(false);
-	}
-}
-
-bool AnnotationPropertiesFactory::isToolWithShadowSupport(Tools &toolType) const
-{
-	return !isObfuscateTool(toolType) && !isMarkerTool(toolType) && toolType != Tools::Image && toolType != Tools::Duplicate;
+	properties->setShadowEnabled(mSettingsProvider->shadowEnabled());
 }
 
 void AnnotationPropertiesFactory::setPathProperties(const PropertiesPtr &properties) const
@@ -155,16 +146,6 @@ void AnnotationPropertiesFactory::setStickerProperties(const PropertiesPtr &prop
 	if (stickerProperties != nullptr) {
 		stickerProperties->setPath(mSettingsProvider->sticker());
 	}
-}
-
-bool AnnotationPropertiesFactory::isMarkerTool(Tools toolType)
-{
-	return toolType == Tools::MarkerPen || toolType == Tools::MarkerRect || toolType == Tools::MarkerEllipse;
-}
-
-bool AnnotationPropertiesFactory::isObfuscateTool(const Tools &toolType)
-{
-	return toolType == Tools::Blur || toolType == Tools::Pixelate;
 }
 
 } // namespace kImageAnnotator

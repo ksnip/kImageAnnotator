@@ -68,10 +68,9 @@ private:
 	QPainterPath *mShape;
 	QPainterPathStroker *mStroker;
 	QPen mPainterPen;
-	ShadowEffect *mShadowEffect;
 
 	void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
-	void addShadowIfRequired();
+	void updateShadow();
 	void drawPath(QPainter *painter) const;
 	void drawPoint(QPainter *painter) const;
 };

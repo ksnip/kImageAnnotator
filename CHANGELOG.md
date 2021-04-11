@@ -15,6 +15,7 @@
 * New: Allow flipping background image horizontally and vertically. ([#221](https://github.com/ksnip/kImageAnnotator/issues/221))
 * New: Configurable UI with dockable settings widgets. ([#102](https://github.com/ksnip/kImageAnnotator/issues/102))
 * New: Add invert color image effect. ([#228](https://github.com/ksnip/kImageAnnotator/issues/228))
+* New: Allow disabling item shadow per item from UI. ([#223](https://github.com/ksnip/kImageAnnotator/issues/223))
 * Changed: Change drop shadow to cover all sites. ([#202](https://github.com/ksnip/kImageAnnotator/issues/202))
 * Fixed: Deleting item outside image doesn't decrease canvas size. ([#164](https://github.com/ksnip/kImageAnnotator/issues/164))
 * Fixed: Duplicate region of grayscale image has color. ([#214](https://github.com/ksnip/kImageAnnotator/issues/214))

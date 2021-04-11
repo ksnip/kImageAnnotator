@@ -148,8 +148,8 @@ void KImageAnnotator::setNumberFont(const QFont &font)
 
 void KImageAnnotator::setItemShadowEnabled(bool enabled)
 {
-	Q_D(KImageAnnotator);
-	d->mConfig.setItemShadowEnabled(enabled);
+	Q_UNUSED(enabled)
+	// Deprecated, will be removed with the next major release
 }
 
 void KImageAnnotator::setSmoothPathEnabled(bool enabled)

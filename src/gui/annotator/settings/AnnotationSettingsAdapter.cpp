@@ -48,6 +48,7 @@ AnnotationSettingsAdapter::AnnotationSettingsAdapter(
 	connect(mItemSettings, &AnnotationItemSettings::notifyNumberToolSeedChanged, this, &AnnotationSettingsAdapter::notifyNumberToolSeedChanged);
 	connect(mItemSettings, &AnnotationItemSettings::obfuscateFactorChanged, this, &AnnotationSettingsAdapter::obfuscateFactorChanged);
 	connect(mItemSettings, &AnnotationItemSettings::stickerChanged, this, &AnnotationSettingsAdapter::stickerChanged);
+	connect(mItemSettings, &AnnotationItemSettings::shadowEnabledChanged, this, &AnnotationSettingsAdapter::shadowEnabledChanged);
 
 	reloadConfig();
 }
@@ -110,6 +111,11 @@ ImageEffects AnnotationSettingsAdapter::effect() const
 	return mImageSettings->effect();
 }
 
+bool AnnotationSettingsAdapter::shadowEnabled() const
+{
+	return mItemSettings->shadowEnabled();
+}
+
 void AnnotationSettingsAdapter::updateNumberToolSeed(int numberToolSeed)
 {
 	mItemSettings->updateNumberToolSeed(numberToolSeed);
@@ -124,7 +130,7 @@ void AnnotationSettingsAdapter::reloadConfig()
 {
 	mToolSettings->setToolType(mConfig->selectedTool());
 	mImageSettings->setEffect(ImageEffects::NoEffect);
-	mItemSettings->setUpForTool(mConfig->selectedTool());
+	mItemSettings->setUpForTool(toolType());
 }
 
 void AnnotationSettingsAdapter::effectChanged(ImageEffects effect)
@@ -146,6 +152,7 @@ void AnnotationSettingsAdapter::loadFromConfig(Tools tool)
 	mItemSettings->setFillMode(mConfig->toolFillType(tool));
 	mItemSettings->setFontSize(mConfig->toolFontSize(tool));
 	mItemSettings->setObfuscationFactor(mConfig->obfuscationFactor(tool));
+	mItemSettings->setShadowEnabled(mConfig->shadowEnabled(tool));
 }
 
 void AnnotationSettingsAdapter::loadFromItem(const AbstractAnnotationItem *item)
@@ -156,6 +163,7 @@ void AnnotationSettingsAdapter::loadFromItem(const AbstractAnnotationItem *item)
 	mItemSettings->setTextColor(properties->textColor());
 	mItemSettings->setToolWidth(properties->width());
 	mItemSettings->setFillMode(properties->fillType());
+	mItemSettings->setShadowEnabled(properties->shadowEnabled());
 
 	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
 	if(textProperties != nullptr) {
@@ -241,6 +249,15 @@ void AnnotationSettingsAdapter::stickerChanged(const QString &sticker)
 {
 	if(mEditExistingItem) {
 		itemSettingChanged();
+	}
+}
+
+void AnnotationSettingsAdapter::shadowEnabledChanged(bool enabled)
+{
+	if(mEditExistingItem) {
+		itemSettingChanged();
+	} else {
+		mConfig->setShadowEnabled(enabled, toolType());
 	}
 }
 

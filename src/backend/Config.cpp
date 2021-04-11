@@ -23,7 +23,6 @@ namespace kImageAnnotator {
 
 Config::Config() :
 	mSelectTool(Tools::Pen),
-	mItemShadowEnabled(false),
 	mSmoothPathEnabled(false),
 	mSaveToolSelection(false),
 	mSmoothFactor(0),
@@ -201,14 +200,19 @@ void Config::setToolFontSize(int fontSize, Tools toolType)
 	}
 }
 
-bool Config::itemShadowEnabled() const
+bool Config::shadowEnabled(Tools tool) const
 {
-	return mItemShadowEnabled;
+	return mToolToShadowEnabled[tool];
 }
 
-void Config::setItemShadowEnabled(bool enabled)
+void Config::setShadowEnabled(bool enabled, Tools tool)
 {
-	mItemShadowEnabled = enabled;
+	if (shadowEnabled(tool) == enabled) {
+		return;
+	}
+
+	mToolToShadowEnabled[tool] = enabled;
+	saveToolShadowEnabled(tool, enabled);
 }
 
 bool Config::smoothPathEnabled() const
@@ -276,7 +280,7 @@ void Config::setObfuscationFactor(int factor, Tools toolType)
 	}
 
 	mToolToObfuscationFactor[toolType] = factor;
-	saveObfuscateFactor(toolType, factor);
+	saveToolObfuscateFactor(toolType, factor);
 }
 
 QColor Config::canvasColor() const
@@ -311,6 +315,7 @@ void Config::initToolSettings()
 	initToolFillTypes();
 	initToolFonts();
 	initObfuscateFactor();
+	initShadowEnabled();
 }
 
 void Config::initSelectedTool()
@@ -357,7 +362,14 @@ void Config::initToolFonts()
 void Config::initObfuscateFactor()
 {
 	for (auto toolType : mAllTools) {
-		mToolToObfuscationFactor[toolType] = loadObfuscateFactor(toolType);
+		mToolToObfuscationFactor[toolType] = loadToolObfuscateFactor(toolType);
+	}
+}
+
+void Config::initShadowEnabled()
+{
+	for (auto toolType : mAllTools) {
+		mToolToShadowEnabled[toolType] = loadToolShadowEnabled(toolType);
 	}
 }
 
@@ -365,7 +377,6 @@ void Config::initGeneralSettings()
 {
 	mSaveToolSelection = false;
 	mSmoothPathEnabled = true;
-	mItemShadowEnabled = true;
 	mSmoothFactor = 7;
 	mSwitchToSelectToolAfterDrawingItem = false;
 	mNumberUpdateMode = NumberUpdateMode::UpdateOnlyNewNumbers;
@@ -474,7 +485,7 @@ void Config::saveToolFontSize(Tools toolType, int fontSize)
 	}
 }
 
-int Config::loadObfuscateFactor(Tools toolType)
+int Config::loadToolObfuscateFactor(Tools toolType)
 {
 	if (mSaveToolSelection) {
 		return mConfig.value(ConfigNameHelper::obfuscateFactor(toolType), defaultObfuscateFactor()).value<int>();
@@ -483,10 +494,27 @@ int Config::loadObfuscateFactor(Tools toolType)
 	}
 }
 
-void Config::saveObfuscateFactor(Tools toolType, int radius)
+void Config::saveToolObfuscateFactor(Tools toolType, int radius)
 {
 	if (mSaveToolSelection) {
 		mConfig.setValue(ConfigNameHelper::obfuscateFactor(toolType), radius);
+		mConfig.sync();
+	}
+}
+
+bool Config::loadToolShadowEnabled(Tools tool)
+{
+	if (mSaveToolSelection) {
+		return mConfig.value(ConfigNameHelper::shadowEnabled(tool), defaultShadowEnabled(tool)).toBool();
+	} else {
+		return defaultShadowEnabled(tool);
+	}
+}
+
+void Config::saveToolShadowEnabled(Tools tool, bool enabled)
+{
+	if (mSaveToolSelection) {
+		mConfig.setValue(ConfigNameHelper::shadowEnabled(tool), enabled);
 		mConfig.sync();
 	}
 }
@@ -601,6 +629,36 @@ int Config::defaultToolFontSize(Tools toolType)
 int Config::defaultObfuscateFactor()
 {
 	return 10;
+}
+
+bool Config::defaultShadowEnabled(Tools tool)
+{
+	switch (tool) {
+		case Tools::Pen:
+		case Tools::Line:
+		case Tools::Number:
+		case Tools::NumberPointer:
+		case Tools::NumberArrow:
+		case Tools::Arrow:
+		case Tools::DoubleArrow:
+		case Tools::Rect:
+		case Tools::Ellipse:
+		case Tools::Sticker:
+			return true;
+		case Tools::Text:
+		case Tools::TextPointer:
+		case Tools::TextArrow:
+		case Tools::Blur:
+		case Tools::Pixelate:
+		case Tools::MarkerPen:
+		case Tools::MarkerRect:
+		case Tools::MarkerEllipse:
+		case Tools::Duplicate:
+		case Tools::Image:
+		case Tools::Select:
+		default:
+			return false;
+	}
 }
 
 } // namespace kImageAnnotator

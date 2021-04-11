@@ -82,8 +82,8 @@ void AnnotationArea::loadImage(const QPixmap &image)
 
 void AnnotationArea::insertImageItem(const QPointF &position, const QPixmap &image)
 {
-    auto imageItem = mItemFactory->create(position, image);
-    mUndoStack->push(new AddCommand(imageItem, this));
+	auto imageItem = mItemFactory->create(position, image);
+	mUndoStack->push(new AddCommand(imageItem, this));
 	toolChanged(mSettingsProvider->toolType());
 }
 

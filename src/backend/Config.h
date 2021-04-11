@@ -64,8 +64,8 @@ public slots:
 	int toolFontSize(Tools toolType) const;
 	void setToolFontSize(int fontSize, Tools toolType);
 
-	bool itemShadowEnabled() const;
-	void setItemShadowEnabled(bool enabled);
+	bool shadowEnabled(Tools tool) const;
+	void setShadowEnabled(bool enabled, Tools tool);
 
 	bool smoothPathEnabled() const;
 	void setSmoothPathEnabled(bool enabled);
@@ -103,7 +103,7 @@ private:
 	QHash<Tools, FillModes> mToolToFillType;
 	QHash<Tools, QFont> mToolToFont;
 	QHash<Tools, int> mToolToObfuscationFactor;
-	bool mItemShadowEnabled;
+	QHash<Tools, bool> mToolToShadowEnabled;
 	bool mSmoothPathEnabled;
 	bool mSaveToolSelection;
 	int mSmoothFactor;
@@ -119,6 +119,7 @@ private:
 	void initToolFillTypes();
 	void initToolFonts();
 	void initObfuscateFactor();
+	void initShadowEnabled();
 	void initGeneralSettings();
 
 	QColor loadToolColor(Tools toolType);
@@ -133,16 +134,19 @@ private:
 	void saveToolType(Tools toolType);
 	int loadToolFontSize(Tools toolType);
 	void saveToolFontSize(Tools toolType, int fontSize);
-	int loadObfuscateFactor(Tools toolType);
-	void saveObfuscateFactor(Tools toolType, int radius);
+	int loadToolObfuscateFactor(Tools toolType);
+	void saveToolObfuscateFactor(Tools toolType, int radius);
+	bool loadToolShadowEnabled(Tools tool);
+	void saveToolShadowEnabled(Tools tool, bool enabled);
 
-	static QColor defaultToolColor(Tools toolType) ;
-	static QColor defaultToolTextColor(Tools toolType) ;
-	static int defaultToolWidth(Tools toolType) ;
-	static FillModes defaultToolFillMode(Tools toolType) ;
+	static QColor defaultToolColor(Tools toolType);
+	static QColor defaultToolTextColor(Tools toolType);
+	static int defaultToolWidth(Tools toolType);
+	static FillModes defaultToolFillMode(Tools toolType);
 	static Tools defaultToolType();
-	static int defaultToolFontSize(Tools toolType) ;
-	static int defaultObfuscateFactor() ;
+	static int defaultToolFontSize(Tools toolType);
+	static int defaultObfuscateFactor();
+	static bool defaultShadowEnabled(Tools tool);
 };
 
 } // namespace kImageAnnotator

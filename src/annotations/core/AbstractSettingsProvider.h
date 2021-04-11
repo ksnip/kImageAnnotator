@@ -46,6 +46,7 @@ public:
 	virtual int obfuscationFactor() const = 0;
 	virtual QString sticker() const = 0;
 	virtual ImageEffects effect() const = 0;
+	virtual bool shadowEnabled() const = 0;
 	virtual void updateNumberToolSeed(int numberToolSeed) = 0;
 	virtual void updateZoomLevel(double value) = 0;
 	void setActiveListener(ISettingsListener *settingsListener);

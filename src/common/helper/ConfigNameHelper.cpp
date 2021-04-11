@@ -61,6 +61,11 @@ QString ConfigNameHelper::obfuscateFactor(Tools tool)
 	return kImageAnnotator() + QLatin1String("ToolObfuscateFactor_") + QString::number(static_cast<int>(tool));
 }
 
+QString ConfigNameHelper::shadowEnabled(Tools tool)
+{
+	return kImageAnnotator() + QLatin1String("ToolShadowEnabled_") + QString::number(static_cast<int>(tool));
+}
+
 QString ConfigNameHelper::annotatorDockWidgetsState()
 {
 	return kImageAnnotator() + QLatin1String("AnnotatorDockWidgetsState");
