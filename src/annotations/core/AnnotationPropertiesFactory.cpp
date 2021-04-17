@@ -29,17 +29,27 @@ AnnotationPropertiesFactory::AnnotationPropertiesFactory(Config *config, Abstrac
 	Q_ASSERT(mSettingsProvider != nullptr);
 }
 
-PropertiesPtr AnnotationPropertiesFactory::create(Tools toolType) const
+PropertiesPtr AnnotationPropertiesFactory::create(Tools tool) const
 {
-	auto properties = createPropertiesObject(toolType);
+	return create(tool, false);
+}
 
-	setColor(properties, toolType);
+PropertiesPtr AnnotationPropertiesFactory::createFromConfig(Tools tool) const
+{
+	return create(tool, true);
+}
+
+PropertiesPtr AnnotationPropertiesFactory::create(Tools tool, bool fromConfig) const
+{
+	auto properties = createPropertiesObject(tool);
+
+	setColor(properties, tool);
 	setTextColor(properties);
 	setWidthSize(properties);
-	setFill(properties, toolType);
-	setShadowEnabled(properties, toolType);
+	setFill(properties, tool);
+	setShadowEnabled(properties, tool, fromConfig);
 	setPathProperties(properties);
-	setTextProperties(properties, toolType);
+	setTextProperties(properties, tool);
 	setObfuscateProperties(properties);
 	setStickerProperties(properties);
 
@@ -108,9 +118,10 @@ void AnnotationPropertiesFactory::setFill(const PropertiesPtr &properties, Tools
 	}
 }
 
-void AnnotationPropertiesFactory::setShadowEnabled(const PropertiesPtr &properties, Tools tools) const
+void AnnotationPropertiesFactory::setShadowEnabled(const PropertiesPtr &properties, Tools tool, bool fromConfig) const
 {
-	properties->setShadowEnabled(mSettingsProvider->shadowEnabled());
+	auto enabled = fromConfig ? mConfig->shadowEnabled(tool) : mSettingsProvider->shadowEnabled();
+	properties->setShadowEnabled(enabled);
 }
 
 void AnnotationPropertiesFactory::setPathProperties(const PropertiesPtr &properties) const

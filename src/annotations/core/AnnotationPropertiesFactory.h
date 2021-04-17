@@ -37,14 +37,16 @@ public:
 	explicit AnnotationPropertiesFactory(Config *config, AbstractSettingsProvider *settingsProvider);
 	~AnnotationPropertiesFactory() = default;
 
-	PropertiesPtr create(Tools toolType) const;
+	PropertiesPtr create(Tools tool) const;
+	PropertiesPtr createFromConfig(Tools tool) const;
 
 private:
 	Config *mConfig;
 	AbstractSettingsProvider *mSettingsProvider;
 
+	PropertiesPtr create(Tools tool, bool fromConfig) const;
 	static PropertiesPtr createPropertiesObject(Tools toolType);
-	void setShadowEnabled(const PropertiesPtr &properties, Tools tools) const;
+	void setShadowEnabled(const PropertiesPtr &properties, Tools tool, bool fromConfig) const;
 	void setColor(const PropertiesPtr &properties, Tools toolType) const;
 	void setTextColor(const PropertiesPtr &properties) const;
 	void setWidthSize(const PropertiesPtr &properties) const;

@@ -78,7 +78,7 @@ AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPositio
 
 AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPosition, const QPixmap &image)
 {
-    auto properties = mPropertiesFactory->create(Tools::Image);
+    auto properties = mPropertiesFactory->createFromConfig(Tools::Image);
     auto newItem = new AnnotationImage(initPosition, image, properties);
 
     setZValue(newItem);
