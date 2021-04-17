@@ -17,22 +17,34 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONDOCKWIDGETCONTENT_H
-#define KIMAGEANNOTATOR_ANNOTATIONDOCKWIDGETCONTENT_H
-
-#include <QWidget>
+#include "AbstractAnnotationDockWidgetContent.h"
 
 namespace kImageAnnotator {
 
-class AnnotationDockWidgetContent : public QWidget
+void AbstractAnnotationDockWidgetContent::setOrientation(Qt::Orientation orientation)
 {
-public:
-	AnnotationDockWidgetContent() = default;
-	~AnnotationDockWidgetContent() override = default;
-	virtual void setOrientation(Qt::Orientation orientation) = 0;
-	virtual QString name() const = 0;
-};
+	auto mainLayout = dynamic_cast<QBoxLayout*>(layout());
+
+	if(mainLayout != nullptr) {
+		if(orientation == Qt::Horizontal) {
+			mainLayout->setDirection(QBoxLayout::LeftToRight);
+			mainLayout->setAlignment(Qt::AlignLeft | Qt::AlignCenter);
+		} else {
+			mainLayout->setDirection(QBoxLayout::TopToBottom);
+			mainLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
+		}
+
+		for (auto widget : mExpandingWidget) {
+			widget->setExpanding(orientation != Qt::Horizontal);
+		}
+
+		adjustSize();
+	}
+}
+
+void AbstractAnnotationDockWidgetContent::addExpandingWidget(AbstractExpandingWidget *widget)
+{
+	mExpandingWidget.append(widget);
+}
 
 } // namespace kImageAnnotator
-
-#endif //KIMAGEANNOTATOR_ANNOTATIONDOCKWIDGETCONTENT_H

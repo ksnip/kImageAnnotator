@@ -20,12 +20,12 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONTOOLSELECTION_H
 #define KIMAGEANNOTATOR_ANNOTATIONTOOLSELECTION_H
 
-#include "src/gui/annotator/docks/AnnotationDockWidgetContent.h"
+#include "src/gui/annotator/docks/AbstractAnnotationDockWidgetContent.h"
 #include "src/widgets/ToolPicker.h"
 
 namespace kImageAnnotator {
 
-class AnnotationToolSelection : public AnnotationDockWidgetContent
+class AnnotationToolSelection : public AbstractAnnotationDockWidgetContent
 {
 Q_OBJECT
 public:

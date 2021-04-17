@@ -20,7 +20,7 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONITEMSETTINGS_H
 #define KIMAGEANNOTATOR_ANNOTATIONITEMSETTINGS_H
 
-#include "src/gui/annotator/docks/AnnotationDockWidgetContent.h"
+#include "src/gui/annotator/docks/AbstractAnnotationDockWidgetContent.h"
 #include "ItemSettingsWidgetConfigurator.h"
 #include "src/widgets/ColorPicker.h"
 #include "src/widgets/NumberPicker.h"
@@ -34,7 +34,7 @@
 
 namespace kImageAnnotator {
 
-class AnnotationItemSettings : public AnnotationDockWidgetContent
+class AnnotationItemSettings : public AbstractAnnotationDockWidgetContent
 {
 Q_OBJECT
 public:
@@ -58,7 +58,6 @@ public:
 	bool shadowEnabled() const;
 	void setShadowEnabled(bool enabled);
 	void updateNumberToolSeed(int numberToolSeed);
-	void setOrientation(Qt::Orientation orientation) override;
 	QString name() const override;
 
 signals:

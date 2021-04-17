@@ -17,34 +17,32 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONIMAGESETTINGS_H
-#define KIMAGEANNOTATOR_ANNOTATIONIMAGESETTINGS_H
+#ifndef KIMAGEANNOTATOR_ABSTRACTANNOTATIONDOCKWIDGETCONTENT_H
+#define KIMAGEANNOTATOR_ABSTRACTANNOTATIONDOCKWIDGETCONTENT_H
 
-#include "src/gui/annotator/docks/AbstractAnnotationDockWidgetContent.h"
-#include "src/widgets/ImageEffectPicker.h"
+#include <QWidget>
+#include <QBoxLayout>
+#include <QList>
+
+#include "src/widgets/misc/AbstractExpandingWidget.h"
 
 namespace kImageAnnotator {
 
-class AnnotationImageSettings : public AbstractAnnotationDockWidgetContent
+class AbstractAnnotationDockWidgetContent : public QWidget
 {
-Q_OBJECT
 public:
-	explicit AnnotationImageSettings();
-	~AnnotationImageSettings() override;
-	ImageEffects effect() const;
-	void setEffect(ImageEffects effect);
-	QString name() const override;
+	AbstractAnnotationDockWidgetContent() = default;
+	~AbstractAnnotationDockWidgetContent() override = default;
+	virtual void setOrientation(Qt::Orientation orientation);
+	virtual QString name() const = 0;
 
-signals:
-	void effectChanged(ImageEffects effect);
+protected:
+	void addExpandingWidget(AbstractExpandingWidget *widget);
 
 private:
-	QBoxLayout *mMainLayout;
-	ImageEffectPicker *mEffectPicker;
-
-	void initGui();
+	QList<AbstractExpandingWidget*> mExpandingWidget;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONIMAGESETTINGS_H
+#endif //KIMAGEANNOTATOR_ABSTRACTANNOTATIONDOCKWIDGETCONTENT_H

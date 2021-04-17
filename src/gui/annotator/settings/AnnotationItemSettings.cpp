@@ -85,6 +85,16 @@ void AnnotationItemSettings::initGui()
 	mMainLayout->addWidget(mStickerPicker);
 	mMainLayout->addWidget(mShadowPicker);
 
+	addExpandingWidget(mShadowPicker);
+	addExpandingWidget(mFillModePicker);
+	addExpandingWidget(mColorPicker);
+	addExpandingWidget(mTextColorPicker);
+	addExpandingWidget(mStickerPicker);
+	addExpandingWidget(mNumberToolSeedPicker);
+	addExpandingWidget(mObfuscateFactorPicker);
+	addExpandingWidget(mWidthPicker);
+	addExpandingWidget(mFontSizePicker);
+
 	mWidgetConfigurator.setColorWidget(mColorPicker);
 	mWidgetConfigurator.setTextColorWidget(mTextColorPicker);
 	mWidgetConfigurator.setWidthWidget(mWidthPicker);
@@ -200,30 +210,6 @@ void AnnotationItemSettings::setShadowEnabled(bool enabled)
 void AnnotationItemSettings::updateNumberToolSeed(int numberToolSeed)
 {
 	mNumberToolSeedPicker->setNumber(numberToolSeed);
-}
-
-void AnnotationItemSettings::setOrientation(Qt::Orientation orientation)
-{
-	auto isExpanding = orientation != Qt::Horizontal;
-	if(orientation == Qt::Horizontal) {
-		mMainLayout->setDirection(QBoxLayout::LeftToRight);
-		mMainLayout->setAlignment(Qt::AlignLeft | Qt::AlignCenter);
-	} else {
-		mMainLayout->setDirection(QBoxLayout::TopToBottom);
-		mMainLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
-	}
-
-	mShadowPicker->setExpanding(isExpanding);
-	mFillModePicker->setExpanding(isExpanding);
-	mColorPicker->setExpanding(isExpanding);
-	mTextColorPicker->setExpanding(isExpanding);
-	mStickerPicker->setExpanding(isExpanding);
-	mNumberToolSeedPicker->setExpanding(isExpanding);
-	mObfuscateFactorPicker->setExpanding(isExpanding);
-	mWidthPicker->setExpanding(isExpanding);
-	mFontSizePicker->setExpanding(isExpanding);
-
-	adjustSize();
 }
 
 QString AnnotationItemSettings::name() const

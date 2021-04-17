@@ -69,7 +69,7 @@ void AnnotationWidget::initGui()
 	connect(qApp, &QCoreApplication::aboutToQuit, this, &AnnotationWidget::persistDockWidgets);
 }
 
-void AnnotationWidget::insertDockWidget(Qt::DockWidgetArea area, AnnotationDockWidgetContent *content)
+void AnnotationWidget::insertDockWidget(Qt::DockWidgetArea area, AbstractAnnotationDockWidgetContent *content)
 {
 	auto dockWidget = new AnnotationDockWidget(content);
 	mDockWidgets.append(dockWidget);

@@ -55,12 +55,7 @@ void AnnotationToolSelection::setToolType(Tools tool)
 void AnnotationToolSelection::setOrientation(Qt::Orientation orientation)
 {
 	mToolPicker->setOrientation(orientation);
-	if(orientation == Qt::Horizontal) {
-		mMainLayout->setAlignment(Qt::AlignLeft | Qt::AlignCenter);
-	} else {
-		mMainLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
-	}
-	adjustSize();
+	AbstractAnnotationDockWidgetContent::setOrientation(orientation);
 }
 
 QString AnnotationToolSelection::name() const

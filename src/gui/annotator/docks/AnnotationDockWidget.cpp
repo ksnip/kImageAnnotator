@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-AnnotationDockWidget::AnnotationDockWidget(AnnotationDockWidgetContent *content) :
+AnnotationDockWidget::AnnotationDockWidget(AbstractAnnotationDockWidgetContent *content) :
 	QDockWidget(content->name()),
 	mContent(content),
 	mDragHandle(new AnnotationDockWidgetDragHandle(this)),

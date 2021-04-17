@@ -20,19 +20,18 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONGENERALSETTINGS_H
 #define KIMAGEANNOTATOR_ANNOTATIONGENERALSETTINGS_H
 
-#include "src/gui/annotator/docks/AnnotationDockWidgetContent.h"
+#include "src/gui/annotator/docks/AbstractAnnotationDockWidgetContent.h"
 #include "src/widgets/ZoomIndicator.h"
 
 namespace kImageAnnotator {
 
-class AnnotationGeneralSettings : public AnnotationDockWidgetContent
+class AnnotationGeneralSettings : public AbstractAnnotationDockWidgetContent
 {
 Q_OBJECT
 public:
 	explicit AnnotationGeneralSettings();
 	~AnnotationGeneralSettings() override;
 	void updateZoomLevel(double value);
-	void setOrientation(Qt::Orientation orientation) override;
 	QString name() const override;
 
 signals:

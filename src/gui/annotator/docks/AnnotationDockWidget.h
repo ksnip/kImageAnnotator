@@ -22,7 +22,7 @@
 
 #include <QDockWidget>
 
-#include "AnnotationDockWidgetContent.h"
+#include "AbstractAnnotationDockWidgetContent.h"
 #include "AnnotationDockWidgetDragHandle.h"
 #include "src/common/provider/ScaledSizeProvider.h"
 
@@ -32,12 +32,12 @@ class AnnotationDockWidget : public QDockWidget
 {
 Q_OBJECT
 public:
-	explicit AnnotationDockWidget(AnnotationDockWidgetContent *content);
+	explicit AnnotationDockWidget(AbstractAnnotationDockWidgetContent *content);
 	~AnnotationDockWidget() override;
 	void setCollapsed(bool isCollapsed);
 
 private:
-	AnnotationDockWidgetContent *mContent;
+	AbstractAnnotationDockWidgetContent *mContent;
 	AnnotationDockWidgetDragHandle *mDragHandle;
 	QDockWidget::DockWidgetFeatures mVerticalFeatures;
 	QDockWidget::DockWidgetFeatures mHorizontalFeatures;
