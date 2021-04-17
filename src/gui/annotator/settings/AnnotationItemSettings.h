@@ -26,7 +26,7 @@
 #include "src/widgets/NumberPicker.h"
 #include "src/widgets/FillModePicker.h"
 #include "src/widgets/StickerPicker.h"
-#include "src/widgets/ToggleButton.h"
+#include "src/widgets/BoolPicker.h"
 #include "src/backend/Config.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 #include "src/annotations/properties/AnnotationObfuscateProperties.h"
@@ -82,7 +82,7 @@ private:
 	NumberPicker *mNumberToolSeedPicker;
 	NumberPicker *mObfuscateFactorPicker;
 	StickerPicker *mStickerPicker;
-	ToggleButton *mShadowToggleButton;
+	BoolPicker *mShadowPicker;
 	ItemSettingsWidgetConfigurator mWidgetConfigurator;
 
 	void initGui();

@@ -2,7 +2,7 @@
 <RCC version="1.0">
     <qresource prefix="/icons/dark">
         <file alias="arrow.svg" >icons/dark/arrow.svg</file>
-	<file alias="duplicate.svg" >icons/dark/duplicate.svg</file>
+	    <file alias="duplicate.svg" >icons/dark/duplicate.svg</file>
         <file alias="doubleArrow.svg" >icons/dark/doubleArrow.svg</file>
         <file alias="number.svg" >icons/dark/number.svg</file>
         <file alias="numberPointer.svg" >icons/dark/numberPointer.svg</file>
@@ -31,18 +31,19 @@
         <file alias="fillType_borderAndNoFill.svg" >icons/dark/fillType_borderAndNoFill.svg</file>
         <file alias="fillType_noBorderAndNoFill.svg" >icons/dark/fillType_noBorderAndNoFill.svg</file>
         <file alias="effect.svg" >icons/dark/effect.svg</file>
-        <file alias="borderImageEffect.svg" >icons/dark/borderImageEffect.svg</file>
-        <file alias="dropShadowImageEffect.svg" >icons/dark/dropShadowImageEffect.svg</file>
-        <file alias="grayscaleImageEffect.svg" >icons/dark/grayscaleImageEffect.svg</file>
-        <file alias="noImageEffect.svg" >icons/dark/noImageEffect.svg</file>
-        <file alias="invertColorImageEffect.svg" >icons/dark/invertColorImageEffect.svg</file>
+        <file alias="border.svg" >icons/dark/border.svg</file>
+        <file alias="dropShadow.svg" >icons/dark/dropShadow.svg</file>
+        <file alias="grayscale.svg" >icons/dark/grayscale.svg</file>
+        <file alias="invertColor.svg" >icons/dark/invertColor.svg</file>
+        <file alias="disabled.svg" >icons/dark/disabled.svg</file>
         <file alias="zoom.svg" >icons/dark/zoom.svg</file>
         <file alias="dragHandle.svg" >icons/dark/dragHandle.svg</file>
+        <file alias="check.svg" >icons/dark/check.svg</file>
     </qresource>
 
     <qresource prefix="/icons/light">
         <file alias="arrow.svg" >icons/light/arrow.svg</file>
-	<file alias="duplicate.svg" >icons/light/duplicate.svg</file>
+	    <file alias="duplicate.svg" >icons/light/duplicate.svg</file>
         <file alias="doubleArrow.svg" >icons/light/doubleArrow.svg</file>
         <file alias="number.svg" >icons/light/number.svg</file>
         <file alias="numberPointer.svg" >icons/light/numberPointer.svg</file>
@@ -71,13 +72,14 @@
         <file alias="fillType_borderAndNoFill.svg" >icons/light/fillType_borderAndNoFill.svg</file>
         <file alias="fillType_noBorderAndNoFill.svg" >icons/light/fillType_noBorderAndNoFill.svg</file>
         <file alias="effect.svg" >icons/light/effect.svg</file>
-        <file alias="borderImageEffect.svg" >icons/light/borderImageEffect.svg</file>
-        <file alias="dropShadowImageEffect.svg" >icons/light/dropShadowImageEffect.svg</file>
-        <file alias="grayscaleImageEffect.svg" >icons/light/grayscaleImageEffect.svg</file>
-        <file alias="noImageEffect.svg" >icons/light/noImageEffect.svg</file>
-        <file alias="invertColorImageEffect.svg" >icons/light/invertColorImageEffect.svg</file>
+        <file alias="border.svg" >icons/light/border.svg</file>
+        <file alias="dropShadow.svg" >icons/light/dropShadow.svg</file>
+        <file alias="grayscale.svg" >icons/light/grayscale.svg</file>
+        <file alias="invertColor.svg" >icons/light/invertColor.svg</file>
+        <file alias="disabled.svg" >icons/light/disabled.svg</file>
         <file alias="zoom.svg" >icons/light/zoom.svg</file>
         <file alias="dragHandle.svg" >icons/light/dragHandle.svg</file>
+        <file alias="check.svg" >icons/light/check.svg</file>
     </qresource>
 
     <qresource prefix="/stickers">

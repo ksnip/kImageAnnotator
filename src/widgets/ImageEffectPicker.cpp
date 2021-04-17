@@ -51,15 +51,15 @@ void ImageEffectPicker::initGui()
 {
 	mLayout->setContentsMargins(1, 0, 0, 0);
 
-	auto icon = IconLoader::load(QStringLiteral("effect.svg"));
+	auto icon = IconLoader::load(QLatin1String("effect.svg"));
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
 	mLabel->setToolTip(tr("Image Effects"));
 
-	insertItem(ImageEffects::NoEffect, QStringLiteral("noImageEffect.svg"), tr("No Effect"));
-	insertItem(ImageEffects::DropShadow, QStringLiteral("dropShadowImageEffect.svg"), tr("Drop Shadow"));
-	insertItem(ImageEffects::Grayscale, QStringLiteral("grayscaleImageEffect.svg"), tr("Grayscale"));
-	insertItem(ImageEffects::InvertColor, QStringLiteral("invertColorImageEffect.svg"), tr("Invert Color"));
-	insertItem(ImageEffects::Border, QStringLiteral("borderImageEffect.svg"), tr("Border"));
+	insertItem(ImageEffects::NoEffect, QLatin1String("disabled.svg"), tr("No Effect"));
+	insertItem(ImageEffects::DropShadow, QLatin1String("dropShadow.svg"), tr("Drop Shadow"));
+	insertItem(ImageEffects::Grayscale, QLatin1String("grayscale.svg"), tr("Grayscale"));
+	insertItem(ImageEffects::InvertColor, QLatin1String("invertColor.svg"), tr("Invert Color"));
+	insertItem(ImageEffects::Border, QLatin1String("border.svg"), tr("Border"));
 
 	mToolButton->setFocusPolicy(Qt::NoFocus);
 	connect(mToolButton, &ListMenuToolButton::selectionChanged, this, &ImageEffectPicker::selectionChanged);

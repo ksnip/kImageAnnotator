@@ -28,7 +28,7 @@
 #include "src/widgets/ToolPicker.h"
 #include "src/widgets/NumberPicker.h"
 #include "src/widgets/StickerPicker.h"
-#include "src/widgets/ToggleButton.h"
+#include "src/widgets/BoolPicker.h"
 
 namespace kImageAnnotator {
 
@@ -46,7 +46,7 @@ public:
 	void setFirstNumberWidget(NumberPicker *widget);
 	void setObfuscateFactorWidget(NumberPicker *widget);
 	void setStickerWidget(StickerPicker *widget);
-	void setShadowToggleWidget(ToggleButton *widget);
+	void setShadowWidget(BoolPicker *widget);
 
 private:
 	Tools mCurrentTool;
@@ -58,7 +58,7 @@ private:
 	NumberPicker *mFirstNumberWidget;
 	NumberPicker *mObfuscateFactorWidget;
 	StickerPicker *mStickerWidget;
-	ToggleButton *mShadowToggleWidget;
+	BoolPicker *mShadowPicker;
 
 	void updateWidgets() const;
 	void updateProperties() const;
@@ -72,7 +72,7 @@ private:
 	void setNoFillAndNoBorderVisible(bool enabled) const;
 	void setObfuscateFactorWidgetVisible(bool enabled) const;
 	void setStickerWidgetVisible(bool enabled) const;
-	void setShadowToggleWidgetVisible(bool enabled) const;
+	void setShadowWidgetVisible(bool enabled) const;
 	void setWidthRange(int min, int max) const;
 };
 

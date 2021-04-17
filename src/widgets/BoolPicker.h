@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,36 +17,32 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_FILLMODEPICKER_H
-#define KIMAGEANNOTATOR_FILLMODEPICKER_H
+#ifndef KIMAGEANNOTATOR_BOOLPICKER_H
+#define KIMAGEANNOTATOR_BOOLPICKER_H
 
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QToolButton>
-#include <QMenu>
-#include <QAction>
 
 #include "src/widgets/menuButtons/ListMenuToolButton.h"
-#include "src/common/enum/FillModes.h"
 #include "src/common/helper/IconLoader.h"
 #include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 
-class FillModePicker : public QWidget
+class BoolPicker : public QWidget
 {
-	Q_OBJECT
+Q_OBJECT
 public:
-	explicit FillModePicker(QWidget *parent);
-	~FillModePicker() override;
-	void setFillType(FillModes fillType);
-	void addNoFillAndNoBorderToList();
-	void removeNoFillAndNoBorderToList();
-	FillModes fillType() const;
+	explicit BoolPicker(QWidget *parent);
+	~BoolPicker() override;
+	void setEnabledState(bool enabled);
+	bool enabledState() const;
+	void setToolTip(const QString &toolTip);
+	void setIcon(const QIcon &icon);
 
 signals:
-	void fillSelected(FillModes fillType) const;
+	void enabledStateChanged(bool enabled) const;
 
 private:
 	QHBoxLayout *mLayout;
@@ -54,7 +50,7 @@ private:
 	ListMenuToolButton *mToolButton;
 
 	void initGui();
-	void insertItem(FillModes fillType, const QString &iconName, const QString &text);
+	void insertItem(bool enabled, const QString &iconName, const QString &text);
 
 private slots:
 	void selectionChanged();
@@ -62,4 +58,4 @@ private slots:
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_FILLMODEPICKER_H
+#endif //KIMAGEANNOTATOR_BOOLPICKER_H

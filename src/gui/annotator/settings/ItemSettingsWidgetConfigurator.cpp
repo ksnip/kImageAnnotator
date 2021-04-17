@@ -30,7 +30,7 @@ ItemSettingsWidgetConfigurator::ItemSettingsWidgetConfigurator() :
 	mFirstNumberWidget(nullptr),
 	mObfuscateFactorWidget(nullptr),
 	mStickerWidget(nullptr),
-	mShadowToggleWidget(nullptr)
+	mShadowPicker(nullptr)
 {
 	mCurrentTool = Tools::Select;
 }
@@ -93,9 +93,9 @@ void ItemSettingsWidgetConfigurator::setStickerWidget(StickerPicker *widget)
 	updateWidgets();
 }
 
-void ItemSettingsWidgetConfigurator::setShadowToggleWidget(ToggleButton *widget)
+void ItemSettingsWidgetConfigurator::setShadowWidget(BoolPicker *widget)
 {
-	mShadowToggleWidget = widget;
+	mShadowPicker = widget;
 	updateWidgets();
 }
 
@@ -134,7 +134,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(false);
+			setShadowWidgetVisible(false);
 			break;
 		case Tools::Image:
 			setColorWidgetVisible(false);
@@ -145,7 +145,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(true);
+			setShadowWidgetVisible(true);
 			break;
 		case Tools::Pen:
 			setColorWidgetVisible(true);
@@ -156,7 +156,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(true);
+			setShadowWidgetVisible(true);
 			break;
 		case Tools::MarkerPen:
 			setColorWidgetVisible(true);
@@ -167,7 +167,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(false);
+			setShadowWidgetVisible(false);
 			break;
 		case Tools::MarkerRect:
 		case Tools::MarkerEllipse:
@@ -179,7 +179,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(false);
+			setShadowWidgetVisible(false);
 			break;
 		case Tools::Line:
 		case Tools::Arrow:
@@ -192,7 +192,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(true);
+			setShadowWidgetVisible(true);
 			break;
 		case Tools::Ellipse:
 		case Tools::Rect:
@@ -204,7 +204,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(true);
+			setShadowWidgetVisible(true);
 			break;
 		case Tools::Number:
 			setColorWidgetVisible(true);
@@ -215,7 +215,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(true);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(true);
+			setShadowWidgetVisible(true);
 			break;
 		case Tools::NumberPointer:
 			setColorWidgetVisible(true);
@@ -226,7 +226,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(true);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(true);
+			setShadowWidgetVisible(true);
 			break;
 		case Tools::NumberArrow:
 			setColorWidgetVisible(true);
@@ -237,7 +237,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(true);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(true);
+			setShadowWidgetVisible(true);
 			break;
 		case Tools::Text:
 			setColorWidgetVisible(true);
@@ -248,7 +248,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(true);
+			setShadowWidgetVisible(true);
 			break;
 		case Tools::TextPointer:
 			setColorWidgetVisible(true);
@@ -259,7 +259,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(true);
+			setShadowWidgetVisible(true);
 			break;
 		case Tools::TextArrow:
 			setColorWidgetVisible(true);
@@ -270,7 +270,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(true);
+			setShadowWidgetVisible(true);
 			break;
 		case Tools::Blur:
 		case Tools::Pixelate:
@@ -282,7 +282,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(true);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(false);
+			setShadowWidgetVisible(false);
 			break;
 		case Tools::Sticker:
 			setColorWidgetVisible(false);
@@ -293,7 +293,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(true);
-			setShadowToggleWidgetVisible(true);
+			setShadowWidgetVisible(true);
 			break;
 	case Tools::Duplicate:
 			setColorWidgetVisible(false);
@@ -304,7 +304,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
-			setShadowToggleWidgetVisible(false);
+			setShadowWidgetVisible(false);
 			break;
 		default:
 			qCritical("Unknown tooltype in WidgetConfigurator");
@@ -378,10 +378,10 @@ void ItemSettingsWidgetConfigurator::setStickerWidgetVisible(bool enabled) const
 	}
 }
 
-void ItemSettingsWidgetConfigurator::setShadowToggleWidgetVisible(bool enabled) const
+void ItemSettingsWidgetConfigurator::setShadowWidgetVisible(bool enabled) const
 {
-	if (mShadowToggleWidget) {
-		mShadowToggleWidget->setVisible(enabled);
+	if (mShadowPicker) {
+		mShadowPicker->setVisible(enabled);
 	}
 }
 

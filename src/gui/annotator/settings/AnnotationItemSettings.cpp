@@ -31,7 +31,7 @@ AnnotationItemSettings::AnnotationItemSettings() :
 	mNumberToolSeedPicker(new NumberPicker(this)),
 	mObfuscateFactorPicker(new NumberPicker(this)),
 	mStickerPicker(new StickerPicker(this)),
-	mShadowToggleButton(new ToggleButton(this))
+	mShadowPicker(new BoolPicker(this))
 {
 	initGui();
 }
@@ -46,34 +46,34 @@ AnnotationItemSettings::~AnnotationItemSettings()
 	delete mNumberToolSeedPicker;
 	delete mObfuscateFactorPicker;
 	delete mStickerPicker;
-	delete mShadowToggleButton;
+	delete mShadowPicker;
 	delete mMainLayout;
 }
 
 void AnnotationItemSettings::initGui()
 {
-	mColorPicker->setIcon(IconLoader::load(QStringLiteral("color.svg")));
+	mColorPicker->setIcon(IconLoader::load(QLatin1String("color.svg")));
 	mColorPicker->setToolTip(tr("Color"));
 
-	mTextColorPicker->setIcon(IconLoader::load(QStringLiteral("textColor.svg")));
+	mTextColorPicker->setIcon(IconLoader::load(QLatin1String("textColor.svg")));
 	mTextColorPicker->setToolTip(tr("Text Color"));
 
-	mWidthPicker->setIcon(IconLoader::load(QStringLiteral("width.svg")));
+	mWidthPicker->setIcon(IconLoader::load(QLatin1String("width.svg")));
 	mWidthPicker->setToolTip(tr("Width"));
 
-	mFontSizePicker->setIcon(IconLoader::load(QStringLiteral("fontSize.svg")));
+	mFontSizePicker->setIcon(IconLoader::load(QLatin1String("fontSize.svg")));
 	mFontSizePicker->setToolTip(tr("Font Size"));
 	mFontSizePicker->setRange(10, 40);
 
-	mNumberToolSeedPicker->setIcon(IconLoader::load(QStringLiteral("number.svg")));
+	mNumberToolSeedPicker->setIcon(IconLoader::load(QLatin1String("number.svg")));
 	mNumberToolSeedPicker->setToolTip(tr("Number Seed"));
 	mNumberToolSeedPicker->setRange(1, 100);
 
-	mObfuscateFactorPicker->setIcon(IconLoader::load(QStringLiteral("obfuscateFactor.svg")));
+	mObfuscateFactorPicker->setIcon(IconLoader::load(QLatin1String("obfuscateFactor.svg")));
 	mObfuscateFactorPicker->setToolTip(tr("Obfuscation Factor"));
 
-	mShadowToggleButton->setIcon(IconLoader::load(QStringLiteral("dropShadowImageEffect.svg")));
-	mShadowToggleButton->setToolTip(tr("Item Shadow"));
+	mShadowPicker->setIcon(IconLoader::load(QLatin1String("dropShadow.svg")));
+	mShadowPicker->setToolTip(tr("Item Shadow"));
 
 	mMainLayout->addWidget(mColorPicker);
 	mMainLayout->addWidget(mWidthPicker);
@@ -83,7 +83,7 @@ void AnnotationItemSettings::initGui()
 	mMainLayout->addWidget(mNumberToolSeedPicker);
 	mMainLayout->addWidget(mObfuscateFactorPicker);
 	mMainLayout->addWidget(mStickerPicker);
-	mMainLayout->addWidget(mShadowToggleButton);
+	mMainLayout->addWidget(mShadowPicker);
 
 	mMainLayout->setContentsMargins(0, 0, 0, 0);
 
@@ -95,7 +95,7 @@ void AnnotationItemSettings::initGui()
 	mWidgetConfigurator.setFirstNumberWidget(mNumberToolSeedPicker);
 	mWidgetConfigurator.setObfuscateFactorWidget(mObfuscateFactorPicker);
 	mWidgetConfigurator.setStickerWidget(mStickerPicker);
-	mWidgetConfigurator.setShadowToggleWidget(mShadowToggleButton);
+	mWidgetConfigurator.setShadowWidget(mShadowPicker);
 
 	setLayout(mMainLayout);
 
@@ -109,7 +109,7 @@ void AnnotationItemSettings::initGui()
 	connect(mNumberToolSeedPicker, &NumberPicker::numberSelected, this, &AnnotationItemSettings::notifyNumberToolSeedChanged);
 	connect(mObfuscateFactorPicker, &NumberPicker::numberSelected, this, &AnnotationItemSettings::obfuscateFactorChanged);
 	connect(mStickerPicker, &StickerPicker::stickerSelected, this, &AnnotationItemSettings::stickerChanged);
-	connect(mShadowToggleButton, &ToggleButton::toggled, this, &AnnotationItemSettings::shadowEnabledChanged);
+	connect(mShadowPicker, &BoolPicker::enabledStateChanged, this, &AnnotationItemSettings::shadowEnabledChanged);
 }
 
 void AnnotationItemSettings::setUpForTool(Tools tool)
@@ -189,12 +189,12 @@ void AnnotationItemSettings::setStickers(const QStringList &stickerPaths, bool k
 
 bool AnnotationItemSettings::shadowEnabled() const
 {
-	return mShadowToggleButton->isChecked();
+	return mShadowPicker->enabledState();
 }
 
 void AnnotationItemSettings::setShadowEnabled(bool enabled)
 {
-	mShadowToggleButton->setChecked(enabled);
+	mShadowPicker->setEnabledState(enabled);
 }
 
 void AnnotationItemSettings::updateNumberToolSeed(int numberToolSeed)
