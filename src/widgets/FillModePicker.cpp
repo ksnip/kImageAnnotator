@@ -57,6 +57,11 @@ FillModes FillModePicker::fillType() const
 	return mToolButton->currentData().value<FillModes>();
 }
 
+QWidget *FillModePicker::expandingWidget()
+{
+	return mToolButton;
+}
+
 void FillModePicker::initGui()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
@@ -74,9 +79,9 @@ void FillModePicker::initGui()
 
 	mLayout->addWidget(mLabel);
 	mLayout->addWidget(mToolButton);
+	mLayout->setAlignment(Qt::AlignLeft);
 
 	setLayout(mLayout);
-	setFixedSize(sizeHint());
 }
 
 void FillModePicker::insertItem(FillModes fillType, const QString &iconName, const QString &text)

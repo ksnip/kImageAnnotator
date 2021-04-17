@@ -136,6 +136,9 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButtonAction.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/StickerPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ToggleButton.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ImageEffectPicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ZoomIndicator.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ColorDialogButton.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/GridMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/GridMenuButton.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/GridMenuToolButton.cpp
@@ -143,9 +146,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListMenuItem.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListItemGroup.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ImageEffectPicker.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ZoomIndicator.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ColorDialogButton.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/misc/AbstractExpandingWidget.cpp
 	)
 
 set(KIMAGEANNOTATOR_SRCS ${KIMAGEANNOTATOR_SRCS} PARENT_SCOPE)

@@ -37,7 +37,7 @@ AnnotationGeneralSettings::~AnnotationGeneralSettings()
 void AnnotationGeneralSettings::initGui()
 {
 	mMainLayout->addWidget(mZoomIndicator);
-	mMainLayout->setContentsMargins(0, 0, 0, 0);
+	mMainLayout->setContentsMargins(3, 0, 3, 0);
 
 	setLayout(mMainLayout);
 
@@ -60,6 +60,9 @@ void AnnotationGeneralSettings::setOrientation(Qt::Orientation orientation)
 		mMainLayout->setDirection(QBoxLayout::TopToBottom);
 		mMainLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 	}
+
+	mZoomIndicator->setExpanding(orientation != Qt::Horizontal);
+
 	adjustSize();
 }
 

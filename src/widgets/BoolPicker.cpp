@@ -58,6 +58,11 @@ void BoolPicker::setIcon(const QIcon &icon)
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
 }
 
+QWidget *BoolPicker::expandingWidget()
+{
+	return mToolButton;
+}
+
 void BoolPicker::initGui()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);

@@ -26,11 +26,12 @@
 #include <QIcon>
 
 #include "CustomSpinBox.h"
+#include "src/widgets/misc/AbstractExpandingWidget.h"
 #include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 
-class NumberPicker : public QWidget
+class NumberPicker : public QWidget, public AbstractExpandingWidget
 {
 Q_OBJECT
 
@@ -45,6 +46,9 @@ public:
 
 signals:
 	void numberSelected(int number) const;
+
+protected:
+	QWidget* expandingWidget() override;
 
 private:
 	QHBoxLayout *mLayout;

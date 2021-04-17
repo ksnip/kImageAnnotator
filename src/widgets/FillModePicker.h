@@ -27,6 +27,7 @@
 #include <QMenu>
 #include <QAction>
 
+#include "src/widgets/misc/AbstractExpandingWidget.h"
 #include "src/widgets/menuButtons/ListMenuToolButton.h"
 #include "src/common/enum/FillModes.h"
 #include "src/common/helper/IconLoader.h"
@@ -34,7 +35,7 @@
 
 namespace kImageAnnotator {
 
-class FillModePicker : public QWidget
+class FillModePicker : public QWidget, public AbstractExpandingWidget
 {
 	Q_OBJECT
 public:
@@ -47,6 +48,9 @@ public:
 
 signals:
 	void fillSelected(FillModes fillType) const;
+
+protected:
+	QWidget* expandingWidget() override;
 
 private:
 	QHBoxLayout *mLayout;

@@ -47,17 +47,33 @@ QString StickerPicker::sticker() const
 	return mToolButton->currentData().toString();
 }
 
+void StickerPicker::setStickers(const QStringList &stickerPaths, bool keepDefault)
+{
+	mToolButton->clear();
+
+	if(keepDefault) {
+		addDefaultStickers();
+	}
+
+	for(const auto& stickerPath : stickerPaths) {
+		addItem(stickerPath);
+	}
+}
+
+QWidget *StickerPicker::expandingWidget()
+{
+	return mToolButton;
+}
+
 void StickerPicker::init()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
-	auto icon = IconLoader::load(QStringLiteral("sticker.svg"));
+	auto icon = IconLoader::load(QLatin1String("sticker.svg"));
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
 	mLabel->setToolTip(tr("Sticker"));
 	mLabel->setMargin(0);
 
-	mToolButton->setFixedSize(ScaledSizeProvider::settingsWidgetSize());
-	mToolButton->setIconSize(ScaledSizeProvider::toolButtonIconSize());
 	mToolButton->setFocusPolicy(Qt::NoFocus);
 	mToolButton->setPopupMode(QToolButton::InstantPopup);
 
@@ -67,9 +83,9 @@ void StickerPicker::init()
 
 	mLayout->addWidget(mLabel);
 	mLayout->addWidget(mToolButton);
+	mLayout->setAlignment(Qt::AlignLeft);
 
 	setLayout(mLayout);
-	setFixedSize(sizeHint());
 }
 
 void StickerPicker::addDefaultStickers()
@@ -111,22 +127,9 @@ void StickerPicker::addItem(const QString &path)
 	mToolButton->addItem(icon, filename, path);
 }
 
-void StickerPicker::selectionChanged()
+void StickerPicker::selectionChanged() const
 {
 	emit stickerSelected(sticker());
-}
-
-void StickerPicker::setStickers(const QStringList &stickerPaths, bool keepDefault)
-{
-	mToolButton->clear();
-
-	if(keepDefault) {
-		addDefaultStickers();
-	}
-
-	for(const auto& stickerPath : stickerPaths) {
-		addItem(stickerPath);
-	}
 }
 
 } // namespace kImageAnnotator

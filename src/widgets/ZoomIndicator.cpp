@@ -30,7 +30,7 @@ ZoomIndicator::ZoomIndicator(QWidget *parent) :
 	mZoomOutAction(new QAction(this)),
 	mResetZoomAction(new QAction(this))
 {
-	init();
+	initGui();
 }
 
 ZoomIndicator::~ZoomIndicator()
@@ -43,14 +43,18 @@ ZoomIndicator::~ZoomIndicator()
 	delete mResetZoomAction;
 }
 
-void ZoomIndicator::init()
+QWidget *ZoomIndicator::expandingWidget()
+{
+	return mSpinBox;
+}
+
+void ZoomIndicator::initGui()
 {
 	mLayout->setContentsMargins(1, 0, 0, 0);
 
-	auto icon = IconLoader::load(QStringLiteral("zoom.svg"));
+	auto icon = IconLoader::load(QLatin1String("zoom.svg"));
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
 
-	mSpinBox->setFixedSize(ScaledSizeProvider::settingsWidgetSize());
 	mSpinBox->setFocusPolicy(Qt::NoFocus);
 	mSpinBox->setRange(10, 800);
 	mSpinBox->setSingleStep(10);
@@ -75,9 +79,9 @@ void ZoomIndicator::init()
 
 	mLayout->addWidget(mLabel);
 	mLayout->addWidget(mSpinBox);
+	mLayout->setAlignment(Qt::AlignLeft);
 
 	setLayout(mLayout);
-	setFixedSize(sizeHint());
 }
 
 QString ZoomIndicator::getToolTip() const

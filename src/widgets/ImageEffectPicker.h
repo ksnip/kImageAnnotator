@@ -27,6 +27,7 @@
 #include <QMenu>
 #include <QAction>
 
+#include "src/widgets/misc/AbstractExpandingWidget.h"
 #include "src/widgets/menuButtons/ListMenuToolButton.h"
 #include "src/common/provider/ScaledSizeProvider.h"
 #include "src/common/enum/ImageEffects.h"
@@ -34,7 +35,7 @@
 
 namespace kImageAnnotator {
 
-class ImageEffectPicker : public QWidget
+class ImageEffectPicker : public QWidget, public AbstractExpandingWidget
 {
 	Q_OBJECT
 public:
@@ -45,6 +46,9 @@ public:
 
 signals:
 	void effectSelected(ImageEffects effect) const;
+
+protected:
+	QWidget* expandingWidget() override;
 
 private:
 	QHBoxLayout *mLayout;

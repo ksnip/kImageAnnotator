@@ -61,6 +61,11 @@ void ColorPicker::setIcon(const QIcon &icon)
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
 }
 
+QWidget *ColorPicker::expandingWidget()
+{
+	return mkColorPicker;
+}
+
 void ColorPicker::initGui()
 {
 	mLayout->setContentsMargins(0, 0, 0, 0);
@@ -71,9 +76,9 @@ void ColorPicker::initGui()
 
 	mLayout->addWidget(mLabel);
 	mLayout->addWidget(mkColorPicker);
+	mLayout->setAlignment(Qt::AlignLeft);
 
 	setLayout(mLayout);
-	setFixedSize(sizeHint());
 }
 
 void ColorPicker::colorChanged(const QColor &color)

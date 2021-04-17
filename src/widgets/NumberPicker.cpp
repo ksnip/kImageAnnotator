@@ -56,9 +56,9 @@ void NumberPicker::initGui()
 
 	mLayout->addWidget(mLabel);
 	mLayout->addWidget(mSpinBox);
+	mLayout->setAlignment(Qt::AlignLeft);
 
 	setLayout(mLayout);
-	setFixedSize(sizeHint());
 }
 
 void NumberPicker::setNumberAndNotify(int number) const
@@ -95,6 +95,11 @@ void NumberPicker::setToolTip(const QString &toolTip)
 void NumberPicker::setIcon(const QIcon &icon)
 {
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
+}
+
+QWidget *NumberPicker::expandingWidget()
+{
+	return mSpinBox;
 }
 
 } // namespace kImageAnnotator

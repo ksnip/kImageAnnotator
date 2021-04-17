@@ -26,13 +26,14 @@
 
 #include <kColorPicker/KColorPicker.h>
 
+#include "src/widgets/misc/AbstractExpandingWidget.h"
 #include "src/common/provider/ScaledSizeProvider.h"
 
 using kColorPicker::KColorPicker;
 
 namespace kImageAnnotator {
 
-class ColorPicker : public QWidget
+class ColorPicker : public QWidget, public AbstractExpandingWidget
 {
 Q_OBJECT
 public:
@@ -45,6 +46,9 @@ public:
 
 signals:
 	void colorSelected(const QColor &color);
+
+protected:
+	QWidget* expandingWidget() override;
 
 private:
 	QHBoxLayout *mLayout;

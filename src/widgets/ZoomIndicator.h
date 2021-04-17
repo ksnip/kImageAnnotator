@@ -26,12 +26,13 @@
 #include <QAction>
 
 #include "CustomSpinBox.h"
+#include "src/widgets/misc/AbstractExpandingWidget.h"
 #include "src/common/helper/IconLoader.h"
 #include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 
-class ZoomIndicator : public QWidget
+class ZoomIndicator : public QWidget, public AbstractExpandingWidget
 {
 Q_OBJECT
 public:
@@ -42,6 +43,9 @@ public:
 signals:
 	void zoomValueChanged(double zoomLevel);
 
+protected:
+	QWidget* expandingWidget() override;
+
 private:
 	QHBoxLayout *mLayout;
 	QLabel *mLabel;
@@ -50,7 +54,7 @@ private:
 	QAction *mZoomOutAction;
 	QAction *mResetZoomAction;
 
-	void init();
+	void initGui();
 
 private slots:
 	void notifyZoomValueChanged(double value);

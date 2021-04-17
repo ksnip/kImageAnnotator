@@ -47,6 +47,11 @@ ImageEffects ImageEffectPicker::effect() const
 	return mToolButton->currentData().value<ImageEffects>();
 }
 
+QWidget *ImageEffectPicker::expandingWidget()
+{
+	return mToolButton;
+}
+
 void ImageEffectPicker::initGui()
 {
 	mLayout->setContentsMargins(1, 0, 0, 0);
@@ -68,7 +73,6 @@ void ImageEffectPicker::initGui()
 	mLayout->addWidget(mToolButton);
 
 	setLayout(mLayout);
-	setFixedSize(sizeHint());
 }
 
 void ImageEffectPicker::insertItem(ImageEffects effects, const QString &iconName, const QString &text)

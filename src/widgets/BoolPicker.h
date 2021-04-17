@@ -24,13 +24,14 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
+#include "src/widgets/misc/AbstractExpandingWidget.h"
 #include "src/widgets/menuButtons/ListMenuToolButton.h"
 #include "src/common/helper/IconLoader.h"
 #include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 
-class BoolPicker : public QWidget
+class BoolPicker : public QWidget, public AbstractExpandingWidget
 {
 Q_OBJECT
 public:
@@ -43,6 +44,9 @@ public:
 
 signals:
 	void enabledStateChanged(bool enabled) const;
+
+protected:
+	QWidget* expandingWidget() override;
 
 private:
 	QHBoxLayout *mLayout;

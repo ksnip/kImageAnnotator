@@ -53,6 +53,9 @@ void AnnotationImageSettings::setOrientation(Qt::Orientation orientation)
 		mMainLayout->setDirection(QBoxLayout::TopToBottom);
 		mMainLayout->setAlignment(Qt::AlignTop | Qt::AlignCenter);
 	}
+
+	mEffectPicker->setExpanding(orientation != Qt::Horizontal);
+
 	adjustSize();
 }
 
@@ -64,7 +67,7 @@ QString AnnotationImageSettings::name() const
 void AnnotationImageSettings::initGui()
 {
 	mMainLayout->addWidget(mEffectPicker);
-	mMainLayout->setContentsMargins(0, 0, 0, 0);
+	mMainLayout->setContentsMargins(3, 0, 3, 0);
 
 	setLayout(mMainLayout);
 
