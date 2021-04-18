@@ -23,7 +23,7 @@ namespace kImageAnnotator {
 
 ToolPicker::ToolPicker(QWidget *parent) :
 	QWidget(parent),
-	mLayout(new QBoxLayout(QBoxLayout::TopToBottom, this)),
+	mLayout(new FlowLayout(this)),
 	mActionGroup(new QActionGroup(this)),
 	mSelectedToolType(Tools::Select)
 {
@@ -50,16 +50,6 @@ void ToolPicker::setTool(Tools newTool)
 Tools ToolPicker::tool()
 {
 	return mSelectedToolType;
-}
-
-void ToolPicker::setOrientation(Qt::Orientation orientation)
-{
-	if(orientation == Qt::Horizontal) {
-		mLayout->setDirection(QBoxLayout::LeftToRight);
-	} else {
-		mLayout->setDirection(QBoxLayout::TopToBottom);
-	}
-	adjustSize();
 }
 
 void ToolPicker::initGui()
@@ -103,33 +93,35 @@ void ToolPicker::initGui()
 	createButton(menu);
 
 	menu = new QMenu();
-	action = createAction(tr("Number"), IconLoader::load(QStringLiteral("number.svg")), Qt::Key_N, Tools::Number);
+	action = createAction(tr("Number"), IconLoader::load(QLatin1String("number.svg")), Qt::Key_N, Tools::Number);
 	menu->addAction(action);
-	action = createAction(tr("Number Pointer"), IconLoader::load(QStringLiteral("numberPointer.svg")), Qt::Key_O, Tools::NumberPointer);
+	action = createAction(tr("Number Pointer"), IconLoader::load(QLatin1String("numberPointer.svg")), Qt::Key_O, Tools::NumberPointer);
 	menu->addAction(action);
-	action = createAction(tr("Number Arrow"), IconLoader::load(QStringLiteral("numberArrow.svg")), Qt::Key_W, Tools::NumberArrow);
-	menu->addAction(action);
-	createButton(menu);
-
-	menu = new QMenu();
-	action = createAction(tr("Blur"), IconLoader::load(QStringLiteral("blur.svg")), Qt::Key_B, Tools::Blur);
-	menu->addAction(action);
-	action = createAction(tr("Pixelate"), IconLoader::load(QStringLiteral("pixelate.svg")), Qt::Key_X, Tools::Pixelate);
+	action = createAction(tr("Number Arrow"), IconLoader::load(QLatin1String("numberArrow.svg")), Qt::Key_W, Tools::NumberArrow);
 	menu->addAction(action);
 	createButton(menu);
 
 	menu = new QMenu();
-	action = createAction(tr("Rectangle"), IconLoader::load(QStringLiteral("rect.svg")), Qt::Key_R, Tools::Rect);
+	action = createAction(tr("Blur"), IconLoader::load(QLatin1String("blur.svg")), Qt::Key_B, Tools::Blur);
 	menu->addAction(action);
-	action = createAction(tr("Ellipse"), IconLoader::load(QStringLiteral("ellipse.svg")), Qt::Key_E, Tools::Ellipse);
+	action = createAction(tr("Pixelate"), IconLoader::load(QLatin1String("pixelate.svg")), Qt::Key_X, Tools::Pixelate);
 	menu->addAction(action);
 	createButton(menu);
 
-	action = createAction(tr("Sticker"), IconLoader::load(QStringLiteral("sticker.svg")), Qt::Key_I, Tools::Sticker);
+	menu = new QMenu();
+	action = createAction(tr("Rectangle"), IconLoader::load(QLatin1String("rect.svg")), Qt::Key_R, Tools::Rect);
+	menu->addAction(action);
+	action = createAction(tr("Ellipse"), IconLoader::load(QLatin1String("ellipse.svg")), Qt::Key_E, Tools::Ellipse);
+	menu->addAction(action);
+	createButton(menu);
+
+	action = createAction(tr("Sticker"), IconLoader::load(QLatin1String("sticker.svg")), Qt::Key_I, Tools::Sticker);
 	createButton(action);
 
-	mLayout->setContentsMargins(0, 0, 0, 0);
-	mLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+	mLayout->setContentsMargins(3, 0, 0, 3);
+	mLayout->setSpacing(2, 2);
+
+	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
 	setLayout(mLayout);
 }

@@ -32,6 +32,7 @@ int main(int argc, char **argv)
 	QPixmap pixmap(QSize(500, 500));
 	pixmap.fill(QColor(Qt::darkGreen));
 	auto kImageAnnotator = new KImageAnnotator();
+	kImageAnnotator->setTabBarAutoHide(false);
 	kImageAnnotator->addTab(pixmap, QLatin1String("image1"), QLatin1String("image1"));
 	kImageAnnotator->addTab(pixmap, QLatin1String("image2"), QLatin1String("image2"));
 	kImageAnnotator->adjustSize();
@@ -50,6 +51,10 @@ int main(int argc, char **argv)
 	mainWindow.connect(scaleAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showScaler);
 	mainWindow.connect(rotateAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showRotator);
 	mainWindow.connect(modifyCanvasAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showCanvasModifier);
+	mainWindow.connect(kImageAnnotator, &KImageAnnotator::tabCloseRequested, [kImageAnnotator](int tabId)
+	{
+		kImageAnnotator->removeTab(tabId);
+	});
 	menu->addAction(annotationAction);
 	menu->addAction(cropAction);
 	menu->addAction(scaleAction);

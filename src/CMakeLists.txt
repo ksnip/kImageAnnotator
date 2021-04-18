@@ -12,7 +12,7 @@ set(KIMAGEANNOTATOR_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/AnnotationToolSelection.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/docks/AnnotationDockWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/docks/AnnotationDockWidgetDragHandle.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/docks/AbstractAnnotationDockWidgetContent.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/docks/AbstractAnnotationDockWidgetContent.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/tabs/AnnotationTabContent.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/tabs/AnnotationTabWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/tabs/AnnotationTabContextMenu.cpp
@@ -148,6 +148,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListMenuItem.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListItemGroup.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/misc/AbstractExpandingWidget.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/misc/FlowLayout.cpp
 	)
 
 set(KIMAGEANNOTATOR_SRCS ${KIMAGEANNOTATOR_SRCS} PARENT_SCOPE)

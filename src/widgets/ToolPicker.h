@@ -23,13 +23,13 @@
 #include <QWidget>
 #include <QActionGroup>
 #include <QToolButton>
-#include <QVBoxLayout>
 #include <QMenu>
 
 #include "CustomToolButton.h"
 #include "CustomToolButtonAction.h"
 #include "src/common/enum/Tools.h"
 #include "src/common/helper/IconLoader.h"
+#include "src/widgets/misc/FlowLayout.h"
 
 namespace kImageAnnotator {
 
@@ -41,14 +41,13 @@ public:
 	~ToolPicker() override;
 	void setTool(Tools newTool);
 	Tools tool();
-	void setOrientation(Qt::Orientation orientation);
 
 signals:
 	void toolSelected(Tools newTool);
 
 private:
 	QActionGroup *mActionGroup;
-	QBoxLayout *mLayout;
+	FlowLayout *mLayout;
 	Tools mSelectedToolType;
 	QHash<QAction *, Tools> mActionToTool;
 	QHash<QAction *, CustomToolButton *> mActionToButton;

@@ -39,7 +39,6 @@ AnnotationToolSelection::~AnnotationToolSelection()
 {
 	delete mMainLayout;
 	delete mToolPicker;
-
 }
 
 Tools AnnotationToolSelection::toolType() const
@@ -54,7 +53,6 @@ void AnnotationToolSelection::setToolType(Tools tool)
 
 void AnnotationToolSelection::setOrientation(Qt::Orientation orientation)
 {
-	mToolPicker->setOrientation(orientation);
 	AbstractAnnotationDockWidgetContent::setOrientation(orientation);
 }
 
