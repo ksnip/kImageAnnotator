@@ -1,19 +1,126 @@
-<svg id="emoji" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-  <g id="color">
-    <circle cx="36" cy="36" r="23" fill="#FCEA2B"/>
-    <path fill="#D22F27" d="M26.4992,27.4384c-1.2653-3.3541-6.441-3.5687-6.1168,1.3178c0.0431,0.6485,0.281,1.2724,0.6414,1.8135 l5.3179,6.4224l0,0l5.2212-6.266c0.5796-0.6964,0.9224-1.5779,0.905-2.4853c-0.0863-4.3523-5.0509-4.0351-6.1274-0.8036"/>
-    <path fill="#D22F27" d="M45.8012,27.4384c-1.2547-3.3541-6.3873-3.5687-6.0658,1.3178c0.0428,0.6485,0.2787,1.2724,0.6361,1.8135 l5.2737,6.4224l0,0l5.1777-6.266c0.5747-0.6964,0.9147-1.5779,0.8974-2.4853c-0.0856-4.3523-5.0089-4.0351-6.0763-0.8036"/>
-    <path fill="#FFFFFF" d="M48.5859,42.6735c0,5.6296-4.1784,10.1046-12.5541,10.1046c-8.3738,0-12.6069-4.4888-12.6069-10.1047 C23.4249,42.6734,36.4503,45.7045,48.5859,42.6735z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="emoji"
+   viewBox="0 0 50 50"
+   version="1.1"
+   sodipodi:docname="smiling_face_with_heart_eyes.svg"
+   width="50"
+   height="50"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06">
+  <metadata
+     id="metadata32">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs30" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="795"
+     inkscape:window-height="480"
+     id="namedview28"
+     showgrid="false"
+     inkscape:zoom="3.2777778"
+     inkscape:cx="36"
+     inkscape:cy="36"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="emoji" />
+  <g
+     id="color"
+     transform="translate(-11,-11)">
+    <circle
+       cx="36"
+       cy="36"
+       r="23"
+       id="circle2"
+       style="fill:#fcea2b" />
+    <path
+       d="m 26.4992,27.4384 c -1.2653,-3.3541 -6.441,-3.5687 -6.1168,1.3178 0.0431,0.6485 0.281,1.2724 0.6414,1.8135 l 5.3179,6.4224 v 0 l 5.2212,-6.266 c 0.5796,-0.6964 0.9224,-1.5779 0.905,-2.4853 -0.0863,-4.3523 -5.0509,-4.0351 -6.1274,-0.8036"
+       id="path4"
+       inkscape:connector-curvature="0"
+       style="fill:#d22f27" />
+    <path
+       d="m 45.8012,27.4384 c -1.2547,-3.3541 -6.3873,-3.5687 -6.0658,1.3178 0.0428,0.6485 0.2787,1.2724 0.6361,1.8135 l 5.2737,6.4224 v 0 l 5.1777,-6.266 c 0.5747,-0.6964 0.9147,-1.5779 0.8974,-2.4853 -0.0856,-4.3523 -5.0089,-4.0351 -6.0763,-0.8036"
+       id="path6"
+       inkscape:connector-curvature="0"
+       style="fill:#d22f27" />
+    <path
+       d="m 48.5859,42.6735 c 0,5.6296 -4.1784,10.1046 -12.5541,10.1046 -8.3738,0 -12.6069,-4.4888 -12.6069,-10.1047 0,0 13.0254,3.0311 25.161,10e-5 z"
+       id="path8"
+       inkscape:connector-curvature="0"
+       style="fill:#ffffff" />
   </g>
-  <g id="hair"/>
-  <g id="skin"/>
-  <g id="skin-shadow"/>
-  <g id="line">
-    <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" d="M48.1113,44.5467"/>
-    <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" d="M23.934,44.5467"/>
-    <circle cx="36" cy="36" r="23" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
-    <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" d="M48.5859,42.6735c0,5.6296-4.1784,10.1046-12.5541,10.1046c-8.3738,0-12.6069-4.4888-12.6069-10.1047 C23.4249,42.6734,36.4503,45.7045,48.5859,42.6735z"/>
-    <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" d="M26.4992,27.4384c-1.2653-3.3541-6.441-3.5687-6.1168,1.3178c0.0431,0.6485,0.281,1.2724,0.6414,1.8135l5.3179,6.4224l0,0 l5.2212-6.266c0.5796-0.6964,0.9224-1.5779,0.905-2.4853c-0.0863-4.3523-5.0509-4.0351-6.1274-0.8036"/>
-    <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" d="M45.8012,27.4384c-1.2547-3.3541-6.3873-3.5687-6.0658,1.3178c0.0428,0.6485,0.2787,1.2724,0.6361,1.8135l5.2737,6.4224l0,0 l5.1777-6.266c0.5747-0.6964,0.9147-1.5779,0.8974-2.4853c-0.0856-4.3523-5.0089-4.0351-6.0763-0.8036"/>
+  <g
+     id="hair"
+     transform="translate(0,-22)" />
+  <g
+     id="skin"
+     transform="translate(0,-22)" />
+  <g
+     id="skin-shadow"
+     transform="translate(0,-22)" />
+  <g
+     id="line"
+     transform="translate(-11,-11)">
+    <path
+       stroke-miterlimit="10"
+       d="M 48.1113,44.5467"
+       id="path14"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    <path
+       stroke-miterlimit="10"
+       d="M 23.934,44.5467"
+       id="path16"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    <circle
+       cx="36"
+       cy="36"
+       r="23"
+       stroke-miterlimit="10"
+       id="circle18"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    <path
+       stroke-miterlimit="10"
+       d="m 48.5859,42.6735 c 0,5.6296 -4.1784,10.1046 -12.5541,10.1046 -8.3738,0 -12.6069,-4.4888 -12.6069,-10.1047 0,0 13.0254,3.0311 25.161,10e-5 z"
+       id="path20"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    <path
+       stroke-miterlimit="10"
+       d="m 26.4992,27.4384 c -1.2653,-3.3541 -6.441,-3.5687 -6.1168,1.3178 0.0431,0.6485 0.281,1.2724 0.6414,1.8135 l 5.3179,6.4224 v 0 l 5.2212,-6.266 c 0.5796,-0.6964 0.9224,-1.5779 0.905,-2.4853 -0.0863,-4.3523 -5.0509,-4.0351 -6.1274,-0.8036"
+       id="path22"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    <path
+       stroke-miterlimit="10"
+       d="m 45.8012,27.4384 c -1.2547,-3.3541 -6.3873,-3.5687 -6.0658,1.3178 0.0428,0.6485 0.2787,1.2724 0.6361,1.8135 l 5.2737,6.4224 v 0 l 5.1777,-6.266 c 0.5747,-0.6964 0.9147,-1.5779 0.8974,-2.4853 -0.0856,-4.3523 -5.0089,-4.0351 -6.0763,-0.8036"
+       id="path24"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
   </g>
 </svg>

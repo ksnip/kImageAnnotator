@@ -1,14 +1,96 @@
-<svg id="emoji" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-  <g id="color">
-    <path fill="#FCEA2B" d="M36,13c-12.6823,0-23,10.3177-23,23c0,12.6822,10.3177,23,23,23c12.6822,0,23-10.3178,23-23 C59,23.3177,48.6822,13,36,13z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="emoji"
+   viewBox="0 0 50 50"
+   version="1.1"
+   sodipodi:docname="neutral_face.svg"
+   width="50"
+   height="50"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06">
+  <metadata
+     id="metadata22">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs20" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="795"
+     inkscape:window-height="480"
+     id="namedview18"
+     showgrid="false"
+     inkscape:zoom="3.2777778"
+     inkscape:cx="36"
+     inkscape:cy="36"
+     inkscape:window-x="906"
+     inkscape:window-y="200"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="emoji" />
+  <g
+     id="color"
+     transform="translate(-11,-11)">
+    <path
+       d="M 36,13 C 23.3177,13 13,23.3177 13,36 13,48.6822 23.3177,59 36,59 48.6822,59 59,48.6822 59,36 59,23.3177 48.6822,13 36,13 Z"
+       id="path2"
+       inkscape:connector-curvature="0"
+       style="fill:#fcea2b" />
   </g>
-  <g id="hair"/>
-  <g id="skin"/>
-  <g id="skin-shadow"/>
-  <g id="line">
-    <circle cx="36" cy="36" r="23" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2"/>
-    <line x1="27" x2="45" y1="43" y2="43" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
-    <path d="M30,31c0,1.6568-1.3448,3-3,3c-1.6553,0-3-1.3433-3-3c0-1.6552,1.3447-3,3-3C28.6552,28,30,29.3448,30,31"/>
-    <path d="M48,31c0,1.6568-1.3447,3-3,3s-3-1.3433-3-3c0-1.6552,1.3447-3,3-3S48,29.3448,48,31"/>
+  <g
+     id="hair"
+     transform="translate(0,-22)" />
+  <g
+     id="skin"
+     transform="translate(0,-22)" />
+  <g
+     id="skin-shadow"
+     transform="translate(0,-22)" />
+  <g
+     id="line"
+     transform="translate(-11,-11)">
+    <circle
+       cx="36"
+       cy="36"
+       r="23"
+       stroke-miterlimit="10"
+       id="circle8"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10" />
+    <line
+       x1="27"
+       x2="45"
+       y1="43"
+       y2="43"
+       stroke-miterlimit="10"
+       id="line10"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+    <path
+       d="m 30,31 c 0,1.6568 -1.3448,3 -3,3 -1.6553,0 -3,-1.3433 -3,-3 0,-1.6552 1.3447,-3 3,-3 1.6552,0 3,1.3448 3,3"
+       id="path12"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 48,31 c 0,1.6568 -1.3447,3 -3,3 -1.6553,0 -3,-1.3433 -3,-3 0,-1.6552 1.3447,-3 3,-3 1.6553,0 3,1.3448 3,3"
+       id="path14"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>
