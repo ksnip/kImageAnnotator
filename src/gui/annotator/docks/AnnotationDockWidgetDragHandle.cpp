@@ -86,7 +86,7 @@ void AnnotationDockWidgetDragHandle::setOrientation(Qt::Orientation orientation)
 
 void AnnotationDockWidgetDragHandle::initGui()
 {
-	auto leftMargin = ScaledSizeProvider::scaledWidth(3);
+	auto leftMargin = ScaledSizeProvider::scaledWidth(5);
 	auto topMargin = ScaledSizeProvider::scaledWidth(5);
 	auto rightMargin = 0;
 	auto bottomMargin = ScaledSizeProvider::scaledWidth(2);
