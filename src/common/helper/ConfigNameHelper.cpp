@@ -51,9 +51,9 @@ QString ConfigNameHelper::toolFillType(Tools tool)
 	return kImageAnnotator() + QLatin1String("ToolFillType_") + QString::number(static_cast<int>(tool));
 }
 
-QString ConfigNameHelper::toolFontSize(Tools tool)
+QString ConfigNameHelper::toolFont(Tools tool)
 {
-	return kImageAnnotator() + QLatin1String("ToolFontSize_") + QString::number(static_cast<int>(tool));
+	return kImageAnnotator() + QLatin1String("ToolFont_") + QString::number(static_cast<int>(tool));
 }
 
 QString ConfigNameHelper::obfuscateFactor(Tools tool)

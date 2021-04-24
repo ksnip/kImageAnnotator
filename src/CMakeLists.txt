@@ -132,6 +132,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/NumberPicker.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/widgets/BoolPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/FillModePicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/FontPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomSpinBox.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButton.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButtonAction.cpp

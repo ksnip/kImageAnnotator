@@ -26,12 +26,12 @@ AnnotationItemSettings::AnnotationItemSettings() :
 	mColorPicker(new ColorPicker(this)),
 	mWidthPicker(new NumberPicker(this)),
 	mTextColorPicker(new ColorPicker(this)),
-	mFontSizePicker(new NumberPicker(this)),
 	mFillModePicker(new FillModePicker(this)),
 	mNumberToolSeedPicker(new NumberPicker(this)),
 	mObfuscateFactorPicker(new NumberPicker(this)),
 	mStickerPicker(new StickerPicker(this)),
-	mShadowPicker(new BoolPicker(this))
+	mShadowPicker(new BoolPicker(this)),
+	mFontPicker(new FontPicker(this))
 {
 	initGui();
 }
@@ -41,12 +41,12 @@ AnnotationItemSettings::~AnnotationItemSettings()
 	delete mColorPicker;
 	delete mWidthPicker;
 	delete mTextColorPicker;
-	delete mFontSizePicker;
 	delete mFillModePicker;
 	delete mNumberToolSeedPicker;
 	delete mObfuscateFactorPicker;
 	delete mStickerPicker;
 	delete mShadowPicker;
+	delete mFontPicker;
 	delete mMainLayout;
 }
 
@@ -61,10 +61,6 @@ void AnnotationItemSettings::initGui()
 	mWidthPicker->setIcon(IconLoader::load(QLatin1String("width.svg")));
 	mWidthPicker->setToolTip(tr("Width"));
 
-	mFontSizePicker->setIcon(IconLoader::load(QLatin1String("fontSize.svg")));
-	mFontSizePicker->setToolTip(tr("Font Size"));
-	mFontSizePicker->setRange(10, 40);
-
 	mNumberToolSeedPicker->setIcon(IconLoader::load(QLatin1String("number.svg")));
 	mNumberToolSeedPicker->setToolTip(tr("Number Seed"));
 	mNumberToolSeedPicker->setRange(1, 100);
@@ -77,9 +73,9 @@ void AnnotationItemSettings::initGui()
 
 	mMainLayout->addWidget(mColorPicker);
 	mMainLayout->addWidget(mWidthPicker);
-	mMainLayout->addWidget(mTextColorPicker);
-	mMainLayout->addWidget(mFontSizePicker);
 	mMainLayout->addWidget(mFillModePicker);
+	mMainLayout->addWidget(mTextColorPicker);
+	mMainLayout->addWidget(mFontPicker);
 	mMainLayout->addWidget(mNumberToolSeedPicker);
 	mMainLayout->addWidget(mObfuscateFactorPicker);
 	mMainLayout->addWidget(mStickerPicker);
@@ -93,17 +89,17 @@ void AnnotationItemSettings::initGui()
 	addExpandingWidget(mNumberToolSeedPicker);
 	addExpandingWidget(mObfuscateFactorPicker);
 	addExpandingWidget(mWidthPicker);
-	addExpandingWidget(mFontSizePicker);
+	addExpandingWidget(mFontPicker);
 
 	mWidgetConfigurator.setColorWidget(mColorPicker);
 	mWidgetConfigurator.setTextColorWidget(mTextColorPicker);
 	mWidgetConfigurator.setWidthWidget(mWidthPicker);
 	mWidgetConfigurator.setFillTypeWidget(mFillModePicker);
-	mWidgetConfigurator.setFontSizeWidget(mFontSizePicker);
 	mWidgetConfigurator.setFirstNumberWidget(mNumberToolSeedPicker);
 	mWidgetConfigurator.setObfuscateFactorWidget(mObfuscateFactorPicker);
 	mWidgetConfigurator.setStickerWidget(mStickerPicker);
 	mWidgetConfigurator.setShadowWidget(mShadowPicker);
+	mWidgetConfigurator.setFontWidget(mFontPicker);
 
 	mMainLayout->setContentsMargins(3, 0, 3, 0);
 
@@ -114,12 +110,12 @@ void AnnotationItemSettings::initGui()
 	connect(mColorPicker, &ColorPicker::colorSelected, this, &AnnotationItemSettings::toolColorChanged);
 	connect(mWidthPicker, &NumberPicker::numberSelected, this, &AnnotationItemSettings::toolWidthChanged);
 	connect(mTextColorPicker, &ColorPicker::colorSelected, this, &AnnotationItemSettings::toolTextColorChanged);
-	connect(mFontSizePicker, &NumberPicker::numberSelected, this, &AnnotationItemSettings::toolFontSizeChanged);
 	connect(mFillModePicker, &FillModePicker::fillSelected, this, &AnnotationItemSettings::toolFillTypeChanged);
 	connect(mNumberToolSeedPicker, &NumberPicker::numberSelected, this, &AnnotationItemSettings::notifyNumberToolSeedChanged);
 	connect(mObfuscateFactorPicker, &NumberPicker::numberSelected, this, &AnnotationItemSettings::obfuscateFactorChanged);
 	connect(mStickerPicker, &StickerPicker::stickerSelected, this, &AnnotationItemSettings::stickerChanged);
 	connect(mShadowPicker, &BoolPicker::enabledStateChanged, this, &AnnotationItemSettings::shadowEnabledChanged);
+	connect(mFontPicker, &FontPicker::fontChanged, this, &AnnotationItemSettings::fontChanged);
 }
 
 void AnnotationItemSettings::setUpForTool(Tools tool)
@@ -167,16 +163,6 @@ void AnnotationItemSettings::setFillMode(FillModes mode)
 	mFillModePicker->setFillType(mode);
 }
 
-int AnnotationItemSettings::fontSize() const
-{
-	return mFontSizePicker->number();
-}
-
-void AnnotationItemSettings::setFontSize(int size)
-{
-	mFontSizePicker->setNumber(size);
-}
-
 int AnnotationItemSettings::obfuscationFactor() const
 {
 	return mObfuscateFactorPicker->number();
@@ -210,6 +196,16 @@ void AnnotationItemSettings::setShadowEnabled(bool enabled)
 void AnnotationItemSettings::updateNumberToolSeed(int numberToolSeed)
 {
 	mNumberToolSeedPicker->setNumber(numberToolSeed);
+}
+
+QFont AnnotationItemSettings::font() const
+{
+	return mFontPicker->currentFont();
+}
+
+void AnnotationItemSettings::setFont(const QFont &font)
+{
+	mFontPicker->setCurrentFont(font);
 }
 
 QString AnnotationItemSettings::name() const

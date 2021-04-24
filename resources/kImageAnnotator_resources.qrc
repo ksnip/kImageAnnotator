@@ -25,7 +25,6 @@
         <file alias="color.svg" >icons/dark/color.svg</file>
         <file alias="width.svg" >icons/dark/width.svg</file>
         <file alias="textColor.svg" >icons/dark/textColor.svg</file>
-        <file alias="fontSize.svg" >icons/dark/fontSize.svg</file>
         <file alias="fillType.svg" >icons/dark/fillType.svg</file>
         <file alias="fillType_borderAndFill.svg" >icons/dark/fillType_borderAndFill.svg</file>
         <file alias="fillType_borderAndNoFill.svg" >icons/dark/fillType_borderAndNoFill.svg</file>
@@ -39,6 +38,9 @@
         <file alias="zoom.svg" >icons/dark/zoom.svg</file>
         <file alias="dragHandle.svg" >icons/dark/dragHandle.svg</file>
         <file alias="check.svg" >icons/dark/check.svg</file>
+        <file alias="bold.svg" >icons/dark/bold.svg</file>
+        <file alias="italic.svg" >icons/dark/italic.svg</file>
+        <file alias="underline.svg" >icons/dark/underline.svg</file>
     </qresource>
 
     <qresource prefix="/icons/light">
@@ -66,7 +68,6 @@
         <file alias="color.svg" >icons/light/color.svg</file>
         <file alias="width.svg" >icons/light/width.svg</file>
         <file alias="textColor.svg" >icons/light/textColor.svg</file>
-        <file alias="fontSize.svg" >icons/light/fontSize.svg</file>
         <file alias="fillType.svg" >icons/light/fillType.svg</file>
         <file alias="fillType_borderAndFill.svg" >icons/light/fillType_borderAndFill.svg</file>
         <file alias="fillType_borderAndNoFill.svg" >icons/light/fillType_borderAndNoFill.svg</file>
@@ -80,6 +81,9 @@
         <file alias="zoom.svg" >icons/light/zoom.svg</file>
         <file alias="dragHandle.svg" >icons/light/dragHandle.svg</file>
         <file alias="check.svg" >icons/light/check.svg</file>
+        <file alias="bold.svg" >icons/light/bold.svg</file>
+        <file alias="italic.svg" >icons/light/italic.svg</file>
+        <file alias="underline.svg" >icons/light/underline.svg</file>
     </qresource>
 
     <qresource prefix="/stickers">

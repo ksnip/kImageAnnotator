@@ -41,8 +41,8 @@ public:
 	void setTextColor(const QColor &textColor);
 	int toolWidth() const override;
 	void setToolWidth(int toolWidth);
-	int fontSize() const override;
-	void setFontSize(int fontSize);
+	QFont font() const override;
+	void setFont(const QFont &font);
 	FillModes fillType() const override;
 	void setFillType(FillModes fillMode);
 	int obfuscationFactor() const override;
@@ -61,7 +61,7 @@ private:
 	QColor mToolColor;
 	QColor mTextColor;
 	int mToolWidth;
-	int mFontSize;
+	QFont mFont;
 	FillModes mFillType;
 	int mBlurRadius;
 	QString mStickerPath;

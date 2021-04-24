@@ -137,9 +137,7 @@ void AnnotationPropertiesFactory::setTextProperties(const PropertiesPtr &propert
 {
 	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
 	if (textProperties != nullptr) {
-		auto font = mConfig->toolFont(toolType);
-		font.setPointSize(mSettingsProvider->fontSize());
-		textProperties->setFont(font);
+		textProperties->setFont(mSettingsProvider->font());
 	}
 }
 

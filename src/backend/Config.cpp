@@ -130,74 +130,19 @@ void Config::setToolFillType(FillModes fillType, Tools tool)
 	saveToolFillType(tool, fillType);
 }
 
-QFont Config::toolFont(Tools toolType) const
+QFont Config::toolFont(Tools tool) const
 {
-	switch (toolType) {
-		case Tools::Number:
-		case Tools::NumberPointer:
-		case Tools::NumberArrow:
-			return mToolToFont[Tools::Number];
-		case Tools::Text:
-		case Tools::TextPointer:
-		case Tools::TextArrow:
-			return mToolToFont[Tools::Text];
-		default:
-			return mToolToFont[toolType];
-	}
+	return mToolToFont[tool];
 }
 
-void Config::setToolFont(const QFont &font, Tools toolType)
+void Config::setToolFont(const QFont &font, Tools tool)
 {
-	auto tmpFont = font;
-	tmpFont.setPointSize(toolFontSize(toolType));
-	if (toolFont(toolType) == tmpFont) {
+	if (toolFont(tool) == font) {
 		return;
 	}
 
-	switch (toolType) {
-		case Tools::Number:
-		case Tools::NumberPointer:
-		case Tools::NumberArrow:
-			mToolToFont[Tools::Number] = tmpFont;
-			break;
-		case Tools::Text:
-		case Tools::TextPointer:
-		case Tools::TextArrow:
-			mToolToFont[Tools::Text] = tmpFont;
-			break;
-		default:
-			mToolToFont[toolType] = tmpFont;
-	}
-}
-
-int Config::toolFontSize(Tools toolType) const
-{
-	return toolFont(toolType).pointSize();
-}
-
-void Config::setToolFontSize(int fontSize, Tools toolType)
-{
-	if (toolFontSize(toolType) == fontSize) {
-		return;
-	}
-
-	switch (toolType) {
-		case Tools::Number:
-		case Tools::NumberPointer:
-		case Tools::NumberArrow:
-			mToolToFont[Tools::Number].setPointSize(fontSize);
-			saveToolFontSize(Tools::Number, fontSize);
-			break;
-		case Tools::Text:
-		case Tools::TextPointer:
-		case Tools::TextArrow:
-			mToolToFont[Tools::Text].setPointSize(fontSize);
-			saveToolFontSize(Tools::Text, fontSize);
-			break;
-		default:
-			mToolToFont[toolType].setPointSize(fontSize);
-			saveToolFontSize(toolType, fontSize);
-	}
+	mToolToFont[tool] = font;
+	saveToolFont(tool, font);
 }
 
 bool Config::shadowEnabled(Tools tool) const
@@ -353,10 +298,9 @@ void Config::initToolFillTypes()
 
 void Config::initToolFonts()
 {
-	auto textFont = QFont(QLatin1String("Times"), loadToolFontSize(Tools::Text), QFont::Bold);
-	auto numberFont = QFont(QLatin1String("Helvetica"), loadToolFontSize(Tools::Number), QFont::Bold);
-	mToolToFont[Tools::Text] = textFont;
-	mToolToFont[Tools::Number] = numberFont;
+	for (auto toolType : mAllTools) {
+		mToolToFont[toolType] = loadToolFont(toolType);
+	}
 }
 
 void Config::initObfuscateFactor()
@@ -451,6 +395,23 @@ void Config::saveToolFillType(Tools toolType, FillModes fillType)
 	}
 }
 
+QFont Config::loadToolFont(Tools tool) const
+{
+	if (mSaveToolSelection) {
+		return mConfig.value(ConfigNameHelper::toolFont(tool), defaultToolFont(tool)).value<QFont>();
+	} else {
+		return defaultToolFont(tool);
+	}
+}
+
+void Config::saveToolFont(Tools tool, const QFont &font)
+{
+	if (mSaveToolSelection) {
+		mConfig.setValue(ConfigNameHelper::toolFont(tool), font);
+		mConfig.sync();
+	}
+}
+
 Tools Config::loadToolType()
 {
 	if (mSaveToolSelection) {
@@ -464,23 +425,6 @@ void Config::saveToolType(Tools toolType)
 {
 	if (mSaveToolSelection) {
 		mConfig.setValue(ConfigNameHelper::toolType(), static_cast<int>(toolType));
-		mConfig.sync();
-	}
-}
-
-int Config::loadToolFontSize(Tools toolType)
-{
-	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::toolFontSize(toolType), defaultToolFontSize(toolType)).value<int>();
-	} else {
-		return defaultToolFontSize(toolType);
-	}
-}
-
-void Config::saveToolFontSize(Tools toolType, int fontSize)
-{
-	if (mSaveToolSelection) {
-		mConfig.setValue(ConfigNameHelper::toolFontSize(toolType), fontSize);
 		mConfig.sync();
 	}
 }
@@ -605,25 +549,27 @@ FillModes Config::defaultToolFillMode(Tools toolType)
 	}
 }
 
-Tools Config::defaultToolType()
+QFont Config::defaultToolFont(Tools tool)
 {
-	return Tools::Pen;
-}
+	auto textFont = QFont(QLatin1String("Times"), 15, QFont::Bold);
+	auto numberFont = QFont(QLatin1String("Helvetica"), 20, QFont::Bold);
 
-int Config::defaultToolFontSize(Tools toolType)
-{
-	switch (toolType) {
-		case Tools::Text:
-		case Tools::TextPointer:
-		case Tools::TextArrow:
-			return 15;
+	switch (tool) {
 		case Tools::Number:
 		case Tools::NumberPointer:
 		case Tools::NumberArrow:
-			return 20;
+			return numberFont;
+		case Tools::Text:
+		case Tools::TextPointer:
+		case Tools::TextArrow:
 		default:
-			return 10;
+			return textFont;
 	}
+}
+
+Tools Config::defaultToolType()
+{
+	return Tools::Pen;
 }
 
 int Config::defaultObfuscateFactor()

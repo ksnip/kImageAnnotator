@@ -27,6 +27,7 @@
 #include "src/widgets/FillModePicker.h"
 #include "src/widgets/StickerPicker.h"
 #include "src/widgets/BoolPicker.h"
+#include "src/widgets/FontPicker.h"
 #include "src/backend/Config.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 #include "src/annotations/properties/AnnotationObfuscateProperties.h"
@@ -47,8 +48,6 @@ public:
 	void setTextColor(const QColor &color);
 	int toolWidth() const;
 	void setToolWidth(int width);
-	int fontSize() const;
-	void setFontSize(int size);
 	FillModes fillMode() const;
 	void setFillMode(FillModes mode);
 	int obfuscationFactor() const;
@@ -58,6 +57,8 @@ public:
 	bool shadowEnabled() const;
 	void setShadowEnabled(bool enabled);
 	void updateNumberToolSeed(int numberToolSeed);
+	QFont font() const;
+	void setFont(const QFont &font);
 	QString name() const override;
 
 signals:
@@ -70,18 +71,19 @@ signals:
 	void obfuscateFactorChanged(int factor);
 	void stickerChanged(const QString &sticker);
 	void shadowEnabledChanged(bool enabled);
+	void fontChanged(const QFont &font);
 
 private:
 	QBoxLayout *mMainLayout;
 	ColorPicker *mColorPicker;
 	NumberPicker *mWidthPicker;
 	ColorPicker *mTextColorPicker;
-	NumberPicker *mFontSizePicker;
 	FillModePicker *mFillModePicker;
 	NumberPicker *mNumberToolSeedPicker;
 	NumberPicker *mObfuscateFactorPicker;
 	StickerPicker *mStickerPicker;
 	BoolPicker *mShadowPicker;
+	FontPicker *mFontPicker;
 	ItemSettingsWidgetConfigurator mWidgetConfigurator;
 
 	void initGui();

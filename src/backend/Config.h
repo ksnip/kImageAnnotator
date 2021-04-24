@@ -58,11 +58,8 @@ public slots:
 	FillModes toolFillType(Tools tool) const;
 	void setToolFillType(FillModes fillType, Tools tool);
 
-	QFont toolFont(Tools toolType) const;
-	void setToolFont(const QFont &font, Tools toolType);
-
-	int toolFontSize(Tools toolType) const;
-	void setToolFontSize(int fontSize, Tools toolType);
+	QFont toolFont(Tools tool) const;
+	void setToolFont(const QFont &font, Tools tool);
 
 	bool shadowEnabled(Tools tool) const;
 	void setShadowEnabled(bool enabled, Tools tool);
@@ -130,10 +127,10 @@ private:
 	void saveToolWidth(Tools toolType, int size);
 	FillModes loadToolFillType(Tools toolType);
 	void saveToolFillType(Tools toolType, FillModes fillType);
+	QFont loadToolFont(Tools tool) const;
+	void saveToolFont(Tools tool, const QFont &font);
 	Tools loadToolType();
 	void saveToolType(Tools toolType);
-	int loadToolFontSize(Tools toolType);
-	void saveToolFontSize(Tools toolType, int fontSize);
 	int loadToolObfuscateFactor(Tools toolType);
 	void saveToolObfuscateFactor(Tools toolType, int radius);
 	bool loadToolShadowEnabled(Tools tool);
@@ -143,8 +140,8 @@ private:
 	static QColor defaultToolTextColor(Tools toolType);
 	static int defaultToolWidth(Tools toolType);
 	static FillModes defaultToolFillMode(Tools toolType);
+	static QFont defaultToolFont(Tools tool);
 	static Tools defaultToolType();
-	static int defaultToolFontSize(Tools toolType);
 	static int defaultObfuscateFactor();
 	static bool defaultShadowEnabled(Tools tool);
 };

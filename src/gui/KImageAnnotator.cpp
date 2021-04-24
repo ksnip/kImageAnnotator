@@ -136,14 +136,14 @@ QSize KImageAnnotator::sizeHint() const
 
 void KImageAnnotator::setTextFont(const QFont &font)
 {
-	Q_D(KImageAnnotator);
-	d->mConfig.setToolFont(font, Tools::Text);
+	Q_UNUSED(font)
+	// Deprecated, will be removed with the next major release
 }
 
 void KImageAnnotator::setNumberFont(const QFont &font)
 {
-	Q_D(KImageAnnotator);
-	d->mConfig.setToolFont(font, Tools::Number);
+	Q_UNUSED(font)
+	// Deprecated, will be removed with the next major release
 }
 
 void KImageAnnotator::setItemShadowEnabled(bool enabled)

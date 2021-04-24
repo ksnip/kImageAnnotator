@@ -26,11 +26,11 @@ ItemSettingsWidgetConfigurator::ItemSettingsWidgetConfigurator() :
 	mTextColorWidget(nullptr),
 	mWidthWidget(nullptr),
 	mFillModeWidget(nullptr),
-	mFontSizeWidget(nullptr),
 	mFirstNumberWidget(nullptr),
 	mObfuscateFactorWidget(nullptr),
 	mStickerWidget(nullptr),
-	mShadowPicker(nullptr)
+	mShadowPicker(nullptr),
+	mFontPicker(nullptr)
 {
 	mCurrentTool = Tools::Select;
 }
@@ -69,12 +69,6 @@ void ItemSettingsWidgetConfigurator::setFillTypeWidget(FillModePicker *widget)
 	updateWidgets();
 }
 
-void ItemSettingsWidgetConfigurator::setFontSizeWidget(NumberPicker *widget)
-{
-	mFontSizeWidget = widget;
-	updateWidgets();
-}
-
 void ItemSettingsWidgetConfigurator::setFirstNumberWidget(NumberPicker *widget)
 {
 	mFirstNumberWidget = widget;
@@ -96,6 +90,12 @@ void ItemSettingsWidgetConfigurator::setStickerWidget(StickerPicker *widget)
 void ItemSettingsWidgetConfigurator::setShadowWidget(BoolPicker *widget)
 {
 	mShadowPicker = widget;
+	updateWidgets();
+}
+
+void ItemSettingsWidgetConfigurator::setFontWidget(FontPicker *widget)
+{
+	mFontPicker = widget;
 	updateWidgets();
 }
 
@@ -130,44 +130,44 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(false);
 			setFillWidgetVisible(false);
-			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(false);
+			setFontWidgetVisible(false);
 			break;
 		case Tools::Image:
 			setColorWidgetVisible(false);
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(false);
 			setFillWidgetVisible(false);
-			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
+			setFontWidgetVisible(false);
 			break;
 		case Tools::Pen:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(true);
 			setFillWidgetVisible(false);
-			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
+			setFontWidgetVisible(false);
 			break;
 		case Tools::MarkerPen:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(true);
 			setFillWidgetVisible(false);
-			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(false);
+			setFontWidgetVisible(false);
 			break;
 		case Tools::MarkerRect:
 		case Tools::MarkerEllipse:
@@ -175,11 +175,11 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(false);
 			setFillWidgetVisible(false);
-			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(false);
+			setFontWidgetVisible(false);
 			break;
 		case Tools::Line:
 		case Tools::Arrow:
@@ -188,11 +188,11 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(true);
 			setFillWidgetVisible(false);
-			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
+			setFontWidgetVisible(false);
 			break;
 		case Tools::Ellipse:
 		case Tools::Rect:
@@ -200,77 +200,77 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(true);
 			setFillWidgetVisible(true);
-			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
+			setFontWidgetVisible(false);
 			break;
 		case Tools::Number:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(true);
 			setWidthWidgetVisible(true);
 			setFillWidgetVisible(true);
-			setFontSizeWidgetVisible(true);
 			setFirstNumberWidgetVisible(true);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
+			setFontWidgetVisible(true);
 			break;
 		case Tools::NumberPointer:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(true);
 			setWidthWidgetVisible(false);
 			setFillWidgetVisible(false);
-			setFontSizeWidgetVisible(true);
 			setFirstNumberWidgetVisible(true);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
+			setFontWidgetVisible(true);
 			break;
 		case Tools::NumberArrow:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(true);
 			setWidthWidgetVisible(true);
 			setFillWidgetVisible(true);
-			setFontSizeWidgetVisible(true);
 			setFirstNumberWidgetVisible(true);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
+			setFontWidgetVisible(true);
 			break;
 		case Tools::Text:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(true);
 			setWidthWidgetVisible(true);
 			setFillWidgetVisible(true);
-			setFontSizeWidgetVisible(true);
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
+			setFontWidgetVisible(true);
 			break;
 		case Tools::TextPointer:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(true);
 			setWidthWidgetVisible(false);
 			setFillWidgetVisible(false);
-			setFontSizeWidgetVisible(true);
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
+			setFontWidgetVisible(true);
 			break;
 		case Tools::TextArrow:
 			setColorWidgetVisible(true);
 			setTextColorWidgetVisible(true);
 			setWidthWidgetVisible(true);
 			setFillWidgetVisible(true);
-			setFontSizeWidgetVisible(true);
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
+			setFontWidgetVisible(true);
 			break;
 		case Tools::Blur:
 		case Tools::Pixelate:
@@ -278,7 +278,6 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(false);
 			setFillWidgetVisible(false);
-			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(true);
 			setStickerWidgetVisible(false);
@@ -289,7 +288,6 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(false);
 			setFillWidgetVisible(false);
-			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(true);
@@ -300,7 +298,6 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setTextColorWidgetVisible(false);
 			setWidthWidgetVisible(false);
 			setFillWidgetVisible(false);
-			setFontSizeWidgetVisible(false);
 			setFirstNumberWidgetVisible(false);
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
@@ -336,13 +333,6 @@ void ItemSettingsWidgetConfigurator::setFillWidgetVisible(bool enabled) const
 {
 	if (mFillModeWidget) {
 		mFillModeWidget->setVisible(enabled);
-	}
-}
-
-void ItemSettingsWidgetConfigurator::setFontSizeWidgetVisible(bool enabled) const
-{
-	if (mFontSizeWidget) {
-		mFontSizeWidget->setVisible(enabled);
 	}
 }
 
@@ -382,6 +372,13 @@ void ItemSettingsWidgetConfigurator::setShadowWidgetVisible(bool enabled) const
 {
 	if (mShadowPicker) {
 		mShadowPicker->setVisible(enabled);
+	}
+}
+
+void ItemSettingsWidgetConfigurator::setFontWidgetVisible(bool enabled) const
+{
+	if (mFontPicker) {
+		mFontPicker->setVisible(enabled);
 	}
 }
 

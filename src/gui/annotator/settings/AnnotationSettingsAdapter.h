@@ -45,7 +45,7 @@ public:
 	QColor toolColor() const override;
 	QColor textColor() const override;
 	int toolWidth() const override;
-	int fontSize() const override;
+	QFont font() const override;
 	FillModes fillType() const override;
 	int obfuscationFactor() const override;
 	QString sticker() const override;
@@ -63,6 +63,8 @@ private:
 	Config *mConfig;
 	bool mEditExistingItem;
 
+	void configChanged(const std::function<void ()>& configChangedMethod);
+
 private slots:
 	void effectChanged(ImageEffects effect) override;
 	void zoomValueChanged(double value) override;
@@ -73,11 +75,11 @@ private slots:
 	void toolTextColorChanged(const QColor &color);
 	void toolWidthChanged(int width);
 	void toolFillTypeChanged(FillModes fill);
-	void toolFontSizeChanged(int size);
 	void notifyNumberToolSeedChanged(int newNumberToolSeed);
 	void obfuscateFactorChanged(int factor);
 	void stickerChanged(const QString &sticker);
 	void shadowEnabledChanged(bool enabled);
+	void fontChanged(const QFont &font);
 };
 
 } // namespace kImageAnnotator

@@ -43,12 +43,12 @@ AnnotationSettingsAdapter::AnnotationSettingsAdapter(
 	connect(mItemSettings, &AnnotationItemSettings::toolColorChanged, this, &AnnotationSettingsAdapter::toolColorChanged);
 	connect(mItemSettings, &AnnotationItemSettings::toolWidthChanged, this, &AnnotationSettingsAdapter::toolWidthChanged);
 	connect(mItemSettings, &AnnotationItemSettings::toolTextColorChanged, this, &AnnotationSettingsAdapter::toolTextColorChanged);
-	connect(mItemSettings, &AnnotationItemSettings::toolFontSizeChanged, this, &AnnotationSettingsAdapter::toolFontSizeChanged);
 	connect(mItemSettings, &AnnotationItemSettings::toolFillTypeChanged, this, &AnnotationSettingsAdapter::toolFillTypeChanged);
 	connect(mItemSettings, &AnnotationItemSettings::notifyNumberToolSeedChanged, this, &AnnotationSettingsAdapter::notifyNumberToolSeedChanged);
 	connect(mItemSettings, &AnnotationItemSettings::obfuscateFactorChanged, this, &AnnotationSettingsAdapter::obfuscateFactorChanged);
 	connect(mItemSettings, &AnnotationItemSettings::stickerChanged, this, &AnnotationSettingsAdapter::stickerChanged);
 	connect(mItemSettings, &AnnotationItemSettings::shadowEnabledChanged, this, &AnnotationSettingsAdapter::shadowEnabledChanged);
+	connect(mItemSettings, &AnnotationItemSettings::fontChanged, this, &AnnotationSettingsAdapter::fontChanged);
 
 	reloadConfig();
 }
@@ -86,9 +86,9 @@ int AnnotationSettingsAdapter::toolWidth() const
 	return mItemSettings->toolWidth();
 }
 
-int AnnotationSettingsAdapter::fontSize() const
+QFont AnnotationSettingsAdapter::font() const
 {
-	return mItemSettings->fontSize();
+	return mItemSettings->font();
 }
 
 FillModes AnnotationSettingsAdapter::fillType() const
@@ -150,7 +150,7 @@ void AnnotationSettingsAdapter::loadFromConfig(Tools tool)
 	mItemSettings->setTextColor(mConfig->toolTextColor(tool));
 	mItemSettings->setToolWidth(mConfig->toolWidth(tool));
 	mItemSettings->setFillMode(mConfig->toolFillType(tool));
-	mItemSettings->setFontSize(mConfig->toolFontSize(tool));
+	mItemSettings->setFont(mConfig->toolFont(tool));
 	mItemSettings->setObfuscationFactor(mConfig->obfuscationFactor(tool));
 	mItemSettings->setShadowEnabled(mConfig->shadowEnabled(tool));
 }
@@ -167,7 +167,7 @@ void AnnotationSettingsAdapter::loadFromItem(const AbstractAnnotationItem *item)
 
 	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
 	if(textProperties != nullptr) {
-		mItemSettings->setFontSize(textProperties->font().pointSize());
+		mItemSettings->setFont(textProperties->font());
 	}
 
 	auto obfuscateProperties = properties.dynamicCast<AnnotationObfuscateProperties>();
@@ -188,47 +188,30 @@ void AnnotationSettingsAdapter::toolTypeChanged(Tools toolType)
 
 void AnnotationSettingsAdapter::toolColorChanged(const QColor &color)
 {
-	if(mEditExistingItem) {
-		itemSettingChanged();
-	} else {
+	configChanged([&](){
 		mConfig->setToolColor(color, toolType());
-	}
+	});
 }
 
 void AnnotationSettingsAdapter::toolTextColorChanged(const QColor &color)
 {
-	if(mEditExistingItem) {
-		itemSettingChanged();
-	} else {
+	configChanged([&](){
 		mConfig->setToolTextColor(color, toolType());
-	}
+	});
 }
 
 void AnnotationSettingsAdapter::toolWidthChanged(int width)
 {
-	if(mEditExistingItem) {
-		itemSettingChanged();
-	} else {
+	configChanged([&](){
 		mConfig->setToolWidth(width, toolType());
-	}
+	});
 }
 
 void AnnotationSettingsAdapter::toolFillTypeChanged(FillModes fill)
 {
-	if(mEditExistingItem) {
-		itemSettingChanged();
-	} else {
+	configChanged([&](){
 		mConfig->setToolFillType(fill, toolType());
-	}
-}
-
-void AnnotationSettingsAdapter::toolFontSizeChanged(int size)
-{
-	if(mEditExistingItem) {
-		itemSettingChanged();
-	} else {
-		mConfig->setToolFontSize(size, toolType());
-	}
+	});
 }
 
 void AnnotationSettingsAdapter::notifyNumberToolSeedChanged(int newNumberToolSeed)
@@ -238,11 +221,9 @@ void AnnotationSettingsAdapter::notifyNumberToolSeedChanged(int newNumberToolSee
 
 void AnnotationSettingsAdapter::obfuscateFactorChanged(int factor)
 {
-	if(mEditExistingItem) {
-		itemSettingChanged();
-	} else {
+	configChanged([&](){
 		mConfig->setObfuscationFactor(factor, toolType());
-	}
+	});
 }
 
 void AnnotationSettingsAdapter::stickerChanged(const QString &sticker)
@@ -254,10 +235,24 @@ void AnnotationSettingsAdapter::stickerChanged(const QString &sticker)
 
 void AnnotationSettingsAdapter::shadowEnabledChanged(bool enabled)
 {
+	configChanged([&](){
+		mConfig->setShadowEnabled(enabled, toolType());
+	});
+}
+
+void AnnotationSettingsAdapter::fontChanged(const QFont &font)
+{
+	configChanged([&](){
+		mConfig->setToolFont(font, toolType());
+	});
+}
+
+void AnnotationSettingsAdapter::configChanged(const std::function<void()> &configChangedMethod)
+{
 	if(mEditExistingItem) {
 		itemSettingChanged();
 	} else {
-		mConfig->setShadowEnabled(enabled, toolType());
+		configChangedMethod();
 	}
 }
 

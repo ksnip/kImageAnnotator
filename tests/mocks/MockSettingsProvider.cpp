@@ -49,9 +49,9 @@ int MockSettingsProvider::toolWidth() const
 	return mToolWidth;
 }
 
-int MockSettingsProvider::fontSize() const
+QFont MockSettingsProvider::font() const
 {
-	return mFontSize;
+	return mFont;
 }
 
 FillModes MockSettingsProvider::fillType() const
@@ -84,9 +84,9 @@ void MockSettingsProvider::setToolWidth(int toolWidth)
 	mToolWidth = toolWidth;
 }
 
-void MockSettingsProvider::setFontSize(int fontSize)
+void MockSettingsProvider::setFont(const QFont &font)
 {
-	mFontSize = fontSize;
+	mFont = font;
 }
 
 void MockSettingsProvider::setFillType(FillModes fillMode)

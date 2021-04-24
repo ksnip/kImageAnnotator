@@ -191,14 +191,13 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetSmoothPathBasedOnConf
 	QCOMPARE(pathProperties->smoothFactor(), smoothPathFactor);
 }
 
-void AnnotationPropertiesFactoryTest::TestCreate_Should_SetToolFontAndFontSizeBasedOnConfiguration()
+void AnnotationPropertiesFactoryTest::TestCreate_Should_SetToolFontBasedOnSettings()
 {
 	auto tool = Tools::Number;
 	auto config = new Config;
 	auto font = QFont("Helvetica [Cronyx]", 8, QFont::StyleItalic);
-	config->setToolFont(font, tool);
 	auto settingsProvider = new MockSettingsProvider();
-	settingsProvider->setFontSize(8);
+	settingsProvider->setFont(font);
 	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
 
 	auto properties = propertiesFactory.create(tool);

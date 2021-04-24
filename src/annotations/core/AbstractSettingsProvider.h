@@ -41,7 +41,7 @@ public:
 	virtual QColor toolColor() const = 0;
 	virtual QColor textColor() const = 0;
 	virtual int toolWidth() const = 0;
-	virtual int fontSize() const = 0;
+	virtual QFont font() const = 0;
 	virtual FillModes fillType() const = 0;
 	virtual int obfuscationFactor() const = 0;
 	virtual QString sticker() const = 0;

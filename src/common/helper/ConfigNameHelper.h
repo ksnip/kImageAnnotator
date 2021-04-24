@@ -35,7 +35,7 @@ public:
 	static QString toolColor(Tools tool);
 	static QString toolTextColor(Tools tool);
 	static QString toolFillType(Tools tool);
-	static QString toolFontSize(Tools tool);
+	static QString toolFont(Tools tool);
 	static QString obfuscateFactor(Tools tool);
 	static QString shadowEnabled(Tools tool);
 	static QString annotatorDockWidgetsState();

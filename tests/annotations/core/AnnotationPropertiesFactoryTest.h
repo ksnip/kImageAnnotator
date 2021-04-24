@@ -52,7 +52,7 @@ private slots:
 	void TestCreate_Should_CreateTextPropertiesWhenItemNumberPointer();
 	void TestCreate_Should_CreateTextPropertiesWhenItemText();
 	void TestCreate_Should_SetSmoothPathBasedOnConfiguration();
-	void TestCreate_Should_SetToolFontAndFontSizeBasedOnConfiguration();
+	void TestCreate_Should_SetToolFontBasedOnSettings();
 	void TestCreate_Should_StickerPathBasedOnSettings();
 };
 

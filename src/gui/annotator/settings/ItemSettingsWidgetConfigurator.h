@@ -29,6 +29,7 @@
 #include "src/widgets/NumberPicker.h"
 #include "src/widgets/StickerPicker.h"
 #include "src/widgets/BoolPicker.h"
+#include "src/widgets/FontPicker.h"
 
 namespace kImageAnnotator {
 
@@ -42,11 +43,11 @@ public:
 	void setTextColorWidget(ColorPicker *widget);
 	void setWidthWidget(NumberPicker *widget);
 	void setFillTypeWidget(FillModePicker *widget);
-	void setFontSizeWidget(NumberPicker *widget);
 	void setFirstNumberWidget(NumberPicker *widget);
 	void setObfuscateFactorWidget(NumberPicker *widget);
 	void setStickerWidget(StickerPicker *widget);
 	void setShadowWidget(BoolPicker *widget);
+	void setFontWidget(FontPicker *widget);
 
 private:
 	Tools mCurrentTool;
@@ -54,11 +55,11 @@ private:
 	ColorPicker *mTextColorWidget;
 	NumberPicker *mWidthWidget;
 	FillModePicker *mFillModeWidget;
-	NumberPicker *mFontSizeWidget;
 	NumberPicker *mFirstNumberWidget;
 	NumberPicker *mObfuscateFactorWidget;
 	StickerPicker *mStickerWidget;
 	BoolPicker *mShadowPicker;
+	FontPicker *mFontPicker;
 
 	void updateWidgets() const;
 	void updateProperties() const;
@@ -67,12 +68,12 @@ private:
 	void setTextColorWidgetVisible(bool enabled) const;
 	void setWidthWidgetVisible(bool enabled) const;
 	void setFillWidgetVisible(bool enabled) const;
-	void setFontSizeWidgetVisible(bool enabled) const;
 	void setFirstNumberWidgetVisible(bool enabled) const;
 	void setNoFillAndNoBorderVisible(bool enabled) const;
 	void setObfuscateFactorWidgetVisible(bool enabled) const;
 	void setStickerWidgetVisible(bool enabled) const;
 	void setShadowWidgetVisible(bool enabled) const;
+	void setFontWidgetVisible(bool enabled) const;
 	void setWidthRange(int min, int max) const;
 };
 
