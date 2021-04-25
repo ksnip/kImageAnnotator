@@ -45,29 +45,47 @@
     </message>
 </context>
 <context>
-    <name>kImageAnnotator::AnnotationSettings</name>
+    <name>kImageAnnotator::AnnotationGeneralSettings</name>
+    <message>
+        <source>General Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::AnnotationImageSettings</name>
+    <message>
+        <source>Image Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::AnnotationItemSettings</name>
     <message>
         <source>Color</source>
-        <translation>Couleur</translation>
-    </message>
-    <message>
-        <source>Width</source>
-        <translation>Largeur</translation>
+        <translation type="unfinished">Couleur</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation>Couleur du texte</translation>
+        <translation type="unfinished">Couleur du texte</translation>
     </message>
     <message>
-        <source>Font Size</source>
-        <translation>Taille de la police</translation>
-    </message>
-    <message>
-        <source>Obfuscation Factor</source>
-        <translation>Facteur d&apos;obfuscation</translation>
+        <source>Width</source>
+        <translation type="unfinished">Largeur</translation>
     </message>
     <message>
         <source>Number Seed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Obfuscation Factor</source>
+        <translation type="unfinished">Facteur d&apos;obfuscation</translation>
+    </message>
+    <message>
+        <source>Item Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -92,6 +110,24 @@
     <message>
         <source>Close All to the Right</source>
         <translation>Fermer tous ceux de droite</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::AnnotationToolSelection</name>
+    <message>
+        <source>Tool Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::BoolPicker</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -141,6 +177,25 @@
     </message>
 </context>
 <context>
+    <name>kImageAnnotator::FontPicker</name>
+    <message>
+        <source>Font Size</source>
+        <translation type="unfinished">Taille de la police</translation>
+    </message>
+    <message>
+        <source>Bold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Italic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Underline</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
@@ -162,6 +217,10 @@
         <source>Border</source>
         <translation>Bordure</translation>
     </message>
+    <message>
+        <source>Invert Color</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>kImageAnnotator::ModifyCanvasWidget</name>
@@ -177,19 +236,19 @@ pour inclure l’image d&apos;arrière-plan.</translation>
     </message>
     <message>
         <source>X:</source>
-        <translation>X :</translation>
+        <translation>X&#xa0;:</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation>Y :</translation>
+        <translation>Y&#xa0;:</translation>
     </message>
     <message>
         <source>W:</source>
-        <translation>L :</translation>
+        <translation>L&#xa0;:</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation>H :</translation>
+        <translation>H&#xa0;:</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -387,18 +446,18 @@ La rotation par des multiplicateurs autres que 90° peut entraîner une perte de
     </message>
 </context>
 <context>
-    <name>kImageAnnotator::ZoomIndicator</name>
+    <name>kImageAnnotator::ZoomPicker</name>
     <message>
         <source>Zoom In (%1)</source>
-        <translation>Zoom avant (%1)</translation>
+        <translation type="unfinished">Zoom avant (%1)</translation>
     </message>
     <message>
         <source>Zoom Out (%1)</source>
-        <translation>Zoom arrière (%1)</translation>
+        <translation type="unfinished">Zoom arrière (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom (%1)</source>
-        <translation>Réinitialiser le zoom (%1)</translation>
+        <translation type="unfinished">Réinitialiser le zoom (%1)</translation>
     </message>
 </context>
 </TS>

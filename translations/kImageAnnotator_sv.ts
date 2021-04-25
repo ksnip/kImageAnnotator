@@ -45,30 +45,48 @@
     </message>
 </context>
 <context>
-    <name>kImageAnnotator::AnnotationSettings</name>
+    <name>kImageAnnotator::AnnotationGeneralSettings</name>
+    <message>
+        <source>General Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::AnnotationImageSettings</name>
+    <message>
+        <source>Image Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::AnnotationItemSettings</name>
     <message>
         <source>Color</source>
-        <translation>Färg</translation>
-    </message>
-    <message>
-        <source>Width</source>
-        <translation>Bredd</translation>
+        <translation type="unfinished">Färg</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation>Textfärg</translation>
+        <translation type="unfinished">Textfärg</translation>
     </message>
     <message>
-        <source>Font Size</source>
-        <translation>Teckenstorlek</translation>
-    </message>
-    <message>
-        <source>Obfuscation Factor</source>
-        <translation>Fördunklingsfaktor</translation>
+        <source>Width</source>
+        <translation type="unfinished">Bredd</translation>
     </message>
     <message>
         <source>Number Seed</source>
-        <translation>Räkneverk</translation>
+        <translation type="unfinished">Räkneverk</translation>
+    </message>
+    <message>
+        <source>Obfuscation Factor</source>
+        <translation type="unfinished">Fördunklingsfaktor</translation>
+    </message>
+    <message>
+        <source>Item Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -92,6 +110,24 @@
     <message>
         <source>Close All to the Right</source>
         <translation>Stäng alla till höger</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::AnnotationToolSelection</name>
+    <message>
+        <source>Tool Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::BoolPicker</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -141,6 +177,25 @@
     </message>
 </context>
 <context>
+    <name>kImageAnnotator::FontPicker</name>
+    <message>
+        <source>Font Size</source>
+        <translation type="unfinished">Teckenstorlek</translation>
+    </message>
+    <message>
+        <source>Bold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Italic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Underline</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
@@ -161,6 +216,10 @@
     <message>
         <source>Border</source>
         <translation>Kantlinje</translation>
+    </message>
+    <message>
+        <source>Invert Color</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -387,18 +446,18 @@ Rotation med annat än 90°-multiplikator kan leda till kvalitetsförlust.</tran
     </message>
 </context>
 <context>
-    <name>kImageAnnotator::ZoomIndicator</name>
+    <name>kImageAnnotator::ZoomPicker</name>
     <message>
         <source>Zoom In (%1)</source>
-        <translation>Zooma in (%1)</translation>
+        <translation type="unfinished">Zooma in (%1)</translation>
     </message>
     <message>
         <source>Zoom Out (%1)</source>
-        <translation>Zooma ut (%1)</translation>
+        <translation type="unfinished">Zooma ut (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom (%1)</source>
-        <translation>Återställ zoom (%1)</translation>
+        <translation type="unfinished">Återställ zoom (%1)</translation>
     </message>
 </context>
 </TS>

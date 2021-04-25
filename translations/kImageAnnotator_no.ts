@@ -45,30 +45,48 @@
     </message>
 </context>
 <context>
-    <name>kImageAnnotator::AnnotationSettings</name>
+    <name>kImageAnnotator::AnnotationGeneralSettings</name>
+    <message>
+        <source>General Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::AnnotationImageSettings</name>
+    <message>
+        <source>Image Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::AnnotationItemSettings</name>
     <message>
         <source>Color</source>
-        <translation>Farge</translation>
-    </message>
-    <message>
-        <source>Width</source>
-        <translation>Bredde</translation>
+        <translation type="unfinished">Farge</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation>Tekstfarge</translation>
+        <translation type="unfinished">Tekstfarge</translation>
     </message>
     <message>
-        <source>Font Size</source>
-        <translation>Skriftstørrelse</translation>
-    </message>
-    <message>
-        <source>Obfuscation Factor</source>
-        <translation>Dekkevnefaktor</translation>
+        <source>Width</source>
+        <translation type="unfinished">Bredde</translation>
     </message>
     <message>
         <source>Number Seed</source>
         <translation type="unfinished">Såtall</translation>
+    </message>
+    <message>
+        <source>Obfuscation Factor</source>
+        <translation type="unfinished">Dekkevnefaktor</translation>
+    </message>
+    <message>
+        <source>Item Shadow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item Settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -92,6 +110,24 @@
     <message>
         <source>Close All to the Right</source>
         <translation>Lukk alle til høyre</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::AnnotationToolSelection</name>
+    <message>
+        <source>Tool Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::BoolPicker</name>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -141,6 +177,25 @@
     </message>
 </context>
 <context>
+    <name>kImageAnnotator::FontPicker</name>
+    <message>
+        <source>Font Size</source>
+        <translation type="unfinished">Skriftstørrelse</translation>
+    </message>
+    <message>
+        <source>Bold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Italic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Underline</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
@@ -161,6 +216,10 @@
     <message>
         <source>Border</source>
         <translation>Kantlinje</translation>
+    </message>
+    <message>
+        <source>Invert Color</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -386,7 +445,7 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
 </context>
 <context>
-    <name>kImageAnnotator::ZoomIndicator</name>
+    <name>kImageAnnotator::ZoomPicker</name>
     <message>
         <source>Zoom In (%1)</source>
         <translation type="unfinished"></translation>
