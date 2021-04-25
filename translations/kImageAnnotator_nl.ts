@@ -48,45 +48,45 @@
     <name>kImageAnnotator::AnnotationGeneralSettings</name>
     <message>
         <source>General Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Algemene instellingen</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationImageSettings</name>
     <message>
         <source>Image Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Afbeeldingsinstellingen</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationItemSettings</name>
     <message>
         <source>Color</source>
-        <translation type="unfinished">Kleur</translation>
+        <translation>Kleur</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation type="unfinished">Tekstkleur</translation>
+        <translation>Tekstkleur</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished">Breedte</translation>
+        <translation>Breedte</translation>
     </message>
     <message>
         <source>Number Seed</source>
-        <translation type="unfinished">Aantal</translation>
+        <translation>Aantal</translation>
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished">Maskeerfactor</translation>
+        <translation>Maskeerfactor</translation>
     </message>
     <message>
         <source>Item Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Itemschaduw</translation>
     </message>
     <message>
         <source>Item Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Iteminstellingen</translation>
     </message>
 </context>
 <context>
@@ -116,18 +116,18 @@
     <name>kImageAnnotator::AnnotationToolSelection</name>
     <message>
         <source>Tool Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Gereedschapskeuze</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::BoolPicker</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingeschakeld</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Uitgeschakeld</translation>
     </message>
 </context>
 <context>
@@ -180,19 +180,19 @@
     <name>kImageAnnotator::FontPicker</name>
     <message>
         <source>Font Size</source>
-        <translation type="unfinished">Tekstgrootte</translation>
+        <translation>Tekstgrootte</translation>
     </message>
     <message>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Vetgedrukt</translation>
     </message>
     <message>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>Cursief</translation>
     </message>
     <message>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Onderstrepen</translation>
     </message>
 </context>
 <context>
@@ -219,7 +219,7 @@
     </message>
     <message>
         <source>Invert Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Kleuren omkeren</translation>
     </message>
 </context>
 <context>
@@ -449,15 +449,15 @@ Een waarde die afwijkt van 90° kan kwaliteitsverlies veroorzaken.</translation>
     <name>kImageAnnotator::ZoomPicker</name>
     <message>
         <source>Zoom In (%1)</source>
-        <translation type="unfinished">Inzoomen (%1)</translation>
+        <translation>Inzoomen (%1)</translation>
     </message>
     <message>
         <source>Zoom Out (%1)</source>
-        <translation type="unfinished">Uitzoomen (%1)</translation>
+        <translation>Uitzoomen (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom (%1)</source>
-        <translation type="unfinished">Standaard zoomniveau (%1)</translation>
+        <translation>Standaard zoomniveau (%1)</translation>
     </message>
 </context>
 </TS>
