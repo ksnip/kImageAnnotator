@@ -48,45 +48,45 @@
     <name>kImageAnnotator::AnnotationGeneralSettings</name>
     <message>
         <source>General Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Загальні параметри</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationImageSettings</name>
     <message>
         <source>Image Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Параметри зображень</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationItemSettings</name>
     <message>
         <source>Color</source>
-        <translation type="unfinished">Колір</translation>
+        <translation>Колір</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation type="unfinished">Колір тексту</translation>
+        <translation>Колір тексту</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished">Ширина</translation>
+        <translation>Ширина</translation>
     </message>
     <message>
         <source>Number Seed</source>
-        <translation type="unfinished">Перенумерування</translation>
+        <translation>Базове значення</translation>
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished">Коефіцієнт затемнення</translation>
+        <translation>Коефіцієнт заплутування</translation>
     </message>
     <message>
         <source>Item Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Тінь пункту</translation>
     </message>
     <message>
         <source>Item Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Параметри пункту</translation>
     </message>
 </context>
 <context>
@@ -116,18 +116,18 @@
     <name>kImageAnnotator::AnnotationToolSelection</name>
     <message>
         <source>Tool Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Вибір інструмента</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::BoolPicker</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнено</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Вимкнено</translation>
     </message>
 </context>
 <context>
@@ -180,19 +180,19 @@
     <name>kImageAnnotator::FontPicker</name>
     <message>
         <source>Font Size</source>
-        <translation type="unfinished">Розмір шрифту</translation>
+        <translation>Розмір шрифту</translation>
     </message>
     <message>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Жирний</translation>
     </message>
     <message>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>Курсив</translation>
     </message>
     <message>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Підкреслення</translation>
     </message>
 </context>
 <context>
@@ -219,7 +219,7 @@
     </message>
     <message>
         <source>Invert Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Інвертувати кольори</translation>
     </message>
 </context>
 <context>
@@ -449,15 +449,15 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     <name>kImageAnnotator::ZoomPicker</name>
     <message>
         <source>Zoom In (%1)</source>
-        <translation type="unfinished">Збільшити (%1)</translation>
+        <translation>Збільшити (%1)</translation>
     </message>
     <message>
         <source>Zoom Out (%1)</source>
-        <translation type="unfinished">Зменшити (%1)</translation>
+        <translation>Зменшити (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom (%1)</source>
-        <translation type="unfinished">Відновити масштаб (%1)</translation>
+        <translation>Відновити масштаб (%1)</translation>
     </message>
 </context>
 </TS>
