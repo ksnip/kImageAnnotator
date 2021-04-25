@@ -128,19 +128,20 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/common/filter/IgnoreShortcutsFilter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/filter/KeyEventListener.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ToolPicker.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ColorPicker.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/NumberPicker.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/widgets/BoolPicker.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/FillModePicker.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/FontPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomSpinBox.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButton.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButtonAction.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/StickerPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ToggleButton.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ImageEffectPicker.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ZoomIndicator.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ColorDialogButton.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/settingsPicker/ColorPicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/settingsPicker/NumberPicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/settingsPicker/BoolPicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/settingsPicker/FillModePicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/settingsPicker/FontPicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/settingsPicker/SettingsPickerWidget.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/settingsPicker/StickerPicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/settingsPicker/ImageEffectPicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/settingsPicker/ZoomPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/GridMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/GridMenuButton.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/GridMenuToolButton.cpp
@@ -150,6 +151,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/menuButtons/ListItemGroup.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/misc/AbstractExpandingWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/misc/FlowLayout.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/misc/AttachedSeparator.cpp
 	)
 
 set(KIMAGEANNOTATOR_SRCS ${KIMAGEANNOTATOR_SRCS} PARENT_SCOPE)

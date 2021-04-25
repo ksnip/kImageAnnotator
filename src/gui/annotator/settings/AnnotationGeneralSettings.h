@@ -21,7 +21,7 @@
 #define KIMAGEANNOTATOR_ANNOTATIONGENERALSETTINGS_H
 
 #include "src/gui/annotator/docks/AbstractAnnotationDockWidgetContent.h"
-#include "src/widgets/ZoomIndicator.h"
+#include "src/widgets/settingsPicker/ZoomPicker.h"
 
 namespace kImageAnnotator {
 
@@ -39,7 +39,7 @@ signals:
 
 private:
 	QBoxLayout *mMainLayout;
-	ZoomIndicator *mZoomIndicator;
+	ZoomPicker *mZoomPicker;
 
 	void initGui();
 };

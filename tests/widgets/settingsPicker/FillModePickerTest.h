@@ -1,8 +1,8 @@
 /*
- * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
@@ -11,28 +11,28 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_IMAGEEFFECTPICKERTEST_H
-#define KIMAGEANNOTATOR_IMAGEEFFECTPICKERTEST_H
+#ifndef KIMAGEANNOTATOR_FILLPICKERTEST_H
+#define KIMAGEANNOTATOR_FILLPICKERTEST_H
 
 #include <QtTest>
 
-#include "src/widgets/ImageEffectPicker.h"
+#include "src/widgets/settingsPicker/FillModePicker.h"
 
-using kImageAnnotator::ImageEffectPicker;
-using kImageAnnotator::ImageEffects;
+using kImageAnnotator::FillModePicker;
+using kImageAnnotator::FillModes;
 
-class ImageEffectPickerTest : public QObject
+class FillModePickerTest : public QObject
 {
 Q_OBJECT
+
 private slots:
-	void TestSelectEffect_Should_EmitSignal_When_EffectChanged();
+	void TestSelectFill_Should_EmitSignal_When_FillChanged();
 };
 
-
-#endif //KIMAGEANNOTATOR_IMAGEEFFECTPICKERTEST_H
+#endif // KIMAGEANNOTATOR_FILLPICKERTEST_H

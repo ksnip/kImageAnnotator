@@ -17,20 +17,21 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ZOOMINDICATORTEST_H
-#define KIMAGEANNOTATOR_ZOOMINDICATORTEST_H
+#ifndef KIMAGEANNOTATOR_STICKERPICKERTEST_H
+#define KIMAGEANNOTATOR_STICKERPICKERTEST_H
 
 #include <QtTest>
 
-#include "src/widgets/ZoomIndicator.h"
+#include "src/widgets/settingsPicker/StickerPicker.h"
 
-using kImageAnnotator::ZoomIndicator;
+using kImageAnnotator::StickerPicker;
 
-class ZoomIndicatorTest : public QObject
+class StickerPickerTest : public QObject
 {
 Q_OBJECT
+
 private slots:
-	void SetZoomValue_Should_NotEmitSignalForChangedZoomValue();
+	void TestSelectSticker_Should_EmitSignal_When_StickerChanged();
 };
 
-#endif //KIMAGEANNOTATOR_ZOOMINDICATORTEST_H
+#endif //KIMAGEANNOTATOR_STICKERPICKERTEST_H

@@ -17,35 +17,37 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_COLORPICKER_H
-#define KIMAGEANNOTATOR_COLORPICKER_H
+#ifndef KIMAGEANNOTATOR_FILLMODEPICKER_H
+#define KIMAGEANNOTATOR_FILLMODEPICKER_H
 
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QToolButton>
+#include <QMenu>
+#include <QAction>
 
-#include <kColorPicker/KColorPicker.h>
-
-#include "src/widgets/misc/AbstractExpandingWidget.h"
+#include "SettingsPickerWidget.h"
+#include "src/widgets/menuButtons/ListMenuToolButton.h"
+#include "src/common/enum/FillModes.h"
+#include "src/common/helper/IconLoader.h"
 #include "src/common/provider/ScaledSizeProvider.h"
-
-using kColorPicker::KColorPicker;
 
 namespace kImageAnnotator {
 
-class ColorPicker : public QWidget, public AbstractExpandingWidget
+class FillModePicker : public SettingsPickerWidget
 {
-Q_OBJECT
+	Q_OBJECT
 public:
-	explicit ColorPicker(QWidget *parent);
-	~ColorPicker() override;
-	void setColor(const QColor &color);
-	QColor color() const;
-	void setToolTip(const QString &toolTip);
-	void setIcon(const QIcon &icon);
+	explicit FillModePicker(QWidget *parent);
+	~FillModePicker() override;
+	void setFillType(FillModes fillType);
+	void addNoFillAndNoBorderToList();
+	void removeNoFillAndNoBorderToList();
+	FillModes fillType() const;
 
 signals:
-	void colorSelected(const QColor &color);
+	void fillSelected(FillModes fillType) const;
 
 protected:
 	QWidget* expandingWidget() override;
@@ -53,14 +55,15 @@ protected:
 private:
 	QHBoxLayout *mLayout;
 	QLabel *mLabel;
-	KColorPicker *mkColorPicker;
+	ListMenuToolButton *mToolButton;
 
 	void initGui();
+	void insertItem(FillModes fillType, const QString &iconName, const QString &text);
 
 private slots:
-	void colorChanged(const QColor &color);
+	void selectionChanged();
 };
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_COLORPICKER_H
+#endif // KIMAGEANNOTATOR_FILLMODEPICKER_H

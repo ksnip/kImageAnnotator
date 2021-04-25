@@ -22,10 +22,10 @@
 namespace kImageAnnotator {
 
 BoolPicker::BoolPicker(QWidget *parent) :
-	QWidget(parent),
-	mToolButton(new ListMenuToolButton(this)),
-	mLayout(new QHBoxLayout(this)),
-	mLabel(new QLabel(this))
+		SettingsPickerWidget(parent),
+		mToolButton(new ListMenuToolButton(this)),
+		mLayout(new QHBoxLayout(this)),
+		mLabel(new QLabel(this))
 {
 	initGui();
 }

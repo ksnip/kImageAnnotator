@@ -17,45 +17,42 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationGeneralSettings.h"
+#include "AttachedSeparator.h"
 
 namespace kImageAnnotator {
 
-AnnotationGeneralSettings::AnnotationGeneralSettings() :
-	mMainLayout(new QBoxLayout(QBoxLayout::LeftToRight)),
-	mZoomPicker(new ZoomPicker(this))
+AttachedSeparator::AttachedSeparator(SettingsPickerWidget *target) :
+	QFrame(target),
+	mTarget(target)
 {
-	initGui();
+	Q_ASSERT(mTarget != nullptr);
+
+	setContentsMargins(0, 3, 0, 3);
+
+	setFrameShape(QFrame::VLine);
+	setFrameShadow(QFrame::Sunken);
+
+	connect(mTarget, &SettingsPickerWidget::visibilityChanged, this, &AttachedSeparator::targetVisibilityChanged);
+
+	updateVisibility();
 }
 
-AnnotationGeneralSettings::~AnnotationGeneralSettings()
+void AttachedSeparator::targetVisibilityChanged(bool visible)
 {
-	delete mZoomPicker;
-	delete mMainLayout;
+	setVisible(visible && isEnabled());
 }
 
-void AnnotationGeneralSettings::initGui()
+void AttachedSeparator::changeEvent(QEvent *event)
 {
-	mMainLayout->addWidget(mZoomPicker);
-	mMainLayout->setContentsMargins(3, 0, 3, 0);
-
-	addExpandingWidget(mZoomPicker);
-
-	setLayout(mMainLayout);
-
-	setFocusPolicy(Qt::ClickFocus);
-
-	connect(mZoomPicker, &ZoomPicker::zoomValueChanged, this, &AnnotationGeneralSettings::zoomValueChanged);
+	if(event->type() == QEvent::EnabledChange) {
+		updateVisibility();
+	}
+	QFrame::changeEvent(event);
 }
 
-void AnnotationGeneralSettings::updateZoomLevel(double value)
+void AttachedSeparator::updateVisibility()
 {
-	mZoomPicker->setZoomValue(value);
-}
-
-QString AnnotationGeneralSettings::name() const
-{
-	return tr("General Settings");
+	targetVisibilityChanged(mTarget->isVisible());
 }
 
 } // namespace kImageAnnotator

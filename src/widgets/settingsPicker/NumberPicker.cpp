@@ -22,10 +22,10 @@
 namespace kImageAnnotator {
 
 NumberPicker::NumberPicker(QWidget *parent) :
-	QWidget(parent),
-	mLayout(new QHBoxLayout(this)),
-	mLabel(new QLabel()),
-	mSpinBox(new CustomSpinBox(this))
+		SettingsPickerWidget(parent),
+		mLayout(new QHBoxLayout(this)),
+		mLabel(new QLabel()),
+		mSpinBox(new CustomSpinBox(this))
 {
 	initGui();
 

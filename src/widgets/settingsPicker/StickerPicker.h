@@ -17,31 +17,32 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ZOOMINDICATOR_H
-#define KIMAGEANNOTATOR_ZOOMINDICATOR_H
+#ifndef KIMAGEANNOTATOR_STICKERPICKER_H
+#define KIMAGEANNOTATOR_STICKERPICKER_H
 
 #include <QWidget>
-#include <QLabel>
 #include <QHBoxLayout>
-#include <QAction>
+#include <QLabel>
 
-#include "CustomSpinBox.h"
-#include "src/widgets/misc/AbstractExpandingWidget.h"
+#include "SettingsPickerWidget.h"
+#include "src/widgets/menuButtons/GridMenuToolButton.h"
 #include "src/common/helper/IconLoader.h"
-#include "src/common/provider/ScaledSizeProvider.h"
+#include "src/common/helper/PathHelper.h"
 
 namespace kImageAnnotator {
 
-class ZoomIndicator : public QWidget, public AbstractExpandingWidget
+class StickerPicker : public SettingsPickerWidget
 {
 Q_OBJECT
 public:
-	explicit ZoomIndicator(QWidget *parent);
-	~ZoomIndicator() override;
-	void setZoomValue(double value);
+	explicit StickerPicker(QWidget *parent);
+	~StickerPicker() override;
+	void setSticker(const QString &name);
+	QString sticker() const;
+	void setStickers(const QStringList &stickerPaths, bool keepDefault);
 
 signals:
-	void zoomValueChanged(double zoomLevel);
+	void stickerSelected(const QString &sticker) const;
 
 protected:
 	QWidget* expandingWidget() override;
@@ -49,21 +50,17 @@ protected:
 private:
 	QHBoxLayout *mLayout;
 	QLabel *mLabel;
-	CustomSpinBox *mSpinBox;
-	QAction *mZoomInAction;
-	QAction *mZoomOutAction;
-	QAction *mResetZoomAction;
+	GridMenuToolButton *mToolButton;
 
-	void initGui();
+	void init();
+	void addItem(const QString &path);
 
 private slots:
-	void notifyZoomValueChanged(double value);
-	void zoomIn();
-	void zoomOut();
-	void resetZoomOut();
-	QString getToolTip() const;
+	void selectionChanged() const;
+	static QString getResourcePath(const QString &name);
+	void addDefaultStickers();
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ZOOMINDICATOR_H
+#endif //KIMAGEANNOTATOR_STICKERPICKER_H

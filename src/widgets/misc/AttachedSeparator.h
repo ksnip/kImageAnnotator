@@ -17,34 +17,35 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONIMAGESETTINGS_H
-#define KIMAGEANNOTATOR_ANNOTATIONIMAGESETTINGS_H
+#ifndef KIMAGEANNOTATOR_ATTACHEDSEPARATOR_H
+#define KIMAGEANNOTATOR_ATTACHEDSEPARATOR_H
 
-#include "src/gui/annotator/docks/AbstractAnnotationDockWidgetContent.h"
-#include "src/widgets/settingsPicker/ImageEffectPicker.h"
+#include <QFrame>
+#include <QEvent>
+
+#include "src/widgets/settingsPicker/SettingsPickerWidget.h"
 
 namespace kImageAnnotator {
 
-class AnnotationImageSettings : public AbstractAnnotationDockWidgetContent
+class AttachedSeparator : public QFrame
 {
 Q_OBJECT
 public:
-	explicit AnnotationImageSettings();
-	~AnnotationImageSettings() override;
-	ImageEffects effect() const;
-	void setEffect(ImageEffects effect);
-	QString name() const override;
+	explicit AttachedSeparator(SettingsPickerWidget *target);
+	~AttachedSeparator() override = default;
 
-signals:
-	void effectChanged(ImageEffects effect);
+protected:
+	void changeEvent(QEvent *event) override;
 
 private:
-	QBoxLayout *mMainLayout;
-	ImageEffectPicker *mEffectPicker;
+	SettingsPickerWidget *mTarget;
 
-	void initGui();
+	void updateVisibility();
+
+private slots:
+	void targetVisibilityChanged(bool visible);
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONIMAGESETTINGS_H
+#endif //KIMAGEANNOTATOR_ATTACHEDSEPARATOR_H

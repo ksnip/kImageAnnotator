@@ -22,13 +22,13 @@
 namespace kImageAnnotator {
 
 FontPicker::FontPicker(QWidget *parent) :
-	QWidget(parent),
-	mLayout(new QHBoxLayout(this)),
-	mFontComboBox(new QFontComboBox(this)),
-	mSizeSpinBox(new CustomSpinBox(this)),
-	mBoldToggle(new ToggleButton(this)),
-	mItalicToggle(new ToggleButton(this)),
-	mUnderlineToggle(new ToggleButton(this))
+		SettingsPickerWidget(parent),
+		mLayout(new QHBoxLayout(this)),
+		mFontComboBox(new QFontComboBox(this)),
+		mSizeSpinBox(new CustomSpinBox(this)),
+		mBoldToggle(new ToggleButton(this)),
+		mItalicToggle(new ToggleButton(this)),
+		mUnderlineToggle(new ToggleButton(this))
 {
 	initGui();
 }

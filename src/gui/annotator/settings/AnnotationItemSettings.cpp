@@ -48,6 +48,7 @@ AnnotationItemSettings::~AnnotationItemSettings()
 	delete mShadowPicker;
 	delete mFontPicker;
 	delete mMainLayout;
+	qDeleteAll(mSeparators);
 }
 
 void AnnotationItemSettings::initGui()
@@ -71,25 +72,15 @@ void AnnotationItemSettings::initGui()
 	mShadowPicker->setIcon(IconLoader::load(QLatin1String("dropShadow.svg")));
 	mShadowPicker->setToolTip(tr("Item Shadow"));
 
-	mMainLayout->addWidget(mColorPicker);
-	mMainLayout->addWidget(mWidthPicker);
-	mMainLayout->addWidget(mFillModePicker);
-	mMainLayout->addWidget(mTextColorPicker);
-	mMainLayout->addWidget(mFontPicker);
-	mMainLayout->addWidget(mNumberToolSeedPicker);
-	mMainLayout->addWidget(mObfuscateFactorPicker);
-	mMainLayout->addWidget(mStickerPicker);
-	mMainLayout->addWidget(mShadowPicker);
-
-	addExpandingWidget(mShadowPicker);
-	addExpandingWidget(mFillModePicker);
-	addExpandingWidget(mColorPicker);
-	addExpandingWidget(mTextColorPicker);
-	addExpandingWidget(mStickerPicker);
-	addExpandingWidget(mNumberToolSeedPicker);
-	addExpandingWidget(mObfuscateFactorPicker);
-	addExpandingWidget(mWidthPicker);
-	addExpandingWidget(mFontPicker);
+	insertPickerWidget(mColorPicker);
+	insertPickerWidget(mWidthPicker);
+	insertPickerWidget(mFillModePicker);
+	insertPickerWidget(mTextColorPicker);
+	insertPickerWidget(mFontPicker);
+	insertPickerWidget(mNumberToolSeedPicker);
+	insertPickerWidget(mObfuscateFactorPicker);
+	insertPickerWidget(mStickerPicker);
+	insertPickerWidget(mShadowPicker);
 
 	mWidgetConfigurator.setColorWidget(mColorPicker);
 	mWidgetConfigurator.setTextColorWidget(mTextColorPicker);
@@ -116,6 +107,16 @@ void AnnotationItemSettings::initGui()
 	connect(mStickerPicker, &StickerPicker::stickerSelected, this, &AnnotationItemSettings::stickerChanged);
 	connect(mShadowPicker, &BoolPicker::enabledStateChanged, this, &AnnotationItemSettings::shadowEnabledChanged);
 	connect(mFontPicker, &FontPicker::fontChanged, this, &AnnotationItemSettings::fontChanged);
+}
+
+void AnnotationItemSettings::insertPickerWidget(SettingsPickerWidget *pickerWidget)
+{
+	auto separator = new AttachedSeparator(pickerWidget);
+	mMainLayout->addWidget(pickerWidget);
+	mMainLayout->addWidget(separator);
+
+	addExpandingWidget(pickerWidget);
+	mSeparators.append(separator);
 }
 
 void AnnotationItemSettings::setUpForTool(Tools tool)
@@ -211,6 +212,15 @@ void AnnotationItemSettings::setFont(const QFont &font)
 QString AnnotationItemSettings::name() const
 {
 	return tr("Item Settings");
+}
+
+void AnnotationItemSettings::setOrientation(Qt::Orientation orientation)
+{
+	for(auto separator : mSeparators) {
+		separator->setEnabled(orientation == Qt::Horizontal);
+	}
+
+	AbstractAnnotationDockWidgetContent::setOrientation(orientation);
 }
 
 } // namespace kImageAnnotator

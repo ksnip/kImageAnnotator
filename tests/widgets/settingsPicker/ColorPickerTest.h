@@ -17,21 +17,21 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_NUMBERPICKERTEST_H
-#define KIMAGEANNOTATOR_NUMBERPICKERTEST_H
+#ifndef KIMAGEANNOTATOR_COLORPICKERTEST_H
+#define KIMAGEANNOTATOR_COLORPICKERTEST_H
 
 #include <QtTest>
 
-#include "src/widgets/NumberPicker.h"
+#include "src/widgets/settingsPicker/ColorPicker.h"
 
-using kImageAnnotator::NumberPicker;
+using kImageAnnotator::ColorPicker;
 
-class NumberPickerTest : public QObject
+class ColorPickerTest : public QObject
 {
 Q_OBJECT
 
 private slots:
-	void TestSelectNumber_Should_EmitSignal_When_NumberChanged();
+    void TestSelectColor_Should_EmitSignal_When_ColorChanged();
 };
 
-#endif // KIMAGEANNOTATOR_NUMBERPICKERTEST_H
+#endif // KIMAGEANNOTATOR_COLORPICKERTEST_H

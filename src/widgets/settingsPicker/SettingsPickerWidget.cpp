@@ -1,9 +1,9 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,22 +17,26 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_FILLPICKERTEST_H
-#define KIMAGEANNOTATOR_FILLPICKERTEST_H
+#include "SettingsPickerWidget.h"
 
-#include <QtTest>
+namespace kImageAnnotator {
 
-#include "src/widgets/FillModePicker.h"
-
-using kImageAnnotator::FillModePicker;
-using kImageAnnotator::FillModes;
-
-class FillModePickerTest : public QObject
+SettingsPickerWidget::SettingsPickerWidget(QWidget *parent) :
+	QWidget(parent)
 {
-Q_OBJECT
 
-private slots:
-	void TestSelectFill_Should_EmitSignal_When_FillChanged();
-};
+}
 
-#endif // KIMAGEANNOTATOR_FILLPICKERTEST_H
+void SettingsPickerWidget::showEvent(QShowEvent *event)
+{
+	emit visibilityChanged(true);
+	QWidget::showEvent(event);
+}
+
+void SettingsPickerWidget::hideEvent(QHideEvent *event)
+{
+	emit visibilityChanged(false);
+	QWidget::hideEvent(event);
+}
+
+} // namespace kImageAnnotator

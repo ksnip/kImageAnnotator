@@ -17,12 +17,12 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "ZoomIndicator.h"
+#include "ZoomPicker.h"
 
 namespace kImageAnnotator {
 
-ZoomIndicator::ZoomIndicator(QWidget *parent) :
-	QWidget(parent),
+ZoomPicker::ZoomPicker(QWidget *parent) :
+	SettingsPickerWidget(parent),
 	mLayout(new QHBoxLayout),
 	mLabel(new QLabel(this)),
 	mSpinBox(new CustomSpinBox(this)),
@@ -33,7 +33,7 @@ ZoomIndicator::ZoomIndicator(QWidget *parent) :
 	initGui();
 }
 
-ZoomIndicator::~ZoomIndicator()
+ZoomPicker::~ZoomPicker()
 {
 	delete mLabel;
 	delete mSpinBox;
@@ -43,12 +43,12 @@ ZoomIndicator::~ZoomIndicator()
 	delete mResetZoomAction;
 }
 
-QWidget *ZoomIndicator::expandingWidget()
+QWidget *ZoomPicker::expandingWidget()
 {
 	return mSpinBox;
 }
 
-void ZoomIndicator::initGui()
+void ZoomPicker::initGui()
 {
 	mLayout->setContentsMargins(1, 0, 0, 0);
 
@@ -67,15 +67,15 @@ void ZoomIndicator::initGui()
 
 	setToolTip(getToolTip());
 
-	connect(mZoomInAction, &QAction::triggered, this, &ZoomIndicator::zoomIn);
-	connect(mZoomOutAction, &QAction::triggered, this, &ZoomIndicator::zoomOut);
-	connect(mResetZoomAction, &QAction::triggered, this, &ZoomIndicator::resetZoomOut);
+	connect(mZoomInAction, &QAction::triggered, this, &ZoomPicker::zoomIn);
+	connect(mZoomOutAction, &QAction::triggered, this, &ZoomPicker::zoomOut);
+	connect(mResetZoomAction, &QAction::triggered, this, &ZoomPicker::resetZoomOut);
 
 	addAction(mZoomInAction);
 	addAction(mZoomOutAction);
 	addAction(mResetZoomAction);
 
-	connect(mSpinBox, &CustomSpinBox::valueChanged, this, &ZoomIndicator::notifyZoomValueChanged);
+	connect(mSpinBox, &CustomSpinBox::valueChanged, this, &ZoomPicker::notifyZoomValueChanged);
 
 	mLayout->addWidget(mLabel);
 	mLayout->addWidget(mSpinBox);
@@ -84,7 +84,7 @@ void ZoomIndicator::initGui()
 	setLayout(mLayout);
 }
 
-QString ZoomIndicator::getToolTip() const
+QString ZoomPicker::getToolTip() const
 {
 	auto newLine = QLatin1String("\n");
 	auto zoomIn = tr("Zoom In (%1)").arg(mZoomInAction->shortcut().toString());
@@ -93,30 +93,30 @@ QString ZoomIndicator::getToolTip() const
 	return zoomIn + newLine + zoomOut + newLine + resetZoom;
 }
 
-void ZoomIndicator::setZoomValue(double value)
+void ZoomPicker::setZoomValue(double value)
 {
 	auto zoomValue = qRound(value * 100);
 	mSpinBox->setValueSilent(zoomValue);
 }
 
-void ZoomIndicator::notifyZoomValueChanged(double value)
+void ZoomPicker::notifyZoomValueChanged(double value)
 {
 	emit zoomValueChanged(value / 100.0);
 }
 
-void ZoomIndicator::zoomIn()
+void ZoomPicker::zoomIn()
 {
 	int currentZoom = mSpinBox->value();
 	notifyZoomValueChanged(currentZoom + 10);
 }
 
-void ZoomIndicator::zoomOut()
+void ZoomPicker::zoomOut()
 {
 	auto currentZoom = mSpinBox->value();
 	notifyZoomValueChanged(currentZoom - 10);
 }
 
-void ZoomIndicator::resetZoomOut()
+void ZoomPicker::resetZoomOut()
 {
 	notifyZoomValueChanged(100);
 }

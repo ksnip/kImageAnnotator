@@ -20,15 +20,16 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONITEMSETTINGS_H
 #define KIMAGEANNOTATOR_ANNOTATIONITEMSETTINGS_H
 
-#include "src/gui/annotator/docks/AbstractAnnotationDockWidgetContent.h"
 #include "ItemSettingsWidgetConfigurator.h"
-#include "src/widgets/ColorPicker.h"
-#include "src/widgets/NumberPicker.h"
-#include "src/widgets/FillModePicker.h"
-#include "src/widgets/StickerPicker.h"
-#include "src/widgets/BoolPicker.h"
-#include "src/widgets/FontPicker.h"
 #include "src/backend/Config.h"
+#include "src/widgets/settingsPicker/ColorPicker.h"
+#include "src/widgets/settingsPicker/NumberPicker.h"
+#include "src/widgets/settingsPicker/FillModePicker.h"
+#include "src/widgets/settingsPicker/StickerPicker.h"
+#include "src/widgets/settingsPicker/BoolPicker.h"
+#include "src/widgets/settingsPicker/FontPicker.h"
+#include "src/widgets/misc/AttachedSeparator.h"
+#include "src/gui/annotator/docks/AbstractAnnotationDockWidgetContent.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
 #include "src/annotations/properties/AnnotationObfuscateProperties.h"
 #include "src/annotations/items/AbstractAnnotationItem.h"
@@ -60,12 +61,12 @@ public:
 	QFont font() const;
 	void setFont(const QFont &font);
 	QString name() const override;
+	void setOrientation(Qt::Orientation orientation) override;
 
 signals:
 	void toolColorChanged(const QColor &color);
 	void toolTextColorChanged(const QColor &color);
 	void toolWidthChanged(int width);
-	void toolFontSizeChanged(int size);
 	void toolFillTypeChanged(FillModes fill);
 	void notifyNumberToolSeedChanged(int newNumberToolSeed);
 	void obfuscateFactorChanged(int factor);
@@ -85,8 +86,10 @@ private:
 	BoolPicker *mShadowPicker;
 	FontPicker *mFontPicker;
 	ItemSettingsWidgetConfigurator mWidgetConfigurator;
+	QList<AttachedSeparator*> mSeparators;
 
 	void initGui();
+	void insertPickerWidget(SettingsPickerWidget *pickerWidget);
 };
 
 } // namespace kImageAnnotator

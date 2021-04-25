@@ -17,45 +17,44 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_FONTPICKER_H
-#define KIMAGEANNOTATOR_FONTPICKER_H
+#ifndef KIMAGEANNOTATOR_BOOLPICKER_H
+#define KIMAGEANNOTATOR_BOOLPICKER_H
 
 #include <QWidget>
 #include <QHBoxLayout>
-#include <QFontComboBox>
+#include <QLabel>
 
-#include "src/widgets/misc/AbstractExpandingWidget.h"
-#include "src/widgets/ToggleButton.h"
-#include "src/widgets/CustomSpinBox.h"
+#include "SettingsPickerWidget.h"
+#include "src/widgets/menuButtons/ListMenuToolButton.h"
 #include "src/common/helper/IconLoader.h"
 #include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 
-class FontPicker : public QWidget, public AbstractExpandingWidget
+class BoolPicker : public SettingsPickerWidget
 {
 Q_OBJECT
 public:
-	explicit FontPicker(QWidget *parent);
-	~FontPicker() override;
-	void setCurrentFont(const QFont &font);
-	QFont currentFont() const;
+	explicit BoolPicker(QWidget *parent);
+	~BoolPicker() override;
+	void setEnabledState(bool enabled);
+	bool enabledState() const;
+	void setToolTip(const QString &toolTip);
+	void setIcon(const QIcon &icon);
 
 signals:
-	void fontChanged(const QFont &font) const;
+	void enabledStateChanged(bool enabled) const;
 
 protected:
 	QWidget* expandingWidget() override;
 
 private:
 	QHBoxLayout *mLayout;
-	QFontComboBox *mFontComboBox;
-	CustomSpinBox *mSizeSpinBox;
-	ToggleButton *mBoldToggle;
-	ToggleButton *mItalicToggle;
-	ToggleButton *mUnderlineToggle;
+	QLabel *mLabel;
+	ListMenuToolButton *mToolButton;
 
 	void initGui();
+	void insertItem(bool enabled, const QString &iconName, const QString &text);
 
 private slots:
 	void selectionChanged();
@@ -63,4 +62,4 @@ private slots:
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_FONTPICKER_H
+#endif //KIMAGEANNOTATOR_BOOLPICKER_H

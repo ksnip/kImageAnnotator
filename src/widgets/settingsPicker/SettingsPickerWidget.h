@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,51 +17,30 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_NUMBERPICKER_H
-#define KIMAGEANNOTATOR_NUMBERPICKER_H
+#ifndef KIMAGEANNOTATOR_SETTINGSPICKERWIDGET_H
+#define KIMAGEANNOTATOR_SETTINGSPICKERWIDGET_H
 
 #include <QWidget>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QIcon>
 
-#include "CustomSpinBox.h"
 #include "src/widgets/misc/AbstractExpandingWidget.h"
-#include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 
-class NumberPicker : public QWidget, public AbstractExpandingWidget
+class SettingsPickerWidget : public QWidget, public AbstractExpandingWidget
 {
 Q_OBJECT
-
 public:
-	explicit NumberPicker(QWidget *parent);
-	~NumberPicker() override;
-	void setNumber(int number);
-	void setRange(int min, int max);
-	int number() const;
-	void setToolTip(const QString &toolTip);
-	void setIcon(const QIcon &icon);
+	explicit SettingsPickerWidget(QWidget *parent);
+	~SettingsPickerWidget() override = default;
 
 signals:
-	void numberSelected(int number) const;
+	void visibilityChanged(bool visible);
 
 protected:
-	QWidget* expandingWidget() override;
-
-private:
-	QHBoxLayout *mLayout;
-	CustomSpinBox *mSpinBox;
-	QLabel *mLabel;
-
-	void initGui();
-	void setNumberAndNotify(int number) const;
-
-private slots:
-	void selectionChanged();
+	void showEvent(QShowEvent *event) override;
+	void hideEvent(QHideEvent *event) override;
 };
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_NUMBERPICKER_H
+#endif //KIMAGEANNOTATOR_SETTINGSPICKERWIDGET_H

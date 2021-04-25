@@ -39,14 +39,15 @@ set(UNITTEST_SRC
 	gui/scaler/ScaleSizeHandlerTest.cpp
 	gui/annotator/tabs/AnnotationTabCloserTest.cpp
 	gui/annotator/tabs/AnnotationTabContextMenuTest.cpp
-	widgets/ToolPickerTest.cpp
-	widgets/ColorPickerTest.cpp
-	widgets/NumberPickerTest.cpp
-	widgets/FillModePickerTest.cpp
-	widgets/ImageEffectPickerTest.cpp
 	widgets/CustomSpinBoxTest.cpp
-	widgets/StickerPickerTest.cpp
-	widgets/ZoomIndicatorTest.cpp
+		widgets/misc/AttachedSeparatorTest.cpp
+	widgets/settingsPicker/ToolPickerTest.cpp
+	widgets/settingsPicker/ColorPickerTest.cpp
+	widgets/settingsPicker/NumberPickerTest.cpp
+	widgets/settingsPicker/FillModePickerTest.cpp
+	widgets/settingsPicker/ImageEffectPickerTest.cpp
+	widgets/settingsPicker/StickerPickerTest.cpp
+	widgets/settingsPicker/ZoomPickerTest.cpp
 	)
 
 set(TESTUTILS_SRC

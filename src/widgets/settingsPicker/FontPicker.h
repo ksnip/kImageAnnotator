@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,48 +17,44 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_FILLMODEPICKER_H
-#define KIMAGEANNOTATOR_FILLMODEPICKER_H
+#ifndef KIMAGEANNOTATOR_FONTPICKER_H
+#define KIMAGEANNOTATOR_FONTPICKER_H
 
-#include <QWidget>
 #include <QHBoxLayout>
-#include <QLabel>
-#include <QToolButton>
-#include <QMenu>
-#include <QAction>
+#include <QFontComboBox>
 
-#include "src/widgets/misc/AbstractExpandingWidget.h"
-#include "src/widgets/menuButtons/ListMenuToolButton.h"
-#include "src/common/enum/FillModes.h"
+#include "SettingsPickerWidget.h"
+#include "src/widgets/ToggleButton.h"
+#include "src/widgets/CustomSpinBox.h"
 #include "src/common/helper/IconLoader.h"
 #include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 
-class FillModePicker : public QWidget, public AbstractExpandingWidget
+class FontPicker : public SettingsPickerWidget
 {
-	Q_OBJECT
+Q_OBJECT
 public:
-	explicit FillModePicker(QWidget *parent);
-	~FillModePicker() override;
-	void setFillType(FillModes fillType);
-	void addNoFillAndNoBorderToList();
-	void removeNoFillAndNoBorderToList();
-	FillModes fillType() const;
+	explicit FontPicker(QWidget *parent);
+	~FontPicker() override;
+	void setCurrentFont(const QFont &font);
+	QFont currentFont() const;
 
 signals:
-	void fillSelected(FillModes fillType) const;
+	void fontChanged(const QFont &font) const;
 
 protected:
 	QWidget* expandingWidget() override;
 
 private:
 	QHBoxLayout *mLayout;
-	QLabel *mLabel;
-	ListMenuToolButton *mToolButton;
+	QFontComboBox *mFontComboBox;
+	CustomSpinBox *mSizeSpinBox;
+	ToggleButton *mBoldToggle;
+	ToggleButton *mItalicToggle;
+	ToggleButton *mUnderlineToggle;
 
 	void initGui();
-	void insertItem(FillModes fillType, const QString &iconName, const QString &text);
 
 private slots:
 	void selectionChanged();
@@ -66,4 +62,4 @@ private slots:
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_FILLMODEPICKER_H
+#endif //KIMAGEANNOTATOR_FONTPICKER_H

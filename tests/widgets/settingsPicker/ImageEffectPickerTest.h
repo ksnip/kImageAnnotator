@@ -17,16 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "ZoomIndicatorTest.h"
+#ifndef KIMAGEANNOTATOR_IMAGEEFFECTPICKERTEST_H
+#define KIMAGEANNOTATOR_IMAGEEFFECTPICKERTEST_H
 
-void ZoomIndicatorTest::SetZoomValue_Should_NotEmitSignalForChangedZoomValue()
+#include <QtTest>
+
+#include "src/widgets/settingsPicker/ImageEffectPicker.h"
+
+using kImageAnnotator::ImageEffectPicker;
+using kImageAnnotator::ImageEffects;
+
+class ImageEffectPickerTest : public QObject
 {
-	ZoomIndicator zoomIndicator(nullptr);
-	QSignalSpy spy(&zoomIndicator, &ZoomIndicator::zoomValueChanged);
+Q_OBJECT
+private slots:
+	void TestSelectEffect_Should_EmitSignal_When_EffectChanged();
+};
 
-	zoomIndicator.setZoomValue(7.77);
 
-	QCOMPARE(spy.count(), 0);
-}
-
-QTEST_MAIN(ZoomIndicatorTest);
+#endif //KIMAGEANNOTATOR_IMAGEEFFECTPICKERTEST_H

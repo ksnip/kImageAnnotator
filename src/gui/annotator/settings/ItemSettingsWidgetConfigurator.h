@@ -23,13 +23,13 @@
 #include <QWidget>
 
 #include "src/common/enum/Tools.h"
-#include "src/widgets/ColorPicker.h"
-#include "src/widgets/FillModePicker.h"
+#include "src/widgets/settingsPicker/ColorPicker.h"
+#include "src/widgets/settingsPicker/FillModePicker.h"
 #include "src/widgets/ToolPicker.h"
-#include "src/widgets/NumberPicker.h"
-#include "src/widgets/StickerPicker.h"
-#include "src/widgets/BoolPicker.h"
-#include "src/widgets/FontPicker.h"
+#include "src/widgets/settingsPicker/NumberPicker.h"
+#include "src/widgets/settingsPicker/StickerPicker.h"
+#include "src/widgets/settingsPicker/BoolPicker.h"
+#include "src/widgets/settingsPicker/FontPicker.h"
 
 namespace kImageAnnotator {
 

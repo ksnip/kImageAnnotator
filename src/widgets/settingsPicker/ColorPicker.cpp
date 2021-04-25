@@ -22,10 +22,10 @@
 namespace kImageAnnotator {
 
 ColorPicker::ColorPicker(QWidget *parent) :
-	QWidget(parent),
-	mLayout(new QHBoxLayout(this)),
-	mLabel(new QLabel(this)),
-	mkColorPicker(new KColorPicker)
+		SettingsPickerWidget(parent),
+		mLayout(new QHBoxLayout(this)),
+		mLabel(new QLabel(this)),
+		mkColorPicker(new KColorPicker)
 {
 	initGui();
 

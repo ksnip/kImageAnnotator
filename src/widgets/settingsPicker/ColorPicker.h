@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,34 +17,50 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONIMAGESETTINGS_H
-#define KIMAGEANNOTATOR_ANNOTATIONIMAGESETTINGS_H
+#ifndef KIMAGEANNOTATOR_COLORPICKER_H
+#define KIMAGEANNOTATOR_COLORPICKER_H
 
-#include "src/gui/annotator/docks/AbstractAnnotationDockWidgetContent.h"
-#include "src/widgets/settingsPicker/ImageEffectPicker.h"
+#include <QWidget>
+#include <QHBoxLayout>
+#include <QLabel>
+
+#include <kColorPicker/KColorPicker.h>
+
+#include "SettingsPickerWidget.h"
+#include "src/common/provider/ScaledSizeProvider.h"
+
+using kColorPicker::KColorPicker;
 
 namespace kImageAnnotator {
 
-class AnnotationImageSettings : public AbstractAnnotationDockWidgetContent
+class ColorPicker : public SettingsPickerWidget
 {
 Q_OBJECT
 public:
-	explicit AnnotationImageSettings();
-	~AnnotationImageSettings() override;
-	ImageEffects effect() const;
-	void setEffect(ImageEffects effect);
-	QString name() const override;
+	explicit ColorPicker(QWidget *parent);
+	~ColorPicker() override;
+	void setColor(const QColor &color);
+	QColor color() const;
+	void setToolTip(const QString &toolTip);
+	void setIcon(const QIcon &icon);
 
 signals:
-	void effectChanged(ImageEffects effect);
+	void colorSelected(const QColor &color);
+
+protected:
+	QWidget* expandingWidget() override;
 
 private:
-	QBoxLayout *mMainLayout;
-	ImageEffectPicker *mEffectPicker;
+	QHBoxLayout *mLayout;
+	QLabel *mLabel;
+	KColorPicker *mkColorPicker;
 
 	void initGui();
+
+private slots:
+	void colorChanged(const QColor &color);
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_ANNOTATIONIMAGESETTINGS_H
+#endif // KIMAGEANNOTATOR_COLORPICKER_H
