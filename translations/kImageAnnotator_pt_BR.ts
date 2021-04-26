@@ -48,45 +48,45 @@
     <name>kImageAnnotator::AnnotationGeneralSettings</name>
     <message>
         <source>General Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações Gerais</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationImageSettings</name>
     <message>
         <source>Image Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações de imagem</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationItemSettings</name>
     <message>
         <source>Color</source>
-        <translation type="unfinished">Cor</translation>
+        <translation>Cor</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation type="unfinished">Cor do texto</translation>
+        <translation>Cor do texto</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished">Tamanho / Espessura da Ferramenta atual</translation>
+        <translation>Tamanho / Espessura da Ferramenta atual</translation>
     </message>
     <message>
         <source>Number Seed</source>
-        <translation type="unfinished">Número</translation>
+        <translation>Número</translation>
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished">Fator de Obfuscação</translation>
+        <translation>Fator de Obfuscação</translation>
     </message>
     <message>
         <source>Item Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Sombra do Item</translation>
     </message>
     <message>
         <source>Item Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações do item</translation>
     </message>
 </context>
 <context>
@@ -116,18 +116,18 @@
     <name>kImageAnnotator::AnnotationToolSelection</name>
     <message>
         <source>Tool Selection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ferramenta Seleção</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::BoolPicker</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitado</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Desabilitado</translation>
     </message>
 </context>
 <context>
@@ -180,19 +180,19 @@
     <name>kImageAnnotator::FontPicker</name>
     <message>
         <source>Font Size</source>
-        <translation type="unfinished">Tamanho da fonte</translation>
+        <translation>Tamanho da fonte</translation>
     </message>
     <message>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Negrito</translation>
     </message>
     <message>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>Itálico</translation>
     </message>
     <message>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Sublinhado</translation>
     </message>
 </context>
 <context>
@@ -219,7 +219,7 @@
     </message>
     <message>
         <source>Invert Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverter cor</translation>
     </message>
 </context>
 <context>
@@ -449,15 +449,15 @@ Rotacionar por multiplicadores diferentes de 90° pode causar perda de qualidade
     <name>kImageAnnotator::ZoomPicker</name>
     <message>
         <source>Zoom In (%1)</source>
-        <translation type="unfinished">Zoom + (%1)</translation>
+        <translation>Zoom + (%1)</translation>
     </message>
     <message>
         <source>Zoom Out (%1)</source>
-        <translation type="unfinished">Zoom - (%1)</translation>
+        <translation>Zoom - (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom (%1)</source>
-        <translation type="unfinished">Redefinir Zoom (%1)</translation>
+        <translation>Redefinir Zoom (%1)</translation>
     </message>
 </context>
 </TS>
