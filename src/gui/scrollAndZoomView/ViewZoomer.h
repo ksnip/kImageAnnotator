@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_ANNOTATIONVIEWZOOMER_H
-#define KIMAGEANNOTATOR_ANNOTATIONVIEWZOOMER_H
+#ifndef KIMAGEANNOTATOR_VIEWZOOMER_H
+#define KIMAGEANNOTATOR_VIEWZOOMER_H
 
 #include "src/annotations/core/ZoomValueProvider.h"
 
@@ -29,13 +29,13 @@ class QPoint;
 
 namespace kImageAnnotator {
 
-class AnnotationViewZoomer : public ZoomValueProvider
+class ViewZoomer : public ZoomValueProvider
 {
 	Q_OBJECT
 
 public:
-	explicit AnnotationViewZoomer(QGraphicsView *view);
-	~AnnotationViewZoomer() override = default;
+	explicit ViewZoomer(QGraphicsView *view);
+	~ViewZoomer() override = default;
 	double zoomValue() const override;
 	void setZoomValue(double value) override;
 
@@ -51,4 +51,4 @@ private:
 
 } // namespace kImageAnnotator
 
-#endif // KIMAGEANNOTATOR_ANNOTATIONVIEWZOOMER_H
+#endif // KIMAGEANNOTATOR_VIEWZOOMER_H

@@ -17,11 +17,11 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "AnnotationViewZoomer.h"
+#include "ViewZoomer.h"
 
 namespace kImageAnnotator {
 
-AnnotationViewZoomer::AnnotationViewZoomer(QGraphicsView *view) :
+ViewZoomer::ViewZoomer(QGraphicsView *view) :
 	ZoomValueProvider(view),
 	mView(view),
 	mMinScale(0.1),
@@ -30,12 +30,12 @@ AnnotationViewZoomer::AnnotationViewZoomer(QGraphicsView *view) :
 
 }
 
-double AnnotationViewZoomer::zoomValue() const
+double ViewZoomer::zoomValue() const
 {
 	return mView->transform().m11();
 }
 
-void AnnotationViewZoomer::zoom(double factor)
+void ViewZoomer::zoom(double factor)
 {
 	auto currentZoomValue = zoomValue();
 	auto newZoomValue = currentZoomValue + factor;
@@ -47,7 +47,7 @@ void AnnotationViewZoomer::zoom(double factor)
 	}
 }
 
-void AnnotationViewZoomer::zoomToPoint(double factor, const QPoint &viewPoint)
+void ViewZoomer::zoomToPoint(double factor, const QPoint &viewPoint)
 {
 	const auto scenePoint = mView->mapToScene(viewPoint);
 	zoom(factor);
@@ -55,7 +55,7 @@ void AnnotationViewZoomer::zoomToPoint(double factor, const QPoint &viewPoint)
 	mView->translate(delta.x(), delta.y());
 }
 
-void AnnotationViewZoomer::wheelZoom(QWheelEvent *event)
+void ViewZoomer::wheelZoom(QWheelEvent *event)
 {
 	auto zoomInFactor = 0.1;
 
@@ -64,7 +64,7 @@ void AnnotationViewZoomer::wheelZoom(QWheelEvent *event)
 	event->accept(); // supress scrolling
 }
 
-void AnnotationViewZoomer::setZoomValue(double value)
+void ViewZoomer::setZoomValue(double value)
 {
 	zoom(value - zoomValue());
 }

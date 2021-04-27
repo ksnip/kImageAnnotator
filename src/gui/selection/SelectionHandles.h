@@ -40,11 +40,13 @@ public:
 	void updateHandles(const QRectF &selection);
 	bool isHandleGrabbed() const;
 	QPointF grabOffset() const;
+	void applyZoomValue(double value);
 
 private:
 	QVector<QRectF> mHandles;
 	int mGrabbedIndex;
 	QPointF mGrabOffset;
+	double mHandleSize;
 };
 
 } // namespace kImageAnnotator

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,22 +17,26 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_BASESELECTIONVIEW_H
-#define KIMAGEANNOTATOR_BASESELECTIONVIEW_H
+#ifndef KIMAGEANNOTATOR_SCROLLANDZOOMVIEW_H
+#define KIMAGEANNOTATOR_SCROLLANDZOOMVIEW_H
 
-#include "src/gui/scrollAndZoomView/ScrollAndZoomView.h"
-#include "src/gui/selection/SelectionHandler.h"
-#include "src/annotations/core/AnnotationArea.h"
+#include <QGraphicsView>
+#include <QMouseEvent>
+#include <QScrollBar>
+#include <QGuiApplication>
+
+#include "ViewZoomer.h"
+#include "src/common/helper/KeyHelper.h"
 
 namespace kImageAnnotator {
 
-class BaseSelectionView : public ScrollAndZoomView
+class ScrollAndZoomView : public QGraphicsView
 {
-Q_OBJECT
+	Q_OBJECT
 public:
-	explicit BaseSelectionView(SelectionHandler *selectionHandler, KeyHelper *keyHelper, QWidget *parent);
-	~BaseSelectionView() override = default;
-	void init(AnnotationArea *annotationArea);
+	explicit ScrollAndZoomView(QWidget *parent);
+	~ScrollAndZoomView() override;
+	ZoomValueProvider *zoomValueProvider() const;
 
 protected:
 	void keyPressEvent(QKeyEvent *event) override;
@@ -40,19 +44,21 @@ protected:
 	void mouseMoveEvent(QMouseEvent *event) override;
 	void mousePressEvent(QMouseEvent *event) override;
 	void mouseReleaseEvent(QMouseEvent *event) override;
-	void drawForeground(QPainter *painter, const QRectF &rect) override;
-	QRectF currentSelection() const;
+	void wheelEvent(QWheelEvent *event) override;
 
 private:
-	KeyHelper *mKeyHelper;
-	SelectionHandler *mSelectionHandler;
+	ViewZoomer *mViewZoomer;
+	bool mIsDragging;
+	QPoint mLastPosition;
+	KeyHelper mKeyHelper;
 
-	void updateCursor(const QPointF &pos);
-
-private slots:
-	void applyZoomValue(double value);
+	void scrollTo(const QPoint &pos);
+	void scrollByDelta(QScrollBar *scrollBar, int delta) const;
+	void enableDragging(const QPoint &pos);
+	void disableDragging();
+	void setDragCursorEnabled(bool enabled) const;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_BASESELECTIONVIEW_H
+#endif //KIMAGEANNOTATOR_SCROLLANDZOOMVIEW_H

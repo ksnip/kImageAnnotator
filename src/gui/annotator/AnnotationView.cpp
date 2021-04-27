@@ -22,110 +22,15 @@
 namespace kImageAnnotator {
 
 AnnotationView::AnnotationView(QWidget *parent) :
-	mIsDragging(false),
-	QGraphicsView(parent),
-	mAnnotationViewZoomer(new AnnotationViewZoomer(this))
+	ScrollAndZoomView(parent)
 {
-	setTransformationAnchor(QGraphicsView::NoAnchor);
-	disableDragging();
-	setViewportUpdateMode(ViewportUpdateMode::FullViewportUpdate);
-}
 
-ZoomValueProvider *AnnotationView::zoomValueProvider() const
-{
-	return mAnnotationViewZoomer;
-}
-
-void AnnotationView::keyPressEvent(QKeyEvent *event)
-{
-	mKeyHelper.keyPress(event);
-	if(mKeyHelper.isSpacePressed()) {
-		enableDragging(mapFromGlobal(QCursor::pos()));
-	}
-	QGraphicsView::keyPressEvent(event);
-}
-
-void AnnotationView::keyReleaseEvent(QKeyEvent *event)
-{
-	mKeyHelper.keyRelease(event);
-	if(!mKeyHelper.isSpacePressed()) {
-		disableDragging();
-	}
-	QGraphicsView::keyReleaseEvent(event);
-}
-
-void AnnotationView::mouseMoveEvent(QMouseEvent *event)
-{
-	if(mIsDragging) {
-		scrollTo(event->pos());
-		return;
-	}
-	QGraphicsView::mouseMoveEvent(event);
-}
-
-void AnnotationView::mousePressEvent(QMouseEvent *event)
-{
-	if(event->button() == Qt::MidButton) {
-		enableDragging(event->pos());
-		return;
-	}
-	QGraphicsView::mousePressEvent(event);
-}
-
-void AnnotationView::mouseReleaseEvent(QMouseEvent *event)
-{
-	if(event->button() == Qt::MidButton) {
-		disableDragging();
-		return;
-	}
-	QGraphicsView::mouseReleaseEvent(event);
-}
-
-void AnnotationView::wheelEvent(QWheelEvent *event)
-{
-	if(event->modifiers() & Qt::ControlModifier ) {
-		mAnnotationViewZoomer->wheelZoom(event);
-	} else {
-		QGraphicsView::wheelEvent(event);
-	}
 }
 
 void AnnotationView::drawBackground(QPainter *painter, const QRectF &rect)
 {
 	auto annotationArea = dynamic_cast<AnnotationArea *>(scene());
 	mCanvasPainter.paint(painter, annotationArea->canvasRect(), annotationArea->canvasColor());
-}
-
-void AnnotationView::scrollTo(const QPoint &pos)
-{
-	auto delta = pos - mLastPosition;
-	scrollByDelta(horizontalScrollBar(), delta.x());
-	scrollByDelta(verticalScrollBar(), delta.y());
-	mLastPosition = pos;
-}
-
-void AnnotationView::scrollByDelta(QScrollBar *scrollBar, int delta) const
-{
-	scrollBar->setValue(scrollBar->value() - delta);
-}
-
-void AnnotationView::enableDragging(const QPoint &pos)
-{
-	mIsDragging = true;
-	mLastPosition = pos;
-	setDragCursorEnabled(true);
-}
-
-void AnnotationView::disableDragging()
-{
-	mIsDragging = false;
-	mLastPosition = {};
-	setDragCursorEnabled(false);
-}
-
-void AnnotationView::setDragCursorEnabled(bool enabled) const
-{
-	enabled ? QGuiApplication::setOverrideCursor(Qt::SizeAllCursor) : QGuiApplication::restoreOverrideCursor();
 }
 
 } // namespace kImageAnnotator

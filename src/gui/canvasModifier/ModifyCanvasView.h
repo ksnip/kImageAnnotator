@@ -29,7 +29,7 @@ class ModifyCanvasView : public BaseSelectionView
 {
 Q_OBJECT
 public:
-	explicit ModifyCanvasView(SelectionHandler *selectionHandler, KeyHelper *keyHelper);
+	explicit ModifyCanvasView(SelectionHandler *selectionHandler, KeyHelper *keyHelper, QWidget *parent);
 	~ModifyCanvasView() override = default;
 	void setCanvasRect(const QRectF &rect);
 	void setCanvasColor(const QColor &color);

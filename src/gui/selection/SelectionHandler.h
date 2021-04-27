@@ -51,6 +51,7 @@ public:
 	bool selectionContains(const QPointF &pos) const;
 	void setRestrictionEnabled(bool enabled);
 	bool restrictionEnabled() const;
+	void applyZoomValue(double value);
 
 signals:
 	void selectionChanged(const QRectF &rect) const;

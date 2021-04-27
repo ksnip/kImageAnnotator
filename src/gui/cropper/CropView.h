@@ -29,7 +29,7 @@ class CropView : public BaseSelectionView
 {
 Q_OBJECT
 public:
-	explicit CropView(SelectionHandler *selectionHandler, KeyHelper *keyHelper);
+	explicit CropView(SelectionHandler *selectionHandler, KeyHelper *keyHelper, QWidget *parent);
 	~CropView() override = default;
 
 protected:

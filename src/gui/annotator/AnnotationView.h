@@ -20,47 +20,30 @@
 #ifndef KIMAGEANNOTATOR_ANNOTATIONVIEW_H
 #define KIMAGEANNOTATOR_ANNOTATIONVIEW_H
 
-#include <QGraphicsView>
 #include <QMouseEvent>
 #include <QScrollBar>
 #include <QGuiApplication>
 
+#include "src/gui/scrollAndZoomView/ScrollAndZoomView.h"
 #include "src/common/helper/KeyHelper.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/annotations/misc/CanvasPainter.h"
-#include "src/gui/annotator/AnnotationViewZoomer.h"
+#include "src/gui/scrollAndZoomView/ViewZoomer.h"
 
 namespace kImageAnnotator {
 
-class AnnotationView : public QGraphicsView
+class AnnotationView : public ScrollAndZoomView
 {
 	Q_OBJECT
 public:
 	explicit AnnotationView(QWidget *parent);
 	~AnnotationView() override = default;
-	ZoomValueProvider *zoomValueProvider() const;
 
 protected:
-	void keyPressEvent(QKeyEvent *event) override;
-	void keyReleaseEvent(QKeyEvent *event) override;
-	void mouseMoveEvent(QMouseEvent *event) override;
-	void mousePressEvent(QMouseEvent *event) override;
-	void mouseReleaseEvent(QMouseEvent *event) override;
-	void wheelEvent(QWheelEvent *event) override;
 	void drawBackground(QPainter *painter, const QRectF &rect) override;
 
 private:
-	AnnotationViewZoomer *mAnnotationViewZoomer;
-	bool mIsDragging;
-	QPoint mLastPosition;
-	KeyHelper mKeyHelper;
 	CanvasPainter mCanvasPainter;
-
-	void scrollTo(const QPoint &pos);
-	void scrollByDelta(QScrollBar *scrollBar, int delta) const;
-	void enableDragging(const QPoint &pos);
-	void disableDragging();
-	void setDragCursorEnabled(bool enabled) const;
 };
 
 } // namespace kImageAnnotator

@@ -21,10 +21,12 @@
 
 namespace kImageAnnotator {
 
-BaseSelectionView::BaseSelectionView(SelectionHandler *cropSelectionHandler, KeyHelper *keyHelper) :
+BaseSelectionView::BaseSelectionView(SelectionHandler *cropSelectionHandler, KeyHelper *keyHelper, QWidget *parent) :
+	ScrollAndZoomView(parent),
 	mKeyHelper(keyHelper),
 	mSelectionHandler(cropSelectionHandler)
 {
+	connect(zoomValueProvider(), &ZoomValueProvider::zoomValueChanged, this, &BaseSelectionView::applyZoomValue);
 }
 
 void BaseSelectionView::init(AnnotationArea *annotationArea)
@@ -37,45 +39,61 @@ void BaseSelectionView::init(AnnotationArea *annotationArea)
 void BaseSelectionView::keyPressEvent(QKeyEvent *event)
 {
 	mKeyHelper->keyPress(event);
+	ScrollAndZoomView::keyPressEvent(event);
 }
 
 void BaseSelectionView::keyReleaseEvent(QKeyEvent *event)
 {
 	mKeyHelper->keyRelease(event);
+	ScrollAndZoomView::keyReleaseEvent(event);
 }
 
 void BaseSelectionView::mouseMoveEvent(QMouseEvent *event)
 {
-	auto pos = mapToScene(event->pos());
-	mSelectionHandler->move(pos);
-	updateCursor(pos);
+
+	if (mSelectionHandler->isInMotion()) {
+		mSelectionHandler->move(mapToScene(event->pos()));
+	} else {
+		ScrollAndZoomView::mouseMoveEvent(event);
+	}
+	updateCursor(mapToScene(event->pos()));
 }
 
 void BaseSelectionView::mousePressEvent(QMouseEvent *event)
 {
-	auto pos = mapToScene(event->pos());
-	mSelectionHandler->grab(pos);
-	updateCursor(pos);
+
+	if(event->button() == Qt::LeftButton) {
+		mSelectionHandler->grab(mapToScene(event->pos()));
+	} else {
+		ScrollAndZoomView::mousePressEvent(event);
+	}
+	updateCursor(mapToScene(event->pos()));
 }
 
 void BaseSelectionView::mouseReleaseEvent(QMouseEvent *event)
 {
-	mSelectionHandler->release();
+	if (mSelectionHandler->isInMotion()) {
+		mSelectionHandler->release();
+	} else {
+		ScrollAndZoomView::mouseReleaseEvent(event);
+	}
 	updateCursor(mapToScene(event->pos()));
 }
 
 void BaseSelectionView::drawForeground(QPainter *painter, const QRectF &rect)
 {
 	auto selection = mSelectionHandler->selection();
+	auto zoomValue = zoomValueProvider()->zoomValue();
+	auto lineWidth = 1 / zoomValue;
 
 	// Draw border around selected are
 	painter->setClipRect(rect);
 	painter->setBrush(Qt::NoBrush);
-	painter->setPen(QPen(Qt::gray, 1, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
+	painter->setPen(QPen(Qt::gray, lineWidth, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
 	painter->drawRect(selection);
 
 	if (!mSelectionHandler->isInMotion()) {
-		painter->setPen(QPen(Qt::white, 1, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
+		painter->setPen(QPen(Qt::white, lineWidth, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
 		painter->setBrush(QColor(Qt::gray));
 		auto handles = mSelectionHandler->selectionHandles();
 
@@ -101,6 +119,11 @@ void BaseSelectionView::updateCursor(const QPointF &pos)
 	} else {
 		unsetCursor();
 	}
+}
+
+void BaseSelectionView::applyZoomValue(double value)
+{
+	mSelectionHandler->applyZoomValue(value);
 }
 
 } // namespace kImageAnnotator

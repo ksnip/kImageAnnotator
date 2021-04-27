@@ -21,8 +21,8 @@
 
 namespace kImageAnnotator {
 
-CropView::CropView(SelectionHandler *cropSelectionHandler, KeyHelper *keyHelper) :
-	BaseSelectionView(cropSelectionHandler, keyHelper)
+CropView::CropView(SelectionHandler *cropSelectionHandler, KeyHelper *keyHelper, QWidget *parent) :
+	BaseSelectionView(cropSelectionHandler, keyHelper, parent)
 {
 }
 

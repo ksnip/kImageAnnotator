@@ -25,7 +25,7 @@ CropWidget::CropWidget() :
 	mAnnotationArea(nullptr),
 	mKeyHelper(new KeyHelper()),
 	mSelectionHandler(new SelectionHandler(new CropSelectionRestrictor)),
-	mCropView(new CropView(mSelectionHandler, mKeyHelper)),
+	mCropView(new CropView(mSelectionHandler, mKeyHelper, this)),
 	mCropButton(new QPushButton),
 	mCancelButton(new QPushButton),
 	mPanelLayout(new QHBoxLayout),

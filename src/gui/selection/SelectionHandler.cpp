@@ -175,4 +175,10 @@ bool SelectionHandler::restrictionEnabled() const
 	return mRestrictionEnabled;
 }
 
+void SelectionHandler::applyZoomValue(double value)
+{
+	mHandles.applyZoomValue(value);
+	mHandles.updateHandles(mSelection);
+}
+
 }

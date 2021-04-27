@@ -21,11 +21,12 @@
 
 namespace kImageAnnotator {
 
-SelectionHandles::SelectionHandles() : mGrabbedIndex(-1)
+SelectionHandles::SelectionHandles() :
+	mGrabbedIndex(-1),
+	mHandleSize(ScaledSizeProvider::resizeHandleSize())
 {
-	auto size = ScaledSizeProvider::resizeHandleSize();
 	for (auto i = 0; i < 8; i++) {
-		mHandles.append(QRectF(0, 0, size, size));
+		mHandles.append(QRectF(0, 0, mHandleSize, mHandleSize));
 	}
 }
 
@@ -58,15 +59,15 @@ int SelectionHandles::grabbedIndex() const
 
 void SelectionHandles::updateHandles(const QRectF &selection)
 {
-	auto rectSize = ScaledSizeProvider::resizeHandleSize() / 2;
+	auto offset = mHandleSize * 0.5;
 	mHandles[0].moveTopLeft(ShapeHelper::rectTopLeftWithOffset(selection, 0).toPoint());
-	mHandles[1].moveCenter(ShapeHelper::rectTopWithOffset(selection, -rectSize).toPoint());
+	mHandles[1].moveCenter(ShapeHelper::rectTopWithOffset(selection, -offset).toPoint());
 	mHandles[2].moveTopRight(ShapeHelper::rectTopRightWithOffset(selection, 0).toPoint());
-	mHandles[3].moveCenter(ShapeHelper::rectRightWithOffset(selection, -rectSize).toPoint());
+	mHandles[3].moveCenter(ShapeHelper::rectRightWithOffset(selection, -offset).toPoint());
 	mHandles[4].moveBottomRight(ShapeHelper::rectBottomRightWithOffset(selection, 0).toPoint());
-	mHandles[5].moveCenter(ShapeHelper::rectBottomWithOffset(selection, -rectSize).toPoint());
+	mHandles[5].moveCenter(ShapeHelper::rectBottomWithOffset(selection, -offset).toPoint());
 	mHandles[6].moveBottomLeft(ShapeHelper::rectBottomLeftWithOffset(selection, 0).toPoint());
-	mHandles[7].moveCenter(ShapeHelper::rectLeftWithOffset(selection, -rectSize).toPoint());
+	mHandles[7].moveCenter(ShapeHelper::rectLeftWithOffset(selection, -offset).toPoint());
 }
 
 bool SelectionHandles::isHandleGrabbed() const
@@ -77,6 +78,17 @@ bool SelectionHandles::isHandleGrabbed() const
 QPointF SelectionHandles::grabOffset() const
 {
 	return mGrabOffset;
+}
+
+void SelectionHandles::applyZoomValue(double value)
+{
+	auto oldHandleSize = mHandleSize;
+	mHandleSize = ScaledSizeProvider::resizeHandleSize() / value;
+	auto offset = 0.5 * (oldHandleSize - mHandleSize);
+
+	for (auto &handle : mHandles) {
+		handle.adjust(offset, offset, -offset, -offset);
+	}
 }
 
 } // namespace kImageAnnotator

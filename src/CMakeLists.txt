@@ -3,7 +3,8 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/CoreView.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationView.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/AnnotationViewZoomer.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/scrollAndZoomView/ScrollAndZoomView.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/scrollAndZoomView/ViewZoomer.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/ItemSettingsWidgetConfigurator.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/AnnotationSettingsAdapter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/AnnotationItemSettings.cpp

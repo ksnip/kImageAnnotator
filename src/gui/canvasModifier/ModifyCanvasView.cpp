@@ -21,8 +21,8 @@
 
 namespace kImageAnnotator {
 
-ModifyCanvasView::ModifyCanvasView(SelectionHandler *selectionHandler, KeyHelper *keyHelper) :
-	BaseSelectionView(selectionHandler, keyHelper)
+ModifyCanvasView::ModifyCanvasView(SelectionHandler *selectionHandler, KeyHelper *keyHelper, QWidget *parent) :
+	BaseSelectionView(selectionHandler, keyHelper, parent)
 {
 	setViewportUpdateMode(ViewportUpdateMode::FullViewportUpdate);
 }
