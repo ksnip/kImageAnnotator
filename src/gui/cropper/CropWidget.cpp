@@ -38,23 +38,13 @@ CropWidget::CropWidget() :
 	mWidthLineEdit(new QLineEdit),
 	mHeightLineEdit(new QLineEdit),
 	mMainLayout(new QVBoxLayout),
-	mInputValidator(new QIntValidator(0, 9999, this))
+	mInputValidator(new QIntValidator(0, 9999, this)),
+	mZoomPicker(new ZoomPicker(this))
 {
 	initSelectionHandler();
 	initKeyHelper();
 	initGui();
-}
-
-void CropWidget::initSelectionHandler() const
-{
-	connect(mSelectionHandler, &SelectionHandler::selectionChanged, this, &CropWidget::selectionChanged);
-}
-
-void CropWidget::initKeyHelper()
-{
-	connect(mKeyHelper, &KeyHelper::escapeReleased, this, &CropWidget::closing);
-	connect(mKeyHelper, &KeyHelper::returnReleased, this, &CropWidget::crop);
-	connect(mKeyHelper, &KeyHelper::enterReleased, this, &CropWidget::crop);
+	initZoomPicker();
 }
 
 CropWidget::~CropWidget()
@@ -74,6 +64,7 @@ CropWidget::~CropWidget()
 	delete mWidthLabel;
 	delete mHeightLabel;
 	delete mInputValidator;
+	delete mZoomPicker;
 }
 
 void CropWidget::activate(AnnotationArea *annotationArea)
@@ -95,49 +86,51 @@ void CropWidget::initGui()
 	mCancelButton->setText(tr("Cancel"));
 	connect(mCancelButton, &QPushButton::clicked, this, &CropWidget::closing);
 
-	mPanelLayout->setAlignment(Qt::AlignCenter);
 
 	auto width = ScaledSizeProvider::scaledWidth(80);
 
 	mPositionXLabel->setText(tr("X:"));
-	mPanelLayout->addWidget(mPositionXLabel, 0, Qt::AlignCenter);
-
 
 	mPositionXLineEdit->setValidator(mInputValidator);
 	mPositionXLineEdit->setFixedSize(width, mPositionXLineEdit->minimumSizeHint().height());
 
 	connect(mPositionXLineEdit, &QLineEdit::textEdited, this, &CropWidget::xChanged);
-	mPanelLayout->addWidget(mPositionXLineEdit, 0, Qt::AlignCenter);
 
 	mPositionYLabel->setText(tr("Y:"));
-	mPanelLayout->addWidget(mPositionYLabel, 0, Qt::AlignCenter);
 
 	mPositionYLineEdit->setValidator(mInputValidator);
 	mPositionYLineEdit->setFixedSize(width, mPositionYLineEdit->minimumSizeHint().height());
 
 	connect(mPositionYLineEdit, &QLineEdit::textEdited, this, &CropWidget::yChanged);
-	mPanelLayout->addWidget(mPositionYLineEdit, 0, Qt::AlignCenter);
 
 	mWidthLabel->setText(tr("W:"));
-	mPanelLayout->addWidget(mWidthLabel, 0, Qt::AlignCenter);
 
 	mWidthLineEdit->setValidator(mInputValidator);
 	mWidthLineEdit->setFixedSize(width, mWidthLineEdit->minimumSizeHint().height());
 
 	connect(mWidthLineEdit, &QLineEdit::textEdited, this, &CropWidget::widthChanged);
-	mPanelLayout->addWidget(mWidthLineEdit, 0, Qt::AlignCenter);
 
 	mHeightLabel->setText(tr("H:"));
-	mPanelLayout->addWidget(mHeightLabel, 0, Qt::AlignCenter);
 
 	mHeightLineEdit->setValidator(mInputValidator);
 	mHeightLineEdit->setFixedSize(width, mHeightLineEdit->minimumSizeHint().height());
 
 	connect(mHeightLineEdit, &QLineEdit::textEdited, this, &CropWidget::heightChanged);
-	mPanelLayout->addWidget(mHeightLineEdit, 0, Qt::AlignCenter);
 
-	mPanelLayout->addWidget(mCropButton, 0, Qt::AlignCenter);
-	mPanelLayout->addWidget(mCancelButton, 0, Qt::AlignCenter);
+	mPanelLayout->setAlignment(Qt::AlignCenter);
+	mPanelLayout->addWidget(mZoomPicker);
+	mPanelLayout->addStretch(1);
+	mPanelLayout->addWidget(mPositionXLabel);
+	mPanelLayout->addWidget(mPositionXLineEdit);
+	mPanelLayout->addWidget(mPositionYLabel);
+	mPanelLayout->addWidget(mPositionYLineEdit);
+	mPanelLayout->addWidget(mWidthLabel);
+	mPanelLayout->addWidget(mWidthLineEdit);
+	mPanelLayout->addWidget(mHeightLabel);
+	mPanelLayout->addWidget(mHeightLineEdit);
+	mPanelLayout->addStretch(1);
+	mPanelLayout->addWidget(mCropButton);
+	mPanelLayout->addWidget(mCancelButton);
 
 	mMainLayout->addWidget(mCropView);
 	mMainLayout->addLayout(mPanelLayout);
@@ -195,6 +188,26 @@ void CropWidget::reset()
 {
 	auto selection = mAnnotationArea->sceneRect();
 	mSelectionHandler->resetSelection(selection, selection);
+}
+
+void CropWidget::initZoomPicker() const
+{
+	auto zoomValueProvider = mCropView->zoomValueProvider();
+	connect(zoomValueProvider, &ZoomValueProvider::zoomValueChanged, mZoomPicker, &ZoomPicker::setZoomValue);
+	connect(mZoomPicker, &ZoomPicker::zoomValueChanged, zoomValueProvider, &ZoomValueProvider::setZoomValue);
+	mZoomPicker->setZoomValue(zoomValueProvider->zoomValue());
+}
+
+void CropWidget::initSelectionHandler() const
+{
+	connect(mSelectionHandler, &SelectionHandler::selectionChanged, this, &CropWidget::selectionChanged);
+}
+
+void CropWidget::initKeyHelper()
+{
+	connect(mKeyHelper, &KeyHelper::escapeReleased, this, &CropWidget::closing);
+	connect(mKeyHelper, &KeyHelper::returnReleased, this, &CropWidget::crop);
+	connect(mKeyHelper, &KeyHelper::enterReleased, this, &CropWidget::crop);
 }
 
 } // namespace kImageAnnotator

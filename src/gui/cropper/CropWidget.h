@@ -32,6 +32,7 @@
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/common/helper/KeyHelper.h"
 #include "src/common/provider/ScaledSizeProvider.h"
+#include "src/widgets/settingsPicker/ZoomPicker.h"
 
 namespace kImageAnnotator {
 
@@ -67,11 +68,13 @@ private:
 	QLabel *mWidthLabel;
 	QLabel *mHeightLabel;
 	QIntValidator *mInputValidator;
+	ZoomPicker *mZoomPicker;
 
 	void initGui();
 	void initKeyHelper();
 	void initSelectionHandler() const;
 	void reset();
+	void initZoomPicker() const;
 
 private slots:
 	void crop();

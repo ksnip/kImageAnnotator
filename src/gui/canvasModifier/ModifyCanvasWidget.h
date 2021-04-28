@@ -35,6 +35,7 @@
 #include "src/common/helper/KeyHelper.h"
 #include "src/gui/selection/SelectionHandler.h"
 #include "src/widgets/ColorDialogButton.h"
+#include "src/widgets/settingsPicker/ZoomPicker.h"
 
 namespace kImageAnnotator {
 
@@ -73,11 +74,13 @@ private:
 	QIntValidator *mInputValidator;
 	QCheckBox *mRestrictCheckBox;
 	ColorDialogButton *mColorDialogButton;
+	ZoomPicker *mZoomPicker;
 
 	void initGui();
 	void initKeyHelper();
 	void initSelectionHandler() const;
 	void reset();
+	void initZoomPicker();
 
 private slots:
 	void apply();

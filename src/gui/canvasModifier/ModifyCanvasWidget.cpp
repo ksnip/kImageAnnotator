@@ -42,11 +42,13 @@ ModifyCanvasWidget::ModifyCanvasWidget() :
 	mMainLayout(new QVBoxLayout),
 	mInputValidator(new QIntValidator(-9999, 9999, this)),
 	mRestrictCheckBox(new QCheckBox),
-	mColorDialogButton(new ColorDialogButton(this))
+	mColorDialogButton(new ColorDialogButton(this)),
+	mZoomPicker(new ZoomPicker(this))
 {
 	initSelectionHandler();
 	initKeyHelper();
 	initGui();
+	initZoomPicker();
 }
 
 ModifyCanvasWidget::~ModifyCanvasWidget()
@@ -67,6 +69,7 @@ ModifyCanvasWidget::~ModifyCanvasWidget()
 	delete mInputValidator;
 	delete mRestrictCheckBox;
 	delete mColorDialogButton;
+	delete mZoomPicker;
 }
 
 void ModifyCanvasWidget::activate(AnnotationArea *annotationArea)
@@ -94,7 +97,7 @@ void ModifyCanvasWidget::initGui()
 	mRestrictCheckBox->setChecked(mSelectionHandler->restrictionEnabled());
 	connect(mRestrictCheckBox, &QCheckBox::stateChanged, this, &ModifyCanvasWidget::restrictionChanged);
 
-	auto width = ScaledSizeProvider::scaledWidth(40);
+	auto width = ScaledSizeProvider::scaledWidth(80);
 
 	mPositionXLabel->setText(tr("X:"));
 
@@ -131,21 +134,24 @@ void ModifyCanvasWidget::initGui()
 	connect(mCancelButton, &QPushButton::clicked, this, &ModifyCanvasWidget::closing);
 
 	mPanelLayout->setAlignment(Qt::AlignCenter);
-	mPanelLayout->addWidget(mRestrictCheckBox, 0, Qt::AlignCenter);
+	mPanelLayout->addWidget(mZoomPicker);
+	mPanelLayout->addStretch(1);
+	mPanelLayout->addWidget(mRestrictCheckBox);
 	mPanelLayout->addSpacing(10);
-	mPanelLayout->addWidget(mColorLabel, 0, Qt::AlignCenter);
-	mPanelLayout->addWidget(mColorDialogButton, 0, Qt::AlignCenter);
+	mPanelLayout->addWidget(mColorLabel);
+	mPanelLayout->addWidget(mColorDialogButton);
 	mPanelLayout->addSpacing(10);
-	mPanelLayout->addWidget(mPositionXLabel, 0, Qt::AlignCenter);
-	mPanelLayout->addWidget(mPositionXLineEdit, 0, Qt::AlignCenter);
-	mPanelLayout->addWidget(mPositionYLabel, 0, Qt::AlignCenter);
-	mPanelLayout->addWidget(mPositionYLineEdit, 0, Qt::AlignCenter);
-	mPanelLayout->addWidget(mWidthLabel, 0, Qt::AlignCenter);
-	mPanelLayout->addWidget(mWidthLineEdit, 0, Qt::AlignCenter);
-	mPanelLayout->addWidget(mHeightLabel, 0, Qt::AlignCenter);
-	mPanelLayout->addWidget(mHeightLineEdit, 0, Qt::AlignCenter);
-	mPanelLayout->addWidget(mApplyButton, 0, Qt::AlignCenter);
-	mPanelLayout->addWidget(mCancelButton, 0, Qt::AlignCenter);
+	mPanelLayout->addWidget(mPositionXLabel);
+	mPanelLayout->addWidget(mPositionXLineEdit);
+	mPanelLayout->addWidget(mPositionYLabel);
+	mPanelLayout->addWidget(mPositionYLineEdit);
+	mPanelLayout->addWidget(mWidthLabel);
+	mPanelLayout->addWidget(mWidthLineEdit);
+	mPanelLayout->addWidget(mHeightLabel);
+	mPanelLayout->addWidget(mHeightLineEdit);
+	mPanelLayout->addStretch(1);
+	mPanelLayout->addWidget(mApplyButton);
+	mPanelLayout->addWidget(mCancelButton);
 
 	mMainLayout->addWidget(mModifyCanvasView);
 	mMainLayout->addLayout(mPanelLayout);
@@ -174,6 +180,14 @@ void ModifyCanvasWidget::reset()
 	mColorDialogButton->setColor(mAnnotationArea->canvasColor());
 	mModifyCanvasView->setCanvasColor(mAnnotationArea->canvasColor());
 	mModifyCanvasView->setCanvasRect(mAnnotationArea->canvasRect());
+}
+
+void ModifyCanvasWidget::initZoomPicker()
+{
+	auto zoomValueProvider = mModifyCanvasView->zoomValueProvider();
+	connect(zoomValueProvider, &ZoomValueProvider::zoomValueChanged, mZoomPicker, &ZoomPicker::setZoomValue);
+	connect(mZoomPicker, &ZoomPicker::zoomValueChanged, zoomValueProvider, &ZoomValueProvider::setZoomValue);
+	mZoomPicker->setZoomValue(zoomValueProvider->zoomValue());
 }
 
 void ModifyCanvasWidget::apply()

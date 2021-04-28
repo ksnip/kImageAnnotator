@@ -38,6 +38,8 @@ Q_OBJECT
 public:
 	explicit ZoomPicker(QWidget *parent);
 	~ZoomPicker() override;
+
+public slots:
 	void setZoomValue(double value);
 
 signals:
