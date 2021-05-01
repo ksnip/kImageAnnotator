@@ -124,6 +124,12 @@ QRectF AnnotationItemModifier::boundingRect() const
 	return mItemSelector->boundingRect();
 }
 
+void AnnotationItemModifier::selectItem(AbstractAnnotationItem *item)
+{
+	mItemSelector->selectItem(item);
+	handleSelection();
+}
+
 void AnnotationItemModifier::clear()
 {
 	mItemSelector->clearSelection();

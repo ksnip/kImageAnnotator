@@ -69,6 +69,7 @@ public Q_SLOTS:
 	void addTabContextMenuActions(const QList<QAction*> & actions);
 	void setSettingsCollapsed(bool isCollapsed);
 	void setCanvasColor(const QColor &color);
+	void setSelectItemAfterDrawing(bool enabled);
 
 Q_SIGNALS:
 	void imageChanged() const;

@@ -36,11 +36,12 @@ class AnnotationItemModifierTest : public QObject
 {
 Q_OBJECT
 private slots:
-	void TestHandleMousePressMoveRelease_Should_MoveResizerHandle_When_ClickedOnResizerHandle();
-	void TestHandleMousePressMove_Should_NotMoveResizerHandle_When_NotClickedOnResizerHandle();
-	void TestHandleMousePressMoveRelease_Should_SelectMultipleItems_When_ClickedNotOnItem();
-	void TestHandleMousePressMove_Should_MoveClickedItem_When_ClickedOnItemAndMoved();
-	void TestHandleMousePressMove_Should_MoveSelectedItems_When_ClickedOnOfSelectedItemsAndMoved();
+	void HandleMousePressMoveRelease_Should_MoveResizerHandle_When_ClickedOnResizerHandle();
+	void HandleMousePressMove_Should_NotMoveResizerHandle_When_NotClickedOnResizerHandle();
+	void HandleMousePressMoveRelease_Should_SelectMultipleItems_When_ClickedNotOnItem();
+	void HandleMousePressMove_Should_MoveClickedItem_When_ClickedOnItemAndMoved();
+	void HandleMousePressMove_Should_MoveSelectedItems_When_ClickedOnOfSelectedItemsAndMoved();
+	void SelectItem_Should_SelectProvidedItem();
 };
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONITEMMODIFIERTEST_H

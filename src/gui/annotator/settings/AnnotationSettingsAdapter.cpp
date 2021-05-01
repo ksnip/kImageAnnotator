@@ -31,8 +31,7 @@ AnnotationSettingsAdapter::AnnotationSettingsAdapter(
 	mItemSettings(itemSettings),
 	mToolSettings(toolSettings),
 	mImageSettings(imageSettings),
-	mConfig(config),
-	mEditExistingItem(false)
+	mConfig(config)
 {
 	connect(mToolSettings, &AnnotationToolSelection::toolTypeChanged, this, &AnnotationSettingsAdapter::toolTypeChanged);
 
@@ -57,7 +56,7 @@ void AnnotationSettingsAdapter::editItem(AbstractAnnotationItem *item)
 {
 	activateSelectTool();
 	loadFromItem(item);
-	mEditExistingItem = true;
+	mExistingItemEditInfo.startEdit(item->toolType());
 }
 
 void AnnotationSettingsAdapter::activateSelectTool()
@@ -178,9 +177,9 @@ void AnnotationSettingsAdapter::loadFromItem(const AbstractAnnotationItem *item)
 
 void AnnotationSettingsAdapter::toolTypeChanged(Tools toolType)
 {
-	mEditExistingItem = false;
+	mExistingItemEditInfo.stopEdit();
 	mConfig->setSelectedToolType(toolType);
-	if(!mEditExistingItem) {
+	if(!mExistingItemEditInfo.isEdit()) {
 		loadFromConfig(toolType);
 	}
 	toolChanged(toolType);
@@ -188,29 +187,29 @@ void AnnotationSettingsAdapter::toolTypeChanged(Tools toolType)
 
 void AnnotationSettingsAdapter::toolColorChanged(const QColor &color)
 {
-	configChanged([&](){
-		mConfig->setToolColor(color, toolType());
+	configChanged([&](Tools tool){
+		mConfig->setToolColor(color, tool);
 	});
 }
 
 void AnnotationSettingsAdapter::toolTextColorChanged(const QColor &color)
 {
-	configChanged([&](){
-		mConfig->setToolTextColor(color, toolType());
+	configChanged([&](Tools tool){
+		mConfig->setToolTextColor(color, tool);
 	});
 }
 
 void AnnotationSettingsAdapter::toolWidthChanged(int width)
 {
-	configChanged([&](){
-		mConfig->setToolWidth(width, toolType());
+	configChanged([&](Tools tool){
+		mConfig->setToolWidth(width, tool);
 	});
 }
 
 void AnnotationSettingsAdapter::toolFillTypeChanged(FillModes fill)
 {
-	configChanged([&](){
-		mConfig->setToolFillType(fill, toolType());
+	configChanged([&](Tools tool){
+		mConfig->setToolFillType(fill, tool);
 	});
 }
 
@@ -221,38 +220,39 @@ void AnnotationSettingsAdapter::notifyNumberToolSeedChanged(int newNumberToolSee
 
 void AnnotationSettingsAdapter::obfuscateFactorChanged(int factor)
 {
-	configChanged([&](){
-		mConfig->setObfuscationFactor(factor, toolType());
+	configChanged([&](Tools tool){
+		mConfig->setObfuscationFactor(factor, tool);
 	});
 }
 
 void AnnotationSettingsAdapter::stickerChanged(const QString &sticker)
 {
-	if(mEditExistingItem) {
+	if(mExistingItemEditInfo.isEdit()) {
 		itemSettingChanged();
 	}
 }
 
 void AnnotationSettingsAdapter::shadowEnabledChanged(bool enabled)
 {
-	configChanged([&](){
-		mConfig->setShadowEnabled(enabled, toolType());
+	configChanged([&](Tools tool){
+		mConfig->setShadowEnabled(enabled, tool);
 	});
 }
 
 void AnnotationSettingsAdapter::fontChanged(const QFont &font)
 {
-	configChanged([&](){
-		mConfig->setToolFont(font, toolType());
+	configChanged([&](Tools tool){
+		mConfig->setToolFont(font, tool);
 	});
 }
 
-void AnnotationSettingsAdapter::configChanged(const std::function<void()> &configChangedMethod)
+void AnnotationSettingsAdapter::configChanged(const std::function<void(Tools)> &configChangedMethod)
 {
-	if(mEditExistingItem) {
+	if(mExistingItemEditInfo.isEdit()) {
 		itemSettingChanged();
+		configChangedMethod(mExistingItemEditInfo.toolType());
 	} else {
-		configChangedMethod();
+		configChangedMethod(toolType());
 	}
 }
 

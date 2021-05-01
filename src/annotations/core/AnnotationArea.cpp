@@ -292,13 +292,13 @@ void AnnotationArea::finishDrawingItem(const QPointF &pos)
 	if(mCurrentItem != nullptr) {
 		mCurrentItem->finish();
 
-		if (mCurrentItem->requiresSelectionAfterCreation()) {
-			mItemModifier->handleSelectionAt(mCurrentItem->position(), mItems, false);
+		if (mCurrentItem->requiresSelectionAfterCreation() || mConfig->selectItemAfterDrawing()) {
+			mItemModifier->selectItem(mCurrentItem);
 		}
 
 		mCurrentItem = nullptr;
 
-		if (mConfig->switchToSelectToolAfterDrawingItem()) {
+		if (mConfig->switchToSelectToolAfterDrawingItem() && !mConfig->selectItemAfterDrawing()) {
 			mSettingsProvider->activateSelectTool();
 		}
 	}
@@ -359,12 +359,18 @@ void AnnotationArea::addPointToCurrentItem(const QPointF &position)
 
 void AnnotationArea::toolChanged(Tools toolType)
 {
+	auto isSelectTool = toolType == Tools::Select;
+
 	for (auto item : *mItems) {
-		if (toolType == Tools::Select) {
+		if (isSelectTool) {
 			item->setCursor(CursorHelper::movableCursor());
 		} else {
 			item->unsetCursor();
 		}
+	}
+
+	if (!isSelectTool) {
+		mItemModifier->clear();
 	}
 }
 

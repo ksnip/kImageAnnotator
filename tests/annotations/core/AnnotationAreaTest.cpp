@@ -19,7 +19,7 @@
 
 #include "AnnotationAreaTest.h"
 
-void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
+void AnnotationAreaTest::ExportAsImage_Should_ExportImage_When_ImageSet()
 {
 	QPixmap pixmap(QSize(400, 400));
 	pixmap.fill(QColor(Qt::green));
@@ -33,7 +33,7 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportImage_When_ImageSet()
 	QCOMPARE(expectedImage, resultImage);
 }
 
-void AnnotationAreaTest::TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet()
+void AnnotationAreaTest::ExportAsImage_Should_ExportEmptyImage_When_NoImageSet()
 {
 	MockDefaultParameters p;
 	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
@@ -43,7 +43,7 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportEmptyImage_When_NoImageS
 	QCOMPARE(QImage(), resultImage);
 }
 
-void AnnotationAreaTest::TestExportAsImage_Should_ExportScaledImage_When_ScalingEnabled()
+void AnnotationAreaTest::ExportAsImage_Should_ExportScaledImage_When_ScalingEnabled()
 {
 	auto scaleFactor = 1.5;
 	QPixmap pixmap(QSize(400, 400));
@@ -60,7 +60,7 @@ void AnnotationAreaTest::TestExportAsImage_Should_ExportScaledImage_When_Scaling
 	QCOMPARE(resultImage, expectedImage);
 }
 
-void AnnotationAreaTest::TestAddAnnotationItem_Should_AddAnnotationItemToScene()
+void AnnotationAreaTest::AddAnnotationItem_Should_AddAnnotationItemToScene()
 {
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
@@ -75,7 +75,7 @@ void AnnotationAreaTest::TestAddAnnotationItem_Should_AddAnnotationItemToScene()
 	QCOMPARE(annotationArea.items().contains(lineItem), true);
 }
 
-void AnnotationAreaTest::TestRemoveAnnotationItem_Should_RemoveAnnotationItemFromScene()
+void AnnotationAreaTest::RemoveAnnotationItem_Should_RemoveAnnotationItemFromScene()
 {
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
@@ -92,7 +92,7 @@ void AnnotationAreaTest::TestRemoveAnnotationItem_Should_RemoveAnnotationItemFro
 	QCOMPARE(annotationArea.items().contains(lineItem), false);
 }
 
-void AnnotationAreaTest::TestCanvasRect_Should_ReturnRectUnionOfAllItems_When_NoCanvasRectSet()
+void AnnotationAreaTest::CanvasRect_Should_ReturnRectUnionOfAllItems_When_NoCanvasRectSet()
 {
 	QRectF backgroundImageBoundingRect(0,0,400,400);
 	QPixmap pixmap(backgroundImageBoundingRect.size().toSize());
@@ -113,7 +113,7 @@ void AnnotationAreaTest::TestCanvasRect_Should_ReturnRectUnionOfAllItems_When_No
 	QCOMPARE(canvasRect, defaultCanvasRect);
 }
 
-void AnnotationAreaTest::TestCanvasRect_Should_ReturnUserDefinedRect_When_CanvasRectSet()
+void AnnotationAreaTest::CanvasRect_Should_ReturnUserDefinedRect_When_CanvasRectSet()
 {
 	QRect backgroundImageBoundingRect(0,0,400,400);
 	QPixmap pixmap(backgroundImageBoundingRect.size());

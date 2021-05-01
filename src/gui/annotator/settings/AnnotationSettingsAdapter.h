@@ -24,6 +24,7 @@
 #include "AnnotationItemSettings.h"
 #include "AnnotationToolSelection.h"
 #include "AnnotationImageSettings.h"
+#include "ExistingItemEditInfo.h"
 #include "src/annotations/core/AbstractSettingsProvider.h"
 
 namespace kImageAnnotator {
@@ -61,9 +62,9 @@ private:
 	AnnotationToolSelection *mToolSettings;
 	AnnotationImageSettings *mImageSettings;
 	Config *mConfig;
-	bool mEditExistingItem;
+	ExistingItemEditInfo mExistingItemEditInfo;
 
-	void configChanged(const std::function<void ()>& configChangedMethod);
+	void configChanged(const std::function<void (Tools)>& configChangedMethod);
 
 private slots:
 	void effectChanged(ImageEffects effect) override;

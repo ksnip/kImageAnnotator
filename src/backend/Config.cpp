@@ -27,6 +27,7 @@ Config::Config() :
 	mSaveToolSelection(false),
 	mSmoothFactor(0),
 	mSwitchToSelectToolAfterDrawingItem(false),
+	mSelectItemAfterDrawing(true),
 	mNumberUpdateMode(NumberUpdateMode::UpdateOnlyNewNumbers)
 {
 	mAllTools = QList<Tools>{
@@ -249,6 +250,16 @@ void Config::setAnnotatorDockWidgetsState(const QByteArray &state)
 	mConfig.sync();
 }
 
+bool Config::selectItemAfterDrawing() const
+{
+	return mSelectItemAfterDrawing;
+}
+
+void Config::setSelectItemAfterDrawing(bool enabled)
+{
+	mSelectItemAfterDrawing = enabled;
+}
+
 // Private Methods
 
 void Config::initToolSettings()
@@ -323,6 +334,7 @@ void Config::initGeneralSettings()
 	mSmoothPathEnabled = true;
 	mSmoothFactor = 7;
 	mSwitchToSelectToolAfterDrawingItem = false;
+	mSelectItemAfterDrawing = true;
 	mNumberUpdateMode = NumberUpdateMode::UpdateOnlyNewNumbers;
 	mCanvasColor = Qt::white;
 }

@@ -37,7 +37,6 @@ namespace kImageAnnotator {
 class Config : public QObject
 {
 Q_OBJECT
-
 public:
 	explicit Config();
 	~Config() override = default;
@@ -87,6 +86,9 @@ public slots:
 	QByteArray annotatorDockWidgetsState() const;
 	void setAnnotatorDockWidgetsState(const QByteArray &state);
 
+	bool selectItemAfterDrawing() const;
+	void setSelectItemAfterDrawing(bool enabled);
+
 signals:
 	void numberUpdateModeChanged(enum NumberUpdateMode numberUpdateMode) const;
 
@@ -105,6 +107,7 @@ private:
 	bool mSaveToolSelection;
 	int mSmoothFactor;
 	bool mSwitchToSelectToolAfterDrawingItem;
+	bool mSelectItemAfterDrawing;
 	NumberUpdateMode mNumberUpdateMode;
 	QColor mCanvasColor;
 

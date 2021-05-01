@@ -42,6 +42,7 @@ public:
 	bool isSelecting() const;
 	void refresh();
 	void update();
+	void selectItem(AbstractAnnotationItem *item);
 
 protected:
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
@@ -58,7 +59,6 @@ private:
 	void selectItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
 	void toggleItemSelectionAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
 	void selectItemsUnderRect(QList<AbstractAnnotationItem *> *items);
-	void selectItem(AbstractAnnotationItem *item);
 	void unselectItem(AbstractAnnotationItem *item);
 	AbstractAnnotationItem *findItemAt(const QPointF &position, QList<AbstractAnnotationItem *> *items);
 	void applyZoomValue(double value);

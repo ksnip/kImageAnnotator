@@ -35,6 +35,7 @@ namespace kImageAnnotator {
 class AnnotationItemModifier : public QObject, public QGraphicsItemGroup
 {
 Q_OBJECT
+
 public:
 	explicit AnnotationItemModifier(ZoomValueProvider *zoomValueProvider);
 	~AnnotationItemModifier() override;
@@ -45,6 +46,7 @@ public:
 	void handleSelectionAt(const QPointF &pos, QList<AbstractAnnotationItem *> *items, bool isCtrlPressed);
 	QList<AbstractAnnotationItem *> selectedItems() const;
 	QRectF boundingRect() const override;
+	void selectItem(AbstractAnnotationItem *item);
 
 public slots:
 	void clear();

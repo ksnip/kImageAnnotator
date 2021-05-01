@@ -38,13 +38,13 @@ class AnnotationAreaTest : public QObject
 {
 Q_OBJECT
 private slots:
-	void TestExportAsImage_Should_ExportImage_When_ImageSet();
-	void TestExportAsImage_Should_ExportEmptyImage_When_NoImageSet();
-	void TestExportAsImage_Should_ExportScaledImage_When_ScalingEnabled();
-	void TestAddAnnotationItem_Should_AddAnnotationItemToScene();
-	void TestRemoveAnnotationItem_Should_RemoveAnnotationItemFromScene();
-	void TestCanvasRect_Should_ReturnRectUnionOfAllItems_When_NoCanvasRectSet();
-	void TestCanvasRect_Should_ReturnUserDefinedRect_When_CanvasRectSet();
+	void ExportAsImage_Should_ExportImage_When_ImageSet();
+	void ExportAsImage_Should_ExportEmptyImage_When_NoImageSet();
+	void ExportAsImage_Should_ExportScaledImage_When_ScalingEnabled();
+	void AddAnnotationItem_Should_AddAnnotationItemToScene();
+	void RemoveAnnotationItem_Should_RemoveAnnotationItemFromScene();
+	void CanvasRect_Should_ReturnRectUnionOfAllItems_When_NoCanvasRectSet();
+	void CanvasRect_Should_ReturnUserDefinedRect_When_CanvasRectSet();
 };
 
 #endif // KIMAGEANNOTATOR_ANNOTATIONAREATEST_H

@@ -21,7 +21,7 @@
 
 #include "tests/mocks/MockZoomValueProvider.h"
 
-void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_MoveResizerHandle_When_ClickedOnResizerHandle()
+void AnnotationItemModifierTest::HandleMousePressMoveRelease_Should_MoveResizerHandle_When_ClickedOnResizerHandle()
 {
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
@@ -45,7 +45,7 @@ void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_MoveResi
 	QCOMPARE(line.line().p2(), p2);
 }
 
-void AnnotationItemModifierTest::TestHandleMousePressMove_Should_NotMoveResizerHandle_When_NotClickedOnResizerHandle()
+void AnnotationItemModifierTest::HandleMousePressMove_Should_NotMoveResizerHandle_When_NotClickedOnResizerHandle()
 {
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
@@ -68,7 +68,7 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_NotMoveResizerH
 	QCOMPARE(line.line().p2(), p2);
 }
 
-void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_SelectMultipleItems_When_ClickedNotOnItem()
+void AnnotationItemModifierTest::HandleMousePressMoveRelease_Should_SelectMultipleItems_When_ClickedNotOnItem()
 {
 	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
@@ -96,7 +96,7 @@ void AnnotationItemModifierTest::TestHandleMousePressMoveRelease_Should_SelectMu
 	QCOMPARE(results.contains(&line2), true);
 }
 
-void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveClickedItem_When_ClickedOnItemAndMoved()
+void AnnotationItemModifierTest::HandleMousePressMove_Should_MoveClickedItem_When_ClickedOnItemAndMoved()
 {
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QPointF p1(10, 10);
@@ -118,7 +118,7 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveClickedItem
 	QCOMPARE(line.boundingRect().topLeft(), movePos - (clickPos - p1));
 }
 
-void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveSelectedItems_When_ClickedOnOfSelectedItemsAndMoved()
+void AnnotationItemModifierTest::HandleMousePressMove_Should_MoveSelectedItems_When_ClickedOnOfSelectedItemsAndMoved()
 {
 	auto properties1 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto properties2 = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
@@ -149,6 +149,20 @@ void AnnotationItemModifierTest::TestHandleMousePressMove_Should_MoveSelectedIte
 
 	QCOMPARE(line1.boundingRect().topLeft(), movePos - (clickPos - p1));
 	QCOMPARE(line2.boundingRect().topLeft(), movePos - (clickPos - p3));
+}
+
+void AnnotationItemModifierTest::SelectItem_Should_SelectProvidedItem()
+{
+	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
+	AnnotationLine line(QPointF(10, 10), properties);
+	line.addPoint(QPointF(20, 20), false);
+	MockZoomValueProvider zoomValueProvider;
+	AnnotationItemModifier modifer(&zoomValueProvider);
+
+	modifer.selectItem(&line);
+
+	QCOMPARE(modifer.selectedItems().count(), 1);
+	QCOMPARE(modifer.selectedItems().first(), &line);
 }
 
 QTEST_MAIN(AnnotationItemModifierTest);

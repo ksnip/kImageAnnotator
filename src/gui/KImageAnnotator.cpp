@@ -250,6 +250,12 @@ void KImageAnnotator::setCanvasColor(const QColor &color)
 	d->mConfig.setCanvasColor(color);
 }
 
+void KImageAnnotator::setSelectItemAfterDrawing(bool enabled)
+{
+	Q_D(KImageAnnotator);
+	d->mConfig.setSelectItemAfterDrawing(enabled);
+}
+
 // KImageAnnotatorPrivate
 
 KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator) : q_ptr(kImageAnnotator), mCoreView(&mConfig)
