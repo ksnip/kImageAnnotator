@@ -282,6 +282,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(true);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(false);
+			setFontWidgetVisible(false);
 			break;
 		case Tools::Sticker:
 			setColorWidgetVisible(false);
@@ -292,6 +293,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(true);
 			setShadowWidgetVisible(true);
+			setFontWidgetVisible(false);
 			break;
 	case Tools::Duplicate:
 			setColorWidgetVisible(false);
@@ -302,6 +304,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setObfuscateFactorWidgetVisible(false);
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(false);
+			setFontWidgetVisible(false);
 			break;
 		default:
 			qCritical("Unknown tooltype in WidgetConfigurator");

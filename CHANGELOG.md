@@ -27,6 +27,7 @@
 * Fixed: Highlighter/Marker washed out color and overlapping. ([#227](https://github.com/ksnip/kImageAnnotator/issues/227))
 * Fixed: Popup menus shown outside screen. ([#226](https://github.com/ksnip/kImageAnnotator/issues/226))
 * Fixed: Not possible to enter value in the width tool. ([#233](https://github.com/ksnip/kImageAnnotator/issues/233))
+* Fixed: Obfuscation tool shows fonts settings when switching from tool with font. ([#231](https://github.com/ksnip/kImageAnnotator/issues/231))
 
 ## Release 0.4.2
 * Fixed: Fetching image from annotator with HiDPI enabled pixelates image. ([#218](https://github.com/ksnip/kImageAnnotator/issues/218))
