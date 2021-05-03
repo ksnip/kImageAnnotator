@@ -22,10 +22,10 @@
 namespace kImageAnnotator {
 
 NumberPicker::NumberPicker(QWidget *parent) :
-		SettingsPickerWidget(parent),
-		mLayout(new QHBoxLayout(this)),
-		mLabel(new QLabel()),
-		mSpinBox(new CustomSpinBox(this))
+	SettingsPickerWidget(parent),
+	mLayout(new QHBoxLayout(this)),
+	mLabel(new QLabel()),
+	mSpinBox(new CustomSpinBox(this))
 {
 	initGui();
 
@@ -52,7 +52,8 @@ void NumberPicker::initGui()
 
 	mSpinBox->setMinimum(1);
 	mSpinBox->setMaximum(20);
-	mSpinBox->setFocusPolicy(Qt::NoFocus);
+
+	setFocusPolicy(Qt::NoFocus);
 
 	mLayout->addWidget(mLabel);
 	mLayout->addWidget(mSpinBox);

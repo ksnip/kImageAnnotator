@@ -22,10 +22,10 @@
 namespace kImageAnnotator {
 
 ImageEffectPicker::ImageEffectPicker(QWidget *parent) :
-		SettingsPickerWidget(parent),
-		mToolButton(new ListMenuToolButton(this)),
-		mLayout(new QHBoxLayout(this)),
-		mLabel(new QLabel(this))
+	SettingsPickerWidget(parent),
+	mToolButton(new ListMenuToolButton(this)),
+	mLayout(new QHBoxLayout(this)),
+	mLabel(new QLabel(this))
 {
 	initGui();
 }
