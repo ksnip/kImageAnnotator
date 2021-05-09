@@ -350,7 +350,7 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Percent</source>
-        <translation>Porcentagem</translation>
+        <translation>Percentagem</translation>
     </message>
 </context>
 <context>
