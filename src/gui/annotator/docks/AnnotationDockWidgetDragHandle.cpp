@@ -31,6 +31,8 @@ AnnotationDockWidgetDragHandle::AnnotationDockWidgetDragHandle(QWidget *parent) 
 	mHorizontalHandlerImage = IconLoader::loadAsPixmap(QLatin1String("dragHandle.svg"));
 	mVerticalHandlerImage = mHorizontalHandlerImage.transformed(t);
 
+	setContextMenuPolicy(Qt::PreventContextMenu);
+
 	initGui();
 }
 

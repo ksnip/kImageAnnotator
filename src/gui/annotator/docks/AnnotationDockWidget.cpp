@@ -26,8 +26,7 @@ AnnotationDockWidget::AnnotationDockWidget(AbstractAnnotationDockWidgetContent *
 	mContent(content),
 	mDragHandle(new AnnotationDockWidgetDragHandle(this)),
 	mVerticalFeatures(features() ^ QDockWidget::DockWidgetFloatable),
-	mHorizontalFeatures(QDockWidget::DockWidgetVerticalTitleBar | mVerticalFeatures),
-	mWasVisibleBeforeCollapse(isVisible())
+	mHorizontalFeatures(QDockWidget::DockWidgetVerticalTitleBar | mVerticalFeatures)
 {
 	setObjectName(content->name());
 	setAllowedAreas(Qt::AllDockWidgetAreas);
@@ -47,12 +46,7 @@ AnnotationDockWidget::~AnnotationDockWidget()
 
 void AnnotationDockWidget::setCollapsed(bool isCollapsed)
 {
-	if(isCollapsed) {
-		mWasVisibleBeforeCollapse = isVisible();
-		setVisible(false);
-	} else {
-		setVisible(mWasVisibleBeforeCollapse);
-	}
+	setVisible(!isCollapsed);
 }
 
 void AnnotationDockWidget::updateDockLocation(Qt::DockWidgetArea area)

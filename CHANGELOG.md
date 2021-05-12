@@ -28,6 +28,7 @@
 * Fixed: Popup menus shown outside screen. ([#226](https://github.com/ksnip/kImageAnnotator/issues/226))
 * Fixed: Not possible to enter value in the width tool. ([#233](https://github.com/ksnip/kImageAnnotator/issues/233))
 * Fixed: Obfuscation tool shows fonts settings when switching from tool with font. ([#231](https://github.com/ksnip/kImageAnnotator/issues/231))
+* Fixed: Annotation tools are not displayed if application starts with docks hidden. ([#237](https://github.com/ksnip/kImageAnnotator/issues/237))
 
 ## Release 0.4.2
 * Fixed: Fetching image from annotator with HiDPI enabled pixelates image. ([#218](https://github.com/ksnip/kImageAnnotator/issues/218))

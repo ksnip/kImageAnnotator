@@ -29,6 +29,7 @@ using kImageAnnotator::KImageAnnotator;
 int main(int argc, char **argv)
 {
 	QApplication app(argc, argv);
+	auto settingsCollapsed = false;
 	QPixmap pixmap(QSize(500, 500));
 	pixmap.fill(QColor(Qt::darkGreen));
 	auto kImageAnnotator = new KImageAnnotator();
@@ -46,11 +47,17 @@ int main(int argc, char **argv)
 	auto scaleAction = new QAction(QLatin1String("Scale"), &mainWindow);
 	auto rotateAction = new QAction(QLatin1String("Rotate"), &mainWindow);
 	auto modifyCanvasAction = new QAction(QLatin1String("Modify Canvas"), &mainWindow);
+	auto toggleDocksAction = new QAction(QLatin1String("Toggle Docks"), &mainWindow);
 	mainWindow.connect(annotationAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showAnnotator);
 	mainWindow.connect(cropAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showCropper);
 	mainWindow.connect(scaleAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showScaler);
 	mainWindow.connect(rotateAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showRotator);
 	mainWindow.connect(modifyCanvasAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showCanvasModifier);
+	mainWindow.connect(toggleDocksAction, &QAction::triggered, [kImageAnnotator, settingsCollapsed]() mutable
+	{
+		settingsCollapsed = !settingsCollapsed;
+		kImageAnnotator->setSettingsCollapsed(settingsCollapsed);
+	});
 	mainWindow.connect(kImageAnnotator, &KImageAnnotator::tabCloseRequested, [kImageAnnotator](int tabId)
 	{
 		kImageAnnotator->removeTab(tabId);
@@ -60,6 +67,7 @@ int main(int argc, char **argv)
 	menu->addAction(scaleAction);
 	menu->addAction(rotateAction);
 	menu->addAction(modifyCanvasAction);
+	menu->addAction(toggleDocksAction);
 	menuBar->addMenu(menu);
 	mainWindow.show();
 	mainWindow.setMinimumSize(kImageAnnotator->sizeHint());
