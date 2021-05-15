@@ -90,7 +90,7 @@ void AnnotationArea::insertImageItem(const QPointF &position, const QPixmap &ima
 void AnnotationArea::replaceBackgroundImage(const QPixmap &image)
 {
 	mBackgroundImage = QSharedPointer<QGraphicsPixmapItem>(addPixmap(image));
-	setSceneRect(mBackgroundImage->boundingRect());
+	setSceneRect(QRect());
 }
 
 QImage AnnotationArea::image()
@@ -114,7 +114,7 @@ QImage AnnotationArea::image()
 	painter.setRenderHint(QPainter::Antialiasing);
 	render(&painter, QRectF(), scaledSceneRect);
 
-	setSceneRect(mBackgroundImage->boundingRect()); // Reset scene rect
+	setSceneRect(QRect()); // Reset scene rect
 
 	return image;
 }
@@ -240,6 +240,11 @@ void AnnotationArea::modifyCanvas(const QRectF &canvasRect, const QColor &color)
 {
 	mUndoStack->push(new ModifyCanvasCommand(canvasRect, color, this));
 	emit imageChanged();
+}
+
+QRectF AnnotationArea::backgroundImageRect() const
+{
+	return mBackgroundImage->boundingRect();
 }
 
 void AnnotationArea::update()

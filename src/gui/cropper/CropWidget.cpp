@@ -186,7 +186,7 @@ void CropWidget::heightChanged(const QString &text)
 
 void CropWidget::reset()
 {
-	auto selection = mAnnotationArea->sceneRect();
+	auto selection = mAnnotationArea->backgroundImageRect();
 	mSelectionHandler->resetSelection(selection, selection);
 }
 

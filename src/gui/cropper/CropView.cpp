@@ -28,9 +28,11 @@ CropView::CropView(SelectionHandler *cropSelectionHandler, KeyHelper *keyHelper,
 
 void CropView::drawForeground(QPainter *painter, const QRectF &rect)
 {
-	painter->setClipRegion(QRegion(sceneRect().toRect()).subtracted(QRegion(currentSelection().toRect())));
+	auto annotationArea = dynamic_cast<AnnotationArea *>(scene());
+	auto backgroundImageRect = annotationArea->backgroundImageRect();
+	painter->setClipRegion(QRegion(backgroundImageRect.toRect()).subtracted(QRegion(currentSelection().toRect())));
 	painter->setBrush(QColor(0, 0, 0, 150));
-	painter->drawRect(sceneRect());
+	painter->drawRect(backgroundImageRect);
 
 	BaseSelectionView::drawForeground(painter, rect);
 }

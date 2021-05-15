@@ -83,6 +83,7 @@ public:
 	void setCanvasColor(const QColor &color);
 	QColor canvasColor() const;
 	void modifyCanvas(const QRectF &canvasRect, const QColor &color);
+	QRectF backgroundImageRect() const;
 
 public slots:
     virtual void update();
