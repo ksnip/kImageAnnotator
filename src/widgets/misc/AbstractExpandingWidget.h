@@ -29,7 +29,7 @@ class AbstractExpandingWidget
 public:
 	AbstractExpandingWidget() = default;
 	~AbstractExpandingWidget() = default;
-	void setExpanding(bool enabled);
+	virtual void setExpanding(bool enabled);
 
 protected:
 	virtual QWidget* expandingWidget() = 0;

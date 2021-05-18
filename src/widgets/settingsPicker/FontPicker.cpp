@@ -22,13 +22,14 @@
 namespace kImageAnnotator {
 
 FontPicker::FontPicker(QWidget *parent) :
-		SettingsPickerWidget(parent),
-		mLayout(new QHBoxLayout(this)),
-		mFontComboBox(new QFontComboBox(this)),
-		mSizeSpinBox(new CustomSpinBox(this)),
-		mBoldToggle(new ToggleButton(this)),
-		mItalicToggle(new ToggleButton(this)),
-		mUnderlineToggle(new ToggleButton(this))
+	SettingsPickerWidget(parent),
+	mLayout(new QBoxLayout(QBoxLayout::LeftToRight, this)),
+	mButtonLayout(new QHBoxLayout),
+	mFontComboBox(new QFontComboBox(this)),
+	mSizeSpinBox(new CustomSpinBox(this)),
+	mBoldToggle(new ToggleButton(this)),
+	mItalicToggle(new ToggleButton(this)),
+	mUnderlineToggle(new ToggleButton(this))
 {
 	initGui();
 }
@@ -36,6 +37,7 @@ FontPicker::FontPicker(QWidget *parent) :
 FontPicker::~FontPicker()
 {
 	delete mLayout;
+	delete mButtonLayout;
 	delete mFontComboBox;
 	delete mSizeSpinBox;
 	delete mBoldToggle;
@@ -62,6 +64,12 @@ QFont FontPicker::currentFont() const
 	return font;
 }
 
+void FontPicker::setExpanding(bool enabled)
+{
+	mLayout->setDirection(enabled ? QBoxLayout::TopToBottom : QBoxLayout::LeftToRight);
+	AbstractExpandingWidget::setExpanding(enabled);
+}
+
 QWidget *FontPicker::expandingWidget()
 {
 	return mFontComboBox;
@@ -72,6 +80,7 @@ void FontPicker::initGui()
 	mLayout->setContentsMargins(0, 0, 0, 0);
 
 	mFontComboBox->setFocusPolicy(Qt::NoFocus);
+	mFontComboBox->setLayoutDirection(Qt::LeftToRight);
 	mFontComboBox->setMinimumWidth(ScaledSizeProvider::scaledWidth(100));
 	connect(mFontComboBox, &QFontComboBox::currentFontChanged, this, &FontPicker::selectionChanged);
 
@@ -92,11 +101,14 @@ void FontPicker::initGui()
 	mUnderlineToggle->setToolTip(tr("Underline"));
 	connect(mUnderlineToggle, &ToggleButton::toggled, this, &FontPicker::selectionChanged);
 
+	mButtonLayout->addWidget(mBoldToggle);
+	mButtonLayout->addWidget(mItalicToggle);
+	mButtonLayout->addWidget(mUnderlineToggle);
+
 	mLayout->addWidget(mFontComboBox);
 	mLayout->addWidget(mSizeSpinBox);
-	mLayout->addWidget(mBoldToggle);
-	mLayout->addWidget(mItalicToggle);
-	mLayout->addWidget(mUnderlineToggle);
+	mLayout->addLayout(mButtonLayout);
+
 	mLayout->setAlignment(Qt::AlignLeft);
 
 	setLayout(mLayout);

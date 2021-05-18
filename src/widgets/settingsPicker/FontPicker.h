@@ -20,7 +20,7 @@
 #ifndef KIMAGEANNOTATOR_FONTPICKER_H
 #define KIMAGEANNOTATOR_FONTPICKER_H
 
-#include <QHBoxLayout>
+#include <QBoxLayout>
 #include <QFontComboBox>
 
 #include "SettingsPickerWidget.h"
@@ -39,6 +39,7 @@ public:
 	~FontPicker() override;
 	void setCurrentFont(const QFont &font);
 	QFont currentFont() const;
+	void setExpanding(bool enabled) override;
 
 signals:
 	void fontChanged(const QFont &font) const;
@@ -47,7 +48,8 @@ protected:
 	QWidget* expandingWidget() override;
 
 private:
-	QHBoxLayout *mLayout;
+	QBoxLayout *mLayout;
+	QHBoxLayout *mButtonLayout;
 	QFontComboBox *mFontComboBox;
 	CustomSpinBox *mSizeSpinBox;
 	ToggleButton *mBoldToggle;
