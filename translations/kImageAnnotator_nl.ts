@@ -133,10 +133,6 @@
 <context>
     <name>kImageAnnotator::CropWidget</name>
     <message>
-        <source>Crop</source>
-        <translation>Bijsnijden</translation>
-    </message>
-    <message>
         <source>Cancel</source>
         <translation>Annuleren</translation>
     </message>
@@ -155,6 +151,10 @@
     <message>
         <source>H:</source>
         <translation>H:</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished">Toepassen</translation>
     </message>
 </context>
 <context>
