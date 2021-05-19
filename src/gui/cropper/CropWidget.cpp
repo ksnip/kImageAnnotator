@@ -80,7 +80,7 @@ void CropWidget::activate(AnnotationArea *annotationArea)
 
 void CropWidget::initGui()
 {
-	mCropButton->setText(tr("Crop"));
+	mCropButton->setText(tr("Apply"));
 	connect(mCropButton, &QPushButton::clicked, this, &CropWidget::crop);
 
 	mCancelButton->setText(tr("Cancel"));
