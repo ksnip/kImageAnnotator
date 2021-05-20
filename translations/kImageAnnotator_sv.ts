@@ -154,7 +154,7 @@
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">Tillämpa</translation>
+        <translation>Tillämpa</translation>
     </message>
 </context>
 <context>
