@@ -154,7 +154,7 @@
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">Primijeni</translation>
+        <translation>Primijeni</translation>
     </message>
 </context>
 <context>
