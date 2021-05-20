@@ -26,7 +26,7 @@ Config::Config() :
 	mSmoothPathEnabled(false),
 	mSaveToolSelection(false),
 	mSmoothFactor(0),
-	mSwitchToSelectToolAfterDrawingItem(false),
+	mSwitchToSelectToolAfterDrawingItem(true),
 	mSelectItemAfterDrawing(true),
 	mNumberUpdateMode(NumberUpdateMode::UpdateOnlyNewNumbers)
 {

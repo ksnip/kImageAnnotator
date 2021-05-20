@@ -297,15 +297,14 @@ void AnnotationArea::finishDrawingItem(const QPointF &pos)
 	if(mCurrentItem != nullptr) {
 		mCurrentItem->finish();
 
-		if (mCurrentItem->requiresSelectionAfterCreation() || mConfig->selectItemAfterDrawing()) {
+		auto isSelectToolAfterDrawingEnabled = mConfig->switchToSelectToolAfterDrawingItem() && mConfig->selectItemAfterDrawing();
+
+		if (mCurrentItem->requiresSelectionAfterCreation() || isSelectToolAfterDrawingEnabled) {
 			mItemModifier->selectItem(mCurrentItem);
-		}
-
-		mCurrentItem = nullptr;
-
-		if (mConfig->switchToSelectToolAfterDrawingItem() && !mConfig->selectItemAfterDrawing()) {
+		} else if (mConfig->switchToSelectToolAfterDrawingItem()) {
 			mSettingsProvider->activateSelectTool();
 		}
+		mCurrentItem = nullptr;
 	}
 }
 
