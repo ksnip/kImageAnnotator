@@ -46,7 +46,14 @@ AnnotationDockWidget::~AnnotationDockWidget()
 
 void AnnotationDockWidget::setCollapsed(bool isCollapsed)
 {
-	setVisible(!isCollapsed);
+	if (isCollapsed) {
+		mSizeBeforeCollapse = size();
+		setFixedSize(0, 0);
+	} else if (mSizeBeforeCollapse.isValid()){  // Workaround for issue Issue #240 that prevents the bug on auto hide panels
+		setFixedSize(mSizeBeforeCollapse);
+		setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+		mSizeBeforeCollapse = QSize();
+	}
 }
 
 void AnnotationDockWidget::updateDockLocation(Qt::DockWidgetArea area)

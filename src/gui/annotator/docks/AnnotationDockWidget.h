@@ -41,6 +41,7 @@ private:
 	AnnotationDockWidgetDragHandle *mDragHandle;
 	QDockWidget::DockWidgetFeatures mVerticalFeatures;
 	QDockWidget::DockWidgetFeatures mHorizontalFeatures;
+	QSize mSizeBeforeCollapse;
 
 	void resizeToContent();
 	
