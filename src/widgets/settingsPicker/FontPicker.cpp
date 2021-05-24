@@ -25,7 +25,7 @@ FontPicker::FontPicker(QWidget *parent) :
 	SettingsPickerWidget(parent),
 	mLayout(new QBoxLayout(QBoxLayout::LeftToRight, this)),
 	mButtonLayout(new QHBoxLayout),
-	mFontComboBox(new QFontComboBox(this)),
+	mFontComboBox(new CustomFontComboBox(this)),
 	mSizeSpinBox(new CustomSpinBox(this)),
 	mBoldToggle(new ToggleButton(this)),
 	mItalicToggle(new ToggleButton(this)),
@@ -82,6 +82,7 @@ void FontPicker::initGui()
 	mFontComboBox->setFocusPolicy(Qt::NoFocus);
 	mFontComboBox->setLayoutDirection(Qt::LeftToRight);
 	mFontComboBox->setMinimumWidth(ScaledSizeProvider::scaledWidth(100));
+
 	connect(mFontComboBox, &QFontComboBox::currentFontChanged, this, &FontPicker::selectionChanged);
 
 	mSizeSpinBox->setSuffix(QLatin1String("pt"));
@@ -116,7 +117,7 @@ void FontPicker::initGui()
 
 void FontPicker::selectionChanged()
 {
-	setToolTip(mFontComboBox->currentText());
+	setToolTip(mFontComboBox->selectItemText());
 	emit fontChanged(currentFont());
 }
 

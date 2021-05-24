@@ -17,50 +17,31 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_FONTPICKER_H
-#define KIMAGEANNOTATOR_FONTPICKER_H
+#ifndef KIMAGEANNOTATOR_CUSTOMFONTCOMBOBOX_H
+#define KIMAGEANNOTATOR_CUSTOMFONTCOMBOBOX_H
 
-#include <QBoxLayout>
+#include <QFontComboBox>
+#include <QStylePainter>
 
-#include "SettingsPickerWidget.h"
-#include "src/widgets/ToggleButton.h"
-#include "src/widgets/CustomSpinBox.h"
-#include "src/widgets/CustomFontComboBox.h"
-#include "src/common/helper/IconLoader.h"
+#include "src/common/provider/ScaledSizeProvider.h"
 
 namespace kImageAnnotator {
 
-class FontPicker : public SettingsPickerWidget
+class CustomFontComboBox : public QFontComboBox
 {
 Q_OBJECT
 public:
-	explicit FontPicker(QWidget *parent);
-	~FontPicker() override;
-	void setCurrentFont(const QFont &font);
-	QFont currentFont() const;
-	void setExpanding(bool enabled) override;
-
-signals:
-	void fontChanged(const QFont &font) const;
+	explicit CustomFontComboBox(QWidget *parent);
+	~CustomFontComboBox() override = default;
+	QString selectItemText() const;
 
 protected:
-	QWidget* expandingWidget() override;
-
-private:
-	QBoxLayout *mLayout;
-	QHBoxLayout *mButtonLayout;
-	CustomFontComboBox *mFontComboBox;
-	CustomSpinBox *mSizeSpinBox;
-	ToggleButton *mBoldToggle;
-	ToggleButton *mItalicToggle;
-	ToggleButton *mUnderlineToggle;
-
-	void initGui();
+	void resizeEvent(QResizeEvent *event) override;
 
 private slots:
-	void selectionChanged();
+	void elideCurrentText();
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_FONTPICKER_H
+#endif //KIMAGEANNOTATOR_CUSTOMFONTCOMBOBOX_H

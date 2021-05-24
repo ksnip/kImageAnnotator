@@ -129,6 +129,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/common/filter/IgnoreShortcutsFilter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/filter/KeyEventListener.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ToolPicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomFontComboBox.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomSpinBox.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButton.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButtonAction.cpp
