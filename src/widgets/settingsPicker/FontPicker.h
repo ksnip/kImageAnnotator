@@ -35,7 +35,7 @@ class FontPicker : public SettingsPickerWidget
 Q_OBJECT
 public:
 	explicit FontPicker(QWidget *parent);
-	~FontPicker() override;
+	~FontPicker() override = default;
 	void setCurrentFont(const QFont &font);
 	QFont currentFont() const;
 	void setExpanding(bool enabled) override;

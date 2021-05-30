@@ -22,19 +22,12 @@
 namespace kImageAnnotator {
 
 StickerPicker::StickerPicker(QWidget *parent) :
-		SettingsPickerWidget(parent),
-		mLayout(new QHBoxLayout(this)),
-		mLabel(new QLabel(this)),
-		mToolButton(new GridMenuToolButton(this))
+	SettingsPickerWidget(parent),
+	mLayout(new QHBoxLayout(this)),
+	mLabel(new QLabel(this)),
+	mToolButton(new GridMenuToolButton(this))
 {
 	init();
-}
-
-StickerPicker::~StickerPicker()
-{
-	delete mLayout;
-	delete mLabel;
-	delete mToolButton;
 }
 
 void StickerPicker::setSticker(const QString &name)

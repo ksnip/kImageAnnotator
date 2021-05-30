@@ -47,7 +47,6 @@ AnnotationItemSettings::~AnnotationItemSettings()
 	delete mStickerPicker;
 	delete mShadowPicker;
 	delete mFontPicker;
-	delete mMainLayout;
 	qDeleteAll(mSeparators);
 }
 

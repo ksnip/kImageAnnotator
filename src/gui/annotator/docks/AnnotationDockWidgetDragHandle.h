@@ -35,7 +35,7 @@ class AnnotationDockWidgetDragHandle : public QWidget
 	Q_OBJECT
 public:
 	explicit AnnotationDockWidgetDragHandle(QWidget *parent);
-	~AnnotationDockWidgetDragHandle() override;
+	~AnnotationDockWidgetDragHandle() override = default;
 	QSize sizeHint() const override;
 	QSize minimumSizeHint() const override;
 	void setOrientation(Qt::Orientation orientation);

@@ -21,14 +21,14 @@
 
 namespace kImageAnnotator {
 
-AnnotationTabContextMenu::AnnotationTabContextMenu(QWidget *parent)
-	: QMenu(parent),
-	  mCloseTab(new QAction(this)),
-	  mClosedOtherTabs(new QAction(this)),
-	  mCloseAllTabs(new QAction(this)),
-	  mCloseAllTabsToLeft(new QAction(this)),
-	  mCloseAllTabsToRight(new QAction(this)),
-	  mTabIndex(-1)
+AnnotationTabContextMenu::AnnotationTabContextMenu(QWidget *parent) :
+	QMenu(parent),
+	mCloseTab(new QAction(this)),
+	mClosedOtherTabs(new QAction(this)),
+	mCloseAllTabs(new QAction(this)),
+	mCloseAllTabsToLeft(new QAction(this)),
+	mCloseAllTabsToRight(new QAction(this)),
+	mTabIndex(-1)
 {
 	mCloseTab->setText(tr("Close"));
 	mClosedOtherTabs->setText(tr("Close Other"));

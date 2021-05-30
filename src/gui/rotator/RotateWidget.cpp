@@ -31,7 +31,6 @@ RotateWidget::RotateWidget() :
 
 RotateWidget::~RotateWidget()
 {
-	delete mMainLayout;
 	delete mView;
 }
 

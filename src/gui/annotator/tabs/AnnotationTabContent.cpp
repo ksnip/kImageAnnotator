@@ -38,7 +38,6 @@ AnnotationTabContent::AnnotationTabContent(const QPixmap &pixmap, Config *config
 
 AnnotationTabContent::~AnnotationTabContent()
 {
-	delete mMainLayout;
 	delete mAnnotationArea;
 	delete mAnnotationView;
 }

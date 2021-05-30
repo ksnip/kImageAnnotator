@@ -36,9 +36,7 @@ ListMenu::ListMenu(QWidget *parent) :
 
 ListMenu::~ListMenu()
 {
-	delete mLayout;
 	qDeleteAll(mListItemGroup->items());
-	delete mListItemGroup;
 }
 
 void ListMenu::addItem(const QIcon &icon, const QString &text, const QVariant &data)

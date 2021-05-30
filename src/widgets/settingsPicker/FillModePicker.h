@@ -40,7 +40,7 @@ class FillModePicker : public SettingsPickerWidget
 	Q_OBJECT
 public:
 	explicit FillModePicker(QWidget *parent);
-	~FillModePicker() override;
+	~FillModePicker() override = default;
 	void setFillType(FillModes fillType);
 	void addNoFillAndNoBorderToList();
 	void removeNoFillAndNoBorderToList();

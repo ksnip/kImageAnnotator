@@ -39,7 +39,7 @@ class RotateDialog : public QDialog
 Q_OBJECT
 public:
 	explicit RotateDialog(QWidget *parent = nullptr);
-	~RotateDialog() override;
+	~RotateDialog() override = default;
 
 signals:
 	void rotate(qreal angle) const;

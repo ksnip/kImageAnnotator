@@ -24,19 +24,12 @@ namespace kImageAnnotator {
 NumberPicker::NumberPicker(QWidget *parent) :
 	SettingsPickerWidget(parent),
 	mLayout(new QHBoxLayout(this)),
-	mLabel(new QLabel()),
+	mLabel(new QLabel(this)),
 	mSpinBox(new CustomSpinBox(this))
 {
 	initGui();
 
 	connect(mSpinBox, &CustomSpinBox::valueChanged, this, &NumberPicker::selectionChanged);
-}
-
-NumberPicker::~NumberPicker()
-{
-	delete mLayout;
-	delete mSpinBox;
-	delete mLabel;
 }
 
 void NumberPicker::setNumber(int number)

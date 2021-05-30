@@ -37,7 +37,7 @@ class ZoomPicker : public SettingsPickerWidget
 Q_OBJECT
 public:
 	explicit ZoomPicker(QWidget *parent);
-	~ZoomPicker() override;
+	~ZoomPicker() override = default;
 
 public slots:
 	void setZoomValue(double value);

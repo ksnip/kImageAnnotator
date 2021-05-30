@@ -40,7 +40,7 @@ class ImageEffectPicker : public SettingsPickerWidget
 	Q_OBJECT
 public:
 	explicit ImageEffectPicker(QWidget *parent);
-	~ImageEffectPicker() override;
+	~ImageEffectPicker() override = default;
 	void setEffect(ImageEffects effect);
 	ImageEffects effect() const;
 

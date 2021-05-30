@@ -36,7 +36,7 @@ class StickerPicker : public SettingsPickerWidget
 Q_OBJECT
 public:
 	explicit StickerPicker(QWidget *parent);
-	~StickerPicker() override;
+	~StickerPicker() override = default;
 	void setSticker(const QString &name);
 	QString sticker() const;
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);

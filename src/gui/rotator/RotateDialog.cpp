@@ -47,26 +47,6 @@ RotateDialog::RotateDialog(QWidget *parent) :
 	setDefault();
 }
 
-RotateDialog::~RotateDialog()
-{
-	delete m180RadioButton;
-	delete m90ClockwiseRadioButton;
-	delete m90CounterClockwiseRadioButton;
-	delete mArbitraryRotationRadioButton;
-	delete mFlipHorizontalRadioButton;
-	delete mFlipVerticalRadioButton;
-	delete mArbitraryRotationSpinBox;
-	delete mOkButton;
-	delete mCancelButton;
-	delete mRotateRadioButtonLayout;
-	delete mFlipRadioButtonLayout;
-	delete mRotateButtonGroupBox;
-	delete mFlipButtonGroupBox;
-	delete mButtonRowLayout;
-	delete mMainLayout;
-	delete mButtonGroup;
-}
-
 void RotateDialog::initGui()
 {
 	m180RadioButton->setText(tr("180°"));

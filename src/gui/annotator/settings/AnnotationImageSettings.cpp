@@ -31,7 +31,6 @@ AnnotationImageSettings::AnnotationImageSettings() :
 AnnotationImageSettings::~AnnotationImageSettings()
 {
 	delete mEffectPicker;
-	delete mMainLayout;
 }
 
 ImageEffects AnnotationImageSettings::effect() const

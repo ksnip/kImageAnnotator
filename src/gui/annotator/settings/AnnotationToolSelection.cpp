@@ -37,7 +37,6 @@ AnnotationToolSelection::AnnotationToolSelection() :
 
 AnnotationToolSelection::~AnnotationToolSelection()
 {
-	delete mMainLayout;
 	delete mToolPicker;
 }
 

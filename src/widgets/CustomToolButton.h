@@ -33,6 +33,7 @@ class CustomToolButton : public QToolButton
 Q_OBJECT
 public:
 	explicit CustomToolButton(QWidget *parent = nullptr);
+	~CustomToolButton() override = default;
 	void setButtonText(const QString &text);
 	void setMenu(QMenu *menu);
 	void setAction(QAction *action);

@@ -30,13 +30,6 @@ ImageEffectPicker::ImageEffectPicker(QWidget *parent) :
 	initGui();
 }
 
-ImageEffectPicker::~ImageEffectPicker()
-{
-	delete mLayout;
-	delete mLabel;
-	delete mToolButton;
-}
-
 void ImageEffectPicker::setEffect(ImageEffects effect)
 {
 	mToolButton->setCurrentData(static_cast<int>(effect));

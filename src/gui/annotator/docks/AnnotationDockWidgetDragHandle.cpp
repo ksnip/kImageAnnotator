@@ -36,12 +36,6 @@ AnnotationDockWidgetDragHandle::AnnotationDockWidgetDragHandle(QWidget *parent) 
 	initGui();
 }
 
-AnnotationDockWidgetDragHandle::~AnnotationDockWidgetDragHandle()
-{
-	delete mLabel;
-	delete mLayout;
-}
-
 QSize AnnotationDockWidgetDragHandle::sizeHint() const
 {
 	return QWidget::sizeHint();

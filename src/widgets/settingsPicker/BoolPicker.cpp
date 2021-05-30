@@ -22,19 +22,12 @@
 namespace kImageAnnotator {
 
 BoolPicker::BoolPicker(QWidget *parent) :
-		SettingsPickerWidget(parent),
-		mToolButton(new ListMenuToolButton(this)),
-		mLayout(new QHBoxLayout(this)),
-		mLabel(new QLabel(this))
+	SettingsPickerWidget(parent),
+	mToolButton(new ListMenuToolButton(this)),
+	mLayout(new QHBoxLayout(this)),
+	mLabel(new QLabel(this))
 {
 	initGui();
-}
-
-BoolPicker::~BoolPicker()
-{
-	delete mLayout;
-	delete mLabel;
-	delete mToolButton;
 }
 
 void BoolPicker::setEnabledState(bool enabled)

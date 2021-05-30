@@ -26,18 +26,18 @@ CropWidget::CropWidget() :
 	mKeyHelper(new KeyHelper()),
 	mSelectionHandler(new SelectionHandler(new CropSelectionRestrictor)),
 	mCropView(new CropView(mSelectionHandler, mKeyHelper, this)),
-	mCropButton(new QPushButton),
-	mCancelButton(new QPushButton),
+	mCropButton(new QPushButton(this)),
+	mCancelButton(new QPushButton(this)),
 	mPanelLayout(new QHBoxLayout),
-	mPositionXLabel(new QLabel),
-	mPositionYLabel(new QLabel),
-	mHeightLabel(new QLabel),
-	mWidthLabel(new QLabel),
-	mPositionXLineEdit(new QLineEdit),
-	mPositionYLineEdit(new QLineEdit),
-	mWidthLineEdit(new QLineEdit),
-	mHeightLineEdit(new QLineEdit),
-	mMainLayout(new QVBoxLayout),
+	mPositionXLabel(new QLabel(this)),
+	mPositionYLabel(new QLabel(this)),
+	mHeightLabel(new QLabel(this)),
+	mWidthLabel(new QLabel(this)),
+	mPositionXLineEdit(new QLineEdit(this)),
+	mPositionYLineEdit(new QLineEdit(this)),
+	mWidthLineEdit(new QLineEdit(this)),
+	mHeightLineEdit(new QLineEdit(this)),
+	mMainLayout(new QVBoxLayout(this)),
 	mInputValidator(new QIntValidator(0, 9999, this)),
 	mZoomPicker(new ZoomPicker(this))
 {
@@ -52,18 +52,6 @@ CropWidget::~CropWidget()
 	delete mKeyHelper;
 	delete mSelectionHandler;
 	delete mCropView;
-	delete mMainLayout;
-	delete mCropButton;
-	delete mCancelButton;
-	delete mPositionXLineEdit;
-	delete mPositionYLineEdit;
-	delete mWidthLineEdit;
-	delete mHeightLineEdit;
-	delete mPositionXLabel;
-	delete mPositionYLabel;
-	delete mWidthLabel;
-	delete mHeightLabel;
-	delete mInputValidator;
 	delete mZoomPicker;
 }
 

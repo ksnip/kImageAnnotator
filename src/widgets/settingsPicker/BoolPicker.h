@@ -36,7 +36,7 @@ class BoolPicker : public SettingsPickerWidget
 Q_OBJECT
 public:
 	explicit BoolPicker(QWidget *parent);
-	~BoolPicker() override;
+	~BoolPicker() override = default;
 	void setEnabledState(bool enabled);
 	bool enabledState() const;
 	void setToolTip(const QString &toolTip);

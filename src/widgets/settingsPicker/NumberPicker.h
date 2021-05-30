@@ -37,7 +37,7 @@ Q_OBJECT
 
 public:
 	explicit NumberPicker(QWidget *parent);
-	~NumberPicker() override;
+	~NumberPicker() override = default;
 	void setNumber(int number);
 	void setRange(int min, int max);
 	int number() const;

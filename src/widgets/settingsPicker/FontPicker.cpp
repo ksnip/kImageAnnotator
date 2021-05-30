@@ -34,17 +34,6 @@ FontPicker::FontPicker(QWidget *parent) :
 	initGui();
 }
 
-FontPicker::~FontPicker()
-{
-	delete mLayout;
-	delete mButtonLayout;
-	delete mFontComboBox;
-	delete mSizeSpinBox;
-	delete mBoldToggle;
-	delete mItalicToggle;
-	delete mUnderlineToggle;
-}
-
 void FontPicker::setCurrentFont(const QFont &font)
 {
 	mBoldToggle->setChecked(font.bold());

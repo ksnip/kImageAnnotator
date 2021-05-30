@@ -1,5 +1,8 @@
 # Change log
 
+## Release 0.5.1
+* Fixed: Crashes on destruction. ([#242](https://github.com/ksnip/kImageAnnotator/issues/242))
+
 ## Release 0.5.0
 * New: Add function for loading translations. ([#173](https://github.com/ksnip/kImageAnnotator/issues/173))
 * New: Add a new tool for creating resizable movable duplicates of regions. ([#131](https://github.com/ksnip/kImageAnnotator/issues/131))

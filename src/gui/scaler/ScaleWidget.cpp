@@ -31,7 +31,6 @@ kImageAnnotator::ScaleWidget::ScaleWidget() :
 
 ScaleWidget::~ScaleWidget()
 {
-	delete mMainLayout;
 	delete mView;
 }
 

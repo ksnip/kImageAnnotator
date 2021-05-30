@@ -32,12 +32,6 @@ ToolPicker::ToolPicker(QWidget *parent) :
 	setFocusPolicy(Qt::ClickFocus);
 }
 
-ToolPicker::~ToolPicker()
-{
-	delete mActionGroup;
-	delete mLayout;
-}
-
 void ToolPicker::setTool(Tools newTool)
 {
 	auto action = mActionToTool.key(newTool);

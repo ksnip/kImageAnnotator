@@ -22,19 +22,12 @@
 namespace kImageAnnotator {
 
 FillModePicker::FillModePicker(QWidget *parent) :
-		SettingsPickerWidget(parent),
-		mToolButton(new ListMenuToolButton(this)),
-		mLayout(new QHBoxLayout(this)),
-		mLabel(new QLabel(this))
+	SettingsPickerWidget(parent),
+	mToolButton(new ListMenuToolButton(this)),
+	mLayout(new QHBoxLayout(this)),
+	mLabel(new QLabel(this))
 {
 	initGui();
-}
-
-FillModePicker::~FillModePicker()
-{
-	delete mLayout;
-	delete mLabel;
-	delete mToolButton;
 }
 
 void FillModePicker::setFillType(FillModes fillType)

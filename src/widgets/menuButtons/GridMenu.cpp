@@ -35,8 +35,6 @@ GridMenu::GridMenu(QWidget *parent) :
 GridMenu::~GridMenu()
 {
 	qDeleteAll(mButtonGroup->buttons());
-	delete mButtonGroup;
-	delete mLayout;
 }
 
 void GridMenu::addItem(const QIcon &icon, const QString &toolTip, const QVariant &data)

@@ -39,7 +39,7 @@ class ScaleDialog : public QDialog
 Q_OBJECT
 public:
 	explicit ScaleDialog(const QSize &imageSize, QWidget *parent = nullptr);
-	~ScaleDialog() override;
+	~ScaleDialog() override = default;
 
 signals:
 	void finished(const QSize &newSize) const;

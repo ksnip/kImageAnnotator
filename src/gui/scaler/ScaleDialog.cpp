@@ -24,10 +24,10 @@ namespace kImageAnnotator {
 ScaleDialog::ScaleDialog(const QSize &imageSize, QWidget *parent) :
 	QDialog(parent, Qt::WindowTitleHint | Qt::WindowCloseButtonHint),
 	mKeepAspectRatioCheckBox(new QCheckBox),
-	mWidthPixelLabel(new QLabel),
-	mHeightPixelLabel(new QLabel),
-	mWidthPercentLabel(new QLabel),
-	mHeightPercentLabel(new QLabel),
+	mWidthPixelLabel(new QLabel(this)),
+	mHeightPixelLabel(new QLabel(this)),
+	mWidthPercentLabel(new QLabel(this)),
+	mHeightPercentLabel(new QLabel(this)),
 	mWidthPixelSpinBox(new CustomSpinBox(this)),
 	mHeightPixelSpinBox(new CustomSpinBox(this)),
 	mWidthPercentSpinBox(new CustomSpinBox(this)),
@@ -39,34 +39,13 @@ ScaleDialog::ScaleDialog(const QSize &imageSize, QWidget *parent) :
 	mPixelGroupBox(new QGroupBox(this)),
 	mPercentGroupBox(new QGroupBox(this)),
 	mButtonRowLayout(new QHBoxLayout),
-	mMainLayout(new QVBoxLayout)
+	mMainLayout(new QVBoxLayout(this))
 {
 	setWindowTitle(tr("Scale Image"));
 
 	mSizeHandler.setSize(imageSize);
 
 	initGui();
-}
-
-ScaleDialog::~ScaleDialog()
-{
-	delete mKeepAspectRatioCheckBox;
-	delete mWidthPixelLabel;
-	delete mHeightPixelLabel;
-	delete mWidthPercentLabel;
-	delete mHeightPercentLabel;
-	delete mWidthPixelSpinBox;
-	delete mHeightPixelSpinBox;
-	delete mWidthPercentSpinBox;
-	delete mHeightPercentSpinBox;
-	delete mOkButton;
-	delete mCancelButton;
-	delete mPixelGridLayout;
-	delete mPercentGridLayout;
-	delete mPixelGroupBox;
-	delete mPercentGroupBox;
-	delete mButtonRowLayout;
-	delete mMainLayout;
 }
 
 void ScaleDialog::initGui()

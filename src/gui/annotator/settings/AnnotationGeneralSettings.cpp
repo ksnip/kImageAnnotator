@@ -31,7 +31,6 @@ AnnotationGeneralSettings::AnnotationGeneralSettings() :
 AnnotationGeneralSettings::~AnnotationGeneralSettings()
 {
 	delete mZoomPicker;
-	delete mMainLayout;
 }
 
 void AnnotationGeneralSettings::initGui()

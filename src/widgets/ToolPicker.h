@@ -38,7 +38,7 @@ class ToolPicker : public QWidget
 Q_OBJECT
 public:
 	explicit ToolPicker(QWidget *parent);
-	~ToolPicker() override;
+	~ToolPicker() override = default;
 	void setTool(Tools newTool);
 	Tools tool();
 

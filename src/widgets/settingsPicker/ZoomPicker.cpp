@@ -33,16 +33,6 @@ ZoomPicker::ZoomPicker(QWidget *parent) :
 	initGui();
 }
 
-ZoomPicker::~ZoomPicker()
-{
-	delete mLabel;
-	delete mSpinBox;
-	delete mLayout;
-	delete mZoomInAction;
-	delete mZoomOutAction;
-	delete mResetZoomAction;
-}
-
 QWidget *ZoomPicker::expandingWidget()
 {
 	return mSpinBox;

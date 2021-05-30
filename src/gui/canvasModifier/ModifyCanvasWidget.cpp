@@ -27,21 +27,21 @@ ModifyCanvasWidget::ModifyCanvasWidget() :
 	mSelectionHandler(new SelectionHandler(new ModifyCanvasSelectionRestrictor)),
 	mModifyCanvasView(new ModifyCanvasView(mSelectionHandler, mKeyHelper, this)),
 	mKeyHelper(new KeyHelper()),
-	mApplyButton(new QPushButton),
-	mCancelButton(new QPushButton),
+	mApplyButton(new QPushButton(this)),
+	mCancelButton(new QPushButton(this)),
 	mPanelLayout(new QHBoxLayout),
-	mPositionXLabel(new QLabel),
-	mPositionYLabel(new QLabel),
-	mHeightLabel(new QLabel),
-	mWidthLabel(new QLabel),
-	mColorLabel(new QLabel),
-	mPositionXLineEdit(new QLineEdit),
-	mPositionYLineEdit(new QLineEdit),
-	mWidthLineEdit(new QLineEdit),
-	mHeightLineEdit(new QLineEdit),
-	mMainLayout(new QVBoxLayout),
+	mPositionXLabel(new QLabel(this)),
+	mPositionYLabel(new QLabel(this)),
+	mHeightLabel(new QLabel(this)),
+	mWidthLabel(new QLabel(this)),
+	mColorLabel(new QLabel(this)),
+	mPositionXLineEdit(new QLineEdit(this)),
+	mPositionYLineEdit(new QLineEdit(this)),
+	mWidthLineEdit(new QLineEdit(this)),
+	mHeightLineEdit(new QLineEdit(this)),
+	mMainLayout(new QVBoxLayout(this)),
 	mInputValidator(new QIntValidator(-9999, 9999, this)),
-	mRestrictCheckBox(new QCheckBox),
+	mRestrictCheckBox(new QCheckBox(this)),
 	mColorDialogButton(new ColorDialogButton(this)),
 	mZoomPicker(new ZoomPicker(this))
 {
@@ -54,20 +54,6 @@ ModifyCanvasWidget::ModifyCanvasWidget() :
 ModifyCanvasWidget::~ModifyCanvasWidget()
 {
 	delete mKeyHelper;
-	delete mMainLayout;
-	delete mApplyButton;
-	delete mCancelButton;
-	delete mPositionXLineEdit;
-	delete mPositionYLineEdit;
-	delete mWidthLineEdit;
-	delete mHeightLineEdit;
-	delete mPositionXLabel;
-	delete mPositionYLabel;
-	delete mWidthLabel;
-	delete mHeightLabel;
-	delete mColorLabel;
-	delete mInputValidator;
-	delete mRestrictCheckBox;
 	delete mColorDialogButton;
 	delete mZoomPicker;
 }
