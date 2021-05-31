@@ -9,19 +9,19 @@
     </message>
     <message>
         <source>Bring to Front</source>
-        <translation>Nach vorne bringen</translation>
+        <translation>Ganz nach vorn</translation>
     </message>
     <message>
         <source>Bring Forward</source>
-        <translation>Nach vorne bringen</translation>
+        <translation>Nach vorn</translation>
     </message>
     <message>
         <source>Send Backward</source>
-        <translation>Nach hinten schicken</translation>
+        <translation>Nach hinten</translation>
     </message>
     <message>
         <source>Send to Back</source>
-        <translation>Nach hinten schicken</translation>
+        <translation>Ganz nach hinten</translation>
     </message>
     <message>
         <source>Select This</source>
@@ -48,45 +48,45 @@
     <name>kImageAnnotator::AnnotationGeneralSettings</name>
     <message>
         <source>General Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Allgemeine Einstellungen</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationImageSettings</name>
     <message>
         <source>Image Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Bild Einstellungen</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationItemSettings</name>
     <message>
         <source>Color</source>
-        <translation type="unfinished">Farbe</translation>
+        <translation>Farbe</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation type="unfinished">Textfarbe</translation>
+        <translation>Textfarbe</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished">Breite</translation>
+        <translation>Breite</translation>
     </message>
     <message>
         <source>Number Seed</source>
-        <translation type="unfinished">Nummerieren</translation>
+        <translation>Nummerierung ab</translation>
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished">Obfuskierungs-Faktor</translation>
+        <translation>Unschärfe Faktor</translation>
     </message>
     <message>
         <source>Item Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Objekt-Schatten</translation>
     </message>
     <message>
         <source>Item Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Objekt-Einstellungen</translation>
     </message>
 </context>
 <context>
@@ -101,7 +101,7 @@
     </message>
     <message>
         <source>Close All</source>
-        <translation>Alles schließen</translation>
+        <translation>Alle schließen</translation>
     </message>
     <message>
         <source>Close All to the Left</source>
@@ -116,18 +116,18 @@
     <name>kImageAnnotator::AnnotationToolSelection</name>
     <message>
         <source>Tool Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkzeugauswahl</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::BoolPicker</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiviert</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktiviert</translation>
     </message>
 </context>
 <context>
@@ -154,7 +154,7 @@
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">Anwenden</translation>
+        <translation>Anwenden</translation>
     </message>
 </context>
 <context>
@@ -180,26 +180,26 @@
     <name>kImageAnnotator::FontPicker</name>
     <message>
         <source>Font Size</source>
-        <translation type="unfinished">Schriftgröße</translation>
+        <translation>Schriftgröße</translation>
     </message>
     <message>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Fett</translation>
     </message>
     <message>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>Kursiv</translation>
     </message>
     <message>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Unterstrichen</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
-        <translation>Bildeffekte</translation>
+        <translation>Bild-Effekte</translation>
     </message>
     <message>
         <source>No Effect</source>
@@ -219,7 +219,7 @@
     </message>
     <message>
         <source>Invert Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbe invertieren</translation>
     </message>
 </context>
 <context>
@@ -264,7 +264,7 @@ Zeichenfläche das Hintergrundbild beinhaltet.</translation>
     </message>
     <message>
         <source>Canvas Background Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Hintergrundfarbe der Zeichenfläche</translation>
     </message>
 </context>
 <context>
@@ -279,20 +279,21 @@ Zeichenfläche das Hintergrundbild beinhaltet.</translation>
     </message>
     <message>
         <source>90° Clockwise</source>
-        <translation>90° im UZS</translation>
+        <translation>90° im Uhrzeigersinn</translation>
     </message>
     <message>
         <source>90° Counter Clockwise</source>
-        <translation>90° gegen UZS</translation>
+        <translation>90° gegen den Uhrzeigersinn</translation>
     </message>
     <message>
         <source>Arbitrary</source>
-        <translation type="unfinished"></translation>
+        <translation>Beliebig</translation>
     </message>
     <message>
         <source>Positive values rotate clockwise, negative values counter clockwise.
 Rotating by non 90° multipliers might introduce loss of quality.</source>
-        <translation type="unfinished"></translation>
+        <translation>Positive Werte rotieren im Uhrzeigersinn, negative Werte gegen den Uhrzeigersinn.
+Das Drehen um nicht 90°-Multiplikatoren kann zu Qualitätsverlusten führen.</translation>
     </message>
     <message>
         <source>Horizontal</source>
@@ -304,11 +305,11 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <source>Rotate</source>
@@ -316,7 +317,7 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Flip</source>
-        <translation type="unfinished"></translation>
+        <translation>Umdrehen</translation>
     </message>
 </context>
 <context>
@@ -377,15 +378,15 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Marker Rectangle</source>
-        <translation>Markierungsrechteck</translation>
+        <translation>Rechteckige Markierung</translation>
     </message>
     <message>
         <source>Marker Ellipse</source>
-        <translation>Markierungsellipse</translation>
+        <translation>Ellipsen Markierung</translation>
     </message>
     <message>
         <source>Marker Pen</source>
-        <translation>Markierungsstift</translation>
+        <translation>Stift Markierung</translation>
     </message>
     <message>
         <source>Text</source>
@@ -417,7 +418,7 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Number Pointer</source>
-        <translation>Anzahlzeiger</translation>
+        <translation>Nummer mit Zeiger</translation>
     </message>
     <message>
         <source>Sticker</source>
@@ -433,11 +434,11 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Text Arrow</source>
-        <translation>Pfeil mit Text</translation>
+        <translation>Text mit Pfeil</translation>
     </message>
     <message>
         <source>Number Arrow</source>
-        <translation>Pfeil mit Zahl</translation>
+        <translation>Nummer mit Pfeil</translation>
     </message>
     <message>
         <source>Duplicate</source>
@@ -448,15 +449,15 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     <name>kImageAnnotator::ZoomPicker</name>
     <message>
         <source>Zoom In (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vergrößern (%1)</translation>
     </message>
     <message>
         <source>Zoom Out (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Verkleinern (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom zurücksetzen (%1)</translation>
     </message>
 </context>
 </TS>
