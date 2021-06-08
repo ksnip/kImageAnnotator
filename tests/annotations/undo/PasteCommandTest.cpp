@@ -41,7 +41,7 @@ void PasteCommandTest::TestRedo_Should_AddPastedItemsToAnnotationAreaAtGivenPosi
 	auto position = QPointF(50, 50);
 	MockDefaultParameters mockParameters;
 	AnnotationPropertiesFactory propertiesFactory(&mockParameters.config, &mockParameters.settingsProvider);
-	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, &mockParameters.scaler, &mockParameters.zoomValueProvider);
+	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, &mockParameters.scaler, &mockParameters.zoomValueProvider, nullptr);
 	AnnotationItemFactory itemFactory(&propertiesFactory, &mockParameters.settingsProvider, &mockParameters.config);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
@@ -65,7 +65,7 @@ void PasteCommandTest::TestUndo_Should_RemovePastedItemsFromAnnotationArea()
 	auto position = QPointF(50, 50);
 	MockDefaultParameters mockParameters;
 	AnnotationPropertiesFactory propertiesFactory(&mockParameters.config, &mockParameters.settingsProvider);
-	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, &mockParameters.scaler, &mockParameters.zoomValueProvider);
+	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, &mockParameters.scaler, &mockParameters.zoomValueProvider, nullptr);
 	AnnotationItemFactory itemFactory(&propertiesFactory, &mockParameters.settingsProvider, &mockParameters.config);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);

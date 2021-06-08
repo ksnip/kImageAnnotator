@@ -56,6 +56,7 @@ ModifyCanvasWidget::~ModifyCanvasWidget()
 	delete mKeyHelper;
 	delete mColorDialogButton;
 	delete mZoomPicker;
+	delete mSelectionHandler;
 }
 
 void ModifyCanvasWidget::activate(AnnotationArea *annotationArea)

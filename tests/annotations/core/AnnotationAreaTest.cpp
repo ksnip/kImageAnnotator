@@ -24,7 +24,7 @@ void AnnotationAreaTest::ExportAsImage_Should_ExportImage_When_ImageSet()
 	QPixmap pixmap(QSize(400, 400));
 	pixmap.fill(QColor(Qt::green));
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
 	annotationArea.loadImage(pixmap);
 
 	auto resultImage = annotationArea.image();
@@ -36,7 +36,7 @@ void AnnotationAreaTest::ExportAsImage_Should_ExportImage_When_ImageSet()
 void AnnotationAreaTest::ExportAsImage_Should_ExportEmptyImage_When_NoImageSet()
 {
 	MockDefaultParameters p;
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider, nullptr);
 
 	auto resultImage = annotationArea.image();
 
@@ -50,7 +50,7 @@ void AnnotationAreaTest::ExportAsImage_Should_ExportScaledImage_When_ScalingEnab
 	pixmap.fill(QColor(Qt::green));
 	MockDefaultParameters p;
 	p.scaler.setScaleFactor(scaleFactor);
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider, nullptr);
 	annotationArea.loadImage(pixmap);
 
 	auto resultImage = annotationArea.image();
@@ -68,7 +68,7 @@ void AnnotationAreaTest::AddAnnotationItem_Should_AddAnnotationItemToScene()
 	auto lineItem = new AnnotationLine(p1, properties);
 	lineItem->addPoint(p2, false);
 	MockDefaultParameters p;
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider, nullptr);
 
 	annotationArea.addAnnotationItem(lineItem);
 
@@ -83,7 +83,7 @@ void AnnotationAreaTest::RemoveAnnotationItem_Should_RemoveAnnotationItemFromSce
 	auto lineItem = new AnnotationLine(p1, properties);
 	lineItem->addPoint(p2, false);
 	MockDefaultParameters p;
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider, nullptr);
 	annotationArea.addAnnotationItem(lineItem);
 	QCOMPARE(annotationArea.items().contains(lineItem), true);
 
@@ -98,7 +98,7 @@ void AnnotationAreaTest::CanvasRect_Should_ReturnRectUnionOfAllItems_When_NoCanv
 	QPixmap pixmap(backgroundImageBoundingRect.size().toSize());
 	pixmap.fill(QColor(Qt::green));
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
 	annotationArea.loadImage(pixmap);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
@@ -119,7 +119,7 @@ void AnnotationAreaTest::CanvasRect_Should_ReturnUserDefinedRect_When_CanvasRect
 	QPixmap pixmap(backgroundImageBoundingRect.size());
 	pixmap.fill(QColor(Qt::green));
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
 	annotationArea.loadImage(pixmap);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);

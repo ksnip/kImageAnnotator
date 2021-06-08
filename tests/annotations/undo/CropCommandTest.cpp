@@ -22,7 +22,7 @@
 void CropCommandTest::TestRedo_Should_CropImageAndScene()
 {
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -37,7 +37,7 @@ void CropCommandTest::TestRedo_Should_CropImageAndScene()
 void CropCommandTest::TestRedo_Should_MoveItemToNewPosition()
 {
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -57,7 +57,7 @@ void CropCommandTest::TestRedo_Should_MoveItemToNewPosition()
 void CropCommandTest::TestUndo_Should_RestoreOriginalImageAndSceneSize()
 {
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -73,7 +73,7 @@ void CropCommandTest::TestUndo_Should_RestoreOriginalImageAndSceneSize()
 void CropCommandTest::TestUndo_Should_MoveItemBackToPreviousPosition()
 {
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);

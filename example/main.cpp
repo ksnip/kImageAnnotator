@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 	QMainWindow mainWindow;
 	mainWindow.setCentralWidget(kImageAnnotator);
 	auto menuBar = mainWindow.menuBar();
-	auto menu = new QMenu(QLatin1String("Edit"));
+	auto menu = new QMenu(QLatin1String("Edit"), &mainWindow);
 	auto annotationAction = new QAction(QLatin1String("Annotation"), &mainWindow);
 	auto cropAction = new QAction(QLatin1String("Crop"), &mainWindow);
 	auto scaleAction = new QAction(QLatin1String("Scale"), &mainWindow);

@@ -31,7 +31,7 @@ class DevicePixelRatioScaler : public IDevicePixelRatioScaler
 {
 public:
 	DevicePixelRatioScaler() = default;
-	~DevicePixelRatioScaler() = default;
+	~DevicePixelRatioScaler() override = default;
 
     QRectF scale(const QRectF &rect) const override;
 	qreal scaleFactor() const override;

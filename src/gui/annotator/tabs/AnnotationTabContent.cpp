@@ -24,7 +24,7 @@ namespace kImageAnnotator {
 AnnotationTabContent::AnnotationTabContent(const QPixmap &pixmap, Config *config, AbstractSettingsProvider *settingsProvider) :
 	mAnnotationView(new AnnotationView(this)),
 	mZoomValueProvider(mAnnotationView->zoomValueProvider()),
-	mAnnotationArea(new AnnotationArea(config, settingsProvider, new DevicePixelRatioScaler, mZoomValueProvider)),
+	mAnnotationArea(new AnnotationArea(config, settingsProvider, new DevicePixelRatioScaler, mZoomValueProvider, this)),
 	mMainLayout(new QHBoxLayout(this)),
 	mSettingsProvider(settingsProvider)
 {
@@ -34,12 +34,6 @@ AnnotationTabContent::AnnotationTabContent(const QPixmap &pixmap, Config *config
 	setLayout(mMainLayout);
 
 	connect(mZoomValueProvider, &ZoomValueProvider::zoomValueChanged, this, &AnnotationTabContent::zoomValueChange);
-}
-
-AnnotationTabContent::~AnnotationTabContent()
-{
-	delete mAnnotationArea;
-	delete mAnnotationView;
 }
 
 AnnotationArea* AnnotationTabContent::annotationArea() const

@@ -56,7 +56,7 @@ void ToolPicker::initGui()
 	action = createAction(tr("Duplicate"), IconLoader::load(QLatin1String("duplicate.svg")), Qt::Key_U, Tools::Duplicate);
 	createButton(action);
 
-	auto menu = new QMenu();
+	auto menu = new QMenu(this);
 	action = createAction(tr("Arrow"), IconLoader::load(QLatin1String("arrow.svg")), Qt::Key_A, Tools::Arrow);
 	menu->addAction(action);
 	action = createAction(tr("Double Arrow"), IconLoader::load(QLatin1String("doubleArrow.svg")), Qt::Key_D, Tools::DoubleArrow);
@@ -68,7 +68,7 @@ void ToolPicker::initGui()
 	action = createAction(tr("Pen"), IconLoader::load(QLatin1String("pen.svg")), Qt::Key_P, Tools::Pen);
 	createButton(action);
 
-	menu = new QMenu();
+	menu = new QMenu(this);
 	action = createAction(tr("Marker Pen"), IconLoader::load(QLatin1String("markerPen.svg")), Qt::Key_M, Tools::MarkerPen);
 	menu->addAction(action);
 	action = createAction(tr("Marker Rectangle"), IconLoader::load(QLatin1String("markerRect.svg")), Qt::Key_J, Tools::MarkerRect);
@@ -77,7 +77,7 @@ void ToolPicker::initGui()
 	menu->addAction(action);
 	createButton(menu);
 
-	menu = new QMenu();
+	menu = new QMenu(this);
 	action = createAction(tr("Text"), IconLoader::load(QLatin1String("text.svg")), Qt::Key_T, Tools::Text);
 	menu->addAction(action);
 	action = createAction(tr("Text Pointer"), IconLoader::load(QLatin1String("textPointer.svg")), Qt::Key_C, Tools::TextPointer);
@@ -86,7 +86,7 @@ void ToolPicker::initGui()
 	menu->addAction(action);
 	createButton(menu);
 
-	menu = new QMenu();
+	menu = new QMenu(this);
 	action = createAction(tr("Number"), IconLoader::load(QLatin1String("number.svg")), Qt::Key_N, Tools::Number);
 	menu->addAction(action);
 	action = createAction(tr("Number Pointer"), IconLoader::load(QLatin1String("numberPointer.svg")), Qt::Key_O, Tools::NumberPointer);
@@ -95,14 +95,14 @@ void ToolPicker::initGui()
 	menu->addAction(action);
 	createButton(menu);
 
-	menu = new QMenu();
+	menu = new QMenu(this);
 	action = createAction(tr("Blur"), IconLoader::load(QLatin1String("blur.svg")), Qt::Key_B, Tools::Blur);
 	menu->addAction(action);
 	action = createAction(tr("Pixelate"), IconLoader::load(QLatin1String("pixelate.svg")), Qt::Key_X, Tools::Pixelate);
 	menu->addAction(action);
 	createButton(menu);
 
-	menu = new QMenu();
+	menu = new QMenu(this);
 	action = createAction(tr("Rectangle"), IconLoader::load(QLatin1String("rect.svg")), Qt::Key_R, Tools::Rect);
 	menu->addAction(action);
 	action = createAction(tr("Ellipse"), IconLoader::load(QLatin1String("ellipse.svg")), Qt::Key_E, Tools::Ellipse);

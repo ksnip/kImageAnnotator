@@ -21,8 +21,9 @@
 
 namespace kImageAnnotator {
 
-AnnotationTabCloser::AnnotationTabCloser(QTabWidget *tabWidget) :
-	mTabWidget(tabWidget)
+AnnotationTabCloser::AnnotationTabCloser(QTabWidget *parent) :
+	QObject(parent),
+	mTabWidget(parent)
 {
 	Q_ASSERT(mTabWidget != nullptr);
 }

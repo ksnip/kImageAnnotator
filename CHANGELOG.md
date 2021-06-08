@@ -1,5 +1,8 @@
 # Change log
 
+## Release 0.5.2
+* Fixed: Memory leaks caught by ASAN. ([#243](https://github.com/ksnip/kImageAnnotator/issues/243))
+
 ## Release 0.5.1
 * Fixed: Crashes on destruction. ([#242](https://github.com/ksnip/kImageAnnotator/issues/242))
 

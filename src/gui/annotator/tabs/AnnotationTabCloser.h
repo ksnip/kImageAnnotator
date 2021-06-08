@@ -30,7 +30,7 @@ class AnnotationTabCloser : public QObject
 {
 	Q_OBJECT
 public:
-	explicit AnnotationTabCloser(QTabWidget *tabWidget);
+	explicit AnnotationTabCloser(QTabWidget *parent);
 	~AnnotationTabCloser() override = default;
 
 public slots:
