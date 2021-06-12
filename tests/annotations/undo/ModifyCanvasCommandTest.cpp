@@ -22,7 +22,8 @@
 void ModifyCanvasCommandTest::Redo_Should_ModifyCanvasSizeAndColor_When_SizeAndColorChanged()
 {
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
 	QPixmap image(400, 400);
 	annotationArea.loadImage(image);
 	QRectF newCanvasRect(100, 100, 200, 200);
@@ -39,7 +40,8 @@ void ModifyCanvasCommandTest::Redo_Should_ModifyCanvasSizeAndColor_When_SizeAndC
 void ModifyCanvasCommandTest::Redo_Should_OnlyModifyCanvasColor_When_OnlyColorChanged()
 {
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
 	QPixmap image(400, 400);
 	annotationArea.loadImage(image);
 	QColor newCanvasColor(Qt::red);
@@ -56,7 +58,8 @@ void ModifyCanvasCommandTest::Redo_Should_OnlyModifyCanvasColor_When_OnlyColorCh
 void ModifyCanvasCommandTest::Undo_Should_RevertCanvasSizeAndColor_When_SizeAndColorChanged()
 {
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
 	QPixmap image(400, 400);
 	annotationArea.loadImage(image);
 	auto originalCanvasRect = annotationArea.canvasRect();
@@ -79,7 +82,8 @@ void ModifyCanvasCommandTest::Undo_Should_RevertCanvasSizeAndColor_When_SizeAndC
 void ModifyCanvasCommandTest::Undo_Should_RevertOnlyColor_When_OnlyColorChanged()
 {
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
 	QPixmap image(400, 400);
 	annotationArea.loadImage(image);
 	QColor newCanvasColor(Qt::red);

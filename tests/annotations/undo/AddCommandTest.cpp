@@ -23,8 +23,10 @@
 
 void AddCommandTest::TestRedo_Should_ApplyOperation()
 {
+	// arrange
 	MockDefaultParameters p;
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	auto item = new AnnotationLine(line.p1(), properties);
@@ -32,15 +34,19 @@ void AddCommandTest::TestRedo_Should_ApplyOperation()
 	AddCommand addCommand(item, &annotationArea);
 	QCOMPARE(annotationArea.items().contains(item), false);
 
+	// act
 	addCommand.redo();
 
+	// arrange
 	QCOMPARE(annotationArea.items().contains(item), true);
 }
 
 void AddCommandTest::TestUndo_Should_UndoOperation()
 {
+	// arrange
 	MockDefaultParameters p;
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	auto item = new AnnotationLine(line.p1(), properties);
@@ -49,8 +55,10 @@ void AddCommandTest::TestUndo_Should_UndoOperation()
 	addCommand.redo();
 	QCOMPARE(annotationArea.items().contains(item), true);
 
+	// act
 	addCommand.undo();
 
+	// assert
 	QCOMPARE(annotationArea.items().contains(item), false);
 }
 

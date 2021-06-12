@@ -37,11 +37,13 @@ using kImageAnnotator::AnnotationPropertiesFactory;
 
 void PasteCommandTest::TestRedo_Should_AddPastedItemsToAnnotationAreaAtGivenPosition()
 {
+	// arrange
 	auto offset = QPointF(10, 10);
 	auto position = QPointF(50, 50);
 	MockDefaultParameters mockParameters;
+	auto scalerMock = new MockDevicePixelRatioScaler();
 	AnnotationPropertiesFactory propertiesFactory(&mockParameters.config, &mockParameters.settingsProvider);
-	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, &mockParameters.scaler, &mockParameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, scalerMock, &mockParameters.zoomValueProvider, nullptr);
 	AnnotationItemFactory itemFactory(&propertiesFactory, &mockParameters.settingsProvider, &mockParameters.config);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
@@ -52,8 +54,10 @@ void PasteCommandTest::TestRedo_Should_AddPastedItemsToAnnotationAreaAtGivenPosi
 	PasteCommand pasteCommand(itemsWithOffset, position, &itemFactory, &annotationArea);
 	QVERIFY(dynamic_cast<AnnotationLine *>(annotationArea.items().last()) == nullptr);
 
+	// act
 	pasteCommand.redo();
 
+	// assert
 	auto lastItem = dynamic_cast<AnnotationLine *>(annotationArea.items().last());
 	QVERIFY(lastItem != nullptr);
 	QCOMPARE(lastItem->position(), position + offset);
@@ -61,11 +65,13 @@ void PasteCommandTest::TestRedo_Should_AddPastedItemsToAnnotationAreaAtGivenPosi
 
 void PasteCommandTest::TestUndo_Should_RemovePastedItemsFromAnnotationArea()
 {
+	// arrange
 	auto offset = QPointF(10, 10);
 	auto position = QPointF(50, 50);
 	MockDefaultParameters mockParameters;
+	auto scalerMock = new MockDevicePixelRatioScaler();
 	AnnotationPropertiesFactory propertiesFactory(&mockParameters.config, &mockParameters.settingsProvider);
-	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, &mockParameters.scaler, &mockParameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, scalerMock, &mockParameters.zoomValueProvider, nullptr);
 	AnnotationItemFactory itemFactory(&propertiesFactory, &mockParameters.settingsProvider, &mockParameters.config);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
@@ -77,8 +83,10 @@ void PasteCommandTest::TestUndo_Should_RemovePastedItemsFromAnnotationArea()
 	pasteCommand.redo();
 	QVERIFY(dynamic_cast<AnnotationLine *>(annotationArea.items().last()) != nullptr);
 
+	// act
 	pasteCommand.undo();
 
+	// arrange
 	QVERIFY(dynamic_cast<AnnotationLine *>(annotationArea.items().last()) == nullptr);
 }
 

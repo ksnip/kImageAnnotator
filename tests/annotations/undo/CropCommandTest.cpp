@@ -21,23 +21,29 @@
 
 void CropCommandTest::TestRedo_Should_CropImageAndScene()
 {
+	// arrange
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
 	CropCommand cropCommand(&graphicsPixmapItem, cropRect, &annotationArea);
 
+	// act
 	cropCommand.redo();
 
+	// assert
 	QCOMPARE(annotationArea.sceneRect().size(), cropRect.size());
 	QCOMPARE(graphicsPixmapItem.boundingRect().size(), cropRect.size());
 }
 
 void CropCommandTest::TestRedo_Should_MoveItemToNewPosition()
 {
+	// arrange
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -48,32 +54,40 @@ void CropCommandTest::TestRedo_Should_MoveItemToNewPosition()
 	annotationArea.addAnnotationItem(item);
 	CropCommand cropCommand(&graphicsPixmapItem, cropRect, &annotationArea);
 
+	// act
 	cropCommand.redo();
 
+	// assert
 	QCOMPARE(item->position(), QPointF(50, 50));
 	QCOMPARE(item->boundingRect().size(), rect.size());
 }
 
 void CropCommandTest::TestUndo_Should_RestoreOriginalImageAndSceneSize()
 {
+	// arrange
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
 	CropCommand cropCommand(&graphicsPixmapItem, cropRect, &annotationArea);
 	cropCommand.redo();
 
+	// act
 	cropCommand.undo();
 
+	// assert
 	QVERIFY(annotationArea.sceneRect().size() == image.size());
 	QVERIFY(graphicsPixmapItem.boundingRect().size() == image.size());
 }
 
 void CropCommandTest::TestUndo_Should_MoveItemBackToPreviousPosition()
 {
+	// arrange
 	MockDefaultParameters parameters;
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, &parameters.scaler, &parameters.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -85,8 +99,10 @@ void CropCommandTest::TestUndo_Should_MoveItemBackToPreviousPosition()
 	CropCommand cropCommand(&graphicsPixmapItem, cropRect, &annotationArea);
 	cropCommand.redo();
 
+	// act
 	cropCommand.undo();
 
+	// assert
 	QCOMPARE(item->position(), rect.topLeft());
 	QCOMPARE(item->boundingRect().size(), rect.size());
 }

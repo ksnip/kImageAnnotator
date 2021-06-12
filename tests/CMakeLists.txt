@@ -40,7 +40,7 @@ set(UNITTEST_SRC
 	gui/annotator/tabs/AnnotationTabCloserTest.cpp
 	gui/annotator/tabs/AnnotationTabContextMenuTest.cpp
 	widgets/CustomSpinBoxTest.cpp
-		widgets/misc/AttachedSeparatorTest.cpp
+	widgets/misc/AttachedSeparatorTest.cpp
 	widgets/settingsPicker/ToolPickerTest.cpp
 	widgets/settingsPicker/ColorPickerTest.cpp
 	widgets/settingsPicker/NumberPickerTest.cpp

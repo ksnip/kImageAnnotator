@@ -23,64 +23,78 @@
 
 void ScaleCommandTest::TestRedo_Should_ScaleImageToNewSize()
 {
+	// arrange
 	auto oldSize = QSize(500, 500);
 	auto newSize = QSize(250, 250);
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
 
 	MockDefaultParameters p;
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr);
 	ScaleCommand scaleCommand(&image, newSize, &annotationArea);
 
+	// act
 	scaleCommand.redo();
 
+	// assert
 	QCOMPARE(image.boundingRect().size().toSize(), newSize);
 }
 
 void ScaleCommandTest::TestUndo_Should_ScaleImageBackToOldSize()
 {
+	// arrange
 	auto oldSize = QSize(500, 500);
 	auto newSize = QSize(250, 250);
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
 	MockDefaultParameters p;
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr);
 	ScaleCommand scaleCommand(&image, newSize, &annotationArea);
 	scaleCommand.redo();
 	QCOMPARE(image.boundingRect().size().toSize(), newSize);
 
+	// act
 	scaleCommand.undo();
 
+	// assert
 	QCOMPARE(image.boundingRect().size().toSize(), oldSize);
 }
 
 void ScaleCommandTest::TestRedo_Should_ScaleItemsBySameFactorAsImage()
 {
+	// arrange
 	auto oldSize = QSize(500, 500);
 	auto newSize = QSize(250, 250);
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
 	MockDefaultParameters p;
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto rectItem = new AnnotationRect(QPointF(0, 0), properties);
 	rectItem->addPoint(QPointF(50, 50), false);
 	annotationArea.addAnnotationItem(rectItem);
 	ScaleCommand scaleCommand(&image, newSize, &annotationArea);
 
+	// act
 	scaleCommand.redo();
 
+	// assert
 	QCOMPARE(rectItem->boundingRect().size().toSize(), QSize(25, 25));
 }
 
 void ScaleCommandTest::TestUndo_Should_ScaleItemsBackToOriginalSize()
 {
+	// arrange
 	auto oldSize = QSize(500, 500);
 	auto newSize = QSize(250, 250);
 	QPixmap pixmap(oldSize);
 	QGraphicsPixmapItem image(pixmap);
 	MockDefaultParameters p;
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, &p.scaler, &p.zoomValueProvider, nullptr);
+	auto scalerMock = new MockDevicePixelRatioScaler();
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	auto rectItem = new AnnotationRect(QPointF(0, 0), properties);
 	rectItem->addPoint(QPointF(50, 50), false);
@@ -89,8 +103,10 @@ void ScaleCommandTest::TestUndo_Should_ScaleItemsBackToOriginalSize()
 	scaleCommand.redo();
 	QCOMPARE(rectItem->boundingRect().size().toSize(), QSize(25, 25));
 
+	// act
 	scaleCommand.undo();
 
+	// assert
 	QCOMPARE(rectItem->boundingRect().size().toSize(), QSize(50, 50));
 }
 

@@ -32,7 +32,6 @@ struct MockDefaultParameters
 {
     Config config;
     MockSettingsProvider settingsProvider;
-    MockDevicePixelRatioScaler scaler;
     MockZoomValueProvider zoomValueProvider;
 };
 

@@ -30,7 +30,7 @@ class MockDevicePixelRatioScaler : public IDevicePixelRatioScaler
 {
 public:
 	MockDevicePixelRatioScaler();
-	~MockDevicePixelRatioScaler() = default;
+	~MockDevicePixelRatioScaler() override = default;
 
 	QRectF scale(const QRectF &rect) const override;
 	qreal scaleFactor() const override;
