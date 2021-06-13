@@ -226,6 +226,12 @@ void KImageAnnotator::showCanvasModifier()
 	d->mCoreView.showCanvasModifier();
 }
 
+void KImageAnnotator::showCutter()
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.showCutter();
+}
+
 void KImageAnnotator::setSettingsCollapsed(bool isCollapsed)
 {
 	Q_D(KImageAnnotator);

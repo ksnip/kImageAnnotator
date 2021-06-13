@@ -27,6 +27,7 @@
 #include "src/gui/cropper/CropWidget.h"
 #include "src/gui/scaler/ScaleWidget.h"
 #include "src/gui/rotator/RotateWidget.h"
+#include "src/gui/cutter/CutWidget.h"
 #include "src/gui/canvasModifier/ModifyCanvasWidget.h"
 
 namespace kImageAnnotator {
@@ -61,6 +62,7 @@ public slots:
 	void showCropper();
 	void showScaler();
 	void showRotator();
+	void showCutter();
 	void showCanvasModifier();
 	void setSettingsCollapsed(bool isCollapsed);
 	void setTabBarAutoHide(bool enabled);
@@ -73,6 +75,7 @@ private:
 	CropWidget *mCropWidget;
 	ScaleWidget *mScaleWidget;
 	RotateWidget *mRotateWidget;
+	CutWidget *mCutWidget;
 	ModifyCanvasWidget *mModifyCanvasWidget;
 };
 

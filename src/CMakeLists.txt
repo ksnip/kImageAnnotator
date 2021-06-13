@@ -24,6 +24,9 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropView.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropSelectionRestrictor.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/cutter/CutSelectionRestrictor.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/cutter/CutView.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/cutter/CutWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionHandler.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionMoveHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionHandles.cpp
