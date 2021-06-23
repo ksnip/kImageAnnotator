@@ -17,6 +17,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#include <QGuiApplication>
 #include "Config.h"
 
 namespace kImageAnnotator {
@@ -563,8 +564,8 @@ FillModes Config::defaultToolFillMode(Tools toolType)
 
 QFont Config::defaultToolFont(Tools tool)
 {
-	auto textFont = QFont(QLatin1String("Times"), 15, QFont::Bold);
-	auto numberFont = QFont(QLatin1String("Helvetica"), 20, QFont::Bold);
+	auto textFont = QFont(QGuiApplication::font().family(), 15, QFont::Bold);
+    auto numberFont = QFont(QGuiApplication::font().family(), 20, QFont::Bold);
 
 	switch (tool) {
 		case Tools::Number:
