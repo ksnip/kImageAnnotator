@@ -2,6 +2,7 @@
 
 ## Release 0.5.2
 * Fixed: Memory leaks caught by ASAN. ([#243](https://github.com/ksnip/kImageAnnotator/issues/243))
+* Changed: Use system font provided by QGuiApplication as default for text tool. ([#247](https://github.com/ksnip/kImageAnnotator/issues/247))
 
 ## Release 0.5.1
 * Fixed: Crashes on destruction. ([#242](https://github.com/ksnip/kImageAnnotator/issues/242))
