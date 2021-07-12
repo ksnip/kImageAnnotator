@@ -29,15 +29,15 @@
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>පිටපත්</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>අලවන්න</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>සංස්කරණය</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -62,7 +62,7 @@
     <name>kImageAnnotator::AnnotationItemSettings</name>
     <message>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>වර්ණය</translation>
     </message>
     <message>
         <source>Text Color</source>
@@ -70,7 +70,7 @@
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>පළල</translation>
     </message>
     <message>
         <source>Number Seed</source>
@@ -93,15 +93,15 @@
     <name>kImageAnnotator::AnnotationTabContextMenu</name>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>වසන්න</translation>
     </message>
     <message>
         <source>Close Other</source>
-        <translation type="unfinished"></translation>
+        <translation>අනෙක්වා වසන්න</translation>
     </message>
     <message>
         <source>Close All</source>
-        <translation type="unfinished"></translation>
+        <translation>සියල්ල වසන්න</translation>
     </message>
     <message>
         <source>Close All to the Left</source>
@@ -116,25 +116,25 @@
     <name>kImageAnnotator::AnnotationToolSelection</name>
     <message>
         <source>Tool Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>මෙවලම් තේරීම</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::BoolPicker</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>සබල කර ඇත</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>අබල කර ඇත</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::CropWidget</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>අවලංගු</translation>
     </message>
     <message>
         <source>X:</source>
@@ -154,7 +154,7 @@
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>යොදන්න</translation>
     </message>
 </context>
 <context>
@@ -251,15 +251,15 @@ to include the background image.</source>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>යොදන්න</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>අවලංගු</translation>
     </message>
     <message>
         <source>Color:</source>
-        <translation type="unfinished"></translation>
+        <translation>වර්ණය:</translation>
     </message>
     <message>
         <source>Canvas Background Color</source>
@@ -274,7 +274,7 @@ to include the background image.</source>
     </message>
     <message>
         <source>180°</source>
-        <translation type="unfinished"></translation>
+        <translation>180°</translation>
     </message>
     <message>
         <source>90° Clockwise</source>
@@ -303,11 +303,11 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>හරි</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>අවලංගු</translation>
     </message>
     <message>
         <source>Rotate</source>
@@ -330,19 +330,19 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>පළල:</translation>
     </message>
     <message>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>උස:</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>හරි</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>අවලංගු</translation>
     </message>
     <message>
         <source>Pixel</source>
@@ -364,7 +364,7 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     <name>kImageAnnotator::ToolPicker</name>
     <message>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>තෝරන්න</translation>
     </message>
     <message>
         <source>Pen</source>
@@ -372,7 +372,7 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Number</source>
-        <translation type="unfinished"></translation>
+        <translation>අංකය</translation>
     </message>
     <message>
         <source>Marker Rectangle</source>
@@ -392,11 +392,11 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>ඊතලය</translation>
     </message>
     <message>
         <source>Double Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>ද්විත්ව ඊතලය</translation>
     </message>
     <message>
         <source>Line</source>
@@ -436,22 +436,22 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Number Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>අංක ඊතලය</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>අනුපිටපත</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ZoomPicker</name>
     <message>
         <source>Zoom In (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>විශාලනය (% 1)</translation>
     </message>
     <message>
         <source>Zoom Out (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>කුඩාලනය (% 1)</translation>
     </message>
     <message>
         <source>Reset Zoom (%1)</source>
