@@ -13,10 +13,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Setup
+    - name: Setup Qt
+      run: sudo apt-get install qtbase5-dev qttools5-dev extra-cmake-modules libqt5svg5-dev xvfb
+
+    - name: Setup kColorPicker
       run: |
-        sudo apt-get install qtbase5-dev qttools5-dev extra-cmake-modules libqt5svg5-dev xvfb
-        git clone git://github.com/ksnip/kColorPicker
+        git clone --depth 1 git://github.com/ksnip/kColorPicker
         cd kColorPicker
         mkdir build && cd build
         cmake ..
