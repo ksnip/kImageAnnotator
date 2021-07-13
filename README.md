@@ -1,4 +1,4 @@
-# kImageAnnotator [![Build Status][travis-badge]][travis-url] [![Translation status][weblate-badge]][weblate-url]
+# kImageAnnotator [![Build Status][github-badge]][github-url] [![Translation status][weblate-badge]][weblate-url]
 Tool for annotating images
 
 Version 0.5.2
@@ -51,8 +51,8 @@ For translations we use [Weblate](https://hosted.weblate.org/projects/kimageanno
 Stickers designed by [OpenMoji](https://openmoji.org/) – the open-source emoji and icon project.
 
 
-[travis-badge]:        https://img.shields.io/travis/ksnip/kimageannotator.svg?label=travis&logo=travis
-[travis-url]:          https://travis-ci.org/ksnip/kimageannotator
+[github-badge]:        https://github.com/ksnip/kImageAnnotator/actions/workflows/build.yml/badge.svg
+[github-url]:          https://github.com/ksnip/kImageAnnotator/actions
 
 [weblate-badge]:       https://hosted.weblate.org/widgets/kimageannotator/-/kimageannotator/svg-badge.svg
 [weblate-url]:         https://hosted.weblate.org/engage/kimageannotator/?utm_source=widget
