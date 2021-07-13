@@ -28,6 +28,8 @@ using kImageAnnotator::KImageAnnotator;
 
 int main(int argc, char **argv)
 {
+	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
 	QApplication app(argc, argv);
 	auto settingsCollapsed = false;
 	QPixmap pixmap(QSize(500, 500));

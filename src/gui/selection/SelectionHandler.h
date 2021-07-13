@@ -34,7 +34,7 @@ class SelectionHandler : public QObject
 {
 Q_OBJECT
 public:
-	explicit SelectionHandler(ISelectionRestrictor *selectionRestrictor);
+	explicit SelectionHandler(ISelectionRestrictor *selectionRestrictor, SelectionHandles *selectionHandles);
 	~SelectionHandler() override;
 	void init(AnnotationArea *annotationArea);
 	QRectF selection() const;
@@ -61,7 +61,7 @@ private:
 	QRectF mSelection;
 	QRectF mSelectionLimit;
 	ISelectionRestrictor *mSelectionRestrictor;
-	SelectionHandles mHandles;
+	SelectionHandles *mHandles;
 	SelectionMoveHelper mMoveHelper;
 	bool mRestrictionEnabled;
 

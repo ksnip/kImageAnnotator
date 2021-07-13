@@ -24,7 +24,7 @@ namespace kImageAnnotator {
 CropWidget::CropWidget() :
 	mAnnotationArea(nullptr),
 	mKeyHelper(new KeyHelper()),
-	mSelectionHandler(new SelectionHandler(new CropSelectionRestrictor)),
+	mSelectionHandler(new SelectionHandler(new CropSelectionRestrictor, new SelectionHandles)),
 	mCropView(new CropView(mSelectionHandler, mKeyHelper, this)),
 	mApplyButton(new QPushButton(this)),
 	mCancelButton(new QPushButton(this)),
