@@ -22,6 +22,7 @@ set(KIMAGEANNOTATOR_LANG_TS
 	kImageAnnotator_pt_BR.ts
 	kImageAnnotator_ro.ts
 	kImageAnnotator_ru.ts
+	kImageAnnotator_si.ts
 	kImageAnnotator_sv.ts
 	kImageAnnotator_tr.ts
 	kImageAnnotator_uk.ts
