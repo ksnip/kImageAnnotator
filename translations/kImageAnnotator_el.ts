@@ -48,29 +48,29 @@
     <name>kImageAnnotator::AnnotationGeneralSettings</name>
     <message>
         <source>General Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Γενικές ρυθμίσεις</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationImageSettings</name>
     <message>
         <source>Image Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ρυθμίσεις εικόνας</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationItemSettings</name>
     <message>
         <source>Color</source>
-        <translation type="unfinished">Χρώμα</translation>
+        <translation>Χρώμα</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation type="unfinished">Χρώμα κειμένου</translation>
+        <translation>Χρώμα κειμένου</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished">Πλάτος</translation>
+        <translation>Πλάτος</translation>
     </message>
     <message>
         <source>Number Seed</source>
@@ -78,7 +78,7 @@
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished"></translation>
+        <translation>Συντελεστής θόλωσης</translation>
     </message>
     <message>
         <source>Item Shadow</source>
@@ -93,41 +93,41 @@
     <name>kImageAnnotator::AnnotationTabContextMenu</name>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Κλείσιμο</translation>
     </message>
     <message>
         <source>Close Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Κλείσιμο των άλλων</translation>
     </message>
     <message>
         <source>Close All</source>
-        <translation type="unfinished"></translation>
+        <translation>Κλείσιμο όλων</translation>
     </message>
     <message>
         <source>Close All to the Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Κλείσιμο όλων στα αριστερά</translation>
     </message>
     <message>
         <source>Close All to the Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Κλείσιμο όλων στα δεξιά</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationToolSelection</name>
     <message>
         <source>Tool Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Επιλογή εργαλείου</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::BoolPicker</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Ενεργοποιημένο</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Απενεργοποιημένο</translation>
     </message>
 </context>
 <context>
@@ -154,56 +154,56 @@
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Εφαρμογή</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::FillModePicker</name>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation type="unfinished">Ορατότητα περιγράμματος και γέμισης</translation>
+        <translation>Ορατότητα περιγράμματος και γέμισης</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation type="unfinished">Περίγραμμα και γέμιση</translation>
+        <translation>Περίγραμμα και γέμιση</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation type="unfinished">Περίγραμμα χωρίς γέμιση</translation>
+        <translation>Περίγραμμα χωρίς γέμιση</translation>
     </message>
     <message>
         <source>No Border and No Fill</source>
-        <translation type="unfinished">Χωρίς περίγραμμα και χωρίς γέμιση</translation>
+        <translation>Χωρίς περίγραμμα και χωρίς γέμιση</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::FontPicker</name>
     <message>
         <source>Font Size</source>
-        <translation type="unfinished">Μέγεθος γραμματοσειράς</translation>
+        <translation>Μέγεθος γραμματοσειράς</translation>
     </message>
     <message>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Έντονα</translation>
     </message>
     <message>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>Πλάγια</translation>
     </message>
     <message>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Υπογράμμιση</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Τεχνάσματα εικόνας</translation>
     </message>
     <message>
         <source>No Effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Κανένα τέχνασμα</translation>
     </message>
     <message>
         <source>Drop Shadow</source>
@@ -211,22 +211,22 @@
     </message>
     <message>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Διαβαθμίσεις του γκρι</translation>
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>Περίγραμμα</translation>
     </message>
     <message>
         <source>Invert Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Αντιστροφή χρωμάτων</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ModifyCanvasWidget</name>
     <message>
         <source>Restricted</source>
-        <translation type="unfinished"></translation>
+        <translation>Με περιορισμούς</translation>
     </message>
     <message>
         <source>When enabled enforces the canvas
@@ -235,7 +235,7 @@ to include the background image.</source>
     </message>
     <message>
         <source>X:</source>
-        <translation type="unfinished">X:</translation>
+        <translation type="unfinished">x</translation>
     </message>
     <message>
         <source>Y:</source>
@@ -243,23 +243,23 @@ to include the background image.</source>
     </message>
     <message>
         <source>W:</source>
-        <translation type="unfinished">Π:</translation>
+        <translation>Π:</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation type="unfinished">Υ:</translation>
+        <translation>Υ:</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Εφαρμογή</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Ακύρωση</translation>
+        <translation>Ακύρωση</translation>
     </message>
     <message>
         <source>Color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Χρώμα:</translation>
     </message>
     <message>
         <source>Canvas Background Color</source>
@@ -270,15 +270,15 @@ to include the background image.</source>
     <name>kImageAnnotator::RotateDialog</name>
     <message>
         <source>Rotate Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Περιστροφή εικόνας</translation>
     </message>
     <message>
         <source>180°</source>
-        <translation type="unfinished"></translation>
+        <translation>180°</translation>
     </message>
     <message>
         <source>90° Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>90° Δεξιόστροφα</translation>
     </message>
     <message>
         <source>90° Counter Clockwise</source>
@@ -295,27 +295,27 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>Οριζόντια</translation>
     </message>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Κατακόρυφα</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished">Εντάξει</translation>
+        <translation>Εντάξει</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Ακύρωση</translation>
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Περιστροφή</translation>
     </message>
     <message>
         <source>Flip</source>
-        <translation type="unfinished"></translation>
+        <translation>Αναστροφή</translation>
     </message>
 </context>
 <context>
@@ -440,22 +440,22 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Δημιουργία αντιγράφου</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ZoomPicker</name>
     <message>
         <source>Zoom In (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Μεγέθυνση (%1)</translation>
     </message>
     <message>
         <source>Zoom Out (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Σμίκρυνση (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Επαναφορά εστίασης (%1)</translation>
     </message>
 </context>
 </TS>
