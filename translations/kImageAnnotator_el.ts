@@ -74,7 +74,7 @@
     </message>
     <message>
         <source>Number Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Αρχικός αριθμός</translation>
     </message>
     <message>
         <source>Obfuscation Factor</source>
@@ -82,11 +82,11 @@
     </message>
     <message>
         <source>Item Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Σκιά αντικειμένου</translation>
     </message>
     <message>
         <source>Item Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ρυθμίσεις αντικειμένου</translation>
     </message>
 </context>
 <context>
@@ -207,11 +207,11 @@
     </message>
     <message>
         <source>Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Σκίαση</translation>
     </message>
     <message>
         <source>Grayscale</source>
-        <translation type="unfinished">Διαβαθμίσεις του γκρι</translation>
+        <translation>Διαβαθμίσεις του γκρι</translation>
     </message>
     <message>
         <source>Border</source>
@@ -231,15 +231,16 @@
     <message>
         <source>When enabled enforces the canvas
 to include the background image.</source>
-        <translation type="unfinished"></translation>
+        <translation>Όταν είναι ενεργοποιημένο, εξαναγκάζει τον καμβά
+να συμπεριλάβει την εικόνα παρασκηνίου.</translation>
     </message>
     <message>
         <source>X:</source>
-        <translation type="unfinished">x</translation>
+        <translation>X:</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation type="unfinished">Y:</translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <source>W:</source>
@@ -263,7 +264,7 @@ to include the background image.</source>
     </message>
     <message>
         <source>Canvas Background Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Χρώμα παρασκηνίου του καμβά</translation>
     </message>
 </context>
 <context>
@@ -282,16 +283,17 @@ to include the background image.</source>
     </message>
     <message>
         <source>90° Counter Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>90° Αριστερόστροφα</translation>
     </message>
     <message>
         <source>Arbitrary</source>
-        <translation type="unfinished"></translation>
+        <translation>Αυθαίρετα</translation>
     </message>
     <message>
         <source>Positive values rotate clockwise, negative values counter clockwise.
 Rotating by non 90° multipliers might introduce loss of quality.</source>
-        <translation type="unfinished"></translation>
+        <translation>Οι θετικές τιμές περιστρέφουν σύμφωνα με τους δείκτες του ρολογιού, και οι αρνητικές τιμές αντίστροφα.
+Η περιστροφή με πολλαπλασιαστές διαφορετικούς των 90° μπορεί να προκαλέσει απώλεια στην ποιότητα.</translation>
     </message>
     <message>
         <source>Horizontal</source>
@@ -357,7 +359,7 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     <name>kImageAnnotator::StickerPicker</name>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>Αυτοκόλλητο</translation>
     </message>
 </context>
 <context>
@@ -416,27 +418,27 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Number Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Δρομέας αριθμού</translation>
     </message>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>Αυτοκόλλητο</translation>
     </message>
     <message>
         <source>Pixelate</source>
-        <translation type="unfinished"></translation>
+        <translation>Παραμόρφωση εικονοστοιχείων</translation>
     </message>
     <message>
         <source>Text Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Δρομέας κειμένου</translation>
     </message>
     <message>
         <source>Text Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Βέλος κειμένου</translation>
     </message>
     <message>
         <source>Number Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Βέλος αριθμού</translation>
     </message>
     <message>
         <source>Duplicate</source>
