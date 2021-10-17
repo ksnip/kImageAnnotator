@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,21 +17,21 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CAPSLOCKSTATUSCHECKER_H
-#define KIMAGEANNOTATOR_CAPSLOCKSTATUSCHECKER_H
+#include "PlatformChecker.h"
 
-namespace kImageAnnotator {
-
-class CapsLockStatusChecker
+PlatformChecker *PlatformChecker::instance()
 {
-public:
-	static bool isCapsLockEnabled();
+	static PlatformChecker instance;
+	return &instance;
+}
 
-protected:
-	explicit CapsLockStatusChecker() = default;
-	~CapsLockStatusChecker() = default;
-};
+bool PlatformChecker::isWayland() const
+{
+	return mIsWayland;
+}
 
-} // namespace kImageAnnotator
-
-#endif //KIMAGEANNOTATOR_CAPSLOCKSTATUSCHECKER_H
+PlatformChecker::PlatformChecker()
+{
+	auto output = qgetenv("XDG_CURRENT_DESKTOP");
+	mIsWayland = output.contains("wayland");
+}

@@ -19,13 +19,13 @@
 
 #include "CapsLockStatusChecker.h"
 
-/*
- * Currently we need to keep the x11 include in the definition
- * file as x11 and qt::cursor don't work together and we fail
- * to compile
- */
+#if defined(_WIN32)
+#include <Windows.h>
+#endif
 
 #if defined(__linux__)
+#include "src/common/platform/PlatformChecker.h"
+
 #include <X11/Xlib.h>
 #include <X11/XKBlib.h>
 #endif
@@ -37,15 +37,19 @@ bool CapsLockStatusChecker::isCapsLockEnabled()
 #if defined(_WIN32)
 	return GetKeyState(VK_CAPITAL) == 1;
 #elif defined(__linux__)
-	auto display = XOpenDisplay(nullptr);
-	auto capsState = false;
-	if (display) {
-		unsigned n;
-		XkbGetIndicatorState(display, XkbUseCoreKbd, &n);
-		capsState = (n & 0x01) == 1;
+	if (PlatformChecker::instance()->isWayland()) {
+		return false;
+	} else {
+		auto display = XOpenDisplay(nullptr);
+		auto capsState = false;
+		if (display) {
+			unsigned n;
+			XkbGetIndicatorState(display, XkbUseCoreKbd, &n);
+			capsState = (n & 0x01) == 1;
+		}
+		XCloseDisplay(display);
+		return capsState;
 	}
-	XCloseDisplay(display);
-	return capsState;
 #else
 	return false;
 #endif

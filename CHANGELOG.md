@@ -1,5 +1,8 @@
 # Change log
 
+## Release 0.5.3
+* Fixed: Crash while typing text on wayland. ([#256](https://github.com/ksnip/kImageAnnotator/issues/256))
+
 ## Release 0.5.2
 * Fixed: Memory leaks caught by ASAN. ([#243](https://github.com/ksnip/kImageAnnotator/issues/243))
 * Changed: Use system font provided by QGuiApplication as default for text tool. ([#247](https://github.com/ksnip/kImageAnnotator/issues/247))
