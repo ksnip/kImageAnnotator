@@ -22,6 +22,8 @@
 
 #include <QString>
 
+namespace kImageAnnotator {
+
 class PlatformChecker
 {
 public:
@@ -37,5 +39,6 @@ private:
 	PlatformChecker();
 };
 
+} // namespace kImageAnnotator
 
 #endif //KIMAGEANNOTATOR_PLATFORMCHECKER_H

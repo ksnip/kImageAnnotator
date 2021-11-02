@@ -19,6 +19,8 @@
 
 #include "PlatformChecker.h"
 
+namespace kImageAnnotator {
+
 PlatformChecker *PlatformChecker::instance()
 {
 	static PlatformChecker instance;
@@ -35,3 +37,5 @@ PlatformChecker::PlatformChecker()
 	auto output = qgetenv("XDG_CURRENT_DESKTOP");
 	mIsWayland = output.contains("wayland");
 }
+
+} // namespace kImageAnnotator
