@@ -1,7 +1,7 @@
 # kImageAnnotator [![Build Status][github-badge]][github-url] [![Translation status][weblate-badge]][weblate-url]
 Tool for annotating images
 
-Version 0.6.0
+Version 0.5.3
 
 ![kImageAnnotator](https://i.imgur.com/4vlPDUn.png "kImageAnnotator")
 

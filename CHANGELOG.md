@@ -1,9 +1,8 @@
 # Change log
 
-## Release 0.6.0
-
 ## Release 0.5.3
 * Fixed: Crash while typing text on wayland. ([#256](https://github.com/ksnip/kImageAnnotator/issues/256))
+* Changed: Show scrollbar when not all tools visible. ([#258](https://github.com/ksnip/kImageAnnotator/issues/258))
 
 ## Release 0.5.2
 * Fixed: Memory leaks caught by ASAN. ([#243](https://github.com/ksnip/kImageAnnotator/issues/243))
