@@ -23,6 +23,7 @@
 #include <QWidget>
 #include <QBoxLayout>
 #include <QList>
+#include <QScrollArea>
 
 #include "src/widgets/misc/AbstractExpandingWidget.h"
 

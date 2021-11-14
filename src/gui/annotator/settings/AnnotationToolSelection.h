@@ -42,6 +42,7 @@ signals:
 private:
 	QVBoxLayout *mMainLayout;
 	ToolPicker *mToolPicker;
+	QScrollArea *mScrollareaToolPicker;
 };
 
 } // namespace kImageAnnotator

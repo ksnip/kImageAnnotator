@@ -23,9 +23,13 @@ namespace kImageAnnotator {
 
 AnnotationToolSelection::AnnotationToolSelection() :
 	mMainLayout(new QVBoxLayout),
-	mToolPicker(new ToolPicker(this))
+	mToolPicker(new ToolPicker(this)),
+	mScrollareaToolPicker(new QScrollArea)
 {
-	mMainLayout->addWidget(mToolPicker);
+	mScrollareaToolPicker->setWidgetResizable(true);
+	mScrollareaToolPicker->setWidget(mToolPicker);
+	mScrollareaToolPicker->setFrameShape(QFrame::NoFrame);
+	mMainLayout->addWidget(mScrollareaToolPicker);
 	mMainLayout->setContentsMargins(0, 0, 0, 0);
 
 	setLayout(mMainLayout);
