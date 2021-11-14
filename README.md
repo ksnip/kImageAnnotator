@@ -1,18 +1,18 @@
 # kImageAnnotator [![Build Status][github-badge]][github-url] [![Translation status][weblate-badge]][weblate-url]
 Tool for annotating images
 
-Version 0.5.3
+Version 0.6.0
 
 ![kImageAnnotator](https://i.imgur.com/4vlPDUn.png "kImageAnnotator")
 
 ### Dependencies
 
 kImageAnnotator depends on [kColorPicker](https://github.com/ksnip/kColorPicker) which needs
-to be installed before building kImageAnnotator. Install instructions can be found on the github page.
+to be installed before building kImageAnnotator. Install instructions can be found on the GitHub page.
 
 ### Building from source
 
-1. Get latest release from GitHub by cloning the repo:  
+1. Get the latest release from GitHub by cloning the repo:  
     `$ git clone https://github.com/ksnip/kImageAnnotator`
 2. Change to repo directory:  
     `$ cd kImageAnnotator`  
@@ -29,7 +29,7 @@ to be installed before building kImageAnnotator. Install instructions can be fou
 
 You can either build the project as shared library by providing the flag `-DBUILD_SHARED_LIBS=ON`
 to cmake or `-DBUILD_SHARED_LIBS=OFF` to build as static library. When no flag is provided a 
-static library is build. For windows we currently only support building as static library.
+static library is build. For windows, we currently only support building as static library.
 
 ### Integrate library
 
@@ -43,7 +43,7 @@ static library is build. For windows we currently only support building as stati
 
 ### Translations
 We are always looking for help with translations, contributors are welcome!  
-For translations we use [Weblate](https://hosted.weblate.org/projects/kimageannotator/kimageannotator/)!  
+For translations, we use [Weblate](https://hosted.weblate.org/projects/kimageannotator/kimageannotator/)!  
 [![Translation status](https://hosted.weblate.org/widgets/kimageannotator/-/kimageannotator/multi-green.svg)](https://hosted.weblate.org/engage/kimageannotator/?utm_source=widget)
 
 
