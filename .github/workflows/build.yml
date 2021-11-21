@@ -12,9 +12,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Setup Qt
-      run: sudo apt-get install qtbase5-dev qttools5-dev extra-cmake-modules libqt5svg5-dev xvfb
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        version: '5.15.2'
+        host: 'linux'
+        install-deps: 'true'
+
+    - name: Install dependencies
+      run: sudo apt-get install extra-cmake-modules xvfb
 
     - name: Setup kColorPicker
       run: |
