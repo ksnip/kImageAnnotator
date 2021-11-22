@@ -1,6 +1,7 @@
 find_package(Qt5LinguistTools)
 
 set(KIMAGEANNOTATOR_LANG_TS
+	kImageAnnotator_ar.ts
 	kImageAnnotator_ca.ts
 	kImageAnnotator_cs.ts
 	kImageAnnotator_da.ts
