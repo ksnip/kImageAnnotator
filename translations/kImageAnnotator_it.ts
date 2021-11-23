@@ -21,7 +21,7 @@
     </message>
     <message>
         <source>Send to Back</source>
-        <translation>Manda indietro</translation>
+        <translation>Manda in fondo</translation>
     </message>
     <message>
         <source>Select This</source>
@@ -48,7 +48,7 @@
     <name>kImageAnnotator::AnnotationGeneralSettings</name>
     <message>
         <source>General Settings</source>
-        <translation>Impostazioni Generali</translation>
+        <translation>Impostazioni generali</translation>
     </message>
 </context>
 <context>
@@ -231,8 +231,8 @@
     <message>
         <source>When enabled enforces the canvas
 to include the background image.</source>
-        <translation>Quando abilitato impone la tela
-per includere l&apos;immagine di sfondo.</translation>
+        <translation>Quando abilitato forza la tela
+ad includere l&apos;immagine di sfondo.</translation>
     </message>
     <message>
         <source>X:</source>
@@ -313,11 +313,11 @@ La rotazione di moltiplicatori diversi da 90° potrebbe introdurre una perdita d
     </message>
     <message>
         <source>Rotate</source>
-        <translation>Ruotare</translation>
+        <translation>Ruota</translation>
     </message>
     <message>
         <source>Flip</source>
-        <translation>Capovolgere</translation>
+        <translation>Capovolgi</translation>
     </message>
 </context>
 <context>
@@ -442,7 +442,7 @@ La rotazione di moltiplicatori diversi da 90° potrebbe introdurre una perdita d
     </message>
     <message>
         <source>Duplicate</source>
-        <translation>Duplicare</translation>
+        <translation>Duplica</translation>
     </message>
 </context>
 <context>
