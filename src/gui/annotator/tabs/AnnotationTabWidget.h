@@ -50,6 +50,10 @@ signals:
 	void tabMoved(int fromIndex, int toIndex) const;
 	void tabContextMenuOpened(int index) const;
 
+public slots:
+	void undoTriggered() const;
+	void redoTriggered() const;
+
 protected:
 	void tabInserted(int index) override;
 	void tabRemoved(int index) override;
@@ -64,8 +68,6 @@ private:
 	AnnotationTabCloser *mTabCloser;
 
 private slots:
-	void undoTriggered() const;
-	void redoTriggered() const;
 	void updateCurrentWidget(int index);
 	void showTabContextMenu(const QPoint &pos);
 	void tabChanged();

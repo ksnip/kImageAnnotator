@@ -26,11 +26,13 @@ AnnotationSettingsAdapter::AnnotationSettingsAdapter(
 		AnnotationItemSettings *itemSettings,
 		AnnotationToolSelection *toolSettings,
 		AnnotationImageSettings *imageSettings,
+		AnnotationControlsWidget *controls,
 		Config *config) :
 	mGeneralSettings(generalSettings),
 	mItemSettings(itemSettings),
 	mToolSettings(toolSettings),
 	mImageSettings(imageSettings),
+	mControls(controls),
 	mConfig(config)
 {
 	connect(mToolSettings, &AnnotationToolSelection::toolTypeChanged, this, &AnnotationSettingsAdapter::toolTypeChanged);

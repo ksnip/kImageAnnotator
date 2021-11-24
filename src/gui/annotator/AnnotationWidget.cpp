@@ -27,7 +27,8 @@ AnnotationWidget::AnnotationWidget(Config *config) :
 	mGeneralSettings(new AnnotationGeneralSettings),
 	mToolSelection(new AnnotationToolSelection),
 	mImageSettings(new AnnotationImageSettings),
-	mSettingsAdapter(new AnnotationSettingsAdapter(mGeneralSettings, mItemSettings, mToolSelection, mImageSettings, config)),
+	mControlsWidget(new AnnotationControlsWidget),
+	mSettingsAdapter(new AnnotationSettingsAdapter(mGeneralSettings, mItemSettings, mToolSelection, mImageSettings, mControlsWidget, config)),
 	mAnnotationTabWidget(new AnnotationTabWidget(config, mSettingsAdapter))
 {
 	initGui();
@@ -40,6 +41,7 @@ AnnotationWidget::~AnnotationWidget()
 	delete mItemSettings;
 	delete mToolSelection;
 	delete mImageSettings;
+    delete mControlsWidget;
 	delete mGeneralSettings;
 }
 
@@ -65,6 +67,12 @@ void AnnotationWidget::initGui()
 	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabCloseRequested, this, &AnnotationWidget::tabCloseRequested);
 	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabMoved, this, &AnnotationWidget::tabMoved);
 	connect(mAnnotationTabWidget, &AnnotationTabWidget::tabContextMenuOpened, this, &AnnotationWidget::tabContextMenuOpened);
+
+	connect(mControlsWidget, &AnnotationControlsWidget::undo, mAnnotationTabWidget, &AnnotationTabWidget::undoTriggered);
+	connect(mControlsWidget, &AnnotationControlsWidget::redo, mAnnotationTabWidget, &AnnotationTabWidget::redoTriggered);
+	connect(mControlsWidget, &AnnotationControlsWidget::showScale, this, &AnnotationWidget::scaleTriggered);
+	connect(mControlsWidget, &AnnotationControlsWidget::showCrop, this, &AnnotationWidget::cropTriggered);
+	connect(mControlsWidget, &AnnotationControlsWidget::showModifyCanvas, this, &AnnotationWidget::modifyCanvasTriggered);
 
 	connect(qApp, &QCoreApplication::aboutToQuit, this, &AnnotationWidget::persistDockWidgets);
 }
@@ -181,6 +189,12 @@ void AnnotationWidget::setSettingsCollapsed(bool isCollapsed)
 	}
 }
 
+void AnnotationWidget::showControlsWidget()
+{
+	insertDockWidget(Qt::BottomDockWidgetArea, mControlsWidget);
+	restoreDockWidgets();
+}
+
 void AnnotationWidget::persistDockWidgets()
 {
 	mConfig->setAnnotatorDockWidgetsState(saveState());
@@ -189,6 +203,21 @@ void AnnotationWidget::persistDockWidgets()
 void AnnotationWidget::restoreDockWidgets()
 {
 	restoreState(mConfig->annotatorDockWidgetsState());
+}
+
+void AnnotationWidget::scaleTriggered() const
+{
+	emit activateScale();
+}
+
+void AnnotationWidget::cropTriggered() const
+{
+	emit activateCrop();
+}
+
+void AnnotationWidget::modifyCanvasTriggered() const
+{
+    emit activateModifyCanvas();
 }
 
 } // namespace kImageAnnotator
