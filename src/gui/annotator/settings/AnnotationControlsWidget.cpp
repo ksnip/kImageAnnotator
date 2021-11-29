@@ -32,6 +32,7 @@ AnnotationControlsWidget::AnnotationControlsWidget() :
 	connect(mControls, &Controls::redo, this, &AnnotationControlsWidget::controlsRedo);
 	connect(mControls, &Controls::crop, this, &AnnotationControlsWidget::controlsCrop);
 	connect(mControls, &Controls::scale, this, &AnnotationControlsWidget::controlsScale);
+	connect(mControls, &Controls::rotate, this, &AnnotationControlsWidget::controlsRotate);
 	connect(mControls, &Controls::modifyCanvas, this, &AnnotationControlsWidget::controlsModifyCanvas);
 
 	setLayout(mMainLayout);
@@ -66,6 +67,11 @@ void AnnotationControlsWidget::controlsCrop() const
 void AnnotationControlsWidget::controlsScale() const
 {
 	emit showScale();
+}
+
+void AnnotationControlsWidget::controlsRotate() const
+{
+	emit showRotate();
 }
 
 void AnnotationControlsWidget::controlsModifyCanvas() const

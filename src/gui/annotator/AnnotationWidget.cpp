@@ -72,6 +72,7 @@ void AnnotationWidget::initGui()
 	connect(mControlsWidget, &AnnotationControlsWidget::redo, mAnnotationTabWidget, &AnnotationTabWidget::redoTriggered);
 	connect(mControlsWidget, &AnnotationControlsWidget::showScale, this, &AnnotationWidget::scaleTriggered);
 	connect(mControlsWidget, &AnnotationControlsWidget::showCrop, this, &AnnotationWidget::cropTriggered);
+	connect(mControlsWidget, &AnnotationControlsWidget::showRotate, this, &AnnotationWidget::rotateTriggered);
 	connect(mControlsWidget, &AnnotationControlsWidget::showModifyCanvas, this, &AnnotationWidget::modifyCanvasTriggered);
 
 	connect(qApp, &QCoreApplication::aboutToQuit, this, &AnnotationWidget::persistDockWidgets);
@@ -213,6 +214,11 @@ void AnnotationWidget::scaleTriggered() const
 void AnnotationWidget::cropTriggered() const
 {
 	emit activateCrop();
+}
+
+void AnnotationWidget::rotateTriggered() const
+{
+	emit activateRotate();
 }
 
 void AnnotationWidget::modifyCanvasTriggered() const

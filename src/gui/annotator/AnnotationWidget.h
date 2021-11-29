@@ -68,6 +68,7 @@ signals:
 	void tabContextMenuOpened(int index) const;
 	void activateScale() const;
 	void activateCrop() const;
+	void activateRotate() const;
 	void activateModifyCanvas() const;
 
 private:
@@ -89,6 +90,7 @@ private slots:
 	void restoreDockWidgets();
 	void scaleTriggered() const;
 	void cropTriggered() const;
+	void rotateTriggered() const;
 	void modifyCanvasTriggered() const;
 };
 
