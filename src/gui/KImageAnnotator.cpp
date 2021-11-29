@@ -226,10 +226,10 @@ void KImageAnnotator::showCanvasModifier()
 	d->mCoreView.showCanvasModifier();
 }
 
-void KImageAnnotator::showControlsWidget()
+void KImageAnnotator::setControlsWidgetVisible(bool enabled)
 {
 	Q_D(KImageAnnotator);
-	d->mCoreView.showControlsWidget();
+	d->mCoreView.setControlsWidgetVisible(enabled);
 }
 
 void KImageAnnotator::setSettingsCollapsed(bool isCollapsed)

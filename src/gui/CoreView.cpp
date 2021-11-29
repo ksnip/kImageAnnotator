@@ -132,9 +132,9 @@ void CoreView::showCanvasModifier()
 	mModifyCanvasWidget->activate(mAnnotationWidget->annotationArea());
 }
 
-void CoreView::showControlsWidget()
+void CoreView::setControlsWidgetVisible(bool enabled)
 {
-	mAnnotationWidget->showControlsWidget();
+	mAnnotationWidget->setControlsWidgetVisible(enabled);
 }
 
 void CoreView::setSettingsCollapsed(bool isCollapsed)

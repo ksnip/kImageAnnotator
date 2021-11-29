@@ -41,7 +41,7 @@ AnnotationWidget::~AnnotationWidget()
 	delete mItemSettings;
 	delete mToolSelection;
 	delete mImageSettings;
-    delete mControlsWidget;
+	delete mControlsWidget;
 	delete mGeneralSettings;
 }
 
@@ -59,6 +59,11 @@ void AnnotationWidget::initGui()
 	insertDockWidget(Qt::TopDockWidgetArea, mItemSettings);
 	insertDockWidget(Qt::BottomDockWidgetArea, mGeneralSettings);
 	insertDockWidget(Qt::BottomDockWidgetArea, mImageSettings);
+	insertDockWidget(Qt::BottomDockWidgetArea, mControlsWidget);
+
+	// hide the last inserted DockWidget (mControlsWidget) since we want to show it only if needed using setControlsWidgetVisible(true)
+	mControlsDockWidget = mDockWidgets.last();
+	removeDockWidget(mControlsDockWidget);
 
 	setFocusPolicy(Qt::ClickFocus);
 
@@ -190,10 +195,14 @@ void AnnotationWidget::setSettingsCollapsed(bool isCollapsed)
 	}
 }
 
-void AnnotationWidget::showControlsWidget()
+void AnnotationWidget::setControlsWidgetVisible(bool enabled)
 {
-	insertDockWidget(Qt::BottomDockWidgetArea, mControlsWidget);
-	restoreDockWidgets();
+	if (enabled) {
+		restoreDockWidget(mControlsDockWidget);
+		restoreDockWidgets();
+	} else {
+		removeDockWidget(mControlsDockWidget);
+	}
 }
 
 void AnnotationWidget::persistDockWidgets()
