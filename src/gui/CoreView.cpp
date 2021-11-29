@@ -40,6 +40,9 @@ CoreView::CoreView(Config *config) :
 	connect(mAnnotationWidget, &AnnotationWidget::tabCloseRequested, this, &CoreView::tabCloseRequested);
 	connect(mAnnotationWidget, &AnnotationWidget::tabMoved, this, &CoreView::tabMoved);
 	connect(mAnnotationWidget, &AnnotationWidget::tabContextMenuOpened, this, &CoreView::tabContextMenuOpened);
+	connect(mAnnotationWidget, &AnnotationWidget::activateCrop, this, &CoreView::showCropper);
+	connect(mAnnotationWidget, &AnnotationWidget::activateScale, this, &CoreView::showScaler);
+	connect(mAnnotationWidget, &AnnotationWidget::activateModifyCanvas, this, &CoreView::showCanvasModifier);
 	connect(mCropWidget, &CropWidget::closing, this, &CoreView::showAnnotator);
 	connect(mScaleWidget, &ScaleWidget::closing, this, &CoreView::showAnnotator);
 	connect(mRotateWidget, &RotateWidget::closing, this, &CoreView::showAnnotator);
@@ -126,6 +129,11 @@ void CoreView::showCanvasModifier()
 	mAnnotationWidget->clearSelection();
 	setCurrentWidget(mModifyCanvasWidget);
 	mModifyCanvasWidget->activate(mAnnotationWidget->annotationArea());
+}
+
+void CoreView::showControlsWidget()
+{
+	mAnnotationWidget->showControlsWidget();
 }
 
 void CoreView::setSettingsCollapsed(bool isCollapsed)

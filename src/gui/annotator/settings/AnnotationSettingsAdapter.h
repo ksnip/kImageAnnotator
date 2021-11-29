@@ -24,6 +24,7 @@
 #include "AnnotationItemSettings.h"
 #include "AnnotationToolSelection.h"
 #include "AnnotationImageSettings.h"
+#include "AnnotationControlsWidget.h"
 #include "ExistingItemEditInfo.h"
 #include "src/annotations/core/AbstractSettingsProvider.h"
 
@@ -38,6 +39,7 @@ public:
 			AnnotationItemSettings *itemSettings,
 			AnnotationToolSelection *toolSettings,
 			AnnotationImageSettings *imageSettings,
+			AnnotationControlsWidget *controls,
 			Config *config);
 	~AnnotationSettingsAdapter() override = default;
 	void editItem(AbstractAnnotationItem *item) override;
@@ -61,6 +63,7 @@ private:
 	AnnotationItemSettings *mItemSettings;
 	AnnotationToolSelection *mToolSettings;
 	AnnotationImageSettings *mImageSettings;
+	AnnotationControlsWidget *mControls;
 	Config *mConfig;
 	ExistingItemEditInfo mExistingItemEditInfo;
 

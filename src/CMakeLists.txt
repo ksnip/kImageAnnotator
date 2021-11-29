@@ -11,6 +11,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/AnnotationImageSettings.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/AnnotationGeneralSettings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/AnnotationToolSelection.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/settings/AnnotationControlsWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/docks/AnnotationDockWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/docks/AnnotationDockWidgetDragHandle.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/docks/AbstractAnnotationDockWidgetContent.cpp
@@ -130,6 +131,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/common/filter/KeyEventListener.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/platform/PlatformChecker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ToolPicker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/widgets/Controls.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomFontComboBox.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomSpinBox.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/CustomToolButton.cpp

@@ -58,6 +58,7 @@ public:
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
 	void addTabContextMenuActions(const QList<QAction*> & actions);
 	void setSettingsCollapsed(bool isCollapsed);
+	void showControlsWidget();
 
 signals:
 	void imageChanged() const;
@@ -65,6 +66,9 @@ signals:
 	void tabCloseRequested(int index) const;
 	void tabMoved(int fromIndex, int toIndex);
 	void tabContextMenuOpened(int index) const;
+	void activateScale() const;
+	void activateCrop() const;
+	void activateModifyCanvas() const;
 
 private:
 	Config *mConfig;
@@ -72,6 +76,7 @@ private:
 	AnnotationGeneralSettings *mGeneralSettings;
 	AnnotationToolSelection *mToolSelection;
 	AnnotationImageSettings *mImageSettings;
+	AnnotationControlsWidget *mControlsWidget;
 	AnnotationSettingsAdapter *mSettingsAdapter;
 	AnnotationTabWidget *mAnnotationTabWidget;
 	QList<AnnotationDockWidget*> mDockWidgets;
@@ -82,6 +87,9 @@ private:
 private slots:
 	void persistDockWidgets();
 	void restoreDockWidgets();
+	void scaleTriggered() const;
+	void cropTriggered() const;
+	void modifyCanvasTriggered() const;
 };
 
 } // namespace kImageAnnotator
