@@ -42,6 +42,8 @@ void Controls::initGui()
 	createButton(cropAction);
 	auto scaleAction = createAction(tr("Scale"), IconLoader::load(QLatin1String("scale.svg")));
 	createButton(scaleAction);
+	auto rotateAction = createAction(tr("Rotate"), IconLoader::load(QLatin1String("rotate.svg")));
+	createButton(rotateAction);
 	auto modifyCanvasAction = createAction(tr("Modify canvas"), IconLoader::load(QLatin1String("modifycanvas.svg")));
 	createButton(modifyCanvasAction);
 
@@ -49,6 +51,7 @@ void Controls::initGui()
 	connect(redoAction, &QAction::triggered, this, &Controls::redoTriggered);
 	connect(cropAction, &QAction::triggered, this, &Controls::cropTriggered);
 	connect(scaleAction, &QAction::triggered, this, &Controls::scaleTriggered);
+    connect(rotateAction, &QAction::triggered, this, &Controls::rotateTriggered);
 	connect(modifyCanvasAction, &QAction::triggered, this, &Controls::modifyCanvasTriggered);
 
 	mLayout->setContentsMargins(0, 0, 0, 0);
@@ -74,6 +77,11 @@ void Controls::cropTriggered() const
 void Controls::scaleTriggered() const
 {
 	emit scale();
+}
+
+void Controls::rotateTriggered() const
+{
+	emit rotate();
 }
 
 void Controls::modifyCanvasTriggered() const

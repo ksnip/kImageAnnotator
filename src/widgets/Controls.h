@@ -42,6 +42,7 @@ Q_SIGNALS:
 	void redo() const;
 	void crop() const;
 	void scale() const;
+	void rotate() const;
 	void modifyCanvas() const;
 
 private:
@@ -56,6 +57,7 @@ private slots:
 	void redoTriggered() const;
 	void cropTriggered() const;
 	void scaleTriggered() const;
+	void rotateTriggered() const;
 	void modifyCanvasTriggered() const;
 };
 

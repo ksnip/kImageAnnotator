@@ -42,6 +42,7 @@ CoreView::CoreView(Config *config) :
 	connect(mAnnotationWidget, &AnnotationWidget::tabContextMenuOpened, this, &CoreView::tabContextMenuOpened);
 	connect(mAnnotationWidget, &AnnotationWidget::activateCrop, this, &CoreView::showCropper);
 	connect(mAnnotationWidget, &AnnotationWidget::activateScale, this, &CoreView::showScaler);
+	connect(mAnnotationWidget, &AnnotationWidget::activateRotate, this, &CoreView::showRotator);
 	connect(mAnnotationWidget, &AnnotationWidget::activateModifyCanvas, this, &CoreView::showCanvasModifier);
 	connect(mCropWidget, &CropWidget::closing, this, &CoreView::showAnnotator);
 	connect(mScaleWidget, &ScaleWidget::closing, this, &CoreView::showAnnotator);

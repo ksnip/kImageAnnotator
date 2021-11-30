@@ -16,6 +16,7 @@
         <file alias="pen.svg" >icons/dark/pen.svg</file>
         <file alias="rect.svg" >icons/dark/rect.svg</file>
         <file alias="redo.svg" >icons/dark/redo.svg</file>
+        <file alias="rotate.svg" >icons/dark/rotate.svg</file>
         <file alias="select.svg" >icons/dark/select.svg</file>
         <file alias="scale.svg" >icons/dark/scale.svg</file>
         <file alias="sticker.svg" >icons/dark/sticker.svg</file>
@@ -64,6 +65,7 @@
         <file alias="pen.svg" >icons/light/pen.svg</file>
         <file alias="rect.svg" >icons/light/rect.svg</file>
         <file alias="redo.svg" >icons/light/redo.svg</file>
+        <file alias="rotate.svg" >icons/light/rotate.svg</file>
         <file alias="select.svg" >icons/light/select.svg</file>
         <file alias="scale.svg" >icons/light/scale.svg</file>
         <file alias="sticker.svg" >icons/light/sticker.svg</file>
