@@ -60,11 +60,6 @@ void AnnotationWidget::initGui()
 	insertDockWidget(Qt::TopDockWidgetArea, mItemSettings);
 	insertDockWidget(Qt::BottomDockWidgetArea, mGeneralSettings);
 	insertDockWidget(Qt::BottomDockWidgetArea, mImageSettings);
-	insertDockWidget(Qt::BottomDockWidgetArea, mControlsWidget);
-
-	// hide the last inserted DockWidget (mControlsWidget) since we want to show it only if needed using setControlsWidgetVisible(true)
-	mControlsDockWidget = mDockWidgets.last();
-	removeDockWidget(mControlsDockWidget);
 
 	setFocusPolicy(Qt::ClickFocus);
 
@@ -84,11 +79,12 @@ void AnnotationWidget::initGui()
 	connect(qApp, &QCoreApplication::aboutToQuit, this, &AnnotationWidget::persistDockWidgets);
 }
 
-void AnnotationWidget::insertDockWidget(Qt::DockWidgetArea area, AbstractAnnotationDockWidgetContent *content)
+AnnotationDockWidget *AnnotationWidget::insertDockWidget(Qt::DockWidgetArea area, AbstractAnnotationDockWidgetContent *content)
 {
 	auto dockWidget = new AnnotationDockWidget(content);
 	mDockWidgets.append(dockWidget);
 	addDockWidget(area, dockWidget);
+	return dockWidget;
 }
 
 QImage AnnotationWidget::image() const
@@ -199,7 +195,9 @@ void AnnotationWidget::setSettingsCollapsed(bool isCollapsed)
 void AnnotationWidget::setControlsWidgetVisible(bool enabled)
 {
 	if (enabled) {
-		restoreDockWidget(mControlsDockWidget);
+		if (mControlsDockWidget == nullptr) {
+			mControlsDockWidget = insertDockWidget(Qt::BottomDockWidgetArea, mControlsWidget);
+		}
 		restoreDockWidgetsState();
 	} else {
 		removeDockWidget(mControlsDockWidget);

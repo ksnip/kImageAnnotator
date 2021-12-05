@@ -84,7 +84,7 @@ private:
 	AnnotationDockWidget *mControlsDockWidget;
 
 	void initGui();
-	void insertDockWidget(Qt::DockWidgetArea area, AbstractAnnotationDockWidgetContent *content);
+	AnnotationDockWidget *insertDockWidget(Qt::DockWidgetArea area, AbstractAnnotationDockWidgetContent *content);
 
 private slots:
 	void persistDockWidgets();
