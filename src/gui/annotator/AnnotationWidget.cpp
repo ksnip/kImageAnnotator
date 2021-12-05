@@ -33,7 +33,7 @@ AnnotationWidget::AnnotationWidget(Config *config) :
 	mControlsDockWidget(nullptr)
 {
 	initGui();
-	restoreDockWidgets();
+	restoreDockWidgetsState();
 }
 
 AnnotationWidget::~AnnotationWidget()
@@ -200,7 +200,7 @@ void AnnotationWidget::setControlsWidgetVisible(bool enabled)
 {
 	if (enabled) {
 		restoreDockWidget(mControlsDockWidget);
-		restoreDockWidgets();
+		restoreDockWidgetsState();
 	} else {
 		removeDockWidget(mControlsDockWidget);
 	}
@@ -211,7 +211,7 @@ void AnnotationWidget::persistDockWidgets()
 	mConfig->setAnnotatorDockWidgetsState(saveState());
 }
 
-void AnnotationWidget::restoreDockWidgets()
+void AnnotationWidget::restoreDockWidgetsState()
 {
 	restoreState(mConfig->annotatorDockWidgetsState());
 }

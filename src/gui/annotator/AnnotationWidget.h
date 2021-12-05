@@ -88,7 +88,7 @@ private:
 
 private slots:
 	void persistDockWidgets();
-	void restoreDockWidgets();
+	void restoreDockWidgetsState();
 	void scaleTriggered() const;
 	void cropTriggered() const;
 	void rotateTriggered() const;
