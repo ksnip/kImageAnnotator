@@ -29,7 +29,8 @@ AnnotationWidget::AnnotationWidget(Config *config) :
 	mImageSettings(new AnnotationImageSettings),
 	mControlsWidget(new AnnotationControlsWidget),
 	mSettingsAdapter(new AnnotationSettingsAdapter(mGeneralSettings, mItemSettings, mToolSelection, mImageSettings, mControlsWidget, config)),
-	mAnnotationTabWidget(new AnnotationTabWidget(config, mSettingsAdapter))
+	mAnnotationTabWidget(new AnnotationTabWidget(config, mSettingsAdapter)),
+	mControlsDockWidget(nullptr)
 {
 	initGui();
 	restoreDockWidgets();

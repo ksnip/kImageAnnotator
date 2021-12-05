@@ -81,7 +81,7 @@ private:
 	AnnotationSettingsAdapter *mSettingsAdapter;
 	AnnotationTabWidget *mAnnotationTabWidget;
 	QList<AnnotationDockWidget*> mDockWidgets;
-    AnnotationDockWidget *mControlsDockWidget;
+	AnnotationDockWidget *mControlsDockWidget;
 
 	void initGui();
 	void insertDockWidget(Qt::DockWidgetArea area, AbstractAnnotationDockWidgetContent *content);
