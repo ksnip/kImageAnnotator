@@ -62,7 +62,7 @@ public slots:
 	void showScaler();
 	void showRotator();
 	void showCanvasModifier();
-	void showControlsWidget();
+	void setControlsWidgetVisible(bool enabled);
 	void setSettingsCollapsed(bool isCollapsed);
 	void setTabBarAutoHide(bool enabled);
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);

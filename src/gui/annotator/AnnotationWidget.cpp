@@ -29,10 +29,11 @@ AnnotationWidget::AnnotationWidget(Config *config) :
 	mImageSettings(new AnnotationImageSettings),
 	mControlsWidget(new AnnotationControlsWidget),
 	mSettingsAdapter(new AnnotationSettingsAdapter(mGeneralSettings, mItemSettings, mToolSelection, mImageSettings, mControlsWidget, config)),
-	mAnnotationTabWidget(new AnnotationTabWidget(config, mSettingsAdapter))
+	mAnnotationTabWidget(new AnnotationTabWidget(config, mSettingsAdapter)),
+	mControlsDockWidget(nullptr)
 {
 	initGui();
-	restoreDockWidgets();
+	restoreDockWidgetsState();
 }
 
 AnnotationWidget::~AnnotationWidget()
@@ -41,7 +42,7 @@ AnnotationWidget::~AnnotationWidget()
 	delete mItemSettings;
 	delete mToolSelection;
 	delete mImageSettings;
-    delete mControlsWidget;
+	delete mControlsWidget;
 	delete mGeneralSettings;
 }
 
@@ -78,11 +79,12 @@ void AnnotationWidget::initGui()
 	connect(qApp, &QCoreApplication::aboutToQuit, this, &AnnotationWidget::persistDockWidgets);
 }
 
-void AnnotationWidget::insertDockWidget(Qt::DockWidgetArea area, AbstractAnnotationDockWidgetContent *content)
+AnnotationDockWidget *AnnotationWidget::insertDockWidget(Qt::DockWidgetArea area, AbstractAnnotationDockWidgetContent *content)
 {
 	auto dockWidget = new AnnotationDockWidget(content);
 	mDockWidgets.append(dockWidget);
 	addDockWidget(area, dockWidget);
+	return dockWidget;
 }
 
 QImage AnnotationWidget::image() const
@@ -190,10 +192,16 @@ void AnnotationWidget::setSettingsCollapsed(bool isCollapsed)
 	}
 }
 
-void AnnotationWidget::showControlsWidget()
+void AnnotationWidget::setControlsWidgetVisible(bool enabled)
 {
-	insertDockWidget(Qt::BottomDockWidgetArea, mControlsWidget);
-	restoreDockWidgets();
+	if (enabled) {
+		if (mControlsDockWidget == nullptr) {
+			mControlsDockWidget = insertDockWidget(Qt::BottomDockWidgetArea, mControlsWidget);
+		}
+		restoreDockWidgetsState();
+	} else {
+		removeDockWidget(mControlsDockWidget);
+	}
 }
 
 void AnnotationWidget::persistDockWidgets()
@@ -201,7 +209,7 @@ void AnnotationWidget::persistDockWidgets()
 	mConfig->setAnnotatorDockWidgetsState(saveState());
 }
 
-void AnnotationWidget::restoreDockWidgets()
+void AnnotationWidget::restoreDockWidgetsState()
 {
 	restoreState(mConfig->annotatorDockWidgetsState());
 }

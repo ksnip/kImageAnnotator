@@ -49,7 +49,7 @@ public:
 	void showScaler();
 	void showRotator();
 	void showCanvasModifier();
-	void showControlsWidget();
+	void setControlsWidgetVisible(bool enabled);
 
 public Q_SLOTS:
 	void loadImage(const QPixmap &pixmap);

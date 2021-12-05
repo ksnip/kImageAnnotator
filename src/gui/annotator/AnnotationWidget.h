@@ -58,7 +58,7 @@ public:
 	void setStickers(const QStringList &stickerPaths, bool keepDefault);
 	void addTabContextMenuActions(const QList<QAction*> & actions);
 	void setSettingsCollapsed(bool isCollapsed);
-	void showControlsWidget();
+	void setControlsWidgetVisible(bool enabled);
 
 signals:
 	void imageChanged() const;
@@ -81,13 +81,14 @@ private:
 	AnnotationSettingsAdapter *mSettingsAdapter;
 	AnnotationTabWidget *mAnnotationTabWidget;
 	QList<AnnotationDockWidget*> mDockWidgets;
+	AnnotationDockWidget *mControlsDockWidget;
 
 	void initGui();
-	void insertDockWidget(Qt::DockWidgetArea area, AbstractAnnotationDockWidgetContent *content);
+	AnnotationDockWidget *insertDockWidget(Qt::DockWidgetArea area, AbstractAnnotationDockWidgetContent *content);
 
 private slots:
 	void persistDockWidgets();
-	void restoreDockWidgets();
+	void restoreDockWidgetsState();
 	void scaleTriggered() const;
 	void cropTriggered() const;
 	void rotateTriggered() const;
