@@ -116,7 +116,7 @@
     <name>kImageAnnotator::AnnotationToolSelection</name>
     <message>
         <source>Tool Selection</source>
-        <translation type="unfinished">Ferramenta Seleção</translation>
+        <translation>Ferramenta Seleção</translation>
     </message>
 </context>
 <context>
