@@ -40,32 +40,40 @@ void AnnotationTabCloser::closeOtherTabsTriggered(int index)
 	for(auto i = tabCount - 1; i >= 0; i--) {
 		auto currentWidget = mTabWidget->widget(i);
 		if(currentWidget != selectedWidget) {
+			mTabWidget->setCurrentIndex(i);
 			mTabWidget->tabCloseRequested(i);
 		}
 	}
+	mTabWidget->setCurrentWidget(selectedWidget);
 }
 
 void AnnotationTabCloser::closeAllTabsTriggered()
 {
 	auto tabCount = mTabWidget->count();
 	for(auto i = tabCount - 1; i >= 0; i--) {
+		mTabWidget->setCurrentIndex(i);
 		mTabWidget->tabCloseRequested(i);
 	}
 }
 
 void AnnotationTabCloser::closeAllTabsToLeftTriggered(int index)
 {
+	auto selectedWidget = mTabWidget->widget(getValidIndex(index));
 	for(auto i = index - 1; i >= 0; i--) {
+		mTabWidget->setCurrentIndex(i);
 		mTabWidget->tabCloseRequested(i);
 	}
+	mTabWidget->setCurrentWidget(selectedWidget);
 }
 
 void AnnotationTabCloser::closeAllTabsToRightTriggered(int index)
 {
 	auto tabCount = mTabWidget->count();
 	for(auto i = tabCount - 1; i > index; i--) {
+		mTabWidget->setCurrentIndex(i);
 		mTabWidget->tabCloseRequested(i);
 	}
+	mTabWidget->setCurrentIndex(index);
 }
 
 int AnnotationTabCloser::getValidIndex(int index) const
