@@ -30,7 +30,9 @@ AnnotationTabCloser::AnnotationTabCloser(QTabWidget *parent) :
 
 void AnnotationTabCloser::closeTabTriggered(int index)
 {
-	mTabWidget->tabCloseRequested(getValidIndex(index));
+	const auto selectedTabIndex = getValidIndex(index);
+	mTabWidget->setCurrentIndex(selectedTabIndex);
+	mTabWidget->tabCloseRequested(selectedTabIndex);
 }
 
 void AnnotationTabCloser::closeOtherTabsTriggered(int index)
