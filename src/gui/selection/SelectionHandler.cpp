@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-SelectionHandler::SelectionHandler(ISelectionRestrictor *selectionRestrictor, SelectionHandles *selectionHandles) :
+SelectionHandler::SelectionHandler(ISelectionRestrictor *selectionRestrictor, ISelectionHandles *selectionHandles) :
 	mAnnotationArea(nullptr),
 	mSelectionRestrictor(selectionRestrictor),
 	mRestrictionEnabled(true),

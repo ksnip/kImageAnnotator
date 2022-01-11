@@ -30,6 +30,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionHandler.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionMoveHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionHandles.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionHandlesHorizontal.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/BaseSelectionView.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/rotator/RotateDialog.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/rotator/RotateWidget.cpp

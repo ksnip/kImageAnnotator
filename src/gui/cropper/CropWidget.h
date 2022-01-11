@@ -29,6 +29,7 @@
 
 #include "CropView.h"
 #include "src/gui/selection/SelectionHandler.h"
+#include "src/gui/selection/SelectionHandles.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/common/helper/KeyHelper.h"
 #include "src/common/provider/ScaledSizeProvider.h"

@@ -28,6 +28,7 @@
 #include "CutSelectionRestrictor.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/gui/selection/SelectionHandler.h"
+#include "src/gui/selection/SelectionHandlesHorizontal.h"
 #include "src/common/helper/KeyHelper.h"
 #include "src/widgets/settingsPicker/ZoomPicker.h"
 

@@ -24,7 +24,7 @@
 #include <QList>
 
 #include "src/gui/cropper/CropSelectionRestrictor.h"
-#include "src/gui/selection/SelectionHandles.h"
+#include "src/gui/selection/ISelectionHandles.h"
 #include "SelectionMoveHelper.h"
 #include "src/annotations/core/AnnotationArea.h"
 
@@ -34,7 +34,7 @@ class SelectionHandler : public QObject
 {
 Q_OBJECT
 public:
-	explicit SelectionHandler(ISelectionRestrictor *selectionRestrictor, SelectionHandles *selectionHandles);
+	explicit SelectionHandler(ISelectionRestrictor *selectionRestrictor, ISelectionHandles *selectionHandles);
 	~SelectionHandler() override;
 	void init(AnnotationArea *annotationArea);
 	QRectF selection() const;
@@ -61,7 +61,7 @@ private:
 	QRectF mSelection;
 	QRectF mSelectionLimit;
 	ISelectionRestrictor *mSelectionRestrictor;
-	SelectionHandles *mHandles;
+	ISelectionHandles *mHandles;
 	SelectionMoveHelper mMoveHelper;
 	bool mRestrictionEnabled;
 
