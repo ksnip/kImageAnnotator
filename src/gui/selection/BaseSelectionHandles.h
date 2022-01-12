@@ -21,7 +21,7 @@
 #define KIMAGEANNOTATOR_CROPHANDELS_H
 
 #include <QRectF>
-#include <QVector>
+#include <QList>
 
 #include "ISelectionHandles.h"
 #include "src/common/provider/ScaledSizeProvider.h"
@@ -29,12 +29,11 @@
 
 namespace kImageAnnotator {
 
-class SelectionHandles : public ISelectionHandles
+class BaseSelectionHandles : public ISelectionHandles
 {
 public:
-	explicit SelectionHandles();
-	~SelectionHandles() override = default;
-	QVector<QRectF> handles() const override;
+	~BaseSelectionHandles() override = default;
+	QList<QRectF> handles() const override;
 	void grabHandle(const QPointF &position, const QRectF &selection) override;
 	void releaseHandle() override;
 	int grabbedIndex() const override;
@@ -43,8 +42,12 @@ public:
 	QPointF grabOffset() const override;
 	void applyZoomValue(double value) override;
 
+protected:
+	explicit BaseSelectionHandles();
+	void insertHandle(int index);
+
 private:
-	QVector<QRectF> mHandles;
+	QMap<int, QRectF> mIndexToHandleMap;
 	int mGrabbedIndex;
 	QPointF mGrabOffset;
 	double mHandleSize;

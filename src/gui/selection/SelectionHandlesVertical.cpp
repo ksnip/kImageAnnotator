@@ -17,20 +17,15 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SELECTIONHANDLESHORIZONTAL_H
-#define KIMAGEANNOTATOR_SELECTIONHANDLESHORIZONTAL_H
-
-#include "BaseSelectionHandles.h"
+#include "SelectionHandlesVertical.h"
 
 namespace kImageAnnotator {
 
-class SelectionHandlesHorizontal : public BaseSelectionHandles
+SelectionHandlesVertical::SelectionHandlesVertical() :
+	BaseSelectionHandles()
 {
-public:
-	explicit SelectionHandlesHorizontal();
-	~SelectionHandlesHorizontal() override = default;
-};
+	insertHandle(1);
+	insertHandle(5);
+}
 
 } // namespace kImageAnnotator
-
-#endif //KIMAGEANNOTATOR_SELECTIONHANDLESHORIZONTAL_H

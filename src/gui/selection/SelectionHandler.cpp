@@ -46,7 +46,7 @@ QRectF SelectionHandler::selection() const
 	return mSelection;
 }
 
-QVector<QRectF> SelectionHandler::selectionHandles() const
+QList<QRectF> SelectionHandler::selectionHandles() const
 {
 	return mHandles->handles();
 }

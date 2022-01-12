@@ -38,7 +38,7 @@ public:
 	~SelectionHandler() override;
 	void init(AnnotationArea *annotationArea);
 	QRectF selection() const;
-	QVector<QRectF> selectionHandles() const;
+	QList<QRectF> selectionHandles() const;
 	void grab(const QPointF &position);
 	void move(const QPointF &position);
 	void release();

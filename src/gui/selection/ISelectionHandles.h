@@ -27,7 +27,7 @@ class ISelectionHandles
 public:
 	explicit ISelectionHandles() = default;
 	virtual ~ISelectionHandles() = default;
-	virtual QVector<QRectF> handles() const = 0;
+	virtual QList<QRectF> handles() const = 0;
 	virtual void grabHandle(const QPointF &position, const QRectF &selection) = 0;
 	virtual void releaseHandle() = 0;
 	virtual int grabbedIndex() const = 0;

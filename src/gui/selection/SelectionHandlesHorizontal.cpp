@@ -23,67 +23,10 @@ namespace kImageAnnotator {
 
 
 SelectionHandlesHorizontal::SelectionHandlesHorizontal() :
-	mGrabbedIndex(-1),
-	mHandleSize(ScaledSizeProvider::resizeHandleSize())
+	BaseSelectionHandles()
 {
-	mHandles[3] = QRectF(0, 0, mHandleSize, mHandleSize);
-	mHandles[7] = QRectF(0, 0, mHandleSize, mHandleSize);
-}
-
-QVector<QRectF> SelectionHandlesHorizontal::handles() const
-{
-	return mHandles.values().toVector();
-}
-
-void SelectionHandlesHorizontal::grabHandle(const QPointF &position, const QRectF &selection)
-{
-	for (auto index : mHandles.keys()) {
-		auto handle = mHandles[index];
-		if (handle.contains(position)) {
-			mGrabbedIndex = index;
-			mGrabOffset = position - ShapeHelper::rectPointAtIndex(selection, mGrabbedIndex);
-			return;
-		}
-	}
-	mGrabbedIndex = -1;
-}
-
-void SelectionHandlesHorizontal::releaseHandle()
-{
-	mGrabbedIndex = -1;
-}
-
-int SelectionHandlesHorizontal::grabbedIndex() const
-{
-	return mGrabbedIndex;
-}
-
-void SelectionHandlesHorizontal::updateHandles(const QRectF &selection)
-{
-	auto offset = mHandleSize * 0.5;
-	mHandles[3].moveCenter(ShapeHelper::rectRightWithOffset(selection, -offset).toPoint());
-	mHandles[7].moveCenter(ShapeHelper::rectLeftWithOffset(selection, -offset).toPoint());
-}
-
-bool SelectionHandlesHorizontal::isHandleGrabbed() const
-{
-	return mGrabbedIndex != -1;
-}
-
-QPointF SelectionHandlesHorizontal::grabOffset() const
-{
-	return mGrabOffset;
-}
-
-void SelectionHandlesHorizontal::applyZoomValue(double value)
-{
-	auto oldHandleSize = mHandleSize;
-	mHandleSize = ScaledSizeProvider::resizeHandleSize() / value;
-	auto offset = 0.5 * (oldHandleSize - mHandleSize);
-
-	for (auto &handle : mHandles) {
-		handle.adjust(offset, offset, -offset, -offset);
-	}
+	insertHandle(3);
+	insertHandle(7);
 }
 
 } // namespace kImageAnnotator

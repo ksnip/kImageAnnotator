@@ -22,9 +22,9 @@
 
 #include <QtTest>
 
-#include "src/gui/selection/SelectionHandles.h"
+#include "src/gui/selection/BaseSelectionHandles.h"
 
-using kImageAnnotator::SelectionHandles;
+using kImageAnnotator::BaseSelectionHandles;
 using kImageAnnotator::Constants::ResizeHandleSize;
 
 class SelectionHandlesTest : public QObject

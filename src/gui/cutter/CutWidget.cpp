@@ -25,7 +25,7 @@ CutWidget::CutWidget(QWidget *parent) :
 	QWidget(parent),
 	mAnnotationArea(nullptr),
 	mKeyHelper(new KeyHelper()),
-	mSelectionHandler(new SelectionHandler(new CutSelectionRestrictor, new SelectionHandlesHorizontal)),
+	mSelectionHandler(new SelectionHandler(new CutSelectionRestrictor, new SelectionHandlesVertical)),
 	mCutView(new CutView(mSelectionHandler, mKeyHelper, this)),
 	mZoomPicker(new ZoomPicker(this)),
 	mApplyButton(new QPushButton(this)),

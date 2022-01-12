@@ -34,7 +34,7 @@
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/common/helper/KeyHelper.h"
 #include "src/gui/selection/SelectionHandler.h"
-#include "src/gui/selection/SelectionHandles.h"
+#include "src/gui/selection/SelectionHandlesAll.h"
 #include "src/widgets/ColorDialogButton.h"
 #include "src/widgets/settingsPicker/ZoomPicker.h"
 

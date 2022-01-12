@@ -25,7 +25,7 @@ void SelectionHandlesTest::TestIsHandleGrabbed_Should_ReturnTrue_When_ClickedOnH
 	QRectF selection(0, 0, 500, 500);
 	auto halfHandle = ResizeHandleSize / 2;
 	QPointF position(halfHandle, halfHandle);
-	SelectionHandles handles;
+	BaseSelectionHandles handles;
 	handles.updateHandles(selection);
 	handles.grabHandle(position, selection);
 
@@ -38,7 +38,7 @@ void SelectionHandlesTest::TestIsHandleGrabbed_Should_ReturnFalse_When_ClickedOu
 {
 	QRectF selection(0, 0, 500, 500);
 	QPointF position(300, 300);
-	SelectionHandles handles;
+	BaseSelectionHandles handles;
 	handles.updateHandles(selection);
 	handles.grabHandle(position, selection);
 
@@ -52,7 +52,7 @@ void SelectionHandlesTest::TestGrabbedIndex_Should_ReturnIndexOfHandle_When_Clic
 	QRectF selection(0, 0, 500, 500);
 	auto halfHandle = ResizeHandleSize / 2;
 	QPointF position(halfHandle, halfHandle);
-	SelectionHandles handles;
+	BaseSelectionHandles handles;
 	handles.updateHandles(selection);
 	handles.grabHandle(position, selection);
 
@@ -65,7 +65,7 @@ void SelectionHandlesTest::TestGrabbedIndex_Should_ReturnMinusOne_When_ClickedOu
 {
 	QRectF selection(0, 0, 500, 500);
 	QPointF position(300, 300);
-	SelectionHandles handles;
+	BaseSelectionHandles handles;
 	handles.updateHandles(selection);
 	handles.grabHandle(position, selection);
 
@@ -79,7 +79,7 @@ void SelectionHandlesTest::TestGrabOffset_Should_ReturnClickOffsetForHandle()
 	QRectF selection(0, 0, 500, 500);
 	auto halfHandle = ResizeHandleSize / 2;
 	QPointF position(halfHandle, halfHandle);
-	SelectionHandles handles;
+	BaseSelectionHandles handles;
 	handles.updateHandles(selection);
 	handles.grabHandle(position, selection);
 
@@ -91,7 +91,7 @@ void SelectionHandlesTest::TestGrabOffset_Should_ReturnClickOffsetForHandle()
 void SelectionHandlesTest::TestUpdateHandles_Should_PositionHandlesOnCorrectPlaces()
 {
 	QRectF selection(0, 0, 500, 500);
-	SelectionHandles selectionHandles;
+	BaseSelectionHandles selectionHandles;
 
 	selectionHandles.updateHandles(selection);
 
