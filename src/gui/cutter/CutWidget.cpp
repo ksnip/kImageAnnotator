@@ -30,7 +30,11 @@ CutWidget::CutWidget(QWidget *parent) :
 	mZoomPicker(new ZoomPicker(this)),
 	mApplyButton(new QPushButton(this)),
 	mCancelButton(new QPushButton(this)),
+	mOrientationGroupBox(new QGroupBox(this)),
+	mVerticalOrientationRadioButton(new QRadioButton(this)),
+	mHorizontalOrientationRadioButton(new QRadioButton(this)),
 	mPanelLayout(new QHBoxLayout),
+	mOrientationLayout(new QHBoxLayout),
 	mMainLayout(new QVBoxLayout(this))
 {
 	initSelectionHandler();
@@ -52,15 +56,30 @@ void CutWidget::activate(AnnotationArea *annotationArea)
 
 void CutWidget::initGui()
 {
+	mVerticalOrientationRadioButton->setText(tr("Vertical"));
+	connect(mVerticalOrientationRadioButton, &QRadioButton::clicked, this, &CutWidget::orientationChanged);
+	mVerticalOrientationRadioButton->setChecked(true);
+
+	mHorizontalOrientationRadioButton->setText(tr("Horizontal"));
+	connect(mHorizontalOrientationRadioButton, &QRadioButton::clicked, this, &CutWidget::orientationChanged);
+
 	mApplyButton->setText(tr("Apply"));
 	connect(mApplyButton, &QPushButton::clicked, this, &CutWidget::cut);
 
 	mCancelButton->setText(tr("Cancel"));
 	connect(mCancelButton, &QPushButton::clicked, this, &CutWidget::closing);
 
+	mOrientationLayout->addWidget(mVerticalOrientationRadioButton);
+	mOrientationLayout->addWidget(mHorizontalOrientationRadioButton);
+	mOrientationLayout->addStretch(1);
+
+	mOrientationGroupBox->setLayout(mOrientationLayout);
+	mOrientationGroupBox->setFlat(true);
+
 	mPanelLayout->setAlignment(Qt::AlignCenter);
 	mPanelLayout->addWidget(mZoomPicker);
 	mPanelLayout->addStretch(1);
+	mPanelLayout->addWidget(mOrientationGroupBox);
 	mPanelLayout->addStretch(1);
 	mPanelLayout->addWidget(mApplyButton);
 	mPanelLayout->addWidget(mCancelButton);
@@ -108,6 +127,11 @@ void CutWidget::cut()
 void CutWidget::selectionChanged(const QRectF &rect)
 {
 
+}
+
+void CutWidget::orientationChanged()
+{
+	qDebug("Orientation changed");
 }
 
 } // kImageAnnotator namespace

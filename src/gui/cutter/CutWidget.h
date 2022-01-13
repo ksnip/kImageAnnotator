@@ -23,6 +23,8 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QRadioButton>
+#include <QGroupBox>
 
 #include "CutView.h"
 #include "CutSelectionRestrictor.h"
@@ -54,8 +56,12 @@ private:
 	ZoomPicker *mZoomPicker;
 	QVBoxLayout *mMainLayout;
 	QHBoxLayout *mPanelLayout;
+	QHBoxLayout *mOrientationLayout;
 	QPushButton *mApplyButton;
 	QPushButton *mCancelButton;
+	QGroupBox *mOrientationGroupBox;
+	QRadioButton *mVerticalOrientationRadioButton;
+	QRadioButton *mHorizontalOrientationRadioButton;
 
 	void initGui();
 	void initKeyHelper();
@@ -66,6 +72,7 @@ private:
 private slots:
 	void cut();
 	void selectionChanged(const QRectF &rect);
+	void orientationChanged();
 };
 
 } // kImageAnnotator namespace
