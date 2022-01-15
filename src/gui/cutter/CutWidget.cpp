@@ -25,7 +25,7 @@ CutWidget::CutWidget(QWidget *parent) :
 	QWidget(parent),
 	mAnnotationArea(nullptr),
 	mKeyHelper(new KeyHelper()),
-	mSelectionHandler(new SelectionHandler(new CutSelectionRestrictor, new SelectionHandlesVertical)),
+	mSelectionHandler(new SelectionHandler(new CutSelectionRestrictor, QSharedPointer<ISelectionHandles>(new SelectionHandlesVertical))),
 	mCutView(new CutView(mSelectionHandler, mKeyHelper, this)),
 	mZoomPicker(new ZoomPicker(this)),
 	mApplyButton(new QPushButton(this)),
@@ -35,7 +35,8 @@ CutWidget::CutWidget(QWidget *parent) :
 	mHorizontalOrientationRadioButton(new QRadioButton(this)),
 	mPanelLayout(new QHBoxLayout),
 	mOrientationLayout(new QHBoxLayout),
-	mMainLayout(new QVBoxLayout(this))
+	mMainLayout(new QVBoxLayout(this)),
+	mDefaultSelectionWidth(100)
 {
 	initSelectionHandler();
 	initKeyHelper();
@@ -59,7 +60,7 @@ void CutWidget::initGui()
 	mVerticalOrientationRadioButton->setText(tr("Vertical"));
 	connect(mVerticalOrientationRadioButton, &QRadioButton::clicked, this, &CutWidget::orientationChanged);
 	mVerticalOrientationRadioButton->setChecked(true);
-
+	
 	mHorizontalOrientationRadioButton->setText(tr("Horizontal"));
 	connect(mHorizontalOrientationRadioButton, &QRadioButton::clicked, this, &CutWidget::orientationChanged);
 
@@ -104,8 +105,18 @@ void CutWidget::initSelectionHandler() const
 
 void CutWidget::reset()
 {
-	auto selection = mAnnotationArea->backgroundImageRect();
-	mSelectionHandler->resetSelection(selection, selection);
+	auto selectionLimit = mAnnotationArea->backgroundImageRect();
+	auto selection = selectionLimit;
+
+	if (isVerticalOrientation()) {
+		selection.setWidth(mDefaultSelectionWidth);
+		selection.moveLeft(selectionLimit.center().x() - mDefaultSelectionWidth / 2);
+	} else {
+		selection.setHeight(mDefaultSelectionWidth);
+		selection.moveTop(selectionLimit.center().y() - mDefaultSelectionWidth / 2);
+	}
+
+	mSelectionHandler->resetSelection(selection, selectionLimit);
 }
 
 void CutWidget::initZoomPicker() const
@@ -131,7 +142,17 @@ void CutWidget::selectionChanged(const QRectF &rect)
 
 void CutWidget::orientationChanged()
 {
-	qDebug("Orientation changed");
+	if(isVerticalOrientation()) {
+		mSelectionHandler->replaceHandles(QSharedPointer<ISelectionHandles>(new SelectionHandlesVertical));
+	} else {
+		mSelectionHandler->replaceHandles(QSharedPointer<ISelectionHandles>(new SelectionHandlesHorizontal));
+	}
+	reset();
+}
+
+bool CutWidget::isVerticalOrientation() const
+{
+	return mVerticalOrientationRadioButton->isChecked();
 }
 
 } // kImageAnnotator namespace

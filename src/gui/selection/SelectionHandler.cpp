@@ -21,7 +21,7 @@
 
 namespace kImageAnnotator {
 
-SelectionHandler::SelectionHandler(ISelectionRestrictor *selectionRestrictor, ISelectionHandles *selectionHandles) :
+SelectionHandler::SelectionHandler(ISelectionRestrictor *selectionRestrictor, const QSharedPointer<ISelectionHandles> &selectionHandles) :
 	mAnnotationArea(nullptr),
 	mSelectionRestrictor(selectionRestrictor),
 	mRestrictionEnabled(true),
@@ -33,7 +33,6 @@ SelectionHandler::SelectionHandler(ISelectionRestrictor *selectionRestrictor, IS
 SelectionHandler::~SelectionHandler()
 {
 	delete mSelectionRestrictor;
-	delete mHandles;
 }
 
 void SelectionHandler::init(AnnotationArea *annotationArea)
@@ -181,6 +180,12 @@ void SelectionHandler::applyZoomValue(double value)
 {
 	mHandles->applyZoomValue(value);
 	mHandles->updateHandles(mSelection);
+}
+
+void SelectionHandler::replaceHandles(const QSharedPointer<ISelectionHandles> handles)
+{
+	mHandles = handles;
+	update();
 }
 
 }

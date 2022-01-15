@@ -34,7 +34,7 @@ class SelectionHandler : public QObject
 {
 Q_OBJECT
 public:
-	explicit SelectionHandler(ISelectionRestrictor *selectionRestrictor, ISelectionHandles *selectionHandles);
+	explicit SelectionHandler(ISelectionRestrictor *selectionRestrictor, const QSharedPointer<ISelectionHandles> &selectionHandles);
 	~SelectionHandler() override;
 	void init(AnnotationArea *annotationArea);
 	QRectF selection() const;
@@ -52,6 +52,7 @@ public:
 	void setRestrictionEnabled(bool enabled);
 	bool restrictionEnabled() const;
 	void applyZoomValue(double value);
+	void replaceHandles(const QSharedPointer<ISelectionHandles> handles);
 
 signals:
 	void selectionChanged(const QRectF &rect) const;
@@ -61,7 +62,7 @@ private:
 	QRectF mSelection;
 	QRectF mSelectionLimit;
 	ISelectionRestrictor *mSelectionRestrictor;
-	ISelectionHandles *mHandles;
+	QSharedPointer<ISelectionHandles> mHandles;
 	SelectionMoveHelper mMoveHelper;
 	bool mRestrictionEnabled;
 

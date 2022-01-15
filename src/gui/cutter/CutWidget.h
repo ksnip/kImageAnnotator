@@ -62,12 +62,14 @@ private:
 	QGroupBox *mOrientationGroupBox;
 	QRadioButton *mVerticalOrientationRadioButton;
 	QRadioButton *mHorizontalOrientationRadioButton;
+	qreal mDefaultSelectionWidth;
 
 	void initGui();
 	void initKeyHelper();
 	void initSelectionHandler() const;
 	void reset();
 	void initZoomPicker() const;
+	bool isVerticalOrientation() const;
 
 private slots:
 	void cut();

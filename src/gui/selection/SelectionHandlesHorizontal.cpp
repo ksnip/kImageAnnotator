@@ -25,8 +25,8 @@ namespace kImageAnnotator {
 SelectionHandlesHorizontal::SelectionHandlesHorizontal() :
 	BaseSelectionHandles()
 {
-	insertHandle(3);
-	insertHandle(7);
+	insertHandle(1);
+	insertHandle(5);
 }
 
 } // namespace kImageAnnotator
