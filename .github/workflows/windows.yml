@@ -1,4 +1,4 @@
-name: Build
+name: linux
 
 on:
   push:
@@ -42,9 +42,9 @@ jobs:
       working-directory: ${{github.workspace}}
       run: |
         mkdir build && cd build
-        cmake .. -DBUILD_TESTS=ON && make VERBOSE=1
+        cmake .. -DBUILD_TESTS=ON -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} && make VERBOSE=1
 
     - name: Test
       working-directory: ${{github.workspace}}/build
-      run: xvfb-run --auto-servernum --server-num=1 --server-args="-screen 0 1024x768x24" make test CTEST_OUTPUT_ON_FAILURE=1
+      run: xvfb-run --auto-servernum --server-num=1 --server-args="-screen 0 1024x768x24" ctest --extra-verbose
       

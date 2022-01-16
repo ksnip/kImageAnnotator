@@ -51,8 +51,11 @@ For translations, we use [Weblate](https://hosted.weblate.org/projects/kimageann
 Stickers designed by [OpenMoji](https://openmoji.org/) – the open-source emoji and icon project.
 
 
-[github-badge]:        https://github.com/ksnip/kImageAnnotator/actions/workflows/build.yml/badge.svg
-[github-url]:          https://github.com/ksnip/kImageAnnotator/actions
+[github-badge-linux]:        https://github.com/ksnip/kImageAnnotator/actions/workflows/linux.yml/badge.svg
+[github-url-linux]:          https://github.com/ksnip/kImageAnnotator/actions
+
+[github-badge-windows]:        https://github.com/ksnip/kImageAnnotator/actions/workflows/windows.yml/badge.svg
+[github-url-windows]:          https://github.com/ksnip/kImageAnnotator/actions
 
 [weblate-badge]:       https://hosted.weblate.org/widgets/kimageannotator/-/kimageannotator/svg-badge.svg
 [weblate-url]:         https://hosted.weblate.org/engage/kimageannotator/?utm_source=widget
