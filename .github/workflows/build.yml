@@ -11,7 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up build variables
+      run: bash ./.github/scripts/setup_build_variables.sh
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
@@ -22,6 +26,9 @@ jobs:
 
     - name: Install dependencies
       run: sudo apt-get install extra-cmake-modules xvfb
+
+    - name: Set up GoogleTest
+      run: bash ./.github/scripts/setup_googleTest.sh
 
     - name: Setup kColorPicker
       run: |
@@ -36,6 +43,7 @@ jobs:
       run: |
         mkdir build && cd build
         cmake .. -DBUILD_TESTS=ON && make VERBOSE=1
+
     - name: Test
       working-directory: ${{github.workspace}}/build
       run: xvfb-run --auto-servernum --server-num=1 --server-args="-screen 0 1024x768x24" make test CTEST_OUTPUT_ON_FAILURE=1
