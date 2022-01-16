@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,31 +17,29 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPCOMMAND_H
-#define KIMAGEANNOTATOR_CROPCOMMAND_H
+#ifndef KIMAGEANNOTATOR_CUTVIEW_H
+#define KIMAGEANNOTATOR_CUTVIEW_H
 
-#include <QUndoCommand>
-
-#include "src/annotations/core/AnnotationArea.h"
+#include "src/gui/selection/BaseSelectionView.h"
+#include "src/annotations/misc/CanvasPainter.h"
 
 namespace kImageAnnotator {
 
-class CropCommand : public QUndoCommand
+class CutView : public BaseSelectionView
 {
+	Q_OBJECT
 public:
-	CropCommand(QGraphicsPixmapItem *backgroundImage, const QRectF &cropRect, AnnotationArea *annotationArea);
-	~CropCommand() override = default;
-	void undo() override;
-	void redo() override;
+	explicit CutView(SelectionHandler *selectionHandler, KeyHelper *keyHelper, QWidget *parent);
+	~CutView() override = default;
+
+protected:
+	void drawForeground(QPainter *painter, const QRectF &rect) override;
+	void drawBackground(QPainter *painter, const QRectF &rect) override;
 
 private:
-	AnnotationArea *mAnnotationArea;
-	QPixmap mOriginalImage;
-	QPixmap mCroppedImage;
-	QGraphicsPixmapItem *mBackgroundImage;
-	QPointF mNewItemOffset;
+	CanvasPainter mCanvasPainter;
 };
 
-} // namespace kImageAnnotator
+} // kImageAnnotator namespace
 
-#endif //KIMAGEANNOTATOR_CROPCOMMAND_H
+#endif //KIMAGEANNOTATOR_CUTVIEW_H

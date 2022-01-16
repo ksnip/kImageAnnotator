@@ -50,6 +50,7 @@ public:
 	void showRotator();
 	void showCanvasModifier();
 	void setControlsWidgetVisible(bool enabled);
+	void showCutter();
 
 public Q_SLOTS:
 	void loadImage(const QPixmap &pixmap);

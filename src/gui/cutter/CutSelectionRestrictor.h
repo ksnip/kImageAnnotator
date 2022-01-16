@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,31 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPCOMMAND_H
-#define KIMAGEANNOTATOR_CROPCOMMAND_H
+#ifndef KIMAGEANNOTATOR_CUTSELECTIONRESTRICTOR_H
+#define KIMAGEANNOTATOR_CUTSELECTIONRESTRICTOR_H
 
-#include <QUndoCommand>
+#include <QRectF>
 
-#include "src/annotations/core/AnnotationArea.h"
+#include "src/gui/selection/ISelectionRestrictor.h"
 
 namespace kImageAnnotator {
 
-class CropCommand : public QUndoCommand
+class CutSelectionRestrictor : public ISelectionRestrictor
 {
 public:
-	CropCommand(QGraphicsPixmapItem *backgroundImage, const QRectF &cropRect, AnnotationArea *annotationArea);
-	~CropCommand() override = default;
-	void undo() override;
-	void redo() override;
+	explicit CutSelectionRestrictor() = default;
+	~CutSelectionRestrictor() override = default;
 
-private:
-	AnnotationArea *mAnnotationArea;
-	QPixmap mOriginalImage;
-	QPixmap mCroppedImage;
-	QGraphicsPixmapItem *mBackgroundImage;
-	QPointF mNewItemOffset;
+	QRectF &restrictResize(QRectF &newRect, const QRectF &currentRect, const QRectF &rectLimit) const override;
+	QRectF &restrictMove(QRectF &newRect, const QRectF &rectLimit) const override;
 };
 
-} // namespace kImageAnnotator
+} // kImageAnnotator namespace
 
-#endif //KIMAGEANNOTATOR_CROPCOMMAND_H
+#endif //KIMAGEANNOTATOR_CUTSELECTIONRESTRICTOR_H

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2022 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,38 +17,20 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPHANDELS_H
-#define KIMAGEANNOTATOR_CROPHANDELS_H
+#ifndef KIMAGEANNOTATOR_SELECTIONHANDLESHORIZONTAL_H
+#define KIMAGEANNOTATOR_SELECTIONHANDLESHORIZONTAL_H
 
-#include <QRectF>
-#include <QVector>
-
-#include "src/common/provider/ScaledSizeProvider.h"
-#include "src/common/helper/ShapeHelper.h"
+#include "BaseSelectionHandles.h"
 
 namespace kImageAnnotator {
 
-class SelectionHandles
+class SelectionHandlesHorizontal : public BaseSelectionHandles
 {
 public:
-	explicit SelectionHandles();
-	~SelectionHandles() = default;
-	QVector<QRectF> handles() const;
-	void grabHandle(const QPointF &position, const QRectF &selection);
-	void releaseHandle();
-	int grabbedIndex() const;
-	void updateHandles(const QRectF &selection);
-	bool isHandleGrabbed() const;
-	QPointF grabOffset() const;
-	void applyZoomValue(double value);
-
-private:
-	QVector<QRectF> mHandles;
-	int mGrabbedIndex;
-	QPointF mGrabOffset;
-	double mHandleSize;
+	explicit SelectionHandlesHorizontal();
+	~SelectionHandlesHorizontal() override = default;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_CROPHANDELS_H
+#endif //KIMAGEANNOTATOR_SELECTIONHANDLESHORIZONTAL_H

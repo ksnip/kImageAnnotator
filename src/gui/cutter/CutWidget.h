@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,75 +17,64 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPWIDGET_H
-#define KIMAGEANNOTATOR_CROPWIDGET_H
+#ifndef KIMAGEANNOTATOR_CUTWIDGET_H
+#define KIMAGEANNOTATOR_CUTWIDGET_H
 
 #include <QWidget>
+#include <QVBoxLayout>
 #include <QPushButton>
-#include <QLabel>
-#include <QLineEdit>
-#include <QHBoxLayout>
-#include <QIntValidator>
+#include <QRadioButton>
+#include <QGroupBox>
 
-#include "CropView.h"
-#include "src/gui/selection/SelectionHandler.h"
-#include "src/gui/selection/SelectionHandlesAll.h"
+#include "CutView.h"
+#include "CutSelectionRestrictor.h"
 #include "src/annotations/core/AnnotationArea.h"
+#include "src/gui/selection/SelectionHandler.h"
+#include "src/gui/selection/SelectionHandlesHorizontal.h"
+#include "src/gui/selection/SelectionHandlesVertical.h"
 #include "src/common/helper/KeyHelper.h"
-#include "src/common/provider/ScaledSizeProvider.h"
 #include "src/widgets/settingsPicker/ZoomPicker.h"
 
 namespace kImageAnnotator {
 
-class CropWidget : public QWidget
+class CutWidget : public QWidget
 {
-Q_OBJECT
+	Q_OBJECT
 public:
-	explicit CropWidget();
-	~CropWidget() override;
+	explicit CutWidget(QWidget *parent);
+	~CutWidget() override = default;
 	void activate(AnnotationArea *annotationArea);
 
 signals:
 	void closing() const;
 
-protected:
-	void keyReleaseEvent(QKeyEvent *event) override;
-
 private:
 	AnnotationArea *mAnnotationArea;
 	KeyHelper *mKeyHelper;
 	SelectionHandler *mSelectionHandler;
-	CropView *mCropView;
+	CutView *mCutView;
+	ZoomPicker *mZoomPicker;
 	QVBoxLayout *mMainLayout;
 	QHBoxLayout *mPanelLayout;
+	QHBoxLayout *mOrientationLayout;
 	QPushButton *mApplyButton;
 	QPushButton *mCancelButton;
-	QLineEdit *mPositionXLineEdit;
-	QLineEdit *mPositionYLineEdit;
-	QLineEdit *mWidthLineEdit;
-	QLineEdit *mHeightLineEdit;
-	QLabel *mPositionXLabel;
-	QLabel *mPositionYLabel;
-	QLabel *mWidthLabel;
-	QLabel *mHeightLabel;
-	QIntValidator *mInputValidator;
-	ZoomPicker *mZoomPicker;
+	QGroupBox *mOrientationGroupBox;
+	QRadioButton *mVerticalOrientationRadioButton;
+	QRadioButton *mHorizontalOrientationRadioButton;
+	qreal mDefaultSelectionWidth;
 
 	void initGui();
 	void initKeyHelper();
-	void initSelectionHandler() const;
 	void reset();
 	void initZoomPicker() const;
+	bool isVerticalOrientation() const;
 
 private slots:
-	void crop();
-	void selectionChanged(const QRectF &rect);
-	void xChanged(const QString &text);
-	void yChanged(const QString &text);
-	void widthChanged(const QString &text);
-	void heightChanged(const QString &text);
+	void cut();
+	void orientationChanged();
 };
 
 } // kImageAnnotator namespace
 
-#endif //KIMAGEANNOTATOR_CROPWIDGET_H
+#endif //KIMAGEANNOTATOR_CUTWIDGET_H

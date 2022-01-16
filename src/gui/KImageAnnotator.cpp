@@ -232,6 +232,12 @@ void KImageAnnotator::setControlsWidgetVisible(bool enabled)
 	d->mCoreView.setControlsWidgetVisible(enabled);
 }
 
+void KImageAnnotator::showCutter()
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.showCutter();
+}
+
 void KImageAnnotator::setSettingsCollapsed(bool isCollapsed)
 {
 	Q_D(KImageAnnotator);

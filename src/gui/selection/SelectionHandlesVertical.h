@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2022 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,31 +17,20 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPCOMMAND_H
-#define KIMAGEANNOTATOR_CROPCOMMAND_H
+#ifndef KIMAGEANNOTATOR_SELECTIONHANDLESVERTICAL_H
+#define KIMAGEANNOTATOR_SELECTIONHANDLESVERTICAL_H
 
-#include <QUndoCommand>
-
-#include "src/annotations/core/AnnotationArea.h"
+#include "BaseSelectionHandles.h"
 
 namespace kImageAnnotator {
 
-class CropCommand : public QUndoCommand
+class SelectionHandlesVertical : public BaseSelectionHandles
 {
 public:
-	CropCommand(QGraphicsPixmapItem *backgroundImage, const QRectF &cropRect, AnnotationArea *annotationArea);
-	~CropCommand() override = default;
-	void undo() override;
-	void redo() override;
-
-private:
-	AnnotationArea *mAnnotationArea;
-	QPixmap mOriginalImage;
-	QPixmap mCroppedImage;
-	QGraphicsPixmapItem *mBackgroundImage;
-	QPointF mNewItemOffset;
+	explicit SelectionHandlesVertical();
+	~SelectionHandlesVertical() override = default;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_CROPCOMMAND_H
+#endif //KIMAGEANNOTATOR_SELECTIONHANDLESVERTICAL_H

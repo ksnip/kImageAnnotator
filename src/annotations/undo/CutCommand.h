@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2022 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,31 +17,34 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPCOMMAND_H
-#define KIMAGEANNOTATOR_CROPCOMMAND_H
+#ifndef KIMAGEANNOTATOR_CUTCOMMAND_H
+#define KIMAGEANNOTATOR_CUTCOMMAND_H
 
 #include <QUndoCommand>
+#include <QPainter>
 
 #include "src/annotations/core/AnnotationArea.h"
 
 namespace kImageAnnotator {
 
-class CropCommand : public QUndoCommand
+class CutCommand : public QUndoCommand
 {
 public:
-	CropCommand(QGraphicsPixmapItem *backgroundImage, const QRectF &cropRect, AnnotationArea *annotationArea);
-	~CropCommand() override = default;
+	CutCommand(QGraphicsPixmapItem *backgroundImage, const QRectF &cutOutRect, AnnotationArea *annotationArea);
+	~CutCommand() override = default;
 	void undo() override;
 	void redo() override;
 
 private:
 	AnnotationArea *mAnnotationArea;
 	QPixmap mOriginalImage;
-	QPixmap mCroppedImage;
+	QPixmap mCutImage;
 	QGraphicsPixmapItem *mBackgroundImage;
-	QPointF mNewItemOffset;
+
+	bool isVerticalCut(const QRectF &cutOutRect, const QRectF &imageRect) const;
+	void createCutImage(const QRectF &imageRect, const QPointF &bottomRightRect1, const QPointF &topLeftRect2, const QPointF &connectionPoint);
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_CROPCOMMAND_H
+#endif //KIMAGEANNOTATOR_CUTCOMMAND_H

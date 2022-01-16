@@ -28,6 +28,8 @@ using kImageAnnotator::KImageAnnotator;
 
 int main(int argc, char **argv)
 {
+	QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
 	QApplication app(argc, argv);
 	auto settingsCollapsed = false;
 	QPixmap pixmap(QSize(500, 500));
@@ -47,12 +49,14 @@ int main(int argc, char **argv)
 	auto cropAction = new QAction(QLatin1String("Crop"), &mainWindow);
 	auto scaleAction = new QAction(QLatin1String("Scale"), &mainWindow);
 	auto rotateAction = new QAction(QLatin1String("Rotate"), &mainWindow);
+	auto cutAction = new QAction(QLatin1String("Cut"), &mainWindow);
 	auto modifyCanvasAction = new QAction(QLatin1String("Modify Canvas"), &mainWindow);
 	auto toggleDocksAction = new QAction(QLatin1String("Toggle Docks"), &mainWindow);
 	mainWindow.connect(annotationAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showAnnotator);
 	mainWindow.connect(cropAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showCropper);
 	mainWindow.connect(scaleAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showScaler);
 	mainWindow.connect(rotateAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showRotator);
+	mainWindow.connect(cutAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showCutter);
 	mainWindow.connect(modifyCanvasAction, &QAction::triggered, kImageAnnotator, &KImageAnnotator::showCanvasModifier);
 	mainWindow.connect(toggleDocksAction, &QAction::triggered, [kImageAnnotator, settingsCollapsed]() mutable
 	{
@@ -67,6 +71,7 @@ int main(int argc, char **argv)
 	menu->addAction(cropAction);
 	menu->addAction(scaleAction);
 	menu->addAction(rotateAction);
+	menu->addAction(cutAction);
 	menu->addAction(modifyCanvasAction);
 	menu->addAction(toggleDocksAction);
 	menuBar->addMenu(menu);

@@ -24,9 +24,9 @@ namespace kImageAnnotator {
 CropWidget::CropWidget() :
 	mAnnotationArea(nullptr),
 	mKeyHelper(new KeyHelper()),
-	mSelectionHandler(new SelectionHandler(new CropSelectionRestrictor)),
+	mSelectionHandler(new SelectionHandler(new CropSelectionRestrictor, QSharedPointer<ISelectionHandles>(new SelectionHandlesAll))),
 	mCropView(new CropView(mSelectionHandler, mKeyHelper, this)),
-	mCropButton(new QPushButton(this)),
+	mApplyButton(new QPushButton(this)),
 	mCancelButton(new QPushButton(this)),
 	mPanelLayout(new QHBoxLayout),
 	mPositionXLabel(new QLabel(this)),
@@ -68,12 +68,11 @@ void CropWidget::activate(AnnotationArea *annotationArea)
 
 void CropWidget::initGui()
 {
-	mCropButton->setText(tr("Apply"));
-	connect(mCropButton, &QPushButton::clicked, this, &CropWidget::crop);
+	mApplyButton->setText(tr("Apply"));
+	connect(mApplyButton, &QPushButton::clicked, this, &CropWidget::crop);
 
 	mCancelButton->setText(tr("Cancel"));
 	connect(mCancelButton, &QPushButton::clicked, this, &CropWidget::closing);
-
 
 	auto width = ScaledSizeProvider::scaledWidth(80);
 
@@ -117,7 +116,7 @@ void CropWidget::initGui()
 	mPanelLayout->addWidget(mHeightLabel);
 	mPanelLayout->addWidget(mHeightLineEdit);
 	mPanelLayout->addStretch(1);
-	mPanelLayout->addWidget(mCropButton);
+	mPanelLayout->addWidget(mApplyButton);
 	mPanelLayout->addWidget(mCancelButton);
 
 	mMainLayout->addWidget(mCropView);

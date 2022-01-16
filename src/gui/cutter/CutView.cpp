@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,31 +17,28 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CROPCOMMAND_H
-#define KIMAGEANNOTATOR_CROPCOMMAND_H
-
-#include <QUndoCommand>
-
-#include "src/annotations/core/AnnotationArea.h"
+#include "CutView.h"
 
 namespace kImageAnnotator {
 
-class CropCommand : public QUndoCommand
+CutView::CutView(SelectionHandler *selectionHandler, KeyHelper *keyHelper, QWidget *parent) :
+	BaseSelectionView(selectionHandler, keyHelper, parent)
 {
-public:
-	CropCommand(QGraphicsPixmapItem *backgroundImage, const QRectF &cropRect, AnnotationArea *annotationArea);
-	~CropCommand() override = default;
-	void undo() override;
-	void redo() override;
 
-private:
-	AnnotationArea *mAnnotationArea;
-	QPixmap mOriginalImage;
-	QPixmap mCroppedImage;
-	QGraphicsPixmapItem *mBackgroundImage;
-	QPointF mNewItemOffset;
-};
+}
 
-} // namespace kImageAnnotator
+void CutView::drawForeground(QPainter *painter, const QRectF &rect)
+{
+	painter->setBrush(QColor(0, 0, 0, 150));
+	painter->drawRect(currentSelection().toRect());
 
-#endif //KIMAGEANNOTATOR_CROPCOMMAND_H
+	BaseSelectionView::drawForeground(painter, rect);
+}
+
+void CutView::drawBackground(QPainter *painter, const QRectF &rect)
+{
+	auto annotationArea = dynamic_cast<AnnotationArea *>(scene());
+	mCanvasPainter.paint(painter, annotationArea->canvasRect(), annotationArea->canvasColor());
+}
+
+} // kImageAnnotator namespace

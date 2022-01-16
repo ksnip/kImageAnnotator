@@ -25,9 +25,15 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropView.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/cropper/CropSelectionRestrictor.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/cutter/CutSelectionRestrictor.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/cutter/CutView.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/cutter/CutWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionHandler.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionMoveHelper.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionHandles.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/BaseSelectionHandles.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionHandlesAll.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionHandlesHorizontal.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/SelectionHandlesVertical.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/selection/BaseSelectionView.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/rotator/RotateDialog.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/rotator/RotateWidget.cpp
@@ -105,6 +111,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ResizeCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ArrangeCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/CropCommand.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/CutCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ScaleCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/RotateCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/PasteCommand.cpp

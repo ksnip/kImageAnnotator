@@ -21,10 +21,11 @@
 
 namespace kImageAnnotator {
 
-SelectionHandler::SelectionHandler(ISelectionRestrictor *selectionRestrictor) :
+SelectionHandler::SelectionHandler(ISelectionRestrictor *selectionRestrictor, const QSharedPointer<ISelectionHandles> &selectionHandles) :
 	mAnnotationArea(nullptr),
 	mSelectionRestrictor(selectionRestrictor),
-	mRestrictionEnabled(true)
+	mRestrictionEnabled(true),
+	mHandles(selectionHandles)
 {
 
 }
@@ -44,16 +45,16 @@ QRectF SelectionHandler::selection() const
 	return mSelection;
 }
 
-QVector<QRectF> SelectionHandler::selectionHandles() const
+QList<QRectF> SelectionHandler::selectionHandles() const
 {
-	return mHandles.handles();
+	return mHandles->handles();
 }
 
 void SelectionHandler::grab(const QPointF &position)
 {
-	mHandles.grabHandle(position, mSelection);
+	mHandles->grabHandle(position, mSelection);
 
-	if (!mHandles.isHandleGrabbed()) {
+	if (!mHandles->isHandleGrabbed()) {
 		mMoveHelper.grabSelection(position, mSelection);
 	}
 
@@ -64,8 +65,8 @@ void SelectionHandler::grab(const QPointF &position)
 
 void SelectionHandler::move(const QPointF &position)
 {
-	if (mHandles.isHandleGrabbed()) {
-		auto selection = ShapeHelper::setRectPointAtIndex(mSelection, mHandles.grabbedIndex(), position - mHandles.grabOffset());
+	if (mHandles->isHandleGrabbed()) {
+		auto selection = ShapeHelper::setRectPointAtIndex(mSelection, mHandles->grabbedIndex(), position - mHandles->grabOffset());
 		setSelection(restrictResize(selection));
 	} else if (mMoveHelper.isSelectionGabbed()) {
 		auto selection = mSelection;
@@ -81,7 +82,7 @@ void SelectionHandler::move(const QPointF &position)
 void SelectionHandler::release()
 {
 	if (isInMotion()) {
-		mHandles.releaseHandle();
+		mHandles->releaseHandle();
 		mMoveHelper.releaseSelection();
 		update();
 	}
@@ -97,7 +98,7 @@ void SelectionHandler::resetSelection(const QRectF &selection, const QRectF &sel
 
 bool SelectionHandler::isInMotion() const
 {
-	return mMoveHelper.isSelectionGabbed() || mHandles.isHandleGrabbed();
+	return mMoveHelper.isSelectionGabbed() || mHandles->isHandleGrabbed();
 }
 
 void SelectionHandler::setWidth(int width)
@@ -128,7 +129,7 @@ void SelectionHandler::update()
 {
 	Q_ASSERT(mAnnotationArea != nullptr);
 
-	mHandles.updateHandles(mSelection);
+	mHandles->updateHandles(mSelection);
 	mAnnotationArea->update();
 	notifyAboutChange();
 }
@@ -177,8 +178,14 @@ bool SelectionHandler::restrictionEnabled() const
 
 void SelectionHandler::applyZoomValue(double value)
 {
-	mHandles.applyZoomValue(value);
-	mHandles.updateHandles(mSelection);
+	mHandles->applyZoomValue(value);
+	mHandles->updateHandles(mSelection);
+}
+
+void SelectionHandler::replaceHandles(const QSharedPointer<ISelectionHandles> handles)
+{
+	mHandles = handles;
+	update();
 }
 
 }
