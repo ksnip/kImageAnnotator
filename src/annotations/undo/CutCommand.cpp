@@ -17,41 +17,41 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "CutOutCommand.h"
+#include "CutCommand.h"
 
 namespace kImageAnnotator {
 
-CutOutCommand::CutOutCommand(QGraphicsPixmapItem *backgroundImage, const QRectF &cutOutRect, AnnotationArea *annotationArea) :
+CutCommand::CutCommand(QGraphicsPixmapItem *backgroundImage, const QRectF &cutOutRect, AnnotationArea *annotationArea) :
 	mAnnotationArea(annotationArea),
 	mBackgroundImage(backgroundImage),
 	mOriginalImage(backgroundImage->pixmap())
 {
 	auto imageRect = backgroundImage->boundingRect();
 	if(isVerticalCut(cutOutRect, imageRect)) {
-		createCutOutImage(imageRect, cutOutRect.bottomLeft(), cutOutRect.topRight(), cutOutRect.topLeft());
+		createCutImage(imageRect, cutOutRect.bottomLeft(), cutOutRect.topRight(), cutOutRect.topLeft());
 	} else {
-		createCutOutImage(imageRect, cutOutRect.topRight(), cutOutRect.bottomLeft(), cutOutRect.topLeft());
+		createCutImage(imageRect, cutOutRect.topRight(), cutOutRect.bottomLeft(), cutOutRect.topLeft());
 	}
 }
 
-void CutOutCommand::undo()
+void CutCommand::undo()
 {
 	mBackgroundImage->setPixmap(mOriginalImage);
 	mAnnotationArea->setSceneRect(mBackgroundImage->boundingRect());
 }
 
-void CutOutCommand::redo()
+void CutCommand::redo()
 {
-	mBackgroundImage->setPixmap(mCutOutImage);
+	mBackgroundImage->setPixmap(mCutImage);
 	mAnnotationArea->setSceneRect(mBackgroundImage->boundingRect());
 }
 
-bool CutOutCommand::isVerticalCut(const QRectF &cutOutRect, const QRectF &imageRect) const
+bool CutCommand::isVerticalCut(const QRectF &cutOutRect, const QRectF &imageRect) const
 {
 	return imageRect.top() == cutOutRect.top() && imageRect.bottom() == cutOutRect.bottom();
 }
 
-void CutOutCommand::createCutOutImage(const QRectF &imageRect, const QPointF &bottomRightRect1, const QPointF &topLeftRect2, const QPointF &connectionPoint)
+void CutCommand::createCutImage(const QRectF &imageRect, const QPointF &bottomRightRect1, const QPointF &topLeftRect2, const QPointF &connectionPoint)
 {
 	auto rect1 = QRectF(imageRect.topLeft(), bottomRightRect1);
 	auto rect2 = QRectF(topLeftRect2, imageRect.bottomRight());
@@ -60,8 +60,8 @@ void CutOutCommand::createCutOutImage(const QRectF &imageRect, const QPointF &bo
 
 	rect2.moveTopLeft(connectionPoint);
 
-	mCutOutImage = QPixmap(rect1.united(rect2).size().toSize());
-	QPainter painter(&mCutOutImage);
+	mCutImage = QPixmap(rect1.united(rect2).size().toSize());
+	QPainter painter(&mCutImage);
 	painter.drawPixmap(rect1.topLeft(), image1);
 	painter.drawPixmap(rect2.topLeft(), image2);
 }

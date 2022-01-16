@@ -66,14 +66,12 @@ private:
 
 	void initGui();
 	void initKeyHelper();
-	void initSelectionHandler() const;
 	void reset();
 	void initZoomPicker() const;
 	bool isVerticalOrientation() const;
 
 private slots:
 	void cut();
-	void selectionChanged(const QRectF &rect);
 	void orientationChanged();
 };
 

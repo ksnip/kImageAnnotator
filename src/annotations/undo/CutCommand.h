@@ -17,8 +17,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CUTOUTCOMMAND_H
-#define KIMAGEANNOTATOR_CUTOUTCOMMAND_H
+#ifndef KIMAGEANNOTATOR_CUTCOMMAND_H
+#define KIMAGEANNOTATOR_CUTCOMMAND_H
 
 #include <QUndoCommand>
 #include <QPainter>
@@ -27,24 +27,24 @@
 
 namespace kImageAnnotator {
 
-class CutOutCommand : public QUndoCommand
+class CutCommand : public QUndoCommand
 {
 public:
-	CutOutCommand(QGraphicsPixmapItem *backgroundImage, const QRectF &cutOutRect, AnnotationArea *annotationArea);
-	~CutOutCommand() override = default;
+	CutCommand(QGraphicsPixmapItem *backgroundImage, const QRectF &cutOutRect, AnnotationArea *annotationArea);
+	~CutCommand() override = default;
 	void undo() override;
 	void redo() override;
 
 private:
 	AnnotationArea *mAnnotationArea;
 	QPixmap mOriginalImage;
-	QPixmap mCutOutImage;
+	QPixmap mCutImage;
 	QGraphicsPixmapItem *mBackgroundImage;
 
 	bool isVerticalCut(const QRectF &cutOutRect, const QRectF &imageRect) const;
-	void createCutOutImage(const QRectF &imageRect, const QPointF &bottomRightRect1, const QPointF &topLeftRect2, const QPointF &connectionPoint);
+	void createCutImage(const QRectF &imageRect, const QPointF &bottomRightRect1, const QPointF &topLeftRect2, const QPointF &connectionPoint);
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_CUTOUTCOMMAND_H
+#endif //KIMAGEANNOTATOR_CUTCOMMAND_H

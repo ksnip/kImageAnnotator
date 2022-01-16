@@ -46,7 +46,7 @@
 #include "src/annotations/undo/FlipCommand.h"
 #include "src/annotations/undo/ScaleCommand.h"
 #include "src/annotations/undo/PasteCommand.h"
-#include "src/annotations/undo/CutOutCommand.h"
+#include "src/annotations/undo/CutCommand.h"
 #include "src/annotations/undo/ChangePropertiesCommand.h"
 #include "src/annotations/undo/ModifyCanvasCommand.h"
 #include "src/annotations/undo/RotateCommand.h"
@@ -85,7 +85,7 @@ public:
 	QColor canvasColor() const;
 	void modifyCanvas(const QRectF &canvasRect, const QColor &color);
 	QRectF backgroundImageRect() const;
-	void cutOut(const QRectF &rect);
+	void cut(const QRectF &rect);
 
 public slots:
     virtual void update();

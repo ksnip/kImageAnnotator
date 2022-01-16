@@ -38,7 +38,6 @@ CutWidget::CutWidget(QWidget *parent) :
 	mMainLayout(new QVBoxLayout(this)),
 	mDefaultSelectionWidth(100)
 {
-	initSelectionHandler();
 	initKeyHelper();
 	initGui();
 	initZoomPicker();
@@ -98,11 +97,6 @@ void CutWidget::initKeyHelper()
 	connect(mKeyHelper, &KeyHelper::enterReleased, this, &CutWidget::cut);
 }
 
-void CutWidget::initSelectionHandler() const
-{
-	connect(mSelectionHandler, &SelectionHandler::selectionChanged, this, &CutWidget::selectionChanged);
-}
-
 void CutWidget::reset()
 {
 	auto selectionLimit = mAnnotationArea->backgroundImageRect();
@@ -131,13 +125,8 @@ void CutWidget::cut()
 {
 	Q_ASSERT(mAnnotationArea != nullptr);
 
-	mAnnotationArea->cutOut(mSelectionHandler->selection());
+	mAnnotationArea->cut(mSelectionHandler->selection());
 	emit closing();
-}
-
-void CutWidget::selectionChanged(const QRectF &rect)
-{
-
 }
 
 void CutWidget::orientationChanged()

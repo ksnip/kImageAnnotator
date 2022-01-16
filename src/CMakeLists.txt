@@ -110,7 +110,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ResizeCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ArrangeCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/CropCommand.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/CutOutCommand.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/CutCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ScaleCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/RotateCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/PasteCommand.cpp
