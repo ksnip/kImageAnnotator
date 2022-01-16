@@ -22,6 +22,7 @@
 
 #include <QRectF>
 #include <QList>
+#include <QMap>
 
 #include "ISelectionHandles.h"
 #include "src/common/provider/ScaledSizeProvider.h"

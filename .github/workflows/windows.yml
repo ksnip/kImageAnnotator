@@ -1,4 +1,4 @@
-name: linux
+name: windows
 
 on:
   push:
@@ -8,8 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: windows-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -17,34 +16,44 @@ jobs:
     - name: Set up build variables
       run: bash ./.github/scripts/setup_build_variables.sh
 
+    - name: Set up windows build variables
+      run: bash ./.github/scripts/windows/setup_windows_build_variables.sh
+
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
       with:
         version: '5.15.2'
-        host: 'linux'
+        host: 'windows'
         install-deps: 'true'
+        arch: 'win64_msvc2019_64'
 
-    - name: Install dependencies
-      run: sudo apt-get install extra-cmake-modules xvfb
-
-    - name: Set up GoogleTest
-      run: bash ./.github/scripts/setup_googleTest.sh
+    - name: Set up nmake
+      uses: ilammy/msvc-dev-cmd@v1
 
     - name: Setup kColorPicker
       run: |
         git clone --depth 1 git://github.com/ksnip/kColorPicker
         cd kColorPicker
         mkdir build && cd build
-        cmake ..
-        make && sudo make install
+        cmake .. -G"${CMAKE_GENERATOR}"
+        nmake && sudo nmake install
+
+    - name: Set up GoogleTest
+      run: bash ./.github/scripts/setup_googleTest.sh
+
+    - name: Add GoogleTest bin dir to PATH
+      uses: myci-actions/export-env-var-powershell@1
+      with:
+        name: PATH
+        value: $env:PATH;$env:INSTALL_PREFIX/bin
 
     - name: Build
       working-directory: ${{github.workspace}}
       run: |
         mkdir build && cd build
-        cmake .. -DBUILD_TESTS=ON -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} && make VERBOSE=1
+        cmake .. -G"${CMAKE_GENERATOR}" -DBUILD_TESTS=ON -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} && nmake VERBOSE=1
 
     - name: Test
       working-directory: ${{github.workspace}}/build
-      run: xvfb-run --auto-servernum --server-num=1 --server-args="-screen 0 1024x768x24" ctest --extra-verbose
+      run: ctest --extra-verbose
       
