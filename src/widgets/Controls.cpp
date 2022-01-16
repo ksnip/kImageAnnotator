@@ -46,47 +46,20 @@ void Controls::initGui()
 	createButton(rotateAction);
 	auto modifyCanvasAction = createAction(tr("Modify canvas"), IconLoader::load(QLatin1String("modifycanvas.svg")));
 	createButton(modifyCanvasAction);
+	auto cutAction = createAction(tr("Cut"), IconLoader::load(QLatin1String("cut.svg")));
+	createButton(cutAction);
 
-	connect(undoAction, &QAction::triggered, this, &Controls::undoTriggered);
-	connect(redoAction, &QAction::triggered, this, &Controls::redoTriggered);
-	connect(cropAction, &QAction::triggered, this, &Controls::cropTriggered);
-	connect(scaleAction, &QAction::triggered, this, &Controls::scaleTriggered);
-    connect(rotateAction, &QAction::triggered, this, &Controls::rotateTriggered);
-	connect(modifyCanvasAction, &QAction::triggered, this, &Controls::modifyCanvasTriggered);
+	connect(undoAction, &QAction::triggered, this, &Controls::undo);
+	connect(redoAction, &QAction::triggered, this, &Controls::redo);
+	connect(cropAction, &QAction::triggered, this, &Controls::crop);
+	connect(scaleAction, &QAction::triggered, this, &Controls::scale);
+    connect(rotateAction, &QAction::triggered, this, &Controls::rotate);
+	connect(modifyCanvasAction, &QAction::triggered, this, &Controls::modifyCanvas);
+	connect(cutAction, &QAction::triggered, this, &Controls::cut);
 
 	mLayout->setContentsMargins(0, 0, 0, 0);
 	setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 	setLayout(mLayout);
-}
-
-void Controls::undoTriggered() const
-{
-	emit undo();
-}
-
-void Controls::redoTriggered() const
-{
-	emit redo();
-}
-
-void Controls::cropTriggered() const
-{
-	emit crop();
-}
-
-void Controls::scaleTriggered() const
-{
-	emit scale();
-}
-
-void Controls::rotateTriggered() const
-{
-	emit rotate();
-}
-
-void Controls::modifyCanvasTriggered() const
-{
-	emit modifyCanvas();
 }
 
 QAction *Controls::createAction(const QString &tooltip, const QIcon &icon)

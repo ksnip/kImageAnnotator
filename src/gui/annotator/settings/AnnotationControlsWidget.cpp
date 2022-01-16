@@ -28,55 +28,22 @@ AnnotationControlsWidget::AnnotationControlsWidget() :
 	mMainLayout->addWidget(mControls);
 	mMainLayout->setContentsMargins(0, 0, 0, 0);
 
-	connect(mControls, &Controls::undo, this, &AnnotationControlsWidget::controlsUndo);
-	connect(mControls, &Controls::redo, this, &AnnotationControlsWidget::controlsRedo);
-	connect(mControls, &Controls::crop, this, &AnnotationControlsWidget::controlsCrop);
-	connect(mControls, &Controls::scale, this, &AnnotationControlsWidget::controlsScale);
-	connect(mControls, &Controls::rotate, this, &AnnotationControlsWidget::controlsRotate);
-	connect(mControls, &Controls::modifyCanvas, this, &AnnotationControlsWidget::controlsModifyCanvas);
+	connect(mControls, &Controls::undo, this, &AnnotationControlsWidget::undo);
+	connect(mControls, &Controls::redo, this, &AnnotationControlsWidget::redo);
+	connect(mControls, &Controls::crop, this, &AnnotationControlsWidget::showCrop);
+	connect(mControls, &Controls::scale, this, &AnnotationControlsWidget::showScale);
+	connect(mControls, &Controls::rotate, this, &AnnotationControlsWidget::showRotate);
+	connect(mControls, &Controls::modifyCanvas, this, &AnnotationControlsWidget::showModifyCanvas);
+	connect(mControls, &Controls::cut, this, &AnnotationControlsWidget::showCut);
 
 	setLayout(mMainLayout);
 
 	setFocusPolicy(Qt::ClickFocus);
 }
 
-AnnotationControlsWidget::~AnnotationControlsWidget()
-{
-}
-
 void AnnotationControlsWidget::setOrientation(Qt::Orientation orientation)
 {
 	AbstractAnnotationDockWidgetContent::setOrientation(orientation);
-}
-
-void AnnotationControlsWidget::controlsUndo() const
-{
-	emit undo();
-}
-
-void AnnotationControlsWidget::controlsRedo() const
-{
-	emit redo();
-}
-
-void AnnotationControlsWidget::controlsCrop() const
-{
-	emit showCrop();
-}
-
-void AnnotationControlsWidget::controlsScale() const
-{
-	emit showScale();
-}
-
-void AnnotationControlsWidget::controlsRotate() const
-{
-	emit showRotate();
-}
-
-void AnnotationControlsWidget::controlsModifyCanvas() const
-{
-	emit showModifyCanvas();
 }
 
 QString AnnotationControlsWidget::name() const

@@ -70,6 +70,7 @@ signals:
 	void activateCrop() const;
 	void activateRotate() const;
 	void activateModifyCanvas() const;
+	void activateCut() const;
 
 private:
 	Config *mConfig;
@@ -89,10 +90,6 @@ private:
 private slots:
 	void persistDockWidgets();
 	void restoreDockWidgetsState();
-	void scaleTriggered() const;
-	void cropTriggered() const;
-	void rotateTriggered() const;
-	void modifyCanvasTriggered() const;
 };
 
 } // namespace kImageAnnotator

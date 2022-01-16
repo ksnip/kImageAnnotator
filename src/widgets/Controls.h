@@ -44,6 +44,7 @@ Q_SIGNALS:
 	void scale() const;
 	void rotate() const;
 	void modifyCanvas() const;
+	void cut() const;
 
 private:
 	QHBoxLayout *mLayout;
@@ -51,14 +52,6 @@ private:
 	void initGui();
 	QAction *createAction(const QString &tooltip, const QIcon &icon);
 	CustomToolButton *createButton(QAction *defaultAction);
-
-private slots:
-	void undoTriggered() const;
-	void redoTriggered() const;
-	void cropTriggered() const;
-	void scaleTriggered() const;
-	void rotateTriggered() const;
-	void modifyCanvasTriggered() const;
 };
 
 } // namespace kImageAnnotator

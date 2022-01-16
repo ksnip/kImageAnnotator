@@ -47,6 +47,7 @@
         <file alias="bold.svg" >icons/dark/bold.svg</file>
         <file alias="italic.svg" >icons/dark/italic.svg</file>
         <file alias="underline.svg" >icons/dark/underline.svg</file>
+        <file alias="cut.svg" >icons/dark/cut.svg</file>
     </qresource>
 
     <qresource prefix="/icons/light">
@@ -96,6 +97,7 @@
         <file alias="bold.svg" >icons/light/bold.svg</file>
         <file alias="italic.svg" >icons/light/italic.svg</file>
         <file alias="underline.svg" >icons/light/underline.svg</file>
+        <file alias="cut.svg" >icons/light/cut.svg</file>
     </qresource>
 
     <qresource prefix="/stickers">

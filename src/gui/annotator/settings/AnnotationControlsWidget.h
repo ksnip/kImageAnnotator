@@ -30,7 +30,7 @@ class AnnotationControlsWidget : public AbstractAnnotationDockWidgetContent
 Q_OBJECT
 public:
 	AnnotationControlsWidget();
-	~AnnotationControlsWidget() override;
+	~AnnotationControlsWidget() override = default;
 	void setOrientation(Qt::Orientation orientation) override;
 	QString name() const override;
 
@@ -41,18 +41,11 @@ Q_SIGNALS:
 	void showScale() const;
 	void showRotate() const;
 	void showModifyCanvas() const;
+	void showCut() const;
 
 private:
 	QBoxLayout *mMainLayout;
 	Controls *mControls;
-
-private slots:
-	void controlsUndo() const;
-	void controlsRedo() const;
-	void controlsCrop() const;
-	void controlsScale() const;
-	void controlsRotate() const;
-	void controlsModifyCanvas() const;
 };
 
 } // namespace kImageAnnotator

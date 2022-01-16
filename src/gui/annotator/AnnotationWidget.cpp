@@ -71,10 +71,11 @@ void AnnotationWidget::initGui()
 
 	connect(mControlsWidget, &AnnotationControlsWidget::undo, mAnnotationTabWidget, &AnnotationTabWidget::undoTriggered);
 	connect(mControlsWidget, &AnnotationControlsWidget::redo, mAnnotationTabWidget, &AnnotationTabWidget::redoTriggered);
-	connect(mControlsWidget, &AnnotationControlsWidget::showScale, this, &AnnotationWidget::scaleTriggered);
-	connect(mControlsWidget, &AnnotationControlsWidget::showCrop, this, &AnnotationWidget::cropTriggered);
-	connect(mControlsWidget, &AnnotationControlsWidget::showRotate, this, &AnnotationWidget::rotateTriggered);
-	connect(mControlsWidget, &AnnotationControlsWidget::showModifyCanvas, this, &AnnotationWidget::modifyCanvasTriggered);
+	connect(mControlsWidget, &AnnotationControlsWidget::showScale, this, &AnnotationWidget::activateScale);
+	connect(mControlsWidget, &AnnotationControlsWidget::showCrop, this, &AnnotationWidget::activateCrop);
+	connect(mControlsWidget, &AnnotationControlsWidget::showRotate, this, &AnnotationWidget::activateRotate);
+	connect(mControlsWidget, &AnnotationControlsWidget::showModifyCanvas, this, &AnnotationWidget::activateModifyCanvas);
+	connect(mControlsWidget, &AnnotationControlsWidget::showCut, this, &AnnotationWidget::activateCut);
 
 	connect(qApp, &QCoreApplication::aboutToQuit, this, &AnnotationWidget::persistDockWidgets);
 }
@@ -212,26 +213,6 @@ void AnnotationWidget::persistDockWidgets()
 void AnnotationWidget::restoreDockWidgetsState()
 {
 	restoreState(mConfig->annotatorDockWidgetsState());
-}
-
-void AnnotationWidget::scaleTriggered() const
-{
-	emit activateScale();
-}
-
-void AnnotationWidget::cropTriggered() const
-{
-	emit activateCrop();
-}
-
-void AnnotationWidget::rotateTriggered() const
-{
-	emit activateRotate();
-}
-
-void AnnotationWidget::modifyCanvasTriggered() const
-{
-    emit activateModifyCanvas();
 }
 
 } // namespace kImageAnnotator
