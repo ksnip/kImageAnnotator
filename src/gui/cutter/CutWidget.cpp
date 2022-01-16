@@ -131,7 +131,7 @@ void CutWidget::cut()
 {
 	Q_ASSERT(mAnnotationArea != nullptr);
 
-	// mAnnotationArea->cut(mSelectionHandler->selection());
+	mAnnotationArea->cutOut(mSelectionHandler->selection());
 	emit closing();
 }
 

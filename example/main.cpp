@@ -33,11 +33,13 @@ int main(int argc, char **argv)
 	QApplication app(argc, argv);
 	auto settingsCollapsed = false;
 	QPixmap pixmap(QSize(500, 500));
+	QPixmap pixmap2("/home/dporobic/ksnip_20220108-214117.png");
 	pixmap.fill(QColor(Qt::darkGreen));
 	auto kImageAnnotator = new KImageAnnotator();
 	kImageAnnotator->setTabBarAutoHide(true);
 	kImageAnnotator->addTab(pixmap, QLatin1String("image1"), QLatin1String("image1"));
 	kImageAnnotator->addTab(pixmap, QLatin1String("image2"), QLatin1String("image2"));
+	kImageAnnotator->addTab(pixmap2, QLatin1String("image1"), QLatin1String("image1"));
 	kImageAnnotator->adjustSize();
 
 	QMainWindow mainWindow;

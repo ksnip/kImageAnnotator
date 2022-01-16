@@ -254,6 +254,13 @@ QRectF AnnotationArea::backgroundImageRect() const
 	return mBackgroundImage->boundingRect();
 }
 
+void AnnotationArea::cutOut(const QRectF &rect)
+{
+	auto scaledRect = mDevicePixelRatioScaler->scale(rect);
+	mUndoStack->push(new CutOutCommand(mBackgroundImage.data(), scaledRect, this));
+	emit imageChanged();
+}
+
 void AnnotationArea::update()
 {
 	mItemModifier->updateSelection();
