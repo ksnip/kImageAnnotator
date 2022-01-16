@@ -18,14 +18,14 @@
  */
 
 
-#include "SelectionHandlesTest.h"
+#include "SelectionHandlesAllTest.h"
 
-void SelectionHandlesTest::TestIsHandleGrabbed_Should_ReturnTrue_When_ClickedOnHandle()
+void SelectionHandlesAllTest::TestIsHandleGrabbed_Should_ReturnTrue_When_ClickedOnHandle()
 {
 	QRectF selection(0, 0, 500, 500);
 	auto halfHandle = ResizeHandleSize / 2;
 	QPointF position(halfHandle, halfHandle);
-	BaseSelectionHandles handles;
+	SelectionHandlesAll handles;
 	handles.updateHandles(selection);
 	handles.grabHandle(position, selection);
 
@@ -34,11 +34,11 @@ void SelectionHandlesTest::TestIsHandleGrabbed_Should_ReturnTrue_When_ClickedOnH
 	QCOMPARE(isHandleGrabbed, true);
 }
 
-void SelectionHandlesTest::TestIsHandleGrabbed_Should_ReturnFalse_When_ClickedOutsideHandle()
+void SelectionHandlesAllTest::TestIsHandleGrabbed_Should_ReturnFalse_When_ClickedOutsideHandle()
 {
 	QRectF selection(0, 0, 500, 500);
 	QPointF position(300, 300);
-	BaseSelectionHandles handles;
+	SelectionHandlesAll handles;
 	handles.updateHandles(selection);
 	handles.grabHandle(position, selection);
 
@@ -47,12 +47,12 @@ void SelectionHandlesTest::TestIsHandleGrabbed_Should_ReturnFalse_When_ClickedOu
 	QCOMPARE(isHandleGrabbed, false);
 }
 
-void SelectionHandlesTest::TestGrabbedIndex_Should_ReturnIndexOfHandle_When_ClickedOnHandle()
+void SelectionHandlesAllTest::TestGrabbedIndex_Should_ReturnIndexOfHandle_When_ClickedOnHandle()
 {
 	QRectF selection(0, 0, 500, 500);
 	auto halfHandle = ResizeHandleSize / 2;
 	QPointF position(halfHandle, halfHandle);
-	BaseSelectionHandles handles;
+	SelectionHandlesAll handles;
 	handles.updateHandles(selection);
 	handles.grabHandle(position, selection);
 
@@ -61,11 +61,11 @@ void SelectionHandlesTest::TestGrabbedIndex_Should_ReturnIndexOfHandle_When_Clic
 	QCOMPARE(grabbedIndex, 0);
 }
 
-void SelectionHandlesTest::TestGrabbedIndex_Should_ReturnMinusOne_When_ClickedOutsideHandle()
+void SelectionHandlesAllTest::TestGrabbedIndex_Should_ReturnMinusOne_When_ClickedOutsideHandle()
 {
 	QRectF selection(0, 0, 500, 500);
 	QPointF position(300, 300);
-	BaseSelectionHandles handles;
+	SelectionHandlesAll handles;
 	handles.updateHandles(selection);
 	handles.grabHandle(position, selection);
 
@@ -74,12 +74,12 @@ void SelectionHandlesTest::TestGrabbedIndex_Should_ReturnMinusOne_When_ClickedOu
 	QCOMPARE(grabbedIndex, -1);
 }
 
-void SelectionHandlesTest::TestGrabOffset_Should_ReturnClickOffsetForHandle()
+void SelectionHandlesAllTest::TestGrabOffset_Should_ReturnClickOffsetForHandle()
 {
 	QRectF selection(0, 0, 500, 500);
 	auto halfHandle = ResizeHandleSize / 2;
 	QPointF position(halfHandle, halfHandle);
-	BaseSelectionHandles handles;
+	SelectionHandlesAll handles;
 	handles.updateHandles(selection);
 	handles.grabHandle(position, selection);
 
@@ -88,10 +88,10 @@ void SelectionHandlesTest::TestGrabOffset_Should_ReturnClickOffsetForHandle()
 	QCOMPARE(grabOffset, QPointF(halfHandle, halfHandle));
 }
 
-void SelectionHandlesTest::TestUpdateHandles_Should_PositionHandlesOnCorrectPlaces()
+void SelectionHandlesAllTest::TestUpdateHandles_Should_PositionHandlesOnCorrectPlaces()
 {
 	QRectF selection(0, 0, 500, 500);
-	BaseSelectionHandles selectionHandles;
+	SelectionHandlesAll selectionHandles;
 
 	selectionHandles.updateHandles(selection);
 
@@ -107,4 +107,4 @@ void SelectionHandlesTest::TestUpdateHandles_Should_PositionHandlesOnCorrectPlac
 	QCOMPARE(handles[7].topLeft(), QPointF(0, selection.height() / 2 - ResizeHandleSize / 2));
 }
 
-QTEST_MAIN(SelectionHandlesTest);
+QTEST_MAIN(SelectionHandlesAllTest);

@@ -17,17 +17,17 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SELECTIONHANDLESTEST_H
-#define KIMAGEANNOTATOR_SELECTIONHANDLESTEST_H
+#ifndef KIMAGEANNOTATOR_SELECTIONHANDLESALLTEST_H
+#define KIMAGEANNOTATOR_SELECTIONHANDLESALLTEST_H
 
 #include <QtTest>
 
-#include "src/gui/selection/BaseSelectionHandles.h"
+#include "src/gui/selection/SelectionHandlesAll.h"
 
-using kImageAnnotator::BaseSelectionHandles;
+using kImageAnnotator::SelectionHandlesAll;
 using kImageAnnotator::Constants::ResizeHandleSize;
 
-class SelectionHandlesTest : public QObject
+class SelectionHandlesAllTest : public QObject
 {
 Q_OBJECT
 private slots:
@@ -39,4 +39,4 @@ private slots:
 	void TestUpdateHandles_Should_PositionHandlesOnCorrectPlaces();
 };
 
-#endif // KIMAGEANNOTATOR_SELECTIONHANDLESTEST_H
+#endif // KIMAGEANNOTATOR_SELECTIONHANDLESALLTEST_H

@@ -1,3 +1,8 @@
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Test)
+find_package(GTest CONFIG REQUIRED)
+
+enable_testing()
+
 set(UNITTEST_SRC
 	annotations/core/AnnotationAreaTest.cpp
 	annotations/core/AnnotationItemFactoryTest.cpp
@@ -35,7 +40,7 @@ set(UNITTEST_SRC
 	gui/canvasModifier/ModifyCanvasSelectionRestrictorTest.cpp
 	gui/selection/SelectionMoveHelperTest.cpp
 	gui/selection/SelectionHandlerTest.cpp
-	gui/selection/SelectionHandlesTest.cpp
+		gui/selection/SelectionHandlesAllTest.cpp
 	gui/scaler/ScaleSizeHandlerTest.cpp
 	gui/annotator/tabs/AnnotationTabCloserTest.cpp
 	gui/annotator/tabs/AnnotationTabContextMenuTest.cpp
@@ -51,6 +56,8 @@ set(UNITTEST_SRC
 	)
 
 set(TESTUTILS_SRC
+	utils/TestRunner.h
+    mocks/gui/selection/SelectionHandlesMock.h
     mocks/MockZoomValueProvider.cpp
 	mocks/MockSettingsProvider.cpp
 	mocks/MockDevicePixelRatioScaler.cpp
@@ -73,6 +80,6 @@ target_compile_definitions(KIMAGEANNOTATOR_STATIC PRIVATE KIMAGEANNOTATOR_LANG_I
 foreach (UnitTest ${UNITTEST_SRC})
 	get_filename_component(UnitTestName ${UnitTest} NAME_WE)
 	add_executable(${UnitTestName} ${UnitTest} ${TESTUTILS_SRC})
-	target_link_libraries(${UnitTestName} KIMAGEANNOTATOR_STATIC Qt5::Test)
+	target_link_libraries(${UnitTestName} KIMAGEANNOTATOR_STATIC GTest::gmock Qt5::Test)
 	add_test(${UnitTestName} ${UnitTestName})
 endforeach (UnitTest)

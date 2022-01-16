@@ -47,8 +47,6 @@ if (BUILD_EXAMPLE)
 endif (BUILD_EXAMPLE)
 
 if (BUILD_TESTS)
-	find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Test)
-	enable_testing()
 	add_subdirectory(tests)
 endif (BUILD_TESTS)
 

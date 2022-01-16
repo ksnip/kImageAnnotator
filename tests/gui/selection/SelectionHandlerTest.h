@@ -22,10 +22,12 @@
 
 #include <QtTest>
 
+#include "tests/utils/TestRunner.h"
 #include "src/annotations/core/AnnotationArea.h"
 #include "src/gui/selection/SelectionHandler.h"
 #include "tests/mocks/MockDefaultParameters.h"
 #include "tests/mocks/MockSelectionRestrictor.h"
+#include "tests/mocks/gui/selection/SelectionHandlesMock.h"
 
 using kImageAnnotator::AnnotationArea;
 using kImageAnnotator::SelectionHandler;
@@ -35,17 +37,16 @@ class SelectionHandlerTest : public QObject
 Q_OBJECT
 
 private slots:
-	void TestSetWidth_Should_EmitSelectionChangedSignal();
-	void TestSetHeight_Should_EmitSelectionChangedSignal();
-	void TestSetPositionX_Should_EmitSelectionChangedSignal();
-	void TestSetPositionY_Should_EmitSelectionChangedSignal();
-	void TestResetSelection_Should_SetSelectionToProvidedRect();
-	void TestIsInMotion_Should_ReturnTrue_WhenClickedOnSelection();
-	void TestIsInMotion_Should_ReturnTrue_WhenClickedOnHandle();
-	void TestIsInMotion_Should_ReturnFalse_WhenClickedOutsideSelectionAndHandle();
-	void TestSelectionHandles_Should_ReturnEightItems();
-	void TestRestrictResize_Should_KeepCurrentSelection_When_NewSelectionHasNegativeWidthAndRestrictionDisabled();
-	void TestRestrictResize_Should_KeepCurrentSelection_When_NewSelectionHasNegativeHeightAndRestrictionDisabled();
+	void SetWidth_Should_EmitSelectionChangedSignal();
+	void SetHeight_Should_EmitSelectionChangedSignal();
+	void SetPositionX_Should_EmitSelectionChangedSignal();
+	void SetPositionY_Should_EmitSelectionChangedSignal();
+	void ResetSelection_Should_SetSelectionToProvidedRect();
+	void IsInMotion_Should_ReturnTrue_WhenClickedOnSelection();
+	void IsInMotion_Should_ReturnTrue_WhenClickedOnHandle();
+	void IsInMotion_Should_ReturnFalse_WhenClickedOutsideSelectionAndHandle();
+	void RestrictResize_Should_KeepCurrentSelection_When_NewSelectionHasNegativeWidthAndRestrictionDisabled();
+	void RestrictResize_Should_KeepCurrentSelection_When_NewSelectionHasNegativeHeightAndRestrictionDisabled();
 };
 
 #endif // KIMAGEANNOTATOR_SELECTIONHANDLERTEST_H

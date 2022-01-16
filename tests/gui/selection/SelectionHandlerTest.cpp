@@ -19,14 +19,18 @@
 
 #include "SelectionHandlerTest.h"
 
-void SelectionHandlerTest::TestSetWidth_Should_EmitSelectionChangedSignal()
+void SelectionHandlerTest::SetWidth_Should_EmitSelectionChangedSignal()
 {
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
 	auto selectionRestrictor = new MockSelectionRestrictor();
+	auto selectionHandles = QSharedPointer<SelectionHandlesMock>(new SelectionHandlesMock());
+
+	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
+
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
-	SelectionHandler selectionHandler(selectionRestrictor);
+	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &SelectionHandler::selectionChanged);
 
@@ -37,14 +41,18 @@ void SelectionHandlerTest::TestSetWidth_Should_EmitSelectionChangedSignal()
 	QCOMPARE(spy.count(), 1);
 }
 
-void SelectionHandlerTest::TestSetHeight_Should_EmitSelectionChangedSignal()
+void SelectionHandlerTest::SetHeight_Should_EmitSelectionChangedSignal()
 {
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
 	auto selectionRestrictor = new MockSelectionRestrictor();
+	auto selectionHandles = QSharedPointer<SelectionHandlesMock>(new SelectionHandlesMock());
+
+	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
+
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
-	SelectionHandler selectionHandler(selectionRestrictor);
+	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &SelectionHandler::selectionChanged);
 
@@ -55,14 +63,18 @@ void SelectionHandlerTest::TestSetHeight_Should_EmitSelectionChangedSignal()
 	QCOMPARE(spy.count(), 1);
 }
 
-void SelectionHandlerTest::TestSetPositionX_Should_EmitSelectionChangedSignal()
+void SelectionHandlerTest::SetPositionX_Should_EmitSelectionChangedSignal()
 {
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
 	auto selectionRestrictor = new MockSelectionRestrictor();
+	auto selectionHandles = QSharedPointer<SelectionHandlesMock>(new SelectionHandlesMock());
+
+	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
+
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
-	SelectionHandler selectionHandler(selectionRestrictor);
+	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &SelectionHandler::selectionChanged);
 
@@ -73,14 +85,18 @@ void SelectionHandlerTest::TestSetPositionX_Should_EmitSelectionChangedSignal()
 	QCOMPARE(spy.count(), 1);
 }
 
-void SelectionHandlerTest::TestSetPositionY_Should_EmitSelectionChangedSignal()
+void SelectionHandlerTest::SetPositionY_Should_EmitSelectionChangedSignal()
 {
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
 	auto selectionRestrictor = new MockSelectionRestrictor();
+	auto selectionHandles = QSharedPointer<SelectionHandlesMock>(new SelectionHandlesMock());
+
+	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
+
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
-	SelectionHandler selectionHandler(selectionRestrictor);
+	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &SelectionHandler::selectionChanged);
 
@@ -91,16 +107,20 @@ void SelectionHandlerTest::TestSetPositionY_Should_EmitSelectionChangedSignal()
 	QCOMPARE(spy.count(), 1);
 }
 
-void SelectionHandlerTest::TestResetSelection_Should_SetSelectionToProvidedRect()
+void SelectionHandlerTest::ResetSelection_Should_SetSelectionToProvidedRect()
 {
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
 	auto selectionRestrictor = new MockSelectionRestrictor();
+	auto selectionHandles = QSharedPointer<SelectionHandlesMock>(new SelectionHandlesMock());
+
+	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
+
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	annotationArea.setSceneRect(sceneRect);
-	SelectionHandler selectionHandler(selectionRestrictor);
+	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	selectionHandler.setWidth(400);
 	QVERIFY(selectionHandler.selection() != sceneRect);
@@ -112,17 +132,23 @@ void SelectionHandlerTest::TestResetSelection_Should_SetSelectionToProvidedRect(
 	QCOMPARE(selectionHandler.selection(), sceneRect);
 }
 
-void SelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnSelection()
+void SelectionHandlerTest::IsInMotion_Should_ReturnTrue_WhenClickedOnSelection()
 {
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
 	auto selectionRestrictor = new MockSelectionRestrictor();
+	auto selectionHandles = QSharedPointer<SelectionHandlesMock>(new SelectionHandlesMock());
+
+	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
+	EXPECT_CALL(*selectionHandles, grabHandle(testing::_, testing::_)).Times(testing::AnyNumber());
+	EXPECT_CALL(*selectionHandles, isHandleGrabbed()).WillRepeatedly(testing::Return(false));
+
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(150, 150);
 	annotationArea.setSceneRect(sceneRect);
-	SelectionHandler selectionHandler(selectionRestrictor);
+	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	selectionHandler.resetSelection(sceneRect, sceneRect);
 	selectionHandler.grab(position);
@@ -134,17 +160,23 @@ void SelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnSelecti
 	QCOMPARE(isInMotion, true);
 }
 
-void SelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnHandle()
+void SelectionHandlerTest::IsInMotion_Should_ReturnTrue_WhenClickedOnHandle()
 {
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
 	auto selectionRestrictor = new MockSelectionRestrictor();
+	auto selectionHandles = QSharedPointer<SelectionHandlesMock>(new SelectionHandlesMock());
+
+	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
+	EXPECT_CALL(*selectionHandles, isHandleGrabbed()).WillRepeatedly(testing::Return(true));
+	EXPECT_CALL(*selectionHandles, grabHandle(testing::_, testing::_)).Times(testing::AnyNumber());
+
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(2, 2);
 	annotationArea.setSceneRect(sceneRect);
-	SelectionHandler selectionHandler(selectionRestrictor);
+	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	selectionHandler.grab(position);
 
@@ -155,17 +187,23 @@ void SelectionHandlerTest::TestIsInMotion_Should_ReturnTrue_WhenClickedOnHandle(
 	QCOMPARE(isInMotion, true);
 }
 
-void SelectionHandlerTest::TestIsInMotion_Should_ReturnFalse_WhenClickedOutsideSelectionAndHandle()
+void SelectionHandlerTest::IsInMotion_Should_ReturnFalse_WhenClickedOutsideSelectionAndHandle()
 {
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
 	auto selectionRestrictor = new MockSelectionRestrictor();
+	auto selectionHandles = QSharedPointer<SelectionHandlesMock>(new SelectionHandlesMock());
+
+	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
+	EXPECT_CALL(*selectionHandles, grabHandle(testing::_, testing::_)).Times(testing::AnyNumber());
+	EXPECT_CALL(*selectionHandles, isHandleGrabbed()).WillRepeatedly(testing::Return(false));
+
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(400, 400);
 	annotationArea.setSceneRect(sceneRect);
-	SelectionHandler selectionHandler(selectionRestrictor);
+	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	selectionHandler.setWidth(200);
 	selectionHandler.grab(position);
@@ -177,31 +215,18 @@ void SelectionHandlerTest::TestIsInMotion_Should_ReturnFalse_WhenClickedOutsideS
 	QCOMPARE(isInMotion, false);
 }
 
-void SelectionHandlerTest::TestSelectionHandles_Should_ReturnEightItems()
+void SelectionHandlerTest::RestrictResize_Should_KeepCurrentSelection_When_NewSelectionHasNegativeWidthAndRestrictionDisabled()
 {
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
 	auto selectionRestrictor = new MockSelectionRestrictor();
+	auto selectionHandles = QSharedPointer<SelectionHandlesMock>(new SelectionHandlesMock());
+
+	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
+
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
-	SelectionHandler selectionHandler(selectionRestrictor);
-	selectionHandler.init(&annotationArea);
-
-	// act
-	auto handles = selectionHandler.selectionHandles();
-
-	// assert
-	QCOMPARE(handles.length(), 8);
-}
-
-void SelectionHandlerTest::TestRestrictResize_Should_KeepCurrentSelection_When_NewSelectionHasNegativeWidthAndRestrictionDisabled()
-{
-	// arrange
-	MockDefaultParameters parameters;
-	auto scalerMock = new MockDevicePixelRatioScaler();
-	auto selectionRestrictor = new MockSelectionRestrictor();
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
-	SelectionHandler selectionHandler(selectionRestrictor);
+	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	selectionHandler.setRestrictionEnabled(false);
 	auto selectionBefore = selectionHandler.selection();
@@ -215,14 +240,18 @@ void SelectionHandlerTest::TestRestrictResize_Should_KeepCurrentSelection_When_N
 	QVERIFY(selectionAfter.width() >= 0);
 }
 
-void SelectionHandlerTest::TestRestrictResize_Should_KeepCurrentSelection_When_NewSelectionHasNegativeHeightAndRestrictionDisabled()
+void SelectionHandlerTest::RestrictResize_Should_KeepCurrentSelection_When_NewSelectionHasNegativeHeightAndRestrictionDisabled()
 {
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
 	auto selectionRestrictor = new MockSelectionRestrictor();
+	auto selectionHandles = QSharedPointer<SelectionHandlesMock>(new SelectionHandlesMock());
+
+	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
+
 	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
-	SelectionHandler selectionHandler(selectionRestrictor);
+	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	selectionHandler.setRestrictionEnabled(false);
 	auto selectionBefore = selectionHandler.selection();
@@ -236,4 +265,4 @@ void SelectionHandlerTest::TestRestrictResize_Should_KeepCurrentSelection_When_N
 	QVERIFY(selectionAfter.height() >= 0.0);
 }
 
-QTEST_MAIN(SelectionHandlerTest)
+TEST_MAIN(SelectionHandlerTest)
