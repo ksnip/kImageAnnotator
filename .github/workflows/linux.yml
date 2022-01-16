@@ -16,6 +16,9 @@ jobs:
     - name: Set up build variables
       run: bash ./.github/scripts/setup_build_variables.sh
 
+    - name: Set up linux build variables
+      run: bash ./.github/scripts/linux/setup_linux_build_variables.sh
+
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
       with:
