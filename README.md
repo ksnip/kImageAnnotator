@@ -1,4 +1,4 @@
-# kImageAnnotator [![Build Status][github-badge]][github-url] [![Translation status][weblate-badge]][weblate-url]
+# kImageAnnotator [![Linux Build Status][github-badge-linux]][github-url-linux] [![Windows Build Status][github-badge-windows]][github-url-windows] [![Translation status][weblate-badge]][weblate-url]
 Tool for annotating images
 
 Version 0.6.0

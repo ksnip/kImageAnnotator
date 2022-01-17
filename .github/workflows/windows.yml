@@ -43,10 +43,7 @@ jobs:
         value: $env:PATH;$env:INSTALL_PREFIX/bin
 
     - name: Build
-      working-directory: ${{github.workspace}}
-      run: |
-        mkdir build && cd build
-        cmake .. -G"${CMAKE_GENERATOR}" -DBUILD_TESTS=ON -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} && nmake VERBOSE=1
+      run: bash ./.github/scripts/build_kImageAnnotator.sh
 
     - name: Test
       working-directory: ${{github.workspace}}/build

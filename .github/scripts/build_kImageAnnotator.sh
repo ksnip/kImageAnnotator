@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir build && cd build
+
+cmake .. -G"${CMAKE_GENERATOR}" -DBUILD_TESTS=ON -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX}
+${MAKE_BINARY} VERBOSE=1

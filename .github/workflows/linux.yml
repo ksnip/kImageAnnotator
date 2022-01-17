@@ -36,10 +36,7 @@ jobs:
       run: bash ./.github/scripts/setup_kColorPicker.sh
 
     - name: Build
-      working-directory: ${{github.workspace}}
-      run: |
-        mkdir build && cd build
-        cmake .. -DBUILD_TESTS=ON -DCMAKE_INSTALL_PREFIX=${INSTALL_PREFIX} && make VERBOSE=1
+      run: bash ./.github/scripts/build_kImageAnnotator.sh
 
     - name: Test
       working-directory: ${{github.workspace}}/build
