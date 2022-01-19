@@ -69,11 +69,9 @@ add_library(KIMAGEANNOTATOR_STATIC STATIC ${KIMAGEANNOTATOR_SRCS})
 
 target_link_libraries(KIMAGEANNOTATOR_STATIC Qt5::Widgets Qt5::Svg kImageAnnotator kColorPicker::kColorPicker)
 
-if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.14.0)
+if (UNIX AND NOT APPLE)
 	target_link_libraries(KIMAGEANNOTATOR_STATIC X11::X11)
-else()
-	target_link_libraries(KIMAGEANNOTATOR_STATIC X11)
-endif()
+endif ()
 
 target_compile_definitions(KIMAGEANNOTATOR_STATIC PRIVATE KIMAGEANNOTATOR_LANG_INSTALL_DIR="${KIMAGEANNOTATOR_LANG_INSTALL_DIR}")
 
