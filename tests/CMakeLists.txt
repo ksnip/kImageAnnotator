@@ -40,7 +40,7 @@ set(UNITTEST_SRC
 	gui/canvasModifier/ModifyCanvasSelectionRestrictorTest.cpp
 	gui/selection/SelectionMoveHelperTest.cpp
 	gui/selection/SelectionHandlerTest.cpp
-		gui/selection/SelectionHandlesAllTest.cpp
+	gui/selection/SelectionHandlesAllTest.cpp
 	gui/scaler/ScaleSizeHandlerTest.cpp
 	gui/annotator/tabs/AnnotationTabCloserTest.cpp
 	gui/annotator/tabs/AnnotationTabContextMenuTest.cpp
