@@ -291,7 +291,8 @@ to include the background image.</source>
     <message>
         <source>Positive values rotate clockwise, negative values counter clockwise.
 Rotating by non 90° multipliers might introduce loss of quality.</source>
-        <translation type="unfinished"></translation>
+        <translation>正值顺时针旋转，负值逆时针旋转。  
+用非90°倍的旋转角度旋转可能会导致图片损失。</translation>
     </message>
     <message>
         <source>Horizontal</source>
