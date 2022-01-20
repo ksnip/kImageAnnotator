@@ -22,6 +22,7 @@
 
 #include <QtTest>
 
+#include "tests/utils/TestRunner.h"
 #include "src/annotations/core/AnnotationPropertiesFactory.h"
 #include "tests/mocks/MockSettingsProvider.h"
 

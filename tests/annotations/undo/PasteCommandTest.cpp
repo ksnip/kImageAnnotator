@@ -90,4 +90,4 @@ void PasteCommandTest::TestUndo_Should_RemovePastedItemsFromAnnotationArea()
 	QVERIFY(dynamic_cast<AnnotationLine *>(annotationArea.items().last()) == nullptr);
 }
 
-QTEST_MAIN(PasteCommandTest);
+TEST_MAIN(PasteCommandTest);

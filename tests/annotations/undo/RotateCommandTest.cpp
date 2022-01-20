@@ -92,4 +92,4 @@ void RotateCommandTest::Undo_Should_RevertBackToInitialImage()
 	QCOMPARE(annotationArea.sceneRect().size(), oldSize);
 }
 
-QTEST_MAIN(RotateCommandTest)
+TEST_MAIN(RotateCommandTest)

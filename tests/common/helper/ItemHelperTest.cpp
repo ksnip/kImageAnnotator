@@ -88,4 +88,4 @@ void ItemHelperTest::TestSortItemsByZValueDesc_Should_SortItemsByZValueInDescend
 	QCOMPARE((int) items[4]->zValue(), 2);
 }
 
-QTEST_MAIN(ItemHelperTest);
+TEST_MAIN(ItemHelperTest);

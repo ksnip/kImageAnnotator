@@ -346,4 +346,4 @@ void ShapeHelperTest::TestSmoothOut_Should_RetunSamePath_When_PathHasOnlyThreeEl
 	QCOMPARE(result, path);
 }
 
-QTEST_MAIN(ShapeHelperTest);
+TEST_MAIN(ShapeHelperTest);

@@ -58,5 +58,5 @@ void AnnotationItemClipboardTest::TestCopyItems_Should_SetCorrectOffset()
 	QCOMPARE(clipboard.copiedItemsWithOffset()[&rect], QPointF(-20, -20));
 }
 
-QTEST_MAIN(AnnotationItemClipboardTest);
+TEST_MAIN(AnnotationItemClipboardTest);
 

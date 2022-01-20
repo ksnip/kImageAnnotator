@@ -102,4 +102,4 @@ void ModifyCanvasCommandTest::Undo_Should_RevertOnlyColor_When_OnlyColorChanged(
 	QCOMPARE(annotationArea.isCustomCanvasRect(), false);
 }
 
-QTEST_MAIN(ModifyCanvasCommandTest);
+TEST_MAIN(ModifyCanvasCommandTest);

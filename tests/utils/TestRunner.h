@@ -21,8 +21,8 @@
  * Example taken from https://rodolfotech.blogspot.com/2017/01/qtest-google-mock.html
  */
 
-#ifndef KSNIP_TESTRUNNER_H
-#define KSNIP_TESTRUNNER_H
+#ifndef KIMAGEANNOTATOR_TESTRUNNER_H
+#define KIMAGEANNOTATOR_TESTRUNNER_H
 
 #include <gmock/gmock.h>
 
@@ -121,4 +121,4 @@ int main(int argc, char *argv[]) \
 
 #endif // QT_GUI_LIB
 
-#endif //KSNIP_TESTRUNNER_H
+#endif //KIMAGEANNOTATOR_TESTRUNNER_H

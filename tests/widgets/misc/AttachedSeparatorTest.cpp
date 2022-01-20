@@ -93,4 +93,4 @@ void AttachedSeparatorTest::SetEnabled_Should_UpdateVisibilityToFalse_When_Disab
 	QCOMPARE(picker.isVisible(), true);
 }
 
-QTEST_MAIN(AttachedSeparatorTest)
+TEST_MAIN(AttachedSeparatorTest)

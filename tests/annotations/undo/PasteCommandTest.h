@@ -22,6 +22,8 @@
 
 #include <QtTest>
 
+#include "tests/utils/TestRunner.h"
+
 class PasteCommandTest : public QObject
 {
 Q_OBJECT

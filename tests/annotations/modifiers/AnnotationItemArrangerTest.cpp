@@ -221,4 +221,4 @@ void AnnotationItemArrangerTest::TestAnnotationItemArranger_Should_NotSwapAnyPos
 	QCOMPARE((int) item4.zValue(), 4);
 }
 
-QTEST_MAIN(AnnotationItemArrangerTest);
+TEST_MAIN(AnnotationItemArrangerTest);

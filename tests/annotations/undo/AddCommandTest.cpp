@@ -62,4 +62,4 @@ void AddCommandTest::TestUndo_Should_UndoOperation()
 	QCOMPARE(annotationArea.items().contains(item), false);
 }
 
-QTEST_MAIN(AddCommandTest);
+TEST_MAIN(AddCommandTest);

@@ -212,4 +212,4 @@ void ScaleSizeHandlerTest::TestSetHeightPercent_Should_UpdateWidth_When_KeepAspe
 	QCOMPARE(pixel, 250);
 }
 
-QTEST_MAIN(ScaleSizeHandlerTest);
+TEST_MAIN(ScaleSizeHandlerTest);

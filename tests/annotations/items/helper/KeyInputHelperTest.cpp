@@ -254,4 +254,4 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitInsertSignal_When_KeyIsCh
 	QCOMPARE(resultText, QStringLiteral("j"));
 }
 
-QTEST_MAIN(KeyInputHelperTest);
+TEST_MAIN(KeyInputHelperTest);

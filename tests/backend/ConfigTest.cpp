@@ -60,4 +60,4 @@ void ConfigTest::TestSetSelectedTool_Should_SaveSelection_When_SaveToolSelection
 	QCOMPARE(saveTool, selectedTool);
 }
 
-QTEST_MAIN(ConfigTest);
+TEST_MAIN(ConfigTest);

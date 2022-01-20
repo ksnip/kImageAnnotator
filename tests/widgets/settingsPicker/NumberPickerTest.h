@@ -22,6 +22,7 @@
 
 #include <QtTest>
 
+#include "tests/utils/TestRunner.h"
 #include "src/widgets/settingsPicker/NumberPicker.h"
 
 using kImageAnnotator::NumberPicker;

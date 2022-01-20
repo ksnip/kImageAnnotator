@@ -23,6 +23,7 @@
 #include <QtTest>
 #include <QSettings>
 
+#include "tests/utils/TestRunner.h"
 #include "src/backend/Config.h"
 #include "src/common/enum/Tools.h"
 

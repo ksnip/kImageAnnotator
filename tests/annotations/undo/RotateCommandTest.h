@@ -22,6 +22,7 @@
 
 #include <QtTest>
 
+#include "tests/utils/TestRunner.h"
 #include "src/annotations/undo/RotateCommand.h"
 #include "tests/mocks/MockSettingsProvider.h"
 #include "tests/mocks/MockDevicePixelRatioScaler.h"

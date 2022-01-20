@@ -42,4 +42,4 @@ void ToolPickerTest::TestTool_Should_ReturnSelectedTool()
 	QCOMPARE(result, Tools::Arrow);
 }
 
-QTEST_MAIN(ToolPickerTest);
+TEST_MAIN(ToolPickerTest);

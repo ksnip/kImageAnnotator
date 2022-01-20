@@ -68,4 +68,4 @@ void AnnotationTabContextMenuTest::TestCustomActionChanged_Should_UpdateEnabledS
     QCOMPARE(customAction.isEnabled(), outerAction->isEnabled());
 }
 
-QTEST_MAIN(AnnotationTabContextMenuTest);
+TEST_MAIN(AnnotationTabContextMenuTest);

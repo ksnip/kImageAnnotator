@@ -139,4 +139,4 @@ void KeyHelperTest::TestKeyReleased_Should_EmitEnterReleased_When_EnterWasReleas
     QCOMPARE(spy.count(), 1);
 }
 
-QTEST_MAIN(KeyHelperTest);
+TEST_MAIN(KeyHelperTest);

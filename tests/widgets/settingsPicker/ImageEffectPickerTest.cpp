@@ -33,4 +33,4 @@ void ImageEffectPickerTest::TestSelectEffect_Should_EmitSignal_When_EffectChange
 	QCOMPARE(resultFill, expectedEffect);
 }
 
-QTEST_MAIN(ImageEffectPickerTest);
+TEST_MAIN(ImageEffectPickerTest);

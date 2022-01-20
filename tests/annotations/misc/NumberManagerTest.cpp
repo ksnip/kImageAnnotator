@@ -176,4 +176,4 @@ void NumberManagerTest::TestNumberSeedChanged_Should_AffectOnlyNewItems_When_Upd
 	QCOMPARE(item3.number(), 5);
 }
 
-QTEST_MAIN(NumberManagerTest);
+TEST_MAIN(NumberManagerTest);

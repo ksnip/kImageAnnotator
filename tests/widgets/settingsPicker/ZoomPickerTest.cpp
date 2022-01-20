@@ -29,4 +29,4 @@ void ZoomPickerTest::SetZoomValue_Should_NotEmitSignalForChangedZoomValue()
 	QCOMPARE(spy.count(), 0);
 }
 
-QTEST_MAIN(ZoomPickerTest);
+TEST_MAIN(ZoomPickerTest);

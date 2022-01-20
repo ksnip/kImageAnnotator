@@ -136,4 +136,4 @@ void PointerRectResizeHandlesTest::TestUpdate_Should_MovePointerHandlesToNewPosi
 	QCOMPARE(resizeHandles.handles()[8].anchor(), newPointerPosition);
 }
 
-QTEST_MAIN(PointerRectResizeHandlesTest)
+TEST_MAIN(PointerRectResizeHandlesTest)

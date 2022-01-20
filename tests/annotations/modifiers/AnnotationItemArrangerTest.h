@@ -23,6 +23,7 @@
 #include <QtTest>
 #include <QUndoStack>
 
+#include "tests/utils/TestRunner.h"
 #include "src/annotations/modifiers/AnnotationItemArranger.h"
 #include "src/annotations/items/AnnotationLine.h"
 

@@ -127,4 +127,4 @@ void ResizeCommandTest::TestMergeWith_Should_NotMergeResizeCommands_When_Handles
 	QCOMPARE(item1->line().p2(), newPosition1);
 }
 
-QTEST_MAIN(ResizeCommandTest);
+TEST_MAIN(ResizeCommandTest);

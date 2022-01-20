@@ -165,4 +165,4 @@ void AnnotationItemModifierTest::SelectItem_Should_SelectProvidedItem()
 	QCOMPARE(modifer.selectedItems().first(), &line);
 }
 
-QTEST_MAIN(AnnotationItemModifierTest);
+TEST_MAIN(AnnotationItemModifierTest);

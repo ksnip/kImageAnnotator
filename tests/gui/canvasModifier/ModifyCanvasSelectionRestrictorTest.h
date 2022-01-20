@@ -22,6 +22,7 @@
 
 #include <QtTest>
 
+#include "tests/utils/TestRunner.h"
 #include "src/gui/canvasModifier/ModifyCanvasSelectionRestrictor.h"
 
 using kImageAnnotator::ModifyCanvasSelectionRestrictor;

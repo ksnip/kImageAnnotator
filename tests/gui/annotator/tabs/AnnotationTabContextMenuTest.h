@@ -23,6 +23,7 @@
 #include <QtTest>
 #include <QTimer>
 
+#include "tests/utils/TestRunner.h"
 #include "src/gui/annotator/tabs/AnnotationTabContextMenu.h"
 
 using kImageAnnotator::AnnotationTabContextMenu;

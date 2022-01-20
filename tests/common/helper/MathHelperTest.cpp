@@ -92,4 +92,4 @@ void MathHelperTest::TestDistanceBetweenPoints_Should_ReturnCorrectDistance_data
     QTest::newRow("set4") << QPointF(-4, -3) << QPointF(8, 6) << 15.0;
 }
 
-QTEST_MAIN(MathHelperTest);
+TEST_MAIN(MathHelperTest);

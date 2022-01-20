@@ -22,6 +22,7 @@
 
 #include <QtTest>
 
+#include "tests/utils/TestRunner.h"
 #include "src/annotations/misc/AnnotationItemClipboard.h"
 
 using kImageAnnotator::AnnotationItemClipboard;

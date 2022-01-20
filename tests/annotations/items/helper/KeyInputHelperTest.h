@@ -22,6 +22,7 @@
 
 #include <QtTest>
 
+#include "tests/utils/TestRunner.h"
 #include "src/annotations/items/text/KeyInputHelper.h"
 
 using kImageAnnotator::KeyInputHelper;

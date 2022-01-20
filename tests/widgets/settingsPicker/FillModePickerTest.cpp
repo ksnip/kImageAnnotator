@@ -33,4 +33,4 @@ void FillModePickerTest::TestSelectFill_Should_EmitSignal_When_FillChanged()
 	QCOMPARE(resultFill, expectedFill);
 }
 
-QTEST_MAIN(FillModePickerTest);
+TEST_MAIN(FillModePickerTest);

@@ -22,6 +22,7 @@
 
 #include <QtTest>
 
+#include "tests/utils/TestRunner.h"
 #include "src/widgets/CustomSpinBox.h"
 
 using kImageAnnotator::CustomSpinBox;

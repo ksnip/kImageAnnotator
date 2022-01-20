@@ -66,6 +66,6 @@ void SelectionMoveHelperTest::TestReleaseSelection_Should_ReleaseSelection()
 	QCOMPARE(moveHelper.isSelectionGabbed(), false);
 }
 
-QTEST_MAIN(SelectionMoveHelperTest);
+TEST_MAIN(SelectionMoveHelperTest);
 
 

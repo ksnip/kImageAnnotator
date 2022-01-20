@@ -32,4 +32,4 @@ void StickerPickerTest::TestSelectSticker_Should_EmitSignal_When_StickerChanged(
 	QCOMPARE(resultSize, expectedStickerPath);
 }
 
-QTEST_MAIN(StickerPickerTest);
+TEST_MAIN(StickerPickerTest);

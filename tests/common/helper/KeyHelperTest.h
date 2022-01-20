@@ -23,6 +23,7 @@
 #include <QtTest>
 #include <QKeyEvent>
 
+#include "tests/utils/TestRunner.h"
 #include "src/common/helper/KeyHelper.h"
 
 using kImageAnnotator::KeyHelper;

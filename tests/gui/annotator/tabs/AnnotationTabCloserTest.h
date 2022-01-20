@@ -24,6 +24,7 @@
 #include <QTabWidget>
 #include <QSharedPointer>
 
+#include "tests/utils/TestRunner.h"
 #include "src/gui/annotator/tabs/AnnotationTabCloser.h"
 
 using kImageAnnotator::AnnotationTabCloser;

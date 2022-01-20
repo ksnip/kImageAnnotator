@@ -123,4 +123,4 @@ void ModifyCanvasSelectionRestrictorTest::TestRestrictMove_Should_ChangeMove_Whe
 	QCOMPARE(resizeRect, minRect);
 }
 
-QTEST_MAIN(ModifyCanvasSelectionRestrictorTest);
+TEST_MAIN(ModifyCanvasSelectionRestrictorTest);

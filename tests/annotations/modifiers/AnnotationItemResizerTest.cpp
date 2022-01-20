@@ -105,4 +105,4 @@ void AnnotationItemResizerTest::TestIsItemVisible_Should_ReturnFalse_When_ItemIs
 	QCOMPARE(result, false);
 }
 
-QTEST_MAIN(AnnotationItemResizerTest);
+TEST_MAIN(AnnotationItemResizerTest);

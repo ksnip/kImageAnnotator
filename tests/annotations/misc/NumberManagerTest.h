@@ -21,6 +21,8 @@
 #define KIMAGEANNOTATOR_NUMBERMANAGERTEST_H
 
 #include <QtTest>
+
+#include "tests/utils/TestRunner.h"
 #include <src/annotations/misc/NumberManager.h>
 
 using kImageAnnotator::NumberManager;

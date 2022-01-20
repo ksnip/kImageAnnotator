@@ -107,4 +107,4 @@ void SelectionHandlesAllTest::TestUpdateHandles_Should_PositionHandlesOnCorrectP
 	QCOMPARE(handles[7].topLeft(), QPointF(0, selection.height() / 2 - ResizeHandleSize / 2));
 }
 
-QTEST_MAIN(SelectionHandlesAllTest);
+TEST_MAIN(SelectionHandlesAllTest);

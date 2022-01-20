@@ -22,6 +22,7 @@
 
 #include <QtTest>
 
+#include "tests/utils/TestRunner.h"
 #include "src/widgets/misc/AttachedSeparator.h"
 #include "src/widgets/settingsPicker/BoolPicker.h"
 

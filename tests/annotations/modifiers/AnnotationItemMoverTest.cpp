@@ -46,4 +46,4 @@ void AnnotationItemMoverTest::TestMoveItems_Should_MoveItemsToNewPosition()
 	QCOMPARE(line2.boundingRect().topLeft(), newPos - (clickPos - p3));
 }
 
-QTEST_MAIN(AnnotationItemMoverTest);
+TEST_MAIN(AnnotationItemMoverTest);

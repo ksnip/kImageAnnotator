@@ -208,4 +208,4 @@ void AnnotationItemFactoryTest::TestClone_Should_IncrementZValueForClonedItem()
 	QVERIFY(clonedItem->zValue() > item->zValue());
 }
 
-QTEST_MAIN(AnnotationItemFactoryTest);
+TEST_MAIN(AnnotationItemFactoryTest);

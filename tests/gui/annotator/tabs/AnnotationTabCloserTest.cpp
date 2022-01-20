@@ -114,4 +114,4 @@ QSharedPointer<QTabWidget> AnnotationTabCloserTest::getTabWidgetMock() const
 	return tabWidget;
 }
 
-QTEST_MAIN(AnnotationTabCloserTest);
+TEST_MAIN(AnnotationTabCloserTest);

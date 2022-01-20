@@ -67,7 +67,11 @@ set(TESTUTILS_SRC
 
 add_library(KIMAGEANNOTATOR_STATIC STATIC ${KIMAGEANNOTATOR_SRCS})
 
-target_link_libraries(KIMAGEANNOTATOR_STATIC Qt5::Widgets Qt5::Svg kImageAnnotator kColorPicker::kColorPicker)
+target_link_libraries(KIMAGEANNOTATOR_STATIC
+		Qt5::Widgets
+		kImageAnnotator::kImageAnnotator
+		kColorPicker::kColorPicker
+		Qt5::Svg)
 
 if (UNIX AND NOT APPLE)
 	target_link_libraries(KIMAGEANNOTATOR_STATIC X11::X11)

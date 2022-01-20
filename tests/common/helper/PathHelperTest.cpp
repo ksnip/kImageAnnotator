@@ -68,4 +68,4 @@ void PathHelperTest::TestPrettyFilename_Should_ReplaceUnderscoresWithSpacesAndCa
 	QCOMPARE(filename, expected);
 }
 
-QTEST_MAIN(PathHelperTest);
+TEST_MAIN(PathHelperTest);

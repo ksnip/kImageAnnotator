@@ -166,4 +166,4 @@ void RectResizeHandlesTest::TestUpdate_Should_MoveHandlesToNewPosition()
 	QCOMPARE(rectResizeHandles.handles()[7].anchor(), ShapeHelper::rectLeft(newRect));
 }
 
-QTEST_MAIN(RectResizeHandlesTest);
+TEST_MAIN(RectResizeHandlesTest);

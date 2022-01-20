@@ -163,4 +163,4 @@ void AnnotationMultiItemResizerTest::TestUpdate_Should_HideResizers_When_ItemsOf
 	QCOMPARE(itemResizer.hasItemsAttached(), false);
 }
 
-QTEST_MAIN(AnnotationMultiItemResizerTest);
+TEST_MAIN(AnnotationMultiItemResizerTest);

@@ -221,4 +221,4 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_StickerPathBasedOnSettin
 	QCOMPARE(stickerProperties->path(), path);
 }
 
-QTEST_MAIN(AnnotationPropertiesFactoryTest);
+TEST_MAIN(AnnotationPropertiesFactoryTest);

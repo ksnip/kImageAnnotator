@@ -130,4 +130,4 @@ void MoveCommandTest::TestMergeWith_Should_NotMergeMoveCommands_When_ItemsAreNot
 	QCOMPARE(item2->position(), newPosition2);
 }
 
-QTEST_MAIN(MoveCommandTest);
+TEST_MAIN(MoveCommandTest);

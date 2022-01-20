@@ -22,6 +22,7 @@
 
 #include <QtTest>
 
+#include "tests/utils/TestRunner.h"
 #include "src/annotations/modifiers/resizeHandles/PointerRectResizeHandles.h"
 #include "src/annotations/items/AnnotationNumberPointer.h"
 #include "src/common/helper/CursorHelper.h"

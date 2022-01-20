@@ -22,6 +22,7 @@
 
 #include <QtTest>
 
+#include "tests/utils/TestRunner.h"
 #include "src/annotations/modifiers/resizeHandles/LineResizeHandles.h"
 #include "src/annotations/items/AnnotationLine.h"
 #include "src/common/helper/CursorHelper.h"

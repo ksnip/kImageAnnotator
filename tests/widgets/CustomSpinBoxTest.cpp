@@ -42,4 +42,4 @@ void CustomSpinBoxTest::TestSetValueSilent_Should_NotEmitValueChangedSignal()
 	QCOMPARE(spy.count(), 0);
 }
 
-QTEST_MAIN(CustomSpinBoxTest);
+TEST_MAIN(CustomSpinBoxTest);

@@ -22,6 +22,7 @@
 
 #include <QtTest>
 
+#include "tests/utils/TestRunner.h"
 #include "src/common/helper/MathHelper.h"
 
 using kImageAnnotator::MathHelper;

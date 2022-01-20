@@ -123,4 +123,4 @@ void ArrangeCommandTest::TestUndo_Should_SortItemByZValue()
 	QCOMPARE((int) allItems[2]->zValue(), 1);
 }
 
-QTEST_MAIN(ArrangeCommandTest);
+TEST_MAIN(ArrangeCommandTest);

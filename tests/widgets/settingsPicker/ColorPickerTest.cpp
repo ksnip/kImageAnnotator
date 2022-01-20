@@ -32,4 +32,4 @@ void ColorPickerTest::TestSelectColor_Should_EmitSignal_When_ColorChanged()
     QCOMPARE(resultColor, expectedColor);
 }
 
-QTEST_MAIN(ColorPickerTest);
+TEST_MAIN(ColorPickerTest);

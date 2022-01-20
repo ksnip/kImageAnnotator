@@ -404,4 +404,4 @@ void AnnotationItemSelectorTest::TestUpdate_Should_UnselectItemsThatAreNotVisibl
 	QCOMPARE(results.contains(&line2), false);
 }
 
-QTEST_MAIN(AnnotationItemSelectorTest);
+TEST_MAIN(AnnotationItemSelectorTest);

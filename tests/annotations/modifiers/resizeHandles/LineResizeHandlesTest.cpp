@@ -145,4 +145,4 @@ void LineResizeHandlesTest::TestUpdate_Should_SetMoveHandlesToNewPositions()
 	QCOMPARE(lineResizeHandles.handles()[1].center(), p4);
 }
 
-QTEST_MAIN(LineResizeHandlesTest);
+TEST_MAIN(LineResizeHandlesTest);

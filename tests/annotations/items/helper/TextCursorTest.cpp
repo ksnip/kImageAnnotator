@@ -262,4 +262,4 @@ void TextCursorTest::TestMoveForwardBy_Should_MoveCursorToEnd_When_RequestedStep
 	QCOMPARE(textCursor.position(), text.length());
 }
 
-QTEST_MAIN(TextCursorTest);
+TEST_MAIN(TextCursorTest);

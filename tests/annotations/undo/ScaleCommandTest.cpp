@@ -110,4 +110,4 @@ void ScaleCommandTest::TestUndo_Should_ScaleItemsBackToOriginalSize()
 	QCOMPARE(rectItem->boundingRect().size().toSize(), QSize(50, 50));
 }
 
-QTEST_MAIN(ScaleCommandTest)
+TEST_MAIN(ScaleCommandTest)

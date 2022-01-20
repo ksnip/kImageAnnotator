@@ -107,5 +107,5 @@ void CropCommandTest::TestUndo_Should_MoveItemBackToPreviousPosition()
 	QCOMPARE(item->boundingRect().size(), rect.size());
 }
 
-QTEST_MAIN(CropCommandTest);
+TEST_MAIN(CropCommandTest);
 

@@ -142,4 +142,4 @@ void AnnotationAreaTest::CanvasRect_Should_ReturnUserDefinedRect_When_CanvasRect
 	QCOMPARE(canvasRect, userDefinedCanvasRect);
 }
 
-QTEST_MAIN(AnnotationAreaTest);
+TEST_MAIN(AnnotationAreaTest);

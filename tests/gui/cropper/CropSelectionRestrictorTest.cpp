@@ -113,4 +113,4 @@ void CropSelectionRestrictorTest::TestRestrictMove_Should_ChangeMove_When_NewSiz
 	QCOMPARE(resizeRect, QRectF(200, 200, 300, 300));
 }
 
-QTEST_MAIN(CropSelectionRestrictorTest);
+TEST_MAIN(CropSelectionRestrictorTest);
