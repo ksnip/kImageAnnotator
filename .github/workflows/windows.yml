@@ -46,6 +46,6 @@ jobs:
       run: bash ./.github/scripts/build_kImageAnnotator.sh
 
     - name: Test
-      working-directory: ${{github.workspace}}/build
+      working-directory: ${{github.workspace}}/build/tests
       run: ctest --extra-verbose
       
