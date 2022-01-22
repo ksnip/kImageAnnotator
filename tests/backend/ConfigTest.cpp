@@ -20,44 +20,42 @@
 
 #include "ConfigTest.h"
 
-void ConfigTest::initTestCase()
-{
-	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("/tmp"));
-}
-
-void ConfigTest::cleanupTestCase()
-{
-	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QStringLiteral("$HOME/.config"));
-}
-
 void ConfigTest::TestSetSelectedTool_Should_NotSaveSelection_When_SaveToolSelectionDisabled()
 {
+	// arrange
 	qRegisterMetaType<Tools>("ToolTypes");
 	auto defaultTool = Tools::Pen;
-	QSettings settings;
-	settings.remove(ConfigNameHelper::toolType());
-	auto config = new Config;
-	config->setSaveToolSelection(false);
+	auto settingsMock = QSharedPointer<SettingsMock>(new SettingsMock);
 
-	config->setSelectedToolType(Tools::Ellipse);
+	EXPECT_CALL(*settingsMock, value(testing::_, testing::_))
+			.WillRepeatedly(testing::Return((int)defaultTool));
+	EXPECT_CALL(*settingsMock, setValue(testing::_, testing::_)).Times(0);
 
-	auto saveTool = settings.value(ConfigNameHelper::toolType(), static_cast<int>(defaultTool)).value<Tools>();
-	QCOMPARE(saveTool, defaultTool);
+	Config config(settingsMock);
+	config.setSaveToolSelection(false);
+
+	// act & assert
+	config.setSelectedToolType(Tools::Ellipse);
 }
 
 void ConfigTest::TestSetSelectedTool_Should_SaveSelection_When_SaveToolSelectionEnabled()
 {
+	// arrange
 	qRegisterMetaType<Tools>("ToolTypes");
 	auto defaultTool = Tools::Pen;
 	auto selectedTool = Tools::Ellipse;
-	QSettings settings;
-	auto config = new Config;
-	config->setSaveToolSelection(true);
+	auto settingsMock = QSharedPointer<SettingsMock>(new SettingsMock);
 
-	config->setSelectedToolType(selectedTool);
+	EXPECT_CALL(*settingsMock, value(testing::_, testing::_))
+			.WillRepeatedly(testing::Return((int)defaultTool));
+	EXPECT_CALL(*settingsMock, setValue(ConfigNameHelper::toolType(), QVariant((int)selectedTool))).Times(1);
+	EXPECT_CALL(*settingsMock, sync()).Times(testing::AnyNumber());
 
-	auto saveTool = settings.value(ConfigNameHelper::toolType(), static_cast<int>(defaultTool)).value<Tools>();
-	QCOMPARE(saveTool, selectedTool);
+	Config config(settingsMock);
+	config.setSaveToolSelection(true);
+
+	// act & assert
+	config.setSelectedToolType(selectedTool);
 }
 
 TEST_MAIN(ConfigTest);

@@ -23,6 +23,7 @@
 #include "MockZoomValueProvider.h"
 #include "MockSettingsProvider.h"
 #include "MockDevicePixelRatioScaler.h"
+#include "tests/mocks/backend/SettingsMock.h"
 
 #include "src/backend/Config.h"
 
@@ -30,9 +31,24 @@ using kImageAnnotator::Config;
 
 struct MockDefaultParameters
 {
-    Config config;
+	MockDefaultParameters() :
+			mSettings(new SettingsMock),
+			config(QSharedPointer<ISettings>(mSettings))
+	{
+		EXPECT_CALL(*mSettings, value(testing::_, testing::_)).WillRepeatedly(testing::Return(QVariant()));
+		EXPECT_CALL(*mSettings, setValue(testing::_, testing::_)).Times(testing::AnyNumber());
+		EXPECT_CALL(*mSettings, sync()).Times(testing::AnyNumber());
+	}
+
+private:
+	QSharedPointer<SettingsMock> mSettings;
+
+public:
+	Config config;
     MockSettingsProvider settingsProvider;
     MockZoomValueProvider zoomValueProvider;
+
+
 };
 
 #endif // KIMAGEANNOTATOR_MOCKDEFAULTPARAMETERS_H

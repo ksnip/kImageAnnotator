@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2022 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,28 +17,22 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_CONFIGTEST_H
-#define KIMAGEANNOTATOR_CONFIGTEST_H
+#ifndef KIMAGEANNOTATOR_SETTINGSMOCK_H
+#define KIMAGEANNOTATOR_SETTINGSMOCK_H
 
-#include <QtTest>
-#include <QSettings>
+#include "src/backend/ISettings.h"
 
-#include "tests/utils/TestRunner.h"
-#include "tests/mocks/backend/SettingsMock.h"
-#include "src/backend/Config.h"
-#include "src/common/enum/Tools.h"
+using kImageAnnotator::ISettings;
 
-using kImageAnnotator::Config;
-using kImageAnnotator::ConfigNameHelper;
-using kImageAnnotator::Tools;
-
-class ConfigTest : public QObject
+class SettingsMock : public ISettings
 {
-Q_OBJECT
+public:
+	explicit SettingsMock() = default;
+	~SettingsMock() override = default;
 
-private slots:
-	void TestSetSelectedTool_Should_NotSaveSelection_When_SaveToolSelectionDisabled();
-	void TestSetSelectedTool_Should_SaveSelection_When_SaveToolSelectionEnabled();
+	MOCK_METHOD(void, sync, (), (override));
+	MOCK_METHOD(void, setValue, (const QString &key, const QVariant &value), (override));
+	MOCK_METHOD(QVariant, value, (const QString &key, const QVariant &defaultValue), (const, override));
 };
 
-#endif // KIMAGEANNOTATOR_CONFIGTEST_H
+#endif //KIMAGEANNOTATOR_SETTINGSMOCK_H

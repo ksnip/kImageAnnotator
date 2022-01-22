@@ -25,8 +25,8 @@
 #include <QColor>
 #include <QHash>
 #include <QFont>
-#include <QSettings>
 
+#include "ISettings.h"
 #include "src/common/enum/Tools.h"
 #include "src/common/enum/FillModes.h"
 #include "src/common/enum/NumberUpdateMode.h"
@@ -38,7 +38,7 @@ class Config : public QObject
 {
 Q_OBJECT
 public:
-	explicit Config();
+	explicit Config(const QSharedPointer<ISettings> &settings);
 	~Config() override = default;
 
 public slots:
@@ -93,7 +93,7 @@ signals:
 	void numberUpdateModeChanged(enum NumberUpdateMode numberUpdateMode) const;
 
 private:
-	QSettings mConfig;
+	QSharedPointer<ISettings> mSettings;
 	QList<Tools> mAllTools;
 	Tools mSelectTool;
 	QHash<Tools, QColor> mToolToColor;

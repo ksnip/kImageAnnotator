@@ -19,24 +19,14 @@
 
 #include "AnnotationPropertiesFactoryTest.h"
 
-void AnnotationPropertiesFactoryTest::initTestCase()
-{
-	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QLatin1Literal("/tmp"));
-}
-
-void AnnotationPropertiesFactoryTest::cleanupTestCase()
-{
-	QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, QLatin1Literal("$HOME/.config"));
-}
-
 void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesSizeBasedOnConfiguration()
 {
 	const int size = 13;
 	auto tool = Tools::Line;
-	auto config = new Config;
+	MockDefaultParameters parameters;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolWidth(size);
-	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationPropertiesFactory propertiesFactory(&parameters.config, settingsProvider);
 
 	auto properties = propertiesFactory.create(tool);
 
@@ -47,11 +37,11 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesColorBasedO
 {
 	const QColor color(Qt::darkMagenta);
 	auto tool = Tools::Line;
-	auto config = new Config;
+	MockDefaultParameters parameters;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
 	settingsProvider->setToolColor(color);
-	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationPropertiesFactory propertiesFactory(&parameters.config, settingsProvider);
 
 	auto properties = propertiesFactory.create(tool);
 
@@ -62,11 +52,11 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesTextColorBa
 {
 	const QColor textColor(Qt::darkMagenta);
 	auto tool = Tools::Number;
-	auto config = new Config;
+	MockDefaultParameters parameters;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
 	settingsProvider->setTextColor(textColor);
-	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationPropertiesFactory propertiesFactory(&parameters.config, settingsProvider);
 
 	auto properties = propertiesFactory.create(tool);
 
@@ -77,11 +67,11 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesFillTypeBas
 {
 	auto fill = FillModes::BorderAndNoFill;
 	auto tool = Tools::Rect;
-	auto config = new Config;
+	MockDefaultParameters parameters;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
 	settingsProvider->setFillType(fill);
-	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationPropertiesFactory propertiesFactory(&parameters.config, settingsProvider);
 
 	auto properties = propertiesFactory.create(tool);
 
@@ -91,11 +81,11 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetPropertiesFillTypeBas
 void AnnotationPropertiesFactoryTest::TestCreate_Should_SetShadowEnabledBasedOnConfiguration()
 {
 	auto tool = Tools::Pen;
-	auto config = new Config;
+	MockDefaultParameters parameters;
 	auto enabled = true;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setShadowEnabled(enabled);
-	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationPropertiesFactory propertiesFactory(&parameters.config, settingsProvider);
 
 	auto properties = propertiesFactory.create(tool);
 
@@ -105,10 +95,10 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetShadowEnabledBasedOnC
 void AnnotationPropertiesFactoryTest::TestCreate_Should_CreatePathPropertiesWhenItemPen()
 {
 	auto tool = Tools::Pen;
-	auto config = new Config;
+	MockDefaultParameters parameters;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
-	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationPropertiesFactory propertiesFactory(&parameters.config, settingsProvider);
 	auto properties = propertiesFactory.create(tool);
 
 	auto pathProperties = properties.dynamicCast<AnnotationPathProperties>();
@@ -119,10 +109,10 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_CreatePathPropertiesWhen
 void AnnotationPropertiesFactoryTest::TestCreate_Should_CreatePathPropertiesWhenItemMarker()
 {
 	auto tool = Tools::MarkerPen;
-	auto config = new Config;
+	MockDefaultParameters parameters;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
-	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationPropertiesFactory propertiesFactory(&parameters.config, settingsProvider);
 	auto properties = propertiesFactory.create(tool);
 
 	auto pathProperties = properties.dynamicCast<AnnotationPathProperties>();
@@ -133,10 +123,10 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_CreatePathPropertiesWhen
 void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhenItemNumber()
 {
 	auto tool = Tools::Number;
-	auto config = new Config;
+	MockDefaultParameters parameters;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
-	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationPropertiesFactory propertiesFactory(&parameters.config, settingsProvider);
 	auto properties = propertiesFactory.create(tool);
 
 	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
@@ -147,10 +137,10 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhen
 void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhenItemNumberPointer()
 {
 	auto tool = Tools::NumberPointer;
-	auto config = new Config;
+	MockDefaultParameters parameters;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
-	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationPropertiesFactory propertiesFactory(&parameters.config, settingsProvider);
 	auto properties = propertiesFactory.create(tool);
 
 	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
@@ -161,10 +151,10 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhen
 void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhenItemText()
 {
 	auto tool = Tools::Text;
-	auto config = new Config;
+	MockDefaultParameters parameters;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
-	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationPropertiesFactory propertiesFactory(&parameters.config, settingsProvider);
 	auto properties = propertiesFactory.create(tool);
 
 	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
@@ -175,14 +165,14 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_CreateTextPropertiesWhen
 void AnnotationPropertiesFactoryTest::TestCreate_Should_SetSmoothPathBasedOnConfiguration()
 {
 	auto tool = Tools::Pen;
-	auto config = new Config;
+	MockDefaultParameters parameters;
 	auto smoothPathEnabled = true;
 	auto smoothPathFactor = 99;
-	config->setSmoothPathEnabled(smoothPathEnabled);
-	config->setSmoothFactor(smoothPathFactor);
+	parameters.config.setSmoothPathEnabled(smoothPathEnabled);
+	parameters.config.setSmoothFactor(smoothPathFactor);
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setToolType(tool);
-	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationPropertiesFactory propertiesFactory(&parameters.config, settingsProvider);
 
 	auto properties = propertiesFactory.create(tool);
 
@@ -194,11 +184,11 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetSmoothPathBasedOnConf
 void AnnotationPropertiesFactoryTest::TestCreate_Should_SetToolFontBasedOnSettings()
 {
 	auto tool = Tools::Number;
-	auto config = new Config;
+	MockDefaultParameters parameters;
 	auto font = QFont("Helvetica [Cronyx]", 8, QFont::StyleItalic);
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setFont(font);
-	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationPropertiesFactory propertiesFactory(&parameters.config, settingsProvider);
 
 	auto properties = propertiesFactory.create(tool);
 
@@ -210,10 +200,10 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_StickerPathBasedOnSettin
 {
 	auto tool = Tools::Sticker;
 	auto path = QLatin1Literal("/my/path/to/sticker");
-	auto config = new Config;
+	MockDefaultParameters parameters;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setSticker(path);
-	AnnotationPropertiesFactory propertiesFactory(config, settingsProvider);
+	AnnotationPropertiesFactory propertiesFactory(&parameters.config, settingsProvider);
 
 	auto properties = propertiesFactory.create(tool);
 

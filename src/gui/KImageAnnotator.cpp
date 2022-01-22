@@ -24,6 +24,7 @@
 #include <kImageAnnotator/KImageAnnotator.h>
 
 #include "CoreView.h"
+#include "src/backend/SettingsAdapter.h"
 
 inline void initResource()
 {
@@ -270,7 +271,10 @@ void KImageAnnotator::setSelectItemAfterDrawing(bool enabled)
 
 // KImageAnnotatorPrivate
 
-KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator) : q_ptr(kImageAnnotator), mCoreView(&mConfig)
+KImageAnnotatorPrivate::KImageAnnotatorPrivate(KImageAnnotator *kImageAnnotator) :
+	q_ptr(kImageAnnotator),
+	mConfig(QSharedPointer<ISettings>(new SettingsAdapter)),
+	mCoreView(&mConfig)
 {
 	initResource();
 

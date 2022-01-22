@@ -22,7 +22,8 @@
 
 namespace kImageAnnotator {
 
-Config::Config() :
+Config::Config(const QSharedPointer<ISettings> &settings) :
+	mSettings(settings),
 	mSelectTool(Tools::Pen),
 	mSmoothPathEnabled(false),
 	mSaveToolSelection(false),
@@ -242,13 +243,13 @@ void Config::setCanvasColor(const QColor &color)
 
 QByteArray Config::annotatorDockWidgetsState() const
 {
-	return mConfig.value(ConfigNameHelper::annotatorDockWidgetsState()).toByteArray();
+	return mSettings->value(ConfigNameHelper::annotatorDockWidgetsState(), QVariant()).toByteArray();
 }
 
 void Config::setAnnotatorDockWidgetsState(const QByteArray &state)
 {
-	mConfig.setValue(ConfigNameHelper::annotatorDockWidgetsState(), state);
-	mConfig.sync();
+	mSettings->setValue(ConfigNameHelper::annotatorDockWidgetsState(), state);
+	mSettings->sync();
 }
 
 bool Config::selectItemAfterDrawing() const
@@ -343,7 +344,7 @@ void Config::initGeneralSettings()
 QColor Config::loadToolColor(Tools toolType)
 {
 	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::toolColor(toolType), defaultToolColor(toolType)).value<QColor>();
+		return mSettings->value(ConfigNameHelper::toolColor(toolType), defaultToolColor(toolType)).value<QColor>();
 	} else {
 		return defaultToolColor(toolType);
 	}
@@ -352,15 +353,15 @@ QColor Config::loadToolColor(Tools toolType)
 void Config::saveToolColor(Tools toolType, const QColor &color)
 {
 	if (mSaveToolSelection) {
-		mConfig.setValue(ConfigNameHelper::toolColor(toolType), color);
-		mConfig.sync();
+		mSettings->setValue(ConfigNameHelper::toolColor(toolType), color);
+		mSettings->sync();
 	}
 }
 
 QColor Config::loadToolTextColor(Tools toolType)
 {
 	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::toolTextColor(toolType), defaultToolTextColor(toolType)).value<QColor>();
+		return mSettings->value(ConfigNameHelper::toolTextColor(toolType), defaultToolTextColor(toolType)).value<QColor>();
 	} else {
 		return defaultToolTextColor(toolType);
 	}
@@ -369,15 +370,15 @@ QColor Config::loadToolTextColor(Tools toolType)
 void Config::saveToolTextColor(Tools toolType, const QColor &color)
 {
 	if (mSaveToolSelection) {
-		mConfig.setValue(ConfigNameHelper::toolTextColor(toolType), color);
-		mConfig.sync();
+		mSettings->setValue(ConfigNameHelper::toolTextColor(toolType), color);
+		mSettings->sync();
 	}
 }
 
 int Config::loadToolWidth(Tools toolType)
 {
 	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::toolWidth(toolType), defaultToolWidth(toolType)).value<int>();
+		return mSettings->value(ConfigNameHelper::toolWidth(toolType), defaultToolWidth(toolType)).value<int>();
 	} else {
 		return defaultToolWidth(toolType);
 	}
@@ -386,15 +387,15 @@ int Config::loadToolWidth(Tools toolType)
 void Config::saveToolWidth(Tools toolType, int size)
 {
 	if (mSaveToolSelection) {
-		mConfig.setValue(ConfigNameHelper::toolWidth(toolType), size);
-		mConfig.sync();
+		mSettings->setValue(ConfigNameHelper::toolWidth(toolType), size);
+		mSettings->sync();
 	}
 }
 
 FillModes Config::loadToolFillType(Tools toolType)
 {
 	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::toolFillType(toolType), static_cast<int>(defaultToolFillMode(toolType))).value<FillModes>();
+		return mSettings->value(ConfigNameHelper::toolFillType(toolType), static_cast<int>(defaultToolFillMode(toolType))).value<FillModes>();
 	} else {
 		return defaultToolFillMode(toolType);
 	}
@@ -403,15 +404,15 @@ FillModes Config::loadToolFillType(Tools toolType)
 void Config::saveToolFillType(Tools toolType, FillModes fillType)
 {
 	if (mSaveToolSelection) {
-		mConfig.setValue(ConfigNameHelper::toolFillType(toolType), static_cast<int>(fillType));
-		mConfig.sync();
+		mSettings->setValue(ConfigNameHelper::toolFillType(toolType), static_cast<int>(fillType));
+		mSettings->sync();
 	}
 }
 
 QFont Config::loadToolFont(Tools tool) const
 {
 	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::toolFont(tool), defaultToolFont(tool)).value<QFont>();
+		return mSettings->value(ConfigNameHelper::toolFont(tool), defaultToolFont(tool)).value<QFont>();
 	} else {
 		return defaultToolFont(tool);
 	}
@@ -420,15 +421,15 @@ QFont Config::loadToolFont(Tools tool) const
 void Config::saveToolFont(Tools tool, const QFont &font)
 {
 	if (mSaveToolSelection) {
-		mConfig.setValue(ConfigNameHelper::toolFont(tool), font);
-		mConfig.sync();
+		mSettings->setValue(ConfigNameHelper::toolFont(tool), font);
+		mSettings->sync();
 	}
 }
 
 Tools Config::loadToolType()
 {
 	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::toolType(), static_cast<int>(defaultToolType())).value<Tools>();
+		return mSettings->value(ConfigNameHelper::toolType(), static_cast<int>(defaultToolType())).value<Tools>();
 	} else {
 		return defaultToolType();
 	}
@@ -437,15 +438,15 @@ Tools Config::loadToolType()
 void Config::saveToolType(Tools toolType)
 {
 	if (mSaveToolSelection) {
-		mConfig.setValue(ConfigNameHelper::toolType(), static_cast<int>(toolType));
-		mConfig.sync();
+		mSettings->setValue(ConfigNameHelper::toolType(), static_cast<int>(toolType));
+		mSettings->sync();
 	}
 }
 
 int Config::loadToolObfuscateFactor(Tools toolType)
 {
 	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::obfuscateFactor(toolType), defaultObfuscateFactor()).value<int>();
+		return mSettings->value(ConfigNameHelper::obfuscateFactor(toolType), defaultObfuscateFactor()).value<int>();
 	} else {
 		return defaultObfuscateFactor();
 	}
@@ -454,15 +455,15 @@ int Config::loadToolObfuscateFactor(Tools toolType)
 void Config::saveToolObfuscateFactor(Tools toolType, int radius)
 {
 	if (mSaveToolSelection) {
-		mConfig.setValue(ConfigNameHelper::obfuscateFactor(toolType), radius);
-		mConfig.sync();
+		mSettings->setValue(ConfigNameHelper::obfuscateFactor(toolType), radius);
+		mSettings->sync();
 	}
 }
 
 bool Config::loadToolShadowEnabled(Tools tool)
 {
 	if (mSaveToolSelection) {
-		return mConfig.value(ConfigNameHelper::shadowEnabled(tool), defaultShadowEnabled(tool)).toBool();
+		return mSettings->value(ConfigNameHelper::shadowEnabled(tool), defaultShadowEnabled(tool)).toBool();
 	} else {
 		return defaultShadowEnabled(tool);
 	}
@@ -471,8 +472,8 @@ bool Config::loadToolShadowEnabled(Tools tool)
 void Config::saveToolShadowEnabled(Tools tool, bool enabled)
 {
 	if (mSaveToolSelection) {
-		mConfig.setValue(ConfigNameHelper::shadowEnabled(tool), enabled);
-		mConfig.sync();
+		mSettings->setValue(ConfigNameHelper::shadowEnabled(tool), enabled);
+		mSettings->sync();
 	}
 }
 

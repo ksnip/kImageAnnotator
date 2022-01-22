@@ -25,6 +25,7 @@
 #include "tests/utils/TestRunner.h"
 #include "src/annotations/core/AnnotationItemFactory.h"
 #include "tests/mocks/MockSettingsProvider.h"
+#include "tests/mocks/MockDefaultParameters.h"
 
 using kImageAnnotator::AnnotationItemFactory;
 using kImageAnnotator::AnnotationLine;
@@ -45,9 +46,6 @@ class AnnotationItemFactoryTest : public QObject
 Q_OBJECT
 
 private slots:
-	void initTestCase();
-	void cleanupTestCase();
-
 	void TestCreate_Should_CreateItemAtProvidedPosition();
 	void TestCreate_Should_CreateImageItemAtProvidedPosition();
 	void TestCreate_Should_ReturnNullPtrForUnknownType();

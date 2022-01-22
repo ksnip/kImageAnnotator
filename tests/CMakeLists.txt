@@ -58,6 +58,7 @@ set(UNITTEST_SRC
 set(TESTUTILS_SRC
 	utils/TestRunner.h
     mocks/gui/selection/SelectionHandlesMock.h
+	mocks/backend/SettingsMock.h
     mocks/MockZoomValueProvider.cpp
 	mocks/MockSettingsProvider.cpp
 	mocks/MockDevicePixelRatioScaler.cpp

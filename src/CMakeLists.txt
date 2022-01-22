@@ -111,7 +111,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ResizeCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ArrangeCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/CropCommand.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/CutCommand.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/CutCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/ScaleCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/RotateCommand.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/PasteCommand.cpp
@@ -124,6 +124,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/NumberManager.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/misc/CanvasPainter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/backend/Config.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/backend/SettingsAdapter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/provider/DevicePixelRatioScaler.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/provider/ScaledSizeProvider.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/CursorHelper.cpp

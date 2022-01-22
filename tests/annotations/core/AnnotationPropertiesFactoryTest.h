@@ -25,6 +25,7 @@
 #include "tests/utils/TestRunner.h"
 #include "src/annotations/core/AnnotationPropertiesFactory.h"
 #include "tests/mocks/MockSettingsProvider.h"
+#include "tests/mocks/MockDefaultParameters.h"
 
 using kImageAnnotator::AnnotationPropertiesFactory;
 using kImageAnnotator::AnnotationProperties;
@@ -39,9 +40,6 @@ class AnnotationPropertiesFactoryTest : public QObject
 {
 Q_OBJECT
 private slots:
-	void initTestCase();
-	void cleanupTestCase();
-
 	void TestCreate_Should_SetPropertiesSizeBasedOnConfiguration();
 	void TestCreate_Should_SetPropertiesColorBasedOnConfiguration();
 	void TestCreate_Should_SetPropertiesTextColorBasedOnConfiguration();
