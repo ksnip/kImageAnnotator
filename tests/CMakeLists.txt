@@ -77,9 +77,9 @@ target_link_libraries(KIMAGEANNOTATOR_STATIC
 if (UNIX AND NOT APPLE)
 	# X11::X11 imported target only available with sufficiently new CMake
 	if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.14.0)
-		target_link_libraries(KSNIP_STATIC X11::X11)
+		target_link_libraries(KIMAGEANNOTATOR_STATIC X11::X11)
 	else()
-		target_link_libraries(KSNIP_STATIC X11)
+		target_link_libraries(KIMAGEANNOTATOR_STATIC X11)
 	endif()
 endif ()
 
