@@ -26,6 +26,7 @@
 #include "AnnotationTabContent.h"
 #include "AnnotationTabContextMenu.h"
 #include "AnnotationTabCloser.h"
+#include "AnnotationTabClickEventFilter.h"
 
 namespace kImageAnnotator {
 
@@ -66,6 +67,7 @@ private:
 	QAction *mRedoAction;
 	AnnotationTabContextMenu *mTabContextMenu;
 	AnnotationTabCloser *mTabCloser;
+	AnnotationTabClickEventFilter *mTabClickFilter;
 
 private slots:
 	void updateCurrentWidget(int index);

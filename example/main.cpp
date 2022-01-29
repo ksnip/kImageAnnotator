@@ -38,6 +38,8 @@ int main(int argc, char **argv)
 	kImageAnnotator->setTabBarAutoHide(true);
 	kImageAnnotator->addTab(pixmap, QLatin1String("image1"), QLatin1String("image1"));
 	kImageAnnotator->addTab(pixmap, QLatin1String("image2"), QLatin1String("image2"));
+	kImageAnnotator->addTab(pixmap, QLatin1String("image3"), QLatin1String("image3"));
+	kImageAnnotator->addTab(pixmap, QLatin1String("image4"), QLatin1String("image4"));
 	kImageAnnotator->setControlsWidgetVisible(true);
 	kImageAnnotator->adjustSize();
 

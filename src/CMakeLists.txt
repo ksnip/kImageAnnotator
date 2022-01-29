@@ -19,6 +19,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/tabs/AnnotationTabWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/tabs/AnnotationTabContextMenu.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/tabs/AnnotationTabCloser.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/gui/annotator/tabs/AnnotationTabClickEventFilter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/canvasModifier/ModifyCanvasView.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/canvasModifier/ModifyCanvasWidget.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/gui/canvasModifier/ModifyCanvasSelectionRestrictor.cpp

@@ -3,6 +3,7 @@
 ## Release 0.6.0
 * New: Add optional undo, redo, crop, scale and modify canvas buttons to dock widgets. ([#263](https://github.com/ksnip/kImageAnnotator/issues/263))
 * New: Cut out vertical or horizontal slice of an image. ([#236](https://github.com/ksnip/kImageAnnotator/issues/236))
+* New: Middle-click on tab header closes tab. ([#280](https://github.com/ksnip/kImageAnnotator/issues/280))
 
 ## Release 0.5.3
 * Fixed: Crash while typing text on wayland. ([#256](https://github.com/ksnip/kImageAnnotator/issues/256))

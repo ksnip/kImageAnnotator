@@ -28,7 +28,8 @@ AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvide
 	mRedoAction(new QAction(this)),
 	mUndoAction(new QAction(this)),
 	mTabContextMenu(new AnnotationTabContextMenu(this)),
-	mTabCloser(new AnnotationTabCloser(this))
+	mTabCloser(new AnnotationTabCloser(this)),
+	mTabClickFilter(new AnnotationTabClickEventFilter(mTabBar, this))
 {
 	setTabBarAutoHide(true);
 	setMovable(true);
@@ -46,6 +47,8 @@ AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvide
 	connect(mTabContextMenu, &AnnotationTabContextMenu::closeAllTabs, mTabCloser, &AnnotationTabCloser::closeAllTabsTriggered);
 	connect(mTabContextMenu, &AnnotationTabContextMenu::closeAllTabsToLeft, mTabCloser, &AnnotationTabCloser::closeAllTabsToLeftTriggered);
 	connect(mTabContextMenu, &AnnotationTabContextMenu::closeAllTabsToRight, mTabCloser, &AnnotationTabCloser::closeAllTabsToRightTriggered);
+
+	connect(mTabClickFilter, &AnnotationTabClickEventFilter::closeTabTriggered, mTabCloser, &AnnotationTabCloser::closeTabTriggered);
 }
 
 int AnnotationTabWidget::addTab(const QPixmap &image, const QString &title, const QString &toolTip)
