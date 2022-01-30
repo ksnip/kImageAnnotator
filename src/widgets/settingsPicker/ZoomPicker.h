@@ -23,9 +23,12 @@
 #include <QWidget>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QButtonGroup>
 #include <QAction>
 
 #include "src/widgets/CustomSpinBox.h"
+#include "src/widgets/CustomToolButton.h"
+#include "src/widgets/CustomToolButtonAction.h"
 #include "src/widgets/settingsPicker/SettingsPickerWidget.h"
 #include "src/common/helper/IconLoader.h"
 #include "src/common/provider/ScaledSizeProvider.h"
@@ -41,6 +44,7 @@ public:
 
 public slots:
 	void setZoomValue(double value);
+	void fitImageToView();
 
 signals:
 	void zoomValueChanged(double zoomLevel);
@@ -55,7 +59,10 @@ private:
 	QAction *mZoomInAction;
 	QAction *mZoomOutAction;
 	QAction *mResetZoomAction;
-
+	QAction *mFitImageAction;
+	CustomToolButton *mFitImageButton;
+	QAction *createAction(const QString &tooltip, const QIcon &icon);
+	CustomToolButton *createButton(QAction *defaultAction);
 	void initGui();
 
 private slots:

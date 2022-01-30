@@ -48,6 +48,7 @@
         <file alias="italic.svg" >icons/dark/italic.svg</file>
         <file alias="underline.svg" >icons/dark/underline.svg</file>
         <file alias="cut.svg" >icons/dark/cut.svg</file>
+        <file alias="fitImage.svg" >icons/dark/fitImage.svg</file>
     </qresource>
 
     <qresource prefix="/icons/light">
@@ -98,6 +99,7 @@
         <file alias="italic.svg" >icons/light/italic.svg</file>
         <file alias="underline.svg" >icons/light/underline.svg</file>
         <file alias="cut.svg" >icons/light/cut.svg</file>
+        <file alias="fitImage.svg" >icons/light/fitImage.svg</file>
     </qresource>
 
     <qresource prefix="/stickers">

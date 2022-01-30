@@ -28,7 +28,8 @@ ZoomPicker::ZoomPicker(QWidget *parent) :
 	mSpinBox(new CustomSpinBox(this)),
 	mZoomInAction(new QAction(this)),
 	mZoomOutAction(new QAction(this)),
-	mResetZoomAction(new QAction(this))
+	mResetZoomAction(new QAction(this)),
+	mFitImageAction(new QAction(this))
 {
 	initGui();
 }
@@ -51,9 +52,14 @@ void ZoomPicker::initGui()
 	mSpinBox->setSuffix(QLatin1String("%"));
 	mSpinBox->setWrapping(false);
 
+	mFitImageAction = createAction(tr("Fit Image"), IconLoader::load(QLatin1String("fitImage.svg")));
+	connect(mFitImageAction, &QAction::triggered, this, &ZoomPicker::fitImageToView);
+	mFitImageButton = createButton(mFitImageAction);
+
 	mZoomInAction->setShortcut(QKeySequence::ZoomIn);
 	mZoomOutAction->setShortcut(QKeySequence::ZoomOut);
 	mResetZoomAction->setShortcut(Qt::CTRL + Qt::Key_0);
+	mFitImageAction->setShortcut(Qt::CTRL + Qt::Key_F);
 
 	setToolTip(getToolTip());
 
@@ -69,6 +75,7 @@ void ZoomPicker::initGui()
 
 	mLayout->addWidget(mLabel);
 	mLayout->addWidget(mSpinBox);
+	mLayout->addWidget(mFitImageButton);
 	mLayout->setAlignment(Qt::AlignLeft);
 
 	setLayout(mLayout);
@@ -80,13 +87,35 @@ QString ZoomPicker::getToolTip() const
 	auto zoomIn = tr("Zoom In (%1)").arg(mZoomInAction->shortcut().toString());
 	auto zoomOut = tr("Zoom Out (%1)").arg(mZoomOutAction->shortcut().toString());
 	auto resetZoom = tr("Reset Zoom (%1)").arg(mResetZoomAction->shortcut().toString());
-	return zoomIn + newLine + zoomOut + newLine + resetZoom;
+	auto fitZoom = tr("Fit image to view (%1)").arg(mFitImageAction->shortcut().toString());
+	return zoomIn + newLine + zoomOut + newLine + resetZoom + newLine + fitZoom;
+}
+
+QAction *ZoomPicker::createAction(const QString &tooltip, const QIcon &icon)
+{
+	auto action = new CustomToolButtonAction(this);
+	action->setIcon(icon);
+	action->setToolTip(tooltip);
+	action->updateDefaultWidget();
+	return action;
+}
+
+CustomToolButton *ZoomPicker::createButton(QAction *defaultAction)
+{
+	auto button = new CustomToolButton(this);
+	button->setAction(defaultAction);
+	return button;
 }
 
 void ZoomPicker::setZoomValue(double value)
 {
 	auto zoomValue = qRound(value * 100);
 	mSpinBox->setValueSilent(zoomValue);
+}
+
+void ZoomPicker::fitImageToView()
+{
+	emit zoomValueChanged(-1);
 }
 
 void ZoomPicker::notifyZoomValueChanged(double value)
