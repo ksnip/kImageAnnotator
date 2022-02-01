@@ -9,19 +9,19 @@
     </message>
     <message>
         <source>Bring to Front</source>
-        <translation>Bring Op</translation>
+        <translation>Flyt Helt Frem</translation>
     </message>
     <message>
         <source>Bring Forward</source>
-        <translation>Bring Frem</translation>
+        <translation>Flyt Frem</translation>
     </message>
     <message>
         <source>Send Backward</source>
-        <translation>Send Tilbage</translation>
+        <translation>FlytTilbage</translation>
     </message>
     <message>
         <source>Send to Back</source>
-        <translation>Send Ned</translation>
+        <translation>Flyt Helt Tilbage</translation>
     </message>
     <message>
         <source>Select This</source>
@@ -74,7 +74,7 @@
     </message>
     <message>
         <source>Number Seed</source>
-        <translation>Tælleren</translation>
+        <translation>Tæller</translation>
     </message>
     <message>
         <source>Obfuscation Factor</source>
@@ -82,11 +82,11 @@
     </message>
     <message>
         <source>Item Shadow</source>
-        <translation>Genstandens Skygge</translation>
+        <translation>Elementets Skygge</translation>
     </message>
     <message>
         <source>Item Settings</source>
-        <translation>Genstandens Indstillinger</translation>
+        <translation>Elementets Indstillinger</translation>
     </message>
 </context>
 <context>
@@ -161,7 +161,7 @@
     <name>kImageAnnotator::FillModePicker</name>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation>Kant Og Fyld Synlighed</translation>
+        <translation>Kant Og Fylds Synlighed</translation>
     </message>
     <message>
         <source>Border and Fill</source>
@@ -402,7 +402,7 @@ Rotering af ikke-90° gangefaktorer kan forårsage tab af kvalitet.</translation
     </message>
     <message>
         <source>Line</source>
-        <translation>Linie</translation>
+        <translation>Linje</translation>
     </message>
     <message>
         <source>Blur</source>
@@ -442,7 +442,7 @@ Rotering af ikke-90° gangefaktorer kan forårsage tab af kvalitet.</translation
     </message>
     <message>
         <source>Duplicate</source>
-        <translation>Kopier</translation>
+        <translation>Dupliker</translation>
     </message>
 </context>
 <context>
