@@ -74,7 +74,7 @@ if (UNIX AND NOT APPLE)
 	if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.14.0)
 		target_link_libraries(kImageAnnotator PRIVATE X11::X11)
 	else()
-		target_link_libraries(kImageAnnotator PRIVATE X11::X11)
+		target_link_libraries(kImageAnnotator PRIVATE X11)
 	endif()
 endif ()
 
