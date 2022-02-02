@@ -32,9 +32,11 @@ bool AnnotationTabClickEventFilter::eventFilter(QObject *object, QEvent *event)
 {
 	if (object == mTabBar && event->type() == QEvent::MouseButtonPress) {
 		auto mouseEvent = dynamic_cast<QMouseEvent *>(event);
-		int index = mTabBar->tabAt(mouseEvent->pos());
-		emit closeTabTriggered(index);
-		return true;
+		if (mouseEvent->button() == Qt::MiddleButton) {
+			int index = mTabBar->tabAt(mouseEvent->pos());
+			emit closeTabTriggered(index);
+			return true;
+		}
 	}
 	return QObject::eventFilter(object, event);
 }
