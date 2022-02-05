@@ -32,6 +32,7 @@ public:
 	~ZoomValueProvider() override = default;
 	virtual double zoomValue() const = 0;
 	virtual void setZoomValue(double zoomValue) = 0;
+	virtual void fitImageToView() = 0;
 
 signals:
 	void zoomValueChanged(double value);

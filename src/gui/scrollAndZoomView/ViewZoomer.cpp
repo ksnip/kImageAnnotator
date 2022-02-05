@@ -65,19 +65,14 @@ void ViewZoomer::wheelZoom(QWheelEvent *event)
 	event->accept(); // supress scrolling
 }
 
-void ViewZoomer::fitImage()
+void ViewZoomer::fitImageToView()
 {
 	mView->fitInView(mView->sceneRect(), Qt::KeepAspectRatio);
+	emit zoomValueChanged(zoomValue());
 }
 
 void ViewZoomer::setZoomValue(double value)
 {
-	// ZoomPicker's mFitImageButton() sets value to -1
-	if (value < 0) {
-		fitImage();
-		emit zoomValueChanged(zoomValue());
-		return;
-	}
 	zoom(value - zoomValue());
 }
 

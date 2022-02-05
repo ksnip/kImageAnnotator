@@ -79,4 +79,9 @@ void AbstractSettingsProvider::zoomValueChanged(double value)
 	}
 }
 
+void AbstractSettingsProvider::fitImageToView()
+{
+	mZoomValueProvider->fitImageToView();
+}
+
 } // namespace kImageAnnotator

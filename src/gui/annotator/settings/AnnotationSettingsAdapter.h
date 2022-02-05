@@ -84,6 +84,7 @@ private slots:
 	void stickerChanged(const QString &sticker);
 	void shadowEnabledChanged(bool enabled);
 	void fontChanged(const QFont &font);
+	void fitImageToCurrentView();
 };
 
 } // namespace kImageAnnotator

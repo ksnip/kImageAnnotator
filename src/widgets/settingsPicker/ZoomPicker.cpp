@@ -113,9 +113,9 @@ void ZoomPicker::setZoomValue(double value)
 	mSpinBox->setValueSilent(zoomValue);
 }
 
-void ZoomPicker::fitImageToView()
+void ZoomPicker::fitImageToCurrentView()
 {
-	emit zoomValueChanged(-1);
+	emit fitImageToView();
 }
 
 void ZoomPicker::notifyZoomValueChanged(double value)

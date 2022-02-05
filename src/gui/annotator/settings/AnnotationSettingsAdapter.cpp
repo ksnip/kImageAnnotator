@@ -40,6 +40,7 @@ AnnotationSettingsAdapter::AnnotationSettingsAdapter(
 	connect(mImageSettings, &AnnotationImageSettings::effectChanged, this, &AnnotationSettingsAdapter::effectChanged);
 
 	connect(mGeneralSettings, &AnnotationGeneralSettings::zoomValueChanged, this, &AnnotationSettingsAdapter::zoomValueChanged);
+	connect(mGeneralSettings, &AnnotationGeneralSettings::fitImageToCurrentView, this, &AnnotationSettingsAdapter::fitImageToCurrentView);
 
 	connect(mItemSettings, &AnnotationItemSettings::toolColorChanged, this, &AnnotationSettingsAdapter::toolColorChanged);
 	connect(mItemSettings, &AnnotationItemSettings::toolWidthChanged, this, &AnnotationSettingsAdapter::toolWidthChanged);
@@ -142,6 +143,11 @@ void AnnotationSettingsAdapter::effectChanged(ImageEffects effect)
 void AnnotationSettingsAdapter::zoomValueChanged(double value)
 {
 	AbstractSettingsProvider::zoomValueChanged(value);
+}
+
+void AnnotationSettingsAdapter::fitImageToCurrentView()
+{
+	AbstractSettingsProvider::fitImageToView();
 }
 
 void AnnotationSettingsAdapter::loadFromConfig(Tools tool)

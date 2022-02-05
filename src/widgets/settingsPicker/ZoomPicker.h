@@ -44,10 +44,11 @@ public:
 
 public slots:
 	void setZoomValue(double value);
-	void fitImageToView();
+	void fitImageToCurrentView();
 
 signals:
 	void zoomValueChanged(double zoomLevel);
+	void fitImageToView();
 
 protected:
 	QWidget* expandingWidget() override;

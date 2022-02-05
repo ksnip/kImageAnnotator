@@ -58,6 +58,7 @@ protected:
 	virtual void itemSettingChanged();
 	virtual void effectChanged(ImageEffects effect);
 	virtual void zoomValueChanged(double value);
+	virtual void fitImageToView();
 
 private:
 	ISettingsListener *mSettingsListener;
