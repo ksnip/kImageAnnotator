@@ -60,6 +60,7 @@ private:
 	QAction *mZoomInAction;
 	QAction *mZoomOutAction;
 	QAction *mResetZoomAction;
+	CustomToolButton *mResetZoomButton;
 	QAction *mFitImageAction;
 	CustomToolButton *mFitImageButton;
 	QAction *createAction(const QString &tooltip, const QIcon &icon);

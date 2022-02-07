@@ -49,6 +49,7 @@
         <file alias="underline.svg" >icons/dark/underline.svg</file>
         <file alias="cut.svg" >icons/dark/cut.svg</file>
         <file alias="fitImage.svg" >icons/dark/fitImage.svg</file>
+        <file alias="resetZoom.svg" >icons/dark/resetZoom.svg</file>
     </qresource>
 
     <qresource prefix="/icons/light">
@@ -100,6 +101,7 @@
         <file alias="underline.svg" >icons/light/underline.svg</file>
         <file alias="cut.svg" >icons/light/cut.svg</file>
         <file alias="fitImage.svg" >icons/light/fitImage.svg</file>
+        <file alias="resetZoom.svg" >icons/light/resetZoom.svg</file>
     </qresource>
 
     <qresource prefix="/stickers">

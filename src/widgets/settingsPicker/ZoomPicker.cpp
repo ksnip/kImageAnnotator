@@ -52,6 +52,10 @@ void ZoomPicker::initGui()
 	mSpinBox->setSuffix(QLatin1String("%"));
 	mSpinBox->setWrapping(false);
 
+	mResetZoomAction = createAction(tr("Reset Zoom"), IconLoader::load(QLatin1String("resetZoom.svg")));
+	connect(mResetZoomAction, &QAction::triggered, this, &ZoomPicker::resetZoomOut);
+	mResetZoomButton = createButton(mResetZoomAction);
+
 	mFitImageAction = createAction(tr("Fit Image"), IconLoader::load(QLatin1String("fitImage.svg")));
 	connect(mFitImageAction, &QAction::triggered, this, &ZoomPicker::fitImageToView);
 	mFitImageButton = createButton(mFitImageAction);
@@ -65,7 +69,6 @@ void ZoomPicker::initGui()
 
 	connect(mZoomInAction, &QAction::triggered, this, &ZoomPicker::zoomIn);
 	connect(mZoomOutAction, &QAction::triggered, this, &ZoomPicker::zoomOut);
-	connect(mResetZoomAction, &QAction::triggered, this, &ZoomPicker::resetZoomOut);
 
 	addAction(mZoomInAction);
 	addAction(mZoomOutAction);
@@ -76,6 +79,7 @@ void ZoomPicker::initGui()
 	mLayout->addWidget(mLabel);
 	mLayout->addWidget(mSpinBox);
 	mLayout->addWidget(mFitImageButton);
+	mLayout->addWidget(mResetZoomButton);
 	mLayout->setAlignment(Qt::AlignLeft);
 
 	setLayout(mLayout);
