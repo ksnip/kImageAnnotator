@@ -35,3 +35,7 @@ void MockZoomValueProvider::setZoomValue(double value)
 	mZoomValue = value;
 	emit zoomValueChanged(value);
 }
+
+void MockZoomValueProvider::fitImageToView()
+{
+}
