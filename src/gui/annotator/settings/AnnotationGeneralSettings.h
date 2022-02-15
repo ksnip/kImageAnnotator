@@ -36,6 +36,7 @@ public:
 
 signals:
 	void zoomValueChanged(double value);
+	void fitImageToCurrentView();
 
 private:
 	QBoxLayout *mMainLayout;

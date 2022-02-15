@@ -39,6 +39,7 @@ void ViewZoomer::zoom(double factor)
 {
 	auto currentZoomValue = zoomValue();
 	auto newZoomValue = currentZoomValue + factor;
+	newZoomValue = QString::number(newZoomValue, 'f', 1).toDouble();
 
 	if(newZoomValue >= mMinScale && newZoomValue <= mMaxScale) {
 		mView->resetMatrix();
@@ -62,6 +63,12 @@ void ViewZoomer::wheelZoom(QWheelEvent *event)
 	const auto factor = event->angleDelta().y() < 0.0 ? -zoomInFactor : zoomInFactor;
 	zoomToPoint(factor, event->pos());
 	event->accept(); // supress scrolling
+}
+
+void ViewZoomer::fitImageToView()
+{
+	mView->fitInView(mView->sceneRect(), Qt::KeepAspectRatio);
+	emit zoomValueChanged(zoomValue());
 }
 
 void ViewZoomer::setZoomValue(double value)

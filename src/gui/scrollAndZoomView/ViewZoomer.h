@@ -42,6 +42,7 @@ public:
 	void zoom(double factor);
 	void zoomToPoint(double factor, const QPoint &viewPoint);
 	void wheelZoom(QWheelEvent *event);
+	void fitImageToView() override;
 
 private:
 	QGraphicsView *mView;

@@ -31,6 +31,7 @@ public:
 	explicit MockZoomValueProvider(QObject *parent = nullptr);
 	double zoomValue() const override;
 	void setZoomValue(double value) override;
+	void fitImageToView() override;
 
 private:
 	double mZoomValue;

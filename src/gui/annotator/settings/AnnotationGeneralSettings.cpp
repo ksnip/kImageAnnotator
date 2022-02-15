@@ -45,6 +45,7 @@ void AnnotationGeneralSettings::initGui()
 	setFocusPolicy(Qt::ClickFocus);
 
 	connect(mZoomPicker, &ZoomPicker::zoomValueChanged, this, &AnnotationGeneralSettings::zoomValueChanged);
+	connect(mZoomPicker, &ZoomPicker::fitImageToView, this, &AnnotationGeneralSettings::fitImageToCurrentView);
 }
 
 void AnnotationGeneralSettings::updateZoomLevel(double value)
