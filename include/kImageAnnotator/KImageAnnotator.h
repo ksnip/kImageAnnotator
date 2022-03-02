@@ -49,7 +49,6 @@ public:
 	void showScaler();
 	void showRotator();
 	void showCanvasModifier();
-	void setControlsWidgetVisible(bool enabled);
 	void showCutter();
 
 public Q_SLOTS:
@@ -72,6 +71,7 @@ public Q_SLOTS:
 	void setSettingsCollapsed(bool isCollapsed);
 	void setCanvasColor(const QColor &color);
 	void setSelectItemAfterDrawing(bool enabled);
+	void setControlsWidgetVisible(bool enabled);
 
 Q_SIGNALS:
 	void imageChanged() const;

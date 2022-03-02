@@ -227,12 +227,6 @@ void KImageAnnotator::showCanvasModifier()
 	d->mCoreView.showCanvasModifier();
 }
 
-void KImageAnnotator::setControlsWidgetVisible(bool enabled)
-{
-	Q_D(KImageAnnotator);
-	d->mCoreView.setControlsWidgetVisible(enabled);
-}
-
 void KImageAnnotator::showCutter()
 {
 	Q_D(KImageAnnotator);
@@ -267,6 +261,12 @@ void KImageAnnotator::setSelectItemAfterDrawing(bool enabled)
 {
 	Q_D(KImageAnnotator);
 	d->mConfig.setSelectItemAfterDrawing(enabled);
+}
+
+void KImageAnnotator::setControlsWidgetVisible(bool enabled)
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.setControlsWidgetVisible(enabled);
 }
 
 // KImageAnnotatorPrivate
