@@ -146,6 +146,7 @@ void AnnotationArea::addAnnotationItem(AbstractAnnotationItem *item)
 {
 	mItems->prepend(item);
 	addItem(item);
+
 	emit imageChanged();
 }
 
@@ -153,6 +154,7 @@ void AnnotationArea::removeAnnotationItem(AbstractAnnotationItem *item)
 {
 	removeItem(item);
 	mItems->removeOne(item);
+
 	emit imageChanged();
 }
 
@@ -160,24 +162,28 @@ void AnnotationArea::crop(const QRectF &rect)
 {
 	auto scaledRect = mDevicePixelRatioScaler->scale(rect);
 	mUndoStack->push(new CropCommand(mBackgroundImage.data(), scaledRect, this));
+
 	emit imageChanged();
 }
 
 void AnnotationArea::scale(const QSize &size)
 {
 	mUndoStack->push(new ScaleCommand(mBackgroundImage.data(), size, this));
+
 	emit imageChanged();
 }
 
 void AnnotationArea::rotate(qreal angel)
 {
 	mUndoStack->push(new RotateCommand(mBackgroundImage.data(), angel, this));
+
 	emit imageChanged();
 }
 
 void AnnotationArea::flip(FlipDirection direction)
 {
 	mUndoStack->push(new FlipCommand(mBackgroundImage.data(), direction));
+
 	emit imageChanged();
 }
 
@@ -211,6 +217,8 @@ void AnnotationArea::imageEffectChanged(ImageEffects effect)
 {
 	auto graphicsEffect = ImageEffectFactory::create(effect);
 	mBackgroundImage->setGraphicsEffect(graphicsEffect);
+
+	emit imageChanged();
 }
 
 void AnnotationArea::setCanvasRect(const QRectF &rect)
@@ -246,6 +254,7 @@ QColor AnnotationArea::canvasColor() const
 void AnnotationArea::modifyCanvas(const QRectF &canvasRect, const QColor &color)
 {
 	mUndoStack->push(new ModifyCanvasCommand(canvasRect, color, this));
+
 	emit imageChanged();
 }
 
@@ -258,6 +267,7 @@ void AnnotationArea::cut(const QRectF &rect)
 {
 	auto scaledRect = mDevicePixelRatioScaler->scale(rect);
 	mUndoStack->push(new CutCommand(mBackgroundImage.data(), scaledRect, this));
+
 	emit imageChanged();
 }
 
