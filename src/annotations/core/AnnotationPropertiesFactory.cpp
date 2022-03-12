@@ -49,9 +49,10 @@ PropertiesPtr AnnotationPropertiesFactory::create(Tools tool, bool fromConfig) c
 	setFill(properties, tool);
 	setShadowEnabled(properties, tool, fromConfig);
 	setPathProperties(properties);
-	setTextProperties(properties, tool);
+	setTextProperties(properties);
 	setObfuscateProperties(properties);
 	setStickerProperties(properties);
+	setOpacity(properties);
 
 	return properties;
 }
@@ -133,7 +134,7 @@ void AnnotationPropertiesFactory::setPathProperties(const PropertiesPtr &propert
 	}
 }
 
-void AnnotationPropertiesFactory::setTextProperties(const PropertiesPtr &properties, Tools toolType) const
+void AnnotationPropertiesFactory::setTextProperties(const PropertiesPtr &properties) const
 {
 	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
 	if (textProperties != nullptr) {
@@ -154,6 +155,13 @@ void AnnotationPropertiesFactory::setStickerProperties(const PropertiesPtr &prop
 	auto stickerProperties = properties.dynamicCast<AnnotationStickerProperties>();
 	if (stickerProperties != nullptr) {
 		stickerProperties->setPath(mSettingsProvider->sticker());
+	}
+}
+
+void AnnotationPropertiesFactory::setOpacity(const PropertiesPtr &properties) const
+{
+	if (properties != nullptr) {
+		properties->setOpacity(mSettingsProvider->opacity());
 	}
 }
 

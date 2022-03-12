@@ -41,8 +41,8 @@ public:
 	void setSmoothFactor(int factor);
 
 private:
-	bool mSmootPathEnabled;
-	int mSmootFactor;
+	bool mSmoothPathEnabled;
+	int mSmoothFactor;
 };
 
 } // namespace kImageAnnotator

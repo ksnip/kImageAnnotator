@@ -31,23 +31,10 @@ AnnotationItemSettings::AnnotationItemSettings() :
 	mObfuscateFactorPicker(new NumberPicker(this)),
 	mStickerPicker(new StickerPicker(this)),
 	mShadowPicker(new BoolPicker(this)),
-	mFontPicker(new FontPicker(this))
+	mFontPicker(new FontPicker(this)),
+	mOpacityPicker(new NumberPicker(this))
 {
 	initGui();
-}
-
-AnnotationItemSettings::~AnnotationItemSettings()
-{
-	delete mColorPicker;
-	delete mWidthPicker;
-	delete mTextColorPicker;
-	delete mFillModePicker;
-	delete mNumberToolSeedPicker;
-	delete mObfuscateFactorPicker;
-	delete mStickerPicker;
-	delete mShadowPicker;
-	delete mFontPicker;
-	qDeleteAll(mSeparators);
 }
 
 void AnnotationItemSettings::initGui()
@@ -71,6 +58,12 @@ void AnnotationItemSettings::initGui()
 	mShadowPicker->setIcon(IconLoader::load(QLatin1String("dropShadow.svg")));
 	mShadowPicker->setToolTip(tr("Item Shadow"));
 
+	mOpacityPicker->setIcon(IconLoader::load(QLatin1String("opacity.svg")));
+	mOpacityPicker->setToolTip(tr("Opacity"));
+	mOpacityPicker->setRange(0, 100);
+	mOpacityPicker->setSuffix(QLatin1String("%"));
+	mOpacityPicker->setSingleStep(10);
+
 	insertPickerWidget(mColorPicker);
 	insertPickerWidget(mWidthPicker);
 	insertPickerWidget(mFillModePicker);
@@ -80,6 +73,7 @@ void AnnotationItemSettings::initGui()
 	insertPickerWidget(mObfuscateFactorPicker);
 	insertPickerWidget(mStickerPicker);
 	insertPickerWidget(mShadowPicker);
+	insertPickerWidget(mOpacityPicker);
 
 	mWidgetConfigurator.setColorWidget(mColorPicker);
 	mWidgetConfigurator.setTextColorWidget(mTextColorPicker);
@@ -90,6 +84,7 @@ void AnnotationItemSettings::initGui()
 	mWidgetConfigurator.setStickerWidget(mStickerPicker);
 	mWidgetConfigurator.setShadowWidget(mShadowPicker);
 	mWidgetConfigurator.setFontWidget(mFontPicker);
+	mWidgetConfigurator.setOpacityWidget(mOpacityPicker);
 
 	mMainLayout->setContentsMargins(3, 0, 3, 0);
 
@@ -106,6 +101,7 @@ void AnnotationItemSettings::initGui()
 	connect(mStickerPicker, &StickerPicker::stickerSelected, this, &AnnotationItemSettings::stickerChanged);
 	connect(mShadowPicker, &BoolPicker::enabledStateChanged, this, &AnnotationItemSettings::shadowEnabledChanged);
 	connect(mFontPicker, &FontPicker::fontChanged, this, &AnnotationItemSettings::fontChanged);
+	connect(mOpacityPicker, &NumberPicker::numberSelected, this, &AnnotationItemSettings::opacitySelected);
 }
 
 void AnnotationItemSettings::insertPickerWidget(SettingsPickerWidget *pickerWidget)
@@ -208,6 +204,16 @@ void AnnotationItemSettings::setFont(const QFont &font)
 	mFontPicker->setCurrentFont(font);
 }
 
+qreal AnnotationItemSettings::opacity() const
+{
+	return mOpacityPicker->number() / 100.0;
+}
+
+void AnnotationItemSettings::setOpacity(qreal opacity)
+{
+	mOpacityPicker->setNumber(opacity * 100);
+}
+
 QString AnnotationItemSettings::name() const
 {
 	return tr("Item Settings");
@@ -220,6 +226,11 @@ void AnnotationItemSettings::setOrientation(Qt::Orientation orientation)
 	}
 
 	AbstractAnnotationDockWidgetContent::setOrientation(orientation);
+}
+
+void AnnotationItemSettings::opacitySelected(int opacity)
+{
+	emit opacityChanged(opacity / 100.0);
 }
 
 } // namespace kImageAnnotator

@@ -41,7 +41,7 @@ class AnnotationItemSettings : public AbstractAnnotationDockWidgetContent
 Q_OBJECT
 public:
 	explicit AnnotationItemSettings();
-	~AnnotationItemSettings() override;
+	~AnnotationItemSettings() override = default;
 	void setUpForTool(Tools tool);
 	QColor toolColor() const;
 	void setToolColor(const QColor &color);
@@ -60,6 +60,8 @@ public:
 	void updateNumberToolSeed(int numberToolSeed);
 	QFont font() const;
 	void setFont(const QFont &font);
+	qreal opacity() const;
+	void setOpacity(qreal opacity);
 	QString name() const override;
 	void setOrientation(Qt::Orientation orientation) override;
 
@@ -73,6 +75,7 @@ signals:
 	void stickerChanged(const QString &sticker);
 	void shadowEnabledChanged(bool enabled);
 	void fontChanged(const QFont &font);
+	void opacityChanged(qreal opacity);
 
 private:
 	QBoxLayout *mMainLayout;
@@ -85,11 +88,15 @@ private:
 	StickerPicker *mStickerPicker;
 	BoolPicker *mShadowPicker;
 	FontPicker *mFontPicker;
+	NumberPicker *mOpacityPicker;
 	ItemSettingsWidgetConfigurator mWidgetConfigurator;
 	QList<AttachedSeparator*> mSeparators;
 
 	void initGui();
 	void insertPickerWidget(SettingsPickerWidget *pickerWidget);
+
+private slots:
+	void opacitySelected(int opacity);
 };
 
 } // namespace kImageAnnotator

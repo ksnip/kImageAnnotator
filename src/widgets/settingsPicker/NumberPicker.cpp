@@ -68,7 +68,7 @@ void NumberPicker::selectionChanged()
 void NumberPicker::setRange(int min, int max)
 {
 	auto oldState = mSpinBox->blockSignals(true);
-	if (min > 0 && max >= min) {
+	if (min >= 0 && max >= min) {
 		mSpinBox->setMinimum(min);
 		mSpinBox->setMaximum(max);
 	}
@@ -84,6 +84,16 @@ void NumberPicker::setToolTip(const QString &toolTip)
 {
 	mLabel->setToolTip(toolTip);
 	mSpinBox->setToolTip(toolTip);
+}
+
+void NumberPicker::setSuffix(const QString &suffix)
+{
+	mSpinBox->setSuffix(suffix);
+}
+
+void NumberPicker::setSingleStep(int value)
+{
+	mSpinBox->setSingleStep(value);
 }
 
 void NumberPicker::setIcon(const QIcon &icon)

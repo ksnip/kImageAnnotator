@@ -62,6 +62,7 @@ protected:
 	bool hasBorder() const;
 	void adjustPainter(QPainter *painter) const;
 	QPen painterPen() const;
+	virtual QPainter::CompositionMode compositionMode() const;
 
 private:
 	PropertiesPtr mProperties;

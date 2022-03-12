@@ -52,9 +52,10 @@ private:
 	void setWidthSize(const PropertiesPtr &properties) const;
 	void setFill(const PropertiesPtr &properties, Tools toolType) const;
 	void setPathProperties(const PropertiesPtr &properties) const;
-	void setTextProperties(const PropertiesPtr &properties, Tools toolType) const;
+	void setTextProperties(const PropertiesPtr &properties) const;
 	void setObfuscateProperties(const PropertiesPtr &properties) const;
 	void setStickerProperties(const PropertiesPtr &properties) const;
+	void setOpacity(const PropertiesPtr &properties) const;
 };
 
 } // namespace kImageAnnotator

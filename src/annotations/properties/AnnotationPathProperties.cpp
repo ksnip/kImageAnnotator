@@ -27,8 +27,8 @@ AnnotationPathProperties::AnnotationPathProperties(const QColor &color, int size
 
 AnnotationPathProperties::AnnotationPathProperties(const PathPropertiesPtr &other) : AnnotationProperties(other)
 {
-	mSmootPathEnabled = other->mSmootPathEnabled;
-	mSmootFactor = other->mSmootFactor;
+	mSmoothPathEnabled = other->mSmoothPathEnabled;
+	mSmoothFactor = other->mSmoothFactor;
 }
 
 PropertiesPtr AnnotationPathProperties::clone() const
@@ -38,22 +38,22 @@ PropertiesPtr AnnotationPathProperties::clone() const
 
 bool AnnotationPathProperties::smoothPathEnabled() const
 {
-	return mSmootPathEnabled;
+	return mSmoothPathEnabled;
 }
 
 void AnnotationPathProperties::setSmoothPathEnabled(bool enabled)
 {
-	mSmootPathEnabled = enabled;
+	mSmoothPathEnabled = enabled;
 }
 
 int AnnotationPathProperties::smoothFactor() const
 {
-	return mSmootFactor;
+	return mSmoothFactor;
 }
 
 void AnnotationPathProperties::setSmoothFactor(int factor)
 {
-	mSmootFactor = factor;
+	mSmoothFactor = factor;
 }
 
 }

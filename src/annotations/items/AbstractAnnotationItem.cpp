@@ -43,6 +43,7 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &oth
 	mStroker = new QPainterPathStroker(mPainterPen);
 	setZValue(other.zValue());
 	setCursor(other.cursor());
+	setOpacity(other.opacity());
 
 	updateShadow();
 }
@@ -109,6 +110,7 @@ void AbstractAnnotationItem::paint(QPainter *painter, const QStyleOptionGraphics
 
 void AbstractAnnotationItem::adjustPainter(QPainter *painter) const
 {
+	painter->setCompositionMode(compositionMode());
 	painter->setRenderHint(QPainter::Antialiasing, true);
 	shiftPainterForAllOddShapeWidth(painter);
 }
@@ -116,6 +118,11 @@ void AbstractAnnotationItem::adjustPainter(QPainter *painter) const
 QPen AbstractAnnotationItem::painterPen() const
 {
 	return mPainterPen;
+}
+
+QPainter::CompositionMode AbstractAnnotationItem::compositionMode() const
+{
+	return QPainter::CompositionMode_Source;
 }
 
 void AbstractAnnotationItem::drawPoint(QPainter *painter) const
@@ -152,6 +159,8 @@ void AbstractAnnotationItem::updateProperties(const PropertiesPtr &properties)
 	mProperties = properties;
 	mPainterPen.setColor(mProperties->color());
 	mPainterPen.setWidth(mProperties->width());
+
+	setOpacity(properties->opacity());
 
 	updateShadow();
 }

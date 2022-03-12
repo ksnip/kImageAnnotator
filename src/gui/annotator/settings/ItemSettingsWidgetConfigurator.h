@@ -48,6 +48,7 @@ public:
 	void setStickerWidget(StickerPicker *widget);
 	void setShadowWidget(BoolPicker *widget);
 	void setFontWidget(FontPicker *widget);
+	void setOpacityWidget(NumberPicker *widget);
 
 private:
 	Tools mCurrentTool;
@@ -60,6 +61,7 @@ private:
 	StickerPicker *mStickerWidget;
 	BoolPicker *mShadowPicker;
 	FontPicker *mFontPicker;
+	NumberPicker *mOpacityPicker;
 
 	void updateWidgets() const;
 	void updateProperties() const;
@@ -74,6 +76,7 @@ private:
 	void setStickerWidgetVisible(bool enabled) const;
 	void setShadowWidgetVisible(bool enabled) const;
 	void setFontWidgetVisible(bool enabled) const;
+	void setOpacityWidgetVisible(bool enabled) const;
 	void setWidthRange(int min, int max) const;
 };
 

@@ -262,6 +262,21 @@ void Config::setSelectItemAfterDrawing(bool enabled)
 	mSelectItemAfterDrawing = enabled;
 }
 
+qreal Config::toolOpacity(Tools tool) const
+{
+	return mToolToOpacity[tool];
+}
+
+void Config::setToolOpacity(qreal opacity, Tools tool)
+{
+	if (toolOpacity(tool) == opacity) {
+		return;
+	}
+
+	mToolToOpacity[tool] = opacity;
+	saveToolOpacity(tool, opacity);
+}
+
 // Private Methods
 
 void Config::initToolSettings()
@@ -272,6 +287,7 @@ void Config::initToolSettings()
 	initToolWidths();
 	initToolFillTypes();
 	initToolFonts();
+	initToolOpacity();
 	initObfuscateFactor();
 	initShadowEnabled();
 }
@@ -313,6 +329,13 @@ void Config::initToolFonts()
 {
 	for (auto toolType : mAllTools) {
 		mToolToFont[toolType] = loadToolFont(toolType);
+	}
+}
+
+void Config::initToolOpacity()
+{
+	for (auto toolType : mAllTools) {
+		mToolToOpacity[toolType] = loadToolOpacity(toolType);
 	}
 }
 
@@ -477,6 +500,23 @@ void Config::saveToolShadowEnabled(Tools tool, bool enabled)
 	}
 }
 
+qreal Config::loadToolOpacity(Tools tool)
+{
+	if (mSaveToolSelection) {
+		return mSettings->value(ConfigNameHelper::toolOpacity(tool), defaultToolOpacity()).value<qreal>();
+	} else {
+		return defaultToolOpacity();
+	}
+}
+
+void Config::saveToolOpacity(Tools tool, qreal opacity)
+{
+	if (mSaveToolSelection) {
+		mSettings->setValue(ConfigNameHelper::toolOpacity(tool), opacity);
+		mSettings->sync();
+	}
+}
+
 QColor Config::defaultToolColor(Tools toolType)
 {
 	switch (toolType) {
@@ -604,8 +644,8 @@ bool Config::defaultShadowEnabled(Tools tool)
 		case Tools::Rect:
 		case Tools::Ellipse:
 		case Tools::Sticker:
-			return true;
 		case Tools::Text:
+			return true;
 		case Tools::TextPointer:
 		case Tools::TextArrow:
 		case Tools::Blur:
@@ -619,6 +659,11 @@ bool Config::defaultShadowEnabled(Tools tool)
 		default:
 			return false;
 	}
+}
+
+qreal Config::defaultToolOpacity()
+{
+	return 1.0;
 }
 
 } // namespace kImageAnnotator

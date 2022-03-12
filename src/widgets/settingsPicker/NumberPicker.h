@@ -43,6 +43,8 @@ public:
 	int number() const;
 	void setToolTip(const QString &toolTip);
 	void setIcon(const QIcon &icon);
+	void setSuffix(const QString &suffix);
+	void setSingleStep(int value);
 
 signals:
 	void numberSelected(int number) const;

@@ -30,7 +30,8 @@ ItemSettingsWidgetConfigurator::ItemSettingsWidgetConfigurator() :
 	mObfuscateFactorWidget(nullptr),
 	mStickerWidget(nullptr),
 	mShadowPicker(nullptr),
-	mFontPicker(nullptr)
+	mFontPicker(nullptr),
+	mOpacityPicker(nullptr)
 {
 	mCurrentTool = Tools::Select;
 }
@@ -99,6 +100,12 @@ void ItemSettingsWidgetConfigurator::setFontWidget(FontPicker *widget)
 	updateWidgets();
 }
 
+void ItemSettingsWidgetConfigurator::setOpacityWidget(NumberPicker *widget)
+{
+	mOpacityPicker = widget;
+	updateWidgets();
+}
+
 void ItemSettingsWidgetConfigurator::updateWidgets() const
 {
 	updateProperties();
@@ -135,6 +142,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(false);
 			setFontWidgetVisible(false);
+			setOpacityWidgetVisible(false);
 			break;
 		case Tools::Image:
 			setColorWidgetVisible(false);
@@ -146,6 +154,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
 			setFontWidgetVisible(false);
+			setOpacityWidgetVisible(true);
 			break;
 		case Tools::Pen:
 			setColorWidgetVisible(true);
@@ -157,6 +166,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
 			setFontWidgetVisible(false);
+			setOpacityWidgetVisible(true);
 			break;
 		case Tools::MarkerPen:
 			setColorWidgetVisible(true);
@@ -168,6 +178,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(false);
 			setFontWidgetVisible(false);
+			setOpacityWidgetVisible(false);
 			break;
 		case Tools::MarkerRect:
 		case Tools::MarkerEllipse:
@@ -180,6 +191,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(false);
 			setFontWidgetVisible(false);
+			setOpacityWidgetVisible(false);
 			break;
 		case Tools::Line:
 		case Tools::Arrow:
@@ -193,6 +205,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
 			setFontWidgetVisible(false);
+			setOpacityWidgetVisible(true);
 			break;
 		case Tools::Ellipse:
 		case Tools::Rect:
@@ -205,6 +218,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
 			setFontWidgetVisible(false);
+			setOpacityWidgetVisible(true);
 			break;
 		case Tools::Number:
 			setColorWidgetVisible(true);
@@ -216,6 +230,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
 			setFontWidgetVisible(true);
+			setOpacityWidgetVisible(true);
 			break;
 		case Tools::NumberPointer:
 			setColorWidgetVisible(true);
@@ -227,6 +242,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
 			setFontWidgetVisible(true);
+			setOpacityWidgetVisible(true);
 			break;
 		case Tools::NumberArrow:
 			setColorWidgetVisible(true);
@@ -238,6 +254,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
 			setFontWidgetVisible(true);
+			setOpacityWidgetVisible(true);
 			break;
 		case Tools::Text:
 			setColorWidgetVisible(true);
@@ -249,6 +266,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
 			setFontWidgetVisible(true);
+			setOpacityWidgetVisible(true);
 			break;
 		case Tools::TextPointer:
 			setColorWidgetVisible(true);
@@ -260,6 +278,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
 			setFontWidgetVisible(true);
+			setOpacityWidgetVisible(true);
 			break;
 		case Tools::TextArrow:
 			setColorWidgetVisible(true);
@@ -271,6 +290,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(true);
 			setFontWidgetVisible(true);
+			setOpacityWidgetVisible(true);
 			break;
 		case Tools::Blur:
 		case Tools::Pixelate:
@@ -283,6 +303,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(false);
 			setFontWidgetVisible(false);
+			setOpacityWidgetVisible(false);
 			break;
 		case Tools::Sticker:
 			setColorWidgetVisible(false);
@@ -294,6 +315,7 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(true);
 			setShadowWidgetVisible(true);
 			setFontWidgetVisible(false);
+			setOpacityWidgetVisible(true);
 			break;
 	case Tools::Duplicate:
 			setColorWidgetVisible(false);
@@ -305,9 +327,10 @@ void ItemSettingsWidgetConfigurator::updateVisibility() const
 			setStickerWidgetVisible(false);
 			setShadowWidgetVisible(false);
 			setFontWidgetVisible(false);
+			setOpacityWidgetVisible(true);
 			break;
 		default:
-			qCritical("Unknown tooltype in WidgetConfigurator");
+			qCritical("Unknown tool type in WidgetConfigurator");
 	}
 }
 
@@ -382,6 +405,13 @@ void ItemSettingsWidgetConfigurator::setFontWidgetVisible(bool enabled) const
 {
 	if (mFontPicker) {
 		mFontPicker->setVisible(enabled);
+	}
+}
+
+void ItemSettingsWidgetConfigurator::setOpacityWidgetVisible(bool enabled) const
+{
+	if (mOpacityPicker) {
+		mOpacityPicker->setVisible(enabled);
 	}
 }
 

@@ -53,6 +53,7 @@ public:
 	int obfuscationFactor() const override;
 	QString sticker() const override;
 	ImageEffects effect() const override;
+	qreal opacity() const override;
 	bool shadowEnabled() const override;
 	void updateNumberToolSeed(int numberToolSeed) override;
 	void updateZoomLevel(double value) override;
@@ -84,6 +85,7 @@ private slots:
 	void stickerChanged(const QString &sticker);
 	void shadowEnabledChanged(bool enabled);
 	void fontChanged(const QFont &font);
+	void opacityChanged(qreal opacity);
 	void fitImageToCurrentView();
 };
 

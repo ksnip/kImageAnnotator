@@ -89,6 +89,9 @@ public slots:
 	bool selectItemAfterDrawing() const;
 	void setSelectItemAfterDrawing(bool enabled);
 
+	qreal toolOpacity(Tools tool) const;
+	void setToolOpacity(qreal opacity, Tools tool);
+
 signals:
 	void numberUpdateModeChanged(enum NumberUpdateMode numberUpdateMode) const;
 
@@ -103,6 +106,7 @@ private:
 	QHash<Tools, QFont> mToolToFont;
 	QHash<Tools, int> mToolToObfuscationFactor;
 	QHash<Tools, bool> mToolToShadowEnabled;
+	QHash<Tools, qreal> mToolToOpacity;
 	bool mSmoothPathEnabled;
 	bool mSaveToolSelection;
 	int mSmoothFactor;
@@ -118,6 +122,7 @@ private:
 	void initToolWidths();
 	void initToolFillTypes();
 	void initToolFonts();
+	void initToolOpacity();
 	void initObfuscateFactor();
 	void initShadowEnabled();
 	void initGeneralSettings();
@@ -138,6 +143,8 @@ private:
 	void saveToolObfuscateFactor(Tools toolType, int radius);
 	bool loadToolShadowEnabled(Tools tool);
 	void saveToolShadowEnabled(Tools tool, bool enabled);
+	qreal loadToolOpacity(Tools tool);
+	void saveToolOpacity(Tools tool, qreal opacity);
 
 	static QColor defaultToolColor(Tools toolType);
 	static QColor defaultToolTextColor(Tools toolType);
@@ -147,6 +154,7 @@ private:
 	static Tools defaultToolType();
 	static int defaultObfuscateFactor();
 	static bool defaultShadowEnabled(Tools tool);
+	static qreal defaultToolOpacity();
 };
 
 } // namespace kImageAnnotator

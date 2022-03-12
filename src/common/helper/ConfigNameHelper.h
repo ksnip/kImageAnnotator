@@ -39,6 +39,7 @@ public:
 	static QString obfuscateFactor(Tools tool);
 	static QString shadowEnabled(Tools tool);
 	static QString annotatorDockWidgetsState();
+	static QString toolOpacity(Tools tool);
 };
 
 }

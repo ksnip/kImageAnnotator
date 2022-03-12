@@ -71,4 +71,9 @@ QString ConfigNameHelper::annotatorDockWidgetsState()
 	return kImageAnnotator() + QLatin1String("AnnotatorDockWidgetsState");
 }
 
+QString ConfigNameHelper::toolOpacity(Tools tool)
+{
+	return kImageAnnotator() + QLatin1String("ToolOpacity_") + QString::number(static_cast<int>(tool));
+}
+
 }

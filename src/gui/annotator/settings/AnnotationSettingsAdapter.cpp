@@ -51,6 +51,7 @@ AnnotationSettingsAdapter::AnnotationSettingsAdapter(
 	connect(mItemSettings, &AnnotationItemSettings::stickerChanged, this, &AnnotationSettingsAdapter::stickerChanged);
 	connect(mItemSettings, &AnnotationItemSettings::shadowEnabledChanged, this, &AnnotationSettingsAdapter::shadowEnabledChanged);
 	connect(mItemSettings, &AnnotationItemSettings::fontChanged, this, &AnnotationSettingsAdapter::fontChanged);
+	connect(mItemSettings, &AnnotationItemSettings::opacityChanged, this, &AnnotationSettingsAdapter::opacityChanged);
 
 	reloadConfig();
 }
@@ -113,6 +114,11 @@ ImageEffects AnnotationSettingsAdapter::effect() const
 	return mImageSettings->effect();
 }
 
+qreal AnnotationSettingsAdapter::opacity() const
+{
+	return mItemSettings->opacity();
+}
+
 bool AnnotationSettingsAdapter::shadowEnabled() const
 {
 	return mItemSettings->shadowEnabled();
@@ -160,6 +166,7 @@ void AnnotationSettingsAdapter::loadFromConfig(Tools tool)
 	mItemSettings->setFont(mConfig->toolFont(tool));
 	mItemSettings->setObfuscationFactor(mConfig->obfuscationFactor(tool));
 	mItemSettings->setShadowEnabled(mConfig->shadowEnabled(tool));
+	mItemSettings->setOpacity(mConfig->toolOpacity(tool));
 }
 
 void AnnotationSettingsAdapter::loadFromItem(const AbstractAnnotationItem *item)
@@ -171,6 +178,7 @@ void AnnotationSettingsAdapter::loadFromItem(const AbstractAnnotationItem *item)
 	mItemSettings->setToolWidth(properties->width());
 	mItemSettings->setFillMode(properties->fillType());
 	mItemSettings->setShadowEnabled(properties->shadowEnabled());
+	mItemSettings->setOpacity(properties->opacity());
 
 	auto textProperties = properties.dynamicCast<AnnotationTextProperties>();
 	if(textProperties != nullptr) {
@@ -251,6 +259,13 @@ void AnnotationSettingsAdapter::fontChanged(const QFont &font)
 {
 	configChanged([&](Tools tool){
 		mConfig->setToolFont(font, tool);
+	});
+}
+
+void AnnotationSettingsAdapter::opacityChanged(qreal opacity)
+{
+	configChanged([&](Tools tool){
+		mConfig->setToolOpacity(opacity, tool);
 	});
 }
 

@@ -47,6 +47,8 @@ public:
 	void setFillType(FillModes fillType);
 	bool shadowEnabled() const;
 	void setShadowEnabled(bool enabled);
+	qreal opacity() const;
+	void setOpacity(qreal opacity);
 	virtual PropertiesPtr clone() const;
 
 private:
@@ -54,7 +56,8 @@ private:
 	QColor mTextColor;
 	int mWidth;
 	FillModes mFillType;
-	bool mShadowEnabled;
+	bool mShadowEnabled{};
+	qreal mOpacity{};
 };
 
 } // namespace kImageAnnotator
