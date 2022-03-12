@@ -109,6 +109,11 @@ ImageEffects MockSettingsProvider::effect() const
 	return ImageEffects::NoEffect;
 }
 
+qreal MockSettingsProvider::opacity() const
+{
+	return 1.0;
+}
+
 bool MockSettingsProvider::shadowEnabled() const
 {
 	return mShadowEnabled;

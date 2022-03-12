@@ -50,6 +50,7 @@ public:
 	QString sticker() const override;
 	void setSticker(const QString &stickerPath);
 	ImageEffects effect() const override;
+	qreal opacity() const override;
 	bool shadowEnabled() const override;
 	void setShadowEnabled(bool enabled);
 
