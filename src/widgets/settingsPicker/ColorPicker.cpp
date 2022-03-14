@@ -25,16 +25,11 @@ ColorPicker::ColorPicker(QWidget *parent) :
 	SettingsPickerWidget(parent),
 	mLayout(new QHBoxLayout(this)),
 	mLabel(new QLabel(this)),
-	mkColorPicker(new KColorPicker)
+	mkColorPicker(new KColorPicker(parent))
 {
 	initGui();
 
 	connect(mkColorPicker, &KColorPicker::colorChanged, this, &ColorPicker::colorChanged);
-}
-
-ColorPicker::~ColorPicker()
-{
-	delete mkColorPicker;
 }
 
 void ColorPicker::setColor(const QColor &color)
@@ -82,6 +77,11 @@ void ColorPicker::initGui()
 void ColorPicker::colorChanged(const QColor &color)
 {
 	setColor(color);
+}
+
+void ColorPicker::setShowAlphaChannel(bool showAlphaChannel)
+{
+	mkColorPicker->resetColors(showAlphaChannel);
 }
 
 } // namespace kImageAnnotator

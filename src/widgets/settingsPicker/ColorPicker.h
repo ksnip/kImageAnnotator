@@ -38,11 +38,12 @@ class ColorPicker : public SettingsPickerWidget
 Q_OBJECT
 public:
 	explicit ColorPicker(QWidget *parent);
-	~ColorPicker() override;
+	~ColorPicker() override = default;
 	void setColor(const QColor &color);
 	QColor color() const;
 	void setToolTip(const QString &toolTip);
 	void setIcon(const QIcon &icon);
+	void setShowAlphaChannel(bool showAlphaChannel);
 
 signals:
 	void colorSelected(const QColor &color);

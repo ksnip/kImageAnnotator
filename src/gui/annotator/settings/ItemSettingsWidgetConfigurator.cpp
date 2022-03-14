@@ -122,10 +122,17 @@ void ItemSettingsWidgetConfigurator::updateProperties() const
 			break;
 		case Tools::MarkerPen:
 			setWidthRange(1, 100);
+			setColorShowAlphaChannel(false);
+			break;
+		case Tools::MarkerRect:
+		case Tools::MarkerEllipse:
+			setColorShowAlphaChannel(false);
 			break;
 		default:
 			setNoFillAndNoBorderVisible(false);
 			setWidthRange(1, 20);
+			setColorShowAlphaChannel(true);
+			setTextColorWidgetVisible(true);
 	}
 }
 
@@ -419,6 +426,20 @@ void ItemSettingsWidgetConfigurator::setWidthRange(int min, int max) const
 {
 	if (mWidthWidget) {
 		mWidthWidget->setRange(min, max);
+	}
+}
+
+void ItemSettingsWidgetConfigurator::setColorShowAlphaChannel(bool showAlphaChannel) const
+{
+	if (mColorWidget) {
+		mColorWidget->setShowAlphaChannel(showAlphaChannel);
+	}
+}
+
+void ItemSettingsWidgetConfigurator::setTextColorShowAlphaChannel(bool showAlphaChannel) const
+{
+	if (mTextColorWidget) {
+		mTextColorWidget->setShowAlphaChannel(showAlphaChannel);
 	}
 }
 

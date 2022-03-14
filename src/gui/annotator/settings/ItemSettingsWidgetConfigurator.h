@@ -78,6 +78,8 @@ private:
 	void setFontWidgetVisible(bool enabled) const;
 	void setOpacityWidgetVisible(bool enabled) const;
 	void setWidthRange(int min, int max) const;
+	void setColorShowAlphaChannel(bool showAlphaChannel) const;
+	void setTextColorShowAlphaChannel(bool showAlphaChannel) const;
 };
 
 } // namespace kImageAnnotator

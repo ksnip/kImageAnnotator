@@ -7,6 +7,7 @@
 * New: Add button to fit image into current view. ([#281](https://github.com/ksnip/kImageAnnotator/issues/281))
 * New: Add button to fit image into current view. ([#281](https://github.com/ksnip/kImageAnnotator/issues/281))
 * New: Allow changing item opacity. ([#110](https://github.com/ksnip/kImageAnnotator/issues/110))
+* New: Add support for RGBA colors with transparency. ([#119](https://github.com/ksnip/kImageAnnotator/issues/119))
 * Fixed: Adding image effect does not send image change notification. ([#283](https://github.com/ksnip/kImageAnnotator/issues/283))
 
 ## Release 0.5.3
