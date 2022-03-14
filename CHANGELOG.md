@@ -9,6 +9,7 @@
 * New: Allow changing item opacity. ([#110](https://github.com/ksnip/kImageAnnotator/issues/110))
 * New: Add support for RGBA colors with transparency. ([#119](https://github.com/ksnip/kImageAnnotator/issues/119))
 * Fixed: Adding image effect does not send image change notification. ([#283](https://github.com/ksnip/kImageAnnotator/issues/283))
+* Fixed: Blur / Pixelate break when going past image edge once. ([#267](https://github.com/ksnip/kImageAnnotator/issues/267))
 
 ## Release 0.5.3
 * Fixed: Crash while typing text on wayland. ([#256](https://github.com/ksnip/kImageAnnotator/issues/256))

@@ -19,15 +19,21 @@
 
 #include "AbstractAnnotationObfuscate.h"
 
+#include <QDebug>
+
 namespace kImageAnnotator {
 
 
-AbstractAnnotationObfuscate::AbstractAnnotationObfuscate(const QPointF &startPosition, const PropertiesPtr &properties) : AbstractAnnotationRect(startPosition, properties)
+AbstractAnnotationObfuscate::AbstractAnnotationObfuscate(const QPointF &startPosition, const PropertiesPtr &properties) :
+	AbstractAnnotationRect(startPosition, properties),
+	mObfuscationUpdateRequired(true)
 {
 
 }
 
-AbstractAnnotationObfuscate::AbstractAnnotationObfuscate(const AbstractAnnotationObfuscate &other) : AbstractAnnotationRect(other)
+AbstractAnnotationObfuscate::AbstractAnnotationObfuscate(const AbstractAnnotationObfuscate &other) :
+	AbstractAnnotationRect(other),
+	mObfuscationUpdateRequired(true)
 {
 
 }
@@ -46,7 +52,7 @@ void AbstractAnnotationObfuscate::setProperties(const PropertiesPtr &properties)
 void AbstractAnnotationObfuscate::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
 	// We need to update the image here, otherwise the scene is not ready
-	// to be painted and we only draw the background
+	// to be painted, and we only draw the background
 	if (mObfuscationUpdateRequired) {
 		updateOverlayImage();
 		mObfuscationUpdateRequired = false;
@@ -75,7 +81,9 @@ void AbstractAnnotationObfuscate::updateOverlayImage()
 		QPainter imagePainter(&image);
 		parentScene->render(&imagePainter);
 
+		auto sceneOffset = parentScene->sceneRect().topLeft().toPoint();
 		auto itemRect = mRect->normalized().toRect();
+		itemRect.translate(-sceneOffset);
 		auto sceneBehindItem = image.copy(itemRect);
 		mObfuscatedImage = obfuscateBackground(sceneBehindItem);
 	}
