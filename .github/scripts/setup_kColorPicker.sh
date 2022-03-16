@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git clone --depth 1 git://github.com/ksnip/kColorPicker
+git clone --depth 1 https://github.com/ksnip/kColorPicker.git
 
 cd kColorPicker || exit
 mkdir build && cd build || exit
