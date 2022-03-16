@@ -209,7 +209,7 @@ void AbstractAnnotationItem::updateShadow()
 			setGraphicsEffect(new ShadowEffect());
 		}
 	} else {
-		setGraphicsEffect(nullptr);
+		setGraphicsEffect(new NoEffect());
 	}
 }
 

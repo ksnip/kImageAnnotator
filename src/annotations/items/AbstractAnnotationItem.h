@@ -28,7 +28,8 @@
 #include "src/annotations/properties/AnnotationProperties.h"
 #include "src/common/enum/FillModes.h"
 #include "src/common/enum/Tools.h"
-#include "src/annotations/misc/ShadowEffect.h"
+#include "src/annotations/misc/itemEffects/ShadowEffect.h"
+#include "src/annotations/misc/itemEffects/NoEffect.h"
 
 namespace kImageAnnotator {
 
