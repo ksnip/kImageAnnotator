@@ -118,6 +118,7 @@ void CutWidget::initZoomPicker() const
 	auto zoomValueProvider = mCutView->zoomValueProvider();
 	connect(zoomValueProvider, &ZoomValueProvider::zoomValueChanged, mZoomPicker, &ZoomPicker::setZoomValue);
 	connect(mZoomPicker, &ZoomPicker::zoomValueChanged, zoomValueProvider, &ZoomValueProvider::setZoomValue);
+	connect(mZoomPicker, &ZoomPicker::fitImageToView, zoomValueProvider, &ZoomValueProvider::fitImageToView);
 	mZoomPicker->setZoomValue(zoomValueProvider->zoomValue());
 }
 
