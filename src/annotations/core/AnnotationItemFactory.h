@@ -74,7 +74,7 @@ private:
 
 	AbstractAnnotationItem *createItem(const QPointF &initPosition, const Tools &toolType, const PropertiesPtr &properties);
 	AbstractAnnotationItem *cloneItem(const AbstractAnnotationItem *item);
-	void setZValue(AbstractAnnotationItem *item);
+	void initItem(AbstractAnnotationItem *item);
 	void numberSeedChanged(int newNumberSeed);
 };
 

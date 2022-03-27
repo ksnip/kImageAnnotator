@@ -71,9 +71,7 @@ AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPositio
 	auto properties = mPropertiesFactory->create(toolType);
 	auto newItem = createItem(initPosition, toolType, properties);
 
-	newItem->init();
-
-	setZValue(newItem);
+	initItem(newItem);
 
 	return newItem;
 }
@@ -83,9 +81,7 @@ AbstractAnnotationItem *AnnotationItemFactory::create(const QPointF &initPositio
     auto properties = mPropertiesFactory->createFromConfig(Tools::Image);
     auto newItem = new AnnotationImage(initPosition, image, properties);
 
-	newItem->init();
-
-    setZValue(newItem);
+	initItem(newItem);
 
     return newItem;
 }
@@ -96,9 +92,7 @@ AbstractAnnotationItem *AnnotationItemFactory::clone(const AbstractAnnotationIte
 
 	auto newItem = cloneItem(item);
 
-	newItem->init();
-
-	setZValue(newItem);
+	initItem(newItem);
 
 	return newItem;
 }
@@ -250,9 +244,10 @@ AbstractAnnotationItem *AnnotationItemFactory::cloneItem(const AbstractAnnotatio
 	return newItem;
 }
 
-void AnnotationItemFactory::setZValue(AbstractAnnotationItem *item)
+void AnnotationItemFactory::initItem(AbstractAnnotationItem *item)
 {
-	if (item != nullptr) {
+	if(item != nullptr) {
+		item->init();
 		item->setZValue(mNextZValue++);
 	}
 }
