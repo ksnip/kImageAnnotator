@@ -42,4 +42,9 @@ QPainter::CompositionMode AnnotationMarkerRect::compositionMode() const
 	return QPainter::CompositionMode_Multiply;
 }
 
+void AnnotationMarkerRect::updateShadow()
+{
+	setGraphicsEffect(nullptr);
+}
+
 } // namespace kImageAnnotator

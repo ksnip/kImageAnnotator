@@ -72,9 +72,9 @@ void AnnotationNumber::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 	painter->drawText(boundingRect(), Qt::AlignCenter, numberString());
 }
 
-void AnnotationNumber::updateProperties(const PropertiesPtr &properties)
+void AnnotationNumber::updateProperties()
 {
-	AbstractAnnotationItem::updateProperties(properties);
+	AbstractAnnotationItem::updateProperties();
 	updateRect();
 }
 

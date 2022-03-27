@@ -42,4 +42,9 @@ QPainter::CompositionMode AnnotationMarkerEllipse::compositionMode() const
 	return QPainter::CompositionMode_Multiply;
 }
 
+void AnnotationMarkerEllipse::updateShadow()
+{
+	setGraphicsEffect(nullptr);
+}
+
 } // namespace kImageAnnotator

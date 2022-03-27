@@ -21,18 +21,13 @@
 
 namespace kImageAnnotator {
 
-AbstractAnnotationItem::AbstractAnnotationItem(const PropertiesPtr &properties)
+AbstractAnnotationItem::AbstractAnnotationItem(const PropertiesPtr &properties):
+	mProperties(properties)
 {
-	Q_ASSERT(properties != nullptr);
-
-	updateProperties(properties);
-	mPainterPen.setCapStyle(Qt::RoundCap);
-	mPainterPen.setJoinStyle(Qt::RoundJoin);
-
 	mShape = new QPainterPath();
 	mStroker = new QPainterPathStroker(mPainterPen);
 
-	updateShadow();
+	Q_ASSERT(mProperties != nullptr);
 }
 
 AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &other)
@@ -41,11 +36,11 @@ AbstractAnnotationItem::AbstractAnnotationItem(const AbstractAnnotationItem &oth
 	mShape = new QPainterPath(*other.mShape);
 	mPainterPen = other.mPainterPen;
 	mStroker = new QPainterPathStroker(mPainterPen);
+
+
 	setZValue(other.zValue());
 	setCursor(other.cursor());
 	setOpacity(other.opacity());
-
-	updateShadow();
 }
 
 AbstractAnnotationItem::~AbstractAnnotationItem()
@@ -154,13 +149,14 @@ void AbstractAnnotationItem::drawPath(QPainter *painter) const
 	painter->drawPath(*mShape);
 }
 
-void AbstractAnnotationItem::updateProperties(const PropertiesPtr &properties)
+void AbstractAnnotationItem::updateProperties()
 {
-	mProperties = properties;
 	mPainterPen.setColor(mProperties->color());
 	mPainterPen.setWidth(mProperties->width());
+	mPainterPen.setCapStyle(Qt::RoundCap);
+	mPainterPen.setJoinStyle(Qt::RoundJoin);
 
-	setOpacity(properties->opacity());
+	setOpacity(mProperties->opacity());
 
 	updateShadow();
 }
@@ -199,7 +195,14 @@ void AbstractAnnotationItem::setProperties(const PropertiesPtr &properties)
 	Q_ASSERT(properties != nullptr);
 
 	prepareGeometryChange();
-	updateProperties(properties);
+
+	mProperties = properties;
+	updateProperties();
+}
+
+void AbstractAnnotationItem::init()
+{
+	updateProperties();
 }
 
 void AbstractAnnotationItem::updateShadow()

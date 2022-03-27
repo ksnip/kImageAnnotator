@@ -21,7 +21,8 @@
 
 namespace kImageAnnotator {
 
-AbstractAnnotationPath::AbstractAnnotationPath(const QPointF &startPosition, const PropertiesPtr &properties) : AbstractAnnotationItem(properties)
+AbstractAnnotationPath::AbstractAnnotationPath(const QPointF &startPosition, const PropertiesPtr &properties) :
+	AbstractAnnotationItem(properties)
 {
 	mPath = new QPainterPath();
 	mPath->moveTo(startPosition);

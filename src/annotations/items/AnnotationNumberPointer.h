@@ -40,7 +40,7 @@ public:
 protected:
 	void updateShape() override;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-	void updateProperties(const PropertiesPtr &properties) override;
+	void updateProperties() override;
 
 private:
 	void updateRect() override;

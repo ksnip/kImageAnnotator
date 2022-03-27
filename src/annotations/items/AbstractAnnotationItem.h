@@ -53,26 +53,27 @@ public:
 	virtual void scale(qreal sx, qreal sy) = 0;
 	virtual Tools toolType() const = 0;
 	virtual void setProperties(const PropertiesPtr &properties);
+	virtual void init();
 
 protected:
 	void setShape(QPainterPath &newShape);
 	virtual void updateShape() = 0;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
-	virtual void updateProperties(const PropertiesPtr &properties);
+	virtual void updateProperties();
 	bool hasFill() const;
 	bool hasBorder() const;
 	void adjustPainter(QPainter *painter) const;
 	QPen painterPen() const;
 	virtual QPainter::CompositionMode compositionMode() const;
+	virtual void updateShadow();
 
 private:
 	PropertiesPtr mProperties;
 	QPainterPath *mShape;
 	QPainterPathStroker *mStroker;
-	QPen mPainterPen;
 
+	QPen mPainterPen;
 	void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
-	void updateShadow();
 	void drawPath(QPainter *painter) const;
 	void drawPoint(QPainter *painter) const;
 };
