@@ -99,7 +99,8 @@ void StickerPicker::addDefaultStickers()
 								 QLatin1String("pouting_face"),
 								 QLatin1String("smiling_face_with_sunglasses"),
 								 QLatin1String("check_mark"),
-								 QLatin1String("cross_mark")
+								 QLatin1String("cross_mark"),
+								 QLatin1String("cursor")
 	};
 
 	for(const auto& sticker : defaultStickers) {
