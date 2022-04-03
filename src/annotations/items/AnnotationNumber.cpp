@@ -24,11 +24,13 @@ namespace kImageAnnotator {
 AnnotationNumber::AnnotationNumber(const QPointF &centerPosition, const TextPropertiesPtr &properties)	: AbstractAnnotationRect(centerPosition, properties)
 {
 	mRect->moveCenter(centerPosition);
+
+	connect(this, &AbstractAnnotationItem::propertiesChanged, this, &AnnotationNumber::updateRect);
 }
 
 AnnotationNumber::AnnotationNumber(const AnnotationNumber &other) : AbstractAnnotationRect(other), BaseAnnotationNumber(other)
 {
-	updateShape();
+	connect(this, &AbstractAnnotationItem::propertiesChanged, this, &AnnotationNumber::updateRect);
 }
 
 void AnnotationNumber::addPoint(const QPointF &position, bool modified)
@@ -56,6 +58,12 @@ TextPropertiesPtr AnnotationNumber::textProperties() const
 	return AbstractAnnotationItem::properties().staticCast<AnnotationTextProperties>();
 }
 
+void AnnotationNumber::init()
+{
+	AbstractAnnotationItem::init();
+	updateRect();
+}
+
 void AnnotationNumber::updateShape()
 {
 	QPainterPath path;
@@ -70,12 +78,6 @@ void AnnotationNumber::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 	painter->setFont(textProperties()->font());
 	painter->setPen(properties()->textColor());
 	painter->drawText(boundingRect(), Qt::AlignCenter, numberString());
-}
-
-void AnnotationNumber::updateProperties()
-{
-	AbstractAnnotationItem::updateProperties();
-	updateRect();
 }
 
 void AnnotationNumber::updateRect()

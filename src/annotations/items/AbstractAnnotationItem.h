@@ -63,7 +63,6 @@ protected:
 	void setShape(QPainterPath &newShape);
 	virtual void updateShape() = 0;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) override;
-	virtual void updateProperties();
 	bool hasFill() const;
 	bool hasBorder() const;
 	void adjustPainter(QPainter *painter) const;
@@ -80,6 +79,7 @@ private:
 	void shiftPainterForAllOddShapeWidth(QPainter *painter) const;
 	void drawPath(QPainter *painter) const;
 	void drawPoint(QPainter *painter) const;
+	void updateProperties();
 };
 
 } // namespace kImageAnnotator

@@ -210,9 +210,7 @@ void AbstractAnnotationItem::init()
 void AbstractAnnotationItem::updateShadow()
 {
 	if (mProperties->shadowEnabled()) {
-		if(graphicsEffect() == nullptr) {
-			setGraphicsEffect(new ShadowEffect());
-		}
+		setGraphicsEffect(new ShadowEffect());
 	} else {
 		setGraphicsEffect(new NoEffect());
 	}

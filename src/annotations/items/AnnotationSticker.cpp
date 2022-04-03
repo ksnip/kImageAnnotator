@@ -30,6 +30,7 @@ AnnotationSticker::AnnotationSticker(const QPointF &centerPosition, const Sticke
 
 AnnotationSticker::AnnotationSticker(const AnnotationSticker &other) : AbstractAnnotationRect(other)
 {
+	connect(this, &AbstractAnnotationItem::propertiesChanged, this, &AnnotationSticker::propertiesUpdated);
 }
 
 void AnnotationSticker::addPoint(const QPointF &position, bool modified)
@@ -48,11 +49,6 @@ Tools AnnotationSticker::toolType() const
 StickerPropertiesPtr AnnotationSticker::stickerProperties() const
 {
 	return AbstractAnnotationItem::properties().staticCast<AnnotationStickerProperties>();
-}
-
-void AnnotationSticker::setProperties(const PropertiesPtr &properties)
-{
-	AbstractAnnotationItem::setProperties(properties);
 }
 
 void AnnotationSticker::init()

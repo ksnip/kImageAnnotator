@@ -36,13 +36,13 @@ public:
 	~AnnotationNumberPointer() override = default;
 	Tools toolType() const override;
 	TextPropertiesPtr textProperties() const;
+	void init() override;
 
 protected:
 	void updateShape() override;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-	void updateProperties() override;
 
-private:
+private slots:
 	void updateRect() override;
 };
 

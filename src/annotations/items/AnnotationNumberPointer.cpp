@@ -24,15 +24,14 @@ namespace kImageAnnotator {
 AnnotationNumberPointer::AnnotationNumberPointer(const QPointF &startPosition, const TextPropertiesPtr &properties) :
 	AbstractAnnotationPointerRect(startPosition, properties)
 {
+	connect(this, &AbstractAnnotationItem::propertiesChanged, this, &AnnotationNumberPointer::updateRect);
 }
 
 AnnotationNumberPointer::AnnotationNumberPointer(const AnnotationNumberPointer &other) :
 	AbstractAnnotationPointerRect(other),
 	BaseAnnotationNumber(other)
 {
-	BaseAnnotationNumber::updateRect(mRect, textProperties()->font());
-
-	updateShape();
+	connect(this, &AbstractAnnotationItem::propertiesChanged, this, &AnnotationNumberPointer::updateRect);
 }
 
 Tools AnnotationNumberPointer::toolType() const
@@ -43,6 +42,12 @@ Tools AnnotationNumberPointer::toolType() const
 TextPropertiesPtr AnnotationNumberPointer::textProperties() const
 {
 	return AbstractAnnotationItem::properties().staticCast<AnnotationTextProperties>();
+}
+
+void AnnotationNumberPointer::init()
+{
+	AbstractAnnotationItem::init();
+	updateRect();
 }
 
 void AnnotationNumberPointer::updateShape()
@@ -68,12 +73,6 @@ void AnnotationNumberPointer::paint(QPainter *painter, const QStyleOptionGraphic
 	painter->setFont(textProperties()->font());
 	painter->setPen(properties()->textColor());
 	painter->drawText(*mRect, Qt::AlignCenter, numberString());
-}
-
-void AnnotationNumberPointer::updateProperties()
-{
-	AbstractAnnotationItem::updateProperties();
-	updateRect();
 }
 
 void AnnotationNumberPointer::updateRect()

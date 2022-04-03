@@ -28,25 +28,19 @@ AbstractAnnotationObfuscate::AbstractAnnotationObfuscate(const QPointF &startPos
 	AbstractAnnotationRect(startPosition, properties),
 	mObfuscationUpdateRequired(true)
 {
-
+	connect(this, &AbstractAnnotationItem::propertiesChanged, this, &AbstractAnnotationObfuscate::propertiesUpdated);
 }
 
 AbstractAnnotationObfuscate::AbstractAnnotationObfuscate(const AbstractAnnotationObfuscate &other) :
 	AbstractAnnotationRect(other),
 	mObfuscationUpdateRequired(true)
 {
-
+	connect(this, &AbstractAnnotationItem::propertiesChanged, this, &AbstractAnnotationObfuscate::propertiesUpdated);
 }
 
 ObfuscatePropertiesPtr AbstractAnnotationObfuscate::obfuscateProperties() const
 {
 	return AbstractAnnotationItem::properties().staticCast<AnnotationObfuscateProperties>();
-}
-
-void AbstractAnnotationObfuscate::setProperties(const PropertiesPtr &properties)
-{
-	AbstractAnnotationItem::setProperties(properties);
-	updateShape();
 }
 
 void AbstractAnnotationObfuscate::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
@@ -87,6 +81,11 @@ void AbstractAnnotationObfuscate::updateOverlayImage()
 		auto sceneBehindItem = image.copy(itemRect);
 		mObfuscatedImage = obfuscateBackground(sceneBehindItem);
 	}
+}
+
+void AbstractAnnotationObfuscate::propertiesUpdated()
+{
+	updateShape();
 }
 
 } // namespace kImageAnnotator

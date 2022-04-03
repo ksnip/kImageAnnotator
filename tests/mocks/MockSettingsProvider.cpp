@@ -109,6 +109,11 @@ ImageEffects MockSettingsProvider::effect() const
 	return ImageEffects::NoEffect;
 }
 
+qreal MockSettingsProvider::scaling() const
+{
+	return 1.0;
+}
+
 qreal MockSettingsProvider::opacity() const
 {
 	return 1.0;
