@@ -30,7 +30,6 @@ AnnotationSticker::AnnotationSticker(const QPointF &centerPosition, const Sticke
 
 AnnotationSticker::AnnotationSticker(const AnnotationSticker &other) : AbstractAnnotationRect(other)
 {
-	this->stickerProperties()->clone()
 }
 
 void AnnotationSticker::addPoint(const QPointF &position, bool modified)
