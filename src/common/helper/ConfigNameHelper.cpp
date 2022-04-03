@@ -76,4 +76,9 @@ QString ConfigNameHelper::toolOpacity(Tools tool)
 	return kImageAnnotator() + QLatin1String("ToolOpacity_") + QString::number(static_cast<int>(tool));
 }
 
+QString ConfigNameHelper::toolScaling(Tools tool)
+{
+	return kImageAnnotator() + QLatin1String("ToolScaling_") + QString::number(static_cast<int>(tool));
+}
+
 }

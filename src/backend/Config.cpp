@@ -262,6 +262,21 @@ void Config::setSelectItemAfterDrawing(bool enabled)
 	mSelectItemAfterDrawing = enabled;
 }
 
+qreal Config::toolScaling(Tools tool) const
+{
+	return mToolToScaling[tool];
+}
+
+void Config::setToolScaling(qreal scaling, Tools tool)
+{
+	if (toolScaling(tool) == scaling) {
+		return;
+	}
+
+	mToolToScaling[tool] = scaling;
+	saveToolOpacity(tool, scaling);
+}
+
 qreal Config::toolOpacity(Tools tool) const
 {
 	return mToolToOpacity[tool];
@@ -287,6 +302,7 @@ void Config::initToolSettings()
 	initToolWidths();
 	initToolFillTypes();
 	initToolFonts();
+	initToolScaling();
 	initToolOpacity();
 	initObfuscateFactor();
 	initShadowEnabled();
@@ -329,6 +345,13 @@ void Config::initToolFonts()
 {
 	for (auto toolType : mAllTools) {
 		mToolToFont[toolType] = loadToolFont(toolType);
+	}
+}
+
+void Config::initToolScaling()
+{
+	for (auto toolType : mAllTools) {
+		mToolToScaling[toolType] = loadToolScaling(toolType);
 	}
 }
 
@@ -500,6 +523,23 @@ void Config::saveToolShadowEnabled(Tools tool, bool enabled)
 	}
 }
 
+qreal Config::loadToolScaling(Tools tool)
+{
+	if (mSaveToolSelection) {
+		return mSettings->value(ConfigNameHelper::toolScaling(tool), defaultToolScaling()).value<qreal>();
+	} else {
+		return defaultToolOpacity();
+	}
+}
+
+void Config::saveToolScaling(Tools tool, qreal scaling)
+{
+	if (mSaveToolSelection) {
+		mSettings->setValue(ConfigNameHelper::toolScaling(tool), scaling);
+		mSettings->sync();
+	}
+}
+
 qreal Config::loadToolOpacity(Tools tool)
 {
 	if (mSaveToolSelection) {
@@ -659,6 +699,11 @@ bool Config::defaultShadowEnabled(Tools tool)
 		default:
 			return false;
 	}
+}
+
+qreal Config::defaultToolScaling()
+{
+	return 1.0;
 }
 
 qreal Config::defaultToolOpacity()

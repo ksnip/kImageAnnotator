@@ -21,9 +21,11 @@
 
 namespace kImageAnnotator {
 
-AnnotationStickerProperties::AnnotationStickerProperties(const kImageAnnotator::AnnotationStickerProperties &other) : AnnotationProperties(other)
+AnnotationStickerProperties::AnnotationStickerProperties(const kImageAnnotator::AnnotationStickerProperties &other) :
+	AnnotationProperties(other)
 {
 	this->mPath = other.mPath;
+	this->mScaling = other.mScaling;
 }
 
 PropertiesPtr kImageAnnotator::AnnotationStickerProperties::clone() const
@@ -39,6 +41,16 @@ QString AnnotationStickerProperties::path() const
 void AnnotationStickerProperties::setPath(const QString &path)
 {
 	mPath = path;
+}
+
+qreal AnnotationStickerProperties::scaling() const
+{
+	return mScaling;
+}
+
+void AnnotationStickerProperties::setScaling(qreal scaling)
+{
+	mScaling = scaling;
 }
 
 } // namespace kImageAnnotator

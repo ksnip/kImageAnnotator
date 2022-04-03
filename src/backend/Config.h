@@ -89,6 +89,9 @@ public slots:
 	bool selectItemAfterDrawing() const;
 	void setSelectItemAfterDrawing(bool enabled);
 
+	qreal toolScaling(Tools tool) const;
+	void setToolScaling(qreal scaling, Tools tool);
+
 	qreal toolOpacity(Tools tool) const;
 	void setToolOpacity(qreal opacity, Tools tool);
 
@@ -107,6 +110,7 @@ private:
 	QHash<Tools, int> mToolToObfuscationFactor;
 	QHash<Tools, bool> mToolToShadowEnabled;
 	QHash<Tools, qreal> mToolToOpacity;
+	QHash<Tools, qreal> mToolToScaling;
 	bool mSmoothPathEnabled;
 	bool mSaveToolSelection;
 	int mSmoothFactor;
@@ -122,6 +126,7 @@ private:
 	void initToolWidths();
 	void initToolFillTypes();
 	void initToolFonts();
+	void initToolScaling();
 	void initToolOpacity();
 	void initObfuscateFactor();
 	void initShadowEnabled();
@@ -143,6 +148,8 @@ private:
 	void saveToolObfuscateFactor(Tools toolType, int radius);
 	bool loadToolShadowEnabled(Tools tool);
 	void saveToolShadowEnabled(Tools tool, bool enabled);
+	qreal loadToolScaling(Tools tool);
+	void saveToolScaling(Tools tool, qreal scaling);
 	qreal loadToolOpacity(Tools tool);
 	void saveToolOpacity(Tools tool, qreal opacity);
 
@@ -154,6 +161,7 @@ private:
 	static Tools defaultToolType();
 	static int defaultObfuscateFactor();
 	static bool defaultShadowEnabled(Tools tool);
+	static qreal defaultToolScaling();
 	static qreal defaultToolOpacity();
 };
 

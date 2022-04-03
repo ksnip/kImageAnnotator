@@ -21,21 +21,16 @@
 
 namespace kImageAnnotator {
 
-AnnotationSticker::AnnotationSticker(const QPointF &centerPosition, const StickerPropertiesPtr &properties) : AbstractAnnotationRect(centerPosition, properties)
+AnnotationSticker::AnnotationSticker(const QPointF &centerPosition, const StickerPropertiesPtr &properties) :
+	AbstractAnnotationRect(centerPosition, properties),
+	mDefaultSize(100, 100)
 {
-	mSvgRenderer.load(properties->path());
-
-	prepareGeometryChange();
-	auto center = mRect->center();
-	auto size = QSize(100,100);
-	mRect->setSize(size);
-	mRect->moveCenter(center);
-	updateShape();
+	connect(this, &AbstractAnnotationItem::propertiesChanged, this, &AnnotationSticker::propertiesUpdated);
 }
 
 AnnotationSticker::AnnotationSticker(const AnnotationSticker &other) : AbstractAnnotationRect(other)
 {
-	mSvgRenderer.load(other.stickerProperties()->path());
+	this->stickerProperties()->clone()
 }
 
 void AnnotationSticker::addPoint(const QPointF &position, bool modified)
@@ -59,7 +54,12 @@ StickerPropertiesPtr AnnotationSticker::stickerProperties() const
 void AnnotationSticker::setProperties(const PropertiesPtr &properties)
 {
 	AbstractAnnotationItem::setProperties(properties);
-	mSvgRenderer.load(stickerProperties()->path());
+}
+
+void AnnotationSticker::init()
+{
+	AbstractAnnotationItem::init();
+	propertiesUpdated();
 }
 
 void AnnotationSticker::updateShape()
@@ -72,6 +72,24 @@ void AnnotationSticker::updateShape()
 void AnnotationSticker::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 	mSvgRenderer.render(painter, mRect->toRect());
+}
+
+void AnnotationSticker::updateRect()
+{
+	auto center = mRect->center();
+	auto scaling = stickerProperties()->scaling();
+
+	mRect->setSize(mDefaultSize * scaling);
+	mRect->moveCenter(center);
+}
+
+void AnnotationSticker::propertiesUpdated()
+{
+	prepareGeometryChange();
+
+	mSvgRenderer.load(stickerProperties()->path());
+	updateRect();
+	updateShape();
 }
 
 } // namespace kImageAnnotator

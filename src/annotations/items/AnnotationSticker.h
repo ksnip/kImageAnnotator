@@ -37,6 +37,7 @@ public:
 	Tools toolType() const override;
 	StickerPropertiesPtr stickerProperties() const;
 	void setProperties(const PropertiesPtr &properties) override;
+	void init() override;
 
 protected:
 	void updateShape() override;
@@ -44,6 +45,12 @@ protected:
 
 private:
 	QSvgRenderer mSvgRenderer;
+	QSize mDefaultSize;
+
+	void updateRect();
+
+private slots:
+	void propertiesUpdated();
 };
 
 } // namespace kImageAnnotator

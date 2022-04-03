@@ -52,6 +52,7 @@ PropertiesPtr AnnotationPropertiesFactory::create(Tools tool, bool fromConfig) c
 	setTextProperties(properties);
 	setObfuscateProperties(properties);
 	setStickerProperties(properties);
+	setScaling(properties);
 	setOpacity(properties);
 
 	return properties;
@@ -155,6 +156,14 @@ void AnnotationPropertiesFactory::setStickerProperties(const PropertiesPtr &prop
 	auto stickerProperties = properties.dynamicCast<AnnotationStickerProperties>();
 	if (stickerProperties != nullptr) {
 		stickerProperties->setPath(mSettingsProvider->sticker());
+	}
+}
+
+void AnnotationPropertiesFactory::setScaling(const PropertiesPtr &properties) const
+{
+	auto stickerProperties = properties.dynamicCast<AnnotationStickerProperties>();
+	if (stickerProperties != nullptr) {
+		stickerProperties->setScaling(mSettingsProvider->scaling());
 	}
 }
 

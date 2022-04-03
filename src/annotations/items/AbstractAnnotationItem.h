@@ -35,6 +35,7 @@ namespace kImageAnnotator {
 
 class AbstractAnnotationItem : public QGraphicsWidget
 {
+	Q_OBJECT;
 public:
 	explicit AbstractAnnotationItem(const PropertiesPtr &properties);
 	AbstractAnnotationItem(const AbstractAnnotationItem &other);
@@ -54,6 +55,9 @@ public:
 	virtual Tools toolType() const = 0;
 	virtual void setProperties(const PropertiesPtr &properties);
 	virtual void init();
+
+signals:
+	void propertiesChanged();
 
 protected:
 	void setShape(QPainterPath &newShape);

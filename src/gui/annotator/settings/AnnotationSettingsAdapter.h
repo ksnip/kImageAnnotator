@@ -27,6 +27,9 @@
 #include "AnnotationControlsWidget.h"
 #include "ExistingItemEditInfo.h"
 #include "src/annotations/core/AbstractSettingsProvider.h"
+#include "src/annotations/properties/AnnotationTextProperties.h"
+#include "src/annotations/properties/AnnotationObfuscateProperties.h"
+#include "src/annotations/properties/AnnotationStickerProperties.h"
 
 namespace kImageAnnotator {
 
@@ -53,6 +56,7 @@ public:
 	int obfuscationFactor() const override;
 	QString sticker() const override;
 	ImageEffects effect() const override;
+	qreal scaling() const override;
 	qreal opacity() const override;
 	bool shadowEnabled() const override;
 	void updateNumberToolSeed(int numberToolSeed) override;
@@ -64,7 +68,6 @@ private:
 	AnnotationItemSettings *mItemSettings;
 	AnnotationToolSelection *mToolSettings;
 	AnnotationImageSettings *mImageSettings;
-	AnnotationControlsWidget *mControls;
 	Config *mConfig;
 	ExistingItemEditInfo mExistingItemEditInfo;
 
@@ -85,6 +88,7 @@ private slots:
 	void stickerChanged(const QString &sticker);
 	void shadowEnabledChanged(bool enabled);
 	void fontChanged(const QFont &font);
+	void scalingChanged(qreal scaling);
 	void opacityChanged(qreal opacity);
 	void fitImageToCurrentView();
 };

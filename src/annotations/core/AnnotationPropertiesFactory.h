@@ -55,6 +55,7 @@ private:
 	void setTextProperties(const PropertiesPtr &properties) const;
 	void setObfuscateProperties(const PropertiesPtr &properties) const;
 	void setStickerProperties(const PropertiesPtr &properties) const;
+	void setScaling(const PropertiesPtr &properties) const;
 	void setOpacity(const PropertiesPtr &properties) const;
 };
 

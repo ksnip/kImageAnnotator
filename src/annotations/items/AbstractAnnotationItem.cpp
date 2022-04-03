@@ -159,6 +159,8 @@ void AbstractAnnotationItem::updateProperties()
 	setOpacity(mProperties->opacity());
 
 	updateShadow();
+
+	emit propertiesChanged();
 }
 
 void AbstractAnnotationItem::shiftPainterForAllOddShapeWidth(QPainter *painter) const

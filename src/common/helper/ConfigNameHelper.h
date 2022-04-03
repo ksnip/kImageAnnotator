@@ -40,6 +40,7 @@ public:
 	static QString shadowEnabled(Tools tool);
 	static QString annotatorDockWidgetsState();
 	static QString toolOpacity(Tools tool);
+	static QString toolScaling(Tools tool);
 };
 
 }

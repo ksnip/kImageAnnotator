@@ -32,7 +32,8 @@ AnnotationItemSettings::AnnotationItemSettings() :
 	mStickerPicker(new StickerPicker(this)),
 	mShadowPicker(new BoolPicker(this)),
 	mFontPicker(new FontPicker(this)),
-	mOpacityPicker(new NumberPicker(this))
+	mOpacityPicker(new NumberPicker(this)),
+	mScalingPicker(new NumberPicker(this))
 {
 	initGui();
 }
@@ -58,6 +59,12 @@ void AnnotationItemSettings::initGui()
 	mShadowPicker->setIcon(IconLoader::load(QLatin1String("dropShadow.svg")));
 	mShadowPicker->setToolTip(tr("Item Shadow"));
 
+	mScalingPicker->setIcon(IconLoader::load(QLatin1String("scale.svg")));
+	mScalingPicker->setToolTip(tr("Scale"));
+	mScalingPicker->setRange(0, 500);
+	mScalingPicker->setSuffix(QLatin1String("%"));
+	mScalingPicker->setSingleStep(10);
+
 	mOpacityPicker->setIcon(IconLoader::load(QLatin1String("opacity.svg")));
 	mOpacityPicker->setToolTip(tr("Opacity"));
 	mOpacityPicker->setRange(0, 100);
@@ -73,6 +80,7 @@ void AnnotationItemSettings::initGui()
 	insertPickerWidget(mObfuscateFactorPicker);
 	insertPickerWidget(mStickerPicker);
 	insertPickerWidget(mShadowPicker);
+	insertPickerWidget(mScalingPicker);
 	insertPickerWidget(mOpacityPicker);
 
 	mWidgetConfigurator.setColorWidget(mColorPicker);
@@ -84,6 +92,7 @@ void AnnotationItemSettings::initGui()
 	mWidgetConfigurator.setStickerWidget(mStickerPicker);
 	mWidgetConfigurator.setShadowWidget(mShadowPicker);
 	mWidgetConfigurator.setFontWidget(mFontPicker);
+	mWidgetConfigurator.setScalingWidget(mScalingPicker);
 	mWidgetConfigurator.setOpacityWidget(mOpacityPicker);
 
 	mMainLayout->setContentsMargins(3, 0, 3, 0);
@@ -102,6 +111,7 @@ void AnnotationItemSettings::initGui()
 	connect(mShadowPicker, &BoolPicker::enabledStateChanged, this, &AnnotationItemSettings::shadowEnabledChanged);
 	connect(mFontPicker, &FontPicker::fontChanged, this, &AnnotationItemSettings::fontChanged);
 	connect(mOpacityPicker, &NumberPicker::numberSelected, this, &AnnotationItemSettings::opacitySelected);
+	connect(mScalingPicker, &NumberPicker::numberSelected, this, &AnnotationItemSettings::scalingSelected);
 }
 
 void AnnotationItemSettings::insertPickerWidget(SettingsPickerWidget *pickerWidget)
@@ -204,6 +214,16 @@ void AnnotationItemSettings::setFont(const QFont &font)
 	mFontPicker->setCurrentFont(font);
 }
 
+qreal AnnotationItemSettings::scaling() const
+{
+	return mScalingPicker->number() / 100.0;
+}
+
+void AnnotationItemSettings::setScaling(qreal scaling)
+{
+	mScalingPicker->setNumber(scaling * 100);
+}
+
 qreal AnnotationItemSettings::opacity() const
 {
 	return mOpacityPicker->number() / 100.0;
@@ -226,6 +246,11 @@ void AnnotationItemSettings::setOrientation(Qt::Orientation orientation)
 	}
 
 	AbstractAnnotationDockWidgetContent::setOrientation(orientation);
+}
+
+void AnnotationItemSettings::scalingSelected(int scaling)
+{
+	emit scalingChanged(scaling / 100.0);
 }
 
 void AnnotationItemSettings::opacitySelected(int opacity)

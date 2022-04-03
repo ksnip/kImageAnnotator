@@ -30,8 +30,6 @@
 #include "src/widgets/settingsPicker/FontPicker.h"
 #include "src/widgets/misc/AttachedSeparator.h"
 #include "src/gui/annotator/docks/AbstractAnnotationDockWidgetContent.h"
-#include "src/annotations/properties/AnnotationTextProperties.h"
-#include "src/annotations/properties/AnnotationObfuscateProperties.h"
 #include "src/annotations/items/AbstractAnnotationItem.h"
 
 namespace kImageAnnotator {
@@ -60,6 +58,8 @@ public:
 	void updateNumberToolSeed(int numberToolSeed);
 	QFont font() const;
 	void setFont(const QFont &font);
+	qreal scaling() const;
+	void setScaling(qreal scaling);
 	qreal opacity() const;
 	void setOpacity(qreal opacity);
 	QString name() const override;
@@ -75,6 +75,7 @@ signals:
 	void stickerChanged(const QString &sticker);
 	void shadowEnabledChanged(bool enabled);
 	void fontChanged(const QFont &font);
+	void scalingChanged(qreal opacity);
 	void opacityChanged(qreal opacity);
 
 private:
@@ -89,6 +90,7 @@ private:
 	BoolPicker *mShadowPicker;
 	FontPicker *mFontPicker;
 	NumberPicker *mOpacityPicker;
+	NumberPicker *mScalingPicker;
 	ItemSettingsWidgetConfigurator mWidgetConfigurator;
 	QList<AttachedSeparator*> mSeparators;
 
@@ -96,6 +98,7 @@ private:
 	void insertPickerWidget(SettingsPickerWidget *pickerWidget);
 
 private slots:
+	void scalingSelected(int scaling);
 	void opacitySelected(int opacity);
 };
 

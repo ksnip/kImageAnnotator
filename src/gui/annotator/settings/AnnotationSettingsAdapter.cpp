@@ -32,7 +32,6 @@ AnnotationSettingsAdapter::AnnotationSettingsAdapter(
 	mItemSettings(itemSettings),
 	mToolSettings(toolSettings),
 	mImageSettings(imageSettings),
-	mControls(controls),
 	mConfig(config)
 {
 	connect(mToolSettings, &AnnotationToolSelection::toolTypeChanged, this, &AnnotationSettingsAdapter::toolTypeChanged);
@@ -51,6 +50,7 @@ AnnotationSettingsAdapter::AnnotationSettingsAdapter(
 	connect(mItemSettings, &AnnotationItemSettings::stickerChanged, this, &AnnotationSettingsAdapter::stickerChanged);
 	connect(mItemSettings, &AnnotationItemSettings::shadowEnabledChanged, this, &AnnotationSettingsAdapter::shadowEnabledChanged);
 	connect(mItemSettings, &AnnotationItemSettings::fontChanged, this, &AnnotationSettingsAdapter::fontChanged);
+	connect(mItemSettings, &AnnotationItemSettings::scalingChanged, this, &AnnotationSettingsAdapter::scalingChanged);
 	connect(mItemSettings, &AnnotationItemSettings::opacityChanged, this, &AnnotationSettingsAdapter::opacityChanged);
 
 	reloadConfig();
@@ -114,6 +114,11 @@ ImageEffects AnnotationSettingsAdapter::effect() const
 	return mImageSettings->effect();
 }
 
+qreal AnnotationSettingsAdapter::scaling() const
+{
+	return mItemSettings->scaling();
+}
+
 qreal AnnotationSettingsAdapter::opacity() const
 {
 	return mItemSettings->opacity();
@@ -166,6 +171,7 @@ void AnnotationSettingsAdapter::loadFromConfig(Tools tool)
 	mItemSettings->setFont(mConfig->toolFont(tool));
 	mItemSettings->setObfuscationFactor(mConfig->obfuscationFactor(tool));
 	mItemSettings->setShadowEnabled(mConfig->shadowEnabled(tool));
+	mItemSettings->setScaling(mConfig->toolScaling(tool));
 	mItemSettings->setOpacity(mConfig->toolOpacity(tool));
 }
 
@@ -188,6 +194,11 @@ void AnnotationSettingsAdapter::loadFromItem(const AbstractAnnotationItem *item)
 	auto obfuscateProperties = properties.dynamicCast<AnnotationObfuscateProperties>();
 	if(obfuscateProperties != nullptr) {
 		mItemSettings->setObfuscationFactor(obfuscateProperties->factor());
+	}
+
+	auto stickerProperties = properties.dynamicCast<AnnotationStickerProperties>();
+	if(stickerProperties != nullptr) {
+		mItemSettings->setScaling(stickerProperties->scaling());
 	}
 }
 
@@ -266,6 +277,13 @@ void AnnotationSettingsAdapter::opacityChanged(qreal opacity)
 {
 	configChanged([&](Tools tool){
 		mConfig->setToolOpacity(opacity, tool);
+	});
+}
+
+void AnnotationSettingsAdapter::scalingChanged(qreal scaling)
+{
+	configChanged([&](Tools tool){
+		mConfig->setToolScaling(scaling, tool);
 	});
 }
 

@@ -48,6 +48,7 @@ public:
 	void setStickerWidget(StickerPicker *widget);
 	void setShadowWidget(BoolPicker *widget);
 	void setFontWidget(FontPicker *widget);
+	void setScalingWidget(NumberPicker *widget);
 	void setOpacityWidget(NumberPicker *widget);
 
 private:
@@ -61,6 +62,7 @@ private:
 	StickerPicker *mStickerWidget;
 	BoolPicker *mShadowPicker;
 	FontPicker *mFontPicker;
+	NumberPicker *mScalingPicker;
 	NumberPicker *mOpacityPicker;
 
 	void updateWidgets() const;
@@ -77,6 +79,7 @@ private:
 	void setShadowWidgetVisible(bool enabled) const;
 	void setFontWidgetVisible(bool enabled) const;
 	void setOpacityWidgetVisible(bool enabled) const;
+	void setScalingWidgetVisible(bool enabled) const;
 	void setWidthRange(int min, int max) const;
 	void setColorShowAlphaChannel(bool showAlphaChannel) const;
 	void setTextColorShowAlphaChannel(bool showAlphaChannel) const;

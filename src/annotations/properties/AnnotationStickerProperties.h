@@ -33,9 +33,12 @@ public:
 	PropertiesPtr clone() const override;
 	QString path() const;
 	void setPath(const QString &path);
+	qreal scaling() const;
+	void setScaling(qreal scaling);
 
 private:
 	QString mPath;
+	qreal mScaling;
 };
 
 typedef QSharedPointer<AnnotationStickerProperties> StickerPropertiesPtr;
