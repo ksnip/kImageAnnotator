@@ -9,6 +9,8 @@
 * New: Add support for RGBA colors with transparency. ([#119](https://github.com/ksnip/kImageAnnotator/issues/119))
 * New: Add mouse cursor sticker. ([#290](https://github.com/ksnip/kImageAnnotator/issues/290))
 * New: Allow scaling stickers per setting. ([#285](https://github.com/ksnip/kImageAnnotator/issues/285))
+* New: Respect original aspect ratio of stickers. ([#291](https://github.com/ksnip/kImageAnnotator/issues/291))
+* New: Respect original size of stickers. ([#295](https://github.com/ksnip/kImageAnnotator/issues/295))
 * Fixed: Adding image effect does not send image change notification. ([#283](https://github.com/ksnip/kImageAnnotator/issues/283))
 * Fixed: Blur / Pixelate break when going past image edge once. ([#267](https://github.com/ksnip/kImageAnnotator/issues/267))
 * Fixed: Item opacity not applied when item shadow disabled. ([#284](https://github.com/ksnip/kImageAnnotator/issues/284))

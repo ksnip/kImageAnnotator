@@ -22,8 +22,7 @@
 namespace kImageAnnotator {
 
 AnnotationSticker::AnnotationSticker(const QPointF &centerPosition, const StickerPropertiesPtr &properties) :
-	AbstractAnnotationRect(centerPosition, properties),
-	mDefaultSize(100, 100)
+	AbstractAnnotationRect(centerPosition, properties)
 {
 	connect(this, &AbstractAnnotationItem::propertiesChanged, this, &AnnotationSticker::propertiesUpdated);
 }
@@ -74,7 +73,7 @@ void AnnotationSticker::updateRect()
 	auto center = mRect->center();
 	auto scaling = stickerProperties()->scaling();
 
-	mRect->setSize(mDefaultSize * scaling);
+	mRect->setSize(mSvgRenderer.defaultSize() * scaling);
 	mRect->moveCenter(center);
 }
 

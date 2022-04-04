@@ -44,7 +44,6 @@ protected:
 
 private:
 	QSvgRenderer mSvgRenderer;
-	QSize mDefaultSize;
 
 	void updateRect();
 
