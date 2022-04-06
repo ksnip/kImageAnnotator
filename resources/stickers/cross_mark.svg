@@ -37,15 +37,15 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="795"
-     inkscape:window-height="480"
+     inkscape:window-width="1568"
+     inkscape:window-height="901"
      id="namedview12"
      showgrid="false"
      inkscape:zoom="3.2777778"
-     inkscape:cx="36"
+     inkscape:cx="-18.762711"
      inkscape:cy="36"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-x="1048"
+     inkscape:window-y="180"
      inkscape:window-maximized="0"
      inkscape:current-layer="emoji" />
   <g
@@ -68,7 +68,7 @@
      transform="translate(0,-22)" />
   <g
      id="line"
-     transform="translate(-11.857042,-10.232959)">
+     transform="translate(-10.999001,-11)">
     <path
        stroke-miterlimit="10"
        d="M 58.14,21.78 50.38,13.767 36.09,27.987 21.87,13.767 13.857,21.78 28.207,36 l -14.35,14.22 8.014,8.013 14.22,-14.22 14.29,14.22 7.76,-8.013 L 43.921,36 Z"
