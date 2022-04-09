@@ -76,7 +76,7 @@ void FontPicker::initGui()
 
 	mSizeSpinBox->setSuffix(QLatin1String("pt"));
 	mSizeSpinBox->setToolTip(tr("Font Size"));
-	mSizeSpinBox->setRange(5, 50);
+	mSizeSpinBox->setRange(5, 100);
 	connect(mSizeSpinBox, &CustomSpinBox::valueChanged, this, &FontPicker::selectionChanged);
 
 	mBoldToggle->setIcon(IconLoader::load(QLatin1String("bold.svg")));
