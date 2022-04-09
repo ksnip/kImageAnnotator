@@ -14,6 +14,7 @@
 * Fixed: Adding image effect does not send image change notification. ([#283](https://github.com/ksnip/kImageAnnotator/issues/283))
 * Fixed: Blur / Pixelate break when going past image edge once. ([#267](https://github.com/ksnip/kImageAnnotator/issues/267))
 * Fixed: Item opacity not applied when item shadow disabled. ([#284](https://github.com/ksnip/kImageAnnotator/issues/284))
+* Changed: Max font size changed to 100pt. 
 
 ## Release 0.5.3
 * Fixed: Crash while typing text on wayland. ([#256](https://github.com/ksnip/kImageAnnotator/issues/256))
