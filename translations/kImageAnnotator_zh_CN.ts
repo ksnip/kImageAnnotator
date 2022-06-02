@@ -82,7 +82,7 @@
     </message>
     <message>
         <source>Item Shadow</source>
-        <translation type="unfinished">项影</translation>
+        <translation>元素的阴影</translation>
     </message>
     <message>
         <source>Item Settings</source>
