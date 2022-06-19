@@ -103,6 +103,11 @@ QImage AnnotationWidget::imageAt(int index) const
 void AnnotationWidget::loadImage(const QPixmap &pixmap)
 {
 	auto currentAnnotationArea = annotationArea();
+	removeTab(0);
+	addTab(pixmap, QString(), QString());
+	return;
+
+	// unreachable code:
 	if(currentAnnotationArea == nullptr) {
 		addTab(pixmap, QString(), QString());
 	} else {
