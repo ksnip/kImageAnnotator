@@ -74,7 +74,7 @@
     </message>
     <message>
         <source>Number Seed</source>
-        <translation type="unfinished">Graine aléatoire</translation>
+        <translation>Graine aléatoire</translation>
     </message>
     <message>
         <source>Obfuscation Factor</source>
