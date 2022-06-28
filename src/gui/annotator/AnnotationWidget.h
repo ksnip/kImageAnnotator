@@ -44,6 +44,7 @@ public:
 	QImage imageAt(int index) const;
 	void loadImage(const QPixmap &pixmap);
 	int addTab(const QPixmap &pixmap, const QString &title, const QString &toolTip);
+	int insertTab(int index, const QPixmap &pixmap, const QString &title, const QString &toolTip);
 	void updateTabInfo(int index, const QString &title, const QString &toolTip);
 	void insertImageItem(const QPointF &position, const QPixmap &pixmap) const;
 	void removeTab(int index);
