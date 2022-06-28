@@ -107,11 +107,9 @@ void AnnotationWidget::loadImage(const QPixmap &pixmap)
 
 	if (currentIndex <= 0 && currentAnnotationArea == nullptr) {
 		insertTab(0, pixmap, QString(), QString());
-	} else if (currentAnnotationArea != nullptr) {
+	} else {
 		removeTab(currentIndex);
 		addTab(pixmap, QString(), QString());
-	} else {
-		currentAnnotationArea->loadImage(pixmap);
 	}
 }
 
