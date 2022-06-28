@@ -38,6 +38,7 @@ AnnotationWidget::AnnotationWidget(Config *config) :
 
 AnnotationWidget::~AnnotationWidget()
 {
+    persistDockWidgets();
 	delete mSettingsAdapter;
 	delete mItemSettings;
 	delete mToolSelection;
@@ -76,8 +77,6 @@ void AnnotationWidget::initGui()
 	connect(mControlsWidget, &AnnotationControlsWidget::showRotate, this, &AnnotationWidget::activateRotate);
 	connect(mControlsWidget, &AnnotationControlsWidget::showModifyCanvas, this, &AnnotationWidget::activateModifyCanvas);
 	connect(mControlsWidget, &AnnotationControlsWidget::showCut, this, &AnnotationWidget::activateCut);
-
-	connect(qApp, &QCoreApplication::aboutToQuit, this, &AnnotationWidget::persistDockWidgets);
 }
 
 AnnotationDockWidget *AnnotationWidget::insertDockWidget(Qt::DockWidgetArea area, AbstractAnnotationDockWidgetContent *content)
