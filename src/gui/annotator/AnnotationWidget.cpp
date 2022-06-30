@@ -103,16 +103,24 @@ QImage AnnotationWidget::imageAt(int index) const
 void AnnotationWidget::loadImage(const QPixmap &pixmap)
 {
 	auto currentAnnotationArea = annotationArea();
-	if(currentAnnotationArea == nullptr) {
-		addTab(pixmap, QString(), QString());
+	auto currentIndex = mAnnotationTabWidget->currentIndex();
+
+	if (currentIndex <= 0 && currentAnnotationArea == nullptr) {
+		insertTab(0, pixmap, QString(), QString());
 	} else {
-		currentAnnotationArea->loadImage(pixmap);
+		removeTab(currentIndex);
+		addTab(pixmap, QString(), QString());
 	}
 }
 
 int AnnotationWidget::addTab(const QPixmap &pixmap, const QString &title, const QString &toolTip)
 {
 	return mAnnotationTabWidget->addTab(pixmap, title, toolTip);
+}
+
+int AnnotationWidget::insertTab(int index, const QPixmap &pixmap, const QString &title, const QString &toolTip)
+{
+	return mAnnotationTabWidget->insertTab(index, pixmap, title, toolTip);
 }
 
 void AnnotationWidget::updateTabInfo(int index, const QString &title, const QString &toolTip)

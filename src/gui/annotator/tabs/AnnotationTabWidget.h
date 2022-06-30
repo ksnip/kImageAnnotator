@@ -37,6 +37,7 @@ public:
 	AnnotationTabWidget(Config *config, AbstractSettingsProvider *settingsProvider);
 	~AnnotationTabWidget() override = default;
 	int addTab(const QPixmap &image, const QString &title, const QString &toolTip);
+	int insertTab(int index, const QPixmap &image, const QString &title, const QString &toolTip);
 	AnnotationArea* currentAnnotationArea() const;
 	AnnotationArea *annotationAreaAt(int index) const;
 	ZoomValueProvider* currentZoomValueProvider() const;

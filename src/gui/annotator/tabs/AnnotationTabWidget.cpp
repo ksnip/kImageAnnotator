@@ -59,6 +59,13 @@ int AnnotationTabWidget::addTab(const QPixmap &image, const QString &title, cons
 	return QTabWidget::addTab(content, title);
 }
 
+int AnnotationTabWidget::insertTab(int index, const QPixmap &image, const QString &title, const QString &toolTip)
+{
+	auto content = new AnnotationTabContent(image, mConfig, mSettingsProvider);
+
+	return QTabWidget::insertTab(index, content, title);
+}
+
 AnnotationArea* AnnotationTabWidget::currentAnnotationArea() const
 {
 	return currentWidget() != nullptr ? dynamic_cast<AnnotationTabContent*>(currentWidget())->annotationArea() : nullptr;
