@@ -53,19 +53,24 @@ AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvide
 
 int AnnotationTabWidget::addTab(const QPixmap &image, const QString &title, const QString &toolTip)
 {
-    Q_UNUSED(toolTip)
-
 	auto content = new AnnotationTabContent(image, mConfig, mSettingsProvider);
 	connect(content->annotationArea(), &AnnotationArea::imageChanged, this, &AnnotationTabWidget::imageChanged);
 
-	return QTabWidget::addTab(content, title);
+    auto newTabIndex = QTabWidget::addTab(content, title);
+    setTabToolTip(newTabIndex, toolTip);
+    
+    return newTabIndex;
 }
 
 int AnnotationTabWidget::insertTab(int index, const QPixmap &image, const QString &title, const QString &toolTip)
 {
 	auto content = new AnnotationTabContent(image, mConfig, mSettingsProvider);
+    connect(content->annotationArea(), &AnnotationArea::imageChanged, this, &AnnotationTabWidget::imageChanged);
 
-	return QTabWidget::insertTab(index, content, title);
+    auto newTabIndex = QTabWidget::insertTab(index, content, title);
+    setTabToolTip(newTabIndex, toolTip);
+
+    return newTabIndex;
 }
 
 AnnotationArea* AnnotationTabWidget::currentAnnotationArea() const
