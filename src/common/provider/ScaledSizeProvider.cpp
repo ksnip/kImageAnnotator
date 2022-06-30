@@ -31,16 +31,6 @@ QSize ScaledSizeProvider::scaledSize(const QSize &size)
 	return size * scaleFactor();
 }
 
-QSize ScaledSizeProvider::toolButtonIconSize()
-{
-	return scaledSize(Constants::ToolButtonIconSize);
-}
-
-QSize ScaledSizeProvider::settingsWidgetSize()
-{
-	return scaledSize(Constants::SettingsWidgetSize);
-}
-
 QSize ScaledSizeProvider::settingsWidgetIconSize()
 {
 	return scaledSize(Constants::SettingsWidgetIconSize);
@@ -65,13 +55,15 @@ qreal ScaledSizeProvider::scaleFactor()
 qreal ScaledSizeProvider::getScaleFactor()
 {
 #if defined(__linux__)
-	char env = getLinuxDesktopEnvironment();
-	if (env == 'g') {
+    DesktopEnvironmentChecker desktopEnvironmentChecker;
+	auto environment = desktopEnvironmentChecker.getDesktopEnvironment();
+
+	if (environment == DesktopEnvironmentType::Gnome) {
 		auto screen = QApplication::primaryScreen();
 		auto logicalDotsPerInch = (int) screen->logicalDotsPerInch();
 		auto physicalDotsPerInch = (int) screen->physicalDotsPerInch();
 		return (qreal)logicalDotsPerInch / (qreal)physicalDotsPerInch;
-	} else if (env == 'k') {
+	} else if (environment == DesktopEnvironmentType::Kde) {
 		auto screen = QApplication::primaryScreen();
 		return screen->devicePixelRatio();
 	}
@@ -79,20 +71,5 @@ qreal ScaledSizeProvider::getScaleFactor()
 
 	return 1;
 }
-
-#if defined(__linux__)
-char ScaledSizeProvider::getLinuxDesktopEnvironment()
-{
-	auto currentDesktop = QString(qgetenv("XDG_CURRENT_DESKTOP"));
-	if (currentDesktop.contains(QLatin1String("gnome"), Qt::CaseInsensitive)
-		|| currentDesktop.contains(QLatin1String("unity"), Qt::CaseInsensitive)) {
-		return 'g';
-	} else if (currentDesktop.contains(QLatin1String("kde"), Qt::CaseInsensitive)) {
-		return 'k';
-	} else {
-		return ' ';
-	}
-}
-#endif
 
 } // namespace kImageAnnotator

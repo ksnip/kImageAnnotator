@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(kImageAnnotator LANGUAGES CXX VERSION 0.6.0)
+project(kImageAnnotator LANGUAGES CXX VERSION 0.6.1)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -56,7 +56,7 @@ add_library(kImageAnnotator
 			${KIMAGEANNOTATOR_SRCS}
 			${CMAKE_CURRENT_SOURCE_DIR}/include/kImageAnnotator/KImageAnnotator.h
 			${CMAKE_CURRENT_SOURCE_DIR}/resources/kImageAnnotator_resources.qrc
-			)
+        src/common/helper/DesktopEnvironmentChecker.cpp src/common/helper/DesktopEnvironmentChecker.h src/common/enum/DesktopEnvironmentType.h)
 
 add_library(kImageAnnotator::kImageAnnotator ALIAS kImageAnnotator)
 
