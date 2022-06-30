@@ -169,4 +169,12 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/misc/AttachedSeparator.cpp
 	)
 
+
+
+if (UNIX AND NOT APPLE)
+	list(APPEND KIMAGEANNOTATOR_SRCS
+		${CMAKE_CURRENT_SOURCE_DIR}/common/helper/DesktopEnvironmentChecker.cpp
+		)
+endif ()
+
 set(KIMAGEANNOTATOR_SRCS ${KIMAGEANNOTATOR_SRCS} PARENT_SCOPE)

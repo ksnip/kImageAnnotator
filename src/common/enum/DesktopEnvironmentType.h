@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2022 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,39 +17,18 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
-#define KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
-
-#include <QSize>
-
-#if defined(__linux__)
-#include <QApplication>
-#include <QScreen>
-
-#include "src/common/helper/DesktopEnvironmentChecker.h"
-#endif
-
-#include "src/common/constants/Constants.h"
+#ifndef KIMAGEANNOTATOR_DESKTOPENVIRONMENTTYPE_H
+#define KIMAGEANNOTATOR_DESKTOPENVIRONMENTTYPE_H
 
 namespace kImageAnnotator {
 
-class ScaledSizeProvider
-{
-public:
-	static int scaledWidth(int width);
-	static QSize scaledSize(const QSize &size);
-	static QSize settingsWidgetIconSize();
-	static QSize menuItemIconSize();
-	static int resizeHandleSize();
-
-private:
-	static qreal scaleFactor();
-	static qreal getScaleFactor();
-
-	ScaledSizeProvider() = default;
-	~ScaledSizeProvider() = default;
-};
+    enum class DesktopEnvironmentType
+    {
+        Unknown,
+        Kde,
+        Gnome
+    };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_SCALEDSIZEPROVIDER_H
+#endif //KIMAGEANNOTATOR_DESKTOPENVIRONMENTTYPE_H
