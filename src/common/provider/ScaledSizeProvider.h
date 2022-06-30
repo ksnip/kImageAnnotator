@@ -47,7 +47,7 @@ private:
 	static qreal getScaleFactor();
 
 #if defined(__linux__)
-	static bool isGnomeEnvironment();
+	static char getLinuxDesktopEnvironment();
 #endif
 
 	ScaledSizeProvider() = default;

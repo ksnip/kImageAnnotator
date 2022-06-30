@@ -65,11 +65,15 @@ qreal ScaledSizeProvider::scaleFactor()
 qreal ScaledSizeProvider::getScaleFactor()
 {
 #if defined(__linux__)
-	if(isGnomeEnvironment()) {
+	char env = getLinuxDesktopEnvironment();
+	if (env == 'g') {
 		auto screen = QApplication::primaryScreen();
 		auto logicalDotsPerInch = (int) screen->logicalDotsPerInch();
 		auto physicalDotsPerInch = (int) screen->physicalDotsPerInch();
 		return (qreal)logicalDotsPerInch / (qreal)physicalDotsPerInch;
+	} else if (env == 'k') {
+		auto screen = QApplication::primaryScreen();
+		return screen->devicePixelRatio();
 	}
 #endif
 
@@ -77,11 +81,17 @@ qreal ScaledSizeProvider::getScaleFactor()
 }
 
 #if defined(__linux__)
-bool ScaledSizeProvider::isGnomeEnvironment()
+char ScaledSizeProvider::getLinuxDesktopEnvironment()
 {
 	auto currentDesktop = QString(qgetenv("XDG_CURRENT_DESKTOP"));
-	return currentDesktop.contains(QLatin1String("gnome"), Qt::CaseInsensitive)
-		|| currentDesktop.contains(QLatin1String("unity"), Qt::CaseInsensitive);
+	if (currentDesktop.contains(QLatin1String("gnome"), Qt::CaseInsensitive)
+		|| currentDesktop.contains(QLatin1String("unity"), Qt::CaseInsensitive)) {
+		return 'g';
+	} else if (currentDesktop.contains(QLatin1String("kde"), Qt::CaseInsensitive)) {
+		return 'k';
+	} else {
+		return ' ';
+	}
 }
 #endif
 
