@@ -25,8 +25,8 @@ AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvide
 	mConfig(config),
 	mTabBar(tabBar()),
 	mSettingsProvider(settingsProvider),
-	mRedoAction(new QAction(this)),
 	mUndoAction(new QAction(this)),
+	mRedoAction(new QAction(this)),
 	mTabContextMenu(new AnnotationTabContextMenu(this)),
 	mTabCloser(new AnnotationTabCloser(this)),
 	mTabClickFilter(new AnnotationTabClickEventFilter(mTabBar, this))
@@ -53,6 +53,8 @@ AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvide
 
 int AnnotationTabWidget::addTab(const QPixmap &image, const QString &title, const QString &toolTip)
 {
+    Q_UNUSED(toolTip)
+
 	auto content = new AnnotationTabContent(image, mConfig, mSettingsProvider);
 	connect(content->annotationArea(), &AnnotationArea::imageChanged, this, &AnnotationTabWidget::imageChanged);
 
