@@ -65,7 +65,8 @@ void AnnotationSticker::updateShape()
 
 void AnnotationSticker::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-	mSvgRenderer.render(painter, mRect->toRect());
+    auto boundingRect = mRect->toRect().normalized();
+    mSvgRenderer.render(painter, boundingRect);
 }
 
 void AnnotationSticker::updateRect()

@@ -3,6 +3,7 @@
 ## Release 0.6.1
 * Fixed: Fix for unnecessary scrollbars when a screenshot has a smaller size than the previous one. ([#303](https://github.com/ksnip/kImageAnnotator/issues/303))
 * Fixed: Add KDE support for scale factor. ([#302](https://github.com/ksnip/kImageAnnotator/issues/302))
+* Fixed: Sticker resizing is broken when bounding rect flipped. ([#306](https://github.com/ksnip/kImageAnnotator/issues/306))
 * Fixed: Show tab tooltips on initial tabs.
 
 ## Release 0.6.0
