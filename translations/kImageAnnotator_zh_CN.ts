@@ -226,12 +226,13 @@
     <name>kImageAnnotator::ModifyCanvasWidget</name>
     <message>
         <source>Restricted</source>
-        <translation type="unfinished"></translation>
+        <translation>受限</translation>
     </message>
     <message>
         <source>When enabled enforces the canvas
 to include the background image.</source>
-        <translation type="unfinished"></translation>
+        <translation>启用后强制画布
+ 包括背景图像。</translation>
     </message>
     <message>
         <source>X:</source>
@@ -286,7 +287,7 @@ to include the background image.</source>
     </message>
     <message>
         <source>Arbitrary</source>
-        <translation type="unfinished"></translation>
+        <translation>任意</translation>
     </message>
     <message>
         <source>Positive values rotate clockwise, negative values counter clockwise.
