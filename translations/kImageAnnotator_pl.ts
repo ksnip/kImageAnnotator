@@ -45,6 +45,13 @@
     </message>
 </context>
 <context>
+    <name>kImageAnnotator::AnnotationControlsWidget</name>
+    <message>
+        <source>Controls</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>kImageAnnotator::AnnotationGeneralSettings</name>
     <message>
         <source>General Settings</source>
@@ -87,6 +94,14 @@
     <message>
         <source>Item Settings</source>
         <translation>Ustawienia elementów</translation>
+    </message>
+    <message>
+        <source>Scale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opacity</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -131,6 +146,37 @@
     </message>
 </context>
 <context>
+    <name>kImageAnnotator::Controls</name>
+    <message>
+        <source>Undo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Redo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Crop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rotate</source>
+        <translation type="unfinished">Obróć</translation>
+    </message>
+    <message>
+        <source>Modify canvas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cut</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>kImageAnnotator::CropWidget</name>
     <message>
         <source>Cancel</source>
@@ -155,6 +201,25 @@
     <message>
         <source>Apply</source>
         <translation>Zastosuj</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::CutWidget</name>
+    <message>
+        <source>Vertical</source>
+        <translation type="unfinished">Pionowo</translation>
+    </message>
+    <message>
+        <source>Horizontal</source>
+        <translation type="unfinished">Poziomo</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished">Zastosuj</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Anuluj</translation>
     </message>
 </context>
 <context>
@@ -458,6 +523,18 @@ Obracanie przez mnożniki inne niż 90° może spowodować utratę jakości.</tr
     <message>
         <source>Reset Zoom (%1)</source>
         <translation>Resetuj powiększenie (%1)</translation>
+    </message>
+    <message>
+        <source>Reset Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit image to view (%1)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

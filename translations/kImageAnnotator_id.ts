@@ -45,6 +45,13 @@
     </message>
 </context>
 <context>
+    <name>kImageAnnotator::AnnotationControlsWidget</name>
+    <message>
+        <source>Controls</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>kImageAnnotator::AnnotationGeneralSettings</name>
     <message>
         <source>General Settings</source>
@@ -87,6 +94,14 @@
     <message>
         <source>Item Settings</source>
         <translation>Pengaturan item</translation>
+    </message>
+    <message>
+        <source>Scale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opacity</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -131,6 +146,37 @@
     </message>
 </context>
 <context>
+    <name>kImageAnnotator::Controls</name>
+    <message>
+        <source>Undo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Redo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Crop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rotate</source>
+        <translation type="unfinished">Putar</translation>
+    </message>
+    <message>
+        <source>Modify canvas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cut</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>kImageAnnotator::CropWidget</name>
     <message>
         <source>Cancel</source>
@@ -155,6 +201,25 @@
     <message>
         <source>Apply</source>
         <translation>Terapkan</translation>
+    </message>
+</context>
+<context>
+    <name>kImageAnnotator::CutWidget</name>
+    <message>
+        <source>Vertical</source>
+        <translation type="unfinished">Vertikal</translation>
+    </message>
+    <message>
+        <source>Horizontal</source>
+        <translation type="unfinished">Horisontal</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished">Terapkan</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Batal</translation>
     </message>
 </context>
 <context>
@@ -458,6 +523,18 @@ Memutar dengan pengganda non 90° mungkin mengurangi kualitasnya.</translation>
     <message>
         <source>Reset Zoom (%1)</source>
         <translation>Setel Ulang Zoom (%1)</translation>
+    </message>
+    <message>
+        <source>Reset Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit image to view (%1)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
