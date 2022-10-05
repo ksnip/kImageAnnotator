@@ -165,7 +165,7 @@
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished">旋转</translation>
+        <translation>旋转</translation>
     </message>
     <message>
         <source>Modify canvas</source>
@@ -207,19 +207,19 @@
     <name>kImageAnnotator::CutWidget</name>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished">垂直</translation>
+        <translation>垂直</translation>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished">水平</translation>
+        <translation>水平</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">应用</translation>
+        <translation>应用</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
 </context>
 <context>
