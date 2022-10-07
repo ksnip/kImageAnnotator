@@ -48,7 +48,7 @@
     <name>kImageAnnotator::AnnotationControlsWidget</name>
     <message>
         <source>Controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Controls</translation>
     </message>
 </context>
 <context>
@@ -97,11 +97,11 @@
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Escala</translation>
     </message>
     <message>
         <source>Opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Opacitat</translation>
     </message>
 </context>
 <context>
@@ -149,31 +149,31 @@
     <name>kImageAnnotator::Controls</name>
     <message>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Desfés</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Refés</translation>
     </message>
     <message>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Escapça</translation>
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Escala</translation>
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished">Gira</translation>
+        <translation>Gira</translation>
     </message>
     <message>
         <source>Modify canvas</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifica el llenç</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallar</translation>
     </message>
 </context>
 <context>
@@ -207,19 +207,19 @@
     <name>kImageAnnotator::CutWidget</name>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished">Vertical</translation>
+        <translation>Vertical</translation>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished">Horitzontal</translation>
+        <translation>Horitzontal</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">Aplica</translation>
+        <translation>Aplica</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Cancel·la</translation>
+        <translation>Cancel·la</translation>
     </message>
 </context>
 <context>
@@ -526,15 +526,15 @@ Els girs que no són múltiples de 90° poden presentar pèrdues de qualitat.</t
     </message>
     <message>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Reinicia el zoom</translation>
     </message>
     <message>
         <source>Fit Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajusta la imatge</translation>
     </message>
     <message>
         <source>Fit image to view (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajusta la imatge a la vista (%1)</translation>
     </message>
 </context>
 </TS>
