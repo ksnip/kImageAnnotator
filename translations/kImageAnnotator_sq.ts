@@ -48,7 +48,7 @@
     <name>kImageAnnotator::AnnotationControlsWidget</name>
     <message>
         <source>Controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrolle</translation>
     </message>
 </context>
 <context>
@@ -101,7 +101,7 @@
     </message>
     <message>
         <source>Opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Patejdukshmëri</translation>
     </message>
 </context>
 <context>
@@ -149,31 +149,31 @@
     <name>kImageAnnotator::Controls</name>
     <message>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Zhbëje</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Ribëje</translation>
     </message>
     <message>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Qethe</translation>
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripërmasojeni</translation>
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished">Rrotulloje</translation>
+        <translation>Rrotulloje</translation>
     </message>
     <message>
         <source>Modify canvas</source>
-        <translation type="unfinished"></translation>
+        <translation>Ndryshoni kanavacën</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Prije</translation>
     </message>
 </context>
 <context>
@@ -207,19 +207,19 @@
     <name>kImageAnnotator::CutWidget</name>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished">Vertikal</translation>
+        <translation>Vertika</translation>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished">Horizontal</translation>
+        <translation>Horizontal</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">Aplikoje</translation>
+        <translation>Aplikoje</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Anuloje</translation>
+        <translation>Anuloje</translation>
     </message>
 </context>
 <context>
