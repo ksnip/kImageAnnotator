@@ -48,7 +48,7 @@
     <name>kImageAnnotator::AnnotationControlsWidget</name>
     <message>
         <source>Controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Controles</translation>
     </message>
 </context>
 <context>
@@ -97,11 +97,11 @@
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Escala</translation>
     </message>
     <message>
         <source>Opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Opacidade</translation>
     </message>
 </context>
 <context>
@@ -149,31 +149,31 @@
     <name>kImageAnnotator::Controls</name>
     <message>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Desfazer</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Refazer</translation>
     </message>
     <message>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Recortar</translation>
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Escala</translation>
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished">Rotacionar</translation>
+        <translation>Rotacionar</translation>
     </message>
     <message>
         <source>Modify canvas</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificar tela</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Cortar</translation>
     </message>
 </context>
 <context>
@@ -207,19 +207,19 @@
     <name>kImageAnnotator::CutWidget</name>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished">Vertical</translation>
+        <translation>Vertical</translation>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished">Horizontal</translation>
+        <translation>Horizontal</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">Aplicar</translation>
+        <translation>Aplicar</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
 </context>
 <context>
@@ -526,15 +526,15 @@ Rotacionar por multiplicadores diferentes de 90° pode causar perda de qualidade
     </message>
     <message>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Redefinir zoom</translation>
     </message>
     <message>
         <source>Fit Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustar a imagem</translation>
     </message>
     <message>
         <source>Fit image to view (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustar imagem para visualização (%1)</translation>
     </message>
 </context>
 </TS>
