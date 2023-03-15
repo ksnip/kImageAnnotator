@@ -21,10 +21,10 @@
 
 namespace kImageAnnotator {
 
-AnnotationTabContent::AnnotationTabContent(const QPixmap &pixmap, Config *config, AbstractSettingsProvider *settingsProvider) :
+AnnotationTabContent::AnnotationTabContent(const QPixmap &pixmap, Config *config, AbstractSettingsProvider *settingsProvider, AnnotationItemClipboard *itemClipboard) :
 	mAnnotationView(new AnnotationView(this)),
 	mZoomValueProvider(mAnnotationView->zoomValueProvider()),
-	mAnnotationArea(new AnnotationArea(config, settingsProvider, new DevicePixelRatioScaler, mZoomValueProvider, this)),
+	mAnnotationArea(new AnnotationArea(config, settingsProvider, new DevicePixelRatioScaler, mZoomValueProvider, itemClipboard, this)),
 	mMainLayout(new QHBoxLayout(this)),
 	mSettingsProvider(settingsProvider)
 {

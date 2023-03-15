@@ -43,7 +43,7 @@ void PasteCommandTest::TestRedo_Should_AddPastedItemsToAnnotationAreaAtGivenPosi
 	MockDefaultParameters mockParameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
 	AnnotationPropertiesFactory propertiesFactory(&mockParameters.config, &mockParameters.settingsProvider);
-	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, scalerMock, &mockParameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, scalerMock, &mockParameters.zoomValueProvider, nullptr, nullptr);
 	AnnotationItemFactory itemFactory(&propertiesFactory, &mockParameters.settingsProvider, &mockParameters.config);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
@@ -71,7 +71,7 @@ void PasteCommandTest::TestUndo_Should_RemovePastedItemsFromAnnotationArea()
 	MockDefaultParameters mockParameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
 	AnnotationPropertiesFactory propertiesFactory(&mockParameters.config, &mockParameters.settingsProvider);
-	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, scalerMock, &mockParameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&mockParameters.config, &mockParameters.settingsProvider, scalerMock, &mockParameters.zoomValueProvider, nullptr, nullptr);
 	AnnotationItemFactory itemFactory(&propertiesFactory, &mockParameters.settingsProvider, &mockParameters.config);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);

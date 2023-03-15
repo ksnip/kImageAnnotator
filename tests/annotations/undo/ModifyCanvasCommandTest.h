@@ -33,6 +33,7 @@
 using kImageAnnotator::ModifyCanvasCommand;
 using kImageAnnotator::AnnotationArea;
 using kImageAnnotator::PropertiesPtr;
+using kImageAnnotator::AnnotationItemClipboard;
 
 class ModifyCanvasCommandTest : public QObject
 {

@@ -69,6 +69,7 @@ private:
 	AnnotationTabContextMenu *mTabContextMenu;
 	AnnotationTabCloser *mTabCloser;
 	AnnotationTabClickEventFilter *mTabClickFilter;
+	AnnotationItemClipboard *mItemClipboard;
 
 private slots:
 	void updateCurrentWidget(int index);

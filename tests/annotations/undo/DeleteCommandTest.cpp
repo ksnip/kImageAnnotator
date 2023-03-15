@@ -26,7 +26,7 @@ void DeleteCommandTest::TestRedo_Should_ApplyOperation()
 	// arrange
 	MockDefaultParameters p;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr, nullptr);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	AnnotationLine item(line.p1(), properties);
@@ -48,7 +48,7 @@ void DeleteCommandTest::TestUndo_Should_UndoOperation()
 	// arrange
 	MockDefaultParameters p;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr, nullptr);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 1));
 	QLineF line(10, 10, 20, 20);
 	AnnotationLine item(line.p1(), properties);

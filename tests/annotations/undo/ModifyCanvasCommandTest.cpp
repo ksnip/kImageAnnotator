@@ -23,7 +23,8 @@ void ModifyCanvasCommandTest::Redo_Should_ModifyCanvasSizeAndColor_When_SizeAndC
 {
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	auto itemClipboard = new AnnotationItemClipboard;
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, itemClipboard, nullptr);
 	QPixmap image(400, 400);
 	annotationArea.loadImage(image);
 	QRectF newCanvasRect(100, 100, 200, 200);
@@ -41,7 +42,8 @@ void ModifyCanvasCommandTest::Redo_Should_OnlyModifyCanvasColor_When_OnlyColorCh
 {
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	auto itemClipboard = new AnnotationItemClipboard;
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, itemClipboard, nullptr);
 	QPixmap image(400, 400);
 	annotationArea.loadImage(image);
 	QColor newCanvasColor(Qt::red);
@@ -59,7 +61,8 @@ void ModifyCanvasCommandTest::Undo_Should_RevertCanvasSizeAndColor_When_SizeAndC
 {
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	auto itemClipboard = new AnnotationItemClipboard;
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, itemClipboard, nullptr);
 	QPixmap image(400, 400);
 	annotationArea.loadImage(image);
 	auto originalCanvasRect = annotationArea.canvasRect();
@@ -83,7 +86,8 @@ void ModifyCanvasCommandTest::Undo_Should_RevertOnlyColor_When_OnlyColorChanged(
 {
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	auto itemClipboard = new AnnotationItemClipboard;
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, itemClipboard, nullptr);
 	QPixmap image(400, 400);
 	annotationArea.loadImage(image);
 	QColor newCanvasColor(Qt::red);

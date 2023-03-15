@@ -29,7 +29,8 @@ AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvide
 	mRedoAction(new QAction(this)),
 	mTabContextMenu(new AnnotationTabContextMenu(this)),
 	mTabCloser(new AnnotationTabCloser(this)),
-	mTabClickFilter(new AnnotationTabClickEventFilter(mTabBar, this))
+	mTabClickFilter(new AnnotationTabClickEventFilter(mTabBar, this)),
+	mItemClipboard(new AnnotationItemClipboard())
 {
 	setTabBarAutoHide(true);
 	setMovable(true);
@@ -53,7 +54,7 @@ AnnotationTabWidget::AnnotationTabWidget(Config *config, AbstractSettingsProvide
 
 int AnnotationTabWidget::addTab(const QPixmap &image, const QString &title, const QString &toolTip)
 {
-	auto content = new AnnotationTabContent(image, mConfig, mSettingsProvider);
+	auto content = new AnnotationTabContent(image, mConfig, mSettingsProvider, mItemClipboard);
 	connect(content->annotationArea(), &AnnotationArea::imageChanged, this, &AnnotationTabWidget::imageChanged);
 
     auto newTabIndex = QTabWidget::addTab(content, title);
@@ -64,7 +65,7 @@ int AnnotationTabWidget::addTab(const QPixmap &image, const QString &title, cons
 
 int AnnotationTabWidget::insertTab(int index, const QPixmap &image, const QString &title, const QString &toolTip)
 {
-	auto content = new AnnotationTabContent(image, mConfig, mSettingsProvider);
+	auto content = new AnnotationTabContent(image, mConfig, mSettingsProvider, mItemClipboard);
     connect(content->annotationArea(), &AnnotationArea::imageChanged, this, &AnnotationTabWidget::imageChanged);
 
     auto newTabIndex = QTabWidget::insertTab(index, content, title);

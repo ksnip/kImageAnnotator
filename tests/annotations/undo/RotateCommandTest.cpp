@@ -32,7 +32,7 @@ void RotateCommandTest::Redo_Should_RotatePixmapByProvidedAngel()
 
 	MockDefaultParameters defaultParameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&defaultParameters.config, &defaultParameters.settingsProvider, scalerMock, &defaultParameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&defaultParameters.config, &defaultParameters.settingsProvider, scalerMock, &defaultParameters.zoomValueProvider, nullptr, nullptr);
 	RotateCommand rotateCommand(&image, angel, &annotationArea);
 
 	// act
@@ -55,7 +55,7 @@ void RotateCommandTest::Redo_Should_TrimPixmapAndRemoveTransparentPart_WhenRotat
 
 	MockDefaultParameters defaultParameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&defaultParameters.config, &defaultParameters.settingsProvider, scalerMock, &defaultParameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&defaultParameters.config, &defaultParameters.settingsProvider, scalerMock, &defaultParameters.zoomValueProvider, nullptr, nullptr);
 	RotateCommand rotate1Command(&image, angel, &annotationArea);
 	rotate1Command.redo();
 	RotateCommand rotate2Command(&image, angel, &annotationArea);
@@ -78,7 +78,7 @@ void RotateCommandTest::Undo_Should_RevertBackToInitialImage()
 
 	MockDefaultParameters defaultParameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&defaultParameters.config, &defaultParameters.settingsProvider, scalerMock, &defaultParameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&defaultParameters.config, &defaultParameters.settingsProvider, scalerMock, &defaultParameters.zoomValueProvider, nullptr, nullptr);
 	RotateCommand rotateCommand(&image, angel, &annotationArea);
 	rotateCommand.redo();
 	QVERIFY(image.pixmap().toImage() != pixmap.toImage());

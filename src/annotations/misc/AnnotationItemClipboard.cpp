@@ -21,22 +21,21 @@
 
 namespace kImageAnnotator {
 
-AnnotationItemClipboard::AnnotationItemClipboard(const AnnotationItemModifier *itemModifier)
-{
-	Q_ASSERT(itemModifier != nullptr);
-
-	mItemModifier = itemModifier;
-}
-
 bool AnnotationItemClipboard::isEmpty() const
 {
 	return mCopiedItemsToOffset.count() == 0;
 }
 
-void AnnotationItemClipboard::copyItems(const QPointF &position)
+bool AnnotationItemClipboard::isNotEmpty() const
+{
+	return !isEmpty();
+}
+
+void AnnotationItemClipboard::copyItems(const QPointF &position, const AnnotationItemModifier *itemModifier)
 {
 	clear();
-	for (auto item : mItemModifier->selectedItems()) {
+
+	for (auto item : itemModifier->selectedItems()) {
 		mCopiedItemsToOffset[item] = item->position() - position;
 	}
 }

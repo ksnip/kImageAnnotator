@@ -34,6 +34,7 @@ using kImageAnnotator::AnnotationProperties;
 using kImageAnnotator::Config;
 using kImageAnnotator::PropertiesPtr;
 using kImageAnnotator::ResizeHandle;
+using kImageAnnotator::AnnotationItemClipboard;
 
 class AnnotationAreaTest : public QObject
 {

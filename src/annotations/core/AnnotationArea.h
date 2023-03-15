@@ -59,7 +59,12 @@ class AnnotationArea : public QGraphicsScene, public ISettingsListener
 {
     Q_OBJECT
 public:
-    explicit AnnotationArea(Config *config, AbstractSettingsProvider *settingsProvider, IDevicePixelRatioScaler *devicePixelRatioScaler, ZoomValueProvider *zoomValueProvider, QWidget *parent);
+    explicit AnnotationArea(
+			Config *config,
+			AbstractSettingsProvider *settingsProvider,
+			IDevicePixelRatioScaler *devicePixelRatioScaler,
+			ZoomValueProvider *zoomValueProvider,
+			AnnotationItemClipboard *itemClipboard, QWidget *parent);
     ~AnnotationArea() override;
     virtual void loadImage(const QPixmap &image);
     virtual void insertImageItem(const QPointF &position, const QPixmap &image);
@@ -112,7 +117,7 @@ private:
     QList<AbstractAnnotationItem*> *mItems;
     KeyHelper *mKeyHelper;
     UndoStack *mUndoStack;
-	AnnotationItemClipboard *mItemCopier;
+	AnnotationItemClipboard *mItemClipboard;
 	QAction *mUndoAction;
 	QAction *mRedoAction;
 	IDevicePixelRatioScaler *mDevicePixelRatioScaler;

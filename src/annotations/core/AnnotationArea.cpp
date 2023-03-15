@@ -26,6 +26,7 @@ AnnotationArea::AnnotationArea(
 		AbstractSettingsProvider *settingsProvider,
 		IDevicePixelRatioScaler *devicePixelRatioScaler,
 		ZoomValueProvider *zoomValueProvider,
+		AnnotationItemClipboard *itemClipboard,
 		QWidget *parent) :
 	QGraphicsScene(parent),
 	mUndoStack(new UndoStack),
@@ -40,7 +41,7 @@ AnnotationArea::AnnotationArea(
 	mPropertiesFactory(new AnnotationPropertiesFactory(config, mSettingsProvider)),
 	mItemFactory(new AnnotationItemFactory(mPropertiesFactory, mSettingsProvider, mConfig)),
 	mItems(new QList<AbstractAnnotationItem *>()),
-	mItemCopier(new AnnotationItemClipboard(mItemModifier)),
+	mItemClipboard(itemClipboard),
 	mDevicePixelRatioScaler(devicePixelRatioScaler),
 	mCanvasColor(config->canvasColor())
 {
@@ -72,7 +73,7 @@ AnnotationArea::~AnnotationArea()
 	delete mKeyHelper;
 	delete mUndoStack;
 	delete mItemModifier;
-	delete mItemCopier;
+	delete mItemClipboard;
 	delete mDevicePixelRatioScaler;
 }
 
@@ -358,7 +359,7 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 	AnnotationContextMenu contextMenu;
 	auto isMenuOverItem = !selectedItems.isEmpty();
 	contextMenu.setOverItem(isMenuOverItem);
-	contextMenu.setPastEnabled(!mItemCopier->isEmpty());
+	contextMenu.setPastEnabled(mItemClipboard->isNotEmpty());
 	contextMenu.setEditVisible(selectedEditableItem() != nullptr);
 	AnnotationItemArranger itemArranger(selectedItems, mItems);
 	connect(&itemArranger, &AnnotationItemArranger::newCommand, mUndoStack, &UndoStack::push);
@@ -366,7 +367,7 @@ void AnnotationArea::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 	connect(&contextMenu, &AnnotationContextMenu::bringForward, &itemArranger, &AnnotationItemArranger::bringForward);
 	connect(&contextMenu, &AnnotationContextMenu::sendBackward, &itemArranger, &AnnotationItemArranger::sendBackward);
 	connect(&contextMenu, &AnnotationContextMenu::sendToBack, &itemArranger, &AnnotationItemArranger::sendToBack);
-	connect(&contextMenu, &AnnotationContextMenu::copy, mItemCopier, &AnnotationItemClipboard::copyItems);
+	connect(&contextMenu, &AnnotationContextMenu::copy, [this](const QPointF &position) { mItemClipboard->copyItems(position, mItemModifier); } );
 	connect(&contextMenu, &AnnotationContextMenu::paste, this, &AnnotationArea::pasteCopiedItems);
 	connect(&contextMenu, &AnnotationContextMenu::erase, this, &AnnotationArea::deleteSelectedItems);
 	connect(&contextMenu, &AnnotationContextMenu::edit, this, &AnnotationArea::enableEditing);
@@ -406,7 +407,7 @@ void AnnotationArea::resetAnnotationArea()
 {
 	removeAllItems();
 	mItemModifier->clear();
-	mItemCopier->clear();
+	mItemClipboard->clear();
 	mUndoStack->clear();
 	mItemFactory->reset();
 	mKeyHelper->reset();
@@ -431,7 +432,7 @@ void AnnotationArea::deleteSelectedItems()
 
 void AnnotationArea::pasteCopiedItems(const QPointF &position)
 {
-	auto copiedItems = mItemCopier->copiedItemsWithOffset();
+	auto copiedItems = mItemClipboard->copiedItemsWithOffset();
 	mUndoStack->push(new PasteCommand(copiedItems, position, mItemFactory, this));
 }
 

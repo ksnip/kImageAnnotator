@@ -32,17 +32,17 @@ class AnnotationItemClipboard : public QObject
 Q_OBJECT
 
 public:
-	explicit AnnotationItemClipboard(const AnnotationItemModifier *itemModifier);
+	explicit AnnotationItemClipboard() = default;
 	~AnnotationItemClipboard() override = default;
 	bool isEmpty() const;
+	bool isNotEmpty() const;
 	QHash<AbstractAnnotationItem *, QPointF> copiedItemsWithOffset() const;
 
 public slots:
-	void copyItems(const QPointF &position);
+	void copyItems(const QPointF &position, const AnnotationItemModifier *itemModifier);
 	void clear();
 
 private:
-	const AnnotationItemModifier *mItemModifier;
 	QHash<AbstractAnnotationItem *, QPointF> mCopiedItemsToOffset;
 };
 

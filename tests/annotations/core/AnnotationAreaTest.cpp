@@ -25,7 +25,8 @@ void AnnotationAreaTest::ExportAsImage_Should_ExportImage_When_ImageSet()
 	pixmap.fill(QColor(Qt::green));
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	auto itemClipboard = new AnnotationItemClipboard;
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, itemClipboard,nullptr);
 	annotationArea.loadImage(pixmap);
 
 	auto resultImage = annotationArea.image();
@@ -38,7 +39,8 @@ void AnnotationAreaTest::ExportAsImage_Should_ExportEmptyImage_When_NoImageSet()
 {
 	MockDefaultParameters p;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr);
+	auto itemClipboard = new AnnotationItemClipboard;
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, itemClipboard, nullptr);
 
 	auto resultImage = annotationArea.image();
 
@@ -53,7 +55,8 @@ void AnnotationAreaTest::ExportAsImage_Should_ExportScaledImage_When_ScalingEnab
 	MockDefaultParameters p;
 	auto scalerMock = new MockDevicePixelRatioScaler();
 	scalerMock->setScaleFactor(scaleFactor);
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr);
+	auto itemClipboard = new AnnotationItemClipboard;
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, itemClipboard, nullptr);
 	annotationArea.loadImage(pixmap);
 
 	auto resultImage = annotationArea.image();
@@ -72,7 +75,7 @@ void AnnotationAreaTest::AddAnnotationItem_Should_AddAnnotationItemToScene()
 	lineItem->addPoint(p2, false);
 	MockDefaultParameters p;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr, nullptr);
 
 	annotationArea.addAnnotationItem(lineItem);
 
@@ -88,7 +91,7 @@ void AnnotationAreaTest::RemoveAnnotationItem_Should_RemoveAnnotationItemFromSce
 	lineItem->addPoint(p2, false);
 	MockDefaultParameters p;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&p.config, &p.settingsProvider, scalerMock, &p.zoomValueProvider, nullptr, nullptr);
 	annotationArea.addAnnotationItem(lineItem);
 	QCOMPARE(annotationArea.items().contains(lineItem), true);
 
@@ -104,7 +107,8 @@ void AnnotationAreaTest::CanvasRect_Should_ReturnRectUnionOfAllItems_When_NoCanv
 	pixmap.fill(QColor(Qt::green));
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	auto itemClipboard = new AnnotationItemClipboard;
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, itemClipboard, nullptr);
 	annotationArea.loadImage(pixmap);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);
@@ -126,7 +130,8 @@ void AnnotationAreaTest::CanvasRect_Should_ReturnUserDefinedRect_When_CanvasRect
 	pixmap.fill(QColor(Qt::green));
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	auto itemClipboard = new AnnotationItemClipboard;
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, itemClipboard, nullptr);
 	annotationArea.loadImage(pixmap);
 	auto properties = PropertiesPtr(new AnnotationProperties(Qt::red, 2));
 	QPointF p1(10, 10);

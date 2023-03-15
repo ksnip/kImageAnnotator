@@ -29,7 +29,7 @@ void SelectionHandlerTest::SetWidth_Should_EmitSelectionChangedSignal()
 
 	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
 
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &SelectionHandler::selectionChanged);
@@ -51,7 +51,7 @@ void SelectionHandlerTest::SetHeight_Should_EmitSelectionChangedSignal()
 
 	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
 
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &SelectionHandler::selectionChanged);
@@ -73,7 +73,7 @@ void SelectionHandlerTest::SetPositionX_Should_EmitSelectionChangedSignal()
 
 	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
 
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &SelectionHandler::selectionChanged);
@@ -95,7 +95,7 @@ void SelectionHandlerTest::SetPositionY_Should_EmitSelectionChangedSignal()
 
 	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
 
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	QSignalSpy spy(&selectionHandler, &SelectionHandler::selectionChanged);
@@ -117,7 +117,7 @@ void SelectionHandlerTest::ResetSelection_Should_SetSelectionToProvidedRect()
 
 	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
 
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	annotationArea.setSceneRect(sceneRect);
 	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
@@ -144,7 +144,7 @@ void SelectionHandlerTest::IsInMotion_Should_ReturnTrue_WhenClickedOnSelection()
 	EXPECT_CALL(*selectionHandles, grabHandle(testing::_, testing::_)).Times(testing::AnyNumber());
 	EXPECT_CALL(*selectionHandles, isHandleGrabbed()).WillRepeatedly(testing::Return(false));
 
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(150, 150);
 	annotationArea.setSceneRect(sceneRect);
@@ -172,7 +172,7 @@ void SelectionHandlerTest::IsInMotion_Should_ReturnTrue_WhenClickedOnHandle()
 	EXPECT_CALL(*selectionHandles, isHandleGrabbed()).WillRepeatedly(testing::Return(true));
 	EXPECT_CALL(*selectionHandles, grabHandle(testing::_, testing::_)).Times(testing::AnyNumber());
 
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(2, 2);
 	annotationArea.setSceneRect(sceneRect);
@@ -199,7 +199,7 @@ void SelectionHandlerTest::IsInMotion_Should_ReturnFalse_WhenClickedOutsideSelec
 	EXPECT_CALL(*selectionHandles, grabHandle(testing::_, testing::_)).Times(testing::AnyNumber());
 	EXPECT_CALL(*selectionHandles, isHandleGrabbed()).WillRepeatedly(testing::Return(false));
 
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	auto sceneRect = QRectF(0, 0, 500, 500);
 	auto position = QPointF(400, 400);
 	annotationArea.setSceneRect(sceneRect);
@@ -225,7 +225,7 @@ void SelectionHandlerTest::RestrictResize_Should_KeepCurrentSelection_When_NewSe
 
 	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
 
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	selectionHandler.setRestrictionEnabled(false);
@@ -250,7 +250,7 @@ void SelectionHandlerTest::RestrictResize_Should_KeepCurrentSelection_When_NewSe
 
 	EXPECT_CALL(*selectionHandles, updateHandles(testing::_)).Times(testing::AnyNumber());
 
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	SelectionHandler selectionHandler(selectionRestrictor, selectionHandles);
 	selectionHandler.init(&annotationArea);
 	selectionHandler.setRestrictionEnabled(false);

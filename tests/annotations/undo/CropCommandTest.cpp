@@ -24,7 +24,7 @@ void CropCommandTest::TestRedo_Should_CropImageAndScene()
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -43,7 +43,7 @@ void CropCommandTest::TestRedo_Should_MoveItemToNewPosition()
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -67,7 +67,7 @@ void CropCommandTest::TestUndo_Should_RestoreOriginalImageAndSceneSize()
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);
@@ -87,7 +87,7 @@ void CropCommandTest::TestUndo_Should_MoveItemBackToPreviousPosition()
 	// arrange
 	MockDefaultParameters parameters;
 	auto scalerMock = new MockDevicePixelRatioScaler();
-	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr);
+	AnnotationArea annotationArea(&parameters.config, &parameters.settingsProvider, scalerMock, &parameters.zoomValueProvider, nullptr, nullptr);
 	QPixmap image(400, 400);
 	QGraphicsPixmapItem graphicsPixmapItem(image);
 	QRectF cropRect(100, 100, 200, 200);

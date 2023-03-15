@@ -32,9 +32,9 @@ void AnnotationItemClipboardTest::TestCopyItems_Should_StoreSelectedItems()
 	MockZoomValueProvider zoomValueProvider;
 	AnnotationItemModifier modifier(&zoomValueProvider);
 	modifier.handleSelectionAt(position, &items, false);
-	AnnotationItemClipboard clipboard(&modifier);
+	AnnotationItemClipboard clipboard;
 
-	clipboard.copyItems(QPointF());
+	clipboard.copyItems(QPointF(), &modifier);
 
 	QCOMPARE(clipboard.copiedItemsWithOffset().count(), 1);
 	QCOMPARE(clipboard.copiedItemsWithOffset().keys().first(), &rect);
@@ -51,9 +51,9 @@ void AnnotationItemClipboardTest::TestCopyItems_Should_SetCorrectOffset()
 	MockZoomValueProvider zoomValueProvider;
 	AnnotationItemModifier modifier(&zoomValueProvider);
 	modifier.handleSelectionAt(position, &items, false);
-	AnnotationItemClipboard clipboard(&modifier);
+	AnnotationItemClipboard clipboard;
 
-	clipboard.copyItems(QPointF(20, 20));
+	clipboard.copyItems(QPointF(20, 20), &modifier);
 
 	QCOMPARE(clipboard.copiedItemsWithOffset()[&rect], QPointF(-20, -20));
 }

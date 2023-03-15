@@ -35,7 +35,7 @@ class AnnotationTabContent : public QWidget
 {
 	Q_OBJECT
 public:
-	AnnotationTabContent(const QPixmap &pixmap, Config *config, AbstractSettingsProvider *settingsProvider);
+	AnnotationTabContent(const QPixmap &pixmap, Config *config, AbstractSettingsProvider *settingsProvider, AnnotationItemClipboard *itemClipboard);
 	~AnnotationTabContent() override = default;
 	AnnotationArea* annotationArea() const;
 	ZoomValueProvider* zoomValueProvider() const;
