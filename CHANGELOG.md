@@ -1,5 +1,7 @@
 # Change log
 
+## Release 0.7.0
+
 ## Release 0.6.1
 * Fixed: Fix for unnecessary scrollbars when a screenshot has a smaller size than the previous one. ([#303](https://github.com/ksnip/kImageAnnotator/issues/303))
 * Fixed: Add KDE support for scale factor. ([#302](https://github.com/ksnip/kImageAnnotator/issues/302))
