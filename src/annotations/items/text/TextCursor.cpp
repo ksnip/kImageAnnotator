@@ -21,61 +21,24 @@
 
 namespace kImageAnnotator {
 
-TextCursor::TextCursor() :
-	mBlinkTimer(new QTimer(this)),
-	mLineFeedChar(QChar::LineFeed)
+TextCursor::TextCursor(QTextDocument *document) :
+	mInnerTextCursor(new QTextCursor(document)),
+	mBlinkTimer(new QTimer(this))
 {
 	connectSlots();
 }
 
 TextCursor::TextCursor(const TextCursor &other) :
-	mBlinkTimer(new QTimer(this)),
-	mPosition(other.mPosition),
-	mLineFeedChar(QChar::LineFeed)
+	mInnerTextCursor(new QTextCursor(*other.mInnerTextCursor)),
+	mBlinkTimer(new QTimer(this))
 {
 	connectSlots();
 }
 
 TextCursor::~TextCursor()
 {
+	delete mInnerTextCursor;
     delete mBlinkTimer;
-}
-
-void TextCursor::move(TextPositions direction, const QString &text)
-{
-    switch (direction) {
-        case TextPositions::Beginning:
-            moveCursorToBeginning();
-            break;
-        case TextPositions::End:
-            moveCursorToEnd(text);
-            break;
-        case TextPositions::NextWordBeginning:
-            moveCursorToNextWordBeginning(text);
-            break;
-        case TextPositions::Next:
-            moveCursorForwardBy(text, 1);
-            break;
-        case TextPositions::PreviousWordBeginning:
-            moveCursorToPreviousWordBeginning(text);
-            break;
-        case TextPositions::Previous:
-            moveCursorBack(text);
-            break;
-        case TextPositions::Up:
-            moveCursorUp(text);
-            break;
-        case TextPositions::Down:
-            moveCursorDown(text);
-            break;
-    }
-    mIsVisible = true;
-}
-
-void TextCursor::moveForwardBy(const QString &text, int moveBy)
-{
-	moveCursorForwardBy(text, moveBy);
-	mIsVisible = true;
 }
 
 void TextCursor::start()
@@ -92,12 +55,13 @@ void TextCursor::stop()
 
 int TextCursor::position() const
 {
-    return mPosition;
+    return mInnerTextCursor->position();
 }
 
 void TextCursor::setPosition(int newPosition)
 {
-    mPosition = newPosition;
+    mInnerTextCursor->setPosition(newPosition);
+	mIsVisible = true;
 }
 
 bool TextCursor::isVisible() const
@@ -105,135 +69,43 @@ bool TextCursor::isVisible() const
     return mIsVisible;
 }
 
-void TextCursor::moveCursorToBeginning()
+void TextCursor::insertText(const QString &text)
 {
-    mPosition = 0;
+	mInnerTextCursor->insertText(text);
+	mIsVisible = true;
 }
 
-void TextCursor::moveCursorToEnd(const QString &text)
+void TextCursor::deleteChar()
 {
-    mPosition = text.length();
+	mInnerTextCursor->deleteChar();
+	mIsVisible = true;
 }
 
-void TextCursor::moveCursorToNextWordBeginning(const QString &text)
+void TextCursor::deletePreviousChar()
 {
-    auto lastSpacePos = -1;
-    auto currentPos = mPosition;
-
-    while (currentPos < text.length()) {
-		auto currentChar = text.at(currentPos);
-
-		if (currentChar == mLineFeedChar && currentPos != mPosition) {
-            break;
-        }
-
-        if (currentChar.isSpace()) {
-            lastSpacePos = currentPos;
-        } else if (lastSpacePos >= 0) {
-            break;
-        }
-        currentPos++;
-    }
-
-    mPosition = currentPos;
+	mInnerTextCursor->deletePreviousChar();
+	mIsVisible = true;
 }
 
-void TextCursor::moveCursorForwardBy(const QString &text, int moveBy)
+void TextCursor::movePosition(QTextCursor::MoveOperation operation)
 {
-    mPosition += moveBy;
-    if (mPosition > text.length()) {
-        mPosition = text.length();
-    }
+	mInnerTextCursor->movePosition(operation);
+	mIsVisible = true;
 }
 
-void TextCursor::moveCursorToPreviousWordBeginning(const QString &text)
+QString TextCursor::selectedText() const
 {
-    auto lastNonSpacePos = -1;
-    auto currentPos = mPosition - 1;
-
-    while (currentPos >= 0) {
-		auto currentChar = text.at(currentPos);
-
-		if (currentChar == mLineFeedChar) {
-			lastNonSpacePos = currentPos;
-
-            if (lastNonSpacePos + 1 != mPosition) {
-                lastNonSpacePos++;
-            }
-            break;
-        }
-
-        if (currentChar.isSpace()) {
-            if (lastNonSpacePos >= 0) {
-                break;
-            }
-        } else {
-            lastNonSpacePos = currentPos;
-        }
-        currentPos--;
-    }
-
-    if (lastNonSpacePos >= 0) {
-        mPosition = lastNonSpacePos;
-    } else {
-        mPosition = 0;
-    }
+	return mInnerTextCursor->selectedText();
 }
 
-void TextCursor::moveCursorBack(const QString &text)
+void TextCursor::removeSelectedText()
 {
-    mPosition--;
-    if (mPosition < 0) {
-        mPosition = 0;
-    }
+	mInnerTextCursor->removeSelectedText();
 }
 
-void TextCursor::moveCursorUp(const QString &text)
+void TextCursor::select(QTextCursor::SelectionType selection)
 {
-    QTextDocument document(text);
-    auto currentBlock = document.findBlock(mPosition);
-
-    if (currentBlock == document.firstBlock()) {
-        return;
-    }
-
-    auto positionInBlock = currentBlock.position();
-    auto previousBlock = currentBlock.previous();
-
-    fitPositionToNewBlock(positionInBlock, previousBlock);
-}
-
-void TextCursor::moveCursorDown(const QString &text)
-{
-    QTextDocument document(text);
-    auto currentBlock = document.findBlock(mPosition);
-    if (currentBlock == document.lastBlock()) {
-        return;
-    }
-
-    auto positionInBlock = currentBlock.position();
-    auto nextBlock = currentBlock.next();
-
-    fitPositionToNewBlock(positionInBlock, nextBlock);
-}
-
-void TextCursor::fitPositionToNewBlock(int positionInBlock, const QTextBlock &targetBlock)
-{
-    if ((mPosition - positionInBlock) < targetBlock.length()) {
-        moveToSamePositionInNewBlock(positionInBlock, targetBlock);
-    } else {
-        movePositionToEndOfBlock(targetBlock);
-    }
-}
-
-void TextCursor::moveToSamePositionInNewBlock(int positionInBlock, const QTextBlock &targetBlock)
-{
-    mPosition = targetBlock.position() + mPosition - positionInBlock;
-}
-
-void TextCursor::movePositionToEndOfBlock(const QTextBlock &targetBlock)
-{
-    mPosition = targetBlock.position() + targetBlock.length() - 1;
+	mInnerTextCursor->select(selection);
 }
 
 void TextCursor::connectSlots()

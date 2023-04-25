@@ -25,7 +25,7 @@ void KeyInputHelper::handleKeyPress(const QKeyEvent *event) const
 {
 	switch (event->key()) {
 		case Qt::Key_Backspace:
-			emit remove(TextPositions::Previous);
+			emit remove(QTextCursor::Left);
 			break;
 		case Qt::Key_Return:
 		case Qt::Key_Enter:
@@ -36,36 +36,36 @@ void KeyInputHelper::handleKeyPress(const QKeyEvent *event) const
 			}
 			break;
 		case Qt::Key_Delete:
-			emit remove(TextPositions::Next);
+			emit remove(QTextCursor::Right);
 			break;
 		case Qt::Key_Escape:
 			emit escape();
 			return;
 		case Qt::Key_Left:
 			if (isControlPressed(event)) {
-				emit move(TextPositions::PreviousWordBeginning);
+				emit move(QTextCursor::PreviousWord);
 			} else {
-				emit move(TextPositions::Previous);
+				emit move(QTextCursor::Left);
 			}
 			break;
 		case Qt::Key_Right:
 			if (isControlPressed(event)) {
-				emit move(TextPositions::NextWordBeginning);
+				emit move(QTextCursor::NextWord);
 			} else {
-				emit move(TextPositions::Next);
+				emit move(QTextCursor::Right);
 			}
 			break;
 		case Qt::Key_Up:
-			emit move(TextPositions::Up);
+			emit move(QTextCursor::Up);
 			break;
 		case Qt::Key_Down:
-			emit move(TextPositions::Down);
+			emit move(QTextCursor::Down);
 			break;
 		case Qt::Key::Key_Home:
-			emit move(TextPositions::Beginning);
+			emit move(QTextCursor::Start);
 			break;
 		case Qt::Key::Key_End:
-			emit move(TextPositions::End);
+			emit move(QTextCursor::End);
 			break;
 		case Qt::Key_Paste:
 			emit paste();
@@ -73,6 +73,18 @@ void KeyInputHelper::handleKeyPress(const QKeyEvent *event) const
 		default:
 			if (event->matches(QKeySequence::Paste)) {
 				emit paste();
+				break;
+			}
+			if (event->matches(QKeySequence::Cut)) {
+				emit cut();
+				break;
+			}
+			if (event->matches(QKeySequence::Copy)) {
+				emit copy();
+				break;
+			}
+			if (event->matches(QKeySequence::SelectAll)) {
+				emit selectAll();
 				break;
 			}
 			if (event->text().isEmpty()) {

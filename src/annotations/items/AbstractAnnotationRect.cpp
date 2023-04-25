@@ -45,6 +45,11 @@ void AbstractAnnotationRect::addPoint(const QPointF &position, bool modified)
 	prepareGeometryChange();
 	mRect->setBottomRight(position);
 	makeSymmetric(modified);
+
+	if (!minimumSize().isNull()) {
+		*mRect = RectSizeHelper::limitToSize(*mRect, minimumSize());
+	}
+
 	updateShape();
 }
 
@@ -62,10 +67,26 @@ QRectF AbstractAnnotationRect::rect() const
 
 void AbstractAnnotationRect::setPointAt(const QPointF &point, int index, bool keepAspectRatio)
 {
-	prepareGeometryChange();
 	auto newRect = ShapeHelper::setRectPointAtIndex(*mRect, index, point, keepAspectRatio);
-	mRect->setRect(newRect.x(), newRect.y(), newRect.width(), newRect.height());
+
+	prepareGeometryChange();
+
+	if(minimumSize().isNull()) {
+		mRect->setRect(newRect.x(), newRect.y(),newRect.width(), newRect.height());
+	} else {
+		if(qAbs(newRect.width()) >= minimumWidth()) {
+			mRect->setLeft(newRect.left());
+			mRect->setWidth(newRect.width());
+		}
+
+		if(qAbs(newRect.height()) >= minimumHeight()) {
+			mRect->setTop(newRect.top());
+			mRect->setHeight(newRect.height());
+		}
+	}
+
 	updateShape();
+
 }
 
 QPointF AbstractAnnotationRect::pointAt(int index) const

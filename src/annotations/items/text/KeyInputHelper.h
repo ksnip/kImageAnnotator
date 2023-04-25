@@ -21,8 +21,8 @@
 #define KIMAGEANNOTATOR_KEYINPUTHELPER_H
 
 #include <QKeyEvent>
+#include <QTextCursor>
 
-#include "TextPositions.h"
 #include "CapsLockStatusChecker.h"
 
 namespace kImageAnnotator {
@@ -39,11 +39,14 @@ public:
 	QString getTextWithCorrectCase(const QKeyEvent *event) const;
 
 signals:
-	void remove(TextPositions position) const;
+	void remove(QTextCursor::MoveOperation operation) const;
 	void insert(const QString &text) const;
-	void move(TextPositions position) const;
+	void move(QTextCursor::MoveOperation operation) const;
 	void paste() const;
+	void cut() const;
+	void copy() const;
 	void escape() const;
+	void selectAll() const;
 
 private:
 	bool isModifierPressed(const QKeyEvent *event, Qt::KeyboardModifier modifier) const;

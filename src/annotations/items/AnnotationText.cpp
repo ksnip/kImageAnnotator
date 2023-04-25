@@ -22,18 +22,30 @@
 namespace kImageAnnotator {
 
 AnnotationText::AnnotationText(const QPointF &startPosition, const TextPropertiesPtr &properties) :
-	AbstractAnnotationRect(startPosition, properties)
+	AbstractAnnotationRect(startPosition, properties),
+	mTextHandlerItem(new TextHandlerItem(this))
 {
-	setupFlags();
 	connectSlots();
+
+	mTextHandlerItem->setPos(startPosition);
+	setMinimumSize(mTextHandlerItem->minimumSize());
+
+	updateProperties();
+	refresh();
 }
 
 AnnotationText::AnnotationText(const AnnotationText &other) :
 	AbstractAnnotationRect(other),
-	mTextHandler(other.mTextHandler)
+	mTextHandlerItem(new TextHandlerItem(*other.mTextHandlerItem))
 {
-	setupFlags();
 	connectSlots();
+	setMinimumSize(mTextHandlerItem->minimumSize());
+	refresh();
+}
+
+AnnotationText::~AnnotationText()
+{
+	delete mTextHandlerItem;
 }
 
 void AnnotationText::updateShape()
@@ -41,35 +53,6 @@ void AnnotationText::updateShape()
 	QPainterPath path;
 	path.addRect(*mRect);
 	setShape(path);
-}
-
-void AnnotationText::focusOutEvent(QFocusEvent *event)
-{
-	disableEditing();
-	QGraphicsWidget::focusOutEvent(event);
-}
-
-void AnnotationText::keyPressEvent(QKeyEvent *event)
-{
-	mTextHandler.handleKeyEvent(event);
-}
-
-void AnnotationText::inputMethodEvent(QInputMethodEvent *event)
-{
-	mTextHandler.insertText(event->commitString());
-}
-
-void AnnotationText::paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget)
-{
-	// Paint border
-	AbstractAnnotationRect::paint(painter, style, widget);
-
-	// Paint Text
-	auto font = textProperties()->font();
-	auto color = textProperties()->textColor();
-	auto margin = textProperties()->width();
-	auto isShadowEnabled = properties()->shadowEnabled();
-	mTextHandler.paintText(painter, mRect, font, color, margin, isShadowEnabled);
 }
 
 void AnnotationText::finish()
@@ -84,42 +67,32 @@ Tools AnnotationText::toolType() const
 
 QPainterPath AnnotationText::shape() const
 {
-	auto path = AbstractAnnotationItem::shape();
-	auto font = textProperties()->font();
-	auto margin = textProperties()->width();
-	path.addRect(mTextHandler.getTextRect(mRect, font, margin));
-	return path;
-}
-
-void AnnotationText::escape()
-{
-	clearFocus();
+	auto itemShape = AbstractAnnotationRect::shape();
+	itemShape.addRect(mTextHandlerItem->textRect());
+	return itemShape;
 }
 
 void AnnotationText::refresh()
 {
 	prepareGeometryChange();
-	auto font = textProperties()->font();
-	auto margin = textProperties()->width();
-	mTextHandler.updateRect(mRect, font, margin);
+	*mRect = RectSizeHelper::setSizeButKeepDirection(*mRect, mTextHandlerItem->boundingRect().size());
 	updateShape();
 }
 
 void AnnotationText::connectSlots()
 {
-	connect(&mTextHandler, &AnnotationTextHandler::changed, this, &AnnotationText::refresh);
-	connect(&mTextHandler, &AnnotationTextHandler::finished, this, &AnnotationText::escape);
+	connect(mTextHandlerItem, &TextHandlerItem::textRectChanged, this, &AnnotationText::refresh);
+	connect(this, &AnnotationText::propertiesChanged, this, &AnnotationText::updateProperties);
 }
 
 void AnnotationText::enableEditing()
 {
-    setFocus();
-	mTextHandler.enableEditing();
+	mTextHandlerItem->enableEditing();
 }
 
 void AnnotationText::disableEditing()
 {
-	mTextHandler.disableEditing();
+	mTextHandlerItem->disableEditing();
 }
 
 TextPropertiesPtr AnnotationText::textProperties() const
@@ -127,10 +100,27 @@ TextPropertiesPtr AnnotationText::textProperties() const
 	return AbstractAnnotationItem::properties().staticCast<AnnotationTextProperties>();
 }
 
-void AnnotationText::setupFlags()
+void AnnotationText::setPosition(const QPointF &newPosition)
 {
-	setFlag(ItemIsFocusable, true);
-	setFlag(ItemAcceptsInputMethod, true);
+	AbstractAnnotationRect::setPosition(newPosition);
+	mTextHandlerItem->setPos(newPosition);
+}
+
+void AnnotationText::addPoint(const QPointF &position, bool modified)
+{
+	AbstractAnnotationRect::addPoint(position, modified);
+	mTextHandlerItem->setTextRect(boundingRect().toRect());
+}
+
+void AnnotationText::setPointAt(const QPointF &point, int index, bool keepAspectRatio)
+{
+	AbstractAnnotationRect::setPointAt(point, index, keepAspectRatio);
+	mTextHandlerItem->setTextRect(boundingRect().toRect());
+}
+
+void AnnotationText::updateProperties()
+{
+	mTextHandlerItem->setTextProperties(textProperties());
 }
 
 } // namespace kImageAnnotator

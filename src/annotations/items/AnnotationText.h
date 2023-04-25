@@ -22,8 +22,9 @@
 
 #include "AbstractAnnotationRect.h"
 #include "src/annotations/items/interfaces/EditableItem.h"
-#include "src/annotations/items/text/AnnotationTextHandler.h"
+#include "src/annotations/items/text/TextHandlerItem.h"
 #include "src/annotations/properties/AnnotationTextProperties.h"
+#include "src/common/helper/RectSizeHelper.h"
 
 namespace kImageAnnotator {
 
@@ -33,30 +34,28 @@ Q_OBJECT
 public:
 	AnnotationText(const QPointF &startPosition, const TextPropertiesPtr &properties);
 	AnnotationText(const AnnotationText &other);
-	~AnnotationText() override = default;
+	~AnnotationText() override;
 	void finish() override;
 	Tools toolType() const override;
 	QPainterPath shape() const override;
 	void enableEditing() override;
 	void disableEditing() override;
 	TextPropertiesPtr textProperties() const;
+	void setPosition(const QPointF &newPosition) override;
+	void addPoint(const QPointF &position, bool modified) override;
+	void setPointAt(const QPointF &point, int index, bool keepAspectRatio) override;
 
 protected:
 	void updateShape() override;
-	void focusOutEvent(QFocusEvent *event) override;
-	void keyPressEvent(QKeyEvent *event) override;
-	void inputMethodEvent(QInputMethodEvent *event) override;
-	void paint(QPainter *painter, const QStyleOptionGraphicsItem *style, QWidget *widget) override;
 
 private:
-	AnnotationTextHandler mTextHandler;
+	TextHandlerItem *mTextHandlerItem;
 
 	void connectSlots();
-	void setupFlags();
 
 private slots:
-	void escape();
 	void refresh();
+	void updateProperties();
 };
 
 } // namespace kImageAnnotator

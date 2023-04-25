@@ -24,6 +24,7 @@
 #include "src/common/helper/MathHelper.h"
 #include "src/common/helper/ShapeHelper.h"
 #include "src/common/constants/Constants.h"
+#include "src/common/helper/RectSizeHelper.h"
 
 namespace kImageAnnotator {
 

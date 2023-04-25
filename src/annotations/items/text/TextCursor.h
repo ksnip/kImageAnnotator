@@ -24,46 +24,37 @@
 #include <QTextDocument>
 #include <QTextBlock>
 
-#include "TextPositions.h"
-
 namespace kImageAnnotator {
 
 class TextCursor : public QObject
 {
 Q_OBJECT
 public:
-    explicit TextCursor();
+    explicit TextCursor(QTextDocument *document);
 	TextCursor(const TextCursor &other);
     ~TextCursor() override;
-    void move(TextPositions direction, const QString &text);
-    void moveForwardBy(const QString &text, int moveBy);
     void start();
     void stop();
     int position() const;
     void setPosition(int newPosition);
     bool isVisible() const;
+	void insertText(const QString &text);
+	void deleteChar();
+	void deletePreviousChar();
+	void movePosition(QTextCursor::MoveOperation operation);
+	QString	selectedText() const;
+	void removeSelectedText();
+	void select(QTextCursor::SelectionType selection);
 
 signals:
     void tick() const;
 
 private:
+	QTextCursor *mInnerTextCursor;
     int mBlinkIntervalInMs = 800;
     QTimer *mBlinkTimer;
-    int mPosition = 0;
     bool mIsVisible = false;
-    QChar mLineFeedChar;
 
-    void moveCursorToBeginning();
-    void moveCursorToEnd(const QString &text);
-    void moveCursorToNextWordBeginning(const QString &text);
-    void moveCursorForwardBy(const QString &text, int moveBy);
-    void moveCursorToPreviousWordBeginning(const QString &text);
-    void moveCursorBack(const QString &text);
-    void moveCursorUp(const QString &text);
-    void moveCursorDown(const QString &text);
-    void fitPositionToNewBlock(int positionInBlock, const QTextBlock &targetBlock);
-    void movePositionToEndOfBlock(const QTextBlock &targetBlock);
-    void moveToSamePositionInNewBlock(int positionInBlock, const QTextBlock &targetBlock);
 	void connectSlots();
 };
 

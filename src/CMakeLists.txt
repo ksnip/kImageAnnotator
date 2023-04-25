@@ -103,6 +103,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/text/KeyInputHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/text/TextCursor.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/text/CapsLockStatusChecker.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/text/TextHandlerItem.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/NumberRectHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/items/helper/AnnotationShapeCreator.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/annotations/undo/AddCommand.cpp
@@ -137,6 +138,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/ConfigNameHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/IconLoader.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/PathHelper.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/RectSizeHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/filter/IgnoreShortcutsFilter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/filter/KeyEventListener.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/platform/PlatformChecker.cpp

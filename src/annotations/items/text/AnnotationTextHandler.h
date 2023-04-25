@@ -23,6 +23,7 @@
 #include <QPainter>
 #include <QApplication>
 #include <QClipboard>
+#include <QTextCursor>
 
 #include "src/annotations/items/text/TextCursor.h"
 #include "src/common/filter/IgnoreShortcutsFilter.h"
@@ -50,19 +51,22 @@ signals:
 	void finished() const;
 
 private:
-	QString mText;
-	TextCursor mTextCursor;
 	IgnoreShortcutsFilter mIgnoreShortcutsFilter;
 	bool mIsInEditMode;
 	QPen mEditModeOutlinePen;
 	KeyInputHelper mKeyInputHelper;
+	QTextDocument *mTextDocument;
+	TextCursor *mTextCursor;
 
 	bool isCursorInBlock(int blockPosition, int blockLength) const;
 	void setupEditModeOutlinePen();
 	void connectSlots();
-	void removeText(TextPositions direction);
-	void moveCursor(TextPositions direction);
+	void removeText(QTextCursor::MoveOperation operation);
+	void moveCursor(QTextCursor::MoveOperation operation);
 	void pasteText();
+	void cutText();
+	void copyText();
+	void selectAllText();
 };
 
 } // namespace kImageAnnotator

@@ -22,14 +22,16 @@
 namespace kImageAnnotator {
 
 AnnotationTextHandler::AnnotationTextHandler() :
-	mIsInEditMode(false)
+	mIsInEditMode(false),
+	mTextDocument(new QTextDocument),
+	mTextCursor(new TextCursor(mTextDocument))
 {
 	setupEditModeOutlinePen();
 	connectSlots();
 }
 
 AnnotationTextHandler::AnnotationTextHandler(const AnnotationTextHandler &other) :
-	mText(other.mText),
+	mTextDocument(other.mTextDocument),
 	mTextCursor(other.mTextCursor),
 	mIsInEditMode(false)
 {
@@ -39,31 +41,22 @@ AnnotationTextHandler::AnnotationTextHandler(const AnnotationTextHandler &other)
 
 void AnnotationTextHandler::insertText(const QString &text)
 {
-	mText.insert(mTextCursor.position(), text);
-	mTextCursor.moveForwardBy(mText, text.length());
+	mTextCursor->insertText(text);
 	emit changed();
 }
 
-void AnnotationTextHandler::removeText(TextPositions direction)
+void AnnotationTextHandler::removeText(QTextCursor::MoveOperation operation)
 {
-	auto currentCursorPos = mTextCursor.position();
-	if (direction == TextPositions::Previous) {
-		if (currentCursorPos == 0) {
-			return;
-		}
-		mText.remove(currentCursorPos - 1, 1);
-		moveCursor(TextPositions::Previous);
-	} else if (direction == TextPositions::Next) {
-		if (currentCursorPos >= mText.length()) {
-			return;
-		}
-		mText.remove(currentCursorPos, 1);
+	if (operation == QTextCursor::Left) {
+		mTextCursor->deletePreviousChar();
+	} else if (operation == QTextCursor::Right) {
+		mTextCursor->deleteChar();
 	}
 }
 
-void AnnotationTextHandler::moveCursor(TextPositions direction)
+void AnnotationTextHandler::moveCursor(QTextCursor::MoveOperation operation)
 {
-	mTextCursor.move(direction, mText);
+	mTextCursor->movePosition(operation);
 }
 
 void AnnotationTextHandler::pasteText()
@@ -72,13 +65,30 @@ void AnnotationTextHandler::pasteText()
 	if (clipboard->text().isEmpty()) {
 		return;
 	}
-	mText.insert(mTextCursor.position(), clipboard->text());
-	mTextCursor.setPosition(mTextCursor.position() + clipboard->text().length());
+
+	mTextCursor->insertText(clipboard->text());
+}
+
+void AnnotationTextHandler::cutText()
+{
+	copyText();
+	mTextCursor->removeSelectedText();
+}
+
+void AnnotationTextHandler::copyText()
+{
+	auto text = mTextCursor->selectedText();
+	QApplication::clipboard()->setText(text);
+}
+
+void AnnotationTextHandler::selectAllText()
+{
+	mTextCursor->select(QTextCursor::Document);
 }
 
 void AnnotationTextHandler::enableEditing()
 {
-	mTextCursor.start();
+	mTextCursor->start();
 	mIgnoreShortcutsFilter.apply();
 	mIsInEditMode = true;
 	emit changed();
@@ -86,7 +96,7 @@ void AnnotationTextHandler::enableEditing()
 
 void AnnotationTextHandler::disableEditing()
 {
-	mTextCursor.stop();
+	mTextCursor->stop();
 	mIgnoreShortcutsFilter.remove();
 	mIsInEditMode = false;
 	emit changed();
@@ -116,8 +126,7 @@ void AnnotationTextHandler::paintText(QPainter *painter, QRectF *rect, const QFo
 	QFontMetrics fontMetrics(font);
 	auto boxHeight = 0;
 
-	QTextDocument document(mText);
-	for (auto block = document.begin(); block != document.end(); block = block.next()) {
+	for (auto block = mTextDocument->begin(); block != mTextDocument->end(); block = block.next()) {
 		auto blockPosition = block.position();
 		auto blockLength = block.length();
 		QTextLayout textLayout(block);
@@ -142,8 +151,10 @@ void AnnotationTextHandler::paintText(QPainter *painter, QRectF *rect, const QFo
 
 		textLayout.draw(painter, QPoint(0, boxHeight));
 
-		if (mTextCursor.isVisible() && isCursorInBlock(blockPosition, blockLength)) {
-			textLayout.drawCursor(painter, QPointF(0, boxHeight), mTextCursor.position() - blockPosition, 1);
+//		textLayout.drawCursor(painter, QPointF(0, boxHeight), mTextCursor->position() - blockPosition, 1);
+
+		if (mTextCursor->isVisible() && isCursorInBlock(blockPosition, blockLength)) {
+			textLayout.drawCursor(painter, QPointF(0, boxHeight), mTextCursor->position() - blockPosition, 1);
 		}
 		boxHeight += blockHeight;
 	}
@@ -164,7 +175,7 @@ void AnnotationTextHandler::updateRect(QRectF *rect, const QFont &font, int marg
 
 bool AnnotationTextHandler::isCursorInBlock(int blockPosition, int blockLength) const
 {
-	return mTextCursor.position() >= blockPosition && mTextCursor.position() < blockPosition + blockLength;
+	return mTextCursor->position() >= blockPosition && mTextCursor->position() < blockPosition + blockLength;
 }
 
 void AnnotationTextHandler::setupEditModeOutlinePen()
@@ -177,7 +188,7 @@ void AnnotationTextHandler::setupEditModeOutlinePen()
 QRect AnnotationTextHandler::getTextRect(QRectF *rect, const QFont& font, int margin) const
 {
 	QFontMetrics fontMetrics(font);
-	auto newRect = fontMetrics.boundingRect(rect->toRect().normalized(), Qt::AlignLeft, mText);
+	auto newRect = fontMetrics.boundingRect(rect->toRect().normalized(), Qt::AlignLeft, mTextDocument->toPlainText());
 	newRect.adjust(0, 2, (margin * 2) + 2, margin * 2);
 	return newRect;
 }
@@ -194,8 +205,11 @@ void AnnotationTextHandler::connectSlots()
 	connect(&mKeyInputHelper, &KeyInputHelper::insert, this, &AnnotationTextHandler::insertText);
 	connect(&mKeyInputHelper, &KeyInputHelper::remove, this, &AnnotationTextHandler::removeText);
 	connect(&mKeyInputHelper, &KeyInputHelper::paste, this, &AnnotationTextHandler::pasteText);
+	connect(&mKeyInputHelper, &KeyInputHelper::cut, this, &AnnotationTextHandler::cutText);
+	connect(&mKeyInputHelper, &KeyInputHelper::copy, this, &AnnotationTextHandler::copyText);
 	connect(&mKeyInputHelper, &KeyInputHelper::escape, this, &AnnotationTextHandler::finished);
-	connect(&mTextCursor, &TextCursor::tick, this, &AnnotationTextHandler::changed);
+	connect(&mKeyInputHelper, &KeyInputHelper::selectAll, this, &AnnotationTextHandler::selectAllText);
+	connect(mTextCursor, &TextCursor::tick, this, &AnnotationTextHandler::changed);
 }
 
 } // namespace kImageAnnotator
