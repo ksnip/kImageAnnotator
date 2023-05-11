@@ -43,7 +43,7 @@ QRectF RectSizeHelper::limitToSize(const QRectF &rect, const QSizeF &minSize)
 		updatedRect.setHeight(getSign(rect.height()) * minSize.height());
 	}
 
-	return updatedRect
+	return updatedRect;
 }
 
 qreal RectSizeHelper::getSign(const qreal &value)
