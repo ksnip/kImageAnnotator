@@ -30,8 +30,8 @@ TextHandlerItem::TextHandlerItem(AbstractAnnotationItem *parentItem) :
 }
 
 
-TextHandlerItem::TextHandlerItem(const TextHandlerItem &other) :
-	QGraphicsTextItem(other.toPlainText(), other.parentItem()),
+TextHandlerItem::TextHandlerItem(const TextHandlerItem &other, AbstractAnnotationItem *parentItem) :
+	QGraphicsTextItem(other.toPlainText(), parentItem),
 	mIsFixedTextRectSize(other.mIsFixedTextRectSize)
 {
 	connectSlots();

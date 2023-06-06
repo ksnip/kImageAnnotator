@@ -36,7 +36,7 @@ AnnotationText::AnnotationText(const QPointF &startPosition, const TextPropertie
 
 AnnotationText::AnnotationText(const AnnotationText &other) :
 	AbstractAnnotationRect(other),
-	mTextHandlerItem(new TextHandlerItem(*other.mTextHandlerItem))
+	mTextHandlerItem(new TextHandlerItem(*other.mTextHandlerItem, this))
 {
 	connectSlots();
 	setMinimumSize(mTextHandlerItem->minimumSize());

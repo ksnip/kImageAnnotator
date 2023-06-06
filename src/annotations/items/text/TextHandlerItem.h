@@ -37,7 +37,7 @@ class TextHandlerItem : public QGraphicsTextItem
 Q_OBJECT
 public:
 	explicit TextHandlerItem(AbstractAnnotationItem *parentItem);
-	TextHandlerItem(const TextHandlerItem &other);
+	TextHandlerItem(const TextHandlerItem &other, AbstractAnnotationItem *parentItem);
 	void enableEditing();
 	void disableEditing();
 	bool isEditing() const;

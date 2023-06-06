@@ -30,7 +30,6 @@ PasteCommand::PasteCommand(const QHash<kImageAnnotator::AbstractAnnotationItem *
 	Q_ASSERT(itemFactory != nullptr);
 
 	mAnnotationArea = annotationArea;
-	mItemFactory = itemFactory;
 	for (auto item : itemsWithOffset.keys()) {
 		auto pastedItem = itemFactory->clone(item);
 		pastedItem->setPosition(position + itemsWithOffset[item]);

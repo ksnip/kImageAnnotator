@@ -36,7 +36,6 @@ public:
 
 private:
 	AnnotationArea *mAnnotationArea;
-	AnnotationItemFactory *mItemFactory;
 	QVector<AbstractAnnotationItem*> mPastedItems;
 };
 
