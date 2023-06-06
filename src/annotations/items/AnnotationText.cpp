@@ -67,9 +67,13 @@ Tools AnnotationText::toolType() const
 
 QPainterPath AnnotationText::shape() const
 {
-	auto itemShape = AbstractAnnotationRect::shape();
-	itemShape.addRect(mTextHandlerItem->textRect());
-	return itemShape;
+	if(mTextHandlerItem->isEditing()) {
+		return {};
+	} else {
+		auto itemShape = AbstractAnnotationRect::shape();
+		itemShape.addRect(mTextHandlerItem->textRect());
+		return itemShape;
+	}
 }
 
 void AnnotationText::refresh()

@@ -63,13 +63,9 @@ bool TextHandlerItem::isEditing() const
 
 QRect TextHandlerItem::textRect() const
 {
-	if(isEditing()) {
-		return {};
-	} else {
-		auto rect = boundingRect().toRect().normalized();
-		auto position = pos().toPoint();
-		return { position.x(), position.y(), rect.width(), rect.height() };
-	}
+	auto rect = boundingRect().toRect().normalized();
+	auto position = pos().toPoint();
+	return { position.x(), position.y(), rect.width(), rect.height() };
 }
 
 void TextHandlerItem::setTextRect(const QRect &rect)
