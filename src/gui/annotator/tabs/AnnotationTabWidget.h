@@ -27,6 +27,8 @@
 #include "AnnotationTabContextMenu.h"
 #include "AnnotationTabCloser.h"
 #include "AnnotationTabClickEventFilter.h"
+#include "src/common/filter/KeyEventFilter.h"
+
 
 namespace kImageAnnotator {
 
@@ -70,6 +72,7 @@ private:
 	AnnotationTabCloser *mTabCloser;
 	AnnotationTabClickEventFilter *mTabClickFilter;
 	AnnotationItemClipboard *mItemClipboard;
+	KeyEventFilter mKeyEventFilter;
 
 private slots:
 	void updateCurrentWidget(int index);

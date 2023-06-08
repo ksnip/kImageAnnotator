@@ -17,21 +17,30 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "KeyEventListener.h"
+#include "KeyEventFilter.h"
 
 namespace kImageAnnotator {
 
-KeyEventListener::KeyEventListener()
+KeyEventFilter::KeyEventFilter():
+	mKeyEventListener(nullptr)
 {
 	QCoreApplication::instance()->installEventFilter(this);
 }
 
-KeyEventListener::~KeyEventListener()
+KeyEventFilter::~KeyEventFilter()
 {
 	QCoreApplication::instance()->removeEventFilter(this);
 }
 
-bool KeyEventListener::eventFilter(QObject *watched, QEvent *event)
+
+void KeyEventFilter::setListener(IKeyEventListener *listener)
+{
+	Q_ASSERT(listener != nullptr);
+
+	mKeyEventListener = listener;
+}
+
+bool KeyEventFilter::eventFilter(QObject *watched, QEvent *event)
 {
 	if (event->type() == QEvent::KeyPress) {
 		handleKeyPressed(event);
@@ -42,23 +51,27 @@ bool KeyEventListener::eventFilter(QObject *watched, QEvent *event)
 	return QObject::eventFilter(watched, event);
 }
 
-void KeyEventListener::handleKeyReleased(QEvent *event)
+void KeyEventFilter::handleKeyReleased(QEvent *event)
 {
 	auto keyEvent = dynamic_cast<QKeyEvent *>(event);
 
 	if(mPressedKeyCodes.contains(keyEvent->key())) {
 		mPressedKeyCodes.removeAll(keyEvent->key());
-		emit keyReleased(keyEvent);
+
+		Q_ASSERT(mKeyEventListener != nullptr);
+		mKeyEventListener->keyReleased(keyEvent);
 	}
 }
 
-void KeyEventListener::handleKeyPressed(QEvent *event)
+void KeyEventFilter::handleKeyPressed(QEvent *event)
 {
 	auto keyEvent = dynamic_cast<QKeyEvent *>(event);
 
 	if(!mPressedKeyCodes.contains(keyEvent->key())) {
 		mPressedKeyCodes.append(keyEvent->key());
-		emit keyPressed(keyEvent);
+
+		Q_ASSERT(mKeyEventListener != nullptr);
+		mKeyEventListener->keyPressed(keyEvent);
 	}
 }
 

@@ -60,9 +60,6 @@ AnnotationArea::AnnotationArea(
 
 	connect(mKeyHelper, &KeyHelper::undoPressed, mUndoStack, &UndoStack::undo);
 	connect(mKeyHelper, &KeyHelper::redoPressed, mUndoStack, &UndoStack::redo);
-
-	connect(&mKeyListener, &KeyEventListener::keyPressed, mKeyHelper, &KeyHelper::keyPress);
-	connect(&mKeyListener, &KeyEventListener::keyReleased, mKeyHelper, &KeyHelper::keyRelease);
 }
 
 AnnotationArea::~AnnotationArea()
@@ -104,7 +101,7 @@ void AnnotationArea::replaceBackgroundImage(const QPixmap &image)
 QImage AnnotationArea::image()
 {
 	if (mBackgroundImage == nullptr) {
-		return QImage();
+		return {};
 	}
 
 	mItemModifier->clear();
@@ -270,6 +267,16 @@ void AnnotationArea::cut(const QRectF &rect)
 	mUndoStack->push(new CutCommand(mBackgroundImage.data(), scaledRect, this));
 
 	emit imageChanged();
+}
+
+void AnnotationArea::keyPressed(QKeyEvent *keyEvent)
+{
+	mKeyHelper->keyPress(keyEvent);
+}
+
+void AnnotationArea::keyReleased(QKeyEvent *keyEvent)
+{
+	mKeyHelper->keyRelease(keyEvent);
 }
 
 void AnnotationArea::update()

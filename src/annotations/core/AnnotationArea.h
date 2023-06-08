@@ -30,6 +30,7 @@
 #include "AnnotationItemFactory.h"
 #include "AbstractSettingsProvider.h"
 #include "ISettingsListener.h"
+#include "src/common/filter/IKeyEventListener.h"
 #include "src/annotations/modifiers/AnnotationItemModifier.h"
 #include "src/annotations/modifiers/AnnotationItemArranger.h"
 #include "src/annotations/misc/AnnotationItemClipboard.h"
@@ -40,7 +41,6 @@
 #include "src/common/helper/CursorHelper.h"
 #include "src/common/helper/KeyHelper.h"
 #include "src/common/provider/IDevicePixelRatioScaler.h"
-#include "src/common/filter/KeyEventListener.h"
 #include "src/annotations/undo/UndoStack.h"
 #include "src/annotations/undo/CropCommand.h"
 #include "src/annotations/undo/FlipCommand.h"
@@ -55,7 +55,7 @@
 
 namespace kImageAnnotator {
 
-class AnnotationArea : public QGraphicsScene, public ISettingsListener
+class AnnotationArea : public QGraphicsScene, public ISettingsListener, public IKeyEventListener
 {
     Q_OBJECT
 public:
@@ -91,6 +91,8 @@ public:
 	void modifyCanvas(const QRectF &canvasRect, const QColor &color);
 	QRectF backgroundImageRect() const;
 	void cut(const QRectF &rect);
+	void keyPressed(QKeyEvent *keyEvent) override;
+	void keyReleased(QKeyEvent *keyEvent) override;
 
 public slots:
     virtual void update();
@@ -121,7 +123,6 @@ private:
 	QAction *mUndoAction;
 	QAction *mRedoAction;
 	IDevicePixelRatioScaler *mDevicePixelRatioScaler;
-	KeyEventListener mKeyListener;
 	QRectF mCanvasRect;
 	QColor mCanvasColor;
 

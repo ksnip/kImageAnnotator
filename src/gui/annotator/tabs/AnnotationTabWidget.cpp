@@ -156,6 +156,7 @@ void AnnotationTabWidget::tabChanged()
 {
 	mSettingsProvider->setActiveListener(currentAnnotationArea());
 	mSettingsProvider->setActiveZoomValueProvider(currentZoomValueProvider());
+	mKeyEventFilter.setListener(currentAnnotationArea());
 }
 
 void AnnotationTabWidget::addContextMenuActions(const QList<QAction *> &actions)

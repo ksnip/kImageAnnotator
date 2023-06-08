@@ -1,9 +1,9 @@
 /*
- * Copyright (C) 2020 Damir Porobic <damir.porobic@gmx.com>
+ * Copyright (C) 2023 Damir Porobic <damir.porobic@gmx.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -17,36 +17,20 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef KIMAGEANNOTATOR_KEYEVENTLISTENER_H
-#define KIMAGEANNOTATOR_KEYEVENTLISTENER_H
+#ifndef KIMAGEANNOTATOR_IKEYEVENTLISTENER_H
+#define KIMAGEANNOTATOR_IKEYEVENTLISTENER_H
 
-#include <QObject>
 #include <QKeyEvent>
-#include <QCoreApplication>
-#include <QList>
 
 namespace kImageAnnotator {
 
-class KeyEventListener : public QObject
+class IKeyEventListener
 {
-	Q_OBJECT
 public:
-	explicit KeyEventListener();
-	~KeyEventListener() override;
-
-signals:
-	void keyPressed(QKeyEvent *event);
-	void keyReleased(QKeyEvent *event);
-
-protected:
-	bool eventFilter(QObject *watched, QEvent *event) override;
-
-private:
-	QList<int> mPressedKeyCodes;
-	void handleKeyPressed(QEvent *event);
-	void handleKeyReleased(QEvent *event);
+	virtual void keyPressed(QKeyEvent *keyEvent) = 0;
+	virtual void keyReleased(QKeyEvent *keyEvent) = 0;
 };
 
 } // namespace kImageAnnotator
 
-#endif //KIMAGEANNOTATOR_KEYEVENTLISTENER_H
+#endif //KIMAGEANNOTATOR_IKEYEVENTLISTENER_H
