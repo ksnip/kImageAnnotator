@@ -414,7 +414,6 @@ void AnnotationArea::resetAnnotationArea()
 {
 	removeAllItems();
 	mItemModifier->clear();
-	mItemClipboard->clear();
 	mUndoStack->clear();
 	mItemFactory->reset();
 	mKeyHelper->reset();

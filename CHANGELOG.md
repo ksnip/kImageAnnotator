@@ -10,6 +10,7 @@
 * Fixed: Text isn't reflowed the next line within the box and text overlaps when resizing box. ([#271](https://github.com/ksnip/kImageAnnotator/issues/271))
 * Fixed: Can't wrap long text line when I resize Text box area. ([#211](https://github.com/ksnip/kImageAnnotator/issues/211))
 * Fixed: Key press operations affect items across different tabs. ([#319](https://github.com/ksnip/kImageAnnotator/issues/319))
+* Fixed: Clipboard cleared when new tab added. ([#321](https://github.com/ksnip/kImageAnnotator/issues/321))
 
 ## Release 0.6.1
 * Fixed: Fix for unnecessary scrollbars when a screenshot has a smaller size than the previous one. ([#303](https://github.com/ksnip/kImageAnnotator/issues/303))
