@@ -20,9 +20,11 @@
 
 #include "KeyInputHelperTest.h"
 
+Q_DECLARE_METATYPE(QTextCursor::MoveOperation)
+
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitRemoveSignal_When_KeyIsBackspace()
 {
-	qRegisterMetaType<TextPositions>("TextPositions");
+	qRegisterMetaType<QTextCursor::MoveOperation>("MoveOperation");
 	KeyInputHelper keyInputHelper;
 	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::remove);
 	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Backspace, Qt::NoModifier);
@@ -30,13 +32,13 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitRemoveSignal_When_KeyIsBa
 	keyInputHelper.handleKeyPress(&keyEvent);
 
 	QCOMPARE(spy.count(), 1);
-	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
-	QCOMPARE(resultDirection, TextPositions::Previous);
+	auto resultDirection = qvariant_cast<QTextCursor::MoveOperation>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, QTextCursor::Left);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitRemoveSignal_When_KeyIsDelete()
 {
-	qRegisterMetaType<TextPositions>("TextPositions");
+	qRegisterMetaType<QTextCursor::MoveOperation>("MoveOperation");
 	KeyInputHelper keyInputHelper;
 	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::remove);
 	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Delete, Qt::NoModifier);
@@ -44,8 +46,8 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitRemoveSignal_When_KeyIsDe
 	keyInputHelper.handleKeyPress(&keyEvent);
 
 	QCOMPARE(spy.count(), 1);
-	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
-	QCOMPARE(resultDirection, TextPositions::Next);
+	auto resultDirection = qvariant_cast<QTextCursor::MoveOperation>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, QTextCursor::Right);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitInsertSignalWithNewLine_When_KeyIsReturnAndModifierShift()
@@ -109,7 +111,7 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitEscapeSignal_When_KeyIsEs
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsHome()
 {
-	qRegisterMetaType<TextPositions>("TextPositions");
+	qRegisterMetaType<QTextCursor::MoveOperation>("MoveOperation");
 	KeyInputHelper keyInputHelper;
 	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
 	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Home, Qt::NoModifier);
@@ -117,13 +119,13 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsHome
 	keyInputHelper.handleKeyPress(&keyEvent);
 
 	QCOMPARE(spy.count(), 1);
-	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
-	QCOMPARE(resultDirection, TextPositions::Beginning);
+	auto resultDirection = qvariant_cast<QTextCursor::MoveOperation>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, QTextCursor::Start);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsEnd()
 {
-	qRegisterMetaType<TextPositions>("TextPositions");
+	qRegisterMetaType<QTextCursor::MoveOperation>("MoveOperation");
 	KeyInputHelper keyInputHelper;
 	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
 	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_End, Qt::NoModifier);
@@ -131,13 +133,13 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsEnd(
 	keyInputHelper.handleKeyPress(&keyEvent);
 
 	QCOMPARE(spy.count(), 1);
-	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
-	QCOMPARE(resultDirection, TextPositions::End);
+	auto resultDirection = qvariant_cast<QTextCursor::MoveOperation>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, QTextCursor::End);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowLeft()
 {
-	qRegisterMetaType<TextPositions>("TextPositions");
+	qRegisterMetaType<QTextCursor::MoveOperation>("MoveOperation");
 	KeyInputHelper keyInputHelper;
 	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
 	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Left, Qt::NoModifier);
@@ -145,13 +147,13 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArro
 	keyInputHelper.handleKeyPress(&keyEvent);
 
 	QCOMPARE(spy.count(), 1);
-	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
-	QCOMPARE(resultDirection, TextPositions::Previous);
+	auto resultDirection = qvariant_cast<QTextCursor::MoveOperation>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, QTextCursor::Left);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowLeftAndModifierCtrl()
 {
-	qRegisterMetaType<TextPositions>("TextPositions");
+	qRegisterMetaType<QTextCursor::MoveOperation>("MoveOperation");
 	KeyInputHelper keyInputHelper;
 	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
 	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Left, Qt::ControlModifier);
@@ -159,13 +161,13 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArro
 	keyInputHelper.handleKeyPress(&keyEvent);
 
 	QCOMPARE(spy.count(), 1);
-	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
-	QCOMPARE(resultDirection, TextPositions::PreviousWordBeginning);
+	auto resultDirection = qvariant_cast<QTextCursor::MoveOperation>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, QTextCursor::PreviousWord);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowRight()
 {
-	qRegisterMetaType<TextPositions>("TextPositions");
+	qRegisterMetaType<QTextCursor::MoveOperation>("MoveOperation");
 	KeyInputHelper keyInputHelper;
 	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
 	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Right, Qt::NoModifier);
@@ -173,13 +175,13 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArro
 	keyInputHelper.handleKeyPress(&keyEvent);
 
 	QCOMPARE(spy.count(), 1);
-	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
-	QCOMPARE(resultDirection, TextPositions::Next);
+	auto resultDirection = qvariant_cast<QTextCursor::MoveOperation>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, QTextCursor::Right);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowRightAndModifierCtrl()
 {
-	qRegisterMetaType<TextPositions>("TextPositions");
+	qRegisterMetaType<QTextCursor::MoveOperation>("MoveOperation");
 	KeyInputHelper keyInputHelper;
 	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
 	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Right, Qt::ControlModifier);
@@ -187,13 +189,13 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArro
 	keyInputHelper.handleKeyPress(&keyEvent);
 
 	QCOMPARE(spy.count(), 1);
-	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
-	QCOMPARE(resultDirection, TextPositions::NextWordBeginning);
+	auto resultDirection = qvariant_cast<QTextCursor::MoveOperation>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, QTextCursor::NextWord);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowUp()
 {
-	qRegisterMetaType<TextPositions>("TextPositions");
+	qRegisterMetaType<QTextCursor::MoveOperation>("MoveOperation");
 	KeyInputHelper keyInputHelper;
 	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
 	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Up, Qt::NoModifier);
@@ -201,13 +203,13 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArro
 	keyInputHelper.handleKeyPress(&keyEvent);
 
 	QCOMPARE(spy.count(), 1);
-	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
-	QCOMPARE(resultDirection, TextPositions::Up);
+	auto resultDirection = qvariant_cast<QTextCursor::MoveOperation>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, QTextCursor::Up);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArrowDown()
 {
-	qRegisterMetaType<TextPositions>("TextPositions");
+	qRegisterMetaType<QTextCursor::MoveOperation>("MoveOperation");
 	KeyInputHelper keyInputHelper;
 	QSignalSpy spy(&keyInputHelper, &KeyInputHelper::move);
 	QKeyEvent keyEvent(QEvent::KeyPress, Qt::Key_Down, Qt::NoModifier);
@@ -215,8 +217,8 @@ void KeyInputHelperTest::TestHandleKeyPress_Should_EmitMoveSignal_When_KeyIsArro
 	keyInputHelper.handleKeyPress(&keyEvent);
 
 	QCOMPARE(spy.count(), 1);
-	auto resultDirection = qvariant_cast<TextPositions>(spy.at(0).at(0));
-	QCOMPARE(resultDirection, TextPositions::Down);
+	auto resultDirection = qvariant_cast<QTextCursor::MoveOperation>(spy.at(0).at(0));
+	QCOMPARE(resultDirection, QTextCursor::Down);
 }
 
 void KeyInputHelperTest::TestHandleKeyPress_Should_EmitPasteSignal_When_KeyIsPaste()

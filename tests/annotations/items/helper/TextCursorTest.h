@@ -26,7 +26,6 @@
 #include "src/annotations/items/text/TextCursor.h"
 
 using kImageAnnotator::TextCursor;
-using kImageAnnotator::TextPositions;
 
 class TextCursorTest : public QObject
 {
@@ -49,8 +48,6 @@ private slots:
 	void TestMove_Should_MoveCursorToEndOfPreviousLine_When_DirectionUpAndPositionAtEndOfLineAndLineAboveIsSmaller();
 	void TestMove_Should_MoveCursorToSamePositionOfPreviousLine_When_DirectionUpAndPositionAtEndOfLineAndLineAboveIsLarger();
 	void TestMove_Should_MoveCursorToSamePositionOfNextLine_When_DirectionDownAndPositionAtEndOfLineAndLineBelowIsLarger();
-	void TestMoveForwardBy_Should_MoveCursorForwardByRequestedSteps();
-	void TestMoveForwardBy_Should_MoveCursorToEnd_When_RequestedStepsLargerThenTextLength();
 };
 
 #endif // KIMAGEANNOTATOR_TEXTCURSORTEST_H

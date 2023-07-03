@@ -26,7 +26,6 @@
 #include "src/annotations/items/text/KeyInputHelper.h"
 
 using kImageAnnotator::KeyInputHelper;
-using kImageAnnotator::TextPositions;
 
 class KeyInputHelperTest : public QObject
 {
