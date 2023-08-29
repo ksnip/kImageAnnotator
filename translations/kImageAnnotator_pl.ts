@@ -48,7 +48,7 @@
     <name>kImageAnnotator::AnnotationControlsWidget</name>
     <message>
         <source>Controls</source>
-        <translation type="unfinished">Kontrolki</translation>
+        <translation>Sterowanie</translation>
     </message>
 </context>
 <context>
