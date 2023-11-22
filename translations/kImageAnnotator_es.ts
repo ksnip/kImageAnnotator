@@ -48,60 +48,60 @@
     <name>kImageAnnotator::AnnotationControlsWidget</name>
     <message>
         <source>Controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Controles</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationGeneralSettings</name>
     <message>
         <source>General Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Parámetros generales</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationImageSettings</name>
     <message>
         <source>Image Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes de la imagen</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationItemSettings</name>
     <message>
         <source>Color</source>
-        <translation type="unfinished">Color</translation>
+        <translation>Color</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation type="unfinished">Color de texto</translation>
+        <translation>Color del texto</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished">Anchura</translation>
+        <translation>Ancho</translation>
     </message>
     <message>
         <source>Number Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de semillas</translation>
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished"></translation>
+        <translation>Factor de ofuscación</translation>
     </message>
     <message>
         <source>Item Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Sombra del artículo</translation>
     </message>
     <message>
         <source>Item Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes del elemento</translation>
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Escala</translation>
     </message>
     <message>
         <source>Opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Opacidad</translation>
     </message>
 </context>
 <context>
@@ -131,49 +131,49 @@
     <name>kImageAnnotator::AnnotationToolSelection</name>
     <message>
         <source>Tool Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Selección de herramientas</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::BoolPicker</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Activado</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivado</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::Controls</name>
     <message>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Deshacer</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Rehacer</translation>
     </message>
     <message>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Cultivos</translation>
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Escala</translation>
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Girar</translation>
     </message>
     <message>
         <source>Modify canvas</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificar el lienzo</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Cortar</translation>
     </message>
 </context>
 <context>
@@ -200,26 +200,26 @@
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::CutWidget</name>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>En vertical</translation>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>En horizontal</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
 </context>
 <context>
@@ -245,142 +245,144 @@
     <name>kImageAnnotator::FontPicker</name>
     <message>
         <source>Font Size</source>
-        <translation type="unfinished">Tamaño de letra</translation>
+        <translation>Tamaño de letra</translation>
     </message>
     <message>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Negrita</translation>
     </message>
     <message>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>Cursiva</translation>
     </message>
     <message>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Subrayado</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Efectos de la imagen</translation>
     </message>
     <message>
         <source>No Effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin efectos</translation>
     </message>
     <message>
         <source>Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Sombra paralela</translation>
     </message>
     <message>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation>Escala de grises</translation>
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>Borde</translation>
     </message>
     <message>
         <source>Invert Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Invertir el color</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ModifyCanvasWidget</name>
     <message>
         <source>Restricted</source>
-        <translation type="unfinished"></translation>
+        <translation>Restringido</translation>
     </message>
     <message>
         <source>When enabled enforces the canvas
 to include the background image.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuando se activa, obliga al lienzo
+a incluir la imagen de fondo.</translation>
     </message>
     <message>
         <source>X:</source>
-        <translation type="unfinished">X:</translation>
+        <translation>X:</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation type="unfinished">Y:</translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <source>W:</source>
-        <translation type="unfinished">↔:</translation>
+        <translation>anch.:</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation type="unfinished">↕:</translation>
+        <translation>alt.:</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Color:</translation>
     </message>
     <message>
         <source>Canvas Background Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Color del fondo del lienzo</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::RotateDialog</name>
     <message>
         <source>Rotate Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Girar la imagen</translation>
     </message>
     <message>
         <source>180°</source>
-        <translation type="unfinished"></translation>
+        <translation>180°</translation>
     </message>
     <message>
         <source>90° Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>90° en sentido horario</translation>
     </message>
     <message>
         <source>90° Counter Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>90° en sentido antihorario</translation>
     </message>
     <message>
         <source>Arbitrary</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbitrario</translation>
     </message>
     <message>
         <source>Positive values rotate clockwise, negative values counter clockwise.
 Rotating by non 90° multipliers might introduce loss of quality.</source>
-        <translation type="unfinished"></translation>
+        <translation>Los valores positivos giran en el sentido de las agujas del reloj, los negativos en sentido contrario.
+La rotación mediante multiplicadores que no sean de 90° puede introducir una pérdida de calidad.</translation>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>En horizontal</translation>
     </message>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>En vertical</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished">Aceptar</translation>
+        <translation>DE ACUERDO</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Girar</translation>
     </message>
     <message>
         <source>Flip</source>
-        <translation type="unfinished"></translation>
+        <translation>Voltear</translation>
     </message>
 </context>
 <context>
@@ -422,7 +424,7 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     <name>kImageAnnotator::StickerPicker</name>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished">Adhesivo</translation>
+        <translation>Pegatina</translation>
     </message>
 </context>
 <context>
@@ -489,50 +491,50 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Pixelate</source>
-        <translation type="unfinished"></translation>
+        <translation>Pixelar</translation>
     </message>
     <message>
         <source>Text Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Indicador del texto</translation>
     </message>
     <message>
         <source>Text Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Flecha de texto</translation>
     </message>
     <message>
         <source>Number Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Flecha numérica</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplicar</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ZoomPicker</name>
     <message>
         <source>Zoom In (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Acercar (%1)</translation>
     </message>
     <message>
         <source>Zoom Out (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alejar (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar el zoom (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar el zoom</translation>
     </message>
     <message>
         <source>Fit Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustar la imagen</translation>
     </message>
     <message>
         <source>Fit image to view (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustar la imagen a la vista (%1)</translation>
     </message>
 </context>
 </TS>
