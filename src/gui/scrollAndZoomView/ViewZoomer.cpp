@@ -61,7 +61,7 @@ void ViewZoomer::wheelZoom(QWheelEvent *event)
 	auto zoomInFactor = 0.1;
 
 	const auto factor = event->angleDelta().y() < 0.0 ? -zoomInFactor : zoomInFactor;
-	zoomToPoint(factor, event->pos());
+	zoomToPoint(factor, event->position().toPoint());
 	event->accept(); // supress scrolling
 }
 
