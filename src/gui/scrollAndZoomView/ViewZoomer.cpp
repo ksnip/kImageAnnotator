@@ -42,7 +42,7 @@ void ViewZoomer::zoom(double factor)
 	newZoomValue = QString::number(newZoomValue, 'f', 1).toDouble();
 
 	if(newZoomValue >= mMinScale && newZoomValue <= mMaxScale) {
-		mView->resetMatrix();
+		mView->resetTransform();
 		mView->scale(newZoomValue, newZoomValue);
 		emit zoomValueChanged(zoomValue());
 	}
