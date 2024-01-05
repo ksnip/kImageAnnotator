@@ -21,7 +21,6 @@
 #define KIMAGEANNOTATOR_DEVICEPIXELRATIOSCALER_H
 
 #include <QApplication>
-#include <QDesktopWidget>
 
 #include "IDevicePixelRatioScaler.h"
 
