@@ -308,7 +308,7 @@ QPointF ShapeHelper::intersectionBetweenRectAndLineFromCenter(const QLineF &line
 
 bool ShapeHelper::linesIntersect(const QLineF &line1, const QLineF &line2, QPointF &intersection)
 {
-	return line1.intersect(line2, &intersection) == QLineF::BoundedIntersection;
+	return line1.intersects(line2, &intersection) == QLineF::BoundedIntersection;
 }
 
 } // namespace kImageAnnotator
