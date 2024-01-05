@@ -25,8 +25,17 @@ elseif (UNIX)
 	string(REGEX REPLACE "//" "/" KIMAGEANNOTATOR_LANG_INSTALL_DIR "${KIMAGEANNOTATOR_LANG_INSTALL_DIR}")
 endif ()
 
-set(QT_MIN_VERSION 5.9.4)
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Widgets Svg)
+set(QT_MIN_VERSION 5.15)
+
+option(BUILD_WITH_QT6 "Build against Qt6" OFF)
+
+if (BUILD_WITH_QT6)
+	set(QT_MAJOR_VERSION 6)
+else()
+	set(QT_MAJOR_VERSION 5)
+endif()
+
+find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED Widgets Svg)
 
 if (UNIX AND NOT APPLE)
 	find_package(X11 REQUIRED)
@@ -67,7 +76,7 @@ target_include_directories(kImageAnnotator
 						   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 						   )
 
-target_link_libraries(kImageAnnotator PUBLIC Qt5::Widgets Qt5::Svg PRIVATE kColorPicker::kColorPicker)
+target_link_libraries(kImageAnnotator PUBLIC Qt${QT_MAJOR_VERSION}::Widgets Qt${QT_MAJOR_VERSION}::Svg PRIVATE kColorPicker::kColorPicker)
 
 if (UNIX AND NOT APPLE)
 	# X11::X11 imported target only available with sufficiently new CMake
