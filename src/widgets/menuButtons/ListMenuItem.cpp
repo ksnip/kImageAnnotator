@@ -35,7 +35,7 @@ ListMenuItem::ListMenuItem(const QIcon &icon, const QString &text, const QVarian
 
 	mIconSize = ScaledSizeProvider::menuItemIconSize();
 	auto offsetForTextWidth = 1.15; // Width not correct calculated on windows #117
-	mTextSize = QSize(fontMetrics().width(mText) * offsetForTextWidth, fontMetrics().height());
+	mTextSize = QSize(fontMetrics().horizontalAdvance(mText) * offsetForTextWidth, fontMetrics().height());
 	mIconOffset = QPoint(mMargin, mMargin);
 	mTextOffset = QPoint(mIconSize.width() + mIconOffset.x() + mSpacer, (mIconSize.height() - mTextSize.height()) / 2 + mIconOffset.y());
 	mSize = QSize(mIconSize.width() + mTextSize.width() + mMargin * 2 + mSpacer, mIconSize.height() + mMargin * 2);
