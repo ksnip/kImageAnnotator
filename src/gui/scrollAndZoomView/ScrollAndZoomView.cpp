@@ -70,7 +70,7 @@ void ScrollAndZoomView::mouseMoveEvent(QMouseEvent *event)
 
 void ScrollAndZoomView::mousePressEvent(QMouseEvent *event)
 {
-	if (event->button() == Qt::MidButton) {
+	if (event->button() == Qt::MiddleButton) {
 		enableDragging(event->pos());
 	} else {
 		QGraphicsView::mousePressEvent(event);
@@ -79,7 +79,7 @@ void ScrollAndZoomView::mousePressEvent(QMouseEvent *event)
 
 void ScrollAndZoomView::mouseReleaseEvent(QMouseEvent *event)
 {
-	if (event->button() == Qt::MidButton) {
+	if (event->button() == Qt::MiddleButton) {
 		disableDragging();
 	} else {
 		QGraphicsView::mouseReleaseEvent(event);

@@ -38,7 +38,7 @@ QString PathHelper::extractFilenameWithFormat(const QString &path)
 
 QString PathHelper::prettyFilename(const QString &filename)
 {
-	auto parts = filename.split(QLatin1Char('_'), QString::SkipEmptyParts);
+	auto parts = filename.split(QLatin1Char('_'), Qt::SkipEmptyParts);
 
 	for (auto i = 0; i < parts.size() ; i++) {
 		parts[i].replace(0, 1, parts[i][0].toUpper());

@@ -28,7 +28,7 @@ bool ItemHelper::zValueGreaterThen(const AbstractAnnotationItem *item1, const Ab
 
 void ItemHelper::sortItemsByZValueDesc(QList<AbstractAnnotationItem *> *items)
 {
-    qSort(items->begin(), items->end(), ItemHelper::zValueGreaterThen);
+    std::sort(items->begin(), items->end(), ItemHelper::zValueGreaterThen);
 }
 
 } // namespace kImageAnnotator

@@ -19,6 +19,8 @@
 
 #include "DevicePixelRatioScaler.h"
 
+#include <QRectF>
+
 namespace kImageAnnotator {
 
 QRectF DevicePixelRatioScaler::scale(const QRectF &rect) const
@@ -29,8 +31,7 @@ QRectF DevicePixelRatioScaler::scale(const QRectF &rect) const
 
 qreal DevicePixelRatioScaler::scaleFactor() const
 {
-	auto desktopWidget = QApplication::desktop();
-	return desktopWidget->devicePixelRatioF();
+	return qGuiApp->devicePixelRatio();
 }
 
 } // namespace kImageAnnotator

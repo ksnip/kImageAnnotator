@@ -126,7 +126,7 @@ QAction *ToolPicker::createAction(const QString &tooltip, const QIcon &icon, Qt:
 	action->setCheckable(true);
 	action->setIcon(icon);
 	action->setShortcut(shortcut);
-	action->setToolTip(tooltip + QLatin1String(" (") + shortcut + QLatin1String(")"));
+	action->setToolTip(tooltip);
 	action->updateDefaultWidget();
 	mActionToTool[action] = toolType;
 	mActionGroup->addAction(action);

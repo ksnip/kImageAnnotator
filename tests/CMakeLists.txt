@@ -1,4 +1,4 @@
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED Test)
+find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED Test)
 find_package(GTest CONFIG REQUIRED)
 
 enable_testing()
@@ -69,10 +69,10 @@ set(TESTUTILS_SRC
 add_library(KIMAGEANNOTATOR_STATIC STATIC ${KIMAGEANNOTATOR_SRCS})
 
 target_link_libraries(KIMAGEANNOTATOR_STATIC
-		Qt5::Widgets
+		Qt${QT_MAJOR_VERSION}::Widgets
 		kImageAnnotator::kImageAnnotator
 		kColorPicker::kColorPicker
-		Qt5::Svg)
+		Qt${QT_MAJOR_VERSION}::Svg)
 
 if (UNIX AND NOT APPLE)
 	# X11::X11 imported target only available with sufficiently new CMake
@@ -88,6 +88,6 @@ target_compile_definitions(KIMAGEANNOTATOR_STATIC PRIVATE KIMAGEANNOTATOR_LANG_I
 foreach (UnitTest ${UNITTEST_SRC})
 	get_filename_component(UnitTestName ${UnitTest} NAME_WE)
 	add_executable(${UnitTestName} ${UnitTest} ${TESTUTILS_SRC})
-	target_link_libraries(${UnitTestName} KIMAGEANNOTATOR_STATIC GTest::gmock Qt5::Test)
+	target_link_libraries(${UnitTestName} KIMAGEANNOTATOR_STATIC GTest::gmock Qt${QT_MAJOR_VERSION}::Test)
 	add_test(${UnitTestName} ${UnitTestName})
 endforeach (UnitTest)

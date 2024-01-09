@@ -42,7 +42,7 @@ void ViewZoomer::zoom(double factor)
 	newZoomValue = QString::number(newZoomValue, 'f', 1).toDouble();
 
 	if(newZoomValue >= mMinScale && newZoomValue <= mMaxScale) {
-		mView->resetMatrix();
+		mView->resetTransform();
 		mView->scale(newZoomValue, newZoomValue);
 		emit zoomValueChanged(zoomValue());
 	}
@@ -61,7 +61,7 @@ void ViewZoomer::wheelZoom(QWheelEvent *event)
 	auto zoomInFactor = 0.1;
 
 	const auto factor = event->angleDelta().y() < 0.0 ? -zoomInFactor : zoomInFactor;
-	zoomToPoint(factor, event->pos());
+	zoomToPoint(factor, event->position().toPoint());
 	event->accept(); // supress scrolling
 }
 

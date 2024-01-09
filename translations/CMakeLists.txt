@@ -1,4 +1,4 @@
-find_package(Qt5LinguistTools)
+find_package(Qt${QT_MAJOR_VERSION}LinguistTools)
 
 set(KIMAGEANNOTATOR_LANG_TS
 	kImageAnnotator_ar.ts
@@ -34,9 +34,9 @@ set(KIMAGEANNOTATOR_LANG_TS
     kImageAnnotator_zh_CN.ts)
 
 if (DEFINED UPDATE_TS_FILES)
-	qt5_create_translation(KIMAGEANNOTATOR_LANG_QM ${CMAKE_SOURCE_DIR}/translations ${KIMAGEANNOTATOR_SRCS} ${KIMAGEANNOTATOR_LANG_TS} OPTIONS "-no-obsolete")
+	qt_create_translation(KIMAGEANNOTATOR_LANG_QM ${CMAKE_SOURCE_DIR}/translations ${KIMAGEANNOTATOR_SRCS} ${KIMAGEANNOTATOR_LANG_TS} OPTIONS "-no-obsolete")
 else ()
-	qt5_add_translation(KIMAGEANNOTATOR_LANG_QM ${KIMAGEANNOTATOR_LANG_TS})
+	qt_add_translation(KIMAGEANNOTATOR_LANG_QM ${KIMAGEANNOTATOR_LANG_TS})
 endif ()
 
 add_custom_target(translations ALL DEPENDS ${KIMAGEANNOTATOR_LANG_QM})
