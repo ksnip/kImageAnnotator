@@ -44,7 +44,7 @@ endif ()
 include(FeatureSummary)
 
 set(KCOLORPICKER_MIN_VERSION 0.2.0)
-find_package(kColorPicker ${KCOLORPICKER_MIN_VERSION} REQUIRED)
+find_package(kColorPicker-Qt${QT_MAJOR_VERSION} ${KCOLORPICKER_MIN_VERSION} REQUIRED)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -76,7 +76,7 @@ target_include_directories(kImageAnnotator
 						   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 						   )
 
-target_link_libraries(kImageAnnotator PUBLIC Qt${QT_MAJOR_VERSION}::Widgets Qt${QT_MAJOR_VERSION}::Svg PRIVATE kColorPicker::kColorPicker)
+target_link_libraries(kImageAnnotator PUBLIC Qt${QT_MAJOR_VERSION}::Widgets Qt${QT_MAJOR_VERSION}::Svg PRIVATE kColorPicker-Qt${QT_MAJOR_VERSION}::kColorPicker)
 
 if (UNIX AND NOT APPLE)
 	# X11::X11 imported target only available with sufficiently new CMake
