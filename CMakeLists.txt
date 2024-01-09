@@ -73,10 +73,12 @@ target_include_directories(kImageAnnotator
 						   PUBLIC
 						   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 						   $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
-						   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+						   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/kImageAnnotator-Qt${QT_MAJOR_VERSION}>
 						   )
 
 target_link_libraries(kImageAnnotator PUBLIC Qt${QT_MAJOR_VERSION}::Widgets Qt${QT_MAJOR_VERSION}::Svg PRIVATE kColorPicker-Qt${QT_MAJOR_VERSION})
+
+set_target_properties(kImageAnnotator PROPERTIES OUTPUT_NAME kImageAnnotator-Qt${QT_MAJOR_VERSION})
 
 if (UNIX AND NOT APPLE)
 	# X11::X11 imported target only available with sufficiently new CMake
@@ -107,30 +109,30 @@ install(TARGETS kImageAnnotator
 		)
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/kImageAnnotator
-		DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+		DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kImageAnnotator-Qt${QT_MAJOR_VERSION}
 		)
 
 configure_package_config_file(
 		${CMAKE_CURRENT_SOURCE_DIR}/cmake/kImageAnnotatorConfig.cmake.in
-		${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotatorConfig.cmake
-		INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/kImageAnnotator
+		${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotator-Qt${QT_MAJOR_VERSION}Config.cmake
+		INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/kImageAnnotator-Qt${QT_MAJOR_VERSION}
 )
 
 write_basic_package_version_file(
-		${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotatorConfig-version.cmake
+		${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotator-Qt${QT_MAJOR_VERSION}Config-version.cmake
 		VERSION ${PROJECT_VERSION}
 		COMPATIBILITY AnyNewerVersion
 )
 
 install(FILES
-		${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotatorConfig.cmake
-		${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotatorConfig-version.cmake
-		DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/kImageAnnotator
+		${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotator-Qt${QT_MAJOR_VERSION}Config.cmake
+		${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotator-Qt${QT_MAJOR_VERSION}Config-version.cmake
+		DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/kImageAnnotator-Qt${QT_MAJOR_VERSION}
 		)
 
 export(
 		EXPORT kImageAnnotator-targets
-		FILE ${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotator-targets.cmake
+		FILE ${CMAKE_CURRENT_BINARY_DIR}/cmake/kImageAnnotator-Qt${QT_MAJOR_VERSION}-targets.cmake
 		NAMESPACE kImageAnnotator::
 )
 
@@ -138,7 +140,7 @@ install(
 		EXPORT kImageAnnotator-targets
 		FILE kImageAnnotator-targets.cmake
 		NAMESPACE kImageAnnotator::
-		DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/kImageAnnotator
+		DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/kImageAnnotator-Qt${QT_MAJOR_VERSION}
 )
 
 # uninstall target
