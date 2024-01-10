@@ -24,7 +24,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
-#include "kColorPicker/KColorPicker.h"
+#include <kColorPicker/KColorPicker.h>
 
 #include "SettingsPickerWidget.h"
 #include "src/common/provider/ScaledSizeProvider.h"
