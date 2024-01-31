@@ -40,8 +40,8 @@ void AnnotationTabContextMenuTest::TestCustomActionTriggered_Should_CallInnerAct
 void AnnotationTabContextMenuTest::TestAddCustomActions_Should_SetTextIconAndToolTipInOuterAction() 
 {
     QAction customAction;
-    customAction.setText(QLatin1Literal("LaLa"));
-    customAction.setToolTip(QLatin1Literal("Hello Hello"));
+    customAction.setText(QStringLiteral("LaLa"));
+    customAction.setToolTip(QStringLiteral("Hello Hello"));
     customAction.setIcon(QIcon());
     QWidget parent;
     AnnotationTabContextMenu menu(&parent);

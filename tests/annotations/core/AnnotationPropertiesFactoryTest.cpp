@@ -199,7 +199,7 @@ void AnnotationPropertiesFactoryTest::TestCreate_Should_SetToolFontBasedOnSettin
 void AnnotationPropertiesFactoryTest::TestCreate_Should_StickerPathBasedOnSettings()
 {
 	auto tool = Tools::Sticker;
-	auto path = QLatin1Literal("/my/path/to/sticker");
+	auto path = QStringLiteral("/my/path/to/sticker");
 	MockDefaultParameters parameters;
 	auto settingsProvider = new MockSettingsProvider();
 	settingsProvider->setSticker(path);
