@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>Bring to Front</source>
-        <translation>Sille Në Ballë</translation>
+        <translation>Sille Para</translation>
     </message>
     <message>
         <source>Bring Forward</source>
@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>Send Backward</source>
-        <translation>Dërgoje Më Pas</translation>
+        <translation>Dërgoje Prapa</translation>
     </message>
     <message>
         <source>Send to Back</source>
@@ -97,7 +97,7 @@
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripërmasojeni</translation>
     </message>
     <message>
         <source>Opacity</source>
