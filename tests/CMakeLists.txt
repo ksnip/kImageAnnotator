@@ -71,7 +71,7 @@ add_library(KIMAGEANNOTATOR_STATIC STATIC ${KIMAGEANNOTATOR_SRCS})
 target_link_libraries(KIMAGEANNOTATOR_STATIC
 		Qt${QT_MAJOR_VERSION}::Widgets
 		kImageAnnotator::kImageAnnotator
-		kColorPicker::kColorPicker-Qt${QT_MAJOR_VERSION}
+		kColorPicker::kColorPicker
 		Qt${QT_MAJOR_VERSION}::Svg)
 
 if (UNIX AND NOT APPLE)

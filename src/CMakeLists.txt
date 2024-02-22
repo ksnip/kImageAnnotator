@@ -140,7 +140,7 @@ set(KIMAGEANNOTATOR_SRCS
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/PathHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/helper/RectSizeHelper.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/filter/IgnoreShortcutsFilter.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/common/filter/KeyEventFilter.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/common/filter/KeyEventFilter.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/common/platform/PlatformChecker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/ToolPicker.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/widgets/Controls.cpp

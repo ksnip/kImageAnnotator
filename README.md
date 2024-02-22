@@ -20,6 +20,7 @@ to be installed before building kImageAnnotator. Install instructions can be fou
     `$ mkdir build && cd build`  
 4. Create the makefile and build the project:  
     `$ cmake .. && make`  
+   to build with Qt6, pass `-DBUILD_WITH_QT6=true` to the `cmake` command
 5. Install shared library (not required when only using the example):  
     `$ sudo make install`
 6. Run the example application:  
@@ -35,7 +36,10 @@ static library is build. For windows, we currently only support building as stat
 
 1. Let cmake find the shared library, optionally with version  
     `set(KIMAGEANNOTATOR_MIN_VERSION "0.x.x")`  
-    `find_package(kImageAnnotator ${KIMAGEANNOTATOR_MIN_VERSION} REQUIRED)`  
+    to build with Qt5:  
+    `find_package(kImageAnnotator-Qt5 ${KIMAGEANNOTATOR_MIN_VERSION} REQUIRED)`  
+    to build with Qt6:  
+    `find_package(kImageAnnotator-Qt6 ${KIMAGEANNOTATOR_MIN_VERSION} REQUIRED)`
 
 2. Link the library with your application  
     `target_link_libraries(myApp kImageAnnotator)`  

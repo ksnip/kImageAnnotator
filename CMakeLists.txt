@@ -76,9 +76,7 @@ target_include_directories(kImageAnnotator
 						   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/kImageAnnotator-Qt${QT_MAJOR_VERSION}>
 						   )
 
-target_link_libraries(kImageAnnotator PUBLIC Qt${QT_MAJOR_VERSION}::Widgets Qt${QT_MAJOR_VERSION}::Svg PRIVATE kColorPicker::kColorPicker-Qt${QT_MAJOR_VERSION})
-
-set_target_properties(kImageAnnotator PROPERTIES OUTPUT_NAME kImageAnnotator-Qt${QT_MAJOR_VERSION})
+target_link_libraries(kImageAnnotator PUBLIC Qt${QT_MAJOR_VERSION}::Widgets Qt${QT_MAJOR_VERSION}::Svg PRIVATE kColorPicker::kColorPicker)
 
 if (UNIX AND NOT APPLE)
 	# X11::X11 imported target only available with sufficiently new CMake
