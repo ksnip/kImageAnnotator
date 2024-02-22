@@ -46,6 +46,7 @@ private:
 
 	void handleKeyPressed(QEvent *event);
 	void handleKeyReleased(QEvent *event);
+	bool isListenerSet();
 };
 
 } // namespace kImageAnnotator

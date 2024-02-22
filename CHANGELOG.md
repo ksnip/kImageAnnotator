@@ -1,5 +1,8 @@
 # Change log
 
+## Release 0.7.1
+* Fixed: Crash after pressing key when no tab exists or closing last tab. ([#271](https://github.com/ksnip/kImageAnnotator/issues/334))
+
 ## Release 0.7.0
 * New: Allow copying items between tabs. ([#318](https://github.com/ksnip/kImageAnnotator/issues/318))
 * New: CTRL + A does not select all text typed. ([#198](https://github.com/ksnip/kImageAnnotator/issues/198))

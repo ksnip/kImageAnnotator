@@ -32,11 +32,8 @@ KeyEventFilter::~KeyEventFilter()
 	QCoreApplication::instance()->removeEventFilter(this);
 }
 
-
 void KeyEventFilter::setListener(IKeyEventListener *listener)
 {
-	Q_ASSERT(listener != nullptr);
-
 	mKeyEventListener = listener;
 }
 
@@ -58,8 +55,9 @@ void KeyEventFilter::handleKeyReleased(QEvent *event)
 	if(mPressedKeyCodes.contains(keyEvent->key())) {
 		mPressedKeyCodes.removeAll(keyEvent->key());
 
-		Q_ASSERT(mKeyEventListener != nullptr);
-		mKeyEventListener->keyReleased(keyEvent);
+		if(isListenerSet()) {
+			mKeyEventListener->keyReleased(keyEvent);
+		}
 	}
 }
 
@@ -67,12 +65,18 @@ void KeyEventFilter::handleKeyPressed(QEvent *event)
 {
 	auto keyEvent = dynamic_cast<QKeyEvent *>(event);
 
-	if(!mPressedKeyCodes.contains(keyEvent->key())) {
+	if(isListenerSet() && !mPressedKeyCodes.contains(keyEvent->key())) {
 		mPressedKeyCodes.append(keyEvent->key());
 
-		Q_ASSERT(mKeyEventListener != nullptr);
-		mKeyEventListener->keyPressed(keyEvent);
+		if(isListenerSet()) {
+			mKeyEventListener->keyPressed(keyEvent);
+		}
 	}
+}
+
+bool KeyEventFilter::isListenerSet()
+{
+	return mKeyEventListener != nullptr;
 }
 
 } // namespace kImageAnnotator
