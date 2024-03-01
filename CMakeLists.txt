@@ -43,7 +43,7 @@ endif ()
 
 include(FeatureSummary)
 
-set(KCOLORPICKER_MIN_VERSION 0.3.0)
+set(KCOLORPICKER_MIN_VERSION 0.3.1)
 find_package(kColorPicker-Qt${QT_MAJOR_VERSION} ${KCOLORPICKER_MIN_VERSION} REQUIRED)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
