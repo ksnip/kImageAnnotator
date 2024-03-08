@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(kImageAnnotator LANGUAGES CXX VERSION 0.7.1)
+project(kImageAnnotator LANGUAGES CXX VERSION 0.7.2)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
