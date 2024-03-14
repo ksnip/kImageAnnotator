@@ -37,7 +37,7 @@ endif()
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED Widgets Svg)
 
-if (UNIX AND NOT APPLE)
+if (UNIX AND NOT APPLE AND NOT HAIKU)
 	find_package(X11 REQUIRED)
 endif ()
 
@@ -78,7 +78,7 @@ target_include_directories(kImageAnnotator
 
 target_link_libraries(kImageAnnotator PUBLIC Qt${QT_MAJOR_VERSION}::Widgets Qt${QT_MAJOR_VERSION}::Svg PRIVATE kColorPicker::kColorPicker)
 
-if (UNIX AND NOT APPLE)
+if (UNIX AND NOT APPLE AND NOT HAIKU)
 	# X11::X11 imported target only available with sufficiently new CMake
 	if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.14.0)
 		target_link_libraries(kImageAnnotator PRIVATE X11::X11)

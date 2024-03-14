@@ -74,7 +74,7 @@ target_link_libraries(KIMAGEANNOTATOR_STATIC
 		kColorPicker::kColorPicker
 		Qt${QT_MAJOR_VERSION}::Svg)
 
-if (UNIX AND NOT APPLE)
+if (UNIX AND NOT APPLE AND NOT HAIKU)
 	# X11::X11 imported target only available with sufficiently new CMake
 	if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.14.0)
 		target_link_libraries(KIMAGEANNOTATOR_STATIC X11::X11)
