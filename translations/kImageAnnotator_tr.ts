@@ -5,27 +5,27 @@
     <name>kImageAnnotator::AnnotationContextMenu</name>
     <message>
         <source>Arrange</source>
-        <translation type="unfinished"></translation>
+        <translation>Organize Et</translation>
     </message>
     <message>
         <source>Bring to Front</source>
-        <translation>Öne Çıkar</translation>
+        <translation>En Öne Getir</translation>
     </message>
     <message>
         <source>Bring Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Öne Çıkar</translation>
     </message>
     <message>
         <source>Send Backward</source>
-        <translation type="unfinished"></translation>
+        <translation>Arkaya Gönder</translation>
     </message>
     <message>
         <source>Send to Back</source>
-        <translation type="unfinished"></translation>
+        <translation>En Arkaya Gönder</translation>
     </message>
     <message>
         <source>Select This</source>
-        <translation type="unfinished"></translation>
+        <translation>Bunu Seç</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -37,7 +37,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation>Düzenle</translation>
+        <translation>Düzen</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -48,60 +48,60 @@
     <name>kImageAnnotator::AnnotationControlsWidget</name>
     <message>
         <source>Controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Denetimler</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationGeneralSettings</name>
     <message>
         <source>General Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Genel Ayarlar</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationImageSettings</name>
     <message>
         <source>Image Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Görsel Ayarları</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationItemSettings</name>
     <message>
         <source>Color</source>
-        <translation type="unfinished">Renk</translation>
+        <translation>Renk</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation type="unfinished">Yazı Rengi</translation>
+        <translation>Metin Rengi</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished">En</translation>
+        <translation>Genişlik</translation>
     </message>
     <message>
         <source>Number Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayı Tohumu</translation>
     </message>
     <message>
         <source>Obfuscation Factor</source>
-        <translation type="unfinished"></translation>
+        <translation>Karartma Çarpanı</translation>
     </message>
     <message>
         <source>Item Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Öge Gölgesi</translation>
     </message>
     <message>
         <source>Item Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Öge Ayarları</translation>
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Ölçek</translation>
     </message>
     <message>
         <source>Opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Matlık</translation>
     </message>
 </context>
 <context>
@@ -112,68 +112,68 @@
     </message>
     <message>
         <source>Close Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Diğerini Kapat</translation>
     </message>
     <message>
         <source>Close All</source>
-        <translation>Hepsini Kapat</translation>
+        <translation>Tümünü Kapat</translation>
     </message>
     <message>
         <source>Close All to the Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Soldaki Tümünü Kapat</translation>
     </message>
     <message>
         <source>Close All to the Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Sağdaki Tümünü Kapat</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationToolSelection</name>
     <message>
         <source>Tool Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Araç Seçimi</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::BoolPicker</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Etkin</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Devre dışı</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::Controls</name>
     <message>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Geri Al</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Yinele</translation>
     </message>
     <message>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Kırp</translation>
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Ölçekle</translation>
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Döndür</translation>
     </message>
     <message>
         <source>Modify canvas</source>
-        <translation type="unfinished"></translation>
+        <translation>Tuvali Değiştir</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Kes</translation>
     </message>
 </context>
 <context>
@@ -184,355 +184,357 @@
     </message>
     <message>
         <source>X:</source>
-        <translation type="unfinished"></translation>
+        <translation>X:</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation type="unfinished"></translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <source>W:</source>
-        <translation type="unfinished"></translation>
+        <translation>G:</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation type="unfinished"></translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Uygula</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::CutWidget</name>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Dikey</translation>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>Yatay</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Uygula</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">İptal</translation>
+        <translation>İptal</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::FillModePicker</name>
     <message>
         <source>Border And Fill Visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Kenarlık ve Dolgu Görünürlüğü</translation>
     </message>
     <message>
         <source>Border and Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Kenarlık ve Dolgu</translation>
     </message>
     <message>
         <source>Border and No Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Kenarlık ve Dolgusuz</translation>
     </message>
     <message>
         <source>No Border and No Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Kenarlıksız ve Dolgusuz</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::FontPicker</name>
     <message>
         <source>Font Size</source>
-        <translation type="unfinished">Font Büyüklüğü</translation>
+        <translation>Yazıtipi Boyutu</translation>
     </message>
     <message>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalın</translation>
     </message>
     <message>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>Yatık</translation>
     </message>
     <message>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Altı Çizili</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ImageEffectPicker</name>
     <message>
         <source>Image Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Görsel Efektleri</translation>
     </message>
     <message>
         <source>No Effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Efekt Yok</translation>
     </message>
     <message>
         <source>Drop Shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Kabartı Gölgesi</translation>
     </message>
     <message>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation>Gri Tonlu</translation>
     </message>
     <message>
         <source>Border</source>
-        <translation type="unfinished"></translation>
+        <translation>Kenarlık</translation>
     </message>
     <message>
         <source>Invert Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Renkleri Tersine Çevir</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ModifyCanvasWidget</name>
     <message>
         <source>Restricted</source>
-        <translation type="unfinished"></translation>
+        <translation>Kısıtlı</translation>
     </message>
     <message>
         <source>When enabled enforces the canvas
 to include the background image.</source>
-        <translation type="unfinished"></translation>
+        <translation>Etkinleştirildiğinde tuvalin arka plan
+görselini içermesini sağlar.</translation>
     </message>
     <message>
         <source>X:</source>
-        <translation type="unfinished"></translation>
+        <translation>X:</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation type="unfinished"></translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <source>W:</source>
-        <translation type="unfinished"></translation>
+        <translation>G:</translation>
     </message>
     <message>
         <source>H:</source>
-        <translation type="unfinished"></translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Uygula</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">İptal</translation>
+        <translation>İptal</translation>
     </message>
     <message>
         <source>Color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Renk:</translation>
     </message>
     <message>
         <source>Canvas Background Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Tuval Arka Plan Rengi</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::RotateDialog</name>
     <message>
         <source>Rotate Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Görseli Döndür</translation>
     </message>
     <message>
         <source>180°</source>
-        <translation type="unfinished"></translation>
+        <translation>180°</translation>
     </message>
     <message>
         <source>90° Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>Saat Yönünde 90°</translation>
     </message>
     <message>
         <source>90° Counter Clockwise</source>
-        <translation type="unfinished"></translation>
+        <translation>Saat Yönünün Tersinde 90°</translation>
     </message>
     <message>
         <source>Arbitrary</source>
-        <translation type="unfinished"></translation>
+        <translation>Gelişigüzel</translation>
     </message>
     <message>
         <source>Positive values rotate clockwise, negative values counter clockwise.
 Rotating by non 90° multipliers might introduce loss of quality.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozitif değerler saat yönünde, negatif değerler saat yönünün tersinde döndürür.
+90° çarpanı olmayan değerler kalite kaybına neden olabilir.</translation>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>Yatay</translation>
     </message>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>Dikey</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">İptal</translation>
+        <translation>İptal</translation>
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Döndür</translation>
     </message>
     <message>
         <source>Flip</source>
-        <translation type="unfinished"></translation>
+        <translation>Çevir</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ScaleDialog</name>
     <message>
         <source>Scale Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Görseli Ölçeklendir</translation>
     </message>
     <message>
         <source>Keep Aspect Ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>En–Boy Oranını Koru</translation>
     </message>
     <message>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Genişlik:</translation>
     </message>
     <message>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yükseklik:</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">İptal</translation>
+        <translation>İptal</translation>
     </message>
     <message>
         <source>Pixel</source>
-        <translation type="unfinished"></translation>
+        <translation>Piksel</translation>
     </message>
     <message>
         <source>Percent</source>
-        <translation type="unfinished"></translation>
+        <translation>Yüzde</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::StickerPicker</name>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>Yapışkan</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ToolPicker</name>
     <message>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation>Seç</translation>
     </message>
     <message>
         <source>Pen</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalem</translation>
     </message>
     <message>
         <source>Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayı</translation>
     </message>
     <message>
         <source>Marker Rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>İmleyici Dörtgen</translation>
     </message>
     <message>
         <source>Marker Ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>İmleyici Elips</translation>
     </message>
     <message>
         <source>Marker Pen</source>
-        <translation type="unfinished"></translation>
+        <translation>İmleyici Kalem</translation>
     </message>
     <message>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin</translation>
     </message>
     <message>
         <source>Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <source>Double Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Çifte Ok</translation>
     </message>
     <message>
         <source>Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Çizgi</translation>
     </message>
     <message>
         <source>Blur</source>
-        <translation type="unfinished"></translation>
+        <translation>Bulanıklık</translation>
     </message>
     <message>
         <source>Rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>Dörtgen</translation>
     </message>
     <message>
         <source>Ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>Elips</translation>
     </message>
     <message>
         <source>Number Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayı İşaretçisi</translation>
     </message>
     <message>
         <source>Sticker</source>
-        <translation type="unfinished"></translation>
+        <translation>Yapışkan</translation>
     </message>
     <message>
         <source>Pixelate</source>
-        <translation type="unfinished"></translation>
+        <translation>Pikselleştir</translation>
     </message>
     <message>
         <source>Text Pointer</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin İşaretçisi</translation>
     </message>
     <message>
         <source>Text Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin Oku</translation>
     </message>
     <message>
         <source>Number Arrow</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayı Oku</translation>
     </message>
     <message>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Çoğalt</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ZoomPicker</name>
     <message>
         <source>Zoom In (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Yakınlaştır (%1)</translation>
     </message>
     <message>
         <source>Zoom Out (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzaklaştır (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Yakınlaştırmayı Sıfırla (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Yakınlaştırmayı Sıfırla</translation>
     </message>
     <message>
         <source>Fit Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Görseli Sığdır</translation>
     </message>
     <message>
         <source>Fit image to view (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Görseli Görünüme Sığdır (%1)</translation>
     </message>
 </context>
 </TS>
