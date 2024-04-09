@@ -48,7 +48,7 @@
     <name>kImageAnnotator::AnnotationControlsWidget</name>
     <message>
         <source>Controls</source>
-        <translation type="unfinished"></translation>
+        <translation>제어</translation>
     </message>
 </context>
 <context>
@@ -97,11 +97,11 @@
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>규모</translation>
     </message>
     <message>
         <source>Opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>불투명</translation>
     </message>
 </context>
 <context>
@@ -149,19 +149,19 @@
     <name>kImageAnnotator::Controls</name>
     <message>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>실행 취소</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>다시 실행</translation>
     </message>
     <message>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>자르기</translation>
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>규모</translation>
     </message>
     <message>
         <source>Rotate</source>
@@ -169,11 +169,11 @@
     </message>
     <message>
         <source>Modify canvas</source>
-        <translation type="unfinished"></translation>
+        <translation>캔버스 수정</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>자르기</translation>
     </message>
 </context>
 <context>
@@ -296,8 +296,8 @@
     <message>
         <source>When enabled enforces the canvas
 to include the background image.</source>
-        <translation>이 옵션을 사용하면 캔버스에
-배경 그림을 포함하도록 강제합니다.</translation>
+        <translation>활성화되면 캔버스를 적용합니다.
+배경 이미지를 포함합니다.</translation>
     </message>
     <message>
         <source>X:</source>
@@ -526,11 +526,11 @@ Rotating by non 90° multipliers might introduce loss of quality.</source>
     </message>
     <message>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>확대/축소 재설정</translation>
     </message>
     <message>
         <source>Fit Image</source>
-        <translation type="unfinished"></translation>
+        <translation>좋은 이미지</translation>
     </message>
     <message>
         <source>Fit image to view (%1)</source>
