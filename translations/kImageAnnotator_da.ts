@@ -5,7 +5,7 @@
     <name>kImageAnnotator::AnnotationContextMenu</name>
     <message>
         <source>Arrange</source>
-        <translation>Tilpas</translation>
+        <translation>Arrangér</translation>
     </message>
     <message>
         <source>Bring to Front</source>
@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>Send Backward</source>
-        <translation>FlytTilbage</translation>
+        <translation>Flyt Tilbage</translation>
     </message>
     <message>
         <source>Send to Back</source>
@@ -29,7 +29,7 @@
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopier</translation>
+        <translation>Kopiér</translation>
     </message>
     <message>
         <source>Paste</source>
@@ -37,7 +37,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation>Rediger</translation>
+        <translation>Redigér</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -48,7 +48,7 @@
     <name>kImageAnnotator::AnnotationControlsWidget</name>
     <message>
         <source>Controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontroller</translation>
     </message>
 </context>
 <context>
@@ -77,7 +77,7 @@
     </message>
     <message>
         <source>Width</source>
-        <translation>Brede</translation>
+        <translation>Bredde</translation>
     </message>
     <message>
         <source>Number Seed</source>
@@ -89,19 +89,19 @@
     </message>
     <message>
         <source>Item Shadow</source>
-        <translation>Elementets Skygge</translation>
+        <translation>Elementskygge</translation>
     </message>
     <message>
         <source>Item Settings</source>
-        <translation>Elementets Indstillinger</translation>
+        <translation>Elementindstillinger</translation>
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Skala</translation>
     </message>
     <message>
         <source>Opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Gennemsigtighed</translation>
     </message>
 </context>
 <context>
@@ -157,23 +157,23 @@
     </message>
     <message>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Beskær</translation>
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Skalére</translation>
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished">Roter</translation>
+        <translation>Rotér</translation>
     </message>
     <message>
         <source>Modify canvas</source>
-        <translation type="unfinished"></translation>
+        <translation>Ændr lærred</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Klip</translation>
     </message>
 </context>
 <context>
@@ -284,7 +284,7 @@
     </message>
     <message>
         <source>Invert Color</source>
-        <translation>Spejlvend Farven</translation>
+        <translation>Modsat Farve</translation>
     </message>
 </context>
 <context>
@@ -329,14 +329,14 @@ to include the background image.</source>
     </message>
     <message>
         <source>Canvas Background Color</source>
-        <translation>Kanvassens Bagrundsfarve</translation>
+        <translation>Lærredets Baggrundsfarve</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::RotateDialog</name>
     <message>
         <source>Rotate Image</source>
-        <translation>Roter Billedet</translation>
+        <translation>Rotér Billedet</translation>
     </message>
     <message>
         <source>180°</source>
@@ -344,11 +344,11 @@ to include the background image.</source>
     </message>
     <message>
         <source>90° Clockwise</source>
-        <translation>90° I Urets Retning</translation>
+        <translation>90° med uret</translation>
     </message>
     <message>
         <source>90° Counter Clockwise</source>
-        <translation>90° Mod Urets Retning</translation>
+        <translation>90° mod uret</translation>
     </message>
     <message>
         <source>Arbitrary</source>
@@ -358,7 +358,7 @@ to include the background image.</source>
         <source>Positive values rotate clockwise, negative values counter clockwise.
 Rotating by non 90° multipliers might introduce loss of quality.</source>
         <translation>Positive værdier roterer i urets retning, negative værdier mod urets retning.
-Rotering af ikke-90° gangefaktorer kan forårsage tab af kvalitet.</translation>
+Hvis værdien ikke er delelig med 90°, kan det forårsage tab af kvalitet.</translation>
     </message>
     <message>
         <source>Horizontal</source>
@@ -378,18 +378,18 @@ Rotering af ikke-90° gangefaktorer kan forårsage tab af kvalitet.</translation
     </message>
     <message>
         <source>Rotate</source>
-        <translation>Roter</translation>
+        <translation>Rotér</translation>
     </message>
     <message>
         <source>Flip</source>
-        <translation>Spejlvend</translation>
+        <translation>Vend</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::ScaleDialog</name>
     <message>
         <source>Scale Image</source>
-        <translation>Skaler Billedet</translation>
+        <translation>Skalér Billedet</translation>
     </message>
     <message>
         <source>Keep Aspect Ratio</source>
@@ -397,7 +397,7 @@ Rotering af ikke-90° gangefaktorer kan forårsage tab af kvalitet.</translation
     </message>
     <message>
         <source>Width:</source>
-        <translation>Brede:</translation>
+        <translation>Bredde:</translation>
     </message>
     <message>
         <source>Height:</source>
@@ -435,7 +435,7 @@ Rotering af ikke-90° gangefaktorer kan forårsage tab af kvalitet.</translation
     </message>
     <message>
         <source>Pen</source>
-        <translation>Blyant</translation>
+        <translation>Pen</translation>
     </message>
     <message>
         <source>Number</source>
@@ -451,7 +451,7 @@ Rotering af ikke-90° gangefaktorer kan forårsage tab af kvalitet.</translation
     </message>
     <message>
         <source>Marker Pen</source>
-        <translation>Markeringsblyant</translation>
+        <translation>Markeringspen</translation>
     </message>
     <message>
         <source>Text</source>
@@ -491,11 +491,11 @@ Rotering af ikke-90° gangefaktorer kan forårsage tab af kvalitet.</translation
     </message>
     <message>
         <source>Pixelate</source>
-        <translation>Opbryd</translation>
+        <translation>Pixelér</translation>
     </message>
     <message>
         <source>Text Pointer</source>
-        <translation>Tekstmarkøren</translation>
+        <translation>Tekstmarkør</translation>
     </message>
     <message>
         <source>Text Arrow</source>
@@ -514,27 +514,27 @@ Rotering af ikke-90° gangefaktorer kan forårsage tab af kvalitet.</translation
     <name>kImageAnnotator::ZoomPicker</name>
     <message>
         <source>Zoom In (%1)</source>
-        <translation>Forstør (%1)</translation>
+        <translation>Zoom ind (%1)</translation>
     </message>
     <message>
         <source>Zoom Out (%1)</source>
-        <translation>Formindsk (%1)</translation>
+        <translation>Zoom ud (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom (%1)</source>
-        <translation>Nulstil Zoomen (%1)</translation>
+        <translation>Nulstil Zoom (%1)</translation>
     </message>
     <message>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Nulstil Zoom</translation>
     </message>
     <message>
         <source>Fit Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilpas til billede</translation>
     </message>
     <message>
         <source>Fit image to view (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilpas billede til visning</translation>
     </message>
 </context>
 </TS>
