@@ -9,11 +9,11 @@
     </message>
     <message>
         <source>Bring to Front</source>
-        <translation type="unfinished"></translation>
+        <translation>Too esiplaanile</translation>
     </message>
     <message>
         <source>Bring Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Vii tagaplaanile</translation>
     </message>
     <message>
         <source>Send Backward</source>
@@ -25,23 +25,23 @@
     </message>
     <message>
         <source>Select This</source>
-        <translation type="unfinished"></translation>
+        <translation>Vali see</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopeeri</translation>
     </message>
     <message>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Muuda</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Kustuta</translation>
     </message>
 </context>
 <context>
@@ -55,29 +55,29 @@
     <name>kImageAnnotator::AnnotationGeneralSettings</name>
     <message>
         <source>General Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Üldised seadistused</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationImageSettings</name>
     <message>
         <source>Image Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Pildi seadistused</translation>
     </message>
 </context>
 <context>
     <name>kImageAnnotator::AnnotationItemSettings</name>
     <message>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Värv</translation>
     </message>
     <message>
         <source>Text Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Teksti värv</translation>
     </message>
     <message>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Laius</translation>
     </message>
     <message>
         <source>Number Seed</source>
@@ -165,7 +165,7 @@
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished">Otočit</translation>
+        <translation>Pööra</translation>
     </message>
     <message>
         <source>Modify canvas</source>
@@ -207,19 +207,19 @@
     <name>kImageAnnotator::CutWidget</name>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished">Vertikální</translation>
+        <translation>Vertikaalselt</translation>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished">Horizontální</translation>
+        <translation>Horisontaalselt</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">Aplikovat</translation>
+        <translation>Rakenda</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Zrušit</translation>
+        <translation>Katkesta</translation>
     </message>
 </context>
 <context>
