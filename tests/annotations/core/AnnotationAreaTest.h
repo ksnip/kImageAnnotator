@@ -42,7 +42,7 @@ Q_OBJECT
 private slots:
 	void ExportAsImage_Should_ExportImage_When_ImageSet();
 	void ExportAsImage_Should_ExportEmptyImage_When_NoImageSet();
-	void ExportAsImage_Should_ExportScaledImage_When_ScalingEnabled();
+	void ExportAsImage_Should_ExportUnscaledImage_When_ScalingEnabled();
 	void AddAnnotationItem_Should_AddAnnotationItemToScene();
 	void RemoveAnnotationItem_Should_RemoveAnnotationItemFromScene();
 	void CanvasRect_Should_ReturnRectUnionOfAllItems_When_NoCanvasRectSet();

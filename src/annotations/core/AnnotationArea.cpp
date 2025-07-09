@@ -107,17 +107,13 @@ QImage AnnotationArea::image()
 	mItemModifier->clear();
 	
 	setSceneRect(canvasRect());
-	auto scaleFactor = mDevicePixelRatioScaler->scaleFactor();
-	auto sceneRect = this->sceneRect();
-	auto scaledSceneSize = sceneRect.size().toSize() * scaleFactor;
-	auto scaledSceneRect = QRectF(sceneRect.topLeft(), scaledSceneSize);
-	QImage image(scaledSceneSize, QImage::Format_ARGB32_Premultiplied);
+	auto sceneRect = this->sceneRect().toRect();
+	QImage image(sceneRect.size(), QImage::Format_ARGB32_Premultiplied);
 	image.fill(mCanvasColor);
-	image.setDevicePixelRatio(scaleFactor);
 
 	QPainter painter(&image);
 	painter.setRenderHint(QPainter::Antialiasing);
-	render(&painter, QRectF(), scaledSceneRect);
+	render(&painter, QRectF(), sceneRect);
 
 	setSceneRect(QRect()); // Reset scene rect
 
