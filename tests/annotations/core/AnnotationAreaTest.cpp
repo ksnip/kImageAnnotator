@@ -47,7 +47,7 @@ void AnnotationAreaTest::ExportAsImage_Should_ExportEmptyImage_When_NoImageSet()
 	QCOMPARE(QImage(), resultImage);
 }
 
-void AnnotationAreaTest::ExportAsImage_Should_ExportScaledImage_When_ScalingEnabled()
+void AnnotationAreaTest::ExportAsImage_Should_ExportUnscaledImage_When_ScalingEnabled()
 {
 	auto scaleFactor = 1.5;
 	QPixmap pixmap(QSize(400, 400));
@@ -61,9 +61,7 @@ void AnnotationAreaTest::ExportAsImage_Should_ExportScaledImage_When_ScalingEnab
 
 	auto resultImage = annotationArea.image();
 
-	auto expectedImage = pixmap.scaled(pixmap.size() * scaleFactor).toImage().convertToFormat(QImage::Format_ARGB32_Premultiplied);
-	expectedImage.setDevicePixelRatio(scaleFactor);
-	QCOMPARE(resultImage, expectedImage);
+	QCOMPARE(resultImage, pixmap.toImage());
 }
 
 void AnnotationAreaTest::AddAnnotationItem_Should_AddAnnotationItemToScene()
