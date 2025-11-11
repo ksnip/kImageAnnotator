@@ -75,12 +75,7 @@ target_link_libraries(KIMAGEANNOTATOR_STATIC
 		Qt${QT_MAJOR_VERSION}::Svg)
 
 if (UNIX AND NOT APPLE)
-	# X11::X11 imported target only available with sufficiently new CMake
-	if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.14.0)
-		target_link_libraries(KIMAGEANNOTATOR_STATIC X11::X11)
-	else()
-		target_link_libraries(KIMAGEANNOTATOR_STATIC X11)
-	endif()
+	target_link_libraries(KIMAGEANNOTATOR_STATIC X11::X11)
 endif ()
 
 target_compile_definitions(KIMAGEANNOTATOR_STATIC PRIVATE KIMAGEANNOTATOR_LANG_INSTALL_DIR="${KIMAGEANNOTATOR_LANG_INSTALL_DIR}")

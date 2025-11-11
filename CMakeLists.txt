@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.16)
 project(kImageAnnotator LANGUAGES CXX VERSION 0.7.2)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -79,12 +79,7 @@ target_include_directories(kImageAnnotator
 target_link_libraries(kImageAnnotator PUBLIC Qt${QT_MAJOR_VERSION}::Widgets Qt${QT_MAJOR_VERSION}::Svg PRIVATE kColorPicker::kColorPicker)
 
 if (UNIX AND NOT APPLE)
-	# X11::X11 imported target only available with sufficiently new CMake
-	if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.14.0)
-		target_link_libraries(kImageAnnotator PRIVATE X11::X11)
-	else()
-		target_link_libraries(kImageAnnotator PRIVATE X11)
-	endif()
+	target_link_libraries(kImageAnnotator PRIVATE X11::X11)
 endif ()
 
 target_compile_definitions(kImageAnnotator PRIVATE KIMAGEANNOTATOR_LIB)
