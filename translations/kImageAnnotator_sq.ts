@@ -534,7 +534,7 @@ Rrotullimi me shumëfisha jo të 90° mund të sjellë humbje të cilësisë.</t
     </message>
     <message>
         <source>Fit image to view (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Shtrije figurën sa pamja (%1)</translation>
     </message>
 </context>
 </TS>
