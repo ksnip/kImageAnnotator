@@ -2,6 +2,8 @@
 
 ## Release 0.7.2
 * Fixed: KeyInputHelperTest failed with QT_QPA_PLATFORM=offscreen. ([#335](https://github.com/ksnip/kImageAnnotator/issues/335))
+* Fixed: Fix result images being rescaled on HDPI monitors. ([#342](https://github.com/ksnip/kImageAnnotator/issues/342))
+* Fixed: Revert custom scaling for kde. ([#339](https://github.com/ksnip/kImageAnnotator/issues/339))
 
 ## Release 0.7.1
 * Fixed: Crash after pressing key when no tab exists or closing last tab. ([#334](https://github.com/ksnip/kImageAnnotator/issues/334))
