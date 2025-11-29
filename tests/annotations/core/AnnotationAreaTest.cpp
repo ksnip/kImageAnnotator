@@ -61,7 +61,7 @@ void AnnotationAreaTest::ExportAsImage_Should_ExportUnscaledImage_When_ScalingEn
 
 	auto resultImage = annotationArea.image();
 
-	QCOMPARE(resultImage, pixmap.toImage());
+	QCOMPARE(resultImage, pixmap.toImage().convertToFormat(QImage::Format_ARGB32_Premultiplied));
 }
 
 void AnnotationAreaTest::AddAnnotationItem_Should_AddAnnotationItemToScene()
