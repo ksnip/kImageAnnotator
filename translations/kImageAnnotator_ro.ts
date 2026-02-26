@@ -48,7 +48,7 @@
     <name>kImageAnnotator::AnnotationControlsWidget</name>
     <message>
         <source>Controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Controale</translation>
     </message>
 </context>
 <context>
@@ -97,11 +97,11 @@
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Scară</translation>
     </message>
     <message>
         <source>Opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Opacitate</translation>
     </message>
 </context>
 <context>
@@ -149,31 +149,31 @@
     <name>kImageAnnotator::Controls</name>
     <message>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Desfă</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Refă</translation>
     </message>
     <message>
         <source>Crop</source>
-        <translation type="unfinished"></translation>
+        <translation>Decupează</translation>
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Scalează</translation>
     </message>
     <message>
         <source>Rotate</source>
-        <translation type="unfinished">Rotește</translation>
+        <translation>Rotește</translation>
     </message>
     <message>
         <source>Modify canvas</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifică canavaua</translation>
     </message>
     <message>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Taie</translation>
     </message>
 </context>
 <context>
@@ -207,19 +207,19 @@
     <name>kImageAnnotator::CutWidget</name>
     <message>
         <source>Vertical</source>
-        <translation type="unfinished">Vertical</translation>
+        <translation>Vertical</translation>
     </message>
     <message>
         <source>Horizontal</source>
-        <translation type="unfinished">Orizontal</translation>
+        <translation>Orizontal</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">Aplică</translation>
+        <translation>Aplică</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Renunță</translation>
+        <translation>Renunță</translation>
     </message>
 </context>
 <context>
@@ -526,15 +526,15 @@ Rotirea cu non-multiplu de 90° poate introduce pierderi de calitate.</translati
     </message>
     <message>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Reinițializează apropierea</translation>
     </message>
     <message>
         <source>Fit Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Potrivește imaginea</translation>
     </message>
     <message>
         <source>Fit image to view (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Potrivește imaginea la vizualizare (%1)</translation>
     </message>
 </context>
 </TS>
