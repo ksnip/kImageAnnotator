@@ -108,7 +108,9 @@ QImage AnnotationArea::image()
 	
 	setSceneRect(canvasRect());
 	auto sceneRect = this->sceneRect().toRect();
-	QImage image(sceneRect.size(), QImage::Format_ARGB32_Premultiplied);
+	auto dpr = mDevicePixelRatioScaler->scaleFactor();
+	QImage image(sceneRect.size() * dpr, QImage::Format_ARGB32_Premultiplied);
+	image.setDevicePixelRatio(dpr);
 	image.fill(mCanvasColor);
 
 	QPainter painter(&image);
