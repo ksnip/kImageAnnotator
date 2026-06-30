@@ -35,7 +35,7 @@ else()
 	set(QT_MAJOR_VERSION 5)
 endif()
 
-find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED Widgets Svg)
+find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED Widgets Svg LinguistTools)
 
 if (UNIX AND NOT APPLE)
 	find_package(X11 REQUIRED)

@@ -1,5 +1,3 @@
-find_package(Qt${QT_MAJOR_VERSION}LinguistTools)
-
 set(KIMAGEANNOTATOR_LANG_TS
 	kImageAnnotator_ar.ts
 	kImageAnnotator_bg.ts
