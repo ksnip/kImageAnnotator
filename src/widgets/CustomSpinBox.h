@@ -31,9 +31,14 @@ public:
 	explicit CustomSpinBox(QWidget *parent = nullptr);
 	~CustomSpinBox() override = default;
 	void setValueSilent(int value);
+	void setSnapToSingleStep(bool enabled);
+	void stepBy(int steps) override;
 
 signals:
 	void valueChanged(int) const;
+
+private:
+	bool mSnapToSingleStep;
 };
 
 } // namespace kImageAnnotator
