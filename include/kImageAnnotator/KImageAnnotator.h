@@ -56,6 +56,7 @@ public Q_SLOTS:
 	int addTab(const QPixmap &pixmap, const QString &title, const QString &toolTip);
 	void updateTabInfo(int index, const QString &title, const QString &toolTip);
 	void insertImageItem(const QPointF &position, const QPixmap &pixmap);
+	void setZoomValue(double value);
 	Q_DECL_DEPRECATED void setTextFont(const QFont &font);
 	Q_DECL_DEPRECATED void setNumberFont(const QFont &font);
 	Q_DECL_DEPRECATED void setItemShadowEnabled(bool enabled);
