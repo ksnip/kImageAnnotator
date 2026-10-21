@@ -136,6 +136,14 @@ void AnnotationWidget::insertImageItem(const QPointF &position, const QPixmap &p
 	}
 }
 
+void AnnotationWidget::setZoomValue(double value) const
+{
+	auto zoomValueProvider = mAnnotationTabWidget->currentZoomValueProvider();
+	if(zoomValueProvider != nullptr) {
+		zoomValueProvider->setZoomValue(value);
+	}
+}
+
 void AnnotationWidget::removeTab(int index)
 {
 	mAnnotationTabWidget->removeTab(index);

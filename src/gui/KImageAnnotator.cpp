@@ -129,6 +129,16 @@ void KImageAnnotator::insertImageItem(const QPointF &position, const QPixmap &pi
     d->mCoreView.insertImageItem(position, pixmap);
 }
 
+/*
+ * Sets the zoom of the current tab, 1.0 is 100%. Only the view is zoomed, the
+ * image keeps its size.
+ */
+void KImageAnnotator::setZoomValue(double value)
+{
+	Q_D(KImageAnnotator);
+	d->mCoreView.setZoomValue(value);
+}
+
 QSize KImageAnnotator::sizeHint() const
 {
 	Q_D(const KImageAnnotator);

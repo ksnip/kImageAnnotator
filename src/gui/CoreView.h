@@ -57,6 +57,7 @@ public slots:
 	int addTab(const QPixmap &pixmap, const QString &title, const QString &toolTip);
 	void updateTabInfo(int index, const QString &title, const QString &toolTip);
 	void insertImageItem(const QPointF &position, const QPixmap &pixmap);
+	void setZoomValue(double value);
 	void removeTab(int index);
 	void showAnnotator();
 	void showCropper();

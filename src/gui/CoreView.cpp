@@ -93,6 +93,11 @@ void CoreView::insertImageItem(const QPointF &position, const QPixmap &pixmap)
     mAnnotationWidget->insertImageItem(position, pixmap);
 }
 
+void CoreView::setZoomValue(double value)
+{
+	mAnnotationWidget->setZoomValue(value);
+}
+
 void CoreView::removeTab(int index)
 {
 	mAnnotationWidget->removeTab(index);

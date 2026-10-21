@@ -47,6 +47,7 @@ public:
 	int insertTab(int index, const QPixmap &pixmap, const QString &title, const QString &toolTip);
 	void updateTabInfo(int index, const QString &title, const QString &toolTip);
 	void insertImageItem(const QPointF &position, const QPixmap &pixmap) const;
+	void setZoomValue(double value) const;
 	void removeTab(int index);
 	void setUndoEnabled(bool enabled);
 	QAction* undoAction() const;
