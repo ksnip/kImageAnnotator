@@ -35,17 +35,23 @@ double ViewZoomer::zoomValue() const
 	return mView->transform().m11();
 }
 
+/*
+ * Steps to the next multiple of the factor, for example from 0.75 to 0.8 or 0.7
+ * with a factor of 0.1 or -0.1, so the zoom stays on clean values.
+ */
 void ViewZoomer::zoom(double factor)
 {
-	auto currentZoomValue = zoomValue();
-	auto newZoomValue = currentZoomValue + factor;
-	newZoomValue = QString::number(newZoomValue, 'f', 1).toDouble();
-
-	if(newZoomValue >= mMinScale && newZoomValue <= mMaxScale) {
-		mView->resetTransform();
-		mView->scale(newZoomValue, newZoomValue);
-		emit zoomValueChanged(zoomValue());
+	auto stepInPercent = qRound(qAbs(factor) * 100);
+	if (stepInPercent == 0) {
+		return;
 	}
+
+	auto currentInPercent = qRound(zoomValue() * 100);
+	auto snappedInPercent = factor > 0
+		? (currentInPercent / stepInPercent) * stepInPercent + stepInPercent
+		: ((currentInPercent + stepInPercent - 1) / stepInPercent) * stepInPercent - stepInPercent;
+
+	applyZoomValue(snappedInPercent / 100.0);
 }
 
 void ViewZoomer::zoomToPoint(double factor, const QPoint &viewPoint)
@@ -71,9 +77,22 @@ void ViewZoomer::fitImageToView()
 	emit zoomValueChanged(zoomValue());
 }
 
+/*
+ * Sets the zoom to the given value, rounded to whole percent like the zoom
+ * picker shows it.
+ */
 void ViewZoomer::setZoomValue(double value)
 {
-	zoom(value - zoomValue());
+	applyZoomValue(qRound(value * 100) / 100.0);
+}
+
+void ViewZoomer::applyZoomValue(double value)
+{
+	if(value >= mMinScale && value <= mMaxScale) {
+		mView->resetTransform();
+		mView->scale(value, value);
+		emit zoomValueChanged(zoomValue());
+	}
 }
 
 } // namespace kImageAnnotator

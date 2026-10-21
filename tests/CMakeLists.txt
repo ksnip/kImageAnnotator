@@ -41,6 +41,7 @@ set(UNITTEST_SRC
 	gui/selection/SelectionMoveHelperTest.cpp
 	gui/selection/SelectionHandlerTest.cpp
 	gui/selection/SelectionHandlesAllTest.cpp
+	gui/scrollAndZoomView/ViewZoomerTest.cpp
 	gui/scaler/ScaleSizeHandlerTest.cpp
 	gui/annotator/tabs/AnnotationTabCloserTest.cpp
 	gui/annotator/tabs/AnnotationTabContextMenuTest.cpp

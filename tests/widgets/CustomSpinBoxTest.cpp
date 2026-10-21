@@ -42,4 +42,38 @@ void CustomSpinBoxTest::TestSetValueSilent_Should_NotEmitValueChangedSignal()
 	QCOMPARE(spy.count(), 0);
 }
 
+void CustomSpinBoxTest::TestStepBy_Should_StepToNextMultipleOfSingleStep_When_SnapEnabled()
+{
+	CustomSpinBox spinBox;
+	spinBox.setRange(10, 800);
+	spinBox.setSingleStep(10);
+	spinBox.setSnapToSingleStep(true);
+
+	spinBox.setValue(75);
+	spinBox.stepBy(1);
+	QCOMPARE(spinBox.value(), 80);
+
+	spinBox.stepBy(1);
+	QCOMPARE(spinBox.value(), 90);
+
+	spinBox.setValue(75);
+	spinBox.stepBy(-1);
+	QCOMPARE(spinBox.value(), 70);
+
+	spinBox.stepBy(-1);
+	QCOMPARE(spinBox.value(), 60);
+}
+
+void CustomSpinBoxTest::TestStepBy_Should_AddSingleStep_When_SnapDisabled()
+{
+	CustomSpinBox spinBox;
+	spinBox.setRange(10, 800);
+	spinBox.setSingleStep(10);
+
+	spinBox.setValue(75);
+	spinBox.stepBy(1);
+
+	QCOMPARE(spinBox.value(), 85);
+}
+
 TEST_MAIN(CustomSpinBoxTest);

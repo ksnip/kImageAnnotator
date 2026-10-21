@@ -48,6 +48,8 @@ private:
 	QGraphicsView *mView;
 	double mMinScale;
 	double mMaxScale;
+
+	void applyZoomValue(double value);
 };
 
 } // namespace kImageAnnotator

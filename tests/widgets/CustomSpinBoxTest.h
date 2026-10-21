@@ -34,6 +34,8 @@ Q_OBJECT
 private slots:
 	void TestSetValue_Should_EmitValueChangedSignal();
 	void TestSetValueSilent_Should_NotEmitValueChangedSignal();
+	void TestStepBy_Should_StepToNextMultipleOfSingleStep_When_SnapEnabled();
+	void TestStepBy_Should_AddSingleStep_When_SnapDisabled();
 };
 
 #endif // KIMAGEANNOTATOR_CUSTOMSPINBOXTEST_H

@@ -21,7 +21,9 @@
 
 namespace kImageAnnotator {
 
-kImageAnnotator::CustomSpinBox::CustomSpinBox(QWidget *parent) : QSpinBox(parent)
+kImageAnnotator::CustomSpinBox::CustomSpinBox(QWidget *parent) :
+	QSpinBox(parent),
+	mSnapToSingleStep(false)
 {
 	setAlignment(Qt::AlignHCenter);
 
@@ -35,6 +37,28 @@ void CustomSpinBox::setValueSilent(int value)
 	QSpinBox::setValue(value);
 
 	blockSignals(false);
+}
+
+void CustomSpinBox::setSnapToSingleStep(bool enabled)
+{
+	mSnapToSingleStep = enabled;
+}
+
+/*
+ * With snapping enabled, a step goes to the next multiple of the single step
+ * first, for example from 75 to 80 or 70 with a single step of 10.
+ */
+void CustomSpinBox::stepBy(int steps)
+{
+	if (!mSnapToSingleStep || steps == 0) {
+		QSpinBox::stepBy(steps);
+		return;
+	}
+
+	auto step = singleStep();
+	auto current = value();
+	auto snapped = steps > 0 ? (current / step) * step : ((current + step - 1) / step) * step;
+	setValue(snapped + steps * step);
 }
 
 } // namespace kImageAnnotator

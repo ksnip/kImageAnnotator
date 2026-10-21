@@ -46,9 +46,10 @@ void ZoomPicker::initGui()
 	auto icon = IconLoader::load(QLatin1String("zoom.svg"));
 	mLabel->setPixmap(icon.pixmap(ScaledSizeProvider::settingsWidgetIconSize()));
 
-	mSpinBox->setFocusPolicy(Qt::NoFocus);
+	setFocusPolicy(Qt::NoFocus);
 	mSpinBox->setRange(10, 800);
 	mSpinBox->setSingleStep(10);
+	mSpinBox->setSnapToSingleStep(true);
 	mSpinBox->setSuffix(QLatin1String("%"));
 	mSpinBox->setWrapping(false);
 
@@ -129,14 +130,12 @@ void ZoomPicker::notifyZoomValueChanged(double value)
 
 void ZoomPicker::zoomIn()
 {
-	int currentZoom = mSpinBox->value();
-	notifyZoomValueChanged(currentZoom + 10);
+	mSpinBox->stepBy(1);
 }
 
 void ZoomPicker::zoomOut()
 {
-	auto currentZoom = mSpinBox->value();
-	notifyZoomValueChanged(currentZoom - 10);
+	mSpinBox->stepBy(-1);
 }
 
 void ZoomPicker::resetZoomOut()
